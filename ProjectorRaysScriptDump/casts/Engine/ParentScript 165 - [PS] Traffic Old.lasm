@@ -1,0 +1,13 @@
+property p
+global gSystem, gData, gGame
+
+on new me, tmember, tData, tParent
+  [  0] getparam 0 .............................. <me>
+  [  2] pusharglistnoret 1 ...................... <me>
+  [  4] extcall 52 .............................. return me
+  [  6] ret
+end
+
+on enterFrame me
+  [  0] ret
+end

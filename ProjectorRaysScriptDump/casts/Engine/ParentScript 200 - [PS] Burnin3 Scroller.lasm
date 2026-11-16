@@ -1,0 +1,516 @@
+property p
+global gData, gGame
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 487 ............................ <#sprite>
+  [ 12] getparam 1 .............................. <tParams>
+  [ 14] pushsymb 564 ............................ <#SpriteNR>
+  [ 17] pusharglist 2 ........................... <tParams, #SpriteNR>
+  [ 19] objcall 105 ............................. <tParams[#SpriteNR]>
+  [ 21] pusharglist 1 ........................... <tParams[#SpriteNR]>
+  [ 23] extcall 487 ............................. <sprite(tParams[#SpriteNR])>
+  [ 26] pusharglistnoret 3 ...................... <p, #sprite, sprite(tParams[#SpriteNR])>
+  [ 28] objcall 103 ............................. p[#sprite] = sprite(tParams[#SpriteNR])
+  [ 30] getprop 563 ............................. <p>
+  [ 33] pushsymb 64 ............................. <#member>
+  [ 35] getparam 1 .............................. <tParams>
+  [ 37] pushsymb 949 ............................ <#memberName>
+  [ 40] pusharglist 2 ........................... <tParams, #memberName>
+  [ 42] objcall 105 ............................. <tParams[#memberName]>
+  [ 44] pusharglist 1 ........................... <tParams[#memberName]>
+  [ 46] extcall 64 .............................. <member(tParams[#memberName])>
+  [ 48] pusharglistnoret 3 ...................... <p, #member, member(tParams[#memberName])>
+  [ 50] objcall 103 ............................. p[#member] = member(tParams[#memberName])
+  [ 52] getprop 563 ............................. <p>
+  [ 55] pushsymb 953 ............................ <#button>
+  [ 58] pusharglist 0 ........................... <>
+  [ 60] extcall 40 .............................. <VOID>
+  [ 62] pusharglistnoret 3 ...................... <p, #button, VOID>
+  [ 64] objcall 103 ............................. p[#button] = VOID
+  [ 66] getprop 563 ............................. <p>
+  [ 69] pushsymb 954 ............................ <#PreviousButton>
+  [ 72] pusharglist 0 ........................... <>
+  [ 74] extcall 40 .............................. <VOID>
+  [ 76] pusharglistnoret 3 ...................... <p, #PreviousButton, VOID>
+  [ 78] objcall 103 ............................. p[#PreviousButton] = VOID
+  [ 80] getprop 563 ............................. <p>
+  [ 83] pushsymb 363 ............................ <#mouseDown>
+  [ 86] pushzero ................................ <0>
+  [ 87] pusharglistnoret 3 ...................... <p, #mouseDown, 0>
+  [ 89] objcall 103 ............................. p[#mouseDown] = 0
+  [ 91] getprop 563 ............................. <p>
+  [ 94] pushsymb 2560 ........................... <#rightMouseDown>
+  [ 97] pushzero ................................ <0>
+  [ 98] pusharglistnoret 3 ...................... <p, #rightMouseDown, 0>
+  [100] objcall 103 ............................. p[#rightMouseDown] = 0
+  [102] getprop 563 ............................. <p>
+  [105] pushsymb 2586 ........................... <#MouseStart>
+  [108] gettoplevelprop 964 ..................... <_mouse>
+  [111] getobjprop 970 .......................... <_mouse.mouseLoc>
+  [114] pusharglistnoret 3 ...................... <p, #MouseStart, _mouse.mouseLoc>
+  [116] objcall 103 ............................. p[#MouseStart] = _mouse.mouseLoc
+  [118] getprop 563 ............................. <p>
+  [121] pushsymb 377 ............................ <#tag>
+  [124] getparam 1 .............................. <tParams>
+  [126] pushsymb 377 ............................ <#tag>
+  [129] pusharglist 2 ........................... <tParams, #tag>
+  [131] objcall 105 ............................. <tParams[#tag]>
+  [133] pusharglistnoret 3 ...................... <p, #tag, tParams[#tag]>
+  [135] objcall 103 ............................. p[#tag] = tParams[#tag]
+  [137] getprop 563 ............................. <p>
+  [140] pushsymb 298 ............................ <#camera>
+  [143] getprop 563 ............................. <p>
+  [146] getchainedprop 64 ....................... <p.member>
+  [148] pushcons 0 .............................. <"3D_Camera">
+  [150] pusharglist 2 ........................... <p.member, "3D_Camera">
+  [152] objcall 298 ............................. <p.member.camera("3D_Camera")>
+  [155] pusharglistnoret 3 ...................... <p, #camera, p.member.camera("3D_Camera")>
+  [157] objcall 103 ............................. p[#camera] = p.member.camera("3D_Camera")
+  [159] getprop 563 ............................. <p>
+  [162] pushsymb 2587 ........................... <#Slider>
+  [165] getprop 563 ............................. <p>
+  [168] getchainedprop 64 ....................... <p.member>
+  [170] getprop 563 ............................. <p>
+  [173] getobjprop 377 .......................... <p.tag>
+  [176] pushcons 1 .............................. <"Slider">
+  [178] joinstr ................................. <p.tag & "Slider">
+  [179] pusharglist 2 ........................... <p.member, p.tag & "Slider">
+  [181] objcall 71 .............................. <p.member.model(p.tag & "Slider")>
+  [183] pusharglistnoret 3 ...................... <p, #Slider, p.member.model(p.tag & "Slider")>
+  [185] objcall 103 ............................. p[#Slider] = p.member.model(p.tag & "Slider")
+  [187] getprop 563 ............................. <p>
+  [190] pushsymb 2588 ........................... <#SliderSize>
+  [193] pushint8 16 ............................. <16>
+  [195] pusharglistnoret 3 ...................... <p, #SliderSize, 16>
+  [197] objcall 103 ............................. p[#SliderSize] = 16
+  [199] getprop 563 ............................. <p>
+  [202] pushsymb 2579 ........................... <#Bar>
+  [205] getprop 563 ............................. <p>
+  [208] getchainedprop 64 ....................... <p.member>
+  [210] getprop 563 ............................. <p>
+  [213] getobjprop 377 .......................... <p.tag>
+  [216] pushcons 2 .............................. <"bar">
+  [218] joinstr ................................. <p.tag & "bar">
+  [219] pusharglist 2 ........................... <p.member, p.tag & "bar">
+  [221] objcall 71 .............................. <p.member.model(p.tag & "bar")>
+  [223] pusharglistnoret 3 ...................... <p, #Bar, p.member.model(p.tag & "bar")>
+  [225] objcall 103 ............................. p[#Bar] = p.member.model(p.tag & "bar")
+  [227] getprop 563 ............................. <p>
+  [230] pushsymb 2589 ........................... <#BarSize>
+  [233] pushint16 256 ........................... <256>
+  [236] pusharglistnoret 3 ...................... <p, #BarSize, 256>
+  [238] objcall 103 ............................. p[#BarSize] = 256
+  [240] getprop 563 ............................. <p>
+  [243] pushsymb 2590 ........................... <#minMax>
+  [246] getprop 563 ............................. <p>
+  [249] getchainedprop 2579 ..................... <p.Bar>
+  [252] getchainedprop 214 ...................... <p.Bar.transform>
+  [254] getchainedprop 215 ...................... <p.Bar.transform.position>
+  [256] getobjprop 1190 ......................... <p.Bar.transform.position.z>
+  [259] getprop 563 ............................. <p>
+  [262] getchainedprop 2579 ..................... <p.Bar>
+  [265] getchainedprop 214 ...................... <p.Bar.transform>
+  [267] getchainedprop 215 ...................... <p.Bar.transform.position>
+  [269] getobjprop 1190 ......................... <p.Bar.transform.position.z>
+  [272] getprop 563 ............................. <p>
+  [275] getobjprop 2589 ......................... <p.BarSize>
+  [278] getprop 563 ............................. <p>
+  [281] getobjprop 2588 ......................... <p.SliderSize>
+  [284] sub ..................................... <p.BarSize - p.SliderSize>
+  [285] sub ..................................... <p.Bar.transform.position.z - (p.BarSize - p.SliderSize)>
+  [286] pusharglist 2 ........................... <[p.Bar.transform.position.z, p.Bar.transform.position.z - (p.BarSize - p.SliderSize)]>
+  [288] pushlist ................................ <[p.Bar.transform.position.z, p.Bar.transform.position.z - (p.BarSize - p.SliderSize)]>
+  [289] pusharglistnoret 3 ...................... <p, #minMax, [p.Bar.transform.position.z, p.Bar.transform.position.z - (p.BarSize - p.SliderSize)]>
+  [291] objcall 103 ............................. p[#minMax] = [p.Bar.transform.position.z, p.Bar.transform.position.z - (p.BarSize - p.SliderSize)]
+  [293] getprop 563 ............................. <p>
+  [296] pushsymb 208 ............................ <#shader>
+  [298] getprop 563 ............................. <p>
+  [301] getchainedprop 64 ....................... <p.member>
+  [303] getprop 563 ............................. <p>
+  [306] getobjprop 377 .......................... <p.tag>
+  [309] pushcons 3 .............................. <"_Material">
+  [311] joinstr ................................. <p.tag & "_Material">
+  [312] pusharglist 2 ........................... <p.member, p.tag & "_Material">
+  [314] objcall 208 ............................. <p.member.shader(p.tag & "_Material")>
+  [316] pusharglistnoret 3 ...................... <p, #shader, p.member.shader(p.tag & "_Material")>
+  [318] objcall 103 ............................. p[#shader] = p.member.shader(p.tag & "_Material")
+  [320] getparam 1 .............................. <tParams>
+  [322] pushsymb 2591 ........................... <#ShaderMax>
+  [325] pusharglist 2 ........................... <tParams, #ShaderMax>
+  [327] objcall 105 ............................. <tParams[#ShaderMax]>
+  [329] getobjprop 122 .......................... <tParams[#ShaderMax].ilk>
+  [331] pushsymb 544 ............................ <#float>
+  [334] eq ...................................... <tParams[#ShaderMax].ilk = #float>
+  [335] jmpifz [356] ............................ if tParams[#ShaderMax].ilk = #float then / else
+  [338] getprop 563 ............................. <p>
+  [341] pushsymb 2591 ........................... <#ShaderMax>
+  [344] getparam 1 .............................. <tParams>
+  [346] getobjprop 2591 ......................... <tParams.ShaderMax>
+  [349] pusharglistnoret 3 ...................... <p, #ShaderMax, tParams.ShaderMax>
+  [351] objcall 103 ............................. p[#ShaderMax] = tParams.ShaderMax
+  [353] jmp [371]
+  [356] getprop 563 ............................. <p>
+  [359] pushsymb 2591 ........................... <#ShaderMax>
+  [362] pushfloat32 0.5 ......................... <0.5>
+  [367] pusharglistnoret 3 ...................... <p, #ShaderMax, 0.5>
+  [369] objcall 103 ............................. p[#ShaderMax] = 0.5
+  [371] getprop 563 ............................. <p>
+  [374] getchainedprop 2587 ..................... <p.Slider>
+  [377] getchainedprop 214 ...................... <p.Slider.transform>
+  [379] getchainedprop 215 ...................... <p.Slider.transform.position>
+  [381] getprop 563 ............................. <p>
+  [384] getchainedprop 2579 ..................... <p.Bar>
+  [387] getchainedprop 214 ...................... <p.Bar.transform>
+  [389] getchainedprop 215 ...................... <p.Bar.transform.position>
+  [391] getobjprop 1190 ......................... <p.Bar.transform.position.z>
+  [394] setobjprop 1190 ......................... p.Slider.transform.position.z = p.Bar.transform.position.z
+  [397] getprop 563 ............................. <p>
+  [400] pushsymb 214 ............................ <#transform>
+  [402] getprop 563 ............................. <p>
+  [405] getchainedprop 2587 ..................... <p.Slider>
+  [408] getchainedprop 214 ...................... <p.Slider.transform>
+  [410] pusharglist 1 ........................... <p.Slider.transform>
+  [412] objcall 233 ............................. <p.Slider.transform.duplicate()>
+  [414] pusharglistnoret 3 ...................... <p, #transform, p.Slider.transform.duplicate()>
+  [416] objcall 103 ............................. p[#transform] = p.Slider.transform.duplicate()
+  [418] getprop 563 ............................. <p>
+  [421] getchainedprop 208 ...................... <p.shader>
+  [423] pushsymb 1260 ........................... <#textureTransformList>
+  [426] pushint8 1 .............................. <1>
+  [428] pusharglist 3 ........................... <p.shader, #textureTransformList, 1>
+  [430] objcall 102 ............................. <p.shader.textureTransformList[1]>
+  [432] pushfloat32 0.0 ......................... <0.0>
+  [437] pushfloat32 0.0 ......................... <0.0>
+  [442] pushfloat32 0.0 ......................... <0.0>
+  [447] pusharglist 3 ........................... <0.0, 0.0, 0.0>
+  [449] extcall 212 ............................. <vector(0.0, 0.0, 0.0)>
+  [451] setobjprop 215 .......................... p.shader.textureTransformList[1].position = vector(0.0, 0.0, 0.0)
+  [453] getprop 563 ............................. <p>
+  [456] pushsymb 2477 ........................... <#normal>
+  [459] getprop 563 ............................. <p>
+  [462] getchainedprop 64 ....................... <p.member>
+  [464] pushcons 4 .............................. <"WhiteFont3D_Material">
+  [466] pusharglist 2 ........................... <p.member, "WhiteFont3D_Material">
+  [468] objcall 208 ............................. <p.member.shader("WhiteFont3D_Material")>
+  [470] pusharglistnoret 3 ...................... <p, #normal, p.member.shader("WhiteFont3D_Material")>
+  [472] objcall 103 ............................. p[#normal] = p.member.shader("WhiteFont3D_Material")
+  [474] getprop 563 ............................. <p>
+  [477] pushsymb 1821 ........................... <#rollover>
+  [480] getprop 563 ............................. <p>
+  [483] getchainedprop 64 ....................... <p.member>
+  [485] pushcons 5 .............................. <"YellowFont3D_Material">
+  [487] pusharglist 2 ........................... <p.member, "YellowFont3D_Material">
+  [489] objcall 208 ............................. <p.member.shader("YellowFont3D_Material")>
+  [491] pusharglistnoret 3 ...................... <p, #rollover, p.member.shader("YellowFont3D_Material")>
+  [493] objcall 103 ............................. p[#rollover] = p.member.shader("YellowFont3D_Material")
+  [495] getprop 563 ............................. <p>
+  [498] getchainedprop 2587 ..................... <p.Slider>
+  [501] getprop 563 ............................. <p>
+  [504] getobjprop 2477 ......................... <p.normal>
+  [507] setobjprop 208 .......................... p.Slider.shader = p.normal
+  [509] getprop 563 ............................. <p>
+  [512] pushsymb 45 ............................. <#me>
+  [514] getparam 0 .............................. <me>
+  [516] pusharglistnoret 3 ...................... <p, #me, me>
+  [518] objcall 103 ............................. p[#me] = me
+  [520] getparam 0 .............................. <me>
+  [522] pusharglistnoret 1 ...................... <me>
+  [524] extcall 52 .............................. return me
+  [526] ret
+end
+
+on enterFrame me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 363 .......................... <p.mouseDown>
+  [  6] pushzero ................................ <0>
+  [  7] eq ...................................... <p.mouseDown = 0>
+  [  8] jmpifz [149] ............................ if p.mouseDown = 0 then
+  [ 11] getprop 563 ............................. <p>
+  [ 14] getchainedprop 298 ...................... <p.camera>
+  [ 17] gettoplevelprop 964 ..................... <_mouse>
+  [ 20] getobjprop 970 .......................... <_mouse.mouseLoc>
+  [ 23] pusharglist 2 ........................... <p.camera, _mouse.mouseLoc>
+  [ 25] objcall 2574 ............................ <p.camera.modelUnderLoc(_mouse.mouseLoc)>
+  [ 28] setlocal 0 .............................. tmodel = p.camera.modelUnderLoc(_mouse.mouseLoc)
+  [ 30] getlocal 0 .............................. <tmodel>
+  [ 32] pusharglist 0 ........................... <>
+  [ 34] extcall 40 .............................. <VOID>
+  [ 36] nteq .................................... <tmodel <> VOID>
+  [ 37] jmpifz [ 89] ............................ if tmodel <> VOID then
+  [ 40] getlocal 0 .............................. <tmodel>
+  [ 42] getobjprop 235 .......................... <tmodel.name>
+  [ 44] getprop 563 ............................. <p>
+  [ 47] getchainedprop 2587 ..................... <p.Slider>
+  [ 50] getobjprop 235 .......................... <p.Slider.name>
+  [ 52] eq ...................................... <tmodel.name = p.Slider.name>
+  [ 53] jmpifz [ 79] ............................ if tmodel.name = p.Slider.name then / else
+  [ 56] getprop 563 ............................. <p>
+  [ 59] getlocal 0 .............................. <tmodel>
+  [ 61] setobjprop 953 .......................... p.button = tmodel
+  [ 64] getprop 563 ............................. <p>
+  [ 67] gettoplevelprop 964 ..................... <_mouse>
+  [ 70] getobjprop 970 .......................... <_mouse.mouseLoc>
+  [ 73] setobjprop 2586 ......................... p.MouseStart = _mouse.mouseLoc
+  [ 76] jmp [ 89]
+  [ 79] getprop 563 ............................. <p>
+  [ 82] pusharglist 0 ........................... <>
+  [ 84] extcall 40 .............................. <VOID>
+  [ 86] setobjprop 953 .......................... p.button = VOID
+  [ 89] getprop 563 ............................. <p>
+  [ 92] getobjprop 953 .......................... <p.button>
+  [ 95] pusharglist 0 ........................... <>
+  [ 97] extcall 40 .............................. <VOID>
+  [ 99] eq ...................................... <p.button = VOID>
+  [100] getprop 563 ............................. <p>
+  [103] getobjprop 954 .......................... <p.PreviousButton>
+  [106] pusharglist 0 ........................... <>
+  [108] extcall 40 .............................. <VOID>
+  [110] nteq .................................... <p.PreviousButton <> VOID>
+  [111] and ..................................... <(p.button = VOID) and (p.PreviousButton <> VOID)>
+  [112] jmpifz [128] ............................ if (p.button = VOID) and (p.PreviousButton <> VOID) then
+  [115] getparam 0 .............................. <me>
+  [117] getprop 563 ............................. <p>
+  [120] getobjprop 954 .......................... <p.PreviousButton>
+  [123] pusharglistnoret 2 ...................... <me, p.PreviousButton>
+  [125] objcall 2547 ............................ me.ButtonLeave(p.PreviousButton)
+  [128] getprop 563 ............................. <p>
+  [131] getobjprop 953 .......................... <p.button>
+  [134] pusharglist 0 ........................... <>
+  [136] extcall 40 .............................. <VOID>
+  [138] nteq .................................... <p.button <> VOID>
+  [139] jmpifz [149] ............................ if p.button <> VOID then
+  [142] getparam 0 .............................. <me>
+  [144] pusharglistnoret 1 ...................... <me>
+  [146] objcall 2546 ............................ me.ButtonEnter()
+  [149] gettoplevelprop 964 ..................... <_mouse>
+  [152] getobjprop 363 .......................... <_mouse.mouseDown>
+  [155] getprop 563 ............................. <p>
+  [158] getobjprop 953 .......................... <p.button>
+  [161] pusharglist 0 ........................... <>
+  [163] extcall 40 .............................. <VOID>
+  [165] nteq .................................... <p.button <> VOID>
+  [166] and ..................................... <_mouse.mouseDown and (p.button <> VOID)>
+  [167] jmpifz [177] ............................ if _mouse.mouseDown and (p.button <> VOID) then
+  [170] getparam 0 .............................. <me>
+  [172] pusharglistnoret 1 ...................... <me>
+  [174] objcall 2548 ............................ me.ButtonDown()
+  [177] gettoplevelprop 964 ..................... <_mouse>
+  [180] getobjprop 365 .......................... <_mouse.mouseUp>
+  [183] getprop 563 ............................. <p>
+  [186] getobjprop 953 .......................... <p.button>
+  [189] pusharglist 0 ........................... <>
+  [191] extcall 40 .............................. <VOID>
+  [193] nteq .................................... <p.button <> VOID>
+  [194] and ..................................... <_mouse.mouseUp and (p.button <> VOID)>
+  [195] getprop 563 ............................. <p>
+  [198] getobjprop 363 .......................... <p.mouseDown>
+  [201] pushint8 1 .............................. <1>
+  [203] eq ...................................... <p.mouseDown = 1>
+  [204] and ..................................... <_mouse.mouseUp and (p.button <> VOID) and (p.mouseDown = 1)>
+  [205] jmpifz [215] ............................ if _mouse.mouseUp and (p.button <> VOID) and (p.mouseDown = 1) then
+  [208] getparam 0 .............................. <me>
+  [210] pusharglistnoret 1 ...................... <me>
+  [212] objcall 2549 ............................ me.ButtonUp()
+  [215] ret
+end
+
+on ButtonEnter me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 953 .......................... <p.button>
+  [  6] getprop 563 ............................. <p>
+  [  9] getobjprop 954 .......................... <p.PreviousButton>
+  [ 12] eq ...................................... <p.button = p.PreviousButton>
+  [ 13] jmpifz [ 23] ............................ if p.button = p.PreviousButton then / else
+  [ 16] pusharglistnoret 0 ...................... <>
+  [ 18] extcall 52 .............................. return 
+  [ 20] jmp [ 36]
+  [ 23] getparam 0 .............................. <me>
+  [ 25] getprop 563 ............................. <p>
+  [ 28] getobjprop 954 .......................... <p.PreviousButton>
+  [ 31] pusharglistnoret 2 ...................... <me, p.PreviousButton>
+  [ 33] objcall 2547 ............................ me.ButtonLeave(p.PreviousButton)
+  [ 36] gettoplevelprop 387 ..................... <_player>
+  [ 39] pushint16 260 ........................... <260>
+  [ 42] pusharglistnoret 2 ...................... <_player, 260>
+  [ 44] objcall 766 ............................. _player.cursor(260)
+  [ 47] getprop 563 ............................. <p>
+  [ 50] getchainedprop 953 ...................... <p.button>
+  [ 53] getprop 563 ............................. <p>
+  [ 56] getobjprop 1821 ......................... <p.rollover>
+  [ 59] setobjprop 208 .......................... p.button.shader = p.rollover
+  [ 61] getprop 563 ............................. <p>
+  [ 64] getprop 563 ............................. <p>
+  [ 67] getobjprop 953 .......................... <p.button>
+  [ 70] setobjprop 954 .......................... p.PreviousButton = p.button
+  [ 73] ret
+end
+
+on ButtonLeave me, tButton
+  [  0] gettoplevelprop 387 ..................... <_player>
+  [  3] pushint8 1 .............................. <1>
+  [  5] inv ..................................... <-1>
+  [  6] pusharglistnoret 2 ...................... <_player, -1>
+  [  8] objcall 766 ............................. _player.cursor(-1)
+  [ 11] getparam 1 .............................. <tButton>
+  [ 13] pusharglist 0 ........................... <>
+  [ 15] extcall 40 .............................. <VOID>
+  [ 17] nteq .................................... <tButton <> VOID>
+  [ 18] jmpifz [ 31] ............................ if tButton <> VOID then
+  [ 21] getparam 1 .............................. <tButton>
+  [ 23] getprop 563 ............................. <p>
+  [ 26] getobjprop 2477 ......................... <p.normal>
+  [ 29] setobjprop 208 .......................... tButton.shader = p.normal
+  [ 31] getprop 563 ............................. <p>
+  [ 34] pusharglist 0 ........................... <>
+  [ 36] extcall 40 .............................. <VOID>
+  [ 38] setobjprop 954 .......................... p.PreviousButton = VOID
+  [ 41] ret
+end
+
+on ButtonDown me
+  [  0] gettoplevelprop 387 ..................... <_player>
+  [  3] pushint16 290 ........................... <290>
+  [  6] pusharglistnoret 2 ...................... <_player, 290>
+  [  8] objcall 766 ............................. _player.cursor(290)
+  [ 11] gettoplevelprop 964 ..................... <_mouse>
+  [ 14] getobjprop 2592 ......................... <_mouse.mouseV>
+  [ 17] getprop 563 ............................. <p>
+  [ 20] getchainedprop 2586 ..................... <p.MouseStart>
+  [ 23] getobjprop 1193 ......................... <p.MouseStart.locV>
+  [ 26] sub ..................................... <_mouse.mouseV - p.MouseStart.locV>
+  [ 27] setlocal 0 .............................. tDiffV = _mouse.mouseV - p.MouseStart.locV
+  [ 29] getprop 563 ............................. <p>
+  [ 32] getchainedprop 953 ...................... <p.button>
+  [ 35] getchainedprop 214 ...................... <p.button.transform>
+  [ 37] getchainedprop 215 ...................... <p.button.transform.position>
+  [ 39] getprop 563 ............................. <p>
+  [ 42] getchainedprop 214 ...................... <p.transform>
+  [ 44] getchainedprop 215 ...................... <p.transform.position>
+  [ 46] getobjprop 1190 ......................... <p.transform.position.z>
+  [ 49] getlocal 0 .............................. <tDiffV>
+  [ 51] sub ..................................... <p.transform.position.z - tDiffV>
+  [ 52] setobjprop 1190 ......................... p.button.transform.position.z = p.transform.position.z - tDiffV
+  [ 55] getprop 563 ............................. <p>
+  [ 58] getchainedprop 953 ...................... <p.button>
+  [ 61] getchainedprop 214 ...................... <p.button.transform>
+  [ 63] getchainedprop 215 ...................... <p.button.transform.position>
+  [ 65] getobjprop 1190 ......................... <p.button.transform.position.z>
+  [ 68] getprop 563 ............................. <p>
+  [ 71] pushsymb 2590 ........................... <#minMax>
+  [ 74] pushint8 1 .............................. <1>
+  [ 76] pusharglist 3 ........................... <p, #minMax, 1>
+  [ 78] objcall 70 .............................. <p.minMax[1]>
+  [ 80] gt ...................................... <p.button.transform.position.z > p.minMax[1]>
+  [ 81] jmpifz [109] ............................ if p.button.transform.position.z > p.minMax[1] then
+  [ 84] getprop 563 ............................. <p>
+  [ 87] getchainedprop 953 ...................... <p.button>
+  [ 90] getchainedprop 214 ...................... <p.button.transform>
+  [ 92] getchainedprop 215 ...................... <p.button.transform.position>
+  [ 94] getprop 563 ............................. <p>
+  [ 97] pushsymb 2590 ........................... <#minMax>
+  [100] pushint8 1 .............................. <1>
+  [102] pusharglist 3 ........................... <p, #minMax, 1>
+  [104] objcall 70 .............................. <p.minMax[1]>
+  [106] setobjprop 1190 ......................... p.button.transform.position.z = p.minMax[1]
+  [109] getprop 563 ............................. <p>
+  [112] getchainedprop 953 ...................... <p.button>
+  [115] getchainedprop 214 ...................... <p.button.transform>
+  [117] getchainedprop 215 ...................... <p.button.transform.position>
+  [119] getobjprop 1190 ......................... <p.button.transform.position.z>
+  [122] getprop 563 ............................. <p>
+  [125] pushsymb 2590 ........................... <#minMax>
+  [128] pushint8 2 .............................. <2>
+  [130] pusharglist 3 ........................... <p, #minMax, 2>
+  [132] objcall 70 .............................. <p.minMax[2]>
+  [134] lt ...................................... <p.button.transform.position.z < p.minMax[2]>
+  [135] jmpifz [163] ............................ if p.button.transform.position.z < p.minMax[2] then
+  [138] getprop 563 ............................. <p>
+  [141] getchainedprop 953 ...................... <p.button>
+  [144] getchainedprop 214 ...................... <p.button.transform>
+  [146] getchainedprop 215 ...................... <p.button.transform.position>
+  [148] getprop 563 ............................. <p>
+  [151] pushsymb 2590 ........................... <#minMax>
+  [154] pushint8 2 .............................. <2>
+  [156] pusharglist 3 ........................... <p, #minMax, 2>
+  [158] objcall 70 .............................. <p.minMax[2]>
+  [160] setobjprop 1190 ......................... p.button.transform.position.z = p.minMax[2]
+  [163] getprop 563 ............................. <p>
+  [166] pushsymb 2590 ........................... <#minMax>
+  [169] pushint8 1 .............................. <1>
+  [171] pusharglist 3 ........................... <p, #minMax, 1>
+  [173] objcall 70 .............................. <p.minMax[1]>
+  [175] getprop 563 ............................. <p>
+  [178] getchainedprop 953 ...................... <p.button>
+  [181] getchainedprop 214 ...................... <p.button.transform>
+  [183] getchainedprop 215 ...................... <p.button.transform.position>
+  [185] getobjprop 1190 ......................... <p.button.transform.position.z>
+  [188] sub ..................................... <p.minMax[1] - p.button.transform.position.z>
+  [189] getprop 563 ............................. <p>
+  [192] pushsymb 2590 ........................... <#minMax>
+  [195] pushint8 2 .............................. <2>
+  [197] pusharglist 3 ........................... <p, #minMax, 2>
+  [199] objcall 70 .............................. <p.minMax[2]>
+  [201] getprop 563 ............................. <p>
+  [204] pushsymb 2590 ........................... <#minMax>
+  [207] pushint8 1 .............................. <1>
+  [209] pusharglist 3 ........................... <p, #minMax, 1>
+  [211] objcall 70 .............................. <p.minMax[1]>
+  [213] sub ..................................... <p.minMax[2] - p.minMax[1]>
+  [214] div ..................................... <(p.minMax[1] - p.button.transform.position.z) / (p.minMax[2] - p.minMax[1])>
+  [215] pusharglist 1 ........................... <(p.minMax[1] - p.button.transform.position.z) / (p.minMax[2] - p.minMax[1])>
+  [217] extcall 973 ............................. <abs((p.minMax[1] - p.button.transform.position.z) / (p.minMax[2] - p.minMax[1]))>
+  [220] setlocal 1 .............................. tPerc = abs((p.minMax[1] - p.button.transform.position.z) / (p.minMax[2] - p.minMax[1]))
+  [222] getprop 563 ............................. <p>
+  [225] getchainedprop 208 ...................... <p.shader>
+  [227] pushsymb 1260 ........................... <#textureTransformList>
+  [230] pushint8 1 .............................. <1>
+  [232] pusharglist 3 ........................... <p.shader, #textureTransformList, 1>
+  [234] objcall 102 ............................. <p.shader.textureTransformList[1]>
+  [236] pushfloat32 0.0 ......................... <0.0>
+  [241] getprop 563 ............................. <p>
+  [244] getobjprop 2591 ......................... <p.ShaderMax>
+  [247] getlocal 1 .............................. <tPerc>
+  [249] mul ..................................... <p.ShaderMax * tPerc>
+  [250] pushfloat32 0.0 ......................... <0.0>
+  [255] pusharglist 3 ........................... <0.0, p.ShaderMax * tPerc, 0.0>
+  [257] extcall 212 ............................. <vector(0.0, p.ShaderMax * tPerc, 0.0)>
+  [259] setobjprop 215 .......................... p.shader.textureTransformList[1].position = vector(0.0, p.ShaderMax * tPerc, 0.0)
+  [261] getprop 563 ............................. <p>
+  [264] pushint8 1 .............................. <1>
+  [266] setobjprop 363 .......................... p.mouseDown = 1
+  [269] getglobal 43 ............................ <gGame>
+  [271] getchainedprop 1833 ..................... <gGame.menu>
+  [274] pushint8 2 .............................. <2>
+  [276] setobjprop 1833 ......................... gGame.menu.menu = 2
+  [279] ret
+end
+
+on ButtonUp me
+  [  0] getprop 563 ............................. <p>
+  [  3] getprop 563 ............................. <p>
+  [  6] getchainedprop 953 ...................... <p.button>
+  [  9] getchainedprop 214 ...................... <p.button.transform>
+  [ 11] pusharglist 1 ........................... <p.button.transform>
+  [ 13] objcall 233 ............................. <p.button.transform.duplicate()>
+  [ 15] setobjprop 214 .......................... p.transform = p.button.transform.duplicate()
+  [ 17] getprop 563 ............................. <p>
+  [ 20] pusharglist 0 ........................... <>
+  [ 22] extcall 40 .............................. <VOID>
+  [ 24] setobjprop 953 .......................... p.button = VOID
+  [ 27] getprop 563 ............................. <p>
+  [ 30] pushzero ................................ <0>
+  [ 31] setobjprop 363 .......................... p.mouseDown = 0
+  [ 34] getglobal 43 ............................ <gGame>
+  [ 36] getchainedprop 1833 ..................... <gGame.menu>
+  [ 39] pushzero ................................ <0>
+  [ 40] setobjprop 1833 ......................... gGame.menu.menu = 0
+  [ 43] ret
+end
+
+on delete me
+  [  0] ret
+end

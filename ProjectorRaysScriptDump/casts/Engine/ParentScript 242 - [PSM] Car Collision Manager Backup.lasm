@@ -1,0 +1,2144 @@
+property p
+global g
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 64 ............................. <#member>
+  [ 11] getparam 1 .............................. <tParams>
+  [ 13] pushsymb 64 ............................. <#member>
+  [ 15] pusharglist 2 ........................... <tParams, #member>
+  [ 17] objcall 105 ............................. <tParams[#member]>
+  [ 19] pusharglistnoret 3 ...................... <p, #member, tParams[#member]>
+  [ 21] objcall 103 ............................. p[#member] = tParams[#member]
+  [ 23] getprop 563 ............................. <p>
+  [ 26] pushsymb 3120 ........................... <#ProxyModelName>
+  [ 29] getparam 1 .............................. <tParams>
+  [ 31] pushsymb 3049 ........................... <#collModelName>
+  [ 34] pusharglist 2 ........................... <tParams, #collModelName>
+  [ 36] objcall 105 ............................. <tParams[#collModelName]>
+  [ 38] pusharglistnoret 3 ...................... <p, #ProxyModelName, tParams[#collModelName]>
+  [ 40] objcall 103 ............................. p[#ProxyModelName] = tParams[#collModelName]
+  [ 42] getprop 563 ............................. <p>
+  [ 45] pushsymb 250 ............................ <#car>
+  [ 47] getparam 1 .............................. <tParams>
+  [ 49] pushsymb 250 ............................ <#car>
+  [ 51] pusharglist 2 ........................... <tParams, #car>
+  [ 53] objcall 105 ............................. <tParams[#car]>
+  [ 55] pusharglistnoret 3 ...................... <p, #car, tParams[#car]>
+  [ 57] objcall 103 ............................. p[#car] = tParams[#car]
+  [ 59] getprop 563 ............................. <p>
+  [ 62] pushsymb 2067 ........................... <#CarName>
+  [ 65] getparam 1 .............................. <tParams>
+  [ 67] pushsymb 2067 ........................... <#CarName>
+  [ 70] pusharglist 2 ........................... <tParams, #CarName>
+  [ 72] objcall 105 ............................. <tParams[#CarName]>
+  [ 74] pusharglistnoret 3 ...................... <p, #CarName, tParams[#CarName]>
+  [ 76] objcall 103 ............................. p[#CarName] = tParams[#CarName]
+  [ 78] getprop 563 ............................. <p>
+  [ 81] pushsymb 2165 ........................... <#wheellist>
+  [ 84] getparam 1 .............................. <tParams>
+  [ 86] pushsymb 2165 ........................... <#wheellist>
+  [ 89] pusharglist 2 ........................... <tParams, #wheellist>
+  [ 91] objcall 105 ............................. <tParams[#wheellist]>
+  [ 93] pusharglistnoret 3 ...................... <p, #wheellist, tParams[#wheellist]>
+  [ 95] objcall 103 ............................. p[#wheellist] = tParams[#wheellist]
+  [ 97] getprop 563 ............................. <p>
+  [100] pushsymb 487 ............................ <#sprite>
+  [103] getparam 1 .............................. <tParams>
+  [105] pushsymb 564 ............................ <#SpriteNR>
+  [108] pusharglist 2 ........................... <tParams, #SpriteNR>
+  [110] objcall 105 ............................. <tParams[#SpriteNR]>
+  [112] pusharglist 1 ........................... <tParams[#SpriteNR]>
+  [114] extcall 487 ............................. <sprite(tParams[#SpriteNR])>
+  [117] pusharglistnoret 3 ...................... <p, #sprite, sprite(tParams[#SpriteNR])>
+  [119] objcall 103 ............................. p[#sprite] = sprite(tParams[#SpriteNR])
+  [121] getprop 563 ............................. <p>
+  [124] pushsymb 377 ............................ <#tag>
+  [127] getparam 1 .............................. <tParams>
+  [129] pushsymb 377 ............................ <#tag>
+  [132] pusharglist 2 ........................... <tParams, #tag>
+  [134] objcall 105 ............................. <tParams[#tag]>
+  [136] pusharglistnoret 3 ...................... <p, #tag, tParams[#tag]>
+  [138] objcall 103 ............................. p[#tag] = tParams[#tag]
+  [140] getprop 563 ............................. <p>
+  [143] pushsymb 378 ............................ <#controller>
+  [146] getparam 1 .............................. <tParams>
+  [148] pushsymb 378 ............................ <#controller>
+  [151] pusharglist 2 ........................... <tParams, #controller>
+  [153] objcall 105 ............................. <tParams[#controller]>
+  [155] pusharglistnoret 3 ...................... <p, #controller, tParams[#controller]>
+  [157] objcall 103 ............................. p[#controller] = tParams[#controller]
+  [159] getprop 563 ............................. <p>
+  [162] pushsymb 3049 ........................... <#collModelName>
+  [165] getparam 1 .............................. <tParams>
+  [167] pushsymb 3049 ........................... <#collModelName>
+  [170] pusharglist 2 ........................... <tParams, #collModelName>
+  [172] objcall 105 ............................. <tParams[#collModelName]>
+  [174] pusharglist 1 ........................... <tParams[#collModelName]>
+  [176] extcall 88 .............................. <symbol(tParams[#collModelName])>
+  [178] pusharglistnoret 3 ...................... <p, #collModelName, symbol(tParams[#collModelName])>
+  [180] objcall 103 ............................. p[#collModelName] = symbol(tParams[#collModelName])
+  [182] getprop 563 ............................. <p>
+  [185] pushsymb 2999 ........................... <#TotalModelList>
+  [188] getparam 1 .............................. <tParams>
+  [190] pushsymb 2999 ........................... <#TotalModelList>
+  [193] pusharglist 2 ........................... <tParams, #TotalModelList>
+  [195] objcall 105 ............................. <tParams[#TotalModelList]>
+  [197] pusharglistnoret 3 ...................... <p, #TotalModelList, tParams[#TotalModelList]>
+  [199] objcall 103 ............................. p[#TotalModelList] = tParams[#TotalModelList]
+  [201] getprop 563 ............................. <p>
+  [204] pushsymb 3121 ........................... <#CollisionPosition>
+  [207] pusharglist 0 ........................... <>
+  [209] extcall 40 .............................. <VOID>
+  [211] pusharglistnoret 3 ...................... <p, #CollisionPosition, VOID>
+  [213] objcall 103 ............................. p[#CollisionPosition] = VOID
+  [215] getprop 563 ............................. <p>
+  [218] pushsymb 1555 ........................... <#PhysicsCar>
+  [221] getglobal 395 ........................... <g>
+  [224] getchainedprop 1389 ..................... <g.Physics>
+  [227] getparam 1 .............................. <tParams>
+  [229] pushsymb 3049 ........................... <#collModelName>
+  [232] pusharglist 2 ........................... <tParams, #collModelName>
+  [234] objcall 105 ............................. <tParams[#collModelName]>
+  [236] pusharglist 2 ........................... <g.Physics, tParams[#collModelName]>
+  [238] objcall 1537 ............................ <g.Physics.getRigidBody(tParams[#collModelName])>
+  [241] pusharglistnoret 3 ...................... <p, #PhysicsCar, g.Physics.getRigidBody(tParams[#collModelName])>
+  [243] objcall 103 ............................. p[#PhysicsCar] = g.Physics.getRigidBody(tParams[#collModelName])
+  [245] getprop 563 ............................. <p>
+  [248] pushsymb 1373 ........................... <#mass>
+  [251] getprop 563 ............................. <p>
+  [254] getchainedprop 1555 ..................... <p.PhysicsCar>
+  [257] getobjprop 1373 ......................... <p.PhysicsCar.mass>
+  [260] pusharglistnoret 3 ...................... <p, #mass, p.PhysicsCar.mass>
+  [262] objcall 103 ............................. p[#mass] = p.PhysicsCar.mass
+  [264] getparam 1 .............................. <tParams>
+  [266] pushsymb 1556 ........................... <#Health>
+  [269] pusharglist 2 ........................... <tParams, #Health>
+  [271] objcall 105 ............................. <tParams[#Health]>
+  [273] setlocal 0 .............................. pHealth = tParams[#Health]
+  [275] getprop 563 ............................. <p>
+  [278] pushsymb 3026 ........................... <#StartHealth>
+  [281] getparam 1 .............................. <tParams>
+  [283] pushsymb 3026 ........................... <#StartHealth>
+  [286] pusharglist 2 ........................... <tParams, #StartHealth>
+  [288] objcall 105 ............................. <tParams[#StartHealth]>
+  [290] pusharglistnoret 3 ...................... <p, #StartHealth, tParams[#StartHealth]>
+  [292] objcall 103 ............................. p[#StartHealth] = tParams[#StartHealth]
+  [294] getprop 563 ............................. <p>
+  [297] pushsymb 3122 ........................... <#Health1>
+  [300] getlocal 0 .............................. <pHealth>
+  [302] pushfloat32 100.0 ....................... <100.0>
+  [307] div ..................................... <pHealth / 100.0>
+  [308] pushfloat32 80.0 ........................ <80.0>
+  [313] mul ..................................... <pHealth / 100.0 * 80.0>
+  [314] pusharglist 1 ........................... <pHealth / 100.0 * 80.0>
+  [316] extcall 123 ............................. <integer(pHealth / 100.0 * 80.0)>
+  [318] pusharglistnoret 3 ...................... <p, #Health1, integer(pHealth / 100.0 * 80.0)>
+  [320] objcall 103 ............................. p[#Health1] = integer(pHealth / 100.0 * 80.0)
+  [322] getprop 563 ............................. <p>
+  [325] pushsymb 3123 ........................... <#Health2>
+  [328] getlocal 0 .............................. <pHealth>
+  [330] pushfloat32 100.0 ....................... <100.0>
+  [335] div ..................................... <pHealth / 100.0>
+  [336] pushfloat32 35.0 ........................ <35.0>
+  [341] mul ..................................... <pHealth / 100.0 * 35.0>
+  [342] pusharglist 1 ........................... <pHealth / 100.0 * 35.0>
+  [344] extcall 123 ............................. <integer(pHealth / 100.0 * 35.0)>
+  [346] pusharglistnoret 3 ...................... <p, #Health2, integer(pHealth / 100.0 * 35.0)>
+  [348] objcall 103 ............................. p[#Health2] = integer(pHealth / 100.0 * 35.0)
+  [350] getprop 563 ............................. <p>
+  [353] pushsymb 3124 ........................... <#SoundPrio1>
+  [356] pushsymb 1048 ........................... <#low>
+  [359] pusharglistnoret 3 ...................... <p, #SoundPrio1, #low>
+  [361] objcall 103 ............................. p[#SoundPrio1] = #low
+  [363] getprop 563 ............................. <p>
+  [366] pushsymb 3125 ........................... <#SoundPrio2>
+  [369] pushsymb 1081 ........................... <#medium>
+  [372] pusharglistnoret 3 ...................... <p, #SoundPrio2, #medium>
+  [374] objcall 103 ............................. p[#SoundPrio2] = #medium
+  [376] getprop 563 ............................. <p>
+  [379] getobjprop 378 .......................... <p.controller>
+  [382] pushsymb 379 ............................ <#player>
+  [385] eq ...................................... <p.controller = #player>
+  [386] jmpifz [407] ............................ if p.controller = #player then
+  [389] getprop 563 ............................. <p>
+  [392] pushsymb 1081 ........................... <#medium>
+  [395] setobjprop 3124 ......................... p.SoundPrio1 = #medium
+  [398] getprop 563 ............................. <p>
+  [401] pushsymb 1082 ........................... <#high>
+  [404] setobjprop 3125 ......................... p.SoundPrio2 = #high
+  [407] getprop 563 ............................. <p>
+  [410] pushsymb 3062 ........................... <#ScriptLimit>
+  [413] pushzero ................................ <0>
+  [414] pusharglistnoret 3 ...................... <p, #ScriptLimit, 0>
+  [416] objcall 103 ............................. p[#ScriptLimit] = 0
+  [418] getprop 563 ............................. <p>
+  [421] pushsymb 3126 ........................... <#OverHeated>
+  [424] pushzero ................................ <0>
+  [425] pusharglistnoret 3 ...................... <p, #OverHeated, 0>
+  [427] objcall 103 ............................. p[#OverHeated] = 0
+  [429] getprop 563 ............................. <p>
+  [432] pushsymb 3127 ........................... <#AlarmCounter>
+  [435] pushint8 10 ............................. <10>
+  [437] pusharglistnoret 3 ...................... <p, #AlarmCounter, 10>
+  [439] objcall 103 ............................. p[#AlarmCounter] = 10
+  [441] pusharglistnoret 0 ...................... <>
+  [443] localcall 3 ............................. SetupCollision()
+  [445] getprop 563 ............................. <p>
+  [448] pushsymb 45 ............................. <#me>
+  [450] getparam 0 .............................. <me>
+  [452] pusharglistnoret 3 ...................... <p, #me, me>
+  [454] objcall 103 ............................. p[#me] = me
+  [456] getparam 0 .............................. <me>
+  [458] pusharglistnoret 1 ...................... <me>
+  [460] extcall 52 .............................. return me
+  [462] ret
+end
+
+on enterFrame me
+  [  0] pusharglistnoret 0 ...................... <>
+  [  2] localcall 4 ............................. HandleCollision()
+  [  4] ret
+end
+
+on SetupDirtCam me
+  [  0] getglobal 395 ........................... <g>
+  [  3] getchainedprop 366 ...................... <g.interface>
+  [  6] pushcons 0 .............................. <"DIrt">
+  [  8] pusharglist 2 ........................... <g.interface, "DIrt">
+  [ 10] objcall 71 .............................. <g.interface.model("DIrt")>
+  [ 12] setlocal 0 .............................. tmodel = g.interface.model("DIrt")
+  [ 14] getlocal 0 .............................. <tmodel>
+  [ 16] pushsymb 1546 ........................... <#child>
+  [ 19] pusharglist 2 ........................... <tmodel, #child>
+  [ 21] objcall 129 ............................. <tmodel.child.count>
+  [ 23] setlocal 1 .............................. tCount = tmodel.child.count
+  [ 25] getprop 563 ............................. <p>
+  [ 28] pushsymb 3129 ........................... <#DirtList>
+  [ 31] pusharglist 0 ........................... <[]>
+  [ 33] pushlist ................................ <[]>
+  [ 34] pusharglistnoret 3 ...................... <p, #DirtList, []>
+  [ 36] objcall 103 ............................. p[#DirtList] = []
+  [ 38] pushint8 1 .............................. <1>
+  [ 40] setlocal 2
+  [ 42] getlocal 2
+  [ 44] getlocal 1 .............................. <tCount>
+  [ 46] lteq
+  [ 47] jmpifz [ 84] ............................ repeat with i = 1 to tCount
+  [ 50] getlocal 0 .............................. <tmodel>
+  [ 52] pushsymb 1546 ........................... <#child>
+  [ 55] getlocal 2 .............................. <i>
+  [ 57] pusharglist 3 ........................... <tmodel, #child, i>
+  [ 59] objcall 70 .............................. <tmodel.child[i]>
+  [ 61] setlocal 3 .............................. tChild = tmodel.child[i]
+  [ 63] getprop 563 ............................. <p>
+  [ 66] getchainedprop 3129 ..................... <p.DirtList>
+  [ 69] getlocal 3 .............................. <tChild>
+  [ 71] pusharglistnoret 2 ...................... <p.DirtList, tChild>
+  [ 73] objcall 42 .............................. p.DirtList.add(tChild)
+  [ 75] pushint8 1
+  [ 77] getlocal 2
+  [ 79] add
+  [ 80] setlocal 2
+  [ 82] endrepeat [ 42]
+  [ 84] ret
+end
+
+on SetupCollision me
+  [  0] getprop 563 ............................. <p>
+  [  3] pushsymb 3130 ........................... <#CrashTexture3>
+  [  6] getprop 563 ............................. <p>
+  [  9] getchainedprop 64 ....................... <p.member>
+  [ 11] pushcons 1 .............................. <"Crumpled_Texture">
+  [ 13] pusharglist 2 ........................... <p.member, "Crumpled_Texture">
+  [ 15] objcall 218 ............................. <p.member.texture("Crumpled_Texture")>
+  [ 17] pusharglistnoret 3 ...................... <p, #CrashTexture3, p.member.texture("Crumpled_Texture")>
+  [ 19] objcall 103 ............................. p[#CrashTexture3] = p.member.texture("Crumpled_Texture")
+  [ 21] getprop 563 ............................. <p>
+  [ 24] getobjprop 3130 ......................... <p.CrashTexture3>
+  [ 27] pusharglist 0 ........................... <>
+  [ 29] extcall 40 .............................. <VOID>
+  [ 31] eq ...................................... <p.CrashTexture3 = VOID>
+  [ 32] jmpifz [ 66] ............................ if p.CrashTexture3 = VOID then
+  [ 35] getprop 563 ............................. <p>
+  [ 38] getprop 563 ............................. <p>
+  [ 41] getchainedprop 64 ....................... <p.member>
+  [ 43] getobjprop 235 .......................... <p.member.name>
+  [ 45] pushsymb 59 ............................. <#fileName>
+  [ 47] pushcons 1 .............................. <"Crumpled_Texture">
+  [ 49] pushsymb 866 ............................ <#filtering>
+  [ 52] pushsymb 867 ............................ <#lowFiltered>
+  [ 55] pusharglist 4 ........................... <[#fileName: "Crumpled_Texture", #filtering: #lowFiltered]>
+  [ 57] pushproplist ............................ <[#fileName: "Crumpled_Texture", #filtering: #lowFiltered]>
+  [ 58] pusharglist 2 ........................... <p.member.name, [#fileName: "Crumpled_Texture", #filtering: #lowFiltered]>
+  [ 60] extcall 681 ............................. <createTexture(p.member.name, [#fileName: "Crumpled_Texture", #filtering: #lowFiltered])>
+  [ 63] setobjprop 3130 ......................... p.CrashTexture3 = createTexture(p.member.name, [#fileName: "Crumpled_Texture", #filtering: #lowFiltered])
+  [ 66] getprop 563 ............................. <p>
+  [ 69] pushsymb 305 ............................ <#shaderList>
+  [ 72] getprop 563 ............................. <p>
+  [ 75] getchainedprop 64 ....................... <p.member>
+  [ 77] pushcons 2 .............................. <"player1TruckTruck_Material">
+  [ 79] pusharglist 2 ........................... <p.member, "player1TruckTruck_Material">
+  [ 81] objcall 208 ............................. <p.member.shader("player1TruckTruck_Material")>
+  [ 83] getprop 563 ............................. <p>
+  [ 86] getchainedprop 64 ....................... <p.member>
+  [ 88] pushcons 3 .............................. <"player1TruckTruckWheel_Material">
+  [ 90] pusharglist 2 ........................... <p.member, "player1TruckTruckWheel_Material">
+  [ 92] objcall 208 ............................. <p.member.shader("player1TruckTruckWheel_Material")>
+  [ 94] pusharglist 2 ........................... <[p.member.shader("player1TruckTruck_Material"), p.member.shader("player1TruckTruckWheel_Material")]>
+  [ 96] pushlist ................................ <[p.member.shader("player1TruckTruck_Material"), p.member.shader("player1TruckTruckWheel_Material")]>
+  [ 97] pusharglistnoret 3 ...................... <p, #shaderList, [p.member.shader("player1TruckTruck_Material"), p.member.shader("player1TruckTruckWheel_Material")]>
+  [ 99] objcall 103 ............................. p[#shaderList] = [p.member.shader("player1TruckTruck_Material"), p.member.shader("player1TruckTruckWheel_Material")]
+  [101] getprop 563 ............................. <p>
+  [104] pushsymb 3131 ........................... <#OriginalTexture>
+  [107] getprop 563 ............................. <p>
+  [110] getchainedprop 64 ....................... <p.member>
+  [112] getprop 563 ............................. <p>
+  [115] getobjprop 2067 ......................... <p.CarName>
+  [118] pushcons 4 .............................. <"_Texture">
+  [120] joinstr ................................. <p.CarName & "_Texture">
+  [121] pusharglist 2 ........................... <p.member, p.CarName & "_Texture">
+  [123] objcall 218 ............................. <p.member.texture(p.CarName & "_Texture")>
+  [125] pusharglistnoret 3 ...................... <p, #OriginalTexture, p.member.texture(p.CarName & "_Texture")>
+  [127] objcall 103 ............................. p[#OriginalTexture] = p.member.texture(p.CarName & "_Texture")
+  [129] getprop 563 ............................. <p>
+  [132] pushsymb 3132 ........................... <#ReflectionTexture>
+  [135] getprop 563 ............................. <p>
+  [138] getchainedprop 64 ....................... <p.member>
+  [140] getprop 563 ............................. <p>
+  [143] getobjprop 2067 ......................... <p.CarName>
+  [146] pushcons 5 .............................. <"Reflection_Texture">
+  [148] joinstr ................................. <p.CarName & "Reflection_Texture">
+  [149] pusharglist 2 ........................... <p.member, p.CarName & "Reflection_Texture">
+  [151] objcall 218 ............................. <p.member.texture(p.CarName & "Reflection_Texture")>
+  [153] pusharglistnoret 3 ...................... <p, #ReflectionTexture, p.member.texture(p.CarName & "Reflection_Texture")>
+  [155] objcall 103 ............................. p[#ReflectionTexture] = p.member.texture(p.CarName & "Reflection_Texture")
+  [157] getprop 563 ............................. <p>
+  [160] pushsymb 3133 ........................... <#CarModel>
+  [163] getprop 563 ............................. <p>
+  [166] getchainedprop 64 ....................... <p.member>
+  [168] getprop 563 ............................. <p>
+  [171] getobjprop 250 .......................... <p.car>
+  [173] pusharglist 2 ........................... <p.member, p.car>
+  [175] objcall 71 .............................. <p.member.model(p.car)>
+  [177] pusharglistnoret 3 ...................... <p, #CarModel, p.member.model(p.car)>
+  [179] objcall 103 ............................. p[#CarModel] = p.member.model(p.car)
+  [181] getprop 563 ............................. <p>
+  [184] pushsymb 3134 ........................... <#GlassModel>
+  [187] getprop 563 ............................. <p>
+  [190] getchainedprop 64 ....................... <p.member>
+  [192] getprop 563 ............................. <p>
+  [195] getobjprop 250 .......................... <p.car>
+  [197] pushcons 6 .............................. <"Glass">
+  [199] joinstr ................................. <p.car & "Glass">
+  [200] pusharglist 2 ........................... <p.member, p.car & "Glass">
+  [202] objcall 71 .............................. <p.member.model(p.car & "Glass")>
+  [204] pusharglistnoret 3 ...................... <p, #GlassModel, p.member.model(p.car & "Glass")>
+  [206] objcall 103 ............................. p[#GlassModel] = p.member.model(p.car & "Glass")
+  [208] getprop 563 ............................. <p>
+  [211] pushsymb 3135 ........................... <#CurrentState>
+  [214] pushint8 1 .............................. <1>
+  [216] pusharglistnoret 3 ...................... <p, #CurrentState, 1>
+  [218] objcall 103 ............................. p[#CurrentState] = 1
+  [220] ret
+end
+
+on HandleCollision me
+  [  0] getglobal 395 ........................... <g>
+  [  3] pushsymb 137 ............................ <#cars>
+  [  5] getprop 563 ............................. <p>
+  [  8] getobjprop 377 .......................... <p.tag>
+  [ 11] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 13] objcall 102 ............................. <g.cars[p.tag]>
+  [ 15] pushsymb 89 ............................. <#state>
+  [ 17] pusharglist 2 ........................... <g.cars[p.tag], #state>
+  [ 19] objcall 105 ............................. <g.cars[p.tag][#state]>
+  [ 21] pushcons 7 .............................. <"Done">
+  [ 23] eq ...................................... <g.cars[p.tag][#state] = "Done">
+  [ 24] getglobal 395 ........................... <g>
+  [ 27] pushsymb 137 ............................ <#cars>
+  [ 29] getprop 563 ............................. <p>
+  [ 32] getobjprop 377 .......................... <p.tag>
+  [ 35] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 37] objcall 102 ............................. <g.cars[p.tag]>
+  [ 39] pushsymb 89 ............................. <#state>
+  [ 41] pusharglist 2 ........................... <g.cars[p.tag], #state>
+  [ 43] objcall 105 ............................. <g.cars[p.tag][#state]>
+  [ 45] pushcons 8 .............................. <"Finished">
+  [ 47] eq ...................................... <g.cars[p.tag][#state] = "Finished">
+  [ 48] or ...................................... <(g.cars[p.tag][#state] = "Done") or (g.cars[p.tag][#state] = "Finished")>
+  [ 49] jmpifz [ 53] ............................ if (g.cars[p.tag][#state] = "Done") or (g.cars[p.tag][#state] = "Finished") then
+  [ 52] ret ..................................... exit
+  [ 53] getprop 563 ............................. <p>
+  [ 56] pushsymb 1556 ........................... <#Health>
+  [ 59] getglobal 395 ........................... <g>
+  [ 62] pushsymb 137 ............................ <#cars>
+  [ 64] getprop 563 ............................. <p>
+  [ 67] getobjprop 377 .......................... <p.tag>
+  [ 70] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 72] objcall 102 ............................. <g.cars[p.tag]>
+  [ 74] pushsymb 1335 ........................... <#specifics>
+  [ 77] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [ 79] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [ 81] pushsymb 1556 ........................... <#Health>
+  [ 84] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #Health>
+  [ 86] objcall 105 ............................. <g.cars[p.tag][#specifics][#Health]>
+  [ 88] pusharglistnoret 3 ...................... <p, #Health, g.cars[p.tag][#specifics][#Health]>
+  [ 90] objcall 103 ............................. p[#Health] = g.cars[p.tag][#specifics][#Health]
+  [ 92] getprop 563 ............................. <p>
+  [ 95] pushsymb 3027 ........................... <#CrashState>
+  [ 98] getglobal 395 ........................... <g>
+  [101] pushsymb 137 ............................ <#cars>
+  [103] getprop 563 ............................. <p>
+  [106] getobjprop 377 .......................... <p.tag>
+  [109] pusharglist 3 ........................... <g, #cars, p.tag>
+  [111] objcall 102 ............................. <g.cars[p.tag]>
+  [113] pushsymb 1335 ........................... <#specifics>
+  [116] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [118] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [120] pushsymb 3027 ........................... <#CrashState>
+  [123] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #CrashState>
+  [125] objcall 105 ............................. <g.cars[p.tag][#specifics][#CrashState]>
+  [127] pusharglistnoret 3 ...................... <p, #CrashState, g.cars[p.tag][#specifics][#CrashState]>
+  [129] objcall 103 ............................. p[#CrashState] = g.cars[p.tag][#specifics][#CrashState]
+  [131] getprop 563 ............................. <p>
+  [134] pushsymb 3024 ........................... <#nitroState>
+  [137] getglobal 395 ........................... <g>
+  [140] pushsymb 137 ............................ <#cars>
+  [142] getprop 563 ............................. <p>
+  [145] getobjprop 377 .......................... <p.tag>
+  [148] pusharglist 3 ........................... <g, #cars, p.tag>
+  [150] objcall 102 ............................. <g.cars[p.tag]>
+  [152] pushsymb 1335 ........................... <#specifics>
+  [155] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [157] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [159] pushsymb 3024 ........................... <#nitroState>
+  [162] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #nitroState>
+  [164] objcall 105 ............................. <g.cars[p.tag][#specifics][#nitroState]>
+  [166] pusharglistnoret 3 ...................... <p, #nitroState, g.cars[p.tag][#specifics][#nitroState]>
+  [168] objcall 103 ............................. p[#nitroState] = g.cars[p.tag][#specifics][#nitroState]
+  [170] getprop 563 ............................. <p>
+  [173] pushsymb 3028 ........................... <#falling>
+  [176] getglobal 395 ........................... <g>
+  [179] pushsymb 137 ............................ <#cars>
+  [181] getprop 563 ............................. <p>
+  [184] getobjprop 377 .......................... <p.tag>
+  [187] pusharglist 3 ........................... <g, #cars, p.tag>
+  [189] objcall 102 ............................. <g.cars[p.tag]>
+  [191] pushsymb 1335 ........................... <#specifics>
+  [194] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [196] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [198] pushsymb 3028 ........................... <#falling>
+  [201] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #falling>
+  [203] objcall 105 ............................. <g.cars[p.tag][#specifics][#falling]>
+  [205] pusharglistnoret 3 ...................... <p, #falling, g.cars[p.tag][#specifics][#falling]>
+  [207] objcall 103 ............................. p[#falling] = g.cars[p.tag][#specifics][#falling]
+  [209] getprop 563 ............................. <p>
+  [212] getobjprop 1556 ......................... <p.Health>
+  [215] pushzero ................................ <0>
+  [216] eq ...................................... <p.Health = 0>
+  [217] getprop 563 ............................. <p>
+  [220] getobjprop 3126 ......................... <p.OverHeated>
+  [223] pushint8 1 .............................. <1>
+  [225] eq ...................................... <p.OverHeated = 1>
+  [226] or ...................................... <(p.Health = 0) or (p.OverHeated = 1)>
+  [227] jmpifz [231] ............................ if (p.Health = 0) or (p.OverHeated = 1) then
+  [230] ret ..................................... exit
+  [231] getprop 563 ............................. <p>
+  [234] getobjprop 3135 ......................... <p.CurrentState>
+  [237] getprop 563 ............................. <p>
+  [240] getobjprop 3027 ......................... <p.CrashState>
+  [243] nteq .................................... <p.CurrentState <> p.CrashState>
+  [244] jmpifz [257] ............................ if p.CurrentState <> p.CrashState then
+  [247] getprop 563 ............................. <p>
+  [250] getobjprop 3027 ......................... <p.CrashState>
+  [253] pusharglistnoret 1 ...................... <p.CrashState>
+  [255] localcall 5 ............................. SetState(p.CrashState)
+  [257] getglobal 395 ........................... <g>
+  [260] pushsymb 1391 ........................... <#collisionReports>
+  [263] pusharglist 2 ........................... <g, #collisionReports>
+  [265] extcall 542 ............................. <getaProp(g, #collisionReports)>
+  [268] pusharglist 0 ........................... <>
+  [270] extcall 40 .............................. <VOID>
+  [272] eq ...................................... <getaProp(g, #collisionReports) = VOID>
+  [273] jmpifz [277] ............................ if getaProp(g, #collisionReports) = VOID then
+  [276] ret ..................................... exit
+  [277] getglobal 395 ........................... <g>
+  [280] getobjprop 1391 ......................... <g.collisionReports>
+  [283] getprop 563 ............................. <p>
+  [286] getobjprop 3049 ......................... <p.collModelName>
+  [289] pusharglist 2 ........................... <g.collisionReports, p.collModelName>
+  [291] extcall 542 ............................. <getaProp(g.collisionReports, p.collModelName)>
+  [294] pusharglist 0 ........................... <>
+  [296] extcall 40 .............................. <VOID>
+  [298] nteq .................................... <getaProp(g.collisionReports, p.collModelName) <> VOID>
+  [299] jmpifz [358] ............................ if getaProp(g.collisionReports, p.collModelName) <> VOID then / else
+  [302] getglobal 395 ........................... <g>
+  [305] pushsymb 1391 ........................... <#collisionReports>
+  [308] getprop 563 ............................. <p>
+  [311] getobjprop 3049 ......................... <p.collModelName>
+  [314] pusharglist 3 ........................... <g, #collisionReports, p.collModelName>
+  [316] objcall 70 .............................. <g.collisionReports[p.collModelName]>
+  [318] setlocal 0 .............................. pCollisionDetails = g.collisionReports[p.collModelName]
+  [320] getglobal 395 ........................... <g>
+  [323] pushsymb 137 ............................ <#cars>
+  [325] getprop 563 ............................. <p>
+  [328] getobjprop 377 .......................... <p.tag>
+  [331] pusharglist 3 ........................... <g, #cars, p.tag>
+  [333] objcall 102 ............................. <g.cars[p.tag]>
+  [335] pushsymb 1335 ........................... <#specifics>
+  [338] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [340] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [342] pushsymb 2163 ........................... <#collisionDetails>
+  [345] getlocal 0 .............................. <pCollisionDetails>
+  [347] pusharglist 1 ........................... <pCollisionDetails>
+  [349] objcall 233 ............................. <pCollisionDetails.duplicate()>
+  [351] pusharglistnoret 3 ...................... <g.cars[p.tag][#specifics], #collisionDetails, pCollisionDetails.duplicate()>
+  [353] objcall 103 ............................. g.cars[p.tag][#specifics][#collisionDetails] = pCollisionDetails.duplicate()
+  [355] jmp [363]
+  [358] pusharglist 0 ........................... <[]>
+  [360] pushlist ................................ <[]>
+  [361] setlocal 0 .............................. pCollisionDetails = []
+  [363] getprop 563 ............................. <p>
+  [366] getobjprop 3121 ......................... <p.CollisionPosition>
+  [369] pusharglist 0 ........................... <>
+  [371] extcall 40 .............................. <VOID>
+  [373] nteq .................................... <p.CollisionPosition <> VOID>
+  [374] jmpifz [1022] ........................... if p.CollisionPosition <> VOID then
+  [377] getprop 563 ............................. <p>
+  [380] getchainedprop 1555 ..................... <p.PhysicsCar>
+  [383] getobjprop 2164 ......................... <p.PhysicsCar.linearMomentum>
+  [386] getprop 563 ............................. <p>
+  [389] getobjprop 3121 ......................... <p.CollisionPosition>
+  [392] sub ..................................... <p.PhysicsCar.linearMomentum - p.CollisionPosition>
+  [393] getobjprop 69 ........................... <(p.PhysicsCar.linearMomentum - p.CollisionPosition).length>
+  [395] setlocal 1 .............................. pLength = (p.PhysicsCar.linearMomentum - p.CollisionPosition).length
+  [397] getlocal 1 .............................. <pLength>
+  [399] getprop 563 ............................. <p>
+  [402] getobjprop 1373 ......................... <p.mass>
+  [405] div ..................................... <pLength / p.mass>
+  [406] setlocal 1 .............................. pLength = pLength / p.mass
+  [408] getprop 563 ............................. <p>
+  [411] getobjprop 1373 ......................... <p.mass>
+  [414] getlocal 1 .............................. <pLength>
+  [416] pushfloat32 2.0 ......................... <2.0>
+  [421] pushint8 30 ............................. <30>
+  [423] div ..................................... <2.0 / 30>
+  [424] div ..................................... <pLength / (2.0 / 30)>
+  [425] mul ..................................... <p.mass * (pLength / (2.0 / 30))>
+  [426] setlocal 2 .............................. pForce = p.mass * (pLength / (2.0 / 30))
+  [428] getlocal 2 .............................. <pForce>
+  [430] pushcons 9 .............................. <0.00001>
+  [432] mul ..................................... <pForce * 0.00001>
+  [433] setlocal 2 .............................. pForce = pForce * 0.00001
+  [435] getprop 563 ............................. <p>
+  [438] pusharglist 0 ........................... <>
+  [440] extcall 40 .............................. <VOID>
+  [442] setobjprop 3121 ......................... p.CollisionPosition = VOID
+  [445] getglobal 395 ........................... <g>
+  [448] pushsymb 137 ............................ <#cars>
+  [450] getprop 563 ............................. <p>
+  [453] getobjprop 377 .......................... <p.tag>
+  [456] pusharglist 3 ........................... <g, #cars, p.tag>
+  [458] objcall 102 ............................. <g.cars[p.tag]>
+  [460] pushsymb 89 ............................. <#state>
+  [462] pusharglist 2 ........................... <g.cars[p.tag], #state>
+  [464] objcall 105 ............................. <g.cars[p.tag][#state]>
+  [466] pushcons 10 ............................. <"None">
+  [468] eq ...................................... <g.cars[p.tag][#state] = "None">
+  [469] jmpifz [840] ............................ if g.cars[p.tag][#state] = "None" then
+  [472] getprop 563 ............................. <p>
+  [475] getprop 563 ............................. <p>
+  [478] getobjprop 1556 ......................... <p.Health>
+  [481] getlocal 2 .............................. <pForce>
+  [483] sub ..................................... <p.Health - pForce>
+  [484] setobjprop 1556 ......................... p.Health = p.Health - pForce
+  [487] getprop 563 ............................. <p>
+  [490] getobjprop 1556 ......................... <p.Health>
+  [493] getprop 563 ............................. <p>
+  [496] getobjprop 3122 ......................... <p.Health1>
+  [499] lteq .................................... <p.Health <= p.Health1>
+  [500] getprop 563 ............................. <p>
+  [503] getobjprop 3027 ......................... <p.CrashState>
+  [506] pushint8 2 .............................. <2>
+  [508] lt ...................................... <p.CrashState < 2>
+  [509] and ..................................... <(p.Health <= p.Health1) and (p.CrashState < 2)>
+  [510] jmpifz [519] ............................ if (p.Health <= p.Health1) and (p.CrashState < 2) then
+  [513] pushint8 2 .............................. <2>
+  [515] pusharglistnoret 1 ...................... <2>
+  [517] localcall 5 ............................. SetState(2)
+  [519] getprop 563 ............................. <p>
+  [522] getobjprop 1556 ......................... <p.Health>
+  [525] getprop 563 ............................. <p>
+  [528] getobjprop 3123 ......................... <p.Health2>
+  [531] lteq .................................... <p.Health <= p.Health2>
+  [532] getprop 563 ............................. <p>
+  [535] getobjprop 3027 ......................... <p.CrashState>
+  [538] pushint8 3 .............................. <3>
+  [540] lt ...................................... <p.CrashState < 3>
+  [541] and ..................................... <(p.Health <= p.Health2) and (p.CrashState < 3)>
+  [542] jmpifz [551] ............................ if (p.Health <= p.Health2) and (p.CrashState < 3) then
+  [545] pushint8 3 .............................. <3>
+  [547] pusharglistnoret 1 ...................... <3>
+  [549] localcall 5 ............................. SetState(3)
+  [551] getprop 563 ............................. <p>
+  [554] getobjprop 1556 ......................... <p.Health>
+  [557] pushfloat32 0.0 ......................... <0.0>
+  [562] lteq .................................... <p.Health <= 0.0>
+  [563] getprop 563 ............................. <p>
+  [566] getobjprop 3027 ......................... <p.CrashState>
+  [569] pushint8 4 .............................. <4>
+  [571] lt ...................................... <p.CrashState < 4>
+  [572] and ..................................... <(p.Health <= 0.0) and (p.CrashState < 4)>
+  [573] jmpifz [582] ............................ if (p.Health <= 0.0) and (p.CrashState < 4) then
+  [576] pushint8 4 .............................. <4>
+  [578] pusharglistnoret 1 ...................... <4>
+  [580] localcall 5 ............................. SetState(4)
+  [582] getprop 563 ............................. <p>
+  [585] getobjprop 1556 ......................... <p.Health>
+  [588] pushint8 80 ............................. <80>
+  [590] lteq .................................... <p.Health <= 80>
+  [591] getprop 563 ............................. <p>
+  [594] getobjprop 1556 ......................... <p.Health>
+  [597] pushint8 60 ............................. <60>
+  [599] gt ...................................... <p.Health > 60>
+  [600] and ..................................... <(p.Health <= 80) and (p.Health > 60)>
+  [601] jmpifz [636] ............................ if (p.Health <= 80) and (p.Health > 60) then
+  [604] getglobal 395 ........................... <g>
+  [607] getchainedprop 366 ...................... <g.interface>
+  [610] getobjprop 235 .......................... <g.interface.name>
+  [612] pushsymb 969 ............................ <#modelList>
+  [615] pushcons 11 ............................. <"HealthBar1">
+  [617] pusharglist 1 ........................... <["HealthBar1"]>
+  [619] pushlist ................................ <["HealthBar1"]>
+  [620] pushsymb 3136 ........................... <#parentName>
+  [623] pushcons 12 ............................. <"Thermometer">
+  [625] pushsymb 89 ............................. <#state>
+  [627] pushint8 1 .............................. <1>
+  [629] pusharglist 6 ........................... <[#modelList: ["HealthBar1"], #parentName: "Thermometer", #state: 1]>
+  [631] pushproplist ............................ <[#modelList: ["HealthBar1"], #parentName: "Thermometer", #state: 1]>
+  [632] pusharglistnoret 2 ...................... <g.interface.name, [#modelList: ["HealthBar1"], #parentName: "Thermometer", #state: 1]>
+  [634] extcall 228 ............................. SETVISIBLE(g.interface.name, [#modelList: ["HealthBar1"], #parentName: "Thermometer", #state: 1])
+  [636] getprop 563 ............................. <p>
+  [639] getobjprop 1556 ......................... <p.Health>
+  [642] pushint8 61 ............................. <61>
+  [644] lteq .................................... <p.Health <= 61>
+  [645] getprop 563 ............................. <p>
+  [648] getobjprop 1556 ......................... <p.Health>
+  [651] pushint8 40 ............................. <40>
+  [653] gt ...................................... <p.Health > 40>
+  [654] and ..................................... <(p.Health <= 61) and (p.Health > 40)>
+  [655] jmpifz [690] ............................ if (p.Health <= 61) and (p.Health > 40) then
+  [658] getglobal 395 ........................... <g>
+  [661] getchainedprop 366 ...................... <g.interface>
+  [664] getobjprop 235 .......................... <g.interface.name>
+  [666] pushsymb 969 ............................ <#modelList>
+  [669] pushcons 13 ............................. <"HealthBar2">
+  [671] pusharglist 1 ........................... <["HealthBar2"]>
+  [673] pushlist ................................ <["HealthBar2"]>
+  [674] pushsymb 3136 ........................... <#parentName>
+  [677] pushcons 12 ............................. <"Thermometer">
+  [679] pushsymb 89 ............................. <#state>
+  [681] pushint8 1 .............................. <1>
+  [683] pusharglist 6 ........................... <[#modelList: ["HealthBar2"], #parentName: "Thermometer", #state: 1]>
+  [685] pushproplist ............................ <[#modelList: ["HealthBar2"], #parentName: "Thermometer", #state: 1]>
+  [686] pusharglistnoret 2 ...................... <g.interface.name, [#modelList: ["HealthBar2"], #parentName: "Thermometer", #state: 1]>
+  [688] extcall 228 ............................. SETVISIBLE(g.interface.name, [#modelList: ["HealthBar2"], #parentName: "Thermometer", #state: 1])
+  [690] getprop 563 ............................. <p>
+  [693] getobjprop 1556 ......................... <p.Health>
+  [696] pushint8 41 ............................. <41>
+  [698] lteq .................................... <p.Health <= 41>
+  [699] getprop 563 ............................. <p>
+  [702] getobjprop 1556 ......................... <p.Health>
+  [705] pushint8 20 ............................. <20>
+  [707] gt ...................................... <p.Health > 20>
+  [708] and ..................................... <(p.Health <= 41) and (p.Health > 20)>
+  [709] jmpifz [744] ............................ if (p.Health <= 41) and (p.Health > 20) then
+  [712] getglobal 395 ........................... <g>
+  [715] getchainedprop 366 ...................... <g.interface>
+  [718] getobjprop 235 .......................... <g.interface.name>
+  [720] pushsymb 969 ............................ <#modelList>
+  [723] pushcons 14 ............................. <"HealthBar3">
+  [725] pusharglist 1 ........................... <["HealthBar3"]>
+  [727] pushlist ................................ <["HealthBar3"]>
+  [728] pushsymb 3136 ........................... <#parentName>
+  [731] pushcons 12 ............................. <"Thermometer">
+  [733] pushsymb 89 ............................. <#state>
+  [735] pushint8 1 .............................. <1>
+  [737] pusharglist 6 ........................... <[#modelList: ["HealthBar3"], #parentName: "Thermometer", #state: 1]>
+  [739] pushproplist ............................ <[#modelList: ["HealthBar3"], #parentName: "Thermometer", #state: 1]>
+  [740] pusharglistnoret 2 ...................... <g.interface.name, [#modelList: ["HealthBar3"], #parentName: "Thermometer", #state: 1]>
+  [742] extcall 228 ............................. SETVISIBLE(g.interface.name, [#modelList: ["HealthBar3"], #parentName: "Thermometer", #state: 1])
+  [744] getprop 563 ............................. <p>
+  [747] getobjprop 1556 ......................... <p.Health>
+  [750] pushint8 21 ............................. <21>
+  [752] lteq .................................... <p.Health <= 21>
+  [753] getprop 563 ............................. <p>
+  [756] getobjprop 1556 ......................... <p.Health>
+  [759] pushzero ................................ <0>
+  [760] gt ...................................... <p.Health > 0>
+  [761] and ..................................... <(p.Health <= 21) and (p.Health > 0)>
+  [762] jmpifz [797] ............................ if (p.Health <= 21) and (p.Health > 0) then
+  [765] getglobal 395 ........................... <g>
+  [768] getchainedprop 366 ...................... <g.interface>
+  [771] getobjprop 235 .......................... <g.interface.name>
+  [773] pushsymb 969 ............................ <#modelList>
+  [776] pushcons 15 ............................. <"HealthBar4">
+  [778] pusharglist 1 ........................... <["HealthBar4"]>
+  [780] pushlist ................................ <["HealthBar4"]>
+  [781] pushsymb 3136 ........................... <#parentName>
+  [784] pushcons 12 ............................. <"Thermometer">
+  [786] pushsymb 89 ............................. <#state>
+  [788] pushint8 1 .............................. <1>
+  [790] pusharglist 6 ........................... <[#modelList: ["HealthBar4"], #parentName: "Thermometer", #state: 1]>
+  [792] pushproplist ............................ <[#modelList: ["HealthBar4"], #parentName: "Thermometer", #state: 1]>
+  [793] pusharglistnoret 2 ...................... <g.interface.name, [#modelList: ["HealthBar4"], #parentName: "Thermometer", #state: 1]>
+  [795] extcall 228 ............................. SETVISIBLE(g.interface.name, [#modelList: ["HealthBar4"], #parentName: "Thermometer", #state: 1])
+  [797] getprop 563 ............................. <p>
+  [800] getobjprop 1556 ......................... <p.Health>
+  [803] pushzero ................................ <0>
+  [804] lteq .................................... <p.Health <= 0>
+  [805] jmpifz [840] ............................ if p.Health <= 0 then
+  [808] getglobal 395 ........................... <g>
+  [811] getchainedprop 366 ...................... <g.interface>
+  [814] getobjprop 235 .......................... <g.interface.name>
+  [816] pushsymb 969 ............................ <#modelList>
+  [819] pushcons 16 ............................. <"HealthBar5">
+  [821] pusharglist 1 ........................... <["HealthBar5"]>
+  [823] pushlist ................................ <["HealthBar5"]>
+  [824] pushsymb 3136 ........................... <#parentName>
+  [827] pushcons 12 ............................. <"Thermometer">
+  [829] pushsymb 89 ............................. <#state>
+  [831] pushint8 1 .............................. <1>
+  [833] pusharglist 6 ........................... <[#modelList: ["HealthBar5"], #parentName: "Thermometer", #state: 1]>
+  [835] pushproplist ............................ <[#modelList: ["HealthBar5"], #parentName: "Thermometer", #state: 1]>
+  [836] pusharglistnoret 2 ...................... <g.interface.name, [#modelList: ["HealthBar5"], #parentName: "Thermometer", #state: 1]>
+  [838] extcall 228 ............................. SETVISIBLE(g.interface.name, [#modelList: ["HealthBar5"], #parentName: "Thermometer", #state: 1])
+  [840] getglobal 395 ........................... <g>
+  [843] getobjprop 3137 ......................... <g.GameInput>
+  [846] pushint8 1 .............................. <1>
+  [848] eq ...................................... <g.GameInput = 1>
+  [849] jmpifz [1022] ........................... if g.GameInput = 1 then
+  [852] pushcons 17 ............................. <"Bump">
+  [854] pushsymb 1047 ........................... <#priority>
+  [857] pushsymb 1048 ........................... <#low>
+  [860] pushsymb 1046 ........................... <#rateShift>
+  [863] pushint8 6 .............................. <6>
+  [865] inv ..................................... <-6>
+  [866] pushint8 8 .............................. <8>
+  [868] pusharglist 2 ........................... <-6, 8>
+  [870] extcall 176 ............................. <random(-6, 8)>
+  [872] pushsymb 1050 ........................... <#surround>
+  [875] pushint8 1 .............................. <1>
+  [877] pushsymb 1051 ........................... <#member3DName>
+  [880] getprop 563 ............................. <p>
+  [883] getchainedprop 64 ....................... <p.member>
+  [885] getobjprop 235 .......................... <p.member.name>
+  [887] pushsymb 1049 ........................... <#sender>
+  [890] getprop 563 ............................. <p>
+  [893] getobjprop 3120 ......................... <p.ProxyModelName>
+  [896] pushsymb 1052 ........................... <#targetName>
+  [899] getprop 563 ............................. <p>
+  [902] getobjprop 3120 ......................... <p.ProxyModelName>
+  [905] pushsymb 1053 ........................... <#referenceName>
+  [908] pushcons 18 ............................. <"DefaultView">
+  [910] pushsymb 1054 ........................... <#distance>
+  [913] pushint8 10 ............................. <10>
+  [915] pushint8 60 ............................. <60>
+  [917] pusharglist 2 ........................... <[10, 60]>
+  [919] pushlist ................................ <[10, 60]>
+  [920] pushsymb 1055 ........................... <#static>
+  [923] pushint8 1 .............................. <1>
+  [925] pusharglist 18 .......................... <[#priority: #low, #rateShift: random(-6, 8), #surround: 1, #member3DName: p.member.name, #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [10, 60], #static: 1]>
+  [927] pushproplist ............................ <[#priority: #low, #rateShift: random(-6, 8), #surround: 1, #member3DName: p.member.name, #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [10, 60], #static: 1]>
+  [928] pusharglistnoret 2 ...................... <"Bump", [#priority: #low, #rateShift: random(-6, 8), #surround: 1, #member3DName: p.member.name, #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [10, 60], #static: 1]>
+  [930] extcall 289 ............................. PlaySound("Bump", [#priority: #low, #rateShift: random(-6, 8), #surround: 1, #member3DName: p.member.name, #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [10, 60], #static: 1])
+  [933] getlocal 2 .............................. <pForce>
+  [935] pushfloat32 0.75 ........................ <0.75>
+  [940] gteq .................................... <pForce >= 0.75>
+  [941] jmpifz [1022] ........................... if pForce >= 0.75 then
+  [944] pushcons 19 ............................. <"Clunk">
+  [946] pushsymb 1047 ........................... <#priority>
+  [949] pushsymb 1048 ........................... <#low>
+  [952] pushsymb 1050 ........................... <#surround>
+  [955] pushint8 1 .............................. <1>
+  [957] pushsymb 1051 ........................... <#member3DName>
+  [960] getprop 563 ............................. <p>
+  [963] getchainedprop 64 ....................... <p.member>
+  [965] getobjprop 235 .......................... <p.member.name>
+  [967] pushsymb 176 ............................ <#random>
+  [969] pushint8 1 .............................. <1>
+  [971] pushint8 3 .............................. <3>
+  [973] pusharglist 2 ........................... <[1, 3]>
+  [975] pushlist ................................ <[1, 3]>
+  [976] pushsymb 1049 ........................... <#sender>
+  [979] getprop 563 ............................. <p>
+  [982] getobjprop 3120 ......................... <p.ProxyModelName>
+  [985] pushsymb 1052 ........................... <#targetName>
+  [988] getprop 563 ............................. <p>
+  [991] getobjprop 3120 ......................... <p.ProxyModelName>
+  [994] pushsymb 1053 ........................... <#referenceName>
+  [997] pushcons 18 ............................. <"DefaultView">
+  [999] pushsymb 1054 ........................... <#distance>
+  [1002] pushint8 10 ............................ <10>
+  [1004] pushint8 60 ............................ <60>
+  [1006] pusharglist 2 .......................... <[10, 60]>
+  [1008] pushlist ............................... <[10, 60]>
+  [1009] pushsymb 1055 .......................... <#static>
+  [1012] pushint8 1 ............................. <1>
+  [1014] pusharglist 18 ......................... <[#priority: #low, #surround: 1, #member3DName: p.member.name, #random: [1, 3], #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [10, 60], #static: 1]>
+  [1016] pushproplist ........................... <[#priority: #low, #surround: 1, #member3DName: p.member.name, #random: [1, 3], #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [10, 60], #static: 1]>
+  [1017] pusharglistnoret 2 ..................... <"Clunk", [#priority: #low, #surround: 1, #member3DName: p.member.name, #random: [1, 3], #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [10, 60], #static: 1]>
+  [1019] extcall 289 ............................ PlaySound("Clunk", [#priority: #low, #surround: 1, #member3DName: p.member.name, #random: [1, 3], #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [10, 60], #static: 1])
+  [1022] getlocal 0 ............................. <pCollisionDetails>
+  [1024] pusharglist 0 .......................... <[]>
+  [1026] pushlist ............................... <[]>
+  [1027] nteq ................................... <pCollisionDetails <> []>
+  [1028] jmpifz [1046] .......................... if pCollisionDetails <> [] then
+  [1031] getprop 563 ............................ <p>
+  [1034] getprop 563 ............................ <p>
+  [1037] getchainedprop 1555 .................... <p.PhysicsCar>
+  [1040] getobjprop 2164 ........................ <p.PhysicsCar.linearMomentum>
+  [1043] setobjprop 3121 ........................ p.CollisionPosition = p.PhysicsCar.linearMomentum
+  [1046] getglobal 395 .......................... <g>
+  [1049] pushsymb 137 ........................... <#cars>
+  [1051] getprop 563 ............................ <p>
+  [1054] getobjprop 377 ......................... <p.tag>
+  [1057] pusharglist 3 .......................... <g, #cars, p.tag>
+  [1059] objcall 102 ............................ <g.cars[p.tag]>
+  [1061] pushsymb 1335 .......................... <#specifics>
+  [1064] pusharglist 2 .......................... <g.cars[p.tag], #specifics>
+  [1066] objcall 105 ............................ <g.cars[p.tag][#specifics]>
+  [1068] pushsymb 2163 .......................... <#collisionDetails>
+  [1071] getglobal 395 .......................... <g>
+  [1074] pushsymb 1391 .......................... <#collisionReports>
+  [1077] getprop 563 ............................ <p>
+  [1080] getobjprop 3049 ........................ <p.collModelName>
+  [1083] pusharglist 3 .......................... <g, #collisionReports, p.collModelName>
+  [1085] objcall 102 ............................ <g.collisionReports[p.collModelName]>
+  [1087] pusharglist 1 .......................... <g.collisionReports[p.collModelName]>
+  [1089] objcall 233 ............................ <g.collisionReports[p.collModelName].duplicate()>
+  [1091] pusharglistnoret 3 ..................... <g.cars[p.tag][#specifics], #collisionDetails, g.collisionReports[p.collModelName].duplicate()>
+  [1093] objcall 103 ............................ g.cars[p.tag][#specifics][#collisionDetails] = g.collisionReports[p.collModelName].duplicate()
+  [1095] getglobal 395 .......................... <g>
+  [1098] pushsymb 1391 .......................... <#collisionReports>
+  [1101] getprop 563 ............................ <p>
+  [1104] getobjprop 3049 ........................ <p.collModelName>
+  [1107] pusharglist 0 .......................... <[]>
+  [1109] pushlist ............................... <[]>
+  [1110] pusharglistnoret 4 ..................... <g, #collisionReports, p.collModelName, []>
+  [1112] objcall 99 ............................. g.collisionReports[p.collModelName] = []
+  [1114] getglobal 395 .......................... <g>
+  [1117] pushsymb 137 ........................... <#cars>
+  [1119] getprop 563 ............................ <p>
+  [1122] getobjprop 377 ......................... <p.tag>
+  [1125] pusharglist 3 .......................... <g, #cars, p.tag>
+  [1127] objcall 102 ............................ <g.cars[p.tag]>
+  [1129] pushsymb 1335 .......................... <#specifics>
+  [1132] pusharglist 2 .......................... <g.cars[p.tag], #specifics>
+  [1134] objcall 105 ............................ <g.cars[p.tag][#specifics]>
+  [1136] pushsymb 1556 .......................... <#Health>
+  [1139] getprop 563 ............................ <p>
+  [1142] getobjprop 1556 ........................ <p.Health>
+  [1145] pusharglistnoret 3 ..................... <g.cars[p.tag][#specifics], #Health, p.Health>
+  [1147] objcall 103 ............................ g.cars[p.tag][#specifics][#Health] = p.Health
+  [1149] ret
+end
+
+on SetState tCrashState
+  [  0] getparam 0 .............................. <tCrashState>
+  [  2] pushint8 1 .............................. <1>
+  [  4] eq ...................................... <tCrashState = 1>
+  [  5] jmpifz [179] ............................ if tCrashState = 1 then
+  [  8] getprop 563 ............................. <p>
+  [ 11] getobjprop 3132 ......................... <p.ReflectionTexture>
+  [ 14] pusharglistnoret 1 ...................... <p.ReflectionTexture>
+  [ 16] localcall 7 ............................. SetReflectionTexture(p.ReflectionTexture)
+  [ 18] getprop 563 ............................. <p>
+  [ 21] getchainedprop 3133 ..................... <p.CarModel>
+  [ 24] pushsymb 1234 ........................... <#front>
+  [ 27] setobjprop 1233 ......................... p.CarModel.visibility = #front
+  [ 30] getprop 563 ............................. <p>
+  [ 33] getchainedprop 3134 ..................... <p.GlassModel>
+  [ 36] pushsymb 1234 ........................... <#front>
+  [ 39] setobjprop 1233 ......................... p.GlassModel.visibility = #front
+  [ 42] getprop 563 ............................. <p>
+  [ 45] pushsymb 2165 ........................... <#wheellist>
+  [ 48] pusharglist 2 ........................... <p, #wheellist>
+  [ 50] objcall 129 ............................. <p.wheellist.count>
+  [ 52] setlocal 0 .............................. pCount = p.wheellist.count
+  [ 54] pushint8 1 .............................. <1>
+  [ 56] setlocal 1
+  [ 58] getlocal 1
+  [ 60] getlocal 0 .............................. <pCount>
+  [ 62] lteq
+  [ 63] jmpifz [133] ............................ repeat with j = 1 to pCount
+  [ 66] getglobal 395 ........................... <g>
+  [ 69] getchainedprop 1389 ..................... <g.Physics>
+  [ 72] getprop 563 ............................. <p>
+  [ 75] pushsymb 2165 ........................... <#wheellist>
+  [ 78] getlocal 1 .............................. <j>
+  [ 80] pusharglist 3 ........................... <p, #wheellist, j>
+  [ 82] objcall 102 ............................. <p.wheellist[j]>
+  [ 84] getobjprop 235 .......................... <p.wheellist[j].name>
+  [ 86] pusharglist 2 ........................... <g.Physics, p.wheellist[j].name>
+  [ 88] objcall 1537 ............................ <g.Physics.getRigidBody(p.wheellist[j].name)>
+  [ 91] pusharglist 0 ........................... <>
+  [ 93] extcall 40 .............................. <VOID>
+  [ 95] nteq .................................... <g.Physics.getRigidBody(p.wheellist[j].name) <> VOID>
+  [ 96] jmpifz [124] ............................ if g.Physics.getRigidBody(p.wheellist[j].name) <> VOID then
+  [ 99] getglobal 395 ........................... <g>
+  [102] getchainedprop 1389 ..................... <g.Physics>
+  [105] getprop 563 ............................. <p>
+  [108] pushsymb 2165 ........................... <#wheellist>
+  [111] getlocal 1 .............................. <j>
+  [113] pusharglist 3 ........................... <p, #wheellist, j>
+  [115] objcall 102 ............................. <p.wheellist[j]>
+  [117] getobjprop 235 .......................... <p.wheellist[j].name>
+  [119] pusharglistnoret 2 ...................... <g.Physics, p.wheellist[j].name>
+  [121] objcall 1390 ............................ g.Physics.deleteRigidBody(p.wheellist[j].name)
+  [124] pushint8 1
+  [126] getlocal 1
+  [128] add
+  [129] setlocal 1
+  [131] endrepeat [ 58]
+  [133] getprop 563 ............................. <p>
+  [136] getprop 563 ............................. <p>
+  [139] getobjprop 3026 ......................... <p.StartHealth>
+  [142] setobjprop 1556 ......................... p.Health = p.StartHealth
+  [145] getglobal 395 ........................... <g>
+  [148] getchainedprop 366 ...................... <g.interface>
+  [151] getobjprop 235 .......................... <g.interface.name>
+  [153] pushsymb 969 ............................ <#modelList>
+  [156] pushcons 11 ............................. <"HealthBar1">
+  [158] pushcons 13 ............................. <"HealthBar2">
+  [160] pushcons 14 ............................. <"HealthBar3">
+  [162] pushcons 15 ............................. <"HealthBar4">
+  [164] pushcons 16 ............................. <"HealthBar5">
+  [166] pusharglist 5 ........................... <["HealthBar1", "HealthBar2", "HealthBar3", "HealthBar4", "HealthBar5"]>
+  [168] pushlist ................................ <["HealthBar1", "HealthBar2", "HealthBar3", "HealthBar4", "HealthBar5"]>
+  [169] pushsymb 89 ............................. <#state>
+  [171] pushzero ................................ <0>
+  [172] pusharglist 4 ........................... <[#modelList: ["HealthBar1", "HealthBar2", "HealthBar3", "HealthBar4", "HealthBar5"], #state: 0]>
+  [174] pushproplist ............................ <[#modelList: ["HealthBar1", "HealthBar2", "HealthBar3", "HealthBar4", "HealthBar5"], #state: 0]>
+  [175] pusharglistnoret 2 ...................... <g.interface.name, [#modelList: ["HealthBar1", "HealthBar2", "HealthBar3", "HealthBar4", "HealthBar5"], #state: 0]>
+  [177] extcall 228 ............................. SETVISIBLE(g.interface.name, [#modelList: ["HealthBar1", "HealthBar2", "HealthBar3", "HealthBar4", "HealthBar5"], #state: 0])
+  [179] getparam 0 .............................. <tCrashState>
+  [181] pushint8 2 .............................. <2>
+  [183] eq ...................................... <tCrashState = 2>
+  [184] jmpifz [195] ............................ if tCrashState = 2 then
+  [187] pusharglist 0 ........................... <>
+  [189] extcall 40 .............................. <VOID>
+  [191] pusharglistnoret 1 ...................... <VOID>
+  [193] localcall 7 ............................. SetReflectionTexture(VOID)
+  [195] getparam 0 .............................. <tCrashState>
+  [197] pushint8 3 .............................. <3>
+  [199] eq ...................................... <tCrashState = 3>
+  [200] jmpifz [203] ............................ if tCrashState = 3 then
+  [203] getparam 0 .............................. <tCrashState>
+  [205] pushint8 4 .............................. <4>
+  [207] eq ...................................... <tCrashState = 4>
+  [208] jmpifz [1173] ........................... if tCrashState = 4 then
+  [211] getprop 563 ............................. <p>
+  [214] getobjprop 3130 ......................... <p.CrashTexture3>
+  [217] pusharglistnoret 1 ...................... <p.CrashTexture3>
+  [219] localcall 6 ............................. SetTexture(p.CrashTexture3)
+  [221] pusharglist 0 ........................... <>
+  [223] extcall 40 .............................. <VOID>
+  [225] pusharglistnoret 1 ...................... <VOID>
+  [227] localcall 7 ............................. SetReflectionTexture(VOID)
+  [229] getprop 563 ............................. <p>
+  [232] pushzero ................................ <0>
+  [233] setobjprop 1556 ......................... p.Health = 0
+  [236] getglobal 395 ........................... <g>
+  [239] pushsymb 137 ............................ <#cars>
+  [241] getprop 563 ............................. <p>
+  [244] getobjprop 377 .......................... <p.tag>
+  [247] pusharglist 3 ........................... <g, #cars, p.tag>
+  [249] objcall 102 ............................. <g.cars[p.tag]>
+  [251] pushsymb 1335 ........................... <#specifics>
+  [254] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [256] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [258] pushsymb 1556 ........................... <#Health>
+  [261] getprop 563 ............................. <p>
+  [264] getobjprop 1556 ......................... <p.Health>
+  [267] pusharglistnoret 3 ...................... <g.cars[p.tag][#specifics], #Health, p.Health>
+  [269] objcall 103 ............................. g.cars[p.tag][#specifics][#Health] = p.Health
+  [271] getglobal 395 ........................... <g>
+  [274] pushsymb 137 ............................ <#cars>
+  [276] getprop 563 ............................. <p>
+  [279] getobjprop 377 .......................... <p.tag>
+  [282] pusharglist 3 ........................... <g, #cars, p.tag>
+  [284] objcall 102 ............................. <g.cars[p.tag]>
+  [286] pushsymb 89 ............................. <#state>
+  [288] pushcons 20 ............................. <"Dead">
+  [290] pusharglistnoret 3 ...................... <g.cars[p.tag], #state, "Dead">
+  [292] objcall 103 ............................. g.cars[p.tag][#state] = "Dead"
+  [294] getglobal 395 ........................... <g>
+  [297] pushsymb 137 ............................ <#cars>
+  [299] getprop 563 ............................. <p>
+  [302] getobjprop 377 .......................... <p.tag>
+  [305] pusharglist 3 ........................... <g, #cars, p.tag>
+  [307] objcall 102 ............................. <g.cars[p.tag]>
+  [309] pushsymb 1335 ........................... <#specifics>
+  [312] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [314] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [316] pushsymb 136 ............................ <#score>
+  [318] pushzero ................................ <0>
+  [319] pusharglistnoret 3 ...................... <g.cars[p.tag][#specifics], #score, 0>
+  [321] objcall 103 ............................. g.cars[p.tag][#specifics][#score] = 0
+  [323] getglobal 395 ........................... <g>
+  [326] pushsymb 137 ............................ <#cars>
+  [328] getprop 563 ............................. <p>
+  [331] getobjprop 377 .......................... <p.tag>
+  [334] pusharglist 3 ........................... <g, #cars, p.tag>
+  [336] objcall 102 ............................. <g.cars[p.tag]>
+  [338] pushsymb 1335 ........................... <#specifics>
+  [341] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [343] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [345] pushsymb 3040 ........................... <#positionBonus>
+  [348] pushzero ................................ <0>
+  [349] pusharglistnoret 3 ...................... <g.cars[p.tag][#specifics], #positionBonus, 0>
+  [351] objcall 103 ............................. g.cars[p.tag][#specifics][#positionBonus] = 0
+  [353] getglobal 395 ........................... <g>
+  [356] pushsymb 137 ............................ <#cars>
+  [358] getprop 563 ............................. <p>
+  [361] getobjprop 377 .......................... <p.tag>
+  [364] pusharglist 3 ........................... <g, #cars, p.tag>
+  [366] objcall 102 ............................. <g.cars[p.tag]>
+  [368] pushsymb 1335 ........................... <#specifics>
+  [371] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [373] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [375] pushsymb 143 ............................ <#timeBonus>
+  [377] pushzero ................................ <0>
+  [378] pusharglistnoret 3 ...................... <g.cars[p.tag][#specifics], #timeBonus, 0>
+  [380] objcall 103 ............................. g.cars[p.tag][#specifics][#timeBonus] = 0
+  [382] getglobal 395 ........................... <g>
+  [385] pushsymb 137 ............................ <#cars>
+  [387] getprop 563 ............................. <p>
+  [390] getobjprop 377 .......................... <p.tag>
+  [393] pusharglist 3 ........................... <g, #cars, p.tag>
+  [395] objcall 102 ............................. <g.cars[p.tag]>
+  [397] pushsymb 1335 ........................... <#specifics>
+  [400] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [402] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [404] pushsymb 3041 ........................... <#conditionBonus>
+  [407] pushzero ................................ <0>
+  [408] pusharglistnoret 3 ...................... <g.cars[p.tag][#specifics], #conditionBonus, 0>
+  [410] objcall 103 ............................. g.cars[p.tag][#specifics][#conditionBonus] = 0
+  [412] getglobal 395 ........................... <g>
+  [415] pushsymb 137 ............................ <#cars>
+  [417] getprop 563 ............................. <p>
+  [420] getobjprop 377 .......................... <p.tag>
+  [423] pusharglist 3 ........................... <g, #cars, p.tag>
+  [425] objcall 102 ............................. <g.cars[p.tag]>
+  [427] pushsymb 1335 ........................... <#specifics>
+  [430] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [432] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [434] pushsymb 139 ............................ <#totalScore>
+  [436] pushzero ................................ <0>
+  [437] pusharglistnoret 3 ...................... <g.cars[p.tag][#specifics], #totalScore, 0>
+  [439] objcall 103 ............................. g.cars[p.tag][#specifics][#totalScore] = 0
+  [441] getglobal 395 ........................... <g>
+  [444] pushsymb 137 ............................ <#cars>
+  [446] getprop 563 ............................. <p>
+  [449] getobjprop 377 .......................... <p.tag>
+  [452] pusharglist 3 ........................... <g, #cars, p.tag>
+  [454] objcall 102 ............................. <g.cars[p.tag]>
+  [456] pushsymb 1335 ........................... <#specifics>
+  [459] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [461] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [463] pushsymb 3039 ........................... <#finalTime>
+  [466] getglobal 395 ........................... <g>
+  [469] getobjprop 3139 ......................... <g.RaceTime>
+  [472] pusharglistnoret 3 ...................... <g.cars[p.tag][#specifics], #finalTime, g.RaceTime>
+  [474] objcall 103 ............................. g.cars[p.tag][#specifics][#finalTime] = g.RaceTime
+  [476] pushcons 21 ............................. <"[PPS] Car Explosion">
+  [478] pusharglist 1 ........................... <"[PPS] Car Explosion">
+  [480] extcall 36 .............................. <script("[PPS] Car Explosion")>
+  [482] getprop 563 ............................. <p>
+  [485] getobjprop 64 ........................... <p.member>
+  [487] pushzero ................................ <0>
+  [488] pushzero ................................ <0>
+  [489] pushzero ................................ <0>
+  [490] pusharglist 3 ........................... <0, 0, 0>
+  [492] extcall 212 ............................. <vector(0, 0, 0)>
+  [494] getprop 563 ............................. <p>
+  [497] getchainedprop 64 ....................... <p.member>
+  [499] pushcons 18 ............................. <"DefaultView">
+  [501] pusharglist 2 ........................... <p.member, "DefaultView">
+  [503] objcall 298 ............................. <p.member.camera("DefaultView")>
+  [506] getprop 563 ............................. <p>
+  [509] getchainedprop 1555 ..................... <p.PhysicsCar>
+  [512] getobjprop 235 .......................... <p.PhysicsCar.name>
+  [514] pushint16 8000 .......................... <8000>
+  [517] pusharglist 6 ........................... <script("[PPS] Car Explosion"), p.member, vector(0, 0, 0), p.member.camera("DefaultView"), p.PhysicsCar.name, 8000>
+  [519] extcall 35 .............................. <new(script("[PPS] Car Explosion"), p.member, vector(0, 0, 0), p.member.camera("DefaultView"), p.PhysicsCar.name, 8000)>
+  [521] setlocal 2 .............................. pExplosion = new(script("[PPS] Car Explosion"), p.member, vector(0, 0, 0), p.member.camera("DefaultView"), p.PhysicsCar.name, 8000)
+  [523] gettoplevelprop 33 ...................... <_movie>
+  [525] getchainedprop 41 ....................... <_movie.actorList>
+  [527] getlocal 2 .............................. <pExplosion>
+  [529] pusharglistnoret 2 ...................... <_movie.actorList, pExplosion>
+  [531] objcall 42 .............................. _movie.actorList.add(pExplosion)
+  [533] getprop 563 ............................. <p>
+  [536] getchainedprop 3133 ..................... <p.CarModel>
+  [539] pushsymb 1236 ........................... <#both>
+  [542] setobjprop 1233 ......................... p.CarModel.visibility = #both
+  [545] getprop 563 ............................. <p>
+  [548] getchainedprop 3134 ..................... <p.GlassModel>
+  [551] pushsymb 54 ............................. <#none>
+  [553] setobjprop 1233 ......................... p.GlassModel.visibility = #none
+  [556] pusharglist 0 ........................... <>
+  [558] extcall 1392 ............................ <randomVector()>
+  [561] setlocal 3 .............................. pRandomVector = randomVector()
+  [563] getprop 563 ............................. <p>
+  [566] getchainedprop 1555 ..................... <p.PhysicsCar>
+  [569] getlocal 3 .............................. <pRandomVector>
+  [571] getobjprop 557 .......................... <pRandomVector.x>
+  [574] pushint16 1000 .......................... <1000>
+  [577] mul ..................................... <pRandomVector.x * 1000>
+  [578] getlocal 3 .............................. <pRandomVector>
+  [580] getobjprop 1189 ......................... <pRandomVector.y>
+  [583] pushint16 1000 .......................... <1000>
+  [586] mul ..................................... <pRandomVector.y * 1000>
+  [587] pushfloat32 25000.0 ..................... <25000.0>
+  [592] pusharglist 3 ........................... <pRandomVector.x * 1000, pRandomVector.y * 1000, 25000.0>
+  [594] extcall 212 ............................. <vector(pRandomVector.x * 1000, pRandomVector.y * 1000, 25000.0)>
+  [596] pusharglistnoret 2 ...................... <p.PhysicsCar, vector(pRandomVector.x * 1000, pRandomVector.y * 1000, 25000.0)>
+  [598] objcall 1393 ............................ p.PhysicsCar.applyLinearImpulse(vector(pRandomVector.x * 1000, pRandomVector.y * 1000, 25000.0))
+  [601] getprop 563 ............................. <p>
+  [604] getchainedprop 1555 ..................... <p.PhysicsCar>
+  [607] getlocal 3 .............................. <pRandomVector>
+  [609] getobjprop 557 .......................... <pRandomVector.x>
+  [612] pushint32 450000 ........................ <450000>
+  [617] mul ..................................... <pRandomVector.x * 450000>
+  [618] getlocal 3 .............................. <pRandomVector>
+  [620] getobjprop 1189 ......................... <pRandomVector.y>
+  [623] pushint32 450000 ........................ <450000>
+  [628] mul ..................................... <pRandomVector.y * 450000>
+  [629] getlocal 3 .............................. <pRandomVector>
+  [631] getobjprop 1190 ......................... <pRandomVector.z>
+  [634] pushint32 550000 ........................ <550000>
+  [639] mul ..................................... <pRandomVector.z * 550000>
+  [640] pusharglist 3 ........................... <pRandomVector.x * 450000, pRandomVector.y * 450000, pRandomVector.z * 550000>
+  [642] extcall 212 ............................. <vector(pRandomVector.x * 450000, pRandomVector.y * 450000, pRandomVector.z * 550000)>
+  [644] pusharglistnoret 2 ...................... <p.PhysicsCar, vector(pRandomVector.x * 450000, pRandomVector.y * 450000, pRandomVector.z * 550000)>
+  [646] objcall 1394 ............................ p.PhysicsCar.applyTorque(vector(pRandomVector.x * 450000, pRandomVector.y * 450000, pRandomVector.z * 550000))
+  [649] getprop 563 ............................. <p>
+  [652] pushsymb 2165 ........................... <#wheellist>
+  [655] pusharglist 2 ........................... <p, #wheellist>
+  [657] objcall 129 ............................. <p.wheellist.count>
+  [659] setlocal 0 .............................. pCount = p.wheellist.count
+  [661] pushint8 1 .............................. <1>
+  [663] setlocal 4
+  [665] getlocal 4
+  [667] getlocal 0 .............................. <pCount>
+  [669] lteq
+  [670] jmpifz [1042] ........................... repeat with i = 1 to pCount
+  [673] getprop 563 ............................. <p>
+  [676] pushsymb 2165 ........................... <#wheellist>
+  [679] getlocal 4 .............................. <i>
+  [681] pusharglist 3 ........................... <p, #wheellist, i>
+  [683] objcall 70 .............................. <p.wheellist[i]>
+  [685] setlocal 5 .............................. pWheel = p.wheellist[i]
+  [687] getlocal 5 .............................. <pWheel>
+  [689] pusharglist 1 ........................... <pWheel>
+  [691] objcall 1109 ............................ <pWheel.getWorldTransform()>
+  [694] setlocal 6 .............................. pTransform = pWheel.getWorldTransform()
+  [696] getlocal 5 .............................. <pWheel>
+  [698] getprop 563 ............................. <p>
+  [701] getchainedprop 64 ....................... <p.member>
+  [703] pushcons 22 ............................. <"World">
+  [705] pusharglist 2 ........................... <p.member, "World">
+  [707] objcall 65 .............................. <p.member.group("World")>
+  [709] setobjprop 207 .......................... pWheel.parent = p.member.group("World")
+  [711] getlocal 5 .............................. <pWheel>
+  [713] getlocal 6 .............................. <pTransform>
+  [715] setobjprop 214 .......................... pWheel.transform = pTransform
+  [717] getlocal 5 .............................. <pWheel>
+  [719] getobjprop 294 .......................... <pWheel.modifier>
+  [722] setlocal 7 .............................. pModifierList = pWheel.modifier
+  [724] getlocal 7 .............................. <pModifierList>
+  [726] pushsymb 995 ............................ <#meshDeform>
+  [729] pusharglist 2 ........................... <pModifierList, #meshDeform>
+  [731] objcall 166 ............................. <pModifierList.getPos(#meshDeform)>
+  [733] pushzero ................................ <0>
+  [734] eq ...................................... <pModifierList.getPos(#meshDeform) = 0>
+  [735] jmpifz [748] ............................ if pModifierList.getPos(#meshDeform) = 0 then
+  [738] getlocal 5 .............................. <pWheel>
+  [740] pushsymb 995 ............................ <#meshDeform>
+  [743] pusharglistnoret 2 ...................... <pWheel, #meshDeform>
+  [745] objcall 261 ............................. pWheel.addModifier(#meshDeform)
+  [748] getlocal 5 .............................. <pWheel>
+  [750] getobjprop 235 .......................... <pWheel.name>
+  [752] setlocal 8 .............................. tName = pWheel.name
+  [754] getglobal 395 ........................... <g>
+  [757] getchainedprop 1389 ..................... <g.Physics>
+  [760] getlocal 8 .............................. <tName>
+  [762] getlocal 8 .............................. <tName>
+  [764] pushsymb 1375 ........................... <#convexShape>
+  [767] pushsymb 1372 ........................... <#dynamic>
+  [770] pusharglist 5 ........................... <g.Physics, tName, tName, #convexShape, #dynamic>
+  [772] objcall 1528 ............................ <g.Physics.createRigidBody(tName, tName, #convexShape, #dynamic)>
+  [775] setlocal 9 .............................. pRB = g.Physics.createRigidBody(tName, tName, #convexShape, #dynamic)
+  [777] getlocal 9 .............................. <pRB>
+  [779] pushcons 23 ............................. <0.20000000000000001>
+  [781] setobjprop 1523 ......................... pRB.restitution = 0.20000000000000001
+  [784] getlocal 9 .............................. <pRB>
+  [786] pushfloat32 0.5 ......................... <0.5>
+  [791] setobjprop 1524 ......................... pRB.friction = 0.5
+  [794] getlocal 9 .............................. <pRB>
+  [796] pushfloat32 20.0 ........................ <20.0>
+  [801] setobjprop 1373 ......................... pRB.mass = 20.0
+  [804] getglobal 395 ........................... <g>
+  [807] getchainedprop 3140 ..................... <g.LocalData>
+  [810] getobjprop 3141 ......................... <g.LocalData.TruckCollectedOptions>
+  [813] setlocal 10 ............................. tList = g.LocalData.TruckCollectedOptions
+  [815] getlocal 10 ............................. <tList>
+  [817] peek 0
+  [819] pusharglist 1
+  [821] extcall 129
+  [823] pushint8 1
+  [825] peek 0
+  [827] peek 2
+  [829] lteq
+  [830] jmpifz [996] ............................ repeat with i in tList
+  [833] peek 2
+  [835] peek 1
+  [837] pusharglist 2
+  [839] extcall 105
+  [841] setlocal 4
+  [843] getlocal 4 .............................. <i>
+  [845] pushcons 24 ............................. <"Rims">
+  [847] eq ...................................... <i = "Rims">
+  [848] jmpifz [854] ............................ if i = "Rims" then
+  [851] jmp [991] ............................... next repeat
+  [854] getglobal 395 ........................... <g>
+  [857] getchainedprop 64 ....................... <g.member>
+  [859] getglobal 395 ........................... <g>
+  [862] pushsymb 137 ............................ <#cars>
+  [864] pushint8 1 .............................. <1>
+  [866] pusharglist 3 ........................... <g, #cars, 1>
+  [868] objcall 102 ............................. <g.cars[1]>
+  [870] getobjprop 250 .......................... <g.cars[1].car>
+  [872] getlocal 4 .............................. <i>
+  [874] joinstr ................................. <g.cars[1].car & i>
+  [875] pusharglist 2 ........................... <g.member, g.cars[1].car & i>
+  [877] objcall 71 .............................. <g.member.model(g.cars[1].car & i)>
+  [879] setlocal 11 ............................. tmodel = g.member.model(g.cars[1].car & i)
+  [881] getlocal 11 ............................. <tmodel>
+  [883] pushsymb 995 ............................ <#meshDeform>
+  [886] pusharglistnoret 2 ...................... <tmodel, #meshDeform>
+  [888] objcall 261 ............................. tmodel.addModifier(#meshDeform)
+  [891] getlocal 11 ............................. <tmodel>
+  [893] getobjprop 1161 ......................... <tmodel.worldPosition>
+  [896] setlocal 12 ............................. tPos = tmodel.worldPosition
+  [898] getlocal 11 ............................. <tmodel>
+  [900] getglobal 395 ........................... <g>
+  [903] getchainedprop 64 ....................... <g.member>
+  [905] pushcons 22 ............................. <"World">
+  [907] pusharglist 2 ........................... <g.member, "World">
+  [909] objcall 65 .............................. <g.member.group("World")>
+  [911] setobjprop 207 .......................... tmodel.parent = g.member.group("World")
+  [913] getlocal 11 ............................. <tmodel>
+  [915] getchainedprop 214 ...................... <tmodel.transform>
+  [917] getlocal 12 ............................. <tPos>
+  [919] setobjprop 215 .......................... tmodel.transform.position = tPos
+  [921] getlocal 11 ............................. <tmodel>
+  [923] getobjprop 235 .......................... <tmodel.name>
+  [925] setlocal 8 .............................. tName = tmodel.name
+  [927] getglobal 395 ........................... <g>
+  [930] getchainedprop 1389 ..................... <g.Physics>
+  [933] getlocal 8 .............................. <tName>
+  [935] getlocal 8 .............................. <tName>
+  [937] pushsymb 1375 ........................... <#convexShape>
+  [940] pushsymb 1372 ........................... <#dynamic>
+  [943] pusharglist 5 ........................... <g.Physics, tName, tName, #convexShape, #dynamic>
+  [945] objcall 1528 ............................ <g.Physics.createRigidBody(tName, tName, #convexShape, #dynamic)>
+  [948] setlocal 9 .............................. pRB = g.Physics.createRigidBody(tName, tName, #convexShape, #dynamic)
+  [950] getlocal 9 .............................. <pRB>
+  [952] pushcons 23 ............................. <0.20000000000000001>
+  [954] setobjprop 1523 ......................... pRB.restitution = 0.20000000000000001
+  [957] getlocal 9 .............................. <pRB>
+  [959] pushfloat32 0.5 ......................... <0.5>
+  [964] setobjprop 1524 ......................... pRB.friction = 0.5
+  [967] getlocal 9 .............................. <pRB>
+  [969] pushfloat32 20.0 ........................ <20.0>
+  [974] setobjprop 1373 ......................... pRB.mass = 20.0
+  [977] getlocal 9 .............................. <pRB>
+  [979] getprop 563 ............................. <p>
+  [982] getchainedprop 1555 ..................... <p.PhysicsCar>
+  [985] getobjprop 1510 ......................... <p.PhysicsCar.linearVelocity>
+  [988] setobjprop 1510 ......................... pRB.linearVelocity = p.PhysicsCar.linearVelocity
+  [991] pushint8 1
+  [993] add
+  [994] endrepeat [825]
+  [996] pop 3
+  [998] getglobal 395 ........................... <g>
+  [1001] getchainedprop 64 ...................... <g.member>
+  [1003] getglobal 395 .......................... <g>
+  [1006] pushsymb 137 ........................... <#cars>
+  [1008] pushint8 1 ............................. <1>
+  [1010] pusharglist 3 .......................... <g, #cars, 1>
+  [1012] objcall 102 ............................ <g.cars[1]>
+  [1014] getobjprop 250 ......................... <g.cars[1].car>
+  [1016] pusharglist 2 .......................... <g.member, g.cars[1].car>
+  [1018] objcall 71 ............................. <g.member.model(g.cars[1].car)>
+  [1020] getchainedprop 208 ..................... <g.member.model(g.cars[1].car).shader>
+  [1022] pushsymb 1258 .......................... <#blendConstantList>
+  [1025] pushint8 3 ............................. <3>
+  [1027] pushzero ............................... <0>
+  [1028] pusharglistnoret 4 ..................... <g.member.model(g.cars[1].car).shader, #blendConstantList, 3, 0>
+  [1030] objcall 99 ............................. g.member.model(g.cars[1].car).shader.blendConstantList[3] = 0
+  [1032] pushint8 1
+  [1034] getlocal 4
+  [1036] add
+  [1037] setlocal 4
+  [1039] endrepeat [665]
+  [1042] getglobal 395 .......................... <g>
+  [1045] getobjprop 245 ......................... <g.RaceState>
+  [1047] pushcons 25 ............................ <"Pending">
+  [1049] eq ..................................... <g.RaceState = "Pending">
+  [1050] jmpifz [1173] .......................... if g.RaceState = "Pending" then
+  [1053] getprop 563 ............................ <p>
+  [1056] getobjprop 378 ......................... <p.controller>
+  [1059] pushsymb 379 ........................... <#player>
+  [1062] eq ..................................... <p.controller = #player>
+  [1063] jmpifz [1173] .......................... if p.controller = #player then / else
+  [1066] pusharglist 0 .......................... <>
+  [1068] extcall 238 ............................ <timeout()>
+  [1070] pushcons 26 ............................ <"DelayImpactTime">
+  [1072] pushint8 100 ........................... <100>
+  [1074] pushsymb 3113 .......................... <#DelayImpactTime>
+  [1077] getprop 563 ............................ <p>
+  [1080] getobjprop 45 .......................... <p.me>
+  [1082] pusharglistnoret 5 ..................... <timeout(), "DelayImpactTime", 100, #DelayImpactTime, p.me>
+  [1084] objcall 35 ............................. timeout().new("DelayImpactTime", 100, #DelayImpactTime, p.me)
+  [1086] getglobal 395 .......................... <g>
+  [1089] getchainedprop 298 ..................... <g.camera>
+  [1092] pushfloat32 0.0 ........................ <0.0>
+  [1097] pushfloat32 10.0 ....................... <10.0>
+  [1102] inv .................................... <-10.0>
+  [1103] pushfloat32 5.0 ........................ <5.0>
+  [1108] pusharglist 3 .......................... <0.0, -10.0, 5.0>
+  [1110] extcall 212 ............................ <vector(0.0, -10.0, 5.0)>
+  [1112] setobjprop 211 ......................... g.camera.offset = vector(0.0, -10.0, 5.0)
+  [1114] getglobal 395 .......................... <g>
+  [1117] getchainedprop 298 ..................... <g.camera>
+  [1120] pushfloat32 60.0 ....................... <60.0>
+  [1125] pushfloat32 0.0 ........................ <0.0>
+  [1130] pushfloat32 0.0 ........................ <0.0>
+  [1135] pusharglist 3 .......................... <60.0, 0.0, 0.0>
+  [1137] extcall 212 ............................ <vector(60.0, 0.0, 0.0)>
+  [1139] setobjprop 1162 ........................ g.camera.rotation = vector(60.0, 0.0, 0.0)
+  [1142] getglobal 395 .......................... <g>
+  [1145] pushcons 27 ............................ <"RaceOver">
+  [1147] setobjprop 245 ......................... g.RaceState = "RaceOver"
+  [1149] pusharglist 0 .......................... <>
+  [1151] extcall 238 ............................ <timeout()>
+  [1153] pushcons 28 ............................ <"PlayerEndRace">
+  [1155] pushint16 5000 ......................... <5000>
+  [1158] pushsymb 3114 .......................... <#PlayerEndRace>
+  [1161] getprop 563 ............................ <p>
+  [1164] getobjprop 45 .......................... <p.me>
+  [1166] pusharglistnoret 5 ..................... <timeout(), "PlayerEndRace", 5000, #PlayerEndRace, p.me>
+  [1168] objcall 35 ............................. timeout().new("PlayerEndRace", 5000, #PlayerEndRace, p.me)
+  [1170] jmp [1173]
+  [1173] getprop 563 ............................ <p>
+  [1176] getparam 0 ............................. <tCrashState>
+  [1178] setobjprop 3135 ........................ p.CurrentState = tCrashState
+  [1181] getprop 563 ............................ <p>
+  [1184] getparam 0 ............................. <tCrashState>
+  [1186] setobjprop 3027 ........................ p.CrashState = tCrashState
+  [1189] getglobal 395 .......................... <g>
+  [1192] pushsymb 137 ........................... <#cars>
+  [1194] getprop 563 ............................ <p>
+  [1197] getobjprop 377 ......................... <p.tag>
+  [1200] pusharglist 3 .......................... <g, #cars, p.tag>
+  [1202] objcall 102 ............................ <g.cars[p.tag]>
+  [1204] pushsymb 1335 .......................... <#specifics>
+  [1207] pusharglist 2 .......................... <g.cars[p.tag], #specifics>
+  [1209] objcall 105 ............................ <g.cars[p.tag][#specifics]>
+  [1211] pushsymb 3027 .......................... <#CrashState>
+  [1214] getprop 563 ............................ <p>
+  [1217] getobjprop 3027 ........................ <p.CrashState>
+  [1220] pusharglistnoret 3 ..................... <g.cars[p.tag][#specifics], #CrashState, p.CrashState>
+  [1222] objcall 103 ............................ g.cars[p.tag][#specifics][#CrashState] = p.CrashState
+  [1224] getparam 0 ............................. <tCrashState>
+  [1226] pushint8 2 ............................. <2>
+  [1228] eq ..................................... <tCrashState = 2>
+  [1229] getparam 0 ............................. <tCrashState>
+  [1231] pushint8 3 ............................. <3>
+  [1233] eq ..................................... <tCrashState = 3>
+  [1234] or ..................................... <(tCrashState = 2) or (tCrashState = 3)>
+  [1235] jmpifz [1405] .......................... if (tCrashState = 2) or (tCrashState = 3) then
+  [1238] pushcons 29 ............................ <"Crash">
+  [1240] pushsymb 1047 .......................... <#priority>
+  [1243] getprop 563 ............................ <p>
+  [1246] getobjprop 3124 ........................ <p.SoundPrio1>
+  [1249] pushsymb 1050 .......................... <#surround>
+  [1252] pushint8 1 ............................. <1>
+  [1254] pushsymb 1051 .......................... <#member3DName>
+  [1257] getprop 563 ............................ <p>
+  [1260] getchainedprop 64 ...................... <p.member>
+  [1262] getobjprop 235 ......................... <p.member.name>
+  [1264] pushsymb 176 ........................... <#random>
+  [1266] pushint8 1 ............................. <1>
+  [1268] pushint8 3 ............................. <3>
+  [1270] pusharglist 2 .......................... <[1, 3]>
+  [1272] pushlist ............................... <[1, 3]>
+  [1273] pushsymb 1049 .......................... <#sender>
+  [1276] getprop 563 ............................ <p>
+  [1279] getobjprop 3120 ........................ <p.ProxyModelName>
+  [1282] pushsymb 1052 .......................... <#targetName>
+  [1285] getprop 563 ............................ <p>
+  [1288] getobjprop 3120 ........................ <p.ProxyModelName>
+  [1291] pushsymb 1053 .......................... <#referenceName>
+  [1294] pushcons 18 ............................ <"DefaultView">
+  [1296] pushsymb 1054 .......................... <#distance>
+  [1299] pushint8 20 ............................ <20>
+  [1301] pushint16 200 .......................... <200>
+  [1304] pusharglist 2 .......................... <[20, 200]>
+  [1306] pushlist ............................... <[20, 200]>
+  [1307] pushsymb 1055 .......................... <#static>
+  [1310] pushint8 1 ............................. <1>
+  [1312] pusharglist 18 ......................... <[#priority: p.SoundPrio1, #surround: 1, #member3DName: p.member.name, #random: [1, 3], #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1]>
+  [1314] pushproplist ........................... <[#priority: p.SoundPrio1, #surround: 1, #member3DName: p.member.name, #random: [1, 3], #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1]>
+  [1315] pusharglistnoret 2 ..................... <"Crash", [#priority: p.SoundPrio1, #surround: 1, #member3DName: p.member.name, #random: [1, 3], #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1]>
+  [1317] extcall 289 ............................ PlaySound("Crash", [#priority: p.SoundPrio1, #surround: 1, #member3DName: p.member.name, #random: [1, 3], #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1])
+  [1320] pushcons 30 ............................ <"BreakingGlass">
+  [1322] pushsymb 1047 .......................... <#priority>
+  [1325] getprop 563 ............................ <p>
+  [1328] getobjprop 3124 ........................ <p.SoundPrio1>
+  [1331] pushsymb 1050 .......................... <#surround>
+  [1334] pushint8 1 ............................. <1>
+  [1336] pushsymb 1051 .......................... <#member3DName>
+  [1339] getprop 563 ............................ <p>
+  [1342] getchainedprop 64 ...................... <p.member>
+  [1344] getobjprop 235 ......................... <p.member.name>
+  [1346] pushsymb 1046 .......................... <#rateShift>
+  [1349] pushint8 4 ............................. <4>
+  [1351] inv .................................... <-4>
+  [1352] pushint8 4 ............................. <4>
+  [1354] pusharglist 2 .......................... <-4, 4>
+  [1356] extcall 176 ............................ <random(-4, 4)>
+  [1358] pushsymb 1049 .......................... <#sender>
+  [1361] getprop 563 ............................ <p>
+  [1364] getobjprop 3120 ........................ <p.ProxyModelName>
+  [1367] pushsymb 1052 .......................... <#targetName>
+  [1370] getprop 563 ............................ <p>
+  [1373] getobjprop 3120 ........................ <p.ProxyModelName>
+  [1376] pushsymb 1053 .......................... <#referenceName>
+  [1379] pushcons 18 ............................ <"DefaultView">
+  [1381] pushsymb 1054 .......................... <#distance>
+  [1384] pushint8 20 ............................ <20>
+  [1386] pushint16 200 .......................... <200>
+  [1389] pusharglist 2 .......................... <[20, 200]>
+  [1391] pushlist ............................... <[20, 200]>
+  [1392] pushsymb 1055 .......................... <#static>
+  [1395] pushint8 1 ............................. <1>
+  [1397] pusharglist 18 ......................... <[#priority: p.SoundPrio1, #surround: 1, #member3DName: p.member.name, #rateShift: random(-4, 4), #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1]>
+  [1399] pushproplist ........................... <[#priority: p.SoundPrio1, #surround: 1, #member3DName: p.member.name, #rateShift: random(-4, 4), #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1]>
+  [1400] pusharglistnoret 2 ..................... <"BreakingGlass", [#priority: p.SoundPrio1, #surround: 1, #member3DName: p.member.name, #rateShift: random(-4, 4), #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1]>
+  [1402] extcall 289 ............................ PlaySound("BreakingGlass", [#priority: p.SoundPrio1, #surround: 1, #member3DName: p.member.name, #rateShift: random(-4, 4), #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1])
+  [1405] getparam 0 ............................. <tCrashState>
+  [1407] pushint8 4 ............................. <4>
+  [1409] eq ..................................... <tCrashState = 4>
+  [1410] jmpifz [1640] .......................... if tCrashState = 4 then
+  [1413] pushcons 31 ............................ <"CrashGlass">
+  [1415] pushsymb 1047 .......................... <#priority>
+  [1418] pushsymb 1082 .......................... <#high>
+  [1421] pushsymb 1050 .......................... <#surround>
+  [1424] pushint8 1 ............................. <1>
+  [1426] pushsymb 1051 .......................... <#member3DName>
+  [1429] getprop 563 ............................ <p>
+  [1432] getchainedprop 64 ...................... <p.member>
+  [1434] getobjprop 235 ......................... <p.member.name>
+  [1436] pushsymb 1046 .......................... <#rateShift>
+  [1439] pushint8 4 ............................. <4>
+  [1441] inv .................................... <-4>
+  [1442] pushint8 4 ............................. <4>
+  [1444] pusharglist 2 .......................... <-4, 4>
+  [1446] extcall 176 ............................ <random(-4, 4)>
+  [1448] pushsymb 1049 .......................... <#sender>
+  [1451] getprop 563 ............................ <p>
+  [1454] getobjprop 3120 ........................ <p.ProxyModelName>
+  [1457] pushsymb 1052 .......................... <#targetName>
+  [1460] getprop 563 ............................ <p>
+  [1463] getobjprop 3120 ........................ <p.ProxyModelName>
+  [1466] pushsymb 1053 .......................... <#referenceName>
+  [1469] pushcons 18 ............................ <"DefaultView">
+  [1471] pushsymb 1054 .......................... <#distance>
+  [1474] pushint8 20 ............................ <20>
+  [1476] pushint16 200 .......................... <200>
+  [1479] pusharglist 2 .......................... <[20, 200]>
+  [1481] pushlist ............................... <[20, 200]>
+  [1482] pushsymb 1055 .......................... <#static>
+  [1485] pushint8 1 ............................. <1>
+  [1487] pusharglist 18 ......................... <[#priority: #high, #surround: 1, #member3DName: p.member.name, #rateShift: random(-4, 4), #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1]>
+  [1489] pushproplist ........................... <[#priority: #high, #surround: 1, #member3DName: p.member.name, #rateShift: random(-4, 4), #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1]>
+  [1490] pusharglistnoret 2 ..................... <"CrashGlass", [#priority: #high, #surround: 1, #member3DName: p.member.name, #rateShift: random(-4, 4), #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1]>
+  [1492] extcall 289 ............................ PlaySound("CrashGlass", [#priority: #high, #surround: 1, #member3DName: p.member.name, #rateShift: random(-4, 4), #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1])
+  [1495] pushcons 32 ............................ <"Explosion1">
+  [1497] pushsymb 1047 .......................... <#priority>
+  [1500] pushsymb 1082 .......................... <#high>
+  [1503] pushsymb 1050 .......................... <#surround>
+  [1506] pushint8 1 ............................. <1>
+  [1508] pushsymb 1051 .......................... <#member3DName>
+  [1511] getprop 563 ............................ <p>
+  [1514] getchainedprop 64 ...................... <p.member>
+  [1516] getobjprop 235 ......................... <p.member.name>
+  [1518] pushsymb 1049 .......................... <#sender>
+  [1521] getprop 563 ............................ <p>
+  [1524] getobjprop 3120 ........................ <p.ProxyModelName>
+  [1527] pushsymb 1052 .......................... <#targetName>
+  [1530] getprop 563 ............................ <p>
+  [1533] getobjprop 3120 ........................ <p.ProxyModelName>
+  [1536] pushsymb 1053 .......................... <#referenceName>
+  [1539] pushcons 18 ............................ <"DefaultView">
+  [1541] pushsymb 1054 .......................... <#distance>
+  [1544] pushint8 20 ............................ <20>
+  [1546] pushint16 200 .......................... <200>
+  [1549] pusharglist 2 .......................... <[20, 200]>
+  [1551] pushlist ............................... <[20, 200]>
+  [1552] pushsymb 1055 .......................... <#static>
+  [1555] pushint8 1 ............................. <1>
+  [1557] pusharglist 16 ......................... <[#priority: #high, #surround: 1, #member3DName: p.member.name, #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1]>
+  [1559] pushproplist ........................... <[#priority: #high, #surround: 1, #member3DName: p.member.name, #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1]>
+  [1560] pusharglistnoret 2 ..................... <"Explosion1", [#priority: #high, #surround: 1, #member3DName: p.member.name, #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1]>
+  [1562] extcall 289 ............................ PlaySound("Explosion1", [#priority: #high, #surround: 1, #member3DName: p.member.name, #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1])
+  [1565] pushcons 33 ............................ <"Fire">
+  [1567] pushsymb 1047 .......................... <#priority>
+  [1570] pushsymb 1082 .......................... <#high>
+  [1573] pushsymb 1050 .......................... <#surround>
+  [1576] pushint8 1 ............................. <1>
+  [1578] pushsymb 1051 .......................... <#member3DName>
+  [1581] getprop 563 ............................ <p>
+  [1584] getchainedprop 64 ...................... <p.member>
+  [1586] getobjprop 235 ......................... <p.member.name>
+  [1588] pushsymb 1049 .......................... <#sender>
+  [1591] getprop 563 ............................ <p>
+  [1594] getobjprop 3120 ........................ <p.ProxyModelName>
+  [1597] pushsymb 1052 .......................... <#targetName>
+  [1600] getprop 563 ............................ <p>
+  [1603] getobjprop 3120 ........................ <p.ProxyModelName>
+  [1606] pushsymb 1053 .......................... <#referenceName>
+  [1609] pushcons 18 ............................ <"DefaultView">
+  [1611] pushsymb 1054 .......................... <#distance>
+  [1614] pushint8 20 ............................ <20>
+  [1616] pushint16 200 .......................... <200>
+  [1619] pusharglist 2 .......................... <[20, 200]>
+  [1621] pushlist ............................... <[20, 200]>
+  [1622] pushsymb 1055 .......................... <#static>
+  [1625] pushint8 1 ............................. <1>
+  [1627] pushsymb 1042 .......................... <#loopCount>
+  [1630] pushint8 3 ............................. <3>
+  [1632] pusharglist 18 ......................... <[#priority: #high, #surround: 1, #member3DName: p.member.name, #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1, #loopCount: 3]>
+  [1634] pushproplist ........................... <[#priority: #high, #surround: 1, #member3DName: p.member.name, #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1, #loopCount: 3]>
+  [1635] pusharglistnoret 2 ..................... <"Fire", [#priority: #high, #surround: 1, #member3DName: p.member.name, #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1, #loopCount: 3]>
+  [1637] extcall 289 ............................ PlaySound("Fire", [#priority: #high, #surround: 1, #member3DName: p.member.name, #sender: p.ProxyModelName, #targetName: p.ProxyModelName, #referenceName: "DefaultView", #distance: [20, 200], #static: 1, #loopCount: 3])
+  [1640] ret
+end
+
+on SetTexture tTexture
+  [  0] getparam 0 .............................. <tTexture>
+  [  2] pusharglist 0 ........................... <>
+  [  4] extcall 40 .............................. <VOID>
+  [  6] eq ...................................... <tTexture = VOID>
+  [  7] jmpifz [ 11] ............................ if tTexture = VOID then
+  [ 10] ret ..................................... exit
+  [ 11] getprop 563 ............................. <p>
+  [ 14] pushsymb 305 ............................ <#shaderList>
+  [ 17] pusharglist 2 ........................... <p, #shaderList>
+  [ 19] objcall 129 ............................. <p.shaderList.count>
+  [ 21] setlocal 0 .............................. pCount = p.shaderList.count
+  [ 23] pushint8 1 .............................. <1>
+  [ 25] setlocal 1
+  [ 27] getlocal 1
+  [ 29] getlocal 0 .............................. <pCount>
+  [ 31] lteq
+  [ 32] jmpifz [ 64] ............................ repeat with i = 1 to pCount
+  [ 35] getprop 563 ............................. <p>
+  [ 38] pushsymb 305 ............................ <#shaderList>
+  [ 41] getlocal 1 .............................. <i>
+  [ 43] pusharglist 3 ........................... <p, #shaderList, i>
+  [ 45] objcall 70 .............................. <p.shaderList[i]>
+  [ 47] setlocal 2 .............................. pShader = p.shaderList[i]
+  [ 49] getlocal 2 .............................. <pShader>
+  [ 51] getparam 0 .............................. <tTexture>
+  [ 53] setobjprop 218 .......................... pShader.texture = tTexture
+  [ 55] pushint8 1
+  [ 57] getlocal 1
+  [ 59] add
+  [ 60] setlocal 1
+  [ 62] endrepeat [ 27]
+  [ 64] ret
+end
+
+on SetReflectionTexture tTexture
+  [  0] getprop 563 ............................. <p>
+  [  3] pushsymb 305 ............................ <#shaderList>
+  [  6] pusharglist 2 ........................... <p, #shaderList>
+  [  8] objcall 129 ............................. <p.shaderList.count>
+  [ 10] setlocal 0 .............................. pCount = p.shaderList.count
+  [ 12] pushint8 1 .............................. <1>
+  [ 14] setlocal 1
+  [ 16] getlocal 1
+  [ 18] getlocal 0 .............................. <pCount>
+  [ 20] lteq
+  [ 21] jmpifz [ 73] ............................ repeat with i = 1 to pCount
+  [ 24] getprop 563 ............................. <p>
+  [ 27] pushsymb 305 ............................ <#shaderList>
+  [ 30] getlocal 1 .............................. <i>
+  [ 32] pusharglist 3 ........................... <p, #shaderList, i>
+  [ 34] objcall 70 .............................. <p.shaderList[i]>
+  [ 36] setlocal 2 .............................. pShader = p.shaderList[i]
+  [ 38] getlocal 2 .............................. <pShader>
+  [ 40] getobjprop 235 .......................... <pShader.name>
+  [ 42] pushcons 34 ............................. <"Wheel">
+  [ 44] containsstr ............................. <pShader.name contains "Wheel">
+  [ 45] jmpifz [ 51] ............................ if pShader.name contains "Wheel" then
+  [ 48] jmp [ 64] ............................... next repeat
+  [ 51] getlocal 2 .............................. <pShader>
+  [ 53] pushsymb 1244 ........................... <#textureList>
+  [ 56] pushint8 2 .............................. <2>
+  [ 58] getparam 0 .............................. <tTexture>
+  [ 60] pusharglistnoret 4 ...................... <pShader, #textureList, 2, tTexture>
+  [ 62] objcall 99 .............................. pShader.textureList[2] = tTexture
+  [ 64] pushint8 1
+  [ 66] getlocal 1
+  [ 68] add
+  [ 69] setlocal 1
+  [ 71] endrepeat [ 16]
+  [ 73] ret
+end
+
+on reset me
+  [  0] pushint8 1 .............................. <1>
+  [  2] pusharglistnoret 1 ...................... <1>
+  [  4] localcall 5 ............................. SetState(1)
+  [  6] ret
+end
+
+on DelayImpactTime me
+  [  0] pushcons 35 ............................. <"ImpactTimeOn">
+  [  2] pusharglistnoret 1 ...................... <"ImpactTimeOn">
+  [  4] extcall 148 ............................. event("ImpactTimeOn")
+  [  6] pushcons 26 ............................. <"DelayImpactTime">
+  [  8] pusharglist 1 ........................... <"DelayImpactTime">
+  [ 10] extcall 238 ............................. <timeout("DelayImpactTime")>
+  [ 12] pusharglistnoret 1 ...................... <timeout("DelayImpactTime")>
+  [ 14] objcall 255 ............................. timeout("DelayImpactTime").forget()
+  [ 16] ret
+end
+
+on PlayerEndRace me
+  [  0] pushcons 28 ............................. <"PlayerEndRace">
+  [  2] pusharglist 1 ........................... <"PlayerEndRace">
+  [  4] extcall 238 ............................. <timeout("PlayerEndRace")>
+  [  6] pusharglistnoret 1 ...................... <timeout("PlayerEndRace")>
+  [  8] objcall 255 ............................. timeout("PlayerEndRace").forget()
+  [ 10] getglobal 395 ........................... <g>
+  [ 13] pushcons 36 ............................. <"Failure">
+  [ 15] setobjprop 3144 ......................... g.MissionState = "Failure"
+  [ 18] pushcons 37 ............................. <"FinishRace">
+  [ 20] pusharglistnoret 1 ...................... <"FinishRace">
+  [ 22] extcall 148 ............................. event("FinishRace")
+  [ 24] ret
+end
+
+on ShowDirt tAmount, tState
+  [  0] getparam 0 .............................. <tAmount>
+  [  2] pusharglist 0 ........................... <>
+  [  4] extcall 40 .............................. <VOID>
+  [  6] eq ...................................... <tAmount = VOID>
+  [  7] jmpifz [ 22] ............................ if tAmount = VOID then
+  [ 10] getprop 563 ............................. <p>
+  [ 13] pushsymb 3129 ........................... <#DirtList>
+  [ 16] pusharglist 2 ........................... <p, #DirtList>
+  [ 18] objcall 129 ............................. <p.DirtList.count>
+  [ 20] setparam 0 .............................. tAmount = p.DirtList.count
+  [ 22] getprop 563 ............................. <p>
+  [ 25] getchainedprop 3129 ..................... <p.DirtList>
+  [ 28] pusharglist 1 ........................... <p.DirtList>
+  [ 30] objcall 233 ............................. <p.DirtList.duplicate()>
+  [ 32] setlocal 0 .............................. tList = p.DirtList.duplicate()
+  [ 34] pusharglist 0 ........................... <[]>
+  [ 36] pushlist ................................ <[]>
+  [ 37] setlocal 1 .............................. tNewList = []
+  [ 39] pushint8 1 .............................. <1>
+  [ 41] setlocal 2
+  [ 43] getlocal 2
+  [ 45] getparam 0 .............................. <tAmount>
+  [ 47] lteq
+  [ 48] jmpifz [ 98] ............................ repeat with i = 1 to tAmount
+  [ 51] getprop 563 ............................. <p>
+  [ 54] pushsymb 3129 ........................... <#DirtList>
+  [ 57] pushint8 1 .............................. <1>
+  [ 59] getlocal 0 .............................. <tList>
+  [ 61] getobjprop 129 .......................... <tList.count>
+  [ 63] pusharglist 2 ........................... <1, tList.count>
+  [ 65] extcall 176 ............................. <random(1, tList.count)>
+  [ 67] pusharglist 3 ........................... <p, #DirtList, random(1, tList.count)>
+  [ 69] objcall 70 .............................. <p.DirtList[random(1, tList.count)]>
+  [ 71] setlocal 3 .............................. tDirt = p.DirtList[random(1, tList.count)]
+  [ 73] getlocal 1 .............................. <tNewList>
+  [ 75] getlocal 3 .............................. <tDirt>
+  [ 77] pusharglistnoret 2 ...................... <tNewList, tDirt>
+  [ 79] objcall 42 .............................. tNewList.add(tDirt)
+  [ 81] getlocal 0 .............................. <tList>
+  [ 83] getlocal 3 .............................. <tDirt>
+  [ 85] pusharglistnoret 2 ...................... <tList, tDirt>
+  [ 87] objcall 175 ............................. tList.deleteOne(tDirt)
+  [ 89] pushint8 1
+  [ 91] getlocal 2
+  [ 93] add
+  [ 94] setlocal 2
+  [ 96] endrepeat [ 43]
+  [ 98] getlocal 1 .............................. <tNewList>
+  [100] peek 0
+  [102] pusharglist 1
+  [104] extcall 129
+  [106] pushint8 1
+  [108] peek 0
+  [110] peek 2
+  [112] lteq
+  [113] jmpifz [143] ............................ repeat with i in tNewList
+  [116] peek 2
+  [118] peek 1
+  [120] pusharglist 2
+  [122] extcall 105
+  [124] setlocal 2
+  [126] getprop 563 ............................. <p>
+  [129] getchainedprop 3129 ..................... <p.DirtList>
+  [132] getlocal 2 .............................. <i>
+  [134] pusharglistnoret 2 ...................... <p.DirtList, i>
+  [136] objcall 175 ............................. p.DirtList.deleteOne(i)
+  [138] pushint8 1
+  [140] add
+  [141] endrepeat [108]
+  [143] pop 3
+  [145] pusharglist 0 ........................... <>
+  [147] extcall 238 ............................. <timeout()>
+  [149] pushcons 38 ............................. <"ShowAnimatedDirt">
+  [151] pushint8 100 ............................ <100>
+  [153] pushsymb 3145 ........................... <#ShowAnimatedDirt>
+  [156] getlocal 1 .............................. <tNewList>
+  [158] pusharglist 5 ........................... <timeout(), "ShowAnimatedDirt", 100, #ShowAnimatedDirt, tNewList>
+  [160] objcall 35 .............................. <timeout().new("ShowAnimatedDirt", 100, #ShowAnimatedDirt, tNewList)>
+  [162] setlocal 4 .............................. tTimeOut = timeout().new("ShowAnimatedDirt", 100, #ShowAnimatedDirt, tNewList)
+  [164] ret
+end
+
+on HandleEngineHeat me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 3126 ......................... <p.OverHeated>
+  [  6] pushint8 1 .............................. <1>
+  [  8] eq ...................................... <p.OverHeated = 1>
+  [  9] jmpifz [ 13] ............................ if p.OverHeated = 1 then
+  [ 12] ret ..................................... exit
+  [ 13] getprop 563 ............................. <p>
+  [ 16] pushsymb 3034 ........................... <#heat>
+  [ 19] getglobal 395 ........................... <g>
+  [ 22] pushsymb 137 ............................ <#cars>
+  [ 24] getprop 563 ............................. <p>
+  [ 27] getobjprop 377 .......................... <p.tag>
+  [ 30] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 32] objcall 102 ............................. <g.cars[p.tag]>
+  [ 34] pushsymb 1335 ........................... <#specifics>
+  [ 37] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [ 39] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [ 41] pushsymb 3034 ........................... <#heat>
+  [ 44] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #heat>
+  [ 46] objcall 105 ............................. <g.cars[p.tag][#specifics][#heat]>
+  [ 48] pusharglistnoret 3 ...................... <p, #heat, g.cars[p.tag][#specifics][#heat]>
+  [ 50] objcall 103 ............................. p[#heat] = g.cars[p.tag][#specifics][#heat]
+  [ 52] pushfloat32 150.0 ....................... <150.0>
+  [ 57] setlocal 0 .............................. tDuration = 150.0
+  [ 59] getprop 563 ............................. <p>
+  [ 62] getobjprop 3024 ......................... <p.nitroState>
+  [ 65] pushint8 1 .............................. <1>
+  [ 67] eq ...................................... <p.nitroState = 1>
+  [ 68] jmpifz [ 93] ............................ if p.nitroState = 1 then / else
+  [ 71] getprop 563 ............................. <p>
+  [ 74] getprop 563 ............................. <p>
+  [ 77] getobjprop 3034 ......................... <p.heat>
+  [ 80] getglobal 395 ........................... <g>
+  [ 83] getobjprop 3148 ......................... <g.NitroFill>
+  [ 86] add ..................................... <p.heat + g.NitroFill>
+  [ 87] setobjprop 3034 ......................... p.heat = p.heat + g.NitroFill
+  [ 90] jmp [112]
+  [ 93] getprop 563 ............................. <p>
+  [ 96] getprop 563 ............................. <p>
+  [ 99] getobjprop 3034 ......................... <p.heat>
+  [102] getglobal 395 ........................... <g>
+  [105] getobjprop 3149 ......................... <g.NitroDrain>
+  [108] sub ..................................... <p.heat - g.NitroDrain>
+  [109] setobjprop 3034 ......................... p.heat = p.heat - g.NitroDrain
+  [112] getprop 563 ............................. <p>
+  [115] pushzero ................................ <0>
+  [116] getlocal 0 .............................. <tDuration>
+  [118] getprop 563 ............................. <p>
+  [121] getobjprop 3034 ......................... <p.heat>
+  [124] pusharglist 2 ........................... <tDuration, p.heat>
+  [126] extcall 356 ............................. <min(tDuration, p.heat)>
+  [129] pusharglist 2 ........................... <0, min(tDuration, p.heat)>
+  [131] extcall 370 ............................. <max(0, min(tDuration, p.heat))>
+  [134] setobjprop 3034 ......................... p.heat = max(0, min(tDuration, p.heat))
+  [137] getprop 563 ............................. <p>
+  [140] getobjprop 3034 ......................... <p.heat>
+  [143] getlocal 0 .............................. <tDuration>
+  [145] div ..................................... <p.heat / tDuration>
+  [146] setlocal 1 .............................. x = p.heat / tDuration
+  [148] pushfloat32 1.0 ......................... <1.0>
+  [153] inv ..................................... <-1.0>
+  [154] getlocal 1 .............................. <x>
+  [156] getlocal 1 .............................. <x>
+  [158] mul ..................................... <x * x>
+  [159] mul ..................................... <-1.0 * (x * x)>
+  [160] pushfloat32 2.0 ......................... <2.0>
+  [165] getlocal 1 .............................. <x>
+  [167] mul ..................................... <2.0 * x>
+  [168] add ..................................... <(-1.0 * (x * x)) + (2.0 * x)>
+  [169] setlocal 2 .............................. y = (-1.0 * (x * x)) + (2.0 * x)
+  [171] pushfloat32 1.0 ......................... <1.0>
+  [176] getlocal 2 .............................. <y>
+  [178] sub ..................................... <1.0 - y>
+  [179] setlocal 3 .............................. tPosition = 1.0 - y
+  [181] getglobal 395 ........................... <g>
+  [184] pushsymb 137 ............................ <#cars>
+  [186] getprop 563 ............................. <p>
+  [189] getobjprop 377 .......................... <p.tag>
+  [192] pusharglist 3 ........................... <g, #cars, p.tag>
+  [194] objcall 102 ............................. <g.cars[p.tag]>
+  [196] pushsymb 1335 ........................... <#specifics>
+  [199] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [201] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [203] pushsymb 3034 ........................... <#heat>
+  [206] getprop 563 ............................. <p>
+  [209] getobjprop 3034 ......................... <p.heat>
+  [212] pusharglistnoret 3 ...................... <g.cars[p.tag][#specifics], #heat, p.heat>
+  [214] objcall 103 ............................. g.cars[p.tag][#specifics][#heat] = p.heat
+  [216] getglobal 395 ........................... <g>
+  [219] getchainedprop 366 ...................... <g.interface>
+  [222] pushcons 39 ............................. <"BoostGradient_Material">
+  [224] pusharglist 2 ........................... <g.interface, "BoostGradient_Material">
+  [226] objcall 208 ............................. <g.interface.shader("BoostGradient_Material")>
+  [228] pushsymb 1260 ........................... <#textureTransformList>
+  [231] pushint8 2 .............................. <2>
+  [233] pusharglist 3 ........................... <g.interface.shader("BoostGradient_Material"), #textureTransformList, 2>
+  [235] objcall 102 ............................. <g.interface.shader("BoostGradient_Material").textureTransformList[2]>
+  [237] pushfloat32 0.0 ......................... <0.0>
+  [242] getlocal 3 .............................. <tPosition>
+  [244] pushfloat32 0.0 ......................... <0.0>
+  [249] pusharglist 3 ........................... <0.0, tPosition, 0.0>
+  [251] extcall 212 ............................. <vector(0.0, tPosition, 0.0)>
+  [253] setobjprop 215 .......................... g.interface.shader("BoostGradient_Material").textureTransformList[2].position = vector(0.0, tPosition, 0.0)
+  [255] getprop 563 ............................. <p>
+  [258] getobjprop 3034 ......................... <p.heat>
+  [261] getlocal 0 .............................. <tDuration>
+  [263] pushint8 40 ............................. <40>
+  [265] sub ..................................... <tDuration - 40>
+  [266] gteq .................................... <p.heat >= (tDuration - 40)>
+  [267] jmpifz [311] ............................ if p.heat >= (tDuration - 40) then
+  [270] gettoplevelprop 33 ...................... <_movie>
+  [272] getchainedprop 427 ...................... <_movie.timeoutList>
+  [275] pushcons 40 ............................. <"HeatWarning">
+  [277] pusharglist 1 ........................... <"HeatWarning">
+  [279] extcall 238 ............................. <timeout("HeatWarning")>
+  [281] pusharglist 2 ........................... <_movie.timeoutList, timeout("HeatWarning")>
+  [283] objcall 166 ............................. <_movie.timeoutList.getPos(timeout("HeatWarning"))>
+  [285] pushzero ................................ <0>
+  [286] eq ...................................... <_movie.timeoutList.getPos(timeout("HeatWarning")) = 0>
+  [287] jmpifz [311] ............................ if _movie.timeoutList.getPos(timeout("HeatWarning")) = 0 then
+  [290] pusharglist 0 ........................... <>
+  [292] extcall 238 ............................. <timeout()>
+  [294] pushcons 40 ............................. <"HeatWarning">
+  [296] pushint16 462 ........................... <462>
+  [299] pushsymb 3117 ........................... <#HeatWarning>
+  [302] getprop 563 ............................. <p>
+  [305] getobjprop 45 ........................... <p.me>
+  [307] pusharglistnoret 5 ...................... <timeout(), "HeatWarning", 462, #HeatWarning, p.me>
+  [309] objcall 35 .............................. timeout().new("HeatWarning", 462, #HeatWarning, p.me)
+  [311] getprop 563 ............................. <p>
+  [314] getobjprop 3024 ......................... <p.nitroState>
+  [317] pushzero ................................ <0>
+  [318] eq ...................................... <p.nitroState = 0>
+  [319] jmpifz [376] ............................ if p.nitroState = 0 then
+  [322] gettoplevelprop 33 ...................... <_movie>
+  [324] getchainedprop 427 ...................... <_movie.timeoutList>
+  [327] pushcons 40 ............................. <"HeatWarning">
+  [329] pusharglist 1 ........................... <"HeatWarning">
+  [331] extcall 238 ............................. <timeout("HeatWarning")>
+  [333] pusharglist 2 ........................... <_movie.timeoutList, timeout("HeatWarning")>
+  [335] objcall 166 ............................. <_movie.timeoutList.getPos(timeout("HeatWarning"))>
+  [337] pushzero ................................ <0>
+  [338] nteq .................................... <_movie.timeoutList.getPos(timeout("HeatWarning")) <> 0>
+  [339] jmpifz [376] ............................ if _movie.timeoutList.getPos(timeout("HeatWarning")) <> 0 then
+  [342] pushcons 40 ............................. <"HeatWarning">
+  [344] pusharglist 1 ........................... <"HeatWarning">
+  [346] extcall 238 ............................. <timeout("HeatWarning")>
+  [348] pusharglistnoret 1 ...................... <timeout("HeatWarning")>
+  [350] objcall 255 ............................. timeout("HeatWarning").forget()
+  [352] getglobal 395 ........................... <g>
+  [355] getchainedprop 366 ...................... <g.interface>
+  [358] pushcons 39 ............................. <"BoostGradient_Material">
+  [360] pusharglist 2 ........................... <g.interface, "BoostGradient_Material">
+  [362] objcall 208 ............................. <g.interface.shader("BoostGradient_Material")>
+  [364] pushsymb 904 ............................ <#blendFunctionList>
+  [367] pushint8 2 .............................. <2>
+  [369] pushsymb 919 ............................ <#multiply>
+  [372] pusharglistnoret 4 ...................... <g.interface.shader("BoostGradient_Material"), #blendFunctionList, 2, #multiply>
+  [374] objcall 99 .............................. g.interface.shader("BoostGradient_Material").blendFunctionList[2] = #multiply
+  [376] ret
+end
+
+on HeatWarning me
+  [  0] pushcons 41 ............................. <"Warning">
+  [  2] pushsymb 1047 ........................... <#priority>
+  [  5] pushsymb 1082 ........................... <#high>
+  [  8] pusharglist 2 ........................... <[#priority: #high]>
+  [ 10] pushproplist ............................ <[#priority: #high]>
+  [ 11] pusharglistnoret 2 ...................... <"Warning", [#priority: #high]>
+  [ 13] extcall 289 ............................. PlaySound("Warning", [#priority: #high])
+  [ 16] pushcons 40 ............................. <"HeatWarning">
+  [ 18] pusharglist 1 ........................... <"HeatWarning">
+  [ 20] extcall 238 ............................. <timeout("HeatWarning")>
+  [ 22] pushcons 40 ............................. <"HeatWarning">
+  [ 24] pusharglist 1 ........................... <"HeatWarning">
+  [ 26] extcall 238 ............................. <timeout("HeatWarning")>
+  [ 28] getobjprop 2955 ......................... <timeout("HeatWarning").period>
+  [ 31] pushint8 33 ............................. <33>
+  [ 33] sub ..................................... <timeout("HeatWarning").period - 33>
+  [ 34] setobjprop 2955 ......................... timeout("HeatWarning").period = timeout("HeatWarning").period - 33
+  [ 37] getglobal 395 ........................... <g>
+  [ 40] getchainedprop 366 ...................... <g.interface>
+  [ 43] pushcons 39 ............................. <"BoostGradient_Material">
+  [ 45] pusharglist 2 ........................... <g.interface, "BoostGradient_Material">
+  [ 47] objcall 208 ............................. <g.interface.shader("BoostGradient_Material")>
+  [ 49] pushsymb 904 ............................ <#blendFunctionList>
+  [ 52] pushint8 2 .............................. <2>
+  [ 54] pusharglist 3 ........................... <g.interface.shader("BoostGradient_Material"), #blendFunctionList, 2>
+  [ 56] objcall 70 .............................. <g.interface.shader("BoostGradient_Material").blendFunctionList[2]>
+  [ 58] setlocal 0 .............................. tBlend = g.interface.shader("BoostGradient_Material").blendFunctionList[2]
+  [ 60] getlocal 0 .............................. <tBlend>
+  [ 62] pushsymb 42 ............................. <#add>
+  [ 64] eq ...................................... <tBlend = #add>
+  [ 65] jmpifz [ 76] ............................ if tBlend = #add then / else
+  [ 68] pushsymb 919 ............................ <#multiply>
+  [ 71] setlocal 0 .............................. tBlend = #multiply
+  [ 73] jmp [ 80]
+  [ 76] pushsymb 42 ............................. <#add>
+  [ 78] setlocal 0 .............................. tBlend = #add
+  [ 80] getglobal 395 ........................... <g>
+  [ 83] getchainedprop 366 ...................... <g.interface>
+  [ 86] pushcons 39 ............................. <"BoostGradient_Material">
+  [ 88] pusharglist 2 ........................... <g.interface, "BoostGradient_Material">
+  [ 90] objcall 208 ............................. <g.interface.shader("BoostGradient_Material")>
+  [ 92] pushsymb 904 ............................ <#blendFunctionList>
+  [ 95] pushint8 2 .............................. <2>
+  [ 97] getlocal 0 .............................. <tBlend>
+  [ 99] pusharglistnoret 4 ...................... <g.interface.shader("BoostGradient_Material"), #blendFunctionList, 2, tBlend>
+  [101] objcall 99 .............................. g.interface.shader("BoostGradient_Material").blendFunctionList[2] = tBlend
+  [103] pushcons 40 ............................. <"HeatWarning">
+  [105] pusharglist 1 ........................... <"HeatWarning">
+  [107] extcall 238 ............................. <timeout("HeatWarning")>
+  [109] getobjprop 2955 ......................... <timeout("HeatWarning").period>
+  [112] pushzero ................................ <0>
+  [113] eq ...................................... <timeout("HeatWarning").period = 0>
+  [114] jmpifz [141] ............................ if timeout("HeatWarning").period = 0 then
+  [117] getprop 563 ............................. <p>
+  [120] pushint8 1 .............................. <1>
+  [122] setobjprop 3126 ......................... p.OverHeated = 1
+  [125] pushint8 4 .............................. <4>
+  [127] pusharglistnoret 1 ...................... <4>
+  [129] localcall 5 ............................. SetState(4)
+  [131] pushcons 40 ............................. <"HeatWarning">
+  [133] pusharglist 1 ........................... <"HeatWarning">
+  [135] extcall 238 ............................. <timeout("HeatWarning")>
+  [137] pusharglistnoret 1 ...................... <timeout("HeatWarning")>
+  [139] objcall 255 ............................. timeout("HeatWarning").forget()
+  [141] ret
+end
+
+on CreateCrashParticles tParams
+  [  0] getparam 0 .............................. <tParams>
+  [  2] pushsymb 377 ............................ <#tag>
+  [  5] pusharglist 2 ........................... <tParams, #tag>
+  [  7] objcall 105 ............................. <tParams[#tag]>
+  [  9] setlocal 0 .............................. pTag = tParams[#tag]
+  [ 11] getparam 0 .............................. <tParams>
+  [ 13] pushsymb 215 ............................ <#position>
+  [ 15] pusharglist 2 ........................... <tParams, #position>
+  [ 17] objcall 105 ............................. <tParams[#position]>
+  [ 19] setlocal 1 .............................. pPosition = tParams[#position]
+  [ 21] getparam 0 .............................. <tParams>
+  [ 23] pushsymb 1306 ........................... <#direction>
+  [ 26] pusharglist 2 ........................... <tParams, #direction>
+  [ 28] objcall 105 ............................. <tParams[#direction]>
+  [ 30] setlocal 2 .............................. pDirection = tParams[#direction]
+  [ 32] getparam 0 .............................. <tParams>
+  [ 34] pushsymb 218 ............................ <#texture>
+  [ 36] pusharglist 2 ........................... <tParams, #texture>
+  [ 38] objcall 105 ............................. <tParams[#texture]>
+  [ 40] setlocal 3 .............................. pTexture = tParams[#texture]
+  [ 42] getparam 0 .............................. <tParams>
+  [ 44] pushsymb 598 ............................ <#type>
+  [ 47] pusharglist 2 ........................... <tParams, #type>
+  [ 49] objcall 105 ............................. <tParams[#type]>
+  [ 51] setlocal 4 .............................. pType = tParams[#type]
+  [ 53] getprop 563 ............................. <p>
+  [ 56] getchainedprop 64 ....................... <p.member>
+  [ 58] getlocal 0 .............................. <pTag>
+  [ 60] getlocal 4 .............................. <pType>
+  [ 62] joinstr ................................. <pTag & pType>
+  [ 63] pushsymb 1286 ........................... <#particle>
+  [ 66] pusharglist 3 ........................... <p.member, pTag & pType, #particle>
+  [ 68] objcall 1287 ............................ <p.member.newModelResource(pTag & pType, #particle)>
+  [ 71] setlocal 5 .............................. pResource = p.member.newModelResource(pTag & pType, #particle)
+  [ 73] getlocal 5 .............................. <pResource>
+  [ 75] getchainedprop 1288 ..................... <pResource.emitter>
+  [ 78] pushint8 20 ............................. <20>
+  [ 80] setobjprop 1289 ......................... pResource.emitter.numParticles = 20
+  [ 83] getlocal 5 .............................. <pResource>
+  [ 85] getchainedprop 1288 ..................... <pResource.emitter>
+  [ 88] pushsymb 3150 ........................... <#burst>
+  [ 91] setobjprop 1300 ......................... pResource.emitter.mode = #burst
+  [ 94] getlocal 5 .............................. <pResource>
+  [ 96] getchainedprop 1288 ..................... <pResource.emitter>
+  [ 99] pushfloat32 5.0 ......................... <5.0>
+  [104] setobjprop 1291 ......................... pResource.emitter.minSpeed = 5.0
+  [107] getlocal 5 .............................. <pResource>
+  [109] getchainedprop 1288 ..................... <pResource.emitter>
+  [112] pushfloat32 6.0 ......................... <6.0>
+  [117] setobjprop 1292 ......................... pResource.emitter.maxSpeed = 6.0
+  [120] getlocal 5 .............................. <pResource>
+  [122] getchainedprop 1288 ..................... <pResource.emitter>
+  [125] pushzero ................................ <0>
+  [126] setobjprop 1303 ......................... pResource.emitter.loop = 0
+  [129] getlocal 5 .............................. <pResource>
+  [131] getchainedprop 1296 ..................... <pResource.colorRange>
+  [134] pushzero ................................ <0>
+  [135] pushzero ................................ <0>
+  [136] pushzero ................................ <0>
+  [137] pusharglist 3 ........................... <0, 0, 0>
+  [139] extcall 223 ............................. <color(0, 0, 0)>
+  [141] setobjprop 841 .......................... pResource.colorRange.start = color(0, 0, 0)
+  [144] getlocal 5 .............................. <pResource>
+  [146] getchainedprop 1296 ..................... <pResource.colorRange>
+  [149] pushzero ................................ <0>
+  [150] pushzero ................................ <0>
+  [151] pushzero ................................ <0>
+  [152] pusharglist 3 ........................... <0, 0, 0>
+  [154] extcall 223 ............................. <color(0, 0, 0)>
+  [156] setobjprop 1294 ......................... pResource.colorRange.end = color(0, 0, 0)
+  [159] getlocal 5 .............................. <pResource>
+  [161] getchainedprop 1293 ..................... <pResource.sizeRange>
+  [164] pushfloat32 1.5 ......................... <1.5>
+  [169] setobjprop 841 .......................... pResource.sizeRange.start = 1.5
+  [172] getlocal 5 .............................. <pResource>
+  [174] getchainedprop 1293 ..................... <pResource.sizeRange>
+  [177] pushfloat32 1.5 ......................... <1.5>
+  [182] setobjprop 1294 ......................... pResource.sizeRange.end = 1.5
+  [185] getlocal 5 .............................. <pResource>
+  [187] getchainedprop 1288 ..................... <pResource.emitter>
+  [190] pushfloat32 90.0 ........................ <90.0>
+  [195] setobjprop 1304 ......................... pResource.emitter.angle = 90.0
+  [198] getlocal 5 .............................. <pResource>
+  [200] getchainedprop 1288 ..................... <pResource.emitter>
+  [203] getlocal 2 .............................. <pDirection>
+  [205] setobjprop 1306 ......................... pResource.emitter.direction = pDirection
+  [208] getlocal 5 .............................. <pResource>
+  [210] pushfloat32 2500.0 ...................... <2500.0>
+  [215] setobjprop 1290 ......................... pResource.lifeTime = 2500.0
+  [218] getlocal 5 .............................. <pResource>
+  [220] getchainedprop 1295 ..................... <pResource.blendRange>
+  [223] pushfloat32 100.0 ....................... <100.0>
+  [228] setobjprop 841 .......................... pResource.blendRange.start = 100.0
+  [231] getlocal 5 .............................. <pResource>
+  [233] getchainedprop 1295 ..................... <pResource.blendRange>
+  [236] pushint8 100 ............................ <100>
+  [238] setobjprop 1294 ......................... pResource.blendRange.end = 100
+  [241] getlocal 5 .............................. <pResource>
+  [243] pushzero ................................ <0>
+  [244] setobjprop 1305 ......................... pResource.drag = 0
+  [247] getlocal 5 .............................. <pResource>
+  [249] pushfloat32 0.0 ......................... <0.0>
+  [254] pushfloat32 0.0 ......................... <0.0>
+  [259] pushfloat32 0.25 ........................ <0.25>
+  [264] inv ..................................... <-0.25>
+  [265] pusharglist 3 ........................... <0.0, 0.0, -0.25>
+  [267] extcall 212 ............................. <vector(0.0, 0.0, -0.25)>
+  [269] setobjprop 1307 ......................... pResource.gravity = vector(0.0, 0.0, -0.25)
+  [272] getprop 563 ............................. <p>
+  [275] getchainedprop 64 ....................... <p.member>
+  [277] getlocal 3 .............................. <pTexture>
+  [279] pusharglist 2 ........................... <p.member, pTexture>
+  [281] objcall 218 ............................. <p.member.texture(pTexture)>
+  [283] setlocal 3 .............................. pTexture = p.member.texture(pTexture)
+  [285] getlocal 3 .............................. <pTexture>
+  [287] pusharglist 0 ........................... <>
+  [289] extcall 40 .............................. <VOID>
+  [291] eq ...................................... <pTexture = VOID>
+  [292] jmpifz [328] ............................ if pTexture = VOID then
+  [295] getprop 563 ............................. <p>
+  [298] getchainedprop 64 ....................... <p.member>
+  [300] getobjprop 235 .......................... <p.member.name>
+  [302] pushsymb 59 ............................. <#fileName>
+  [304] getlocal 3 .............................. <pTexture>
+  [306] pushsymb 866 ............................ <#filtering>
+  [309] pushsymb 867 ............................ <#lowFiltered>
+  [312] pushsymb 348 ............................ <#renderFormat>
+  [315] pushsymb 347 ............................ <#rgba4444>
+  [318] pusharglist 6 ........................... <[#fileName: pTexture, #filtering: #lowFiltered, #renderFormat: #rgba4444]>
+  [320] pushproplist ............................ <[#fileName: pTexture, #filtering: #lowFiltered, #renderFormat: #rgba4444]>
+  [321] pusharglist 2 ........................... <p.member.name, [#fileName: pTexture, #filtering: #lowFiltered, #renderFormat: #rgba4444]>
+  [323] extcall 681 ............................. <createTexture(p.member.name, [#fileName: pTexture, #filtering: #lowFiltered, #renderFormat: #rgba4444])>
+  [326] setlocal 3 .............................. pTexture = createTexture(p.member.name, [#fileName: pTexture, #filtering: #lowFiltered, #renderFormat: #rgba4444])
+  [328] getlocal 5 .............................. <pResource>
+  [330] getlocal 3 .............................. <pTexture>
+  [332] setobjprop 218 .......................... pResource.texture = pTexture
+  [334] getprop 563 ............................. <p>
+  [337] getchainedprop 64 ....................... <p.member>
+  [339] getlocal 0 .............................. <pTag>
+  [341] getlocal 4 .............................. <pType>
+  [343] joinstr ................................. <pTag & pType>
+  [344] getlocal 5 .............................. <pResource>
+  [346] pusharglist 3 ........................... <p.member, pTag & pType, pResource>
+  [348] objcall 892 ............................. <p.member.newModel(pTag & pType, pResource)>
+  [351] setlocal 6 .............................. pmodel = p.member.newModel(pTag & pType, pResource)
+  [353] getlocal 6 .............................. <pmodel>
+  [355] getchainedprop 214 ...................... <pmodel.transform>
+  [357] getlocal 1 .............................. <pPosition>
+  [359] setobjprop 215 .......................... pmodel.transform.position = pPosition
+  [361] getlocal 6 .............................. <pmodel>
+  [363] pusharglistnoret 1 ...................... <pmodel>
+  [365] extcall 52 .............................. return pmodel
+  [367] ret
+end
+
+on DeleteCrashParticles me
+  [  0] getprop 563 ............................. <p>
+  [  3] getchainedprop 3153 ..................... <p.DebrisParticles>
+  [  6] getobjprop 235 .......................... <p.DebrisParticles.name>
+  [  8] setlocal 0 .............................. pName = p.DebrisParticles.name
+  [ 10] getprop 563 ............................. <p>
+  [ 13] getchainedprop 64 ....................... <p.member>
+  [ 15] getlocal 0 .............................. <pName>
+  [ 17] pusharglistnoret 2 ...................... <p.member, pName>
+  [ 19] objcall 1221 ............................ p.member.deleteModel(pName)
+  [ 22] getprop 563 ............................. <p>
+  [ 25] getchainedprop 64 ....................... <p.member>
+  [ 27] getlocal 0 .............................. <pName>
+  [ 29] pusharglistnoret 2 ...................... <p.member, pName>
+  [ 31] objcall 2168 ............................ p.member.deleteModelResource(pName)
+  [ 34] pushcons 42 ............................. <"DeleteCrashParticles">
+  [ 36] pusharglist 1 ........................... <"DeleteCrashParticles">
+  [ 38] extcall 238 ............................. <timeout("DeleteCrashParticles")>
+  [ 40] pusharglistnoret 1 ...................... <timeout("DeleteCrashParticles")>
+  [ 42] objcall 255 ............................. timeout("DeleteCrashParticles").forget()
+  [ 44] ret
+end

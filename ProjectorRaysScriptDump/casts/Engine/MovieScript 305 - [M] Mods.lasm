@@ -1,0 +1,361 @@
+global fx, gGame
+
+on LoadExternalTextures me
+  [  0] pushcons 0 .............................. <"LOADING EXTERNAL TEXTURES">
+  [  2] pusharglistnoret 1 ...................... <"LOADING EXTERNAL TEXTURES">
+  [  4] extcall 57 .............................. put "LOADING EXTERNAL TEXTURES"
+  [  6] pushcons 1 .............................. <"PhaserGTI">
+  [  8] pushcons 2 .............................. <"PantherV8">
+  [ 10] pushcons 3 .............................. <"DXTurbo">
+  [ 12] pushcons 4 .............................. <"Viral">
+  [ 14] pushcons 5 .............................. <"Hound">
+  [ 16] pushcons 6 .............................. <"GTBlaze">
+  [ 18] pushcons 7 .............................. <"Sunstorm">
+  [ 20] pushcons 8 .............................. <"PetiteXS">
+  [ 22] pushcons 9 .............................. <"Rebel">
+  [ 24] pushcons 10 ............................. <"Inferno66">
+  [ 26] pushcons 11 ............................. <"Rally7">
+  [ 28] pushcons 12 ............................. <"BTOne">
+  [ 30] pushcons 13 ............................. <"AbrahamN1">
+  [ 32] pushcons 14 ............................. <"Coyote">
+  [ 34] pushcons 15 ............................. <"Jumper">
+  [ 36] pushcons 16 ............................. <"Giant">
+  [ 38] pushcons 14 ............................. <"Coyote">
+  [ 40] pushcons 17 ............................. <"Tank">
+  [ 42] pusharglist 18 .......................... <["PhaserGTI", "PantherV8", "DXTurbo", "Viral", "Hound", "GTBlaze", "Sunstorm", "PetiteXS", "Rebel", "Inferno66", "Rally7", "BTOne", "AbrahamN1", "Coyote", "Jumper", "Giant", "Coyote", "Tank"]>
+  [ 44] pushlist ................................ <["PhaserGTI", "PantherV8", "DXTurbo", "Viral", "Hound", "GTBlaze", "Sunstorm", "PetiteXS", "Rebel", "Inferno66", "Rally7", "BTOne", "AbrahamN1", "Coyote", "Jumper", "Giant", "Coyote", "Tank"]>
+  [ 45] setlocal 0 .............................. SourceList = ["PhaserGTI", "PantherV8", "DXTurbo", "Viral", "Hound", "GTBlaze", "Sunstorm", "PetiteXS", "Rebel", "Inferno66", "Rally7", "BTOne", "AbrahamN1", "Coyote", "Jumper", "Giant", "Coyote", "Tank"]
+  [ 47] pushcons 18 ............................. <"BMW">
+  [ 49] pushcons 19 ............................. <"AstonMartin">
+  [ 51] pushcons 20 ............................. <"AudiR8">
+  [ 53] pushcons 21 ............................. <"Corvette">
+  [ 55] pushcons 22 ............................. <"DodgeRam">
+  [ 57] pushcons 23 ............................. <"FordGT">
+  [ 59] pushcons 24 ............................. <"Marcos">
+  [ 61] pushcons 25 ............................. <"MiniCooper">
+  [ 63] pushcons 26 ............................. <"Mustang">
+  [ 65] pushcons 27 ............................. <"Porsche">
+  [ 67] pushcons 28 ............................. <"Seat">
+  [ 69] pushcons 29 ............................. <"BlackTruck">
+  [ 71] pushcons 17 ............................. <"Tank">
+  [ 73] pushcons 30 ............................. <"Apache">
+  [ 75] pushcons 31 ............................. <"Eclipse">
+  [ 77] pushcons 32 ............................. <"Nissan">
+  [ 79] pushcons 30 ............................. <"Apache">
+  [ 81] pushcons 17 ............................. <"Tank">
+  [ 83] pusharglist 18 .......................... <["BMW", "AstonMartin", "AudiR8", "Corvette", "DodgeRam", "FordGT", "Marcos", "MiniCooper", "Mustang", "Porsche", "Seat", "BlackTruck", "Tank", "Apache", "Eclipse", "Nissan", "Apache", "Tank"]>
+  [ 85] pushlist ................................ <["BMW", "AstonMartin", "AudiR8", "Corvette", "DodgeRam", "FordGT", "Marcos", "MiniCooper", "Mustang", "Porsche", "Seat", "BlackTruck", "Tank", "Apache", "Eclipse", "Nissan", "Apache", "Tank"]>
+  [ 86] setlocal 1 .............................. TargetList = ["BMW", "AstonMartin", "AudiR8", "Corvette", "DodgeRam", "FordGT", "Marcos", "MiniCooper", "Mustang", "Porsche", "Seat", "BlackTruck", "Tank", "Apache", "Eclipse", "Nissan", "Apache", "Tank"]
+  [ 88] pushcons 33 ............................. <"FileXtra4">
+  [ 90] pusharglist 1 ........................... <"FileXtra4">
+  [ 92] extcall 2137 ............................ <xtra("FileXtra4")>
+  [ 95] pusharglist 1 ........................... <xtra("FileXtra4")>
+  [ 97] objcall 35 .............................. <xtra("FileXtra4").new()>
+  [ 99] setglobal 3406 .......................... fx = xtra("FileXtra4").new()
+  [102] getlocal 0 .............................. <SourceList>
+  [104] peek 0
+  [106] pusharglist 1
+  [108] extcall 129
+  [110] pushint8 1
+  [112] peek 0
+  [114] peek 2
+  [116] lteq
+  [117] jmpifz [329] ............................ repeat with sourceEntry in SourceList
+  [120] peek 2
+  [122] peek 1
+  [124] pusharglist 2
+  [126] extcall 105
+  [128] setlocal 2
+  [130] pushint8 1 .............................. <1>
+  [132] setlocal 3
+  [134] getlocal 3
+  [136] pushint8 2 .............................. <2>
+  [138] lteq
+  [139] jmpifz [324] ............................ repeat with i = 1 to 2
+  [142] getglobal 3406 .......................... <fx>
+  [145] gettoplevelprop 33 ...................... <_movie>
+  [147] getobjprop 34 ........................... <_movie.path>
+  [149] pushcons 34 ............................. <"Data\\Cars\\Mods\\">
+  [151] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\">
+  [152] getlocal 2 .............................. <sourceEntry>
+  [154] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\" & sourceEntry>
+  [155] pushcons 35 ............................. <"Skin">
+  [157] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin">
+  [158] getlocal 3 .............................. <i>
+  [160] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin" & i>
+  [161] pushcons 36 ............................. <"_Texture.png">
+  [163] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin" & i & "_Texture.png">
+  [164] pusharglist 2 ........................... <fx, _movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin" & i & "_Texture.png">
+  [166] objcall 3407 ............................ <fx.fx_FileExists(_movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin" & i & "_Texture.png")>
+  [169] setlocal 4 .............................. fileExists = fx.fx_FileExists(_movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin" & i & "_Texture.png")
+  [171] getlocal 0 .............................. <SourceList>
+  [173] getlocal 2 .............................. <sourceEntry>
+  [175] pusharglist 2 ........................... <SourceList, sourceEntry>
+  [177] objcall 166 ............................. <SourceList.getPos(sourceEntry)>
+  [179] setlocal 5 .............................. Pos = SourceList.getPos(sourceEntry)
+  [181] getlocal 1 .............................. <TargetList>
+  [183] getlocal 5 .............................. <Pos>
+  [185] pusharglist 2 ........................... <TargetList, Pos>
+  [187] objcall 105 ............................. <TargetList[Pos]>
+  [189] pushcons 35 ............................. <"Skin">
+  [191] joinstr ................................. <TargetList[Pos] & "Skin">
+  [192] getlocal 3 .............................. <i>
+  [194] joinstr ................................. <TargetList[Pos] & "Skin" & i>
+  [195] pushcons 37 ............................. <"_Texture">
+  [197] joinstr ................................. <TargetList[Pos] & "Skin" & i & "_Texture">
+  [198] pusharglist 1 ........................... <TargetList[Pos] & "Skin" & i & "_Texture">
+  [200] extcall 64 .............................. <member(TargetList[Pos] & "Skin" & i & "_Texture")>
+  [202] setlocal 6 .............................. memberRef = member(TargetList[Pos] & "Skin" & i & "_Texture")
+  [204] getlocal 6 .............................. <memberRef>
+  [206] pusharglist 0 ........................... <>
+  [208] extcall 40 .............................. <VOID>
+  [210] eq ...................................... <memberRef = VOID>
+  [211] jmpifz [217] ............................ if memberRef = VOID then
+  [214] jmp [315] ............................... next repeat
+  [217] getlocal 6 .............................. <memberRef>
+  [219] getobjprop 235 .......................... <memberRef.name>
+  [221] setlocal 7 .............................. memberRefName = memberRef.name
+  [223] getlocal 4 .............................. <fileExists>
+  [225] jmpifz [315] ............................ if fileExists then
+  [228] getlocal 6 .............................. <memberRef>
+  [230] gettoplevelprop 33 ...................... <_movie>
+  [232] getobjprop 34 ........................... <_movie.path>
+  [234] pushcons 34 ............................. <"Data\\Cars\\Mods\\">
+  [236] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\">
+  [237] getlocal 2 .............................. <sourceEntry>
+  [239] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\" & sourceEntry>
+  [240] pushcons 35 ............................. <"Skin">
+  [242] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin">
+  [243] getlocal 3 .............................. <i>
+  [245] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin" & i>
+  [246] pushcons 36 ............................. <"_Texture.png">
+  [248] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin" & i & "_Texture.png">
+  [249] pushsymb 613 ............................ <#dither>
+  [252] pushzero ................................ <0>
+  [253] pushsymb 614 ............................ <#trimWhiteSpace>
+  [256] pushzero ................................ <0>
+  [257] pushsymb 3408 ........................... <#linked>
+  [260] pushint8 1 .............................. <1>
+  [262] pushsymb 3409 ........................... <#remapImageToStage>
+  [265] pushzero ................................ <0>
+  [266] pusharglist 8 ........................... <[#dither: 0, #trimWhiteSpace: 0, #linked: 1, #remapImageToStage: 0]>
+  [268] pushproplist ............................ <[#dither: 0, #trimWhiteSpace: 0, #linked: 1, #remapImageToStage: 0]>
+  [269] pusharglistnoret 3 ...................... <memberRef, _movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin" & i & "_Texture.png", [#dither: 0, #trimWhiteSpace: 0, #linked: 1, #remapImageToStage: 0]>
+  [271] objcall 599 ............................. memberRef.importFileInto(_movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin" & i & "_Texture.png", [#dither: 0, #trimWhiteSpace: 0, #linked: 1, #remapImageToStage: 0])
+  [274] getlocal 6 .............................. <memberRef>
+  [276] getlocal 7 .............................. <memberRefName>
+  [278] setobjprop 235 .......................... memberRef.name = memberRefName
+  [280] getlocal 6 .............................. <memberRef>
+  [282] pushzero ................................ <0>
+  [283] setobjprop 3410 ......................... memberRef.purgePriority = 0
+  [286] gettoplevelprop 33 ...................... <_movie>
+  [288] getobjprop 34 ........................... <_movie.path>
+  [290] pushcons 34 ............................. <"Data\\Cars\\Mods\\">
+  [292] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\">
+  [293] getlocal 2 .............................. <sourceEntry>
+  [295] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\" & sourceEntry>
+  [296] pushcons 35 ............................. <"Skin">
+  [298] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin">
+  [299] getlocal 3 .............................. <i>
+  [301] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin" & i>
+  [302] pushcons 38 ............................. <"_Texture.png ">
+  [304] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin" & i & "_Texture.png ">
+  [305] pushcons 39 ............................. <"IMPORTED INTO ">
+  [307] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin" & i & "_Texture.png " & "IMPORTED INTO ">
+  [308] getlocal 7 .............................. <memberRefName>
+  [310] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin" & i & "_Texture.png " & "IMPORTED INTO " & memberRefName>
+  [311] pusharglistnoret 1 ...................... <_movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin" & i & "_Texture.png " & "IMPORTED INTO " & memberRefName>
+  [313] extcall 57 .............................. put _movie.path & "Data\\Cars\\Mods\\" & sourceEntry & "Skin" & i & "_Texture.png " & "IMPORTED INTO " & memberRefName
+  [315] pushint8 1
+  [317] getlocal 3
+  [319] add
+  [320] setlocal 3
+  [322] endrepeat [134]
+  [324] pushint8 1
+  [326] add
+  [327] endrepeat [112]
+  [329] pop 3
+  [331] getglobal 3406 .......................... <fx>
+  [334] gettoplevelprop 33 ...................... <_movie>
+  [336] getobjprop 34 ........................... <_movie.path>
+  [338] pushcons 40 ............................. <"Data\\Cars\\Mods\\Wheels_Texture.png">
+  [340] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\Wheels_Texture.png">
+  [341] pusharglist 2 ........................... <fx, _movie.path & "Data\\Cars\\Mods\\Wheels_Texture.png">
+  [343] objcall 3407 ............................ <fx.fx_FileExists(_movie.path & "Data\\Cars\\Mods\\Wheels_Texture.png")>
+  [346] setlocal 4 .............................. fileExists = fx.fx_FileExists(_movie.path & "Data\\Cars\\Mods\\Wheels_Texture.png")
+  [348] pushcons 41 ............................. <"Wheels_Texture">
+  [350] pusharglist 1 ........................... <"Wheels_Texture">
+  [352] extcall 64 .............................. <member("Wheels_Texture")>
+  [354] setlocal 6 .............................. memberRef = member("Wheels_Texture")
+  [356] getlocal 6 .............................. <memberRef>
+  [358] getobjprop 235 .......................... <memberRef.name>
+  [360] setlocal 7 .............................. memberRefName = memberRef.name
+  [362] getlocal 4 .............................. <fileExists>
+  [364] jmpifz [430] ............................ if fileExists then
+  [367] getlocal 6 .............................. <memberRef>
+  [369] gettoplevelprop 33 ...................... <_movie>
+  [371] getobjprop 34 ........................... <_movie.path>
+  [373] pushcons 40 ............................. <"Data\\Cars\\Mods\\Wheels_Texture.png">
+  [375] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\Wheels_Texture.png">
+  [376] pushsymb 613 ............................ <#dither>
+  [379] pushzero ................................ <0>
+  [380] pushsymb 614 ............................ <#trimWhiteSpace>
+  [383] pushzero ................................ <0>
+  [384] pushsymb 3408 ........................... <#linked>
+  [387] pushint8 1 .............................. <1>
+  [389] pushsymb 3409 ........................... <#remapImageToStage>
+  [392] pushzero ................................ <0>
+  [393] pusharglist 8 ........................... <[#dither: 0, #trimWhiteSpace: 0, #linked: 1, #remapImageToStage: 0]>
+  [395] pushproplist ............................ <[#dither: 0, #trimWhiteSpace: 0, #linked: 1, #remapImageToStage: 0]>
+  [396] pusharglistnoret 3 ...................... <memberRef, _movie.path & "Data\\Cars\\Mods\\Wheels_Texture.png", [#dither: 0, #trimWhiteSpace: 0, #linked: 1, #remapImageToStage: 0]>
+  [398] objcall 599 ............................. memberRef.importFileInto(_movie.path & "Data\\Cars\\Mods\\Wheels_Texture.png", [#dither: 0, #trimWhiteSpace: 0, #linked: 1, #remapImageToStage: 0])
+  [401] getlocal 6 .............................. <memberRef>
+  [403] getlocal 7 .............................. <memberRefName>
+  [405] setobjprop 235 .......................... memberRef.name = memberRefName
+  [407] getlocal 6 .............................. <memberRef>
+  [409] pushzero ................................ <0>
+  [410] setobjprop 3410 ......................... memberRef.purgePriority = 0
+  [413] gettoplevelprop 33 ...................... <_movie>
+  [415] getobjprop 34 ........................... <_movie.path>
+  [417] pushcons 42 ............................. <"Data\\Cars\\Mods\\Wheels_Texture.png ">
+  [419] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\Wheels_Texture.png ">
+  [420] pushcons 39 ............................. <"IMPORTED INTO ">
+  [422] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\Wheels_Texture.png " & "IMPORTED INTO ">
+  [423] getlocal 7 .............................. <memberRefName>
+  [425] joinstr ................................. <_movie.path & "Data\\Cars\\Mods\\Wheels_Texture.png " & "IMPORTED INTO " & memberRefName>
+  [426] pusharglistnoret 1 ...................... <_movie.path & "Data\\Cars\\Mods\\Wheels_Texture.png " & "IMPORTED INTO " & memberRefName>
+  [428] extcall 57 .............................. put _movie.path & "Data\\Cars\\Mods\\Wheels_Texture.png " & "IMPORTED INTO " & memberRefName
+  [430] getglobal 43 ............................ <gGame>
+  [432] getobjprop 401 .......................... <gGame.HighResCarTextures>
+  [435] pushzero ................................ <0>
+  [436] eq ...................................... <gGame.HighResCarTextures = 0>
+  [437] jmpifz [699] ............................ if gGame.HighResCarTextures = 0 then
+  [440] pushint16 512 ........................... <512>
+  [443] pushint16 512 ........................... <512>
+  [446] pushint8 32 ............................. <32>
+  [448] pushzero ................................ <0>
+  [449] pusharglist 4 ........................... <512, 512, 32, 0>
+  [451] extcall 319 ............................. <image(512, 512, 32, 0)>
+  [454] setlocal 8 .............................. tImageHolder = image(512, 512, 32, 0)
+  [456] pusharglist 0 ........................... <>
+  [458] extcall 40 .............................. <VOID>
+  [460] setlocal 9 .............................. tSourceImage = VOID
+  [462] getlocal 1 .............................. <TargetList>
+  [464] peek 0
+  [466] pusharglist 1
+  [468] extcall 129
+  [470] pushint8 1
+  [472] peek 0
+  [474] peek 2
+  [476] lteq
+  [477] jmpifz [622] ............................ repeat with targetEntry in TargetList
+  [480] peek 2
+  [482] peek 1
+  [484] pusharglist 2
+  [486] extcall 105
+  [488] setlocal 10
+  [490] pushint8 1 .............................. <1>
+  [492] setlocal 3
+  [494] getlocal 3
+  [496] pushint8 2 .............................. <2>
+  [498] lteq
+  [499] jmpifz [617] ............................ repeat with i = 1 to 2
+  [502] getlocal 10 ............................. <targetEntry>
+  [504] pushcons 35 ............................. <"Skin">
+  [506] joinstr ................................. <targetEntry & "Skin">
+  [507] getlocal 3 .............................. <i>
+  [509] joinstr ................................. <targetEntry & "Skin" & i>
+  [510] pushcons 37 ............................. <"_Texture">
+  [512] joinstr ................................. <targetEntry & "Skin" & i & "_Texture">
+  [513] pusharglist 1 ........................... <targetEntry & "Skin" & i & "_Texture">
+  [515] extcall 64 .............................. <member(targetEntry & "Skin" & i & "_Texture")>
+  [517] setlocal 6 .............................. memberRef = member(targetEntry & "Skin" & i & "_Texture")
+  [519] getlocal 6 .............................. <memberRef>
+  [521] pusharglist 0 ........................... <>
+  [523] extcall 40 .............................. <VOID>
+  [525] eq ...................................... <memberRef = VOID>
+  [526] jmpifz [532] ............................ if memberRef = VOID then
+  [529] jmp [608] ............................... next repeat
+  [532] getlocal 6 .............................. <memberRef>
+  [534] getobjprop 319 .......................... <memberRef.image>
+  [537] setlocal 9 .............................. tSourceImage = memberRef.image
+  [539] getlocal 9 .............................. <tSourceImage>
+  [541] getobjprop 229 .......................... <tSourceImage.width>
+  [543] pushint16 512 ........................... <512>
+  [546] gt ...................................... <tSourceImage.width > 512>
+  [547] jmpifz [608] ............................ if tSourceImage.width > 512 then
+  [550] getlocal 8 .............................. <tImageHolder>
+  [552] getlocal 9 .............................. <tSourceImage>
+  [554] getlocal 8 .............................. <tImageHolder>
+  [556] getobjprop 320 .......................... <tImageHolder.rect>
+  [559] getlocal 9 .............................. <tSourceImage>
+  [561] getobjprop 320 .......................... <tSourceImage.rect>
+  [564] pusharglistnoret 4 ...................... <tImageHolder, tSourceImage, tImageHolder.rect, tSourceImage.rect>
+  [566] objcall 321 ............................. tImageHolder.copyPixels(tSourceImage, tImageHolder.rect, tSourceImage.rect)
+  [569] getlocal 6 .............................. <memberRef>
+  [571] getlocal 8 .............................. <tImageHolder>
+  [573] setobjprop 319 .......................... memberRef.image = tImageHolder
+  [576] getlocal 6 .............................. <memberRef>
+  [578] getlocal 10 ............................. <targetEntry>
+  [580] pushcons 35 ............................. <"Skin">
+  [582] joinstr ................................. <targetEntry & "Skin">
+  [583] getlocal 3 .............................. <i>
+  [585] joinstr ................................. <targetEntry & "Skin" & i>
+  [586] pushcons 37 ............................. <"_Texture">
+  [588] joinstr ................................. <targetEntry & "Skin" & i & "_Texture">
+  [589] setobjprop 235 .......................... memberRef.name = targetEntry & "Skin" & i & "_Texture"
+  [591] getlocal 6 .............................. <memberRef>
+  [593] pushzero ................................ <0>
+  [594] setobjprop 3410 ......................... memberRef.purgePriority = 0
+  [597] pushcons 43 ............................. <"Rescaled - ">
+  [599] getlocal 6 .............................. <memberRef>
+  [601] getobjprop 235 .......................... <memberRef.name>
+  [603] joinstr ................................. <"Rescaled - " & memberRef.name>
+  [604] pusharglistnoret 1 ...................... <"Rescaled - " & memberRef.name>
+  [606] extcall 57 .............................. put "Rescaled - " & memberRef.name
+  [608] pushint8 1
+  [610] getlocal 3
+  [612] add
+  [613] setlocal 3
+  [615] endrepeat [494]
+  [617] pushint8 1
+  [619] add
+  [620] endrepeat [472]
+  [622] pop 3
+  [624] pushcons 41 ............................. <"Wheels_Texture">
+  [626] pusharglist 1 ........................... <"Wheels_Texture">
+  [628] extcall 64 .............................. <member("Wheels_Texture")>
+  [630] setlocal 6 .............................. memberRef = member("Wheels_Texture")
+  [632] getlocal 6 .............................. <memberRef>
+  [634] getobjprop 319 .......................... <memberRef.image>
+  [637] setlocal 9 .............................. tSourceImage = memberRef.image
+  [639] getlocal 9 .............................. <tSourceImage>
+  [641] getobjprop 229 .......................... <tSourceImage.width>
+  [643] pushint16 512 ........................... <512>
+  [646] gt ...................................... <tSourceImage.width > 512>
+  [647] jmpifz [699] ............................ if tSourceImage.width > 512 then
+  [650] getlocal 8 .............................. <tImageHolder>
+  [652] getlocal 9 .............................. <tSourceImage>
+  [654] getlocal 8 .............................. <tImageHolder>
+  [656] getobjprop 320 .......................... <tImageHolder.rect>
+  [659] getlocal 9 .............................. <tSourceImage>
+  [661] getobjprop 320 .......................... <tSourceImage.rect>
+  [664] pusharglistnoret 4 ...................... <tImageHolder, tSourceImage, tImageHolder.rect, tSourceImage.rect>
+  [666] objcall 321 ............................. tImageHolder.copyPixels(tSourceImage, tImageHolder.rect, tSourceImage.rect)
+  [669] getlocal 6 .............................. <memberRef>
+  [671] getlocal 8 .............................. <tImageHolder>
+  [673] setobjprop 319 .......................... memberRef.image = tImageHolder
+  [676] getlocal 6 .............................. <memberRef>
+  [678] pushcons 41 ............................. <"Wheels_Texture">
+  [680] setobjprop 235 .......................... memberRef.name = "Wheels_Texture"
+  [682] getlocal 6 .............................. <memberRef>
+  [684] pushzero ................................ <0>
+  [685] setobjprop 3410 ......................... memberRef.purgePriority = 0
+  [688] pushcons 43 ............................. <"Rescaled - ">
+  [690] getlocal 6 .............................. <memberRef>
+  [692] getobjprop 235 .......................... <memberRef.name>
+  [694] joinstr ................................. <"Rescaled - " & memberRef.name>
+  [695] pusharglistnoret 1 ...................... <"Rescaled - " & memberRef.name>
+  [697] extcall 57 .............................. put "Rescaled - " & memberRef.name
+  [699] ret
+end

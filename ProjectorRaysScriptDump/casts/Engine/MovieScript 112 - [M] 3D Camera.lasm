@@ -1,0 +1,889 @@
+global gSystem, gLoader, gData, gSound, gGame
+
+on ShowHideRoots me, t
+  [  0] getparam 1 .............................. <t>
+  [  2] getchainedprop 93 ....................... <t.target>
+  [  4] getobjprop 235 .......................... <t.target.name>
+  [  6] pusharglist 1 ........................... <t.target.name>
+  [  8] extcall 88 .............................. <symbol(t.target.name)>
+  [ 10] setlocal 0 .............................. tSymbol = symbol(t.target.name)
+  [ 12] getglobal 43 ............................ <gGame>
+  [ 14] pushsymb 137 ............................ <#cars>
+  [ 16] getlocal 0 .............................. <tSymbol>
+  [ 18] pusharglist 3 ........................... <gGame, #cars, tSymbol>
+  [ 20] objcall 70 .............................. <gGame.cars[tSymbol]>
+  [ 22] pusharglist 1 ........................... <gGame.cars[tSymbol]>
+  [ 24] extcall 389 ............................. <voidp(gGame.cars[tSymbol])>
+  [ 27] pushint8 1 .............................. <1>
+  [ 29] eq ...................................... <voidp(gGame.cars[tSymbol]) = 1>
+  [ 30] jmpifz [ 34] ............................ if voidp(gGame.cars[tSymbol]) = 1 then
+  [ 33] ret ..................................... exit
+  [ 34] getglobal 43 ............................ <gGame>
+  [ 36] pushsymb 137 ............................ <#cars>
+  [ 38] getlocal 0 .............................. <tSymbol>
+  [ 40] pusharglist 3 ........................... <gGame, #cars, tSymbol>
+  [ 42] objcall 102 ............................. <gGame.cars[tSymbol]>
+  [ 44] getchainedprop 250 ...................... <gGame.cars[tSymbol].car>
+  [ 46] getobjprop 1405 ......................... <gGame.cars[tSymbol].car.RootList>
+  [ 49] setlocal 1 .............................. tRootList = gGame.cars[tSymbol].car.RootList
+  [ 51] getglobal 43 ............................ <gGame>
+  [ 53] pushsymb 137 ............................ <#cars>
+  [ 55] getlocal 0 .............................. <tSymbol>
+  [ 57] pusharglist 3 ........................... <gGame, #cars, tSymbol>
+  [ 59] objcall 102 ............................. <gGame.cars[tSymbol]>
+  [ 61] getchainedprop 250 ...................... <gGame.cars[tSymbol].car>
+  [ 63] getobjprop 1406 ......................... <gGame.cars[tSymbol].car.previousRootList>
+  [ 66] setlocal 2 .............................. tPreviousRootList = gGame.cars[tSymbol].car.previousRootList
+  [ 68] getlocal 2 .............................. <tPreviousRootList>
+  [ 70] peek 0
+  [ 72] pusharglist 1
+  [ 74] extcall 129
+  [ 76] pushint8 1
+  [ 78] peek 0
+  [ 80] peek 2
+  [ 82] lteq
+  [ 83] jmpifz [137] ............................ repeat with i in tPreviousRootList
+  [ 86] peek 2
+  [ 88] peek 1
+  [ 90] pusharglist 2
+  [ 92] extcall 105
+  [ 94] setlocal 3
+  [ 96] getparam 1 .............................. <t>
+  [ 98] getchainedprop 64 ....................... <t.member>
+  [100] pushcons 0 .............................. <"TrackRoot">
+  [102] getlocal 3 .............................. <i>
+  [104] joinstr ................................. <"TrackRoot" & i>
+  [105] pushcons 1 .............................. <"_Group">
+  [107] joinstr ................................. <"TrackRoot" & i & "_Group">
+  [108] pusharglist 2 ........................... <t.member, "TrackRoot" & i & "_Group">
+  [110] objcall 65 .............................. <t.member.group("TrackRoot" & i & "_Group")>
+  [112] setlocal 4 .............................. tgroup = t.member.group("TrackRoot" & i & "_Group")
+  [114] getlocal 4 .............................. <tgroup>
+  [116] pusharglist 0 ........................... <>
+  [118] extcall 40 .............................. <VOID>
+  [120] nteq .................................... <tgroup <> VOID>
+  [121] jmpifz [132] ............................ if tgroup <> VOID then
+  [124] getlocal 4 .............................. <tgroup>
+  [126] pusharglist 0 ........................... <>
+  [128] extcall 40 .............................. <VOID>
+  [130] setobjprop 207 .......................... tgroup.parent = VOID
+  [132] pushint8 1
+  [134] add
+  [135] endrepeat [ 78]
+  [137] pop 3
+  [139] getlocal 1 .............................. <tRootList>
+  [141] peek 0
+  [143] pusharglist 1
+  [145] extcall 129
+  [147] pushint8 1
+  [149] peek 0
+  [151] peek 2
+  [153] lteq
+  [154] jmpifz [214] ............................ repeat with i in tRootList
+  [157] peek 2
+  [159] peek 1
+  [161] pusharglist 2
+  [163] extcall 105
+  [165] setlocal 3
+  [167] getparam 1 .............................. <t>
+  [169] getchainedprop 64 ....................... <t.member>
+  [171] pushcons 0 .............................. <"TrackRoot">
+  [173] getlocal 3 .............................. <i>
+  [175] joinstr ................................. <"TrackRoot" & i>
+  [176] pushcons 1 .............................. <"_Group">
+  [178] joinstr ................................. <"TrackRoot" & i & "_Group">
+  [179] pusharglist 2 ........................... <t.member, "TrackRoot" & i & "_Group">
+  [181] objcall 65 .............................. <t.member.group("TrackRoot" & i & "_Group")>
+  [183] setlocal 4 .............................. tgroup = t.member.group("TrackRoot" & i & "_Group")
+  [185] getlocal 4 .............................. <tgroup>
+  [187] pusharglist 0 ........................... <>
+  [189] extcall 40 .............................. <VOID>
+  [191] nteq .................................... <tgroup <> VOID>
+  [192] jmpifz [209] ............................ if tgroup <> VOID then
+  [195] getlocal 4 .............................. <tgroup>
+  [197] getglobal 43 ............................ <gGame>
+  [199] getchainedprop 64 ....................... <gGame.member>
+  [201] pushcons 2 .............................. <"World">
+  [203] pusharglist 2 ........................... <gGame.member, "World">
+  [205] objcall 65 .............................. <gGame.member.group("World")>
+  [207] setobjprop 207 .......................... tgroup.parent = gGame.member.group("World")
+  [209] pushint8 1
+  [211] add
+  [212] endrepeat [149]
+  [214] pop 3
+  [216] ret
+end
+
+on BackwardsView me, t
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pushsymb 137 ............................ <#cars>
+  [  4] getparam 1 .............................. <t>
+  [  6] getchainedprop 93 ....................... <t.target>
+  [  8] getobjprop 235 .......................... <t.target.name>
+  [ 10] pusharglist 1 ........................... <t.target.name>
+  [ 12] extcall 88 .............................. <symbol(t.target.name)>
+  [ 14] pusharglist 3 ........................... <gGame, #cars, symbol(t.target.name)>
+  [ 16] objcall 70 .............................. <gGame.cars[symbol(t.target.name)]>
+  [ 18] pusharglist 1 ........................... <gGame.cars[symbol(t.target.name)]>
+  [ 20] extcall 389 ............................. <voidp(gGame.cars[symbol(t.target.name)])>
+  [ 23] pushzero ................................ <0>
+  [ 24] eq ...................................... <voidp(gGame.cars[symbol(t.target.name)]) = 0>
+  [ 25] jmpifz [324] ............................ if voidp(gGame.cars[symbol(t.target.name)]) = 0 then
+  [ 28] getglobal 43 ............................ <gGame>
+  [ 30] pushsymb 137 ............................ <#cars>
+  [ 32] getparam 1 .............................. <t>
+  [ 34] getchainedprop 93 ....................... <t.target>
+  [ 36] getobjprop 235 .......................... <t.target.name>
+  [ 38] pusharglist 1 ........................... <t.target.name>
+  [ 40] extcall 88 .............................. <symbol(t.target.name)>
+  [ 42] pusharglist 3 ........................... <gGame, #cars, symbol(t.target.name)>
+  [ 44] objcall 102 ............................. <gGame.cars[symbol(t.target.name)]>
+  [ 46] getchainedprop 391 ...................... <gGame.cars[symbol(t.target.name)].input>
+  [ 49] getobjprop 1409 ......................... <gGame.cars[symbol(t.target.name)].input.backwardCam>
+  [ 52] pushint8 1 .............................. <1>
+  [ 54] eq ...................................... <gGame.cars[symbol(t.target.name)].input.backwardCam = 1>
+  [ 55] getglobal 43 ............................ <gGame>
+  [ 57] getobjprop 1410 ......................... <gGame.SlowMo>
+  [ 60] pushzero ................................ <0>
+  [ 61] eq ...................................... <gGame.SlowMo = 0>
+  [ 62] and ..................................... <(gGame.cars[symbol(t.target.name)].input.backwardCam = 1) and (gGame.SlowMo = 0)>
+  [ 63] jmpifz [274] ............................ if (gGame.cars[symbol(t.target.name)].input.backwardCam = 1) and (gGame.SlowMo = 0) then / else
+  [ 66] getparam 1 .............................. <t>
+  [ 68] getobjprop 1411 ......................... <t.OldOffSet>
+  [ 71] pusharglist 0 ........................... <>
+  [ 73] extcall 212 ............................. <vector()>
+  [ 75] eq ...................................... <t.OldOffSet = vector()>
+  [ 76] jmpifz [ 88] ............................ if t.OldOffSet = vector() then
+  [ 79] getparam 1 .............................. <t>
+  [ 81] getparam 1 .............................. <t>
+  [ 83] getobjprop 211 .......................... <t.offset>
+  [ 85] setobjprop 1411 ......................... t.OldOffSet = t.offset
+  [ 88] getparam 1 .............................. <t>
+  [ 90] getobjprop 1412 ......................... <t.OldRotation>
+  [ 93] pusharglist 0 ........................... <>
+  [ 95] extcall 212 ............................. <vector()>
+  [ 97] eq ...................................... <t.OldRotation = vector()>
+  [ 98] jmpifz [111] ............................ if t.OldRotation = vector() then
+  [101] getparam 1 .............................. <t>
+  [103] getparam 1 .............................. <t>
+  [105] getobjprop 1162 ......................... <t.rotation>
+  [108] setobjprop 1412 ......................... t.OldRotation = t.rotation
+  [111] getglobal 43 ............................ <gGame>
+  [113] pushsymb 137 ............................ <#cars>
+  [115] getparam 1 .............................. <t>
+  [117] getchainedprop 93 ....................... <t.target>
+  [119] getobjprop 235 .......................... <t.target.name>
+  [121] pusharglist 1 ........................... <t.target.name>
+  [123] extcall 88 .............................. <symbol(t.target.name)>
+  [125] pusharglist 3 ........................... <gGame, #cars, symbol(t.target.name)>
+  [127] objcall 102 ............................. <gGame.cars[symbol(t.target.name)]>
+  [129] getchainedprop 376 ...................... <gGame.cars[symbol(t.target.name)].general>
+  [132] getchainedprop 87 ....................... <gGame.cars[symbol(t.target.name)].general.data>
+  [134] getobjprop 250 .......................... <gGame.cars[symbol(t.target.name)].general.data.car>
+  [136] setlocal 0 .............................. tCar = gGame.cars[symbol(t.target.name)].general.data.car
+  [138] getlocal 0 .............................. <tCar>
+  [140] pushcons 3 .............................. <"Tank">
+  [142] eq ...................................... <tCar = "Tank">
+  [143] getlocal 0 .............................. <tCar>
+  [145] pushcons 4 .............................. <"BlackTruck">
+  [147] eq ...................................... <tCar = "BlackTruck">
+  [148] or ...................................... <(tCar = "Tank") or (tCar = "BlackTruck")>
+  [149] getlocal 0 .............................. <tCar>
+  [151] pushcons 5 .............................. <"Apache">
+  [153] eq ...................................... <tCar = "Apache">
+  [154] or ...................................... <(tCar = "Tank") or (tCar = "BlackTruck") or (tCar = "Apache")>
+  [155] jmpifz [216] ............................ if (tCar = "Tank") or (tCar = "BlackTruck") or (tCar = "Apache") then / else
+  [158] getparam 1 .............................. <t>
+  [160] getparam 1 .............................. <t>
+  [162] getobjprop 1411 ......................... <t.OldOffSet>
+  [165] pushzero ................................ <0>
+  [166] pushfloat32 16.0 ........................ <16.0>
+  [171] pushfloat32 0.0 ......................... <0.0>
+  [176] pusharglist 3 ........................... <0, 16.0, 0.0>
+  [178] extcall 212 ............................. <vector(0, 16.0, 0.0)>
+  [180] add ..................................... <t.OldOffSet + vector(0, 16.0, 0.0)>
+  [181] setobjprop 211 .......................... t.offset = t.OldOffSet + vector(0, 16.0, 0.0)
+  [183] getparam 1 .............................. <t>
+  [185] getparam 1 .............................. <t>
+  [187] getobjprop 1412 ......................... <t.OldRotation>
+  [190] pushfloat32 2.0 ......................... <2.0>
+  [195] pushfloat32 0.0 ......................... <0.0>
+  [200] pushfloat32 180.0 ....................... <180.0>
+  [205] pusharglist 3 ........................... <2.0, 0.0, 180.0>
+  [207] extcall 212 ............................. <vector(2.0, 0.0, 180.0)>
+  [209] sub ..................................... <t.OldRotation - vector(2.0, 0.0, 180.0)>
+  [210] setobjprop 1162 ......................... t.rotation = t.OldRotation - vector(2.0, 0.0, 180.0)
+  [213] jmp [271]
+  [216] getparam 1 .............................. <t>
+  [218] getparam 1 .............................. <t>
+  [220] getobjprop 1411 ......................... <t.OldOffSet>
+  [223] pushzero ................................ <0>
+  [224] pushfloat32 11.0 ........................ <11.0>
+  [229] pushfloat32 0.0 ......................... <0.0>
+  [234] pusharglist 3 ........................... <0, 11.0, 0.0>
+  [236] extcall 212 ............................. <vector(0, 11.0, 0.0)>
+  [238] add ..................................... <t.OldOffSet + vector(0, 11.0, 0.0)>
+  [239] setobjprop 211 .......................... t.offset = t.OldOffSet + vector(0, 11.0, 0.0)
+  [241] getparam 1 .............................. <t>
+  [243] getparam 1 .............................. <t>
+  [245] getobjprop 1412 ......................... <t.OldRotation>
+  [248] pushfloat32 2.0 ......................... <2.0>
+  [253] pushfloat32 0.0 ......................... <0.0>
+  [258] pushfloat32 180.0 ....................... <180.0>
+  [263] pusharglist 3 ........................... <2.0, 0.0, 180.0>
+  [265] extcall 212 ............................. <vector(2.0, 0.0, 180.0)>
+  [267] sub ..................................... <t.OldRotation - vector(2.0, 0.0, 180.0)>
+  [268] setobjprop 1162 ......................... t.rotation = t.OldRotation - vector(2.0, 0.0, 180.0)
+  [271] jmp [324]
+  [274] getparam 1 .............................. <t>
+  [276] getobjprop 1411 ......................... <t.OldOffSet>
+  [279] pusharglist 0 ........................... <>
+  [281] extcall 212 ............................. <vector()>
+  [283] nteq .................................... <t.OldOffSet <> vector()>
+  [284] jmpifz [324] ............................ if t.OldOffSet <> vector() then
+  [287] getparam 1 .............................. <t>
+  [289] getparam 1 .............................. <t>
+  [291] getobjprop 1411 ......................... <t.OldOffSet>
+  [294] setobjprop 211 .......................... t.offset = t.OldOffSet
+  [296] getparam 1 .............................. <t>
+  [298] getparam 1 .............................. <t>
+  [300] getobjprop 1412 ......................... <t.OldRotation>
+  [303] setobjprop 1162 ......................... t.rotation = t.OldRotation
+  [306] getparam 1 .............................. <t>
+  [308] pusharglist 0 ........................... <>
+  [310] extcall 212 ............................. <vector()>
+  [312] setobjprop 1411 ......................... t.OldOffSet = vector()
+  [315] getparam 1 .............................. <t>
+  [317] pusharglist 0 ........................... <>
+  [319] extcall 212 ............................. <vector()>
+  [321] setobjprop 1412 ......................... t.OldRotation = vector()
+  [324] ret
+end
+
+on DebugCameras me, t
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pushsymb 137 ............................ <#cars>
+  [  4] pusharglist 2 ........................... <gGame, #cars>
+  [  6] objcall 105 ............................. <gGame[#cars]>
+  [  8] pusharglist 1 ........................... <gGame[#cars]>
+  [ 10] extcall 389 ............................. <voidp(gGame[#cars])>
+  [ 13] pushzero ................................ <0>
+  [ 14] eq ...................................... <voidp(gGame[#cars]) = 0>
+  [ 15] jmpifz [ 95] ............................ if voidp(gGame[#cars]) = 0 then
+  [ 18] gettoplevelprop 574 ..................... <_key>
+  [ 21] getobjprop 575 .......................... <_key.key>
+  [ 24] pusharglist 1 ........................... <_key.key>
+  [ 26] extcall 503 ............................. <value(_key.key)>
+  [ 29] setlocal 0 .............................. tValue = value(_key.key)
+  [ 31] getlocal 0 .............................. <tValue>
+  [ 33] getobjprop 122 .......................... <tValue.ilk>
+  [ 35] pushsymb 123 ............................ <#integer>
+  [ 37] nteq .................................... <tValue.ilk <> #integer>
+  [ 38] getlocal 0 .............................. <tValue>
+  [ 40] pushzero ................................ <0>
+  [ 41] eq ...................................... <tValue = 0>
+  [ 42] or ...................................... <(tValue.ilk <> #integer) or (tValue = 0)>
+  [ 43] jmpifz [ 54] ............................ if (tValue.ilk <> #integer) or (tValue = 0) then / else
+  [ 46] pushzero ................................ <0>
+  [ 47] pusharglistnoret 1 ...................... <0>
+  [ 49] extcall 52 .............................. return 0
+  [ 51] jmp [ 95]
+  [ 54] getlocal 0 .............................. <tValue>
+  [ 56] getglobal 43 ............................ <gGame>
+  [ 58] pushsymb 137 ............................ <#cars>
+  [ 60] pusharglist 2 ........................... <gGame, #cars>
+  [ 62] objcall 129 ............................. <gGame.cars.count>
+  [ 64] lteq .................................... <tValue <= gGame.cars.count>
+  [ 65] jmpifz [ 95] ............................ if tValue <= gGame.cars.count then
+  [ 68] getglobal 43 ............................ <gGame>
+  [ 70] pushsymb 298 ............................ <#camera>
+  [ 73] pushint8 1 .............................. <1>
+  [ 75] pusharglist 3 ........................... <gGame, #camera, 1>
+  [ 77] objcall 102 ............................. <gGame.camera[1]>
+  [ 79] getglobal 43 ............................ <gGame>
+  [ 81] pushsymb 137 ............................ <#cars>
+  [ 83] getlocal 0 .............................. <tValue>
+  [ 85] pusharglist 3 ........................... <gGame, #cars, tValue>
+  [ 87] objcall 102 ............................. <gGame.cars[tValue]>
+  [ 89] getchainedprop 250 ...................... <gGame.cars[tValue].car>
+  [ 91] getobjprop 71 ........................... <gGame.cars[tValue].car.model>
+  [ 93] setobjprop 93 ........................... gGame.camera[1].target = gGame.cars[tValue].car.model
+  [ 95] ret
+end
+
+on SetFog me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 64 .............................. <member(tTarget)>
+  [  6] setlocal 0 .............................. tmember = member(tTarget)
+  [  8] getlocal 0 .............................. <tmember>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <tmember = VOID>
+  [ 15] jmpifz [ 23] ............................ if tmember = VOID then
+  [ 18] pushzero ................................ <0>
+  [ 19] pusharglistnoret 1 ...................... <0>
+  [ 21] extcall 52 .............................. return 0
+  [ 23] getparam 2 .............................. <tDataList>
+  [ 25] getobjprop 122 .......................... <tDataList.ilk>
+  [ 27] pushsymb 67 ............................. <#string>
+  [ 29] eq ...................................... <tDataList.ilk = #string>
+  [ 30] jmpifz [ 42] ............................ if tDataList.ilk = #string then
+  [ 33] getparam 2 .............................. <tDataList>
+  [ 35] pusharglist 1 ........................... <tDataList>
+  [ 37] extcall 503 ............................. <value(tDataList)>
+  [ 40] setparam 2 .............................. tDataList = value(tDataList)
+  [ 42] getparam 2 .............................. <tDataList>
+  [ 44] getobjprop 122 .......................... <tDataList.ilk>
+  [ 46] pushsymb 541 ............................ <#propList>
+  [ 49] nteq .................................... <tDataList.ilk <> #propList>
+  [ 50] jmpifz [ 58] ............................ if tDataList.ilk <> #propList then
+  [ 53] pushzero ................................ <0>
+  [ 54] pusharglistnoret 1 ...................... <0>
+  [ 56] extcall 52 .............................. return 0
+  [ 58] pushcons 6 .............................. <"DefaultView">
+  [ 60] setlocal 1 .............................. tCameraName = "DefaultView"
+  [ 62] getparam 2 .............................. <tDataList>
+  [ 64] pushsymb 298 ............................ <#camera>
+  [ 67] pusharglist 2 ........................... <tDataList, #camera>
+  [ 69] objcall 105 ............................. <tDataList[#camera]>
+  [ 71] getobjprop 122 .......................... <tDataList[#camera].ilk>
+  [ 73] pushsymb 67 ............................. <#string>
+  [ 75] eq ...................................... <tDataList[#camera].ilk = #string>
+  [ 76] jmpifz [ 86] ............................ if tDataList[#camera].ilk = #string then
+  [ 79] getparam 2 .............................. <tDataList>
+  [ 81] getobjprop 298 .......................... <tDataList.camera>
+  [ 84] setlocal 1 .............................. tCameraName = tDataList.camera
+  [ 86] getglobal 43 ............................ <gGame>
+  [ 88] getchainedprop 64 ....................... <gGame.member>
+  [ 90] getlocal 1 .............................. <tCameraName>
+  [ 92] pusharglist 2 ........................... <gGame.member, tCameraName>
+  [ 94] objcall 298 ............................. <gGame.member.camera(tCameraName)>
+  [ 97] setlocal 2 .............................. tCamera = gGame.member.camera(tCameraName)
+  [ 99] getlocal 2 .............................. <tCamera>
+  [101] pusharglist 0 ........................... <>
+  [103] extcall 40 .............................. <VOID>
+  [105] eq ...................................... <tCamera = VOID>
+  [106] jmpifz [114] ............................ if tCamera = VOID then
+  [109] pushzero ................................ <0>
+  [110] pusharglistnoret 1 ...................... <0>
+  [112] extcall 52 .............................. return 0
+  [114] getlocal 2 .............................. <tCamera>
+  [116] getchainedprop 121 ...................... <tCamera.fog>
+  [118] getglobal 43 ............................ <gGame>
+  [120] getobjprop 121 .......................... <gGame.fog>
+  [122] setobjprop 1414 ......................... tCamera.fog.enabled = gGame.fog
+  [125] getglobal 43 ............................ <gGame>
+  [127] getobjprop 121 .......................... <gGame.fog>
+  [129] pushzero ................................ <0>
+  [130] eq ...................................... <gGame.fog = 0>
+  [131] jmpifz [139] ............................ if gGame.fog = 0 then
+  [134] pushzero ................................ <0>
+  [135] pusharglistnoret 1 ...................... <0>
+  [137] extcall 52 .............................. return 0
+  [139] getglobal 43 ............................ <gGame>
+  [141] pushsymb 127 ............................ <#FogRange>
+  [143] pusharglist 2 ........................... <gGame, #FogRange>
+  [145] objcall 105 ............................. <gGame[#FogRange]>
+  [147] pusharglist 1 ........................... <gGame[#FogRange]>
+  [149] extcall 389 ............................. <voidp(gGame[#FogRange])>
+  [152] pushint8 1 .............................. <1>
+  [154] eq ...................................... <voidp(gGame[#FogRange]) = 1>
+  [155] jmpifz [169] ............................ if voidp(gGame[#FogRange]) = 1 then / else
+  [158] pushzero ................................ <0>
+  [159] pushint8 100 ............................ <100>
+  [161] pusharglist 2 ........................... <[0, 100]>
+  [163] pushlist ................................ <[0, 100]>
+  [164] setlocal 3 .............................. tRange = [0, 100]
+  [166] jmp [175]
+  [169] getglobal 43 ............................ <gGame>
+  [171] getobjprop 127 .......................... <gGame.FogRange>
+  [173] setlocal 3 .............................. tRange = gGame.FogRange
+  [175] getglobal 43 ............................ <gGame>
+  [177] pushsymb 125 ............................ <#fogColor>
+  [179] pusharglist 2 ........................... <gGame, #fogColor>
+  [181] objcall 105 ............................. <gGame[#fogColor]>
+  [183] pusharglist 1 ........................... <gGame[#fogColor]>
+  [185] extcall 389 ............................. <voidp(gGame[#fogColor])>
+  [188] pushint8 1 .............................. <1>
+  [190] eq ...................................... <voidp(gGame[#fogColor]) = 1>
+  [191] jmpifz [206] ............................ if voidp(gGame[#fogColor]) = 1 then / else
+  [194] pushzero ................................ <0>
+  [195] pushzero ................................ <0>
+  [196] pushzero ................................ <0>
+  [197] pushzero ................................ <0>
+  [198] pusharglist 4 ........................... <[0, 0, 0, 0]>
+  [200] pushlist ................................ <[0, 0, 0, 0]>
+  [201] setlocal 4 .............................. tColor = [0, 0, 0, 0]
+  [203] jmp [212]
+  [206] getglobal 43 ............................ <gGame>
+  [208] getobjprop 125 .......................... <gGame.fogColor>
+  [210] setlocal 4 .............................. tColor = gGame.fogColor
+  [212] getlocal 4 .............................. <tColor>
+  [214] pushint8 1 .............................. <1>
+  [216] pusharglist 2 ........................... <tColor, 1>
+  [218] objcall 105 ............................. <tColor[1]>
+  [220] getlocal 4 .............................. <tColor>
+  [222] pushint8 2 .............................. <2>
+  [224] pusharglist 2 ........................... <tColor, 2>
+  [226] objcall 105 ............................. <tColor[2]>
+  [228] getlocal 4 .............................. <tColor>
+  [230] pushint8 3 .............................. <3>
+  [232] pusharglist 2 ........................... <tColor, 3>
+  [234] objcall 105 ............................. <tColor[3]>
+  [236] pusharglist 3 ........................... <tColor[1], tColor[2], tColor[3]>
+  [238] extcall 282 ............................. <rgb(tColor[1], tColor[2], tColor[3])>
+  [241] setlocal 4 .............................. tColor = rgb(tColor[1], tColor[2], tColor[3])
+  [243] getglobal 43 ............................ <gGame>
+  [245] getobjprop 235 .......................... <gGame.name>
+  [247] pushcons 7 .............................. <"Burnin' Rubber 3">
+  [249] eq ...................................... <gGame.name = "Burnin' Rubber 3">
+  [250] getlocal 3 .............................. <tRange>
+  [252] pushint8 1 .............................. <1>
+  [254] pusharglist 2 ........................... <tRange, 1>
+  [256] objcall 105 ............................. <tRange[1]>
+  [258] pushint8 125 ............................ <125>
+  [260] lt ...................................... <tRange[1] < 125>
+  [261] and ..................................... <(gGame.name = "Burnin' Rubber 3") and (tRange[1] < 125)>
+  [262] jmpifz [275] ............................ if (gGame.name = "Burnin' Rubber 3") and (tRange[1] < 125) then
+  [265] getlocal 3 .............................. <tRange>
+  [267] pushint8 1 .............................. <1>
+  [269] pushint8 125 ............................ <125>
+  [271] pusharglistnoret 3 ...................... <tRange, 1, 125>
+  [273] objcall 103 ............................. tRange[1] = 125
+  [275] getlocal 2 .............................. <tCamera>
+  [277] getchainedprop 121 ...................... <tCamera.fog>
+  [279] getlocal 3 .............................. <tRange>
+  [281] pushint8 1 .............................. <1>
+  [283] pusharglist 2 ........................... <tRange, 1>
+  [285] objcall 105 ............................. <tRange[1]>
+  [287] setobjprop 1415 ......................... tCamera.fog.near = tRange[1]
+  [290] getlocal 2 .............................. <tCamera>
+  [292] getchainedprop 121 ...................... <tCamera.fog>
+  [294] getlocal 3 .............................. <tRange>
+  [296] pushint8 2 .............................. <2>
+  [298] pusharglist 2 ........................... <tRange, 2>
+  [300] objcall 105 ............................. <tRange[2]>
+  [302] setobjprop 1416 ......................... tCamera.fog.far = tRange[2]
+  [305] getlocal 2 .............................. <tCamera>
+  [307] getchainedprop 121 ...................... <tCamera.fog>
+  [309] getlocal 4 .............................. <tColor>
+  [311] setobjprop 223 .......................... tCamera.fog.color = tColor
+  [313] pushsymb 1297 ........................... <#linear>
+  [316] setlocal 5 .............................. tType = #linear
+  [318] getparam 2 .............................. <tDataList>
+  [320] pushsymb 598 ............................ <#type>
+  [323] pusharglist 2 ........................... <tDataList, #type>
+  [325] objcall 105 ............................. <tDataList[#type]>
+  [327] getobjprop 122 .......................... <tDataList[#type].ilk>
+  [329] pushsymb 88 ............................. <#symbol>
+  [331] eq ...................................... <tDataList[#type].ilk = #symbol>
+  [332] jmpifz [342] ............................ if tDataList[#type].ilk = #symbol then
+  [335] getparam 2 .............................. <tDataList>
+  [337] getobjprop 598 .......................... <tDataList.type>
+  [340] setlocal 5 .............................. tType = tDataList.type
+  [342] getlocal 5 .............................. <tType>
+  [344] peek 0 .................................. case tType of
+  [346] pushsymb 1297 ........................... <#linear>
+  [349] eq
+  [350] jmpifz [365] ............................ (case) #linear:
+  [353] getlocal 2 .............................. <tCamera>
+  [355] getchainedprop 121 ...................... <tCamera.fog>
+  [357] getlocal 5 .............................. <tType>
+  [359] setobjprop 1417 ......................... tCamera.fog.decayMode = tType
+  [362] jmp [417]
+  [365] peek 0
+  [367] pushsymb 1418 ........................... <#exponential>
+  [370] eq
+  [371] jmpifz [386] ............................ (case) #exponential:
+  [374] getlocal 2 .............................. <tCamera>
+  [376] getchainedprop 121 ...................... <tCamera.fog>
+  [378] getlocal 5 .............................. <tType>
+  [380] setobjprop 1417 ......................... tCamera.fog.decayMode = tType
+  [383] jmp [417]
+  [386] peek 0
+  [388] pushsymb 1419 ........................... <#exponential2>
+  [391] eq
+  [392] jmpifz [407] ............................ (case) #exponential2:
+  [395] getlocal 2 .............................. <tCamera>
+  [397] getchainedprop 121 ...................... <tCamera.fog>
+  [399] getlocal 5 .............................. <tType>
+  [401] setobjprop 1417 ......................... tCamera.fog.decayMode = tType
+  [404] jmp [417] ............................... (case) otherwise:
+  [407] getlocal 2 .............................. <tCamera>
+  [409] getchainedprop 121 ...................... <tCamera.fog>
+  [411] pushsymb 1297 ........................... <#linear>
+  [414] setobjprop 1417 ......................... tCamera.fog.decayMode = #linear
+  [417] pop 1 ................................... end case
+  [419] pushint8 1 .............................. <1>
+  [421] pusharglistnoret 1 ...................... <1>
+  [423] extcall 52 .............................. return 1
+  [425] ret
+end
+
+on SetSkybox me, tTarget, tDataList
+  [  0] getparam 2 .............................. <tDataList>
+  [  2] getobjprop 122 .......................... <tDataList.ilk>
+  [  4] pushsymb 67 ............................. <#string>
+  [  6] eq ...................................... <tDataList.ilk = #string>
+  [  7] jmpifz [ 19] ............................ if tDataList.ilk = #string then
+  [ 10] getparam 2 .............................. <tDataList>
+  [ 12] pusharglist 1 ........................... <tDataList>
+  [ 14] extcall 503 ............................. <value(tDataList)>
+  [ 17] setparam 2 .............................. tDataList = value(tDataList)
+  [ 19] getparam 2 .............................. <tDataList>
+  [ 21] getobjprop 122 .......................... <tDataList.ilk>
+  [ 23] pushsymb 541 ............................ <#propList>
+  [ 26] nteq .................................... <tDataList.ilk <> #propList>
+  [ 27] jmpifz [ 38] ............................ if tDataList.ilk <> #propList then
+  [ 30] pusharglist 0 ........................... <>
+  [ 32] extcall 40 .............................. <VOID>
+  [ 34] pusharglistnoret 1 ...................... <VOID>
+  [ 36] extcall 52 .............................. return VOID
+  [ 38] pushcons 8 .............................. <"Skyboxes">
+  [ 40] pusharglist 1 ........................... <"Skyboxes">
+  [ 42] extcall 64 .............................. <member("Skyboxes")>
+  [ 44] setlocal 0 .............................. tmember = member("Skyboxes")
+  [ 46] getlocal 0 .............................. <tmember>
+  [ 48] pusharglist 0 ........................... <>
+  [ 50] extcall 40 .............................. <VOID>
+  [ 52] eq ...................................... <tmember = VOID>
+  [ 53] jmpifz [ 64] ............................ if tmember = VOID then
+  [ 56] pusharglist 0 ........................... <>
+  [ 58] extcall 40 .............................. <VOID>
+  [ 60] pusharglistnoret 1 ...................... <VOID>
+  [ 62] extcall 52 .............................. return VOID
+  [ 64] getparam 2 .............................. <tDataList>
+  [ 66] pushsymb 128 ............................ <#skybox>
+  [ 68] pusharglist 2 ........................... <tDataList, #skybox>
+  [ 70] objcall 105 ............................. <tDataList[#skybox]>
+  [ 72] setlocal 1 .............................. tSkybox = tDataList[#skybox]
+  [ 74] getlocal 1 .............................. <tSkybox>
+  [ 76] pushcons 9 .............................. <EMPTY>
+  [ 78] eq ...................................... <tSkybox = EMPTY>
+  [ 79] jmpifz [ 86] ............................ if tSkybox = EMPTY then
+  [ 82] pushcons 10 ............................. <"Jungle">
+  [ 84] setlocal 1 .............................. tSkybox = "Jungle"
+  [ 86] pushcons 8 .............................. <"Skyboxes">
+  [ 88] pusharglist 1 ........................... <"Skyboxes">
+  [ 90] extcall 64 .............................. <member("Skyboxes")>
+  [ 92] pushcons 11 ............................. <"Skybox">
+  [ 94] getlocal 1 .............................. <tSkybox>
+  [ 96] joinstr ................................. <"Skybox" & tSkybox>
+  [ 97] pushcons 12 ............................. <"_Dummy">
+  [ 99] joinstr ................................. <"Skybox" & tSkybox & "_Dummy">
+  [100] pusharglist 2 ........................... <member("Skyboxes"), "Skybox" & tSkybox & "_Dummy">
+  [102] objcall 71 .............................. <member("Skyboxes").model("Skybox" & tSkybox & "_Dummy")>
+  [104] setlocal 2 .............................. tDummy = member("Skyboxes").model("Skybox" & tSkybox & "_Dummy")
+  [106] getlocal 2 .............................. <tDummy>
+  [108] pusharglist 0 ........................... <>
+  [110] extcall 40 .............................. <VOID>
+  [112] eq ...................................... <tDummy = VOID>
+  [113] jmpifz [142] ............................ if tDummy = VOID then
+  [116] pushcons 13 ............................. <"COULDNT FIND SKYBOX! SKYBOX WAS: ">
+  [118] getparam 2 .............................. <tDataList>
+  [120] getobjprop 128 .......................... <tDataList.skybox>
+  [122] joinstr ................................. <"COULDNT FIND SKYBOX! SKYBOX WAS: " & tDataList.skybox>
+  [123] pusharglistnoret 1 ...................... <"COULDNT FIND SKYBOX! SKYBOX WAS: " & tDataList.skybox>
+  [125] extcall 773 ............................. alert("COULDNT FIND SKYBOX! SKYBOX WAS: " & tDataList.skybox)
+  [128] pushcons 8 .............................. <"Skyboxes">
+  [130] pusharglist 1 ........................... <"Skyboxes">
+  [132] extcall 64 .............................. <member("Skyboxes")>
+  [134] pushcons 14 ............................. <"SkyboxCitySunny_Dummy">
+  [136] pusharglist 2 ........................... <member("Skyboxes"), "SkyboxCitySunny_Dummy">
+  [138] objcall 71 .............................. <member("Skyboxes").model("SkyboxCitySunny_Dummy")>
+  [140] setlocal 2 .............................. tDummy = member("Skyboxes").model("SkyboxCitySunny_Dummy")
+  [142] pushcons 8 .............................. <"Skyboxes">
+  [144] pusharglist 1 ........................... <"Skyboxes">
+  [146] extcall 64 .............................. <member("Skyboxes")>
+  [148] pushcons 15 ............................. <"Skybox_Group">
+  [150] pusharglist 2 ........................... <member("Skyboxes"), "Skybox_Group">
+  [152] objcall 65 .............................. <member("Skyboxes").group("Skybox_Group")>
+  [154] pusharglist 0 ........................... <>
+  [156] extcall 40 .............................. <VOID>
+  [158] eq ...................................... <member("Skyboxes").group("Skybox_Group") = VOID>
+  [159] jmpifz [175] ............................ if member("Skyboxes").group("Skybox_Group") = VOID then
+  [162] pushcons 8 .............................. <"Skyboxes">
+  [164] pusharglist 1 ........................... <"Skyboxes">
+  [166] extcall 64 .............................. <member("Skyboxes")>
+  [168] pushcons 15 ............................. <"Skybox_Group">
+  [170] pusharglistnoret 2 ...................... <member("Skyboxes"), "Skybox_Group">
+  [172] objcall 877 ............................. member("Skyboxes").newGroup("Skybox_Group")
+  [175] getlocal 2 .............................. <tDummy>
+  [177] pushcons 8 .............................. <"Skyboxes">
+  [179] pusharglist 1 ........................... <"Skyboxes">
+  [181] extcall 64 .............................. <member("Skyboxes")>
+  [183] pushcons 15 ............................. <"Skybox_Group">
+  [185] pusharglist 2 ........................... <member("Skyboxes"), "Skybox_Group">
+  [187] objcall 65 .............................. <member("Skyboxes").group("Skybox_Group")>
+  [189] setobjprop 207 .......................... tDummy.parent = member("Skyboxes").group("Skybox_Group")
+  [191] getlocal 0 .............................. <tmember>
+  [193] pushsymb 208 ............................ <#shader>
+  [195] pusharglist 2 ........................... <tmember, #shader>
+  [197] objcall 129 ............................. <tmember.shader.count>
+  [199] setlocal 3 .............................. tCount = tmember.shader.count
+  [201] pushint8 1 .............................. <1>
+  [203] setlocal 4
+  [205] getlocal 4
+  [207] getlocal 3 .............................. <tCount>
+  [209] lteq
+  [210] jmpifz [250] ............................ repeat with i = 1 to tCount
+  [213] getlocal 0 .............................. <tmember>
+  [215] pushsymb 208 ............................ <#shader>
+  [217] getlocal 4 .............................. <i>
+  [219] pusharglist 3 ........................... <tmember, #shader, i>
+  [221] objcall 70 .............................. <tmember.shader[i]>
+  [223] setlocal 5 .............................. tShader = tmember.shader[i]
+  [225] getlocal 5 .............................. <tShader>
+  [227] getobjprop 235 .......................... <tShader.name>
+  [229] pushcons 16 ............................. <"Opaque">
+  [231] containsstr ............................. <tShader.name contains "Opaque">
+  [232] jmpifz [241] ............................ if tShader.name contains "Opaque" then
+  [235] getlocal 5 .............................. <tShader>
+  [237] pushzero ................................ <0>
+  [238] setobjprop 1243 ......................... tShader.transparent = 0
+  [241] pushint8 1
+  [243] getlocal 4
+  [245] add
+  [246] setlocal 4
+  [248] endrepeat [205]
+  [250] ret
+end
+
+on AddCameraToSprite me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 503 ............................. <value(tTarget)>
+  [  7] getobjprop 122 .......................... <value(tTarget).ilk>
+  [  9] pushsymb 123 ............................ <#integer>
+  [ 11] nteq .................................... <value(tTarget).ilk <> #integer>
+  [ 12] jmpifz [ 20] ............................ if value(tTarget).ilk <> #integer then
+  [ 15] pushzero ................................ <0>
+  [ 16] pusharglistnoret 1 ...................... <0>
+  [ 18] extcall 52 .............................. return 0
+  [ 20] getparam 1 .............................. <tTarget>
+  [ 22] pusharglist 1 ........................... <tTarget>
+  [ 24] extcall 503 ............................. <value(tTarget)>
+  [ 27] pusharglist 1 ........................... <value(tTarget)>
+  [ 29] extcall 487 ............................. <sprite(value(tTarget))>
+  [ 32] setlocal 0 .............................. tSprite = sprite(value(tTarget))
+  [ 34] getparam 2 .............................. <tDataList>
+  [ 36] getobjprop 122 .......................... <tDataList.ilk>
+  [ 38] pushsymb 67 ............................. <#string>
+  [ 40] eq ...................................... <tDataList.ilk = #string>
+  [ 41] jmpifz [ 53] ............................ if tDataList.ilk = #string then
+  [ 44] getparam 2 .............................. <tDataList>
+  [ 46] pusharglist 1 ........................... <tDataList>
+  [ 48] extcall 503 ............................. <value(tDataList)>
+  [ 51] setparam 2 .............................. tDataList = value(tDataList)
+  [ 53] getparam 2 .............................. <tDataList>
+  [ 55] getobjprop 122 .......................... <tDataList.ilk>
+  [ 57] pushsymb 541 ............................ <#propList>
+  [ 60] nteq .................................... <tDataList.ilk <> #propList>
+  [ 61] jmpifz [ 69] ............................ if tDataList.ilk <> #propList then
+  [ 64] pushzero ................................ <0>
+  [ 65] pusharglistnoret 1 ...................... <0>
+  [ 67] extcall 52 .............................. return 0
+  [ 69] pusharglist 0 ........................... <>
+  [ 71] extcall 40 .............................. <VOID>
+  [ 73] setlocal 1 .............................. tmember = VOID
+  [ 75] getparam 2 .............................. <tDataList>
+  [ 77] pushsymb 64 ............................. <#member>
+  [ 79] pusharglist 2 ........................... <tDataList, #member>
+  [ 81] objcall 105 ............................. <tDataList[#member]>
+  [ 83] getobjprop 122 .......................... <tDataList[#member].ilk>
+  [ 85] pushsymb 67 ............................. <#string>
+  [ 87] eq ...................................... <tDataList[#member].ilk = #string>
+  [ 88] jmpifz [101] ............................ if tDataList[#member].ilk = #string then
+  [ 91] getparam 2 .............................. <tDataList>
+  [ 93] getobjprop 64 ........................... <tDataList.member>
+  [ 95] pusharglist 1 ........................... <tDataList.member>
+  [ 97] extcall 64 .............................. <member(tDataList.member)>
+  [ 99] setlocal 1 .............................. tmember = member(tDataList.member)
+  [101] getlocal 1 .............................. <tmember>
+  [103] pusharglist 0 ........................... <>
+  [105] extcall 40 .............................. <VOID>
+  [107] eq ...................................... <tmember = VOID>
+  [108] jmpifz [116] ............................ if tmember = VOID then
+  [111] pushzero ................................ <0>
+  [112] pusharglistnoret 1 ...................... <0>
+  [114] extcall 52 .............................. return 0
+  [116] pusharglist 0 ........................... <>
+  [118] extcall 40 .............................. <VOID>
+  [120] setlocal 2 .............................. tCameraName = VOID
+  [122] getparam 2 .............................. <tDataList>
+  [124] pushsymb 298 ............................ <#camera>
+  [127] pusharglist 2 ........................... <tDataList, #camera>
+  [129] objcall 105 ............................. <tDataList[#camera]>
+  [131] getobjprop 122 .......................... <tDataList[#camera].ilk>
+  [133] pushsymb 67 ............................. <#string>
+  [135] eq ...................................... <tDataList[#camera].ilk = #string>
+  [136] jmpifz [146] ............................ if tDataList[#camera].ilk = #string then
+  [139] getparam 2 .............................. <tDataList>
+  [141] getobjprop 298 .......................... <tDataList.camera>
+  [144] setlocal 2 .............................. tCameraName = tDataList.camera
+  [146] getlocal 2 .............................. <tCameraName>
+  [148] pusharglist 0 ........................... <>
+  [150] extcall 40 .............................. <VOID>
+  [152] eq ...................................... <tCameraName = VOID>
+  [153] jmpifz [161] ............................ if tCameraName = VOID then
+  [156] pushzero ................................ <0>
+  [157] pusharglistnoret 1 ...................... <0>
+  [159] extcall 52 .............................. return 0
+  [161] getlocal 1 .............................. <tmember>
+  [163] getlocal 2 .............................. <tCameraName>
+  [165] pusharglist 2 ........................... <tmember, tCameraName>
+  [167] objcall 298 ............................. <tmember.camera(tCameraName)>
+  [170] setlocal 3 .............................. tCamera = tmember.camera(tCameraName)
+  [172] getlocal 3 .............................. <tCamera>
+  [174] pusharglist 0 ........................... <>
+  [176] extcall 40 .............................. <VOID>
+  [178] eq ...................................... <tCamera = VOID>
+  [179] jmpifz [187] ............................ if tCamera = VOID then
+  [182] pushzero ................................ <0>
+  [183] pusharglistnoret 1 ...................... <0>
+  [185] extcall 52 .............................. return 0
+  [187] getlocal 0 .............................. <tSprite>
+  [189] pusharglist 1 ........................... <tSprite>
+  [191] objcall 1424 ............................ <tSprite.cameraCount()>
+  [194] pushint8 1 .............................. <1>
+  [196] add ..................................... <tSprite.cameraCount() + 1>
+  [197] setlocal 4 .............................. tIndex = tSprite.cameraCount() + 1
+  [199] getparam 2 .............................. <tDataList>
+  [201] pushsymb 1425 ........................... <#index>
+  [204] pusharglist 2 ........................... <tDataList, #index>
+  [206] objcall 105 ............................. <tDataList[#index]>
+  [208] getobjprop 122 .......................... <tDataList[#index].ilk>
+  [210] pushsymb 123 ............................ <#integer>
+  [212] eq ...................................... <tDataList[#index].ilk = #integer>
+  [213] jmpifz [223] ............................ if tDataList[#index].ilk = #integer then
+  [216] getparam 2 .............................. <tDataList>
+  [218] getobjprop 1425 ......................... <tDataList.index>
+  [221] setlocal 4 .............................. tIndex = tDataList.index
+  [223] getlocal 0 .............................. <tSprite>
+  [225] getlocal 3 .............................. <tCamera>
+  [227] getlocal 4 .............................. <tIndex>
+  [229] pusharglistnoret 3 ...................... <tSprite, tCamera, tIndex>
+  [231] objcall 873 ............................. tSprite.addCamera(tCamera, tIndex)
+  [234] ret
+end
+
+on RemoveCameraFromSprite me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 503 ............................. <value(tTarget)>
+  [  7] getobjprop 122 .......................... <value(tTarget).ilk>
+  [  9] pushsymb 123 ............................ <#integer>
+  [ 11] nteq .................................... <value(tTarget).ilk <> #integer>
+  [ 12] jmpifz [ 20] ............................ if value(tTarget).ilk <> #integer then
+  [ 15] pushzero ................................ <0>
+  [ 16] pusharglistnoret 1 ...................... <0>
+  [ 18] extcall 52 .............................. return 0
+  [ 20] getparam 1 .............................. <tTarget>
+  [ 22] pusharglist 1 ........................... <tTarget>
+  [ 24] extcall 503 ............................. <value(tTarget)>
+  [ 27] pusharglist 1 ........................... <value(tTarget)>
+  [ 29] extcall 487 ............................. <sprite(value(tTarget))>
+  [ 32] setlocal 0 .............................. tSprite = sprite(value(tTarget))
+  [ 34] getparam 2 .............................. <tDataList>
+  [ 36] getobjprop 122 .......................... <tDataList.ilk>
+  [ 38] pushsymb 67 ............................. <#string>
+  [ 40] eq ...................................... <tDataList.ilk = #string>
+  [ 41] jmpifz [ 53] ............................ if tDataList.ilk = #string then
+  [ 44] getparam 2 .............................. <tDataList>
+  [ 46] pusharglist 1 ........................... <tDataList>
+  [ 48] extcall 503 ............................. <value(tDataList)>
+  [ 51] setparam 2 .............................. tDataList = value(tDataList)
+  [ 53] getparam 2 .............................. <tDataList>
+  [ 55] getobjprop 122 .......................... <tDataList.ilk>
+  [ 57] pushsymb 541 ............................ <#propList>
+  [ 60] nteq .................................... <tDataList.ilk <> #propList>
+  [ 61] jmpifz [ 69] ............................ if tDataList.ilk <> #propList then
+  [ 64] pushzero ................................ <0>
+  [ 65] pusharglistnoret 1 ...................... <0>
+  [ 67] extcall 52 .............................. return 0
+  [ 69] pushzero ................................ <0>
+  [ 70] setlocal 1 .............................. tIndex = 0
+  [ 72] getparam 2 .............................. <tDataList>
+  [ 74] pushsymb 1425 ........................... <#index>
+  [ 77] pusharglist 2 ........................... <tDataList, #index>
+  [ 79] objcall 105 ............................. <tDataList[#index]>
+  [ 81] getobjprop 122 .......................... <tDataList[#index].ilk>
+  [ 83] pushsymb 123 ............................ <#integer>
+  [ 85] eq ...................................... <tDataList[#index].ilk = #integer>
+  [ 86] jmpifz [ 96] ............................ if tDataList[#index].ilk = #integer then
+  [ 89] getparam 2 .............................. <tDataList>
+  [ 91] getobjprop 1425 ......................... <tDataList.index>
+  [ 94] setlocal 1 .............................. tIndex = tDataList.index
+  [ 96] getlocal 1 .............................. <tIndex>
+  [ 98] pushzero ................................ <0>
+  [ 99] eq ...................................... <tIndex = 0>
+  [100] jmpifz [221] ............................ if tIndex = 0 then / else
+  [103] pusharglist 0 ........................... <>
+  [105] extcall 40 .............................. <VOID>
+  [107] setlocal 2 .............................. tCameraName = VOID
+  [109] getparam 2 .............................. <tDataList>
+  [111] pushsymb 298 ............................ <#camera>
+  [114] pusharglist 2 ........................... <tDataList, #camera>
+  [116] objcall 105 ............................. <tDataList[#camera]>
+  [118] getobjprop 122 .......................... <tDataList[#camera].ilk>
+  [120] pushsymb 67 ............................. <#string>
+  [122] eq ...................................... <tDataList[#camera].ilk = #string>
+  [123] jmpifz [133] ............................ if tDataList[#camera].ilk = #string then
+  [126] getparam 2 .............................. <tDataList>
+  [128] getobjprop 298 .......................... <tDataList.camera>
+  [131] setlocal 2 .............................. tCameraName = tDataList.camera
+  [133] getlocal 2 .............................. <tCameraName>
+  [135] pusharglist 0 ........................... <>
+  [137] extcall 40 .............................. <VOID>
+  [139] eq ...................................... <tCameraName = VOID>
+  [140] jmpifz [148] ............................ if tCameraName = VOID then
+  [143] pushzero ................................ <0>
+  [144] pusharglistnoret 1 ...................... <0>
+  [146] extcall 52 .............................. return 0
+  [148] getlocal 0 .............................. <tSprite>
+  [150] pusharglist 1 ........................... <tSprite>
+  [152] objcall 1424 ............................ <tSprite.cameraCount()>
+  [155] setlocal 3 .............................. tCount = tSprite.cameraCount()
+  [157] pushzero ................................ <0>
+  [158] setlocal 1 .............................. tIndex = 0
+  [160] pushint8 1 .............................. <1>
+  [162] setlocal 4
+  [164] getlocal 4
+  [166] getlocal 3 .............................. <tCount>
+  [168] lteq
+  [169] jmpifz [202] ............................ repeat with i = 1 to tCount
+  [172] getlocal 0 .............................. <tSprite>
+  [174] getlocal 4 .............................. <i>
+  [176] pusharglist 2 ........................... <tSprite, i>
+  [178] objcall 298 ............................. <tSprite.camera(i)>
+  [181] getobjprop 235 .......................... <tSprite.camera(i).name>
+  [183] getlocal 2 .............................. <tCameraName>
+  [185] eq ...................................... <tSprite.camera(i).name = tCameraName>
+  [186] jmpifz [193] ............................ if tSprite.camera(i).name = tCameraName then
+  [189] getlocal 4 .............................. <i>
+  [191] setlocal 1 .............................. tIndex = i
+  [193] pushint8 1
+  [195] getlocal 4
+  [197] add
+  [198] setlocal 4
+  [200] endrepeat [164]
+  [202] getlocal 1 .............................. <tIndex>
+  [204] pushzero ................................ <0>
+  [205] gt ...................................... <tIndex > 0>
+  [206] jmpifz [218] ............................ if tIndex > 0 then
+  [209] getlocal 0 .............................. <tSprite>
+  [211] getlocal 1 .............................. <tIndex>
+  [213] pusharglistnoret 2 ...................... <tSprite, tIndex>
+  [215] objcall 1428 ............................ tSprite.deleteCamera(tIndex)
+  [218] jmp [237]
+  [221] getlocal 1 .............................. <tIndex>
+  [223] pushzero ................................ <0>
+  [224] gt ...................................... <tIndex > 0>
+  [225] jmpifz [237] ............................ if tIndex > 0 then
+  [228] getlocal 0 .............................. <tSprite>
+  [230] getlocal 1 .............................. <tIndex>
+  [232] pusharglistnoret 2 ...................... <tSprite, tIndex>
+  [234] objcall 1428 ............................ tSprite.deleteCamera(tIndex)
+  [237] ret
+end

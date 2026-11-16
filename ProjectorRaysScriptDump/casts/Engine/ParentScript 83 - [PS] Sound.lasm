@@ -1,0 +1,748 @@
+property p
+global gSound
+
+on new me, tQueueList, tDataList, tChannel
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 1102 ........................... <#channel>
+  [ 12] getparam 3 .............................. <tChannel>
+  [ 14] pusharglistnoret 3 ...................... <p, #channel, tChannel>
+  [ 16] objcall 103 ............................. p[#channel] = tChannel
+  [ 18] getprop 563 ............................. <p>
+  [ 21] pushsymb 1103 ........................... <#QueueList>
+  [ 24] getparam 1 .............................. <tQueueList>
+  [ 26] pusharglistnoret 3 ...................... <p, #QueueList, tQueueList>
+  [ 28] objcall 103 ............................. p[#QueueList] = tQueueList
+  [ 30] getprop 563 ............................. <p>
+  [ 33] pushsymb 956 ............................ <#dataList>
+  [ 36] getparam 2 .............................. <tDataList>
+  [ 38] pusharglistnoret 3 ...................... <p, #dataList, tDataList>
+  [ 40] objcall 103 ............................. p[#dataList] = tDataList
+  [ 42] getprop 563 ............................. <p>
+  [ 45] pushsymb 64 ............................. <#member>
+  [ 47] getparam 1 .............................. <tQueueList>
+  [ 49] pushsymb 64 ............................. <#member>
+  [ 51] pusharglist 2 ........................... <tQueueList, #member>
+  [ 53] objcall 105 ............................. <tQueueList[#member]>
+  [ 55] pusharglistnoret 3 ...................... <p, #member, tQueueList[#member]>
+  [ 57] objcall 103 ............................. p[#member] = tQueueList[#member]
+  [ 59] getprop 563 ............................. <p>
+  [ 62] pushsymb 1047 ........................... <#priority>
+  [ 65] getparam 2 .............................. <tDataList>
+  [ 67] pushsymb 1047 ........................... <#priority>
+  [ 70] pusharglist 2 ........................... <tDataList, #priority>
+  [ 72] objcall 105 ............................. <tDataList[#priority]>
+  [ 74] pusharglistnoret 3 ...................... <p, #priority, tDataList[#priority]>
+  [ 76] objcall 103 ............................. p[#priority] = tDataList[#priority]
+  [ 78] getprop 563 ............................. <p>
+  [ 81] pushsymb 1050 ........................... <#surround>
+  [ 84] getparam 2 .............................. <tDataList>
+  [ 86] pushsymb 1050 ........................... <#surround>
+  [ 89] pusharglist 2 ........................... <tDataList, #surround>
+  [ 91] objcall 105 ............................. <tDataList[#surround]>
+  [ 93] pusharglistnoret 3 ...................... <p, #surround, tDataList[#surround]>
+  [ 95] objcall 103 ............................. p[#surround] = tDataList[#surround]
+  [ 97] getprop 563 ............................. <p>
+  [100] pushsymb 1049 ........................... <#sender>
+  [103] getparam 2 .............................. <tDataList>
+  [105] pushsymb 1049 ........................... <#sender>
+  [108] pusharglist 2 ........................... <tDataList, #sender>
+  [110] objcall 105 ............................. <tDataList[#sender]>
+  [112] pusharglistnoret 3 ...................... <p, #sender, tDataList[#sender]>
+  [114] objcall 103 ............................. p[#sender] = tDataList[#sender]
+  [116] getprop 563 ............................. <p>
+  [119] pushsymb 1104 ........................... <#timer>
+  [122] gettoplevelprop 462 ..................... <_system>
+  [125] getobjprop 463 .......................... <_system.milliSeconds>
+  [128] pusharglistnoret 3 ...................... <p, #timer, _system.milliSeconds>
+  [130] objcall 103 ............................. p[#timer] = _system.milliSeconds
+  [132] getprop 563 ............................. <p>
+  [135] pushsymb 759 ............................ <#Fade>
+  [138] pushsymb 54 ............................. <#none>
+  [140] pusharglistnoret 3 ...................... <p, #Fade, #none>
+  [142] objcall 103 ............................. p[#Fade] = #none
+  [144] getprop 563 ............................. <p>
+  [147] pushsymb 1105 ........................... <#StoredVolume>
+  [150] pusharglist 0 ........................... <>
+  [152] extcall 40 .............................. <VOID>
+  [154] pusharglistnoret 3 ...................... <p, #StoredVolume, VOID>
+  [156] objcall 103 ............................. p[#StoredVolume] = VOID
+  [158] getprop 563 ............................. <p>
+  [161] getobjprop 1050 ......................... <p.surround>
+  [164] pushint8 1 .............................. <1>
+  [166] eq ...................................... <p.surround = 1>
+  [167] jmpifz [341] ............................ if p.surround = 1 then
+  [170] getprop 563 ............................. <p>
+  [173] pushsymb 93 ............................. <#target>
+  [175] getparam 2 .............................. <tDataList>
+  [177] pushsymb 1051 ........................... <#member3DName>
+  [180] pusharglist 2 ........................... <tDataList, #member3DName>
+  [182] objcall 105 ............................. <tDataList[#member3DName]>
+  [184] pusharglist 1 ........................... <tDataList[#member3DName]>
+  [186] extcall 64 .............................. <member(tDataList[#member3DName])>
+  [188] getparam 2 .............................. <tDataList>
+  [190] pushsymb 1052 ........................... <#targetName>
+  [193] pusharglist 2 ........................... <tDataList, #targetName>
+  [195] objcall 105 ............................. <tDataList[#targetName]>
+  [197] pusharglist 2 ........................... <member(tDataList[#member3DName]), tDataList[#targetName]>
+  [199] extcall 1106 ............................ <GetReferenceType(member(tDataList[#member3DName]), tDataList[#targetName])>
+  [202] pusharglistnoret 3 ...................... <p, #target, GetReferenceType(member(tDataList[#member3DName]), tDataList[#targetName])>
+  [204] objcall 103 ............................. p[#target] = GetReferenceType(member(tDataList[#member3DName]), tDataList[#targetName])
+  [206] getprop 563 ............................. <p>
+  [209] pushsymb 1107 ........................... <#Reference>
+  [212] getparam 2 .............................. <tDataList>
+  [214] pushsymb 1051 ........................... <#member3DName>
+  [217] pusharglist 2 ........................... <tDataList, #member3DName>
+  [219] objcall 105 ............................. <tDataList[#member3DName]>
+  [221] pusharglist 1 ........................... <tDataList[#member3DName]>
+  [223] extcall 64 .............................. <member(tDataList[#member3DName])>
+  [225] getparam 2 .............................. <tDataList>
+  [227] pushsymb 1053 ........................... <#referenceName>
+  [230] pusharglist 2 ........................... <tDataList, #referenceName>
+  [232] objcall 105 ............................. <tDataList[#referenceName]>
+  [234] pusharglist 2 ........................... <member(tDataList[#member3DName]), tDataList[#referenceName]>
+  [236] extcall 1106 ............................ <GetReferenceType(member(tDataList[#member3DName]), tDataList[#referenceName])>
+  [239] pusharglistnoret 3 ...................... <p, #Reference, GetReferenceType(member(tDataList[#member3DName]), tDataList[#referenceName])>
+  [241] objcall 103 ............................. p[#Reference] = GetReferenceType(member(tDataList[#member3DName]), tDataList[#referenceName])
+  [243] getprop 563 ............................. <p>
+  [246] pushsymb 1054 ........................... <#distance>
+  [249] getparam 2 .............................. <tDataList>
+  [251] pushsymb 1054 ........................... <#distance>
+  [254] pusharglist 2 ........................... <tDataList, #distance>
+  [256] objcall 105 ............................. <tDataList[#distance]>
+  [258] pusharglistnoret 3 ...................... <p, #distance, tDataList[#distance]>
+  [260] objcall 103 ............................. p[#distance] = tDataList[#distance]
+  [262] getprop 563 ............................. <p>
+  [265] pushsymb 1055 ........................... <#static>
+  [268] pushzero ................................ <0>
+  [269] pusharglistnoret 3 ...................... <p, #static, 0>
+  [271] objcall 103 ............................. p[#static] = 0
+  [273] getparam 2 .............................. <tDataList>
+  [275] pushsymb 1055 ........................... <#static>
+  [278] pusharglist 2 ........................... <tDataList, #static>
+  [280] objcall 105 ............................. <tDataList[#static]>
+  [282] getobjprop 122 .......................... <tDataList[#static].ilk>
+  [284] pushsymb 123 ............................ <#integer>
+  [286] eq ...................................... <tDataList[#static].ilk = #integer>
+  [287] jmpifz [305] ............................ if tDataList[#static].ilk = #integer then
+  [290] getprop 563 ............................. <p>
+  [293] getparam 2 .............................. <tDataList>
+  [295] pushsymb 1055 ........................... <#static>
+  [298] pusharglist 2 ........................... <tDataList, #static>
+  [300] objcall 105 ............................. <tDataList[#static]>
+  [302] setobjprop 1055 ......................... p.static = tDataList[#static]
+  [305] getprop 563 ............................. <p>
+  [308] getobjprop 1055 ......................... <p.static>
+  [311] pushint8 1 .............................. <1>
+  [313] eq ...................................... <p.static = 1>
+  [314] jmpifz [341] ............................ if p.static = 1 then
+  [317] getprop 563 ............................. <p>
+  [320] pushsymb 1108 ........................... <#StaticTransform>
+  [323] getprop 563 ............................. <p>
+  [326] getchainedprop 93 ....................... <p.target>
+  [328] pusharglist 1 ........................... <p.target>
+  [330] objcall 1109 ............................ <p.target.getWorldTransform()>
+  [333] pusharglist 1 ........................... <p.target.getWorldTransform()>
+  [335] objcall 233 ............................. <p.target.getWorldTransform().duplicate()>
+  [337] pusharglistnoret 3 ...................... <p, #StaticTransform, p.target.getWorldTransform().duplicate()>
+  [339] objcall 103 ............................. p[#StaticTransform] = p.target.getWorldTransform().duplicate()
+  [341] getglobal 291 ........................... <gSound>
+  [344] getobjprop 293 .......................... <gSound.mute>
+  [347] pushint8 1 .............................. <1>
+  [349] eq ...................................... <gSound.mute = 1>
+  [350] jmpifz [364] ............................ if gSound.mute = 1 then
+  [353] getparam 0 .............................. <me>
+  [355] pushfloat32 0.0 ......................... <0.0>
+  [360] pusharglistnoret 2 ...................... <me, 0.0>
+  [362] localcall 5 ............................. setVolume(me, 0.0)
+  [364] getglobal 291 ........................... <gSound>
+  [367] getobjprop 293 .......................... <gSound.mute>
+  [370] pushzero ................................ <0>
+  [371] eq ...................................... <gSound.mute = 0>
+  [372] jmpifz [390] ............................ if gSound.mute = 0 then
+  [375] getparam 0 .............................. <me>
+  [377] getprop 563 ............................. <p>
+  [380] getchainedprop 956 ...................... <p.dataList>
+  [383] getobjprop 1030 ......................... <p.dataList.volume>
+  [386] pusharglistnoret 2 ...................... <me, p.dataList.volume>
+  [388] localcall 5 ............................. setVolume(me, p.dataList.volume)
+  [390] getprop 563 ............................. <p>
+  [393] getobjprop 1050 ......................... <p.surround>
+  [396] pushint8 1 .............................. <1>
+  [398] eq ...................................... <p.surround = 1>
+  [399] jmpifz [413] ............................ if p.surround = 1 then
+  [402] getparam 0 .............................. <me>
+  [404] pushfloat32 0.0 ......................... <0.0>
+  [409] pusharglistnoret 2 ...................... <me, 0.0>
+  [411] localcall 5 ............................. setVolume(me, 0.0)
+  [413] getprop 563 ............................. <p>
+  [416] getobjprop 1102 ......................... <p.channel>
+  [419] pusharglist 1 ........................... <p.channel>
+  [421] extcall 611 ............................. <sound(p.channel)>
+  [424] getprop 563 ............................. <p>
+  [427] getobjprop 1103 ......................... <p.QueueList>
+  [430] pusharglistnoret 2 ...................... <sound(p.channel), p.QueueList>
+  [432] objcall 297 ............................. sound(p.channel).queue(p.QueueList)
+  [435] getprop 563 ............................. <p>
+  [438] getobjprop 1102 ......................... <p.channel>
+  [441] pusharglist 1 ........................... <p.channel>
+  [443] extcall 611 ............................. <sound(p.channel)>
+  [446] pusharglistnoret 1 ...................... <sound(p.channel)>
+  [448] objcall 1110 ............................ sound(p.channel).play()
+  [451] getprop 563 ............................. <p>
+  [454] pushsymb 45 ............................. <#me>
+  [456] getparam 0 .............................. <me>
+  [458] pusharglistnoret 3 ...................... <p, #me, me>
+  [460] objcall 103 ............................. p[#me] = me
+  [462] getparam 0 .............................. <me>
+  [464] pusharglistnoret 1 ...................... <me>
+  [466] extcall 52 .............................. return me
+  [468] ret
+end
+
+on stepFrame me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 759 .......................... <p.Fade>
+  [  6] pushsymb 54 ............................. <#none>
+  [  8] nteq .................................... <p.Fade <> #none>
+  [  9] jmpifz [ 19] ............................ if p.Fade <> #none then
+  [ 12] getparam 0 .............................. <me>
+  [ 14] pusharglistnoret 1 ...................... <me>
+  [ 16] objcall 1099 ............................ me.CheckFade()
+  [ 19] getprop 563 ............................. <p>
+  [ 22] getobjprop 1050 ......................... <p.surround>
+  [ 25] pushint8 1 .............................. <1>
+  [ 27] eq ...................................... <p.surround = 1>
+  [ 28] getglobal 291 ........................... <gSound>
+  [ 31] getobjprop 293 .......................... <gSound.mute>
+  [ 34] pushzero ................................ <0>
+  [ 35] eq ...................................... <gSound.mute = 0>
+  [ 36] and ..................................... <(p.surround = 1) and (gSound.mute = 0)>
+  [ 37] getprop 563 ............................. <p>
+  [ 40] getobjprop 759 .......................... <p.Fade>
+  [ 43] pushsymb 54 ............................. <#none>
+  [ 45] eq ...................................... <p.Fade = #none>
+  [ 46] and ..................................... <(p.surround = 1) and (gSound.mute = 0) and (p.Fade = #none)>
+  [ 47] jmpifz [ 54] ............................ if (p.surround = 1) and (gSound.mute = 0) and (p.Fade = #none) then
+  [ 50] pusharglistnoret 0 ...................... <>
+  [ 52] localcall 11 ............................ UpdateSurroundSound()
+  [ 54] getprop 563 ............................. <p>
+  [ 57] pushsymb 1103 ........................... <#QueueList>
+  [ 60] pushsymb 1042 ........................... <#loopCount>
+  [ 63] pusharglist 3 ........................... <p, #QueueList, #loopCount>
+  [ 65] objcall 70 .............................. <p.QueueList[#loopCount]>
+  [ 67] pushzero ................................ <0>
+  [ 68] nteq .................................... <p.QueueList[#loopCount] <> 0>
+  [ 69] jmpifz [115] ............................ if p.QueueList[#loopCount] <> 0 then
+  [ 72] gettoplevelprop 462 ..................... <_system>
+  [ 75] getobjprop 463 .......................... <_system.milliSeconds>
+  [ 78] getprop 563 ............................. <p>
+  [ 81] getobjprop 1104 ......................... <p.timer>
+  [ 84] sub ..................................... <_system.milliSeconds - p.timer>
+  [ 85] getprop 563 ............................. <p>
+  [ 88] getchainedprop 64 ....................... <p.member>
+  [ 90] getobjprop 1041 ......................... <p.member.duration>
+  [ 93] getprop 563 ............................. <p>
+  [ 96] pushsymb 1103 ........................... <#QueueList>
+  [ 99] pushsymb 1042 ........................... <#loopCount>
+  [102] pusharglist 3 ........................... <p, #QueueList, #loopCount>
+  [104] objcall 70 .............................. <p.QueueList[#loopCount]>
+  [106] mul ..................................... <p.member.duration * p.QueueList[#loopCount]>
+  [107] gteq .................................... <(_system.milliSeconds - p.timer) >= (p.member.duration * p.QueueList[#loopCount])>
+  [108] jmpifz [115] ............................ if (_system.milliSeconds - p.timer) >= (p.member.duration * p.QueueList[#loopCount]) then
+  [111] pusharglistnoret 0 ...................... <>
+  [113] localcall 3 ............................. StopSound()
+  [115] ret
+end
+
+on returnData me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 956 .......................... <p.dataList>
+  [  6] setlocal 0 .............................. tList = p.dataList
+  [  8] getlocal 0 .............................. <tList>
+  [ 10] pushsymb 1104 ........................... <#timer>
+  [ 13] getprop 563 ............................. <p>
+  [ 16] getobjprop 1104 ......................... <p.timer>
+  [ 19] pusharglistnoret 3 ...................... <tList, #timer, p.timer>
+  [ 21] objcall 103 ............................. tList[#timer] = p.timer
+  [ 23] getlocal 0 .............................. <tList>
+  [ 25] pushsymb 1090 ........................... <#elapsedTime>
+  [ 28] getprop 563 ............................. <p>
+  [ 31] getobjprop 1102 ......................... <p.channel>
+  [ 34] pusharglist 1 ........................... <p.channel>
+  [ 36] extcall 611 ............................. <sound(p.channel)>
+  [ 39] getobjprop 1090 ......................... <sound(p.channel).elapsedTime>
+  [ 42] pusharglistnoret 3 ...................... <tList, #elapsedTime, sound(p.channel).elapsedTime>
+  [ 44] objcall 103 ............................. tList[#elapsedTime] = sound(p.channel).elapsedTime
+  [ 46] getlocal 0 .............................. <tList>
+  [ 48] pusharglistnoret 1 ...................... <tList>
+  [ 50] extcall 52 .............................. return tList
+  [ 52] ret
+end
+
+on StopSound me, tState
+  [  0] getparam 1 .............................. <tState>
+  [  2] pushint8 1 .............................. <1>
+  [  4] eq ...................................... <tState = 1>
+  [  5] jmpifz [ 35] ............................ if tState = 1 then
+  [  8] getprop 563 ............................. <p>
+  [ 11] getobjprop 1102 ......................... <p.channel>
+  [ 14] pushcons 0 .............................. <"sound channel is to be stopped, because of a more important sound. Filename was: ">
+  [ 16] joinpadstr .............................. <p.channel && "sound channel is to be stopped, because of a more important sound. Filename was: ">
+  [ 17] getprop 563 ............................. <p>
+  [ 20] pushsymb 956 ............................ <#dataList>
+  [ 23] pushsymb 59 ............................. <#fileName>
+  [ 25] pusharglist 3 ........................... <p, #dataList, #fileName>
+  [ 27] objcall 70 .............................. <p.dataList[#fileName]>
+  [ 29] joinstr ................................. <p.channel && "sound channel is to be stopped, because of a more important sound. Filename was: " & p.dataList[#fileName]>
+  [ 30] pusharglistnoret 1 ...................... <p.channel && "sound channel is to be stopped, because of a more important sound. Filename was: " & p.dataList[#fileName]>
+  [ 32] extcall 511 ............................. ShowError(p.channel && "sound channel is to be stopped, because of a more important sound. Filename was: " & p.dataList[#fileName])
+  [ 35] getprop 563 ............................. <p>
+  [ 38] getobjprop 1102 ......................... <p.channel>
+  [ 41] pusharglist 1 ........................... <p.channel>
+  [ 43] extcall 611 ............................. <sound(p.channel)>
+  [ 46] pusharglist 0 ........................... <[]>
+  [ 48] pushlist ................................ <[]>
+  [ 49] pusharglistnoret 2 ...................... <sound(p.channel), []>
+  [ 51] objcall 1112 ............................ sound(p.channel).setPlayList([])
+  [ 54] getprop 563 ............................. <p>
+  [ 57] getobjprop 1102 ......................... <p.channel>
+  [ 60] pusharglist 1 ........................... <p.channel>
+  [ 62] extcall 611 ............................. <sound(p.channel)>
+  [ 65] pusharglistnoret 1 ...................... <sound(p.channel)>
+  [ 67] objcall 1067 ............................ sound(p.channel).stop()
+  [ 70] getparam 0 .............................. <me>
+  [ 72] pushfloat32 1.0 ......................... <1.0>
+  [ 77] pusharglistnoret 2 ...................... <me, 1.0>
+  [ 79] localcall 5 ............................. setVolume(me, 1.0)
+  [ 81] getparam 0 .............................. <me>
+  [ 83] pushfloat32 0.0 ......................... <0.0>
+  [ 88] pusharglistnoret 2 ...................... <me, 0.0>
+  [ 90] localcall 6 ............................. SetPan(me, 0.0)
+  [ 92] getglobal 291 ........................... <gSound>
+  [ 95] getchainedprop 1026 ..................... <gSound.EmptySoundChannels>
+  [ 98] getprop 563 ............................. <p>
+  [101] getobjprop 1102 ......................... <p.channel>
+  [104] pusharglistnoret 2 ...................... <gSound.EmptySoundChannels, p.channel>
+  [106] objcall 42 .............................. gSound.EmptySoundChannels.add(p.channel)
+  [108] getglobal 291 ........................... <gSound>
+  [111] pushsymb 1028 ........................... <#soundchannels>
+  [114] getprop 563 ............................. <p>
+  [117] getobjprop 1102 ......................... <p.channel>
+  [120] pusharglist 0 ........................... <>
+  [122] extcall 40 .............................. <VOID>
+  [124] pusharglistnoret 4 ...................... <gSound, #soundchannels, p.channel, VOID>
+  [126] objcall 99 .............................. gSound.soundchannels[p.channel] = VOID
+  [128] getglobal 291 ........................... <gSound>
+  [131] pushsymb 1029 ........................... <#DataSoundChannels>
+  [134] getprop 563 ............................. <p>
+  [137] getobjprop 1102 ......................... <p.channel>
+  [140] pusharglist 0 ........................... <>
+  [142] extcall 40 .............................. <VOID>
+  [144] pusharglistnoret 4 ...................... <gSound, #DataSoundChannels, p.channel, VOID>
+  [146] objcall 99 .............................. gSound.DataSoundChannels[p.channel] = VOID
+  [148] gettoplevelprop 33 ...................... <_movie>
+  [150] getchainedprop 41 ....................... <_movie.actorList>
+  [152] getprop 563 ............................. <p>
+  [155] getobjprop 45 ........................... <p.me>
+  [157] pusharglistnoret 2 ...................... <_movie.actorList, p.me>
+  [159] objcall 175 ............................. _movie.actorList.deleteOne(p.me)
+  [161] pusharglist 0 ........................... <>
+  [163] extcall 40 .............................. <VOID>
+  [165] pusharglistnoret 1 ...................... <VOID>
+  [167] extcall 52 .............................. return VOID
+  [169] ret
+end
+
+on deleteSoundInstance me
+  [  0] getparam 0 .............................. <me>
+  [  2] pusharglistnoret 1 ...................... <me>
+  [  4] objcall 746 ............................. me.StopSound()
+  [  7] ret
+end
+
+on setVolume me, tVolume
+  [  0] getparam 1 .............................. <tVolume>
+  [  2] getobjprop 122 .......................... <tVolume.ilk>
+  [  4] pushsymb 544 ............................ <#float>
+  [  7] nteq .................................... <tVolume.ilk <> #float>
+  [  8] jmpifz [ 59] ............................ if tVolume.ilk <> #float then
+  [ 11] getparam 1 .............................. <tVolume>
+  [ 13] getobjprop 122 .......................... <tVolume.ilk>
+  [ 15] pushsymb 123 ............................ <#integer>
+  [ 17] eq ...................................... <tVolume.ilk = #integer>
+  [ 18] jmpifz [ 35] ............................ if tVolume.ilk = #integer then
+  [ 21] getparam 1 .............................. <tVolume>
+  [ 23] pusharglist 1 ........................... <tVolume>
+  [ 25] extcall 544 ............................. <float(tVolume)>
+  [ 28] pusharglist 1 ........................... <float(tVolume)>
+  [ 30] extcall 973 ............................. <abs(float(tVolume))>
+  [ 33] setparam 1 .............................. tVolume = abs(float(tVolume))
+  [ 35] pushfloat32 0.0 ......................... <0.0>
+  [ 40] pushfloat32 1.0 ......................... <1.0>
+  [ 45] getparam 1 .............................. <tVolume>
+  [ 47] pusharglist 2 ........................... <1.0, tVolume>
+  [ 49] extcall 356 ............................. <min(1.0, tVolume)>
+  [ 52] pusharglist 2 ........................... <0.0, min(1.0, tVolume)>
+  [ 54] extcall 370 ............................. <max(0.0, min(1.0, tVolume))>
+  [ 57] setparam 1 .............................. tVolume = max(0.0, min(1.0, tVolume))
+  [ 59] getprop 563 ............................. <p>
+  [ 62] getobjprop 759 .......................... <p.Fade>
+  [ 65] pushsymb 54 ............................. <#none>
+  [ 67] eq ...................................... <p.Fade = #none>
+  [ 68] jmpifz [ 90] ............................ if p.Fade = #none then
+  [ 71] pushint16 255 ........................... <255>
+  [ 74] getparam 1 .............................. <tVolume>
+  [ 76] getglobal 291 ........................... <gSound>
+  [ 79] getobjprop 1022 ......................... <gSound.GeneralVolume>
+  [ 82] mul ..................................... <tVolume * gSound.GeneralVolume>
+  [ 83] mul ..................................... <255 * (tVolume * gSound.GeneralVolume)>
+  [ 84] pusharglist 1 ........................... <255 * (tVolume * gSound.GeneralVolume)>
+  [ 86] extcall 123 ............................. <integer(255 * (tVolume * gSound.GeneralVolume))>
+  [ 88] setparam 1 .............................. tVolume = integer(255 * (tVolume * gSound.GeneralVolume))
+  [ 90] pushzero ................................ <0>
+  [ 91] pushint16 255 ........................... <255>
+  [ 94] getparam 1 .............................. <tVolume>
+  [ 96] pusharglist 2 ........................... <255, tVolume>
+  [ 98] extcall 356 ............................. <min(255, tVolume)>
+  [101] pusharglist 2 ........................... <0, min(255, tVolume)>
+  [103] extcall 370 ............................. <max(0, min(255, tVolume))>
+  [106] setparam 1 .............................. tVolume = max(0, min(255, tVolume))
+  [108] getprop 563 ............................. <p>
+  [111] getobjprop 1102 ......................... <p.channel>
+  [114] pusharglist 1 ........................... <p.channel>
+  [116] extcall 611 ............................. <sound(p.channel)>
+  [119] getparam 1 .............................. <tVolume>
+  [121] setobjprop 1030 ......................... sound(p.channel).volume = tVolume
+  [124] ret
+end
+
+on SetPan me, tPan
+  [  0] getparam 1 .............................. <tPan>
+  [  2] getobjprop 122 .......................... <tPan.ilk>
+  [  4] pushsymb 544 ............................ <#float>
+  [  7] nteq .................................... <tPan.ilk <> #float>
+  [  8] jmpifz [ 55] ............................ if tPan.ilk <> #float then
+  [ 11] getparam 1 .............................. <tPan>
+  [ 13] getobjprop 122 .......................... <tPan.ilk>
+  [ 15] pushsymb 123 ............................ <#integer>
+  [ 17] eq ...................................... <tPan.ilk = #integer>
+  [ 18] jmpifz [ 30] ............................ if tPan.ilk = #integer then
+  [ 21] getparam 1 .............................. <tPan>
+  [ 23] pusharglist 1 ........................... <tPan>
+  [ 25] extcall 544 ............................. <float(tPan)>
+  [ 28] setparam 1 .............................. tPan = float(tPan)
+  [ 30] pushfloat32 1.0 ......................... <1.0>
+  [ 35] inv ..................................... <-1.0>
+  [ 36] pushfloat32 1.0 ......................... <1.0>
+  [ 41] getparam 1 .............................. <tPan>
+  [ 43] pusharglist 2 ........................... <1.0, tPan>
+  [ 45] extcall 356 ............................. <min(1.0, tPan)>
+  [ 48] pusharglist 2 ........................... <-1.0, min(1.0, tPan)>
+  [ 50] extcall 370 ............................. <max(-1.0, min(1.0, tPan))>
+  [ 53] setparam 1 .............................. tPan = max(-1.0, min(1.0, tPan))
+  [ 55] getparam 1 .............................. <tPan>
+  [ 57] pushint8 100 ............................ <100>
+  [ 59] mul ..................................... <tPan * 100>
+  [ 60] pusharglist 1 ........................... <tPan * 100>
+  [ 62] extcall 123 ............................. <integer(tPan * 100)>
+  [ 64] setparam 1 .............................. tPan = integer(tPan * 100)
+  [ 66] getprop 563 ............................. <p>
+  [ 69] getobjprop 1102 ......................... <p.channel>
+  [ 72] pusharglist 1 ........................... <p.channel>
+  [ 74] extcall 611 ............................. <sound(p.channel)>
+  [ 77] getparam 1 .............................. <tPan>
+  [ 79] setobjprop 1032 ......................... sound(p.channel).pan = tPan
+  [ 82] ret
+end
+
+on CheckFade me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 759 .......................... <p.Fade>
+  [  6] pushsymb 1114 ........................... <#out>
+  [  9] eq ...................................... <p.Fade = #out>
+  [ 10] getprop 563 ............................. <p>
+  [ 13] getobjprop 1102 ......................... <p.channel>
+  [ 16] pusharglist 1 ........................... <p.channel>
+  [ 18] extcall 611 ............................. <sound(p.channel)>
+  [ 21] getobjprop 1030 ......................... <sound(p.channel).volume>
+  [ 24] pushzero ................................ <0>
+  [ 25] eq ...................................... <sound(p.channel).volume = 0>
+  [ 26] and ..................................... <(p.Fade = #out) and (sound(p.channel).volume = 0)>
+  [ 27] jmpifz [ 37] ............................ if (p.Fade = #out) and (sound(p.channel).volume = 0) then
+  [ 30] getparam 0 .............................. <me>
+  [ 32] pusharglistnoret 1 ...................... <me>
+  [ 34] objcall 746 ............................. me.StopSound()
+  [ 37] getprop 563 ............................. <p>
+  [ 40] getobjprop 759 .......................... <p.Fade>
+  [ 43] pushsymb 1115 ........................... <#in>
+  [ 46] eq ...................................... <p.Fade = #in>
+  [ 47] getprop 563 ............................. <p>
+  [ 50] getobjprop 1102 ......................... <p.channel>
+  [ 53] pusharglist 1 ........................... <p.channel>
+  [ 55] extcall 611 ............................. <sound(p.channel)>
+  [ 58] getobjprop 1030 ......................... <sound(p.channel).volume>
+  [ 61] getprop 563 ............................. <p>
+  [ 64] getobjprop 1105 ......................... <p.StoredVolume>
+  [ 67] eq ...................................... <sound(p.channel).volume = p.StoredVolume>
+  [ 68] and ..................................... <(p.Fade = #in) and (sound(p.channel).volume = p.StoredVolume)>
+  [ 69] jmpifz [ 80] ............................ if (p.Fade = #in) and (sound(p.channel).volume = p.StoredVolume) then
+  [ 72] getprop 563 ............................. <p>
+  [ 75] pushsymb 54 ............................. <#none>
+  [ 77] setobjprop 759 .......................... p.Fade = #none
+  [ 80] getprop 563 ............................. <p>
+  [ 83] getobjprop 759 .......................... <p.Fade>
+  [ 86] pushsymb 1116 ........................... <#to>
+  [ 89] eq ...................................... <p.Fade = #to>
+  [ 90] getprop 563 ............................. <p>
+  [ 93] getobjprop 1102 ......................... <p.channel>
+  [ 96] pusharglist 1 ........................... <p.channel>
+  [ 98] extcall 611 ............................. <sound(p.channel)>
+  [101] getobjprop 1030 ......................... <sound(p.channel).volume>
+  [104] pushzero ................................ <0>
+  [105] eq ...................................... <sound(p.channel).volume = 0>
+  [106] and ..................................... <(p.Fade = #to) and (sound(p.channel).volume = 0)>
+  [107] jmpifz [118] ............................ if (p.Fade = #to) and (sound(p.channel).volume = 0) then
+  [110] getprop 563 ............................. <p>
+  [113] pushsymb 54 ............................. <#none>
+  [115] setobjprop 759 .......................... p.Fade = #none
+  [118] ret
+end
+
+on fadeOut me, tTime
+  [  0] getprop 563 ............................. <p>
+  [  3] pushsymb 1114 ........................... <#out>
+  [  6] setobjprop 759 .......................... p.Fade = #out
+  [  9] getprop 563 ............................. <p>
+  [ 12] getobjprop 1102 ......................... <p.channel>
+  [ 15] pusharglist 1 ........................... <p.channel>
+  [ 17] extcall 611 ............................. <sound(p.channel)>
+  [ 20] getparam 1 .............................. <tTime>
+  [ 22] pusharglistnoret 2 ...................... <sound(p.channel), tTime>
+  [ 24] objcall 1077 ............................ sound(p.channel).fadeOut(tTime)
+  [ 27] ret
+end
+
+on fadeIn me, tTime
+  [  0] getprop 563 ............................. <p>
+  [  3] pushsymb 1115 ........................... <#in>
+  [  6] setobjprop 759 .......................... p.Fade = #in
+  [  9] getprop 563 ............................. <p>
+  [ 12] getprop 563 ............................. <p>
+  [ 15] getobjprop 1102 ......................... <p.channel>
+  [ 18] pusharglist 1 ........................... <p.channel>
+  [ 20] extcall 611 ............................. <sound(p.channel)>
+  [ 23] getobjprop 1030 ......................... <sound(p.channel).volume>
+  [ 26] setobjprop 1105 ......................... p.StoredVolume = sound(p.channel).volume
+  [ 29] getprop 563 ............................. <p>
+  [ 32] getobjprop 1102 ......................... <p.channel>
+  [ 35] pusharglist 1 ........................... <p.channel>
+  [ 37] extcall 611 ............................. <sound(p.channel)>
+  [ 40] getparam 1 .............................. <tTime>
+  [ 42] pusharglistnoret 2 ...................... <sound(p.channel), tTime>
+  [ 44] objcall 1078 ............................ sound(p.channel).fadeIn(tTime)
+  [ 47] ret
+end
+
+on fadeTo me, tTime, tVolume
+  [  0] getprop 563 ............................. <p>
+  [  3] pushsymb 1116 ........................... <#to>
+  [  6] setobjprop 759 .......................... p.Fade = #to
+  [  9] pushint16 255 ........................... <255>
+  [ 12] getparam 2 .............................. <tVolume>
+  [ 14] getglobal 291 ........................... <gSound>
+  [ 17] getobjprop 1022 ......................... <gSound.GeneralVolume>
+  [ 20] mul ..................................... <tVolume * gSound.GeneralVolume>
+  [ 21] pusharglist 1 ........................... <tVolume * gSound.GeneralVolume>
+  [ 23] extcall 123 ............................. <integer(tVolume * gSound.GeneralVolume)>
+  [ 25] mul ..................................... <255 * integer(tVolume * gSound.GeneralVolume)>
+  [ 26] setparam 2 .............................. tVolume = 255 * integer(tVolume * gSound.GeneralVolume)
+  [ 28] pushzero ................................ <0>
+  [ 29] pushint16 255 ........................... <255>
+  [ 32] getparam 2 .............................. <tVolume>
+  [ 34] pusharglist 2 ........................... <255, tVolume>
+  [ 36] extcall 356 ............................. <min(255, tVolume)>
+  [ 39] pusharglist 2 ........................... <0, min(255, tVolume)>
+  [ 41] extcall 370 ............................. <max(0, min(255, tVolume))>
+  [ 44] setparam 2 .............................. tVolume = max(0, min(255, tVolume))
+  [ 46] getprop 563 ............................. <p>
+  [ 49] getparam 2 .............................. <tVolume>
+  [ 51] setobjprop 1105 ......................... p.StoredVolume = tVolume
+  [ 54] getprop 563 ............................. <p>
+  [ 57] getobjprop 1102 ......................... <p.channel>
+  [ 60] pusharglist 1 ........................... <p.channel>
+  [ 62] extcall 611 ............................. <sound(p.channel)>
+  [ 65] getparam 2 .............................. <tVolume>
+  [ 67] getparam 1 .............................. <tTime>
+  [ 69] pusharglistnoret 3 ...................... <sound(p.channel), tVolume, tTime>
+  [ 71] objcall 1100 ............................ sound(p.channel).fadeTo(tVolume, tTime)
+  [ 74] ret
+end
+
+on UpdateSurroundSound me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 93 ........................... <p.target>
+  [  5] pusharglist 0 ........................... <>
+  [  7] extcall 40 .............................. <VOID>
+  [  9] eq ...................................... <p.target = VOID>
+  [ 10] getprop 563 ............................. <p>
+  [ 13] getobjprop 1107 ......................... <p.Reference>
+  [ 16] pusharglist 0 ........................... <>
+  [ 18] extcall 40 .............................. <VOID>
+  [ 20] eq ...................................... <p.Reference = VOID>
+  [ 21] or ...................................... <(p.target = VOID) or (p.Reference = VOID)>
+  [ 22] jmpifz [ 41] ............................ if (p.target = VOID) or (p.Reference = VOID) then
+  [ 25] getprop 563 ............................. <p>
+  [ 28] getobjprop 1055 ......................... <p.static>
+  [ 31] pushzero ................................ <0>
+  [ 32] eq ...................................... <p.static = 0>
+  [ 33] jmpifz [ 41] ............................ if p.static = 0 then
+  [ 36] pusharglistnoret 0 ...................... <>
+  [ 38] localcall 3 ............................. StopSound()
+  [ 40] ret ..................................... exit
+  [ 41] getprop 563 ............................. <p>
+  [ 44] getobjprop 1055 ......................... <p.static>
+  [ 47] pushint8 1 .............................. <1>
+  [ 49] eq ...................................... <p.static = 1>
+  [ 50] jmpifz [ 66] ............................ if p.static = 1 then / else
+  [ 53] getprop 563 ............................. <p>
+  [ 56] getchainedprop 1108 ..................... <p.StaticTransform>
+  [ 59] getobjprop 215 .......................... <p.StaticTransform.position>
+  [ 61] setlocal 0 .............................. tPos1 = p.StaticTransform.position
+  [ 63] jmp [ 80]
+  [ 66] getprop 563 ............................. <p>
+  [ 69] getchainedprop 93 ....................... <p.target>
+  [ 71] pusharglist 1 ........................... <p.target>
+  [ 73] objcall 1109 ............................ <p.target.getWorldTransform()>
+  [ 76] getobjprop 215 .......................... <p.target.getWorldTransform().position>
+  [ 78] setlocal 0 .............................. tPos1 = p.target.getWorldTransform().position
+  [ 80] getprop 563 ............................. <p>
+  [ 83] getchainedprop 1107 ..................... <p.Reference>
+  [ 86] pusharglist 1 ........................... <p.Reference>
+  [ 88] objcall 1109 ............................ <p.Reference.getWorldTransform()>
+  [ 91] getobjprop 215 .......................... <p.Reference.getWorldTransform().position>
+  [ 93] setlocal 1 .............................. tPos2 = p.Reference.getWorldTransform().position
+  [ 95] getlocal 0 .............................. <tPos1>
+  [ 97] getlocal 1 .............................. <tPos2>
+  [ 99] pusharglist 2 ........................... <tPos1, tPos2>
+  [101] objcall 1117 ............................ <tPos1.distanceTo(tPos2)>
+  [104] setlocal 2 .............................. tDistance = tPos1.distanceTo(tPos2)
+  [106] getlocal 2 .............................. <tDistance>
+  [108] getprop 563 ............................. <p>
+  [111] pushsymb 1054 ........................... <#distance>
+  [114] pushint8 1 .............................. <1>
+  [116] pusharglist 3 ........................... <p, #distance, 1>
+  [118] objcall 70 .............................. <p.distance[1]>
+  [120] sub ..................................... <tDistance - p.distance[1]>
+  [121] getprop 563 ............................. <p>
+  [124] pushsymb 1054 ........................... <#distance>
+  [127] pushint8 2 .............................. <2>
+  [129] pusharglist 3 ........................... <p, #distance, 2>
+  [131] objcall 70 .............................. <p.distance[2]>
+  [133] getprop 563 ............................. <p>
+  [136] pushsymb 1054 ........................... <#distance>
+  [139] pushint8 1 .............................. <1>
+  [141] pusharglist 3 ........................... <p, #distance, 1>
+  [143] objcall 70 .............................. <p.distance[1]>
+  [145] sub ..................................... <p.distance[2] - p.distance[1]>
+  [146] div ..................................... <(tDistance - p.distance[1]) / (p.distance[2] - p.distance[1])>
+  [147] pusharglist 1 ........................... <(tDistance - p.distance[1]) / (p.distance[2] - p.distance[1])>
+  [149] extcall 973 ............................. <abs((tDistance - p.distance[1]) / (p.distance[2] - p.distance[1]))>
+  [152] setlocal 3 .............................. tPercentage = abs((tDistance - p.distance[1]) / (p.distance[2] - p.distance[1]))
+  [154] getlocal 2 .............................. <tDistance>
+  [156] getprop 563 ............................. <p>
+  [159] pushsymb 1054 ........................... <#distance>
+  [162] pushint8 1 .............................. <1>
+  [164] pusharglist 3 ........................... <p, #distance, 1>
+  [166] objcall 70 .............................. <p.distance[1]>
+  [168] gteq .................................... <tDistance >= p.distance[1]>
+  [169] getlocal 2 .............................. <tDistance>
+  [171] getprop 563 ............................. <p>
+  [174] pushsymb 1054 ........................... <#distance>
+  [177] pushint8 2 .............................. <2>
+  [179] pusharglist 3 ........................... <p, #distance, 2>
+  [181] objcall 70 .............................. <p.distance[2]>
+  [183] lteq .................................... <tDistance <= p.distance[2]>
+  [184] and ..................................... <(tDistance >= p.distance[1]) and (tDistance <= p.distance[2])>
+  [185] jmpifz [201] ............................ if (tDistance >= p.distance[1]) and (tDistance <= p.distance[2]) then / else
+  [188] pushfloat32 1.0 ......................... <1.0>
+  [193] getlocal 3 .............................. <tPercentage>
+  [195] sub ..................................... <1.0 - tPercentage>
+  [196] setlocal 4 .............................. tVolume = 1.0 - tPercentage
+  [198] jmp [251]
+  [201] getlocal 2 .............................. <tDistance>
+  [203] getprop 563 ............................. <p>
+  [206] pushsymb 1054 ........................... <#distance>
+  [209] pushint8 2 .............................. <2>
+  [211] pusharglist 3 ........................... <p, #distance, 2>
+  [213] objcall 70 .............................. <p.distance[2]>
+  [215] gteq .................................... <tDistance >= p.distance[2]>
+  [216] jmpifz [226] ............................ if tDistance >= p.distance[2] then
+  [219] pushfloat32 0.0 ......................... <0.0>
+  [224] setlocal 4 .............................. tVolume = 0.0
+  [226] getlocal 2 .............................. <tDistance>
+  [228] getprop 563 ............................. <p>
+  [231] pushsymb 1054 ........................... <#distance>
+  [234] pushint8 1 .............................. <1>
+  [236] pusharglist 3 ........................... <p, #distance, 1>
+  [238] objcall 70 .............................. <p.distance[1]>
+  [240] lteq .................................... <tDistance <= p.distance[1]>
+  [241] jmpifz [251] ............................ if tDistance <= p.distance[1] then
+  [244] pushfloat32 1.0 ......................... <1.0>
+  [249] setlocal 4 .............................. tVolume = 1.0
+  [251] getlocal 4 .............................. <tVolume>
+  [253] setlocal 5 .............................. tVOlumeBefore = tVolume
+  [255] pushfloat32 0.0 ......................... <0.0>
+  [260] pushfloat32 1.0 ......................... <1.0>
+  [265] getlocal 4 .............................. <tVolume>
+  [267] pusharglist 2 ........................... <1.0, tVolume>
+  [269] extcall 356 ............................. <min(1.0, tVolume)>
+  [272] pusharglist 2 ........................... <0.0, min(1.0, tVolume)>
+  [274] extcall 370 ............................. <max(0.0, min(1.0, tVolume))>
+  [277] setlocal 4 .............................. tVolume = max(0.0, min(1.0, tVolume))
+  [279] getparam 0 .............................. <me>
+  [281] getlocal 4 .............................. <tVolume>
+  [283] pusharglistnoret 2 ...................... <me, tVolume>
+  [285] localcall 5 ............................. setVolume(me, tVolume)
+  [287] getprop 563 ............................. <p>
+  [290] getobjprop 1055 ......................... <p.static>
+  [293] pushint8 1 .............................. <1>
+  [295] eq ...................................... <p.static = 1>
+  [296] jmpifz [310] ............................ if p.static = 1 then / else
+  [299] getprop 563 ............................. <p>
+  [302] getobjprop 1108 ......................... <p.StaticTransform>
+  [305] setlocal 6 .............................. tTransform = p.StaticTransform
+  [307] jmp [319]
+  [310] getprop 563 ............................. <p>
+  [313] getchainedprop 93 ....................... <p.target>
+  [315] getobjprop 214 .......................... <p.target.transform>
+  [317] setlocal 6 .............................. tTransform = p.target.transform
+  [319] getlocal 6 .............................. <tTransform>
+  [321] getprop 563 ............................. <p>
+  [324] getchainedprop 1107 ..................... <p.Reference>
+  [327] getobjprop 214 .......................... <p.Reference.transform>
+  [329] pusharglist 2 ........................... <tTransform, p.Reference.transform>
+  [331] extcall 1118 ............................ <LeftOrRight(tTransform, p.Reference.transform)>
+  [334] setlocal 7 .............................. tLeft = LeftOrRight(tTransform, p.Reference.transform)
+  [336] getlocal 7 .............................. <tLeft>
+  [338] pushint8 2 .............................. <2>
+  [340] pusharglist 2 ........................... <tLeft, 2>
+  [342] objcall 105 ............................. <tLeft[2]>
+  [344] setlocal 8 .............................. tPan = tLeft[2]
+  [346] pushfloat32 1.0 ......................... <1.0>
+  [351] inv ..................................... <-1.0>
+  [352] pushfloat32 1.0 ......................... <1.0>
+  [357] getlocal 8 .............................. <tPan>
+  [359] pusharglist 2 ........................... <1.0, tPan>
+  [361] extcall 356 ............................. <min(1.0, tPan)>
+  [364] pusharglist 2 ........................... <-1.0, min(1.0, tPan)>
+  [366] extcall 370 ............................. <max(-1.0, min(1.0, tPan))>
+  [369] setlocal 8 .............................. tPan = max(-1.0, min(1.0, tPan))
+  [371] getparam 0 .............................. <me>
+  [373] getlocal 8 .............................. <tPan>
+  [375] pusharglistnoret 2 ...................... <me, tPan>
+  [377] localcall 6 ............................. SetPan(me, tPan)
+  [379] ret
+end

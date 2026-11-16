@@ -1,0 +1,620 @@
+property p
+global gSystem, gGame
+
+on new me, t, tPod
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 64 ............................. <#member>
+  [ 11] getparam 1 .............................. <t>
+  [ 13] getchainedprop 376 ...................... <t.general>
+  [ 16] getobjprop 64 ........................... <t.general.member>
+  [ 18] pusharglistnoret 3 ...................... <p, #member, t.general.member>
+  [ 20] objcall 103 ............................. p[#member] = t.general.member
+  [ 22] getprop 563 ............................. <p>
+  [ 25] pushsymb 1049 ........................... <#sender>
+  [ 28] getparam 1 .............................. <t>
+  [ 30] getchainedprop 376 ...................... <t.general>
+  [ 33] getobjprop 377 .......................... <t.general.tag>
+  [ 36] pusharglistnoret 3 ...................... <p, #sender, t.general.tag>
+  [ 38] objcall 103 ............................. p[#sender] = t.general.tag
+  [ 40] getprop 563 ............................. <p>
+  [ 43] pushsymb 71 ............................. <#model>
+  [ 45] getparam 1 .............................. <t>
+  [ 47] getchainedprop 250 ...................... <t.car>
+  [ 49] getobjprop 71 ........................... <t.car.model>
+  [ 51] pusharglistnoret 3 ...................... <p, #model, t.car.model>
+  [ 53] objcall 103 ............................. p[#model] = t.car.model
+  [ 55] getprop 563 ............................. <p>
+  [ 58] pushsymb 45 ............................. <#me>
+  [ 60] getparam 0 .............................. <me>
+  [ 62] pusharglistnoret 3 ...................... <p, #me, me>
+  [ 64] objcall 103 ............................. p[#me] = me
+  [ 66] getprop 563 ............................. <p>
+  [ 69] pushsymb 2469 ........................... <#BeaconName>
+  [ 72] getprop 563 ............................. <p>
+  [ 75] getobjprop 1049 ......................... <p.sender>
+  [ 78] pusharglist 1 ........................... <p.sender>
+  [ 80] extcall 67 .............................. <string(p.sender)>
+  [ 82] pushcons 0 .............................. <"AirstrikeBeacon">
+  [ 84] joinstr ................................. <string(p.sender) & "AirstrikeBeacon">
+  [ 85] gettoplevelprop 462 ..................... <_system>
+  [ 88] getobjprop 463 .......................... <_system.milliSeconds>
+  [ 91] joinstr ................................. <string(p.sender) & "AirstrikeBeacon" & _system.milliSeconds>
+  [ 92] pusharglistnoret 3 ...................... <p, #BeaconName, string(p.sender) & "AirstrikeBeacon" & _system.milliSeconds>
+  [ 94] objcall 103 ............................. p[#BeaconName] = string(p.sender) & "AirstrikeBeacon" & _system.milliSeconds
+  [ 96] getprop 563 ............................. <p>
+  [ 99] pushsymb 2470 ........................... <#Beacon>
+  [102] getprop 563 ............................. <p>
+  [105] getchainedprop 64 ....................... <p.member>
+  [107] getprop 563 ............................. <p>
+  [110] getobjprop 2469 ......................... <p.BeaconName>
+  [113] getprop 563 ............................. <p>
+  [116] getchainedprop 64 ....................... <p.member>
+  [118] pushcons 0 .............................. <"AirstrikeBeacon">
+  [120] pusharglist 2 ........................... <p.member, "AirstrikeBeacon">
+  [122] objcall 72 .............................. <p.member.modelResource("AirstrikeBeacon")>
+  [124] pusharglist 3 ........................... <p.member, p.BeaconName, p.member.modelResource("AirstrikeBeacon")>
+  [126] objcall 892 ............................. <p.member.newModel(p.BeaconName, p.member.modelResource("AirstrikeBeacon"))>
+  [129] pusharglistnoret 3 ...................... <p, #Beacon, p.member.newModel(p.BeaconName, p.member.modelResource("AirstrikeBeacon"))>
+  [131] objcall 103 ............................. p[#Beacon] = p.member.newModel(p.BeaconName, p.member.modelResource("AirstrikeBeacon"))
+  [133] getprop 563 ............................. <p>
+  [136] getchainedprop 2470 ..................... <p.Beacon>
+  [139] getprop 563 ............................. <p>
+  [142] getchainedprop 64 ....................... <p.member>
+  [144] pushcons 0 .............................. <"AirstrikeBeacon">
+  [146] pusharglist 2 ........................... <p.member, "AirstrikeBeacon">
+  [148] objcall 71 .............................. <p.member.model("AirstrikeBeacon")>
+  [150] getobjprop 208 .......................... <p.member.model("AirstrikeBeacon").shader>
+  [152] setobjprop 208 .......................... p.Beacon.shader = p.member.model("AirstrikeBeacon").shader
+  [154] getprop 563 ............................. <p>
+  [157] getchainedprop 2470 ..................... <p.Beacon>
+  [160] pushfloat32 0.0 ......................... <0.0>
+  [165] pushfloat32 0.0 ......................... <0.0>
+  [170] pushfloat32 1.0 ......................... <1.0>
+  [175] pusharglist 3 ........................... <0.0, 0.0, 1.0>
+  [177] extcall 212 ............................. <vector(0.0, 0.0, 1.0)>
+  [179] pushfloat32 0.0 ......................... <0.0>
+  [184] pushfloat32 1.0 ......................... <1.0>
+  [189] pushfloat32 0.0 ......................... <0.0>
+  [194] pusharglist 3 ........................... <0.0, 1.0, 0.0>
+  [196] extcall 212 ............................. <vector(0.0, 1.0, 0.0)>
+  [198] pusharglist 2 ........................... <[vector(0.0, 0.0, 1.0), vector(0.0, 1.0, 0.0)]>
+  [200] pushlist ................................ <[vector(0.0, 0.0, 1.0), vector(0.0, 1.0, 0.0)]>
+  [201] setobjprop 1172 ......................... p.Beacon.pointAtOrientation = [vector(0.0, 0.0, 1.0), vector(0.0, 1.0, 0.0)]
+  [204] getparam 1 .............................. <t>
+  [206] getchainedprop 250 ...................... <t.car>
+  [208] getchainedprop 1667 ..................... <t.car.Effects>
+  [211] pushsymb 1909 ........................... <#secondary>
+  [214] pushint8 1 .............................. <1>
+  [216] pusharglist 3 ........................... <t.car.Effects, #secondary, 1>
+  [218] objcall 102 ............................. <t.car.Effects.secondary[1]>
+  [220] pusharglist 1 ........................... <t.car.Effects.secondary[1]>
+  [222] objcall 1109 ............................ <t.car.Effects.secondary[1].getWorldTransform()>
+  [225] pusharglist 1 ........................... <t.car.Effects.secondary[1].getWorldTransform()>
+  [227] objcall 233 ............................. <t.car.Effects.secondary[1].getWorldTransform().duplicate()>
+  [229] setlocal 0 .............................. tTransform = t.car.Effects.secondary[1].getWorldTransform().duplicate()
+  [231] getprop 563 ............................. <p>
+  [234] getchainedprop 2470 ..................... <p.Beacon>
+  [237] getlocal 0 .............................. <tTransform>
+  [239] setobjprop 214 .......................... p.Beacon.transform = tTransform
+  [241] getprop 563 ............................. <p>
+  [244] pushsymb 2467 ........................... <#Stuck>
+  [247] pushzero ................................ <0>
+  [248] pusharglistnoret 3 ...................... <p, #Stuck, 0>
+  [250] objcall 103 ............................. p[#Stuck] = 0
+  [252] getprop 563 ............................. <p>
+  [255] pushsymb 2018 ........................... <#Speed>
+  [258] pushfloat32 5.0 ......................... <5.0>
+  [263] pusharglistnoret 3 ...................... <p, #Speed, 5.0>
+  [265] objcall 103 ............................. p[#Speed] = 5.0
+  [267] getprop 563 ............................. <p>
+  [270] pushsymb 1307 ........................... <#gravity>
+  [273] pushcons 1 .............................. <0.07000000000000001>
+  [275] inv ..................................... <-0.07000000000000001>
+  [276] pusharglistnoret 3 ...................... <p, #gravity, -0.07000000000000001>
+  [278] objcall 103 ............................. p[#gravity] = -0.07000000000000001
+  [280] getprop 563 ............................. <p>
+  [283] pushsymb 1162 ........................... <#rotation>
+  [286] pushint8 25 ............................. <25>
+  [288] pusharglistnoret 3 ...................... <p, #rotation, 25>
+  [290] objcall 103 ............................. p[#rotation] = 25
+  [292] getprop 563 ............................. <p>
+  [295] pushsymb 1054 ........................... <#distance>
+  [298] pushzero ................................ <0>
+  [299] pusharglistnoret 3 ...................... <p, #distance, 0>
+  [301] objcall 103 ............................. p[#distance] = 0
+  [303] getprop 563 ............................. <p>
+  [306] pushsymb 2471 ........................... <#Bombs>
+  [309] pushint8 12 ............................. <12>
+  [311] pusharglistnoret 3 ...................... <p, #Bombs, 12>
+  [313] objcall 103 ............................. p[#Bombs] = 12
+  [315] getprop 563 ............................. <p>
+  [318] pushsymb 2472 ........................... <#TargetList>
+  [321] pusharglist 0 ........................... <[]>
+  [323] pushlist ................................ <[]>
+  [324] pusharglistnoret 3 ...................... <p, #TargetList, []>
+  [326] objcall 103 ............................. p[#TargetList] = []
+  [328] getprop 563 ............................. <p>
+  [331] pushsymb 546 ............................ <#Counter>
+  [334] pushfloat32 5.0 ......................... <5.0>
+  [339] pusharglistnoret 3 ...................... <p, #Counter, 5.0>
+  [341] objcall 103 ............................. p[#Counter] = 5.0
+  [343] pushcons 2 .............................. <"RocketPodLaunch_SFX">
+  [345] pushsymb 1047 ........................... <#priority>
+  [348] pushsymb 1048 ........................... <#low>
+  [351] pushsymb 1050 ........................... <#surround>
+  [354] pushint8 1 .............................. <1>
+  [356] pushsymb 1051 ........................... <#member3DName>
+  [359] getglobal 43 ............................ <gGame>
+  [361] getchainedprop 64 ....................... <gGame.member>
+  [363] getobjprop 235 .......................... <gGame.member.name>
+  [365] pushsymb 1049 ........................... <#sender>
+  [368] getparam 1 .............................. <t>
+  [370] getchainedprop 250 ...................... <t.car>
+  [372] getchainedprop 2068 ..................... <t.car.Proxy>
+  [375] getobjprop 235 .......................... <t.car.Proxy.name>
+  [377] pushsymb 1052 ........................... <#targetName>
+  [380] getparam 1 .............................. <t>
+  [382] getchainedprop 250 ...................... <t.car>
+  [384] getchainedprop 2068 ..................... <t.car.Proxy>
+  [387] getobjprop 235 .......................... <t.car.Proxy.name>
+  [389] pushsymb 1053 ........................... <#referenceName>
+  [392] pushcons 3 .............................. <"Player1_Camera">
+  [394] pushsymb 1054 ........................... <#distance>
+  [397] pushint8 20 ............................. <20>
+  [399] pushint16 200 ........................... <200>
+  [402] pusharglist 2 ........................... <[20, 200]>
+  [404] pushlist ................................ <[20, 200]>
+  [405] pushsymb 1055 ........................... <#static>
+  [408] pushzero ................................ <0>
+  [409] pushsymb 1056 ........................... <#Override>
+  [412] pushint8 1 .............................. <1>
+  [414] pusharglist 18 .......................... <[#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: t.car.Proxy.name, #targetName: t.car.Proxy.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 0, #Override: 1]>
+  [416] pushproplist ............................ <[#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: t.car.Proxy.name, #targetName: t.car.Proxy.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 0, #Override: 1]>
+  [417] pusharglistnoret 2 ...................... <"RocketPodLaunch_SFX", [#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: t.car.Proxy.name, #targetName: t.car.Proxy.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 0, #Override: 1]>
+  [419] extcall 289 ............................. PlaySound("RocketPodLaunch_SFX", [#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: t.car.Proxy.name, #targetName: t.car.Proxy.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 0, #Override: 1])
+  [422] getparam 0 .............................. <me>
+  [424] pusharglistnoret 1 ...................... <me>
+  [426] extcall 52 .............................. return me
+  [428] ret
+end
+
+on enterFrame me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getobjprop 392 .......................... <gGame.pause>
+  [  5] pushint8 1 .............................. <1>
+  [  7] eq ...................................... <gGame.pause = 1>
+  [  8] jmpifz [ 12] ............................ if gGame.pause = 1 then
+  [ 11] ret ..................................... exit
+  [ 12] getprop 563 ............................. <p>
+  [ 15] getobjprop 2467 ......................... <p.Stuck>
+  [ 18] pushzero ................................ <0>
+  [ 19] eq ...................................... <p.Stuck = 0>
+  [ 20] jmpifz [237] ............................ if p.Stuck = 0 then / else
+  [ 23] getprop 563 ............................. <p>
+  [ 26] getchainedprop 2470 ..................... <p.Beacon>
+  [ 29] pushzero ................................ <0>
+  [ 30] getprop 563 ............................. <p>
+  [ 33] getobjprop 2018 ......................... <p.Speed>
+  [ 36] getglobal 43 ............................ <gGame>
+  [ 38] getobjprop 454 .......................... <gGame.TimeMP>
+  [ 41] mul ..................................... <p.Speed * gGame.TimeMP>
+  [ 42] getprop 563 ............................. <p>
+  [ 45] getobjprop 1307 ......................... <p.gravity>
+  [ 48] getglobal 43 ............................ <gGame>
+  [ 50] getobjprop 454 .......................... <gGame.TimeMP>
+  [ 53] mul ..................................... <p.gravity * gGame.TimeMP>
+  [ 54] pushsymb 1370 ........................... <#self>
+  [ 57] pusharglistnoret 5 ...................... <p.Beacon, 0, p.Speed * gGame.TimeMP, p.gravity * gGame.TimeMP, #self>
+  [ 59] objcall 1371 ............................ p.Beacon.translate(0, p.Speed * gGame.TimeMP, p.gravity * gGame.TimeMP, #self)
+  [ 62] getprop 563 ............................. <p>
+  [ 65] getprop 563 ............................. <p>
+  [ 68] getobjprop 1054 ......................... <p.distance>
+  [ 71] getprop 563 ............................. <p>
+  [ 74] getobjprop 2018 ......................... <p.Speed>
+  [ 77] getglobal 43 ............................ <gGame>
+  [ 79] getobjprop 454 .......................... <gGame.TimeMP>
+  [ 82] mul ..................................... <p.Speed * gGame.TimeMP>
+  [ 83] add ..................................... <p.distance + (p.Speed * gGame.TimeMP)>
+  [ 84] setobjprop 1054 ......................... p.distance = p.distance + (p.Speed * gGame.TimeMP)
+  [ 87] getprop 563 ............................. <p>
+  [ 90] getchainedprop 2470 ..................... <p.Beacon>
+  [ 93] getobjprop 214 .......................... <p.Beacon.transform>
+  [ 95] setlocal 0 .............................. tTransform = p.Beacon.transform
+  [ 97] getglobal 43 ............................ <gGame>
+  [ 99] getchainedprop 1389 ..................... <gGame.Physics>
+  [102] getlocal 0 .............................. <tTransform>
+  [104] getobjprop 215 .......................... <tTransform.position>
+  [106] getlocal 0 .............................. <tTransform>
+  [108] getobjprop 1187 ......................... <tTransform.yAxis>
+  [111] pusharglist 3 ........................... <gGame.Physics, tTransform.position, tTransform.yAxis>
+  [113] objcall 2095 ............................ <gGame.Physics.rayCastClosest(tTransform.position, tTransform.yAxis)>
+  [116] setlocal 1 .............................. tDetails1 = gGame.Physics.rayCastClosest(tTransform.position, tTransform.yAxis)
+  [118] getglobal 43 ............................ <gGame>
+  [120] getchainedprop 1389 ..................... <gGame.Physics>
+  [123] getlocal 0 .............................. <tTransform>
+  [125] getobjprop 215 .......................... <tTransform.position>
+  [127] pushcons 4 .............................. <0.0001>
+  [129] pushcons 4 .............................. <0.0001>
+  [131] pushcons 5 .............................. <1.00009999999999999>
+  [133] inv ..................................... <-1.00009999999999999>
+  [134] pusharglist 3 ........................... <0.0001, 0.0001, -1.00009999999999999>
+  [136] extcall 212 ............................. <vector(0.0001, 0.0001, -1.00009999999999999)>
+  [138] pusharglist 3 ........................... <gGame.Physics, tTransform.position, vector(0.0001, 0.0001, -1.00009999999999999)>
+  [140] objcall 2095 ............................ <gGame.Physics.rayCastClosest(tTransform.position, vector(0.0001, 0.0001, -1.00009999999999999))>
+  [143] setlocal 2 .............................. tDetails2 = gGame.Physics.rayCastClosest(tTransform.position, vector(0.0001, 0.0001, -1.00009999999999999))
+  [145] getlocal 1 .............................. <tDetails1>
+  [147] getobjprop 129 .......................... <tDetails1.count>
+  [149] pushzero ................................ <0>
+  [150] gt ...................................... <tDetails1.count > 0>
+  [151] jmpifz [193] ............................ if tDetails1.count > 0 then
+  [154] getlocal 1 .............................. <tDetails1>
+  [156] pushint8 4 .............................. <4>
+  [158] pusharglist 2 ........................... <tDetails1, 4>
+  [160] objcall 105 ............................. <tDetails1[4]>
+  [162] pushfloat32 0.5 ......................... <0.5>
+  [167] getprop 563 ............................. <p>
+  [170] getobjprop 2018 ......................... <p.Speed>
+  [173] getglobal 43 ............................ <gGame>
+  [175] getobjprop 454 .......................... <gGame.TimeMP>
+  [178] mul ..................................... <p.Speed * gGame.TimeMP>
+  [179] add ..................................... <0.5 + (p.Speed * gGame.TimeMP)>
+  [180] lt ...................................... <tDetails1[4] < (0.5 + (p.Speed * gGame.TimeMP))>
+  [181] jmpifz [193] ............................ if tDetails1[4] < (0.5 + (p.Speed * gGame.TimeMP)) then
+  [184] getparam 0 .............................. <me>
+  [186] getlocal 1 .............................. <tDetails1>
+  [188] pusharglistnoret 2 ...................... <me, tDetails1>
+  [190] objcall 2467 ............................ me.Stuck(tDetails1)
+  [193] getlocal 2 .............................. <tDetails2>
+  [195] getobjprop 129 .......................... <tDetails2.count>
+  [197] pushzero ................................ <0>
+  [198] gt ...................................... <tDetails2.count > 0>
+  [199] getprop 563 ............................. <p>
+  [202] getobjprop 2467 ......................... <p.Stuck>
+  [205] pushzero ................................ <0>
+  [206] eq ...................................... <p.Stuck = 0>
+  [207] and ..................................... <(tDetails2.count > 0) and (p.Stuck = 0)>
+  [208] jmpifz [234] ............................ if (tDetails2.count > 0) and (p.Stuck = 0) then
+  [211] getlocal 2 .............................. <tDetails2>
+  [213] pushint8 4 .............................. <4>
+  [215] pusharglist 2 ........................... <tDetails2, 4>
+  [217] objcall 105 ............................. <tDetails2[4]>
+  [219] pushcons 6 .............................. <0.20000000000000001>
+  [221] lt ...................................... <tDetails2[4] < 0.20000000000000001>
+  [222] jmpifz [234] ............................ if tDetails2[4] < 0.20000000000000001 then
+  [225] getparam 0 .............................. <me>
+  [227] getlocal 2 .............................. <tDetails2>
+  [229] pusharglistnoret 2 ...................... <me, tDetails2>
+  [231] objcall 2467 ............................ me.Stuck(tDetails2)
+  [234] jmp [522]
+  [237] getprop 563 ............................. <p>
+  [240] getprop 563 ............................. <p>
+  [243] getobjprop 546 .......................... <p.Counter>
+  [246] pushint8 1 .............................. <1>
+  [248] getglobal 43 ............................ <gGame>
+  [250] getobjprop 454 .......................... <gGame.TimeMP>
+  [253] mul ..................................... <1 * gGame.TimeMP>
+  [254] sub ..................................... <p.Counter - (1 * gGame.TimeMP)>
+  [255] setobjprop 546 .......................... p.Counter = p.Counter - (1 * gGame.TimeMP)
+  [258] getprop 563 ............................. <p>
+  [261] getobjprop 2471 ......................... <p.Bombs>
+  [264] pushzero ................................ <0>
+  [265] gt ...................................... <p.Bombs > 0>
+  [266] getprop 563 ............................. <p>
+  [269] getobjprop 546 .......................... <p.Counter>
+  [272] pushzero ................................ <0>
+  [273] eq ...................................... <p.Counter = 0>
+  [274] and ..................................... <(p.Bombs > 0) and (p.Counter = 0)>
+  [275] jmpifz [522] ............................ if (p.Bombs > 0) and (p.Counter = 0) then
+  [278] getprop 563 ............................. <p>
+  [281] pushsymb 2472 ........................... <#TargetList>
+  [284] getprop 563 ............................. <p>
+  [287] getobjprop 2471 ......................... <p.Bombs>
+  [290] pusharglist 3 ........................... <p, #TargetList, p.Bombs>
+  [292] objcall 70 .............................. <p.TargetList[p.Bombs]>
+  [294] setlocal 3 .............................. tVector = p.TargetList[p.Bombs]
+  [296] getglobal 43 ............................ <gGame>
+  [298] getchainedprop 1389 ..................... <gGame.Physics>
+  [301] getlocal 3 .............................. <tVector>
+  [303] pushzero ................................ <0>
+  [304] pushzero ................................ <0>
+  [305] pushint8 100 ............................ <100>
+  [307] pusharglist 3 ........................... <0, 0, 100>
+  [309] extcall 212 ............................. <vector(0, 0, 100)>
+  [311] add ..................................... <tVector + vector(0, 0, 100)>
+  [312] pushzero ................................ <0>
+  [313] pushzero ................................ <0>
+  [314] pushint8 1 .............................. <1>
+  [316] inv ..................................... <-1>
+  [317] pusharglist 3 ........................... <0, 0, -1>
+  [319] extcall 212 ............................. <vector(0, 0, -1)>
+  [321] pusharglist 3 ........................... <gGame.Physics, tVector + vector(0, 0, 100), vector(0, 0, -1)>
+  [323] objcall 2095 ............................ <gGame.Physics.rayCastClosest(tVector + vector(0, 0, 100), vector(0, 0, -1))>
+  [326] setlocal 4 .............................. tDetails = gGame.Physics.rayCastClosest(tVector + vector(0, 0, 100), vector(0, 0, -1))
+  [328] getlocal 4 .............................. <tDetails>
+  [330] getobjprop 129 .......................... <tDetails.count>
+  [332] pushzero ................................ <0>
+  [333] gt ...................................... <tDetails.count > 0>
+  [334] jmpifz [347] ............................ if tDetails.count > 0 then
+  [337] getlocal 4 .............................. <tDetails>
+  [339] pushint8 2 .............................. <2>
+  [341] pusharglist 2 ........................... <tDetails, 2>
+  [343] objcall 105 ............................. <tDetails[2]>
+  [345] setlocal 3 .............................. tVector = tDetails[2]
+  [347] getlocal 3 .............................. <tVector>
+  [349] pushzero ................................ <0>
+  [350] pushzero ................................ <0>
+  [351] pushfloat32 1.5 ......................... <1.5>
+  [356] pusharglist 3 ........................... <0, 0, 1.5>
+  [358] extcall 212 ............................. <vector(0, 0, 1.5)>
+  [360] add ..................................... <tVector + vector(0, 0, 1.5)>
+  [361] setlocal 3 .............................. tVector = tVector + vector(0, 0, 1.5)
+  [363] pushcons 7 .............................. <"[PS] Explosion">
+  [365] pusharglist 1 ........................... <"[PS] Explosion">
+  [367] extcall 36 .............................. <script("[PS] Explosion")>
+  [369] getprop 563 ............................. <p>
+  [372] getobjprop 64 ........................... <p.member>
+  [374] getlocal 3 .............................. <tVector>
+  [376] getglobal 43 ............................ <gGame>
+  [378] getchainedprop 64 ....................... <gGame.member>
+  [380] pushcons 8 .............................. <"PLayer1_camera">
+  [382] pusharglist 2 ........................... <gGame.member, "PLayer1_camera">
+  [384] objcall 298 ............................. <gGame.member.camera("PLayer1_camera")>
+  [387] pusharglist 0 ........................... <>
+  [389] extcall 40 .............................. <VOID>
+  [391] pushint16 500 ........................... <500>
+  [394] pusharglist 6 ........................... <script("[PS] Explosion"), p.member, tVector, gGame.member.camera("PLayer1_camera"), VOID, 500>
+  [396] extcall 35 .............................. <new(script("[PS] Explosion"), p.member, tVector, gGame.member.camera("PLayer1_camera"), VOID, 500)>
+  [398] setlocal 5 .............................. tExploScript = new(script("[PS] Explosion"), p.member, tVector, gGame.member.camera("PLayer1_camera"), VOID, 500)
+  [400] getlocal 5 .............................. <tExploScript>
+  [402] pusharglist 0 ........................... <>
+  [404] extcall 40 .............................. <VOID>
+  [406] nteq .................................... <tExploScript <> VOID>
+  [407] jmpifz [421] ............................ if tExploScript <> VOID then
+  [410] getglobal 43 ............................ <gGame>
+  [412] getchainedprop 300 ...................... <gGame.scriptList>
+  [415] getlocal 5 .............................. <tExploScript>
+  [417] pusharglistnoret 2 ...................... <gGame.scriptList, tExploScript>
+  [419] objcall 42 .............................. gGame.scriptList.add(tExploScript)
+  [421] pushcons 9 .............................. <"RocketPodExplosion_SFX">
+  [423] pushsymb 1047 ........................... <#priority>
+  [426] pushsymb 1081 ........................... <#medium>
+  [429] pushsymb 1050 ........................... <#surround>
+  [432] pushint8 1 .............................. <1>
+  [434] pushsymb 1051 ........................... <#member3DName>
+  [437] getprop 563 ............................. <p>
+  [440] getchainedprop 64 ....................... <p.member>
+  [442] getobjprop 235 .......................... <p.member.name>
+  [444] pushsymb 1049 ........................... <#sender>
+  [447] getprop 563 ............................. <p>
+  [450] getchainedprop 2470 ..................... <p.Beacon>
+  [453] getobjprop 235 .......................... <p.Beacon.name>
+  [455] pushsymb 1052 ........................... <#targetName>
+  [458] getprop 563 ............................. <p>
+  [461] getchainedprop 2470 ..................... <p.Beacon>
+  [464] getobjprop 235 .......................... <p.Beacon.name>
+  [466] pushsymb 1053 ........................... <#referenceName>
+  [469] pushcons 3 .............................. <"Player1_Camera">
+  [471] pushsymb 1054 ........................... <#distance>
+  [474] pushint8 20 ............................. <20>
+  [476] pushint16 200 ........................... <200>
+  [479] pusharglist 2 ........................... <[20, 200]>
+  [481] pushlist ................................ <[20, 200]>
+  [482] pushsymb 1055 ........................... <#static>
+  [485] pushzero ................................ <0>
+  [486] pushsymb 1056 ........................... <#Override>
+  [489] pushint8 1 .............................. <1>
+  [491] pusharglist 18 .......................... <[#priority: #medium, #surround: 1, #member3DName: p.member.name, #sender: p.Beacon.name, #targetName: p.Beacon.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 0, #Override: 1]>
+  [493] pushproplist ............................ <[#priority: #medium, #surround: 1, #member3DName: p.member.name, #sender: p.Beacon.name, #targetName: p.Beacon.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 0, #Override: 1]>
+  [494] pusharglistnoret 2 ...................... <"RocketPodExplosion_SFX", [#priority: #medium, #surround: 1, #member3DName: p.member.name, #sender: p.Beacon.name, #targetName: p.Beacon.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 0, #Override: 1]>
+  [496] extcall 289 ............................. PlaySound("RocketPodExplosion_SFX", [#priority: #medium, #surround: 1, #member3DName: p.member.name, #sender: p.Beacon.name, #targetName: p.Beacon.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 0, #Override: 1])
+  [499] getprop 563 ............................. <p>
+  [502] pushint8 5 .............................. <5>
+  [504] setobjprop 546 .......................... p.Counter = 5
+  [507] getprop 563 ............................. <p>
+  [510] getprop 563 ............................. <p>
+  [513] getobjprop 2471 ......................... <p.Bombs>
+  [516] pushint8 1 .............................. <1>
+  [518] sub ..................................... <p.Bombs - 1>
+  [519] setobjprop 2471 ......................... p.Bombs = p.Bombs - 1
+  [522] ret
+end
+
+on Stuck me, tDetails
+  [  0] getparam 1 .............................. <tDetails>
+  [  2] pushint8 1 .............................. <1>
+  [  4] pusharglist 2 ........................... <tDetails, 1>
+  [  6] objcall 105 ............................. <tDetails[1]>
+  [  8] getobjprop 235 .......................... <tDetails[1].name>
+  [ 10] setlocal 0 .............................. tName = tDetails[1].name
+  [ 12] getprop 563 ............................. <p>
+  [ 15] getchainedprop 64 ....................... <p.member>
+  [ 17] getlocal 0 .............................. <tName>
+  [ 19] pusharglist 2 ........................... <p.member, tName>
+  [ 21] objcall 71 .............................. <p.member.model(tName)>
+  [ 23] setlocal 1 .............................. tmodel = p.member.model(tName)
+  [ 25] getprop 563 ............................. <p>
+  [ 28] getchainedprop 2470 ..................... <p.Beacon>
+  [ 31] getchainedprop 214 ...................... <p.Beacon.transform>
+  [ 33] getparam 1 .............................. <tDetails>
+  [ 35] pushint8 2 .............................. <2>
+  [ 37] pusharglist 2 ........................... <tDetails, 2>
+  [ 39] objcall 105 ............................. <tDetails[2]>
+  [ 41] getparam 1 .............................. <tDetails>
+  [ 43] pushint8 3 .............................. <3>
+  [ 45] pusharglist 2 ........................... <tDetails, 3>
+  [ 47] objcall 105 ............................. <tDetails[3]>
+  [ 49] pushcons 10 ............................. <0.05>
+  [ 51] mul ..................................... <tDetails[3] * 0.05>
+  [ 52] add ..................................... <tDetails[2] + (tDetails[3] * 0.05)>
+  [ 53] setobjprop 215 .......................... p.Beacon.transform.position = tDetails[2] + (tDetails[3] * 0.05)
+  [ 55] getprop 563 ............................. <p>
+  [ 58] getchainedprop 2470 ..................... <p.Beacon>
+  [ 61] getparam 1 .............................. <tDetails>
+  [ 63] pushint8 3 .............................. <3>
+  [ 65] pusharglist 2 ........................... <tDetails, 3>
+  [ 67] objcall 105 ............................. <tDetails[3]>
+  [ 69] pushint32 100000 ........................ <100000>
+  [ 74] mul ..................................... <tDetails[3] * 100000>
+  [ 75] pushzero ................................ <0>
+  [ 76] pushzero ................................ <0>
+  [ 77] pushint8 1 .............................. <1>
+  [ 79] pusharglist 3 ........................... <0, 0, 1>
+  [ 81] extcall 212 ............................. <vector(0, 0, 1)>
+  [ 83] pusharglistnoret 3 ...................... <p.Beacon, tDetails[3] * 100000, vector(0, 0, 1)>
+  [ 85] objcall 1340 ............................ p.Beacon.pointAt(tDetails[3] * 100000, vector(0, 0, 1))
+  [ 88] getprop 563 ............................. <p>
+  [ 91] getchainedprop 2470 ..................... <p.Beacon>
+  [ 94] getobjprop 1161 ......................... <p.Beacon.worldPosition>
+  [ 97] getlocal 1 .............................. <tmodel>
+  [ 99] getobjprop 1161 ......................... <tmodel.worldPosition>
+  [102] sub ..................................... <p.Beacon.worldPosition - tmodel.worldPosition>
+  [103] setlocal 2 .............................. tOffset = p.Beacon.worldPosition - tmodel.worldPosition
+  [105] getprop 563 ............................. <p>
+  [108] getchainedprop 2470 ..................... <p.Beacon>
+  [111] getchainedprop 214 ...................... <p.Beacon.transform>
+  [113] getlocal 1 .............................. <tmodel>
+  [115] getobjprop 1161 ......................... <tmodel.worldPosition>
+  [118] setobjprop 215 .......................... p.Beacon.transform.position = tmodel.worldPosition
+  [120] getprop 563 ............................. <p>
+  [123] getchainedprop 2470 ..................... <p.Beacon>
+  [126] getlocal 1 .............................. <tmodel>
+  [128] setobjprop 207 .......................... p.Beacon.parent = tmodel
+  [130] getprop 563 ............................. <p>
+  [133] getchainedprop 2470 ..................... <p.Beacon>
+  [136] getchainedprop 214 ...................... <p.Beacon.transform>
+  [138] getlocal 2 .............................. <tOffset>
+  [140] setobjprop 215 .......................... p.Beacon.transform.position = tOffset
+  [142] getprop 563 ............................. <p>
+  [145] pushint8 1 .............................. <1>
+  [147] setobjprop 2467 ......................... p.Stuck = 1
+  [150] pushint8 24 ............................. <24>
+  [152] setlocal 2 .............................. tOffset = 24
+  [154] getprop 563 ............................. <p>
+  [157] getchainedprop 2470 ..................... <p.Beacon>
+  [160] pusharglist 1 ........................... <p.Beacon>
+  [162] objcall 1109 ............................ <p.Beacon.getWorldTransform()>
+  [165] pusharglist 1 ........................... <p.Beacon.getWorldTransform()>
+  [167] objcall 233 ............................. <p.Beacon.getWorldTransform().duplicate()>
+  [169] setlocal 3 .............................. tTransform = p.Beacon.getWorldTransform().duplicate()
+  [171] pushint8 1 .............................. <1>
+  [173] setlocal 4
+  [175] getlocal 4
+  [177] getprop 563 ............................. <p>
+  [180] getobjprop 2471 ......................... <p.Bombs>
+  [183] lteq
+  [184] jmpifz [297] ............................ repeat with i = 1 to p.Bombs
+  [187] getlocal 3 .............................. <tTransform>
+  [189] getobjprop 215 .......................... <tTransform.position>
+  [191] setlocal 5 .............................. tVector = tTransform.position
+  [193] getlocal 5 .............................. <tVector>
+  [195] getlocal 3 .............................. <tTransform>
+  [197] getobjprop 1180 ......................... <tTransform.xAxis>
+  [200] getlocal 2 .............................. <tOffset>
+  [202] mul ..................................... <tTransform.xAxis * tOffset>
+  [203] sub ..................................... <tVector - (tTransform.xAxis * tOffset)>
+  [204] setlocal 5 .............................. tVector = tVector - (tTransform.xAxis * tOffset)
+  [206] getlocal 5 .............................. <tVector>
+  [208] getlocal 3 .............................. <tTransform>
+  [210] getobjprop 1180 ......................... <tTransform.xAxis>
+  [213] getlocal 4 .............................. <i>
+  [215] pushint8 4 .............................. <4>
+  [217] mul ..................................... <i * 4>
+  [218] mul ..................................... <tTransform.xAxis * (i * 4)>
+  [219] add ..................................... <tVector + (tTransform.xAxis * (i * 4))>
+  [220] setlocal 5 .............................. tVector = tVector + (tTransform.xAxis * (i * 4))
+  [222] getlocal 4 .............................. <i>
+  [224] pushint8 2 .............................. <2>
+  [226] mod ..................................... <i mod 2>
+  [227] setlocal 6 .............................. tOdd = i mod 2
+  [229] getlocal 6 .............................. <tOdd>
+  [231] pushint8 1 .............................. <1>
+  [233] eq ...................................... <tOdd = 1>
+  [234] jmpifz [253] ............................ if tOdd = 1 then / else
+  [237] getlocal 5 .............................. <tVector>
+  [239] getlocal 3 .............................. <tTransform>
+  [241] getobjprop 1187 ......................... <tTransform.yAxis>
+  [244] pushint8 4 .............................. <4>
+  [246] mul ..................................... <tTransform.yAxis * 4>
+  [247] sub ..................................... <tVector - (tTransform.yAxis * 4)>
+  [248] setlocal 5 .............................. tVector = tVector - (tTransform.yAxis * 4)
+  [250] jmp [266]
+  [253] getlocal 5 .............................. <tVector>
+  [255] getlocal 3 .............................. <tTransform>
+  [257] getobjprop 1187 ......................... <tTransform.yAxis>
+  [260] pushint8 4 .............................. <4>
+  [262] mul ..................................... <tTransform.yAxis * 4>
+  [263] add ..................................... <tVector + (tTransform.yAxis * 4)>
+  [264] setlocal 5 .............................. tVector = tVector + (tTransform.yAxis * 4)
+  [266] getlocal 5 .............................. <tVector>
+  [268] pusharglist 0 ........................... <>
+  [270] extcall 1392 ............................ <randomVector()>
+  [273] add ..................................... <tVector + randomVector()>
+  [274] setlocal 5 .............................. tVector = tVector + randomVector()
+  [276] getprop 563 ............................. <p>
+  [279] getchainedprop 2472 ..................... <p.TargetList>
+  [282] getlocal 5 .............................. <tVector>
+  [284] pusharglistnoret 2 ...................... <p.TargetList, tVector>
+  [286] objcall 42 .............................. p.TargetList.add(tVector)
+  [288] pushint8 1
+  [290] getlocal 4
+  [292] add
+  [293] setlocal 4
+  [295] endrepeat [175]
+  [297] ret
+end
+
+on DeleteBeacon me
+  [  0] getprop 563 ............................. <p>
+  [  3] getchainedprop 64 ....................... <p.member>
+  [  5] getprop 563 ............................. <p>
+  [  8] getchainedprop 2470 ..................... <p.Beacon>
+  [ 11] getobjprop 235 .......................... <p.Beacon.name>
+  [ 13] pusharglistnoret 2 ...................... <p.member, p.Beacon.name>
+  [ 15] objcall 1221 ............................ p.member.deleteModel(p.Beacon.name)
+  [ 18] getprop 563 ............................. <p>
+  [ 21] pushzero ................................ <0>
+  [ 22] setobjprop 372 .......................... p.alive = 0
+  [ 25] ret
+end
+
+on delete me
+  [  0] gettoplevelprop 33 ...................... <_movie>
+  [  2] getchainedprop 427 ...................... <_movie.timeoutList>
+  [  5] getprop 563 ............................. <p>
+  [  8] getobjprop 2469 ......................... <p.BeaconName>
+  [ 11] pushcons 11 ............................. <"DeleteBeacon">
+  [ 13] joinstr ................................. <p.BeaconName & "DeleteBeacon">
+  [ 14] pusharglist 1 ........................... <p.BeaconName & "DeleteBeacon">
+  [ 16] extcall 238 ............................. <timeout(p.BeaconName & "DeleteBeacon")>
+  [ 18] pusharglist 2 ........................... <_movie.timeoutList, timeout(p.BeaconName & "DeleteBeacon")>
+  [ 20] objcall 166 ............................. <_movie.timeoutList.getPos(timeout(p.BeaconName & "DeleteBeacon"))>
+  [ 22] pushzero ................................ <0>
+  [ 23] nteq .................................... <_movie.timeoutList.getPos(timeout(p.BeaconName & "DeleteBeacon")) <> 0>
+  [ 24] jmpifz [ 44] ............................ if _movie.timeoutList.getPos(timeout(p.BeaconName & "DeleteBeacon")) <> 0 then
+  [ 27] getprop 563 ............................. <p>
+  [ 30] getobjprop 2469 ......................... <p.BeaconName>
+  [ 33] pushcons 11 ............................. <"DeleteBeacon">
+  [ 35] joinstr ................................. <p.BeaconName & "DeleteBeacon">
+  [ 36] pusharglist 1 ........................... <p.BeaconName & "DeleteBeacon">
+  [ 38] extcall 238 ............................. <timeout(p.BeaconName & "DeleteBeacon")>
+  [ 40] pusharglistnoret 1 ...................... <timeout(p.BeaconName & "DeleteBeacon")>
+  [ 42] objcall 255 ............................. timeout(p.BeaconName & "DeleteBeacon").forget()
+  [ 44] getprop 563 ............................. <p>
+  [ 47] getobjprop 372 .......................... <p.alive>
+  [ 50] pushint8 1 .............................. <1>
+  [ 52] eq ...................................... <p.alive = 1>
+  [ 53] jmpifz [ 63] ............................ if p.alive = 1 then
+  [ 56] getparam 0 .............................. <me>
+  [ 58] pusharglistnoret 1 ...................... <me>
+  [ 60] objcall 2468 ............................ me.DeleteBeacon()
+  [ 63] getglobal 43 ............................ <gGame>
+  [ 65] getchainedprop 300 ...................... <gGame.scriptList>
+  [ 68] getprop 563 ............................. <p>
+  [ 71] getobjprop 45 ........................... <p.me>
+  [ 73] pusharglistnoret 2 ...................... <gGame.scriptList, p.me>
+  [ 75] objcall 175 ............................. gGame.scriptList.deleteOne(p.me)
+  [ 77] ret
+end

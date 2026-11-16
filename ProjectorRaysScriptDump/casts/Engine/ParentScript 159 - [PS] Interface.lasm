@@ -1,0 +1,1138 @@
+property p
+global gGame
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 487 ............................ <#sprite>
+  [ 12] getparam 1 .............................. <tParams>
+  [ 14] pushsymb 564 ............................ <#SpriteNR>
+  [ 17] pusharglist 2 ........................... <tParams, #SpriteNR>
+  [ 19] objcall 105 ............................. <tParams[#SpriteNR]>
+  [ 21] pusharglist 1 ........................... <tParams[#SpriteNR]>
+  [ 23] extcall 487 ............................. <sprite(tParams[#SpriteNR])>
+  [ 26] pusharglistnoret 3 ...................... <p, #sprite, sprite(tParams[#SpriteNR])>
+  [ 28] objcall 103 ............................. p[#sprite] = sprite(tParams[#SpriteNR])
+  [ 30] getprop 563 ............................. <p>
+  [ 33] pushsymb 64 ............................. <#member>
+  [ 35] getparam 1 .............................. <tParams>
+  [ 37] pushsymb 949 ............................ <#memberName>
+  [ 40] pusharglist 2 ........................... <tParams, #memberName>
+  [ 42] objcall 105 ............................. <tParams[#memberName]>
+  [ 44] pusharglist 1 ........................... <tParams[#memberName]>
+  [ 46] extcall 64 .............................. <member(tParams[#memberName])>
+  [ 48] pusharglistnoret 3 ...................... <p, #member, member(tParams[#memberName])>
+  [ 50] objcall 103 ............................. p[#member] = member(tParams[#memberName])
+  [ 52] getprop 563 ............................. <p>
+  [ 55] pushsymb 1104 ........................... <#timer>
+  [ 58] pushzero ................................ <0>
+  [ 59] pusharglistnoret 3 ...................... <p, #timer, 0>
+  [ 61] objcall 103 ............................. p[#timer] = 0
+  [ 63] getparam 1 .............................. <tParams>
+  [ 65] pushsymb 1104 ........................... <#timer>
+  [ 68] pusharglist 2 ........................... <tParams, #timer>
+  [ 70] objcall 105 ............................. <tParams[#timer]>
+  [ 72] getobjprop 122 .......................... <tParams[#timer].ilk>
+  [ 74] pushsymb 123 ............................ <#integer>
+  [ 76] eq ...................................... <tParams[#timer].ilk = #integer>
+  [ 77] jmpifz [ 91] ............................ if tParams[#timer].ilk = #integer then
+  [ 80] getprop 563 ............................. <p>
+  [ 83] getparam 1 .............................. <tParams>
+  [ 85] getobjprop 1104 ......................... <tParams.timer>
+  [ 88] setobjprop 1104 ......................... p.timer = tParams.timer
+  [ 91] getprop 563 ............................. <p>
+  [ 94] pushsymb 2004 ........................... <#TimerModels>
+  [ 97] getglobal 43 ............................ <gGame>
+  [ 99] getchainedprop 366 ...................... <gGame.interface>
+  [102] pushcons 0 .............................. <"Time1">
+  [104] pusharglist 2 ........................... <gGame.interface, "Time1">
+  [106] objcall 71 .............................. <gGame.interface.model("Time1")>
+  [108] getglobal 43 ............................ <gGame>
+  [110] getchainedprop 366 ...................... <gGame.interface>
+  [113] pushcons 1 .............................. <"Time2">
+  [115] pusharglist 2 ........................... <gGame.interface, "Time2">
+  [117] objcall 71 .............................. <gGame.interface.model("Time2")>
+  [119] getglobal 43 ............................ <gGame>
+  [121] getchainedprop 366 ...................... <gGame.interface>
+  [124] pushcons 2 .............................. <"Time3">
+  [126] pusharglist 2 ........................... <gGame.interface, "Time3">
+  [128] objcall 71 .............................. <gGame.interface.model("Time3")>
+  [130] getglobal 43 ............................ <gGame>
+  [132] getchainedprop 366 ...................... <gGame.interface>
+  [135] pushcons 3 .............................. <"Time4">
+  [137] pusharglist 2 ........................... <gGame.interface, "Time4">
+  [139] objcall 71 .............................. <gGame.interface.model("Time4")>
+  [141] getglobal 43 ............................ <gGame>
+  [143] getchainedprop 366 ...................... <gGame.interface>
+  [146] pushcons 4 .............................. <"Time5">
+  [148] pusharglist 2 ........................... <gGame.interface, "Time5">
+  [150] objcall 71 .............................. <gGame.interface.model("Time5")>
+  [152] pusharglist 5 ........................... <[gGame.interface.model("Time1"), gGame.interface.model("Time2"), gGame.interface.model("Time3"), gGame.interface.model("Time4"), gGame.interface.model("Time5")]>
+  [154] pushlist ................................ <[gGame.interface.model("Time1"), gGame.interface.model("Time2"), gGame.interface.model("Time3"), gGame.interface.model("Time4"), gGame.interface.model("Time5")]>
+  [155] pusharglistnoret 3 ...................... <p, #TimerModels, [gGame.interface.model("Time1"), gGame.interface.model("Time2"), gGame.interface.model("Time3"), gGame.interface.model("Time4"), gGame.interface.model("Time5")]>
+  [157] objcall 103 ............................. p[#TimerModels] = [gGame.interface.model("Time1"), gGame.interface.model("Time2"), gGame.interface.model("Time3"), gGame.interface.model("Time4"), gGame.interface.model("Time5")]
+  [159] getprop 563 ............................. <p>
+  [162] pushsymb 2005 ........................... <#CountDown>
+  [165] pushzero ................................ <0>
+  [166] pusharglistnoret 3 ...................... <p, #CountDown, 0>
+  [168] objcall 103 ............................. p[#CountDown] = 0
+  [170] getparam 1 .............................. <tParams>
+  [172] pushsymb 2005 ........................... <#CountDown>
+  [175] pusharglist 2 ........................... <tParams, #CountDown>
+  [177] objcall 105 ............................. <tParams[#CountDown]>
+  [179] getobjprop 122 .......................... <tParams[#CountDown].ilk>
+  [181] pushsymb 123 ............................ <#integer>
+  [183] eq ...................................... <tParams[#CountDown].ilk = #integer>
+  [184] jmpifz [198] ............................ if tParams[#CountDown].ilk = #integer then
+  [187] getprop 563 ............................. <p>
+  [190] getparam 1 .............................. <tParams>
+  [192] getobjprop 2005 ......................... <tParams.CountDown>
+  [195] setobjprop 2005 ......................... p.CountDown = tParams.CountDown
+  [198] getprop 563 ............................. <p>
+  [201] pushsymb 2006 ........................... <#CountDownModels>
+  [204] getglobal 43 ............................ <gGame>
+  [206] getchainedprop 366 ...................... <gGame.interface>
+  [209] pushcons 5 .............................. <"CountDown1">
+  [211] pusharglist 2 ........................... <gGame.interface, "CountDown1">
+  [213] objcall 71 .............................. <gGame.interface.model("CountDown1")>
+  [215] getglobal 43 ............................ <gGame>
+  [217] getchainedprop 366 ...................... <gGame.interface>
+  [220] pushcons 6 .............................. <"CountDown2">
+  [222] pusharglist 2 ........................... <gGame.interface, "CountDown2">
+  [224] objcall 71 .............................. <gGame.interface.model("CountDown2")>
+  [226] getglobal 43 ............................ <gGame>
+  [228] getchainedprop 366 ...................... <gGame.interface>
+  [231] pushcons 7 .............................. <"CountDown3">
+  [233] pusharglist 2 ........................... <gGame.interface, "CountDown3">
+  [235] objcall 71 .............................. <gGame.interface.model("CountDown3")>
+  [237] pusharglist 3 ........................... <[gGame.interface.model("CountDown1"), gGame.interface.model("CountDown2"), gGame.interface.model("CountDown3")]>
+  [239] pushlist ................................ <[gGame.interface.model("CountDown1"), gGame.interface.model("CountDown2"), gGame.interface.model("CountDown3")]>
+  [240] pusharglistnoret 3 ...................... <p, #CountDownModels, [gGame.interface.model("CountDown1"), gGame.interface.model("CountDown2"), gGame.interface.model("CountDown3")]>
+  [242] objcall 103 ............................. p[#CountDownModels] = [gGame.interface.model("CountDown1"), gGame.interface.model("CountDown2"), gGame.interface.model("CountDown3")]
+  [244] getprop 563 ............................. <p>
+  [247] pushsymb 252 ............................ <#Elimination>
+  [249] pushzero ................................ <0>
+  [250] pusharglistnoret 3 ...................... <p, #Elimination, 0>
+  [252] objcall 103 ............................. p[#Elimination] = 0
+  [254] getparam 1 .............................. <tParams>
+  [256] pushsymb 252 ............................ <#Elimination>
+  [258] pusharglist 2 ........................... <tParams, #Elimination>
+  [260] objcall 105 ............................. <tParams[#Elimination]>
+  [262] getobjprop 122 .......................... <tParams[#Elimination].ilk>
+  [264] pushsymb 123 ............................ <#integer>
+  [266] eq ...................................... <tParams[#Elimination].ilk = #integer>
+  [267] jmpifz [279] ............................ if tParams[#Elimination].ilk = #integer then
+  [270] getprop 563 ............................. <p>
+  [273] getparam 1 .............................. <tParams>
+  [275] getobjprop 252 .......................... <tParams.Elimination>
+  [277] setobjprop 252 .......................... p.Elimination = tParams.Elimination
+  [279] getprop 563 ............................. <p>
+  [282] pushsymb 2007 ........................... <#EliminationModels>
+  [285] getglobal 43 ............................ <gGame>
+  [287] getchainedprop 366 ...................... <gGame.interface>
+  [290] pushcons 8 .............................. <"Elimination1">
+  [292] pusharglist 2 ........................... <gGame.interface, "Elimination1">
+  [294] objcall 71 .............................. <gGame.interface.model("Elimination1")>
+  [296] getglobal 43 ............................ <gGame>
+  [298] getchainedprop 366 ...................... <gGame.interface>
+  [301] pushcons 9 .............................. <"Elimination2">
+  [303] pusharglist 2 ........................... <gGame.interface, "Elimination2">
+  [305] objcall 71 .............................. <gGame.interface.model("Elimination2")>
+  [307] pusharglist 2 ........................... <[gGame.interface.model("Elimination1"), gGame.interface.model("Elimination2")]>
+  [309] pushlist ................................ <[gGame.interface.model("Elimination1"), gGame.interface.model("Elimination2")]>
+  [310] pusharglistnoret 3 ...................... <p, #EliminationModels, [gGame.interface.model("Elimination1"), gGame.interface.model("Elimination2")]>
+  [312] objcall 103 ............................. p[#EliminationModels] = [gGame.interface.model("Elimination1"), gGame.interface.model("Elimination2")]
+  [314] getprop 563 ............................. <p>
+  [317] pushsymb 136 ............................ <#score>
+  [319] pushzero ................................ <0>
+  [320] pusharglistnoret 3 ...................... <p, #score, 0>
+  [322] objcall 103 ............................. p[#score] = 0
+  [324] getparam 1 .............................. <tParams>
+  [326] pushsymb 136 ............................ <#score>
+  [328] pusharglist 2 ........................... <tParams, #score>
+  [330] objcall 105 ............................. <tParams[#score]>
+  [332] getobjprop 122 .......................... <tParams[#score].ilk>
+  [334] pushsymb 123 ............................ <#integer>
+  [336] eq ...................................... <tParams[#score].ilk = #integer>
+  [337] jmpifz [349] ............................ if tParams[#score].ilk = #integer then
+  [340] getprop 563 ............................. <p>
+  [343] getparam 1 .............................. <tParams>
+  [345] getobjprop 136 .......................... <tParams.score>
+  [347] setobjprop 136 .......................... p.score = tParams.score
+  [349] getprop 563 ............................. <p>
+  [352] pushsymb 2008 ........................... <#ScoreModels>
+  [355] pusharglist 0 ........................... <[]>
+  [357] pushlist ................................ <[]>
+  [358] pusharglistnoret 3 ...................... <p, #ScoreModels, []>
+  [360] objcall 103 ............................. p[#ScoreModels] = []
+  [362] pushint8 1 .............................. <1>
+  [364] setlocal 0
+  [366] getlocal 0
+  [368] pushint8 6 .............................. <6>
+  [370] lteq
+  [371] jmpifz [407] ............................ repeat with i = 1 to 6
+  [374] getprop 563 ............................. <p>
+  [377] getchainedprop 2008 ..................... <p.ScoreModels>
+  [380] getglobal 43 ............................ <gGame>
+  [382] getchainedprop 366 ...................... <gGame.interface>
+  [385] pushcons 10 ............................. <"Score">
+  [387] getlocal 0 .............................. <i>
+  [389] joinstr ................................. <"Score" & i>
+  [390] pusharglist 2 ........................... <gGame.interface, "Score" & i>
+  [392] objcall 71 .............................. <gGame.interface.model("Score" & i)>
+  [394] pusharglistnoret 2 ...................... <p.ScoreModels, gGame.interface.model("Score" & i)>
+  [396] objcall 42 .............................. p.ScoreModels.add(gGame.interface.model("Score" & i))
+  [398] pushint8 1
+  [400] getlocal 0
+  [402] add
+  [403] setlocal 0
+  [405] endrepeat [366]
+  [407] getprop 563 ............................. <p>
+  [410] pushsymb 2009 ........................... <#Speedo>
+  [413] pushzero ................................ <0>
+  [414] pusharglistnoret 3 ...................... <p, #Speedo, 0>
+  [416] objcall 103 ............................. p[#Speedo] = 0
+  [418] getparam 1 .............................. <tParams>
+  [420] pushsymb 2009 ........................... <#Speedo>
+  [423] pusharglist 2 ........................... <tParams, #Speedo>
+  [425] objcall 105 ............................. <tParams[#Speedo]>
+  [427] getobjprop 122 .......................... <tParams[#Speedo].ilk>
+  [429] pushsymb 123 ............................ <#integer>
+  [431] eq ...................................... <tParams[#Speedo].ilk = #integer>
+  [432] jmpifz [446] ............................ if tParams[#Speedo].ilk = #integer then
+  [435] getprop 563 ............................. <p>
+  [438] getparam 1 .............................. <tParams>
+  [440] getobjprop 2009 ......................... <tParams.Speedo>
+  [443] setobjprop 2009 ......................... p.Speedo = tParams.Speedo
+  [446] getprop 563 ............................. <p>
+  [449] pushsymb 2010 ........................... <#SpeedoModels>
+  [452] getglobal 43 ............................ <gGame>
+  [454] getchainedprop 366 ...................... <gGame.interface>
+  [457] pushcons 11 ............................. <"Speedo1">
+  [459] pusharglist 2 ........................... <gGame.interface, "Speedo1">
+  [461] objcall 71 .............................. <gGame.interface.model("Speedo1")>
+  [463] getglobal 43 ............................ <gGame>
+  [465] getchainedprop 366 ...................... <gGame.interface>
+  [468] pushcons 12 ............................. <"Speedo2">
+  [470] pusharglist 2 ........................... <gGame.interface, "Speedo2">
+  [472] objcall 71 .............................. <gGame.interface.model("Speedo2")>
+  [474] getglobal 43 ............................ <gGame>
+  [476] getchainedprop 366 ...................... <gGame.interface>
+  [479] pushcons 13 ............................. <"Speedo3">
+  [481] pusharglist 2 ........................... <gGame.interface, "Speedo3">
+  [483] objcall 71 .............................. <gGame.interface.model("Speedo3")>
+  [485] pusharglist 3 ........................... <[gGame.interface.model("Speedo1"), gGame.interface.model("Speedo2"), gGame.interface.model("Speedo3")]>
+  [487] pushlist ................................ <[gGame.interface.model("Speedo1"), gGame.interface.model("Speedo2"), gGame.interface.model("Speedo3")]>
+  [488] pusharglistnoret 3 ...................... <p, #SpeedoModels, [gGame.interface.model("Speedo1"), gGame.interface.model("Speedo2"), gGame.interface.model("Speedo3")]>
+  [490] objcall 103 ............................. p[#SpeedoModels] = [gGame.interface.model("Speedo1"), gGame.interface.model("Speedo2"), gGame.interface.model("Speedo3")]
+  [492] getglobal 43 ............................ <gGame>
+  [494] pushsymb 137 ............................ <#cars>
+  [496] getglobal 43 ............................ <gGame>
+  [498] pushsymb 298 ............................ <#camera>
+  [501] pushint8 1 .............................. <1>
+  [503] pusharglist 3 ........................... <gGame, #camera, 1>
+  [505] objcall 102 ............................. <gGame.camera[1]>
+  [507] getobjprop 93 ........................... <gGame.camera[1].target>
+  [509] pusharglist 3 ........................... <gGame, #cars, gGame.camera[1].target>
+  [511] objcall 70 .............................. <gGame.cars[gGame.camera[1].target]>
+  [513] setlocal 1 .............................. t = gGame.cars[gGame.camera[1].target]
+  [515] getprop 563 ............................. <p>
+  [518] pushsymb 185 ............................ <#Weapons>
+  [520] pushzero ................................ <0>
+  [521] pusharglistnoret 3 ...................... <p, #Weapons, 0>
+  [523] objcall 103 ............................. p[#Weapons] = 0
+  [525] getparam 1 .............................. <tParams>
+  [527] pushsymb 185 ............................ <#Weapons>
+  [529] pusharglist 2 ........................... <tParams, #Weapons>
+  [531] objcall 105 ............................. <tParams[#Weapons]>
+  [533] getobjprop 122 .......................... <tParams[#Weapons].ilk>
+  [535] pushsymb 123 ............................ <#integer>
+  [537] eq ...................................... <tParams[#Weapons].ilk = #integer>
+  [538] jmpifz [550] ............................ if tParams[#Weapons].ilk = #integer then
+  [541] getprop 563 ............................. <p>
+  [544] getparam 1 .............................. <tParams>
+  [546] getobjprop 185 .......................... <tParams.Weapons>
+  [548] setobjprop 185 .......................... p.Weapons = tParams.Weapons
+  [550] getprop 563 ............................. <p>
+  [553] getobjprop 185 .......................... <p.Weapons>
+  [555] pushint8 1 .............................. <1>
+  [557] eq ...................................... <p.Weapons = 1>
+  [558] jmpifz [721] ............................ if p.Weapons = 1 then
+  [561] getprop 563 ............................. <p>
+  [564] pushsymb 2011 ........................... <#PrimData>
+  [567] getlocal 1 .............................. <t>
+  [569] pushsymb 185 ............................ <#Weapons>
+  [571] getlocal 1 .............................. <t>
+  [573] getchainedprop 376 ...................... <t.general>
+  [576] getchainedprop 87 ....................... <t.general.data>
+  [578] getchainedprop 185 ...................... <t.general.data.Weapons>
+  [580] getobjprop 1908 ......................... <t.general.data.Weapons.primary>
+  [583] pusharglist 1 ........................... <t.general.data.Weapons.primary>
+  [585] extcall 88 .............................. <symbol(t.general.data.Weapons.primary)>
+  [587] pusharglist 3 ........................... <t, #Weapons, symbol(t.general.data.Weapons.primary)>
+  [589] objcall 70 .............................. <t.Weapons[symbol(t.general.data.Weapons.primary)]>
+  [591] pusharglistnoret 3 ...................... <p, #PrimData, t.Weapons[symbol(t.general.data.Weapons.primary)]>
+  [593] objcall 103 ............................. p[#PrimData] = t.Weapons[symbol(t.general.data.Weapons.primary)]
+  [595] getprop 563 ............................. <p>
+  [598] pushsymb 2012 ........................... <#SecData>
+  [601] getlocal 1 .............................. <t>
+  [603] pushsymb 185 ............................ <#Weapons>
+  [605] getlocal 1 .............................. <t>
+  [607] getchainedprop 376 ...................... <t.general>
+  [610] getchainedprop 87 ....................... <t.general.data>
+  [612] getchainedprop 185 ...................... <t.general.data.Weapons>
+  [614] getobjprop 1909 ......................... <t.general.data.Weapons.secondary>
+  [617] pusharglist 1 ........................... <t.general.data.Weapons.secondary>
+  [619] extcall 88 .............................. <symbol(t.general.data.Weapons.secondary)>
+  [621] pusharglist 3 ........................... <t, #Weapons, symbol(t.general.data.Weapons.secondary)>
+  [623] objcall 70 .............................. <t.Weapons[symbol(t.general.data.Weapons.secondary)]>
+  [625] pusharglistnoret 3 ...................... <p, #SecData, t.Weapons[symbol(t.general.data.Weapons.secondary)]>
+  [627] objcall 103 ............................. p[#SecData] = t.Weapons[symbol(t.general.data.Weapons.secondary)]
+  [629] getprop 563 ............................. <p>
+  [632] pushsymb 2013 ........................... <#PrimModels>
+  [635] getglobal 43 ............................ <gGame>
+  [637] getchainedprop 366 ...................... <gGame.interface>
+  [640] pushcons 14 ............................. <"PrimaryAmmo1">
+  [642] pusharglist 2 ........................... <gGame.interface, "PrimaryAmmo1">
+  [644] objcall 71 .............................. <gGame.interface.model("PrimaryAmmo1")>
+  [646] getglobal 43 ............................ <gGame>
+  [648] getchainedprop 366 ...................... <gGame.interface>
+  [651] pushcons 15 ............................. <"PrimaryAmmo2">
+  [653] pusharglist 2 ........................... <gGame.interface, "PrimaryAmmo2">
+  [655] objcall 71 .............................. <gGame.interface.model("PrimaryAmmo2")>
+  [657] getglobal 43 ............................ <gGame>
+  [659] getchainedprop 366 ...................... <gGame.interface>
+  [662] pushcons 16 ............................. <"PrimaryWeaponSlots">
+  [664] pusharglist 2 ........................... <gGame.interface, "PrimaryWeaponSlots">
+  [666] objcall 71 .............................. <gGame.interface.model("PrimaryWeaponSlots")>
+  [668] pusharglist 3 ........................... <[gGame.interface.model("PrimaryAmmo1"), gGame.interface.model("PrimaryAmmo2"), gGame.interface.model("PrimaryWeaponSlots")]>
+  [670] pushlist ................................ <[gGame.interface.model("PrimaryAmmo1"), gGame.interface.model("PrimaryAmmo2"), gGame.interface.model("PrimaryWeaponSlots")]>
+  [671] pusharglistnoret 3 ...................... <p, #PrimModels, [gGame.interface.model("PrimaryAmmo1"), gGame.interface.model("PrimaryAmmo2"), gGame.interface.model("PrimaryWeaponSlots")]>
+  [673] objcall 103 ............................. p[#PrimModels] = [gGame.interface.model("PrimaryAmmo1"), gGame.interface.model("PrimaryAmmo2"), gGame.interface.model("PrimaryWeaponSlots")]
+  [675] getprop 563 ............................. <p>
+  [678] pushsymb 2014 ........................... <#SecModels>
+  [681] getglobal 43 ............................ <gGame>
+  [683] getchainedprop 366 ...................... <gGame.interface>
+  [686] pushcons 17 ............................. <"SecondaryAmmo1">
+  [688] pusharglist 2 ........................... <gGame.interface, "SecondaryAmmo1">
+  [690] objcall 71 .............................. <gGame.interface.model("SecondaryAmmo1")>
+  [692] getglobal 43 ............................ <gGame>
+  [694] getchainedprop 366 ...................... <gGame.interface>
+  [697] pushcons 18 ............................. <"SecondaryAmmo2">
+  [699] pusharglist 2 ........................... <gGame.interface, "SecondaryAmmo2">
+  [701] objcall 71 .............................. <gGame.interface.model("SecondaryAmmo2")>
+  [703] getglobal 43 ............................ <gGame>
+  [705] getchainedprop 366 ...................... <gGame.interface>
+  [708] pushcons 19 ............................. <"SecondaryWeaponSlots">
+  [710] pusharglist 2 ........................... <gGame.interface, "SecondaryWeaponSlots">
+  [712] objcall 71 .............................. <gGame.interface.model("SecondaryWeaponSlots")>
+  [714] pusharglist 3 ........................... <[gGame.interface.model("SecondaryAmmo1"), gGame.interface.model("SecondaryAmmo2"), gGame.interface.model("SecondaryWeaponSlots")]>
+  [716] pushlist ................................ <[gGame.interface.model("SecondaryAmmo1"), gGame.interface.model("SecondaryAmmo2"), gGame.interface.model("SecondaryWeaponSlots")]>
+  [717] pusharglistnoret 3 ...................... <p, #SecModels, [gGame.interface.model("SecondaryAmmo1"), gGame.interface.model("SecondaryAmmo2"), gGame.interface.model("SecondaryWeaponSlots")]>
+  [719] objcall 103 ............................. p[#SecModels] = [gGame.interface.model("SecondaryAmmo1"), gGame.interface.model("SecondaryAmmo2"), gGame.interface.model("SecondaryWeaponSlots")]
+  [721] getprop 563 ............................. <p>
+  [724] pushsymb 2015 ........................... <#SSFont>
+  [727] pusharglist 0 ........................... <[]>
+  [729] pushlist ................................ <[]>
+  [730] pusharglistnoret 3 ...................... <p, #SSFont, []>
+  [732] objcall 103 ............................. p[#SSFont] = []
+  [734] pushzero ................................ <0>
+  [735] setlocal 0
+  [737] getlocal 0
+  [739] pushint8 9 .............................. <9>
+  [741] lteq
+  [742] jmpifz [778] ............................ repeat with i = 0 to 9
+  [745] getprop 563 ............................. <p>
+  [748] getchainedprop 2015 ..................... <p.SSFont>
+  [751] getglobal 43 ............................ <gGame>
+  [753] getchainedprop 366 ...................... <gGame.interface>
+  [756] pushcons 20 ............................. <"SSFont">
+  [758] getlocal 0 .............................. <i>
+  [760] joinstr ................................. <"SSFont" & i>
+  [761] pusharglist 2 ........................... <gGame.interface, "SSFont" & i>
+  [763] objcall 72 .............................. <gGame.interface.modelResource("SSFont" & i)>
+  [765] pusharglistnoret 2 ...................... <p.SSFont, gGame.interface.modelResource("SSFont" & i)>
+  [767] objcall 42 .............................. p.SSFont.add(gGame.interface.modelResource("SSFont" & i))
+  [769] pushint8 1
+  [771] getlocal 0
+  [773] add
+  [774] setlocal 0
+  [776] endrepeat [737]
+  [778] getprop 563 ............................. <p>
+  [781] pushsymb 2016 ........................... <#WhiteFont>
+  [784] pusharglist 0 ........................... <[]>
+  [786] pushlist ................................ <[]>
+  [787] pusharglistnoret 3 ...................... <p, #WhiteFont, []>
+  [789] objcall 103 ............................. p[#WhiteFont] = []
+  [791] pushzero ................................ <0>
+  [792] setlocal 0
+  [794] getlocal 0
+  [796] pushint8 9 .............................. <9>
+  [798] lteq
+  [799] jmpifz [835] ............................ repeat with i = 0 to 9
+  [802] getprop 563 ............................. <p>
+  [805] getchainedprop 2016 ..................... <p.WhiteFont>
+  [808] getglobal 43 ............................ <gGame>
+  [810] getchainedprop 366 ...................... <gGame.interface>
+  [813] pushcons 21 ............................. <"WhiteFont">
+  [815] getlocal 0 .............................. <i>
+  [817] joinstr ................................. <"WhiteFont" & i>
+  [818] pusharglist 2 ........................... <gGame.interface, "WhiteFont" & i>
+  [820] objcall 72 .............................. <gGame.interface.modelResource("WhiteFont" & i)>
+  [822] pusharglistnoret 2 ...................... <p.WhiteFont, gGame.interface.modelResource("WhiteFont" & i)>
+  [824] objcall 42 .............................. p.WhiteFont.add(gGame.interface.modelResource("WhiteFont" & i))
+  [826] pushint8 1
+  [828] getlocal 0
+  [830] add
+  [831] setlocal 0
+  [833] endrepeat [794]
+  [835] getparam 0 .............................. <me>
+  [837] pusharglistnoret 1 ...................... <me>
+  [839] extcall 52 .............................. return me
+  [841] ret
+end
+
+on enterFrame me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pushsymb 137 ............................ <#cars>
+  [  4] getglobal 43 ............................ <gGame>
+  [  6] pushsymb 298 ............................ <#camera>
+  [  9] pushint8 1 .............................. <1>
+  [ 11] pusharglist 3 ........................... <gGame, #camera, 1>
+  [ 13] objcall 102 ............................. <gGame.camera[1]>
+  [ 15] getchainedprop 93 ....................... <gGame.camera[1].target>
+  [ 17] getobjprop 235 .......................... <gGame.camera[1].target.name>
+  [ 19] pusharglist 1 ........................... <gGame.camera[1].target.name>
+  [ 21] extcall 88 .............................. <symbol(gGame.camera[1].target.name)>
+  [ 23] pusharglist 3 ........................... <gGame, #cars, symbol(gGame.camera[1].target.name)>
+  [ 25] objcall 70 .............................. <gGame.cars[symbol(gGame.camera[1].target.name)]>
+  [ 27] setlocal 0 .............................. t = gGame.cars[symbol(gGame.camera[1].target.name)]
+  [ 29] getprop 563 ............................. <p>
+  [ 32] getobjprop 1104 ......................... <p.timer>
+  [ 35] pushint8 1 .............................. <1>
+  [ 37] eq ...................................... <p.timer = 1>
+  [ 38] jmpifz [460] ............................ if p.timer = 1 then
+  [ 41] getglobal 43 ............................ <gGame>
+  [ 43] pushsymb 1104 ........................... <#timer>
+  [ 46] pusharglist 2 ........................... <gGame, #timer>
+  [ 48] objcall 105 ............................. <gGame[#timer]>
+  [ 50] pusharglist 1 ........................... <gGame[#timer]>
+  [ 52] extcall 389 ............................. <voidp(gGame[#timer])>
+  [ 55] pushzero ................................ <0>
+  [ 56] eq ...................................... <voidp(gGame[#timer]) = 0>
+  [ 57] jmpifz [460] ............................ if voidp(gGame[#timer]) = 0 then
+  [ 60] getglobal 43 ............................ <gGame>
+  [ 62] getobjprop 1104 ......................... <gGame.timer>
+  [ 65] setlocal 1 .............................. tMillisec = gGame.timer
+  [ 67] getlocal 1 .............................. <tMillisec>
+  [ 69] pushint16 1000 .......................... <1000>
+  [ 72] div ..................................... <tMillisec / 1000>
+  [ 73] pusharglist 1 ........................... <tMillisec / 1000>
+  [ 75] extcall 123 ............................. <integer(tMillisec / 1000)>
+  [ 77] setlocal 2 .............................. sec = integer(tMillisec / 1000)
+  [ 79] getlocal 2 .............................. <sec>
+  [ 81] pushint8 60 ............................. <60>
+  [ 83] div ..................................... <sec / 60>
+  [ 84] pusharglist 1 ........................... <sec / 60>
+  [ 86] extcall 123 ............................. <integer(sec / 60)>
+  [ 88] setlocal 3 .............................. min = integer(sec / 60)
+  [ 90] getlocal 2 .............................. <sec>
+  [ 92] getlocal 3 .............................. <min>
+  [ 94] pushint8 60 ............................. <60>
+  [ 96] mul ..................................... <min * 60>
+  [ 97] sub ..................................... <sec - (min * 60)>
+  [ 98] setlocal 2 .............................. sec = sec - (min * 60)
+  [100] getlocal 3 .............................. <min>
+  [102] pushint8 60 ............................. <60>
+  [104] div ..................................... <min / 60>
+  [105] pusharglist 1 ........................... <min / 60>
+  [107] extcall 123 ............................. <integer(min / 60)>
+  [109] setlocal 4 .............................. Hour = integer(min / 60)
+  [111] getlocal 3 .............................. <min>
+  [113] getlocal 4 .............................. <Hour>
+  [115] pushint8 60 ............................. <60>
+  [117] mul ..................................... <Hour * 60>
+  [118] sub ..................................... <min - (Hour * 60)>
+  [119] setlocal 3 .............................. min = min - (Hour * 60)
+  [121] getlocal 1 .............................. <tMillisec>
+  [123] getlocal 2 .............................. <sec>
+  [125] pushint16 1000 .......................... <1000>
+  [128] mul ..................................... <sec * 1000>
+  [129] sub ..................................... <tMillisec - (sec * 1000)>
+  [130] getlocal 3 .............................. <min>
+  [132] pushint8 60 ............................. <60>
+  [134] mul ..................................... <min * 60>
+  [135] pushint16 1000 .......................... <1000>
+  [138] mul ..................................... <min * 60 * 1000>
+  [139] sub ..................................... <tMillisec - (sec * 1000) - (min * 60 * 1000)>
+  [140] getlocal 4 .............................. <Hour>
+  [142] pushint8 60 ............................. <60>
+  [144] mul ..................................... <Hour * 60>
+  [145] pushint8 60 ............................. <60>
+  [147] mul ..................................... <Hour * 60 * 60>
+  [148] pushint16 1000 .......................... <1000>
+  [151] mul ..................................... <Hour * 60 * 60 * 1000>
+  [152] sub ..................................... <tMillisec - (sec * 1000) - (min * 60 * 1000) - (Hour * 60 * 60 * 1000)>
+  [153] pushfloat32 10.0 ........................ <10.0>
+  [158] div ..................................... <(tMillisec - (sec * 1000) - (min * 60 * 1000) - (Hour * 60 * 60 * 1000)) / 10.0>
+  [159] pusharglist 1 ........................... <(tMillisec - (sec * 1000) - (min * 60 * 1000) - (Hour * 60 * 60 * 1000)) / 10.0>
+  [161] extcall 123 ............................. <integer((tMillisec - (sec * 1000) - (min * 60 * 1000) - (Hour * 60 * 60 * 1000)) / 10.0)>
+  [163] setlocal 1 .............................. tMillisec = integer((tMillisec - (sec * 1000) - (min * 60 * 1000) - (Hour * 60 * 60 * 1000)) / 10.0)
+  [165] getlocal 3 .............................. <min>
+  [167] pushint8 10 ............................. <10>
+  [169] lt ...................................... <min < 10>
+  [170] jmpifz [200] ............................ if min < 10 then / else
+  [173] pushcons 22 ............................. <"0">
+  [175] getlocal 3 .............................. <min>
+  [177] pushint8 100 ............................ <100>
+  [179] add ..................................... <min + 100>
+  [180] pusharglist 1 ........................... <min + 100>
+  [182] extcall 67 .............................. <string(min + 100)>
+  [184] pushsymb 68 ............................. <#char>
+  [186] pushint8 3 .............................. <3>
+  [188] pushint8 3 .............................. <3>
+  [190] pusharglist 4 ........................... <string(min + 100), #char, 3, 3>
+  [192] objcall 70 .............................. <string(min + 100).char[3..3]>
+  [194] joinstr ................................. <"0" & string(min + 100).char[3..3]>
+  [195] setlocal 5 .............................. minString = "0" & string(min + 100).char[3..3]
+  [197] jmp [221]
+  [200] getlocal 3 .............................. <min>
+  [202] pushint8 100 ............................ <100>
+  [204] add ..................................... <min + 100>
+  [205] pusharglist 1 ........................... <min + 100>
+  [207] extcall 67 .............................. <string(min + 100)>
+  [209] pushsymb 68 ............................. <#char>
+  [211] pushint8 3 .............................. <3>
+  [213] pushint8 3 .............................. <3>
+  [215] pusharglist 4 ........................... <string(min + 100), #char, 3, 3>
+  [217] objcall 70 .............................. <string(min + 100).char[3..3]>
+  [219] setlocal 5 .............................. minString = string(min + 100).char[3..3]
+  [221] getlocal 2 .............................. <sec>
+  [223] pushint8 100 ............................ <100>
+  [225] add ..................................... <sec + 100>
+  [226] pusharglist 1 ........................... <sec + 100>
+  [228] extcall 67 .............................. <string(sec + 100)>
+  [230] pushsymb 68 ............................. <#char>
+  [232] pushint8 2 .............................. <2>
+  [234] pushint8 3 .............................. <3>
+  [236] pusharglist 4 ........................... <string(sec + 100), #char, 2, 3>
+  [238] objcall 70 .............................. <string(sec + 100).char[2..3]>
+  [240] setlocal 6 .............................. secString = string(sec + 100).char[2..3]
+  [242] getlocal 1 .............................. <tMillisec>
+  [244] pushint8 10 ............................. <10>
+  [246] lt ...................................... <tMillisec < 10>
+  [247] jmpifz [264] ............................ if tMillisec < 10 then / else
+  [250] pushcons 22 ............................. <"0">
+  [252] getlocal 1 .............................. <tMillisec>
+  [254] pusharglist 1 ........................... <tMillisec>
+  [256] extcall 67 .............................. <string(tMillisec)>
+  [258] joinstr ................................. <"0" & string(tMillisec)>
+  [259] setlocal 7 .............................. MilliString = "0" & string(tMillisec)
+  [261] jmp [272]
+  [264] getlocal 1 .............................. <tMillisec>
+  [266] pusharglist 1 ........................... <tMillisec>
+  [268] extcall 67 .............................. <string(tMillisec)>
+  [270] setlocal 7 .............................. MilliString = string(tMillisec)
+  [272] getlocal 1 .............................. <tMillisec>
+  [274] pushint8 100 ............................ <100>
+  [276] eq ...................................... <tMillisec = 100>
+  [277] jmpifz [284] ............................ if tMillisec = 100 then
+  [280] pushcons 23 ............................. <"00">
+  [282] setlocal 7 .............................. MilliString = "00"
+  [284] getlocal 5 .............................. <minString>
+  [286] getlocal 6 .............................. <secString>
+  [288] joinstr ................................. <minString & secString>
+  [289] getlocal 7 .............................. <MilliString>
+  [291] joinstr ................................. <minString & secString & MilliString>
+  [292] setlocal 8 .............................. tString = minString & secString & MilliString
+  [294] getlocal 8 .............................. <tString>
+  [296] pushsymb 68 ............................. <#char>
+  [298] pushint8 2 .............................. <2>
+  [300] getlocal 8 .............................. <tString>
+  [302] getobjprop 69 ........................... <tString.length>
+  [304] pusharglist 4 ........................... <tString, #char, 2, tString.length>
+  [306] objcall 70 .............................. <tString.char[2..tString.length]>
+  [308] setlocal 8 .............................. tString = tString.char[2..tString.length]
+  [310] pushint8 1 .............................. <1>
+  [312] setlocal 9
+  [314] getlocal 9
+  [316] pushint8 5 .............................. <5>
+  [318] lteq
+  [319] jmpifz [460] ............................ repeat with i = 1 to 5
+  [322] getprop 563 ............................. <p>
+  [325] pushsymb 2004 ........................... <#TimerModels>
+  [328] getlocal 9 .............................. <i>
+  [330] pusharglist 3 ........................... <p, #TimerModels, i>
+  [332] objcall 102 ............................. <p.TimerModels[i]>
+  [334] getglobal 43 ............................ <gGame>
+  [336] getchainedprop 366 ...................... <gGame.interface>
+  [339] pushcons 21 ............................. <"WhiteFont">
+  [341] getlocal 8 .............................. <tString>
+  [343] pushsymb 68 ............................. <#char>
+  [345] getlocal 9 .............................. <i>
+  [347] pusharglist 3 ........................... <tString, #char, i>
+  [349] objcall 70 .............................. <tString.char[i]>
+  [351] joinstr ................................. <"WhiteFont" & tString.char[i]>
+  [352] pusharglist 2 ........................... <gGame.interface, "WhiteFont" & tString.char[i]>
+  [354] objcall 72 .............................. <gGame.interface.modelResource("WhiteFont" & tString.char[i])>
+  [356] setobjprop 73 ........................... p.TimerModels[i].resource = gGame.interface.modelResource("WhiteFont" & tString.char[i])
+  [358] getglobal 43 ............................ <gGame>
+  [360] getobjprop 92 ........................... <gGame.GameMode>
+  [362] pushcons 24 ............................. <"Rampage">
+  [364] eq ...................................... <gGame.GameMode = "Rampage">
+  [365] getglobal 43 ............................ <gGame>
+  [367] getobjprop 1104 ......................... <gGame.timer>
+  [370] pushint16 10000 ......................... <10000>
+  [373] lteq .................................... <gGame.timer <= 10000>
+  [374] and ..................................... <(gGame.GameMode = "Rampage") and (gGame.timer <= 10000)>
+  [375] jmpifz [451] ............................ if (gGame.GameMode = "Rampage") and (gGame.timer <= 10000) then
+  [378] getprop 563 ............................. <p>
+  [381] pushsymb 2004 ........................... <#TimerModels>
+  [384] getlocal 9 .............................. <i>
+  [386] pusharglist 3 ........................... <p, #TimerModels, i>
+  [388] objcall 102 ............................. <p.TimerModels[i]>
+  [390] getglobal 43 ............................ <gGame>
+  [392] getchainedprop 366 ...................... <gGame.interface>
+  [395] pushcons 25 ............................. <"InterfaceRed_Material">
+  [397] pusharglist 2 ........................... <gGame.interface, "InterfaceRed_Material">
+  [399] objcall 208 ............................. <gGame.interface.shader("InterfaceRed_Material")>
+  [401] setobjprop 208 .......................... p.TimerModels[i].shader = gGame.interface.shader("InterfaceRed_Material")
+  [403] getglobal 43 ............................ <gGame>
+  [405] getchainedprop 366 ...................... <gGame.interface>
+  [408] pushcons 26 ............................. <"Time:1">
+  [410] pusharglist 2 ........................... <gGame.interface, "Time:1">
+  [412] objcall 71 .............................. <gGame.interface.model("Time:1")>
+  [414] getglobal 43 ............................ <gGame>
+  [416] getchainedprop 366 ...................... <gGame.interface>
+  [419] pushcons 25 ............................. <"InterfaceRed_Material">
+  [421] pusharglist 2 ........................... <gGame.interface, "InterfaceRed_Material">
+  [423] objcall 208 ............................. <gGame.interface.shader("InterfaceRed_Material")>
+  [425] setobjprop 208 .......................... gGame.interface.model("Time:1").shader = gGame.interface.shader("InterfaceRed_Material")
+  [427] getglobal 43 ............................ <gGame>
+  [429] getchainedprop 366 ...................... <gGame.interface>
+  [432] pushcons 27 ............................. <"Time:2">
+  [434] pusharglist 2 ........................... <gGame.interface, "Time:2">
+  [436] objcall 71 .............................. <gGame.interface.model("Time:2")>
+  [438] getglobal 43 ............................ <gGame>
+  [440] getchainedprop 366 ...................... <gGame.interface>
+  [443] pushcons 25 ............................. <"InterfaceRed_Material">
+  [445] pusharglist 2 ........................... <gGame.interface, "InterfaceRed_Material">
+  [447] objcall 208 ............................. <gGame.interface.shader("InterfaceRed_Material")>
+  [449] setobjprop 208 .......................... gGame.interface.model("Time:2").shader = gGame.interface.shader("InterfaceRed_Material")
+  [451] pushint8 1
+  [453] getlocal 9
+  [455] add
+  [456] setlocal 9
+  [458] endrepeat [314]
+  [460] getglobal 43 ............................ <gGame>
+  [462] getobjprop 92 ........................... <gGame.GameMode>
+  [464] pushcons 28 ............................. <"elimination">
+  [466] eq ...................................... <gGame.GameMode = "elimination">
+  [467] jmpifz [598] ............................ if gGame.GameMode = "elimination" then
+  [470] getglobal 43 ............................ <gGame>
+  [472] pushsymb 252 ............................ <#Elimination>
+  [474] pusharglist 2 ........................... <gGame, #Elimination>
+  [476] objcall 105 ............................. <gGame[#Elimination]>
+  [478] pusharglist 1 ........................... <gGame[#Elimination]>
+  [480] extcall 389 ............................. <voidp(gGame[#Elimination])>
+  [483] pushzero ................................ <0>
+  [484] eq ...................................... <voidp(gGame[#Elimination]) = 0>
+  [485] jmpifz [598] ............................ if voidp(gGame[#Elimination]) = 0 then
+  [488] getglobal 43 ............................ <gGame>
+  [490] getobjprop 252 .......................... <gGame.Elimination>
+  [492] pushzero ................................ <0>
+  [493] gt ...................................... <gGame.Elimination > 0>
+  [494] jmpifz [598] ............................ if gGame.Elimination > 0 then
+  [497] pushcons 22 ............................. <"0">
+  [499] getglobal 43 ............................ <gGame>
+  [501] getobjprop 252 .......................... <gGame.Elimination>
+  [503] pushfloat32 1000.0 ...................... <1000.0>
+  [508] div ..................................... <gGame.Elimination / 1000.0>
+  [509] pusharglist 1 ........................... <gGame.Elimination / 1000.0>
+  [511] extcall 123 ............................. <integer(gGame.Elimination / 1000.0)>
+  [513] pusharglist 1 ........................... <integer(gGame.Elimination / 1000.0)>
+  [515] extcall 67 .............................. <string(integer(gGame.Elimination / 1000.0))>
+  [517] joinstr ................................. <"0" & string(integer(gGame.Elimination / 1000.0))>
+  [518] setlocal 8 .............................. tString = "0" & string(integer(gGame.Elimination / 1000.0))
+  [520] getlocal 8 .............................. <tString>
+  [522] pushsymb 68 ............................. <#char>
+  [524] getlocal 8 .............................. <tString>
+  [526] getobjprop 69 ........................... <tString.length>
+  [528] pushint8 1 .............................. <1>
+  [530] sub ..................................... <tString.length - 1>
+  [531] getlocal 8 .............................. <tString>
+  [533] getobjprop 69 ........................... <tString.length>
+  [535] pusharglist 4 ........................... <tString, #char, tString.length - 1, tString.length>
+  [537] objcall 70 .............................. <tString.char[tString.length - 1..tString.length]>
+  [539] setlocal 8 .............................. tString = tString.char[tString.length - 1..tString.length]
+  [541] pushint8 1 .............................. <1>
+  [543] setlocal 9
+  [545] getlocal 9
+  [547] pushint8 2 .............................. <2>
+  [549] lteq
+  [550] jmpifz [598] ............................ repeat with i = 1 to 2
+  [553] getprop 563 ............................. <p>
+  [556] pushsymb 2007 ........................... <#EliminationModels>
+  [559] getlocal 9 .............................. <i>
+  [561] pusharglist 3 ........................... <p, #EliminationModels, i>
+  [563] objcall 102 ............................. <p.EliminationModels[i]>
+  [565] getglobal 43 ............................ <gGame>
+  [567] getchainedprop 366 ...................... <gGame.interface>
+  [570] pushcons 21 ............................. <"WhiteFont">
+  [572] getlocal 8 .............................. <tString>
+  [574] pushsymb 68 ............................. <#char>
+  [576] getlocal 9 .............................. <i>
+  [578] pusharglist 3 ........................... <tString, #char, i>
+  [580] objcall 70 .............................. <tString.char[i]>
+  [582] joinstr ................................. <"WhiteFont" & tString.char[i]>
+  [583] pusharglist 2 ........................... <gGame.interface, "WhiteFont" & tString.char[i]>
+  [585] objcall 72 .............................. <gGame.interface.modelResource("WhiteFont" & tString.char[i])>
+  [587] setobjprop 73 ........................... p.EliminationModels[i].resource = gGame.interface.modelResource("WhiteFont" & tString.char[i])
+  [589] pushint8 1
+  [591] getlocal 9
+  [593] add
+  [594] setlocal 9
+  [596] endrepeat [545]
+  [598] getprop 563 ............................. <p>
+  [601] getobjprop 2005 ......................... <p.CountDown>
+  [604] pushint8 1 .............................. <1>
+  [606] eq ...................................... <p.CountDown = 1>
+  [607] jmpifz [741] ............................ if p.CountDown = 1 then
+  [610] getglobal 43 ............................ <gGame>
+  [612] pushsymb 2005 ........................... <#CountDown>
+  [615] pusharglist 2 ........................... <gGame, #CountDown>
+  [617] objcall 105 ............................. <gGame[#CountDown]>
+  [619] pusharglist 1 ........................... <gGame[#CountDown]>
+  [621] extcall 389 ............................. <voidp(gGame[#CountDown])>
+  [624] pushzero ................................ <0>
+  [625] eq ...................................... <voidp(gGame[#CountDown]) = 0>
+  [626] jmpifz [741] ............................ if voidp(gGame[#CountDown]) = 0 then
+  [629] getglobal 43 ............................ <gGame>
+  [631] getobjprop 2005 ......................... <gGame.CountDown>
+  [634] pushzero ................................ <0>
+  [635] gt ...................................... <gGame.CountDown > 0>
+  [636] jmpifz [741] ............................ if gGame.CountDown > 0 then
+  [639] pushcons 23 ............................. <"00">
+  [641] getglobal 43 ............................ <gGame>
+  [643] getobjprop 2005 ......................... <gGame.CountDown>
+  [646] pushfloat32 10.0 ........................ <10.0>
+  [651] div ..................................... <gGame.CountDown / 10.0>
+  [652] pusharglist 1 ........................... <gGame.CountDown / 10.0>
+  [654] extcall 123 ............................. <integer(gGame.CountDown / 10.0)>
+  [656] pusharglist 1 ........................... <integer(gGame.CountDown / 10.0)>
+  [658] extcall 67 .............................. <string(integer(gGame.CountDown / 10.0))>
+  [660] joinstr ................................. <"00" & string(integer(gGame.CountDown / 10.0))>
+  [661] setlocal 8 .............................. tString = "00" & string(integer(gGame.CountDown / 10.0))
+  [663] getlocal 8 .............................. <tString>
+  [665] pushsymb 68 ............................. <#char>
+  [667] getlocal 8 .............................. <tString>
+  [669] getobjprop 69 ........................... <tString.length>
+  [671] pushint8 2 .............................. <2>
+  [673] sub ..................................... <tString.length - 2>
+  [674] getlocal 8 .............................. <tString>
+  [676] getobjprop 69 ........................... <tString.length>
+  [678] pusharglist 4 ........................... <tString, #char, tString.length - 2, tString.length>
+  [680] objcall 70 .............................. <tString.char[tString.length - 2..tString.length]>
+  [682] setlocal 8 .............................. tString = tString.char[tString.length - 2..tString.length]
+  [684] pushint8 1 .............................. <1>
+  [686] setlocal 9
+  [688] getlocal 9
+  [690] pushint8 3 .............................. <3>
+  [692] lteq
+  [693] jmpifz [741] ............................ repeat with i = 1 to 3
+  [696] getprop 563 ............................. <p>
+  [699] pushsymb 2006 ........................... <#CountDownModels>
+  [702] getlocal 9 .............................. <i>
+  [704] pusharglist 3 ........................... <p, #CountDownModels, i>
+  [706] objcall 102 ............................. <p.CountDownModels[i]>
+  [708] getglobal 43 ............................ <gGame>
+  [710] getchainedprop 366 ...................... <gGame.interface>
+  [713] pushcons 21 ............................. <"WhiteFont">
+  [715] getlocal 8 .............................. <tString>
+  [717] pushsymb 68 ............................. <#char>
+  [719] getlocal 9 .............................. <i>
+  [721] pusharglist 3 ........................... <tString, #char, i>
+  [723] objcall 70 .............................. <tString.char[i]>
+  [725] joinstr ................................. <"WhiteFont" & tString.char[i]>
+  [726] pusharglist 2 ........................... <gGame.interface, "WhiteFont" & tString.char[i]>
+  [728] objcall 72 .............................. <gGame.interface.modelResource("WhiteFont" & tString.char[i])>
+  [730] setobjprop 73 ........................... p.CountDownModels[i].resource = gGame.interface.modelResource("WhiteFont" & tString.char[i])
+  [732] pushint8 1
+  [734] getlocal 9
+  [736] add
+  [737] setlocal 9
+  [739] endrepeat [688]
+  [741] getprop 563 ............................. <p>
+  [744] getobjprop 136 .......................... <p.score>
+  [746] pushint8 1 .............................. <1>
+  [748] eq ...................................... <p.score = 1>
+  [749] jmpifz [929] ............................ if p.score = 1 then
+  [752] getlocal 0 .............................. <t>
+  [754] getchainedprop 138 ...................... <t.race>
+  [756] getobjprop 1614 ......................... <t.race.addScore>
+  [759] setlocal 10 ............................. tAddScore = t.race.addScore
+  [761] getlocal 0 .............................. <t>
+  [763] getchainedprop 138 ...................... <t.race>
+  [765] getobjprop 2017 ......................... <t.race.storedScore>
+  [768] setlocal 11 ............................. tScore = t.race.storedScore
+  [770] getlocal 10 ............................. <tAddScore>
+  [772] pushzero ................................ <0>
+  [773] gt ...................................... <tAddScore > 0>
+  [774] jmpifz [906] ............................ if tAddScore > 0 then
+  [777] pushint8 100 ............................ <100>
+  [779] setlocal 12 ............................. tStep = 100
+  [781] getlocal 10 ............................. <tAddScore>
+  [783] pushint8 100 ............................ <100>
+  [785] lt ...................................... <tAddScore < 100>
+  [786] jmpifz [793] ............................ if tAddScore < 100 then
+  [789] getlocal 10 ............................. <tAddScore>
+  [791] setlocal 12 ............................. tStep = tAddScore
+  [793] getlocal 11 ............................. <tScore>
+  [795] getlocal 12 ............................. <tStep>
+  [797] add ..................................... <tScore + tStep>
+  [798] setlocal 11 ............................. tScore = tScore + tStep
+  [800] pushcons 29 ............................. <"00000">
+  [802] getlocal 11 ............................. <tScore>
+  [804] joinstr ................................. <"00000" & tScore>
+  [805] pusharglist 1 ........................... <"00000" & tScore>
+  [807] extcall 67 .............................. <string("00000" & tScore)>
+  [809] setlocal 11 ............................. tScore = string("00000" & tScore)
+  [811] getlocal 11 ............................. <tScore>
+  [813] pushsymb 68 ............................. <#char>
+  [815] getlocal 11 ............................. <tScore>
+  [817] getobjprop 69 ........................... <tScore.length>
+  [819] pushint8 5 .............................. <5>
+  [821] sub ..................................... <tScore.length - 5>
+  [822] getlocal 11 ............................. <tScore>
+  [824] getobjprop 69 ........................... <tScore.length>
+  [826] pusharglist 4 ........................... <tScore, #char, tScore.length - 5, tScore.length>
+  [828] objcall 70 .............................. <tScore.char[tScore.length - 5..tScore.length]>
+  [830] setlocal 11 ............................. tScore = tScore.char[tScore.length - 5..tScore.length]
+  [832] pushint8 1 .............................. <1>
+  [834] setlocal 9
+  [836] getlocal 9
+  [838] pushint8 6 .............................. <6>
+  [840] lteq
+  [841] jmpifz [899] ............................ repeat with i = 1 to 6
+  [844] getlocal 11 ............................. <tScore>
+  [846] pushsymb 68 ............................. <#char>
+  [848] getlocal 9 .............................. <i>
+  [850] pusharglist 3 ........................... <tScore, #char, i>
+  [852] objcall 70 .............................. <tScore.char[i]>
+  [854] pusharglist 1 ........................... <tScore.char[i]>
+  [856] extcall 503 ............................. <value(tScore.char[i])>
+  [859] pushint8 1 .............................. <1>
+  [861] add ..................................... <value(tScore.char[i]) + 1>
+  [862] setlocal 13 ............................. tValue = value(tScore.char[i]) + 1
+  [864] getprop 563 ............................. <p>
+  [867] pushsymb 2008 ........................... <#ScoreModels>
+  [870] getlocal 9 .............................. <i>
+  [872] pusharglist 3 ........................... <p, #ScoreModels, i>
+  [874] objcall 102 ............................. <p.ScoreModels[i]>
+  [876] getprop 563 ............................. <p>
+  [879] pushsymb 2016 ........................... <#WhiteFont>
+  [882] getlocal 13 ............................. <tValue>
+  [884] pusharglist 3 ........................... <p, #WhiteFont, tValue>
+  [886] objcall 70 .............................. <p.WhiteFont[tValue]>
+  [888] setobjprop 73 ........................... p.ScoreModels[i].resource = p.WhiteFont[tValue]
+  [890] pushint8 1
+  [892] getlocal 9
+  [894] add
+  [895] setlocal 9
+  [897] endrepeat [836]
+  [899] getlocal 10 ............................. <tAddScore>
+  [901] getlocal 12 ............................. <tStep>
+  [903] sub ..................................... <tAddScore - tStep>
+  [904] setlocal 10 ............................. tAddScore = tAddScore - tStep
+  [906] getlocal 0 .............................. <t>
+  [908] getchainedprop 138 ...................... <t.race>
+  [910] getlocal 10 ............................. <tAddScore>
+  [912] setobjprop 1614 ......................... t.race.addScore = tAddScore
+  [915] getlocal 0 .............................. <t>
+  [917] getchainedprop 138 ...................... <t.race>
+  [919] getlocal 11 ............................. <tScore>
+  [921] pusharglist 1 ........................... <tScore>
+  [923] extcall 503 ............................. <value(tScore)>
+  [926] setobjprop 2017 ......................... t.race.storedScore = value(tScore)
+  [929] getprop 563 ............................. <p>
+  [932] getobjprop 2009 ......................... <p.Speedo>
+  [935] pushint8 1 .............................. <1>
+  [937] eq ...................................... <p.Speedo = 1>
+  [938] jmpifz [1061] ........................... if p.Speedo = 1 then
+  [941] pushcons 23 ............................. <"00">
+  [943] getlocal 0 .............................. <t>
+  [945] getchainedprop 250 ...................... <t.car>
+  [947] getobjprop 2018 ......................... <t.car.Speed>
+  [950] pusharglist 1 ........................... <t.car.Speed>
+  [952] extcall 973 ............................. <abs(t.car.Speed)>
+  [955] pushint16 3600 .......................... <3600>
+  [958] mul ..................................... <abs(t.car.Speed) * 3600>
+  [959] pusharglist 1 ........................... <abs(t.car.Speed) * 3600>
+  [961] extcall 123 ............................. <integer(abs(t.car.Speed) * 3600)>
+  [963] pushint16 1000 .......................... <1000>
+  [966] div ..................................... <integer(abs(t.car.Speed) * 3600) / 1000>
+  [967] pusharglist 1 ........................... <integer(abs(t.car.Speed) * 3600) / 1000>
+  [969] extcall 67 .............................. <string(integer(abs(t.car.Speed) * 3600) / 1000)>
+  [971] joinstr ................................. <"00" & string(integer(abs(t.car.Speed) * 3600) / 1000)>
+  [972] setlocal 8 .............................. tString = "00" & string(integer(abs(t.car.Speed) * 3600) / 1000)
+  [974] getlocal 8 .............................. <tString>
+  [976] pushsymb 68 ............................. <#char>
+  [978] getlocal 8 .............................. <tString>
+  [980] getobjprop 69 ........................... <tString.length>
+  [982] pushint8 2 .............................. <2>
+  [984] sub ..................................... <tString.length - 2>
+  [985] getlocal 8 .............................. <tString>
+  [987] getobjprop 69 ........................... <tString.length>
+  [989] pusharglist 4 ........................... <tString, #char, tString.length - 2, tString.length>
+  [991] objcall 70 .............................. <tString.char[tString.length - 2..tString.length]>
+  [993] setlocal 8 .............................. tString = tString.char[tString.length - 2..tString.length]
+  [995] pushint8 1 .............................. <1>
+  [997] setlocal 9
+  [999] getlocal 9
+  [1001] pushint8 3 ............................. <3>
+  [1003] lteq
+  [1004] jmpifz [1061] .......................... repeat with i = 1 to 3
+  [1007] getlocal 8 ............................. <tString>
+  [1009] pushsymb 68 ............................ <#char>
+  [1011] getlocal 9 ............................. <i>
+  [1013] pusharglist 3 .......................... <tString, #char, i>
+  [1015] objcall 70 ............................. <tString.char[i]>
+  [1017] pusharglist 1 .......................... <tString.char[i]>
+  [1019] extcall 503 ............................ <value(tString.char[i])>
+  [1022] setlocal 13 ............................ tValue = value(tString.char[i])
+  [1024] getprop 563 ............................ <p>
+  [1027] pushsymb 2010 .......................... <#SpeedoModels>
+  [1030] getlocal 9 ............................. <i>
+  [1032] pusharglist 3 .......................... <p, #SpeedoModels, i>
+  [1034] objcall 102 ............................ <p.SpeedoModels[i]>
+  [1036] getglobal 43 ........................... <gGame>
+  [1038] getchainedprop 366 ..................... <gGame.interface>
+  [1041] pushcons 20 ............................ <"SSFont">
+  [1043] getlocal 13 ............................ <tValue>
+  [1045] joinstr ................................ <"SSFont" & tValue>
+  [1046] pusharglist 2 .......................... <gGame.interface, "SSFont" & tValue>
+  [1048] objcall 72 ............................. <gGame.interface.modelResource("SSFont" & tValue)>
+  [1050] setobjprop 73 .......................... p.SpeedoModels[i].resource = gGame.interface.modelResource("SSFont" & tValue)
+  [1052] pushint8 1
+  [1054] getlocal 9
+  [1056] add
+  [1057] setlocal 9
+  [1059] endrepeat [999]
+  [1061] getprop 563 ............................ <p>
+  [1064] getobjprop 185 ......................... <p.Weapons>
+  [1066] pushint8 1 ............................. <1>
+  [1068] eq ..................................... <p.Weapons = 1>
+  [1069] jmpifz [1499] .......................... if p.Weapons = 1 then / else
+  [1072] getprop 563 ............................ <p>
+  [1075] pushsymb 2011 .......................... <#PrimData>
+  [1078] pusharglist 2 .......................... <p, #PrimData>
+  [1080] objcall 105 ............................ <p[#PrimData]>
+  [1082] pusharglist 1 .......................... <p[#PrimData]>
+  [1084] extcall 389 ............................ <voidp(p[#PrimData])>
+  [1087] pushzero ............................... <0>
+  [1088] eq ..................................... <voidp(p[#PrimData]) = 0>
+  [1089] jmpifz [1245] .......................... if voidp(p[#PrimData]) = 0 then / else
+  [1092] pushcons 22 ............................ <"0">
+  [1094] getprop 563 ............................ <p>
+  [1097] getchainedprop 2011 .................... <p.PrimData>
+  [1100] pushsymb 2019 .......................... <#ammo>
+  [1103] pushint8 1 ............................. <1>
+  [1105] pusharglist 3 .......................... <p.PrimData, #ammo, 1>
+  [1107] objcall 70 ............................. <p.PrimData.ammo[1]>
+  [1109] pusharglist 1 .......................... <p.PrimData.ammo[1]>
+  [1111] extcall 67 ............................. <string(p.PrimData.ammo[1])>
+  [1113] joinstr ................................ <"0" & string(p.PrimData.ammo[1])>
+  [1114] setlocal 8 ............................. tString = "0" & string(p.PrimData.ammo[1])
+  [1116] getprop 563 ............................ <p>
+  [1119] pushsymb 2013 .......................... <#PrimModels>
+  [1122] pushint8 1 ............................. <1>
+  [1124] pusharglist 3 .......................... <p, #PrimModels, 1>
+  [1126] objcall 102 ............................ <p.PrimModels[1]>
+  [1128] getprop 563 ............................ <p>
+  [1131] pushsymb 2015 .......................... <#SSFont>
+  [1134] getlocal 8 ............................. <tString>
+  [1136] pushsymb 68 ............................ <#char>
+  [1138] getlocal 8 ............................. <tString>
+  [1140] getobjprop 69 .......................... <tString.length>
+  [1142] pushint8 1 ............................. <1>
+  [1144] sub .................................... <tString.length - 1>
+  [1145] pusharglist 3 .......................... <tString, #char, tString.length - 1>
+  [1147] objcall 70 ............................. <tString.char[tString.length - 1]>
+  [1149] pusharglist 1 .......................... <tString.char[tString.length - 1]>
+  [1151] extcall 503 ............................ <value(tString.char[tString.length - 1])>
+  [1154] pushint8 1 ............................. <1>
+  [1156] add .................................... <value(tString.char[tString.length - 1]) + 1>
+  [1157] pusharglist 3 .......................... <p, #SSFont, value(tString.char[tString.length - 1]) + 1>
+  [1159] objcall 70 ............................. <p.SSFont[value(tString.char[tString.length - 1]) + 1]>
+  [1161] setobjprop 73 .......................... p.PrimModels[1].resource = p.SSFont[value(tString.char[tString.length - 1]) + 1]
+  [1163] getprop 563 ............................ <p>
+  [1166] pushsymb 2013 .......................... <#PrimModels>
+  [1169] pushint8 2 ............................. <2>
+  [1171] pusharglist 3 .......................... <p, #PrimModels, 2>
+  [1173] objcall 102 ............................ <p.PrimModels[2]>
+  [1175] getprop 563 ............................ <p>
+  [1178] pushsymb 2015 .......................... <#SSFont>
+  [1181] getlocal 8 ............................. <tString>
+  [1183] pushsymb 68 ............................ <#char>
+  [1185] getlocal 8 ............................. <tString>
+  [1187] getobjprop 69 .......................... <tString.length>
+  [1189] pusharglist 3 .......................... <tString, #char, tString.length>
+  [1191] objcall 70 ............................. <tString.char[tString.length]>
+  [1193] pusharglist 1 .......................... <tString.char[tString.length]>
+  [1195] extcall 503 ............................ <value(tString.char[tString.length])>
+  [1198] pushint8 1 ............................. <1>
+  [1200] add .................................... <value(tString.char[tString.length]) + 1>
+  [1201] pusharglist 3 .......................... <p, #SSFont, value(tString.char[tString.length]) + 1>
+  [1203] objcall 70 ............................. <p.SSFont[value(tString.char[tString.length]) + 1]>
+  [1205] setobjprop 73 .......................... p.PrimModels[2].resource = p.SSFont[value(tString.char[tString.length]) + 1]
+  [1207] getprop 563 ............................ <p>
+  [1210] pushsymb 2013 .......................... <#PrimModels>
+  [1213] pushint8 3 ............................. <3>
+  [1215] pusharglist 3 .......................... <p, #PrimModels, 3>
+  [1217] objcall 102 ............................ <p.PrimModels[3]>
+  [1219] getglobal 43 ........................... <gGame>
+  [1221] getchainedprop 366 ..................... <gGame.interface>
+  [1224] pushcons 16 ............................ <"PrimaryWeaponSlots">
+  [1226] getprop 563 ............................ <p>
+  [1229] getchainedprop 2011 .................... <p.PrimData>
+  [1232] getobjprop 2020 ........................ <p.PrimData.clips>
+  [1235] joinstr ................................ <"PrimaryWeaponSlots" & p.PrimData.clips>
+  [1236] pusharglist 2 .......................... <gGame.interface, "PrimaryWeaponSlots" & p.PrimData.clips>
+  [1238] objcall 72 ............................. <gGame.interface.modelResource("PrimaryWeaponSlots" & p.PrimData.clips)>
+  [1240] setobjprop 73 .......................... p.PrimModels[3].resource = gGame.interface.modelResource("PrimaryWeaponSlots" & p.PrimData.clips)
+  [1242] jmp [1284]
+  [1245] getglobal 43 ........................... <gGame>
+  [1247] getchainedprop 366 ..................... <gGame.interface>
+  [1250] pushcons 30 ............................ <"Primary">
+  [1252] pusharglist 2 .......................... <gGame.interface, "Primary">
+  [1254] objcall 71 ............................. <gGame.interface.model("Primary")>
+  [1256] pusharglist 1 .......................... <gGame.interface.model("Primary")>
+  [1258] objcall 640 ............................ <gGame.interface.model("Primary").isInWorld()>
+  [1261] pushint8 1 ............................. <1>
+  [1263] eq ..................................... <gGame.interface.model("Primary").isInWorld() = 1>
+  [1264] jmpifz [1284] .......................... if gGame.interface.model("Primary").isInWorld() = 1 then
+  [1267] getglobal 43 ........................... <gGame>
+  [1269] getchainedprop 366 ..................... <gGame.interface>
+  [1272] pushcons 30 ............................ <"Primary">
+  [1274] pusharglist 2 .......................... <gGame.interface, "Primary">
+  [1276] objcall 71 ............................. <gGame.interface.model("Primary")>
+  [1278] pusharglist 0 .......................... <>
+  [1280] extcall 40 ............................. <VOID>
+  [1282] setobjprop 207 ......................... gGame.interface.model("Primary").parent = VOID
+  [1284] getprop 563 ............................ <p>
+  [1287] pushsymb 2012 .......................... <#SecData>
+  [1290] pusharglist 2 .......................... <p, #SecData>
+  [1292] objcall 105 ............................ <p[#SecData]>
+  [1294] pusharglist 1 .......................... <p[#SecData]>
+  [1296] extcall 389 ............................ <voidp(p[#SecData])>
+  [1299] pushzero ............................... <0>
+  [1300] eq ..................................... <voidp(p[#SecData]) = 0>
+  [1301] jmpifz [1457] .......................... if voidp(p[#SecData]) = 0 then / else
+  [1304] pushcons 22 ............................ <"0">
+  [1306] getprop 563 ............................ <p>
+  [1309] getchainedprop 2012 .................... <p.SecData>
+  [1312] pushsymb 2019 .......................... <#ammo>
+  [1315] pushint8 1 ............................. <1>
+  [1317] pusharglist 3 .......................... <p.SecData, #ammo, 1>
+  [1319] objcall 70 ............................. <p.SecData.ammo[1]>
+  [1321] pusharglist 1 .......................... <p.SecData.ammo[1]>
+  [1323] extcall 67 ............................. <string(p.SecData.ammo[1])>
+  [1325] joinstr ................................ <"0" & string(p.SecData.ammo[1])>
+  [1326] setlocal 8 ............................. tString = "0" & string(p.SecData.ammo[1])
+  [1328] getprop 563 ............................ <p>
+  [1331] pushsymb 2014 .......................... <#SecModels>
+  [1334] pushint8 1 ............................. <1>
+  [1336] pusharglist 3 .......................... <p, #SecModels, 1>
+  [1338] objcall 102 ............................ <p.SecModels[1]>
+  [1340] getprop 563 ............................ <p>
+  [1343] pushsymb 2015 .......................... <#SSFont>
+  [1346] getlocal 8 ............................. <tString>
+  [1348] pushsymb 68 ............................ <#char>
+  [1350] getlocal 8 ............................. <tString>
+  [1352] getobjprop 69 .......................... <tString.length>
+  [1354] pushint8 1 ............................. <1>
+  [1356] sub .................................... <tString.length - 1>
+  [1357] pusharglist 3 .......................... <tString, #char, tString.length - 1>
+  [1359] objcall 70 ............................. <tString.char[tString.length - 1]>
+  [1361] pusharglist 1 .......................... <tString.char[tString.length - 1]>
+  [1363] extcall 503 ............................ <value(tString.char[tString.length - 1])>
+  [1366] pushint8 1 ............................. <1>
+  [1368] add .................................... <value(tString.char[tString.length - 1]) + 1>
+  [1369] pusharglist 3 .......................... <p, #SSFont, value(tString.char[tString.length - 1]) + 1>
+  [1371] objcall 70 ............................. <p.SSFont[value(tString.char[tString.length - 1]) + 1]>
+  [1373] setobjprop 73 .......................... p.SecModels[1].resource = p.SSFont[value(tString.char[tString.length - 1]) + 1]
+  [1375] getprop 563 ............................ <p>
+  [1378] pushsymb 2014 .......................... <#SecModels>
+  [1381] pushint8 2 ............................. <2>
+  [1383] pusharglist 3 .......................... <p, #SecModels, 2>
+  [1385] objcall 102 ............................ <p.SecModels[2]>
+  [1387] getprop 563 ............................ <p>
+  [1390] pushsymb 2015 .......................... <#SSFont>
+  [1393] getlocal 8 ............................. <tString>
+  [1395] pushsymb 68 ............................ <#char>
+  [1397] getlocal 8 ............................. <tString>
+  [1399] getobjprop 69 .......................... <tString.length>
+  [1401] pusharglist 3 .......................... <tString, #char, tString.length>
+  [1403] objcall 70 ............................. <tString.char[tString.length]>
+  [1405] pusharglist 1 .......................... <tString.char[tString.length]>
+  [1407] extcall 503 ............................ <value(tString.char[tString.length])>
+  [1410] pushint8 1 ............................. <1>
+  [1412] add .................................... <value(tString.char[tString.length]) + 1>
+  [1413] pusharglist 3 .......................... <p, #SSFont, value(tString.char[tString.length]) + 1>
+  [1415] objcall 70 ............................. <p.SSFont[value(tString.char[tString.length]) + 1]>
+  [1417] setobjprop 73 .......................... p.SecModels[2].resource = p.SSFont[value(tString.char[tString.length]) + 1]
+  [1419] getprop 563 ............................ <p>
+  [1422] pushsymb 2014 .......................... <#SecModels>
+  [1425] pushint8 3 ............................. <3>
+  [1427] pusharglist 3 .......................... <p, #SecModels, 3>
+  [1429] objcall 102 ............................ <p.SecModels[3]>
+  [1431] getglobal 43 ........................... <gGame>
+  [1433] getchainedprop 366 ..................... <gGame.interface>
+  [1436] pushcons 19 ............................ <"SecondaryWeaponSlots">
+  [1438] getprop 563 ............................ <p>
+  [1441] getchainedprop 2012 .................... <p.SecData>
+  [1444] getobjprop 2020 ........................ <p.SecData.clips>
+  [1447] joinstr ................................ <"SecondaryWeaponSlots" & p.SecData.clips>
+  [1448] pusharglist 2 .......................... <gGame.interface, "SecondaryWeaponSlots" & p.SecData.clips>
+  [1450] objcall 72 ............................. <gGame.interface.modelResource("SecondaryWeaponSlots" & p.SecData.clips)>
+  [1452] setobjprop 73 .......................... p.SecModels[3].resource = gGame.interface.modelResource("SecondaryWeaponSlots" & p.SecData.clips)
+  [1454] jmp [1496]
+  [1457] getglobal 43 ........................... <gGame>
+  [1459] getchainedprop 366 ..................... <gGame.interface>
+  [1462] pushcons 31 ............................ <"Secondary">
+  [1464] pusharglist 2 .......................... <gGame.interface, "Secondary">
+  [1466] objcall 71 ............................. <gGame.interface.model("Secondary")>
+  [1468] pusharglist 1 .......................... <gGame.interface.model("Secondary")>
+  [1470] objcall 640 ............................ <gGame.interface.model("Secondary").isInWorld()>
+  [1473] pushint8 1 ............................. <1>
+  [1475] eq ..................................... <gGame.interface.model("Secondary").isInWorld() = 1>
+  [1476] jmpifz [1496] .......................... if gGame.interface.model("Secondary").isInWorld() = 1 then
+  [1479] getglobal 43 ........................... <gGame>
+  [1481] getchainedprop 366 ..................... <gGame.interface>
+  [1484] pushcons 31 ............................ <"Secondary">
+  [1486] pusharglist 2 .......................... <gGame.interface, "Secondary">
+  [1488] objcall 71 ............................. <gGame.interface.model("Secondary")>
+  [1490] pusharglist 0 .......................... <>
+  [1492] extcall 40 ............................. <VOID>
+  [1494] setobjprop 207 ......................... gGame.interface.model("Secondary").parent = VOID
+  [1496] jmp [1533]
+  [1499] getglobal 43 ........................... <gGame>
+  [1501] getchainedprop 366 ..................... <gGame.interface>
+  [1504] pushcons 30 ............................ <"Primary">
+  [1506] pusharglist 2 .......................... <gGame.interface, "Primary">
+  [1508] objcall 71 ............................. <gGame.interface.model("Primary")>
+  [1510] pusharglist 0 .......................... <>
+  [1512] extcall 40 ............................. <VOID>
+  [1514] setobjprop 207 ......................... gGame.interface.model("Primary").parent = VOID
+  [1516] getglobal 43 ........................... <gGame>
+  [1518] getchainedprop 366 ..................... <gGame.interface>
+  [1521] pushcons 31 ............................ <"Secondary">
+  [1523] pusharglist 2 .......................... <gGame.interface, "Secondary">
+  [1525] objcall 71 ............................. <gGame.interface.model("Secondary")>
+  [1527] pusharglist 0 .......................... <>
+  [1529] extcall 40 ............................. <VOID>
+  [1531] setobjprop 207 ......................... gGame.interface.model("Secondary").parent = VOID
+  [1533] ret
+end

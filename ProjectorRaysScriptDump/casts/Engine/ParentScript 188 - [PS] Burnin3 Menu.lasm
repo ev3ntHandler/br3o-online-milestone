@@ -1,0 +1,1221 @@
+property p
+global gData, gGame
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 487 ............................ <#sprite>
+  [ 12] getparam 1 .............................. <tParams>
+  [ 14] pushsymb 564 ............................ <#SpriteNR>
+  [ 17] pusharglist 2 ........................... <tParams, #SpriteNR>
+  [ 19] objcall 105 ............................. <tParams[#SpriteNR]>
+  [ 21] pusharglist 1 ........................... <tParams[#SpriteNR]>
+  [ 23] extcall 487 ............................. <sprite(tParams[#SpriteNR])>
+  [ 26] pusharglistnoret 3 ...................... <p, #sprite, sprite(tParams[#SpriteNR])>
+  [ 28] objcall 103 ............................. p[#sprite] = sprite(tParams[#SpriteNR])
+  [ 30] getprop 563 ............................. <p>
+  [ 33] pushsymb 64 ............................. <#member>
+  [ 35] getparam 1 .............................. <tParams>
+  [ 37] pushsymb 64 ............................. <#member>
+  [ 39] pusharglist 2 ........................... <tParams, #member>
+  [ 41] objcall 105 ............................. <tParams[#member]>
+  [ 43] pusharglist 1 ........................... <tParams[#member]>
+  [ 45] extcall 64 .............................. <member(tParams[#member])>
+  [ 47] pusharglistnoret 3 ...................... <p, #member, member(tParams[#member])>
+  [ 49] objcall 103 ............................. p[#member] = member(tParams[#member])
+  [ 51] getprop 563 ............................. <p>
+  [ 54] pushsymb 2559 ........................... <#Cameras>
+  [ 57] getprop 563 ............................. <p>
+  [ 60] getchainedprop 64 ....................... <p.member>
+  [ 62] pushcons 0 .............................. <"DefaultView">
+  [ 64] pusharglist 2 ........................... <p.member, "DefaultView">
+  [ 66] objcall 298 ............................. <p.member.camera("DefaultView")>
+  [ 69] pusharglist 1 ........................... <[p.member.camera("DefaultView")]>
+  [ 71] pushlist ................................ <[p.member.camera("DefaultView")]>
+  [ 72] pusharglistnoret 3 ...................... <p, #Cameras, [p.member.camera("DefaultView")]>
+  [ 74] objcall 103 ............................. p[#Cameras] = [p.member.camera("DefaultView")]
+  [ 76] getparam 1 .............................. <tParams>
+  [ 78] pushsymb 298 ............................ <#camera>
+  [ 81] pusharglist 2 ........................... <tParams, #camera>
+  [ 83] objcall 105 ............................. <tParams[#camera]>
+  [ 85] getobjprop 122 .......................... <tParams[#camera].ilk>
+  [ 87] pushsymb 67 ............................. <#string>
+  [ 89] eq ...................................... <tParams[#camera].ilk = #string>
+  [ 90] jmpifz [124] ............................ if tParams[#camera].ilk = #string then / else
+  [ 93] getprop 563 ............................. <p>
+  [ 96] getprop 563 ............................. <p>
+  [ 99] getchainedprop 64 ....................... <p.member>
+  [101] getparam 1 .............................. <tParams>
+  [103] pushsymb 298 ............................ <#camera>
+  [106] pusharglist 2 ........................... <tParams, #camera>
+  [108] objcall 105 ............................. <tParams[#camera]>
+  [110] pusharglist 2 ........................... <p.member, tParams[#camera]>
+  [112] objcall 298 ............................. <p.member.camera(tParams[#camera])>
+  [115] pusharglist 1 ........................... <[p.member.camera(tParams[#camera])]>
+  [117] pushlist ................................ <[p.member.camera(tParams[#camera])]>
+  [118] setobjprop 2559 ......................... p.Cameras = [p.member.camera(tParams[#camera])]
+  [121] jmp [229]
+  [124] getparam 1 .............................. <tParams>
+  [126] pushsymb 298 ............................ <#camera>
+  [129] pusharglist 2 ........................... <tParams, #camera>
+  [131] objcall 105 ............................. <tParams[#camera]>
+  [133] getobjprop 122 .......................... <tParams[#camera].ilk>
+  [135] pushsymb 126 ............................ <#list>
+  [137] eq ...................................... <tParams[#camera].ilk = #list>
+  [138] jmpifz [229] ............................ if tParams[#camera].ilk = #list then
+  [141] getprop 563 ............................. <p>
+  [144] pusharglist 0 ........................... <[]>
+  [146] pushlist ................................ <[]>
+  [147] setobjprop 2559 ......................... p.Cameras = []
+  [150] pushint8 1 .............................. <1>
+  [152] setlocal 0
+  [154] getlocal 0
+  [156] getparam 1 .............................. <tParams>
+  [158] pushsymb 298 ............................ <#camera>
+  [161] pusharglist 2 ........................... <tParams, #camera>
+  [163] objcall 105 ............................. <tParams[#camera]>
+  [165] getobjprop 129 .......................... <tParams[#camera].count>
+  [167] lteq
+  [168] jmpifz [229] ............................ repeat with i = 1 to tParams[#camera].count
+  [171] getprop 563 ............................. <p>
+  [174] getchainedprop 64 ....................... <p.member>
+  [176] getparam 1 .............................. <tParams>
+  [178] pushsymb 298 ............................ <#camera>
+  [181] pusharglist 2 ........................... <tParams, #camera>
+  [183] objcall 105 ............................. <tParams[#camera]>
+  [185] getlocal 0 .............................. <i>
+  [187] pusharglist 2 ........................... <tParams[#camera], i>
+  [189] objcall 105 ............................. <tParams[#camera][i]>
+  [191] pusharglist 2 ........................... <p.member, tParams[#camera][i]>
+  [193] objcall 298 ............................. <p.member.camera(tParams[#camera][i])>
+  [196] setlocal 1 .............................. tCamera = p.member.camera(tParams[#camera][i])
+  [198] getlocal 1 .............................. <tCamera>
+  [200] pusharglist 0 ........................... <>
+  [202] extcall 40 .............................. <VOID>
+  [204] nteq .................................... <tCamera <> VOID>
+  [205] jmpifz [220] ............................ if tCamera <> VOID then
+  [208] getprop 563 ............................. <p>
+  [211] getchainedprop 2559 ..................... <p.Cameras>
+  [214] getlocal 1 .............................. <tCamera>
+  [216] pusharglistnoret 2 ...................... <p.Cameras, tCamera>
+  [218] objcall 42 .............................. p.Cameras.add(tCamera)
+  [220] pushint8 1
+  [222] getlocal 0
+  [224] add
+  [225] setlocal 0
+  [227] endrepeat [154]
+  [229] getprop 563 ............................. <p>
+  [232] pushsymb 2559 ........................... <#Cameras>
+  [235] pusharglist 2 ........................... <p, #Cameras>
+  [237] objcall 129 ............................. <p.Cameras.count>
+  [239] pushzero ................................ <0>
+  [240] eq ...................................... <p.Cameras.count = 0>
+  [241] jmpifz [265] ............................ if p.Cameras.count = 0 then
+  [244] getprop 563 ............................. <p>
+  [247] getprop 563 ............................. <p>
+  [250] getchainedprop 64 ....................... <p.member>
+  [252] pushcons 0 .............................. <"DefaultView">
+  [254] pusharglist 2 ........................... <p.member, "DefaultView">
+  [256] objcall 298 ............................. <p.member.camera("DefaultView")>
+  [259] pusharglist 1 ........................... <[p.member.camera("DefaultView")]>
+  [261] pushlist ................................ <[p.member.camera("DefaultView")]>
+  [262] setobjprop 2559 ......................... p.Cameras = [p.member.camera("DefaultView")]
+  [265] getprop 563 ............................. <p>
+  [268] pushsymb 953 ............................ <#button>
+  [271] pusharglist 0 ........................... <>
+  [273] extcall 40 .............................. <VOID>
+  [275] pusharglistnoret 3 ...................... <p, #button, VOID>
+  [277] objcall 103 ............................. p[#button] = VOID
+  [279] getprop 563 ............................. <p>
+  [282] pushsymb 954 ............................ <#PreviousButton>
+  [285] pusharglist 0 ........................... <>
+  [287] extcall 40 .............................. <VOID>
+  [289] pusharglistnoret 3 ...................... <p, #PreviousButton, VOID>
+  [291] objcall 103 ............................. p[#PreviousButton] = VOID
+  [293] getprop 563 ............................. <p>
+  [296] pushsymb 363 ............................ <#mouseDown>
+  [299] pushzero ................................ <0>
+  [300] pusharglistnoret 3 ...................... <p, #mouseDown, 0>
+  [302] objcall 103 ............................. p[#mouseDown] = 0
+  [304] getprop 563 ............................. <p>
+  [307] pushsymb 2560 ........................... <#rightMouseDown>
+  [310] pushzero ................................ <0>
+  [311] pusharglistnoret 3 ...................... <p, #rightMouseDown, 0>
+  [313] objcall 103 ............................. p[#rightMouseDown] = 0
+  [315] getglobal 43 ............................ <gGame>
+  [317] pushsymb 1833 ........................... <#menu>
+  [320] pusharglist 0 ........................... <[:]>
+  [322] pushproplist ............................ <[:]>
+  [323] pusharglistnoret 3 ...................... <gGame, #menu, [:]>
+  [325] objcall 103 ............................. gGame[#menu] = [:]
+  [327] getglobal 43 ............................ <gGame>
+  [329] pushsymb 1833 ........................... <#menu>
+  [332] pushsymb 1833 ........................... <#menu>
+  [335] pushzero ................................ <0>
+  [336] pusharglistnoret 4 ...................... <gGame, #menu, #menu, 0>
+  [338] objcall 99 .............................. gGame.menu[#menu] = 0
+  [340] getglobal 43 ............................ <gGame>
+  [342] pushsymb 1833 ........................... <#menu>
+  [345] pushsymb 2479 ........................... <#textButtons>
+  [348] pusharglist 0 ........................... <[:]>
+  [350] pushproplist ............................ <[:]>
+  [351] pusharglistnoret 4 ...................... <gGame, #menu, #textButtons, [:]>
+  [353] objcall 99 .............................. gGame.menu[#textButtons] = [:]
+  [355] getglobal 43 ............................ <gGame>
+  [357] pushsymb 1833 ........................... <#menu>
+  [360] pushsymb 1826 ........................... <#buttons>
+  [363] pusharglist 0 ........................... <[:]>
+  [365] pushproplist ............................ <[:]>
+  [366] pusharglistnoret 4 ...................... <gGame, #menu, #buttons, [:]>
+  [368] objcall 99 .............................. gGame.menu[#buttons] = [:]
+  [370] getglobal 43 ............................ <gGame>
+  [372] pushsymb 1833 ........................... <#menu>
+  [375] pushsymb 36 ............................. <#script>
+  [377] getparam 0 .............................. <me>
+  [379] pusharglistnoret 4 ...................... <gGame, #menu, #script, me>
+  [381] objcall 99 .............................. gGame.menu[#script] = me
+  [383] getparam 0 .............................. <me>
+  [385] pusharglistnoret 1 ...................... <me>
+  [387] extcall 52 .............................. return me
+  [389] ret
+end
+
+on enterFrame me
+  [  0] pushsymb 966 ............................ <#maxNumberOfModels>
+  [  3] pushint8 3 .............................. <3>
+  [  5] pushsymb 967 ............................ <#levelOfDetail>
+  [  8] pushsymb 968 ............................ <#detailed>
+  [ 11] pusharglist 4 ........................... <[#maxNumberOfModels: 3, #levelOfDetail: #detailed]>
+  [ 13] pushproplist ............................ <[#maxNumberOfModels: 3, #levelOfDetail: #detailed]>
+  [ 14] setlocal 0 .............................. tOptionList = [#maxNumberOfModels: 3, #levelOfDetail: #detailed]
+  [ 16] gettoplevelprop 964 ..................... <_mouse>
+  [ 19] getobjprop 970 .......................... <_mouse.mouseLoc>
+  [ 22] setlocal 1 .............................. tPoint = _mouse.mouseLoc
+  [ 24] pusharglist 0 ........................... <[]>
+  [ 26] pushlist ................................ <[]>
+  [ 27] setlocal 2 .............................. tList = []
+  [ 29] pushint8 1 .............................. <1>
+  [ 31] setlocal 3
+  [ 33] getlocal 3
+  [ 35] getprop 563 ............................. <p>
+  [ 38] pushsymb 2559 ........................... <#Cameras>
+  [ 41] pusharglist 2 ........................... <p, #Cameras>
+  [ 43] objcall 129 ............................. <p.Cameras.count>
+  [ 45] lteq
+  [ 46] jmpifz [329] ............................ repeat with i = 1 to p.Cameras.count
+  [ 49] getprop 563 ............................. <p>
+  [ 52] pushsymb 2559 ........................... <#Cameras>
+  [ 55] getlocal 3 .............................. <i>
+  [ 57] pusharglist 3 ........................... <p, #Cameras, i>
+  [ 59] objcall 102 ............................. <p.Cameras[i]>
+  [ 61] gettoplevelprop 964 ..................... <_mouse>
+  [ 64] getobjprop 970 .......................... <_mouse.mouseLoc>
+  [ 67] getlocal 0 .............................. <tOptionList>
+  [ 69] pusharglist 3 ........................... <p.Cameras[i], _mouse.mouseLoc, tOptionList>
+  [ 71] objcall 971 ............................. <p.Cameras[i].modelsUnderLoc(_mouse.mouseLoc, tOptionList)>
+  [ 74] setlocal 4 .............................. tModelList = p.Cameras[i].modelsUnderLoc(_mouse.mouseLoc, tOptionList)
+  [ 76] getlocal 4 .............................. <tModelList>
+  [ 78] getobjprop 129 .......................... <tModelList.count>
+  [ 80] pushzero ................................ <0>
+  [ 81] gt ...................................... <tModelList.count > 0>
+  [ 82] jmpifz [319] ............................ if tModelList.count > 0 then
+  [ 85] pushint8 1 .............................. <1>
+  [ 87] setlocal 5
+  [ 89] getlocal 5
+  [ 91] getlocal 4 .............................. <tModelList>
+  [ 93] getobjprop 129 .......................... <tModelList.count>
+  [ 95] lteq
+  [ 96] jmpifz [319] ............................ repeat with j = 1 to tModelList.count
+  [ 99] getlocal 4 .............................. <tModelList>
+  [101] getlocal 5 .............................. <j>
+  [103] pusharglist 2 ........................... <tModelList, j>
+  [105] objcall 105 ............................. <tModelList[j]>
+  [107] getobjprop 71 ........................... <tModelList[j].model>
+  [109] setlocal 6 .............................. tmodel = tModelList[j].model
+  [111] getglobal 43 ............................ <gGame>
+  [113] getchainedprop 1833 ..................... <gGame.menu>
+  [116] pushsymb 1826 ........................... <#buttons>
+  [119] getlocal 6 .............................. <tmodel>
+  [121] getobjprop 235 .......................... <tmodel.name>
+  [123] pusharglist 3 ........................... <gGame.menu, #buttons, tmodel.name>
+  [125] objcall 70 .............................. <gGame.menu.buttons[tmodel.name]>
+  [127] pusharglist 1 ........................... <gGame.menu.buttons[tmodel.name]>
+  [129] extcall 389 ............................. <voidp(gGame.menu.buttons[tmodel.name])>
+  [132] pushzero ................................ <0>
+  [133] eq ...................................... <voidp(gGame.menu.buttons[tmodel.name]) = 0>
+  [134] jmpifz [239] ............................ if voidp(gGame.menu.buttons[tmodel.name]) = 0 then
+  [137] getglobal 43 ............................ <gGame>
+  [139] getchainedprop 1833 ..................... <gGame.menu>
+  [142] pushsymb 1826 ........................... <#buttons>
+  [145] getlocal 6 .............................. <tmodel>
+  [147] getobjprop 235 .......................... <tmodel.name>
+  [149] pusharglist 3 ........................... <gGame.menu, #buttons, tmodel.name>
+  [151] objcall 102 ............................. <gGame.menu.buttons[tmodel.name]>
+  [153] getobjprop 1833 ......................... <gGame.menu.buttons[tmodel.name].menu>
+  [156] getglobal 43 ............................ <gGame>
+  [158] getchainedprop 1833 ..................... <gGame.menu>
+  [161] getobjprop 1833 ......................... <gGame.menu.menu>
+  [164] eq ...................................... <gGame.menu.buttons[tmodel.name].menu = gGame.menu.menu>
+  [165] jmpifz [236] ............................ if gGame.menu.buttons[tmodel.name].menu = gGame.menu.menu then
+  [168] getglobal 43 ............................ <gGame>
+  [170] getchainedprop 1833 ..................... <gGame.menu>
+  [173] pushsymb 1826 ........................... <#buttons>
+  [176] getlocal 6 .............................. <tmodel>
+  [178] getobjprop 235 .......................... <tmodel.name>
+  [180] pusharglist 3 ........................... <gGame.menu, #buttons, tmodel.name>
+  [182] objcall 70 .............................. <gGame.menu.buttons[tmodel.name]>
+  [184] setlocal 7 .............................. tData = gGame.menu.buttons[tmodel.name]
+  [186] getlocal 7 .............................. <tData>
+  [188] getobjprop 957 .......................... <tData.alpha>
+  [191] pushzero ................................ <0>
+  [192] eq ...................................... <tData.alpha = 0>
+  [193] jmpifz [207] ............................ if tData.alpha = 0 then / else
+  [196] getlocal 2 .............................. <tList>
+  [198] getlocal 6 .............................. <tmodel>
+  [200] pusharglistnoret 2 ...................... <tList, tmodel>
+  [202] objcall 42 .............................. tList.add(tmodel)
+  [204] jmp [236]
+  [207] getlocal 4 .............................. <tModelList>
+  [209] pushint8 1 .............................. <1>
+  [211] pusharglist 2 ........................... <tModelList, 1>
+  [213] objcall 105 ............................. <tModelList[1]>
+  [215] pusharglist 1 ........................... <tModelList[1]>
+  [217] localcall 14 ............................ <GetAlphaPixel(tModelList[1])>
+  [219] pushzero ................................ <0>
+  [220] pusharglist 1 ........................... <0>
+  [222] extcall 223 ............................. <color(0)>
+  [224] nteq .................................... <GetAlphaPixel(tModelList[1]) <> color(0)>
+  [225] jmpifz [236] ............................ if GetAlphaPixel(tModelList[1]) <> color(0) then
+  [228] getlocal 2 .............................. <tList>
+  [230] getlocal 6 .............................. <tmodel>
+  [232] pusharglistnoret 2 ...................... <tList, tmodel>
+  [234] objcall 42 .............................. tList.add(tmodel)
+  [236] jmp [310] ............................... next repeat
+  [239] getglobal 43 ............................ <gGame>
+  [241] getchainedprop 1833 ..................... <gGame.menu>
+  [244] pushsymb 2479 ........................... <#textButtons>
+  [247] getlocal 6 .............................. <tmodel>
+  [249] getchainedprop 207 ...................... <tmodel.parent>
+  [251] getobjprop 235 .......................... <tmodel.parent.name>
+  [253] pusharglist 3 ........................... <gGame.menu, #textButtons, tmodel.parent.name>
+  [255] objcall 70 .............................. <gGame.menu.textButtons[tmodel.parent.name]>
+  [257] pusharglist 1 ........................... <gGame.menu.textButtons[tmodel.parent.name]>
+  [259] extcall 389 ............................. <voidp(gGame.menu.textButtons[tmodel.parent.name])>
+  [262] pushzero ................................ <0>
+  [263] eq ...................................... <voidp(gGame.menu.textButtons[tmodel.parent.name]) = 0>
+  [264] jmpifz [310] ............................ if voidp(gGame.menu.textButtons[tmodel.parent.name]) = 0 then
+  [267] getglobal 43 ............................ <gGame>
+  [269] getchainedprop 1833 ..................... <gGame.menu>
+  [272] pushsymb 2479 ........................... <#textButtons>
+  [275] getlocal 6 .............................. <tmodel>
+  [277] getchainedprop 207 ...................... <tmodel.parent>
+  [279] getobjprop 235 .......................... <tmodel.parent.name>
+  [281] pusharglist 3 ........................... <gGame.menu, #textButtons, tmodel.parent.name>
+  [283] objcall 102 ............................. <gGame.menu.textButtons[tmodel.parent.name]>
+  [285] getobjprop 1833 ......................... <gGame.menu.textButtons[tmodel.parent.name].menu>
+  [288] getglobal 43 ............................ <gGame>
+  [290] getchainedprop 1833 ..................... <gGame.menu>
+  [293] getobjprop 1833 ......................... <gGame.menu.menu>
+  [296] eq ...................................... <gGame.menu.textButtons[tmodel.parent.name].menu = gGame.menu.menu>
+  [297] jmpifz [310] ............................ if gGame.menu.textButtons[tmodel.parent.name].menu = gGame.menu.menu then
+  [300] getlocal 2 .............................. <tList>
+  [302] getlocal 6 .............................. <tmodel>
+  [304] getobjprop 207 .......................... <tmodel.parent>
+  [306] pusharglistnoret 2 ...................... <tList, tmodel.parent>
+  [308] objcall 42 .............................. tList.add(tmodel.parent)
+  [310] pushint8 1
+  [312] getlocal 5
+  [314] add
+  [315] setlocal 5
+  [317] endrepeat [ 89]
+  [319] pushint8 1
+  [321] getlocal 3
+  [323] add
+  [324] setlocal 3
+  [326] endrepeat [ 33]
+  [329] getlocal 2 .............................. <tList>
+  [331] getobjprop 129 .......................... <tList.count>
+  [333] pushzero ................................ <0>
+  [334] eq ...................................... <tList.count = 0>
+  [335] jmpifz [351] ............................ if tList.count = 0 then / else
+  [338] getprop 563 ............................. <p>
+  [341] pusharglist 0 ........................... <>
+  [343] extcall 40 .............................. <VOID>
+  [345] setobjprop 953 .......................... p.button = VOID
+  [348] jmp [365]
+  [351] getprop 563 ............................. <p>
+  [354] getlocal 2 .............................. <tList>
+  [356] pushint8 1 .............................. <1>
+  [358] pusharglist 2 ........................... <tList, 1>
+  [360] objcall 105 ............................. <tList[1]>
+  [362] setobjprop 953 .......................... p.button = tList[1]
+  [365] getprop 563 ............................. <p>
+  [368] getobjprop 953 .......................... <p.button>
+  [371] pusharglist 0 ........................... <>
+  [373] extcall 40 .............................. <VOID>
+  [375] eq ...................................... <p.button = VOID>
+  [376] getprop 563 ............................. <p>
+  [379] getobjprop 954 .......................... <p.PreviousButton>
+  [382] pusharglist 0 ........................... <>
+  [384] extcall 40 .............................. <VOID>
+  [386] nteq .................................... <p.PreviousButton <> VOID>
+  [387] and ..................................... <(p.button = VOID) and (p.PreviousButton <> VOID)>
+  [388] jmpifz [404] ............................ if (p.button = VOID) and (p.PreviousButton <> VOID) then
+  [391] getparam 0 .............................. <me>
+  [393] getprop 563 ............................. <p>
+  [396] getobjprop 954 .......................... <p.PreviousButton>
+  [399] pusharglistnoret 2 ...................... <me, p.PreviousButton>
+  [401] objcall 2547 ............................ me.ButtonLeave(p.PreviousButton)
+  [404] getprop 563 ............................. <p>
+  [407] getobjprop 953 .......................... <p.button>
+  [410] pusharglist 0 ........................... <>
+  [412] extcall 40 .............................. <VOID>
+  [414] nteq .................................... <p.button <> VOID>
+  [415] jmpifz [425] ............................ if p.button <> VOID then
+  [418] getparam 0 .............................. <me>
+  [420] pusharglistnoret 1 ...................... <me>
+  [422] objcall 2546 ............................ me.ButtonEnter()
+  [425] gettoplevelprop 964 ..................... <_mouse>
+  [428] getobjprop 363 .......................... <_mouse.mouseDown>
+  [431] getprop 563 ............................. <p>
+  [434] getobjprop 953 .......................... <p.button>
+  [437] pusharglist 0 ........................... <>
+  [439] extcall 40 .............................. <VOID>
+  [441] nteq .................................... <p.button <> VOID>
+  [442] and ..................................... <_mouse.mouseDown and (p.button <> VOID)>
+  [443] getprop 563 ............................. <p>
+  [446] getobjprop 363 .......................... <p.mouseDown>
+  [449] pushzero ................................ <0>
+  [450] eq ...................................... <p.mouseDown = 0>
+  [451] and ..................................... <_mouse.mouseDown and (p.button <> VOID) and (p.mouseDown = 0)>
+  [452] jmpifz [462] ............................ if _mouse.mouseDown and (p.button <> VOID) and (p.mouseDown = 0) then
+  [455] getparam 0 .............................. <me>
+  [457] pusharglistnoret 1 ...................... <me>
+  [459] objcall 2548 ............................ me.ButtonDown()
+  [462] gettoplevelprop 964 ..................... <_mouse>
+  [465] getobjprop 365 .......................... <_mouse.mouseUp>
+  [468] getprop 563 ............................. <p>
+  [471] getobjprop 953 .......................... <p.button>
+  [474] pusharglist 0 ........................... <>
+  [476] extcall 40 .............................. <VOID>
+  [478] nteq .................................... <p.button <> VOID>
+  [479] and ..................................... <_mouse.mouseUp and (p.button <> VOID)>
+  [480] getprop 563 ............................. <p>
+  [483] getobjprop 363 .......................... <p.mouseDown>
+  [486] pushint8 1 .............................. <1>
+  [488] eq ...................................... <p.mouseDown = 1>
+  [489] and ..................................... <_mouse.mouseUp and (p.button <> VOID) and (p.mouseDown = 1)>
+  [490] jmpifz [500] ............................ if _mouse.mouseUp and (p.button <> VOID) and (p.mouseDown = 1) then
+  [493] getparam 0 .............................. <me>
+  [495] pusharglistnoret 1 ...................... <me>
+  [497] objcall 2549 ............................ me.ButtonUp()
+  [500] ret
+end
+
+on ButtonEnter me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 953 .......................... <p.button>
+  [  6] getprop 563 ............................. <p>
+  [  9] getobjprop 954 .......................... <p.PreviousButton>
+  [ 12] eq ...................................... <p.button = p.PreviousButton>
+  [ 13] jmpifz [ 23] ............................ if p.button = p.PreviousButton then / else
+  [ 16] pusharglistnoret 0 ...................... <>
+  [ 18] extcall 52 .............................. return 
+  [ 20] jmp [ 30]
+  [ 23] getparam 0 .............................. <me>
+  [ 25] pusharglistnoret 1 ...................... <me>
+  [ 27] objcall 2547 ............................ me.ButtonLeave()
+  [ 30] gettoplevelprop 387 ..................... <_player>
+  [ 33] pushint16 280 ........................... <280>
+  [ 36] pusharglistnoret 2 ...................... <_player, 280>
+  [ 38] objcall 766 ............................. _player.cursor(280)
+  [ 41] getprop 563 ............................. <p>
+  [ 44] getchainedprop 953 ...................... <p.button>
+  [ 47] getobjprop 122 .......................... <p.button.ilk>
+  [ 49] pushsymb 65 ............................. <#group>
+  [ 51] eq ...................................... <p.button.ilk = #group>
+  [ 52] jmpifz [ 71] ............................ if p.button.ilk = #group then / else
+  [ 55] getparam 0 .............................. <me>
+  [ 57] getprop 563 ............................. <p>
+  [ 60] getobjprop 953 .......................... <p.button>
+  [ 63] pusharglistnoret 2 ...................... <me, p.button>
+  [ 65] objcall 2550 ............................ me.TextButtonEnter(p.button)
+  [ 68] jmp [ 84]
+  [ 71] getparam 0 .............................. <me>
+  [ 73] getprop 563 ............................. <p>
+  [ 76] getobjprop 953 .......................... <p.button>
+  [ 79] pusharglistnoret 2 ...................... <me, p.button>
+  [ 81] objcall 2554 ............................ me.NormalButtonEnter(p.button)
+  [ 84] getprop 563 ............................. <p>
+  [ 87] getprop 563 ............................. <p>
+  [ 90] getobjprop 953 .......................... <p.button>
+  [ 93] setobjprop 954 .......................... p.PreviousButton = p.button
+  [ 96] ret
+end
+
+on ButtonLeave me
+  [  0] gettoplevelprop 387 ..................... <_player>
+  [  3] pushint8 1 .............................. <1>
+  [  5] inv ..................................... <-1>
+  [  6] pusharglistnoret 2 ...................... <_player, -1>
+  [  8] objcall 766 ............................. _player.cursor(-1)
+  [ 11] getprop 563 ............................. <p>
+  [ 14] getchainedprop 954 ...................... <p.PreviousButton>
+  [ 17] getobjprop 122 .......................... <p.PreviousButton.ilk>
+  [ 19] pushsymb 65 ............................. <#group>
+  [ 21] eq ...................................... <p.PreviousButton.ilk = #group>
+  [ 22] jmpifz [ 41] ............................ if p.PreviousButton.ilk = #group then / else
+  [ 25] getparam 0 .............................. <me>
+  [ 27] getprop 563 ............................. <p>
+  [ 30] getobjprop 954 .......................... <p.PreviousButton>
+  [ 33] pusharglistnoret 2 ...................... <me, p.PreviousButton>
+  [ 35] objcall 2551 ............................ me.TextButtonLeave(p.PreviousButton)
+  [ 38] jmp [ 68]
+  [ 41] getprop 563 ............................. <p>
+  [ 44] getchainedprop 954 ...................... <p.PreviousButton>
+  [ 47] getobjprop 122 .......................... <p.PreviousButton.ilk>
+  [ 49] pushsymb 71 ............................. <#model>
+  [ 51] eq ...................................... <p.PreviousButton.ilk = #model>
+  [ 52] jmpifz [ 68] ............................ if p.PreviousButton.ilk = #model then
+  [ 55] getparam 0 .............................. <me>
+  [ 57] getprop 563 ............................. <p>
+  [ 60] getobjprop 954 .......................... <p.PreviousButton>
+  [ 63] pusharglistnoret 2 ...................... <me, p.PreviousButton>
+  [ 65] objcall 2555 ............................ me.NormalButtonLeave(p.PreviousButton)
+  [ 68] ret
+end
+
+on ButtonDown me
+  [  0] getprop 563 ............................. <p>
+  [  3] getchainedprop 954 ...................... <p.PreviousButton>
+  [  6] getobjprop 122 .......................... <p.PreviousButton.ilk>
+  [  8] pushsymb 65 ............................. <#group>
+  [ 10] eq ...................................... <p.PreviousButton.ilk = #group>
+  [ 11] jmpifz [ 30] ............................ if p.PreviousButton.ilk = #group then / else
+  [ 14] getparam 0 .............................. <me>
+  [ 16] getprop 563 ............................. <p>
+  [ 19] getobjprop 953 .......................... <p.button>
+  [ 22] pusharglistnoret 2 ...................... <me, p.button>
+  [ 24] objcall 2552 ............................ me.TextButtonDown(p.button)
+  [ 27] jmp [ 57]
+  [ 30] getprop 563 ............................. <p>
+  [ 33] getchainedprop 954 ...................... <p.PreviousButton>
+  [ 36] getobjprop 122 .......................... <p.PreviousButton.ilk>
+  [ 38] pushsymb 71 ............................. <#model>
+  [ 40] eq ...................................... <p.PreviousButton.ilk = #model>
+  [ 41] jmpifz [ 57] ............................ if p.PreviousButton.ilk = #model then
+  [ 44] getparam 0 .............................. <me>
+  [ 46] getprop 563 ............................. <p>
+  [ 49] getobjprop 953 .......................... <p.button>
+  [ 52] pusharglistnoret 2 ...................... <me, p.button>
+  [ 54] objcall 2556 ............................ me.NormalButtonDown(p.button)
+  [ 57] getprop 563 ............................. <p>
+  [ 60] pushint8 1 .............................. <1>
+  [ 62] setobjprop 363 .......................... p.mouseDown = 1
+  [ 65] ret
+end
+
+on ButtonUp me
+  [  0] getprop 563 ............................. <p>
+  [  3] getchainedprop 954 ...................... <p.PreviousButton>
+  [  6] getobjprop 122 .......................... <p.PreviousButton.ilk>
+  [  8] pushsymb 65 ............................. <#group>
+  [ 10] eq ...................................... <p.PreviousButton.ilk = #group>
+  [ 11] jmpifz [ 30] ............................ if p.PreviousButton.ilk = #group then / else
+  [ 14] getparam 0 .............................. <me>
+  [ 16] getprop 563 ............................. <p>
+  [ 19] getobjprop 953 .......................... <p.button>
+  [ 22] pusharglistnoret 2 ...................... <me, p.button>
+  [ 24] objcall 2553 ............................ me.TextButtonUp(p.button)
+  [ 27] jmp [ 57]
+  [ 30] getprop 563 ............................. <p>
+  [ 33] getchainedprop 954 ...................... <p.PreviousButton>
+  [ 36] getobjprop 122 .......................... <p.PreviousButton.ilk>
+  [ 38] pushsymb 71 ............................. <#model>
+  [ 40] eq ...................................... <p.PreviousButton.ilk = #model>
+  [ 41] jmpifz [ 57] ............................ if p.PreviousButton.ilk = #model then
+  [ 44] getparam 0 .............................. <me>
+  [ 46] getprop 563 ............................. <p>
+  [ 49] getobjprop 953 .......................... <p.button>
+  [ 52] pusharglistnoret 2 ...................... <me, p.button>
+  [ 54] objcall 2557 ............................ me.NormalButtonUp(p.button)
+  [ 57] getprop 563 ............................. <p>
+  [ 60] pushzero ................................ <0>
+  [ 61] setobjprop 363 .......................... p.mouseDown = 0
+  [ 64] gettoplevelprop 387 ..................... <_player>
+  [ 67] pushint8 1 .............................. <1>
+  [ 69] inv ..................................... <-1>
+  [ 70] pusharglistnoret 2 ...................... <_player, -1>
+  [ 72] objcall 766 ............................. _player.cursor(-1)
+  [ 75] ret
+end
+
+on TextButtonEnter me, tButton
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getchainedprop 1833 ..................... <gGame.menu>
+  [  5] pushsymb 2479 ........................... <#textButtons>
+  [  8] getparam 1 .............................. <tButton>
+  [ 10] getobjprop 235 .......................... <tButton.name>
+  [ 12] pusharglist 3 ........................... <gGame.menu, #textButtons, tButton.name>
+  [ 14] objcall 70 .............................. <gGame.menu.textButtons[tButton.name]>
+  [ 16] setlocal 0 .............................. tList = gGame.menu.textButtons[tButton.name]
+  [ 18] getparam 1 .............................. <tButton>
+  [ 20] getobjprop 236 .......................... <tButton.userData>
+  [ 22] setlocal 1 .............................. tData = tButton.userData
+  [ 24] getlocal 1 .............................. <tData>
+  [ 26] getchainedprop 969 ...................... <tData.modelList>
+  [ 29] pushsymb 2477 ........................... <#normal>
+  [ 32] pusharglist 2 ........................... <tData.modelList, #normal>
+  [ 34] objcall 129 ............................. <tData.modelList.normal.count>
+  [ 36] setlocal 2 .............................. tCount = tData.modelList.normal.count
+  [ 38] pushint8 1 .............................. <1>
+  [ 40] setlocal 3
+  [ 42] getlocal 3
+  [ 44] getlocal 2 .............................. <tCount>
+  [ 46] lteq
+  [ 47] jmpifz [160] ............................ repeat with i = 1 to tCount
+  [ 50] getlocal 1 .............................. <tData>
+  [ 52] getchainedprop 969 ...................... <tData.modelList>
+  [ 55] pushsymb 2477 ........................... <#normal>
+  [ 58] getlocal 3 .............................. <i>
+  [ 60] pusharglist 3 ........................... <tData.modelList, #normal, i>
+  [ 62] objcall 70 .............................. <tData.modelList.normal[i]>
+  [ 64] setlocal 4 .............................. tChar3D = tData.modelList.normal[i]
+  [ 66] getlocal 4 .............................. <tChar3D>
+  [ 68] pushsymb 2496 ........................... <#space>
+  [ 71] eq ...................................... <tChar3D = #space>
+  [ 72] jmpifz [ 78] ............................ if tChar3D = #space then
+  [ 75] jmp [151] ............................... next repeat
+  [ 78] getlocal 4 .............................. <tChar3D>
+  [ 80] getprop 563 ............................. <p>
+  [ 83] getchainedprop 64 ....................... <p.member>
+  [ 85] getlocal 0 .............................. <tList>
+  [ 87] pushsymb 1821 ........................... <#rollover>
+  [ 90] pushint8 1 .............................. <1>
+  [ 92] pusharglist 3 ........................... <tList, #rollover, 1>
+  [ 94] objcall 70 .............................. <tList.rollover[1]>
+  [ 96] pusharglist 2 ........................... <p.member, tList.rollover[1]>
+  [ 98] objcall 208 ............................. <p.member.shader(tList.rollover[1])>
+  [100] setobjprop 208 .......................... tChar3D.shader = p.member.shader(tList.rollover[1])
+  [102] getlocal 1 .............................. <tData>
+  [104] getchainedprop 969 ...................... <tData.modelList>
+  [107] pushsymb 209 ............................ <#glow>
+  [109] getlocal 3 .............................. <i>
+  [111] pusharglist 3 ........................... <tData.modelList, #glow, i>
+  [113] objcall 70 .............................. <tData.modelList.glow[i]>
+  [115] setlocal 5 .............................. tChar3DGlow = tData.modelList.glow[i]
+  [117] getlocal 5 .............................. <tChar3DGlow>
+  [119] pusharglist 0 ........................... <>
+  [121] extcall 40 .............................. <VOID>
+  [123] nteq .................................... <tChar3DGlow <> VOID>
+  [124] jmpifz [151] ............................ if tChar3DGlow <> VOID then
+  [127] getlocal 5 .............................. <tChar3DGlow>
+  [129] getprop 563 ............................. <p>
+  [132] getchainedprop 64 ....................... <p.member>
+  [134] getlocal 0 .............................. <tList>
+  [136] pushsymb 1821 ........................... <#rollover>
+  [139] pushint8 2 .............................. <2>
+  [141] pusharglist 3 ........................... <tList, #rollover, 2>
+  [143] objcall 70 .............................. <tList.rollover[2]>
+  [145] pusharglist 2 ........................... <p.member, tList.rollover[2]>
+  [147] objcall 208 ............................. <p.member.shader(tList.rollover[2])>
+  [149] setobjprop 208 .......................... tChar3DGlow.shader = p.member.shader(tList.rollover[2])
+  [151] pushint8 1
+  [153] getlocal 3
+  [155] add
+  [156] setlocal 3
+  [158] endrepeat [ 42]
+  [160] getlocal 0 .............................. <tList>
+  [162] getobjprop 1615 ......................... <tList.effect>
+  [165] pushsymb 54 ............................. <#none>
+  [167] nteq .................................... <tList.effect <> #none>
+  [168] jmpifz [208] ............................ if tList.effect <> #none then
+  [171] getlocal 0 .............................. <tList>
+  [173] getobjprop 1615 ......................... <tList.effect>
+  [176] peek 0 .................................. case tList.effect of
+  [178] pushsymb 211 ............................ <#offset>
+  [180] eq
+  [181] jmpifz [206] ............................ (case) #offset:
+  [184] getparam 1 .............................. <tButton>
+  [186] getchainedprop 214 ...................... <tButton.transform>
+  [188] getparam 1 .............................. <tButton>
+  [190] getchainedprop 214 ...................... <tButton.transform>
+  [192] getobjprop 215 .......................... <tButton.transform.position>
+  [194] getglobal 86 ............................ <gData>
+  [196] getchainedprop 87 ....................... <gData.data>
+  [198] getchainedprop 2562 ..................... <gData.data.ButtonEffects>
+  [201] getobjprop 211 .......................... <gData.data.ButtonEffects.offset>
+  [203] add ..................................... <tButton.transform.position + gData.data.ButtonEffects.offset>
+  [204] setobjprop 215 .......................... tButton.transform.position = tButton.transform.position + gData.data.ButtonEffects.offset
+  [206] pop 1
+  [208] getlocal 0 .............................. <tList>
+  [210] getobjprop 1822 ......................... <tList.rollover_sfx>
+  [213] pushsymb 1056 ........................... <#Override>
+  [216] pushint8 1 .............................. <1>
+  [218] pusharglist 2 ........................... <[#Override: 1]>
+  [220] pushproplist ............................ <[#Override: 1]>
+  [221] pusharglistnoret 2 ...................... <tList.rollover_sfx, [#Override: 1]>
+  [223] extcall 289 ............................. PlaySound(tList.rollover_sfx, [#Override: 1])
+  [226] ret
+end
+
+on TextButtonLeave me, tButton
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getchainedprop 1833 ..................... <gGame.menu>
+  [  5] pushsymb 2479 ........................... <#textButtons>
+  [  8] getparam 1 .............................. <tButton>
+  [ 10] getobjprop 235 .......................... <tButton.name>
+  [ 12] pusharglist 3 ........................... <gGame.menu, #textButtons, tButton.name>
+  [ 14] objcall 70 .............................. <gGame.menu.textButtons[tButton.name]>
+  [ 16] setlocal 0 .............................. tList = gGame.menu.textButtons[tButton.name]
+  [ 18] getparam 1 .............................. <tButton>
+  [ 20] getobjprop 236 .......................... <tButton.userData>
+  [ 22] setlocal 1 .............................. tData = tButton.userData
+  [ 24] getlocal 1 .............................. <tData>
+  [ 26] getchainedprop 969 ...................... <tData.modelList>
+  [ 29] pushsymb 2477 ........................... <#normal>
+  [ 32] pusharglist 2 ........................... <tData.modelList, #normal>
+  [ 34] objcall 129 ............................. <tData.modelList.normal.count>
+  [ 36] setlocal 2 .............................. tCount = tData.modelList.normal.count
+  [ 38] pushint8 1 .............................. <1>
+  [ 40] setlocal 3
+  [ 42] getlocal 3
+  [ 44] getlocal 2 .............................. <tCount>
+  [ 46] lteq
+  [ 47] jmpifz [160] ............................ repeat with i = 1 to tCount
+  [ 50] getlocal 1 .............................. <tData>
+  [ 52] getchainedprop 969 ...................... <tData.modelList>
+  [ 55] pushsymb 2477 ........................... <#normal>
+  [ 58] getlocal 3 .............................. <i>
+  [ 60] pusharglist 3 ........................... <tData.modelList, #normal, i>
+  [ 62] objcall 70 .............................. <tData.modelList.normal[i]>
+  [ 64] setlocal 4 .............................. tChar3D = tData.modelList.normal[i]
+  [ 66] getlocal 4 .............................. <tChar3D>
+  [ 68] pushsymb 2496 ........................... <#space>
+  [ 71] eq ...................................... <tChar3D = #space>
+  [ 72] jmpifz [ 78] ............................ if tChar3D = #space then
+  [ 75] jmp [151] ............................... next repeat
+  [ 78] getlocal 4 .............................. <tChar3D>
+  [ 80] getprop 563 ............................. <p>
+  [ 83] getchainedprop 64 ....................... <p.member>
+  [ 85] getlocal 0 .............................. <tList>
+  [ 87] pushsymb 2477 ........................... <#normal>
+  [ 90] pushint8 1 .............................. <1>
+  [ 92] pusharglist 3 ........................... <tList, #normal, 1>
+  [ 94] objcall 70 .............................. <tList.normal[1]>
+  [ 96] pusharglist 2 ........................... <p.member, tList.normal[1]>
+  [ 98] objcall 208 ............................. <p.member.shader(tList.normal[1])>
+  [100] setobjprop 208 .......................... tChar3D.shader = p.member.shader(tList.normal[1])
+  [102] getlocal 1 .............................. <tData>
+  [104] getchainedprop 969 ...................... <tData.modelList>
+  [107] pushsymb 209 ............................ <#glow>
+  [109] getlocal 3 .............................. <i>
+  [111] pusharglist 3 ........................... <tData.modelList, #glow, i>
+  [113] objcall 70 .............................. <tData.modelList.glow[i]>
+  [115] setlocal 5 .............................. tChar3DGlow = tData.modelList.glow[i]
+  [117] getlocal 5 .............................. <tChar3DGlow>
+  [119] pusharglist 0 ........................... <>
+  [121] extcall 40 .............................. <VOID>
+  [123] nteq .................................... <tChar3DGlow <> VOID>
+  [124] jmpifz [151] ............................ if tChar3DGlow <> VOID then
+  [127] getlocal 5 .............................. <tChar3DGlow>
+  [129] getprop 563 ............................. <p>
+  [132] getchainedprop 64 ....................... <p.member>
+  [134] getlocal 0 .............................. <tList>
+  [136] pushsymb 2477 ........................... <#normal>
+  [139] pushint8 2 .............................. <2>
+  [141] pusharglist 3 ........................... <tList, #normal, 2>
+  [143] objcall 70 .............................. <tList.normal[2]>
+  [145] pusharglist 2 ........................... <p.member, tList.normal[2]>
+  [147] objcall 208 ............................. <p.member.shader(tList.normal[2])>
+  [149] setobjprop 208 .......................... tChar3DGlow.shader = p.member.shader(tList.normal[2])
+  [151] pushint8 1
+  [153] getlocal 3
+  [155] add
+  [156] setlocal 3
+  [158] endrepeat [ 42]
+  [160] getlocal 0 .............................. <tList>
+  [162] getobjprop 1615 ......................... <tList.effect>
+  [165] pushsymb 54 ............................. <#none>
+  [167] nteq .................................... <tList.effect <> #none>
+  [168] jmpifz [198] ............................ if tList.effect <> #none then
+  [171] getlocal 0 .............................. <tList>
+  [173] getobjprop 1615 ......................... <tList.effect>
+  [176] peek 0 .................................. case tList.effect of
+  [178] pushsymb 211 ............................ <#offset>
+  [180] eq
+  [181] jmpifz [196] ............................ (case) #offset:
+  [184] getparam 1 .............................. <tButton>
+  [186] getchainedprop 214 ...................... <tButton.transform>
+  [188] getlocal 0 .............................. <tList>
+  [190] getchainedprop 214 ...................... <tList.transform>
+  [192] getobjprop 215 .......................... <tList.transform.position>
+  [194] setobjprop 215 .......................... tButton.transform.position = tList.transform.position
+  [196] pop 1
+  [198] getprop 563 ............................. <p>
+  [201] pusharglist 0 ........................... <>
+  [203] extcall 40 .............................. <VOID>
+  [205] setobjprop 954 .......................... p.PreviousButton = VOID
+  [208] ret
+end
+
+on TextButtonDown me, tButton
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getchainedprop 1833 ..................... <gGame.menu>
+  [  5] pushsymb 2479 ........................... <#textButtons>
+  [  8] getparam 1 .............................. <tButton>
+  [ 10] getobjprop 235 .......................... <tButton.name>
+  [ 12] pusharglist 3 ........................... <gGame.menu, #textButtons, tButton.name>
+  [ 14] objcall 70 .............................. <gGame.menu.textButtons[tButton.name]>
+  [ 16] setlocal 0 .............................. tList = gGame.menu.textButtons[tButton.name]
+  [ 18] getlocal 0 .............................. <tList>
+  [ 20] getobjprop 1823 ......................... <tList.pressed_sfx>
+  [ 23] pushsymb 1056 ........................... <#Override>
+  [ 26] pushint8 1 .............................. <1>
+  [ 28] pusharglist 2 ........................... <[#Override: 1]>
+  [ 30] pushproplist ............................ <[#Override: 1]>
+  [ 31] pusharglistnoret 2 ...................... <tList.pressed_sfx, [#Override: 1]>
+  [ 33] extcall 289 ............................. PlaySound(tList.pressed_sfx, [#Override: 1])
+  [ 36] ret
+end
+
+on TextButtonUp me, tButton
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getchainedprop 1833 ..................... <gGame.menu>
+  [  5] pushsymb 2479 ........................... <#textButtons>
+  [  8] getparam 1 .............................. <tButton>
+  [ 10] getobjprop 235 .......................... <tButton.name>
+  [ 12] pusharglist 3 ........................... <gGame.menu, #textButtons, tButton.name>
+  [ 14] objcall 70 .............................. <gGame.menu.textButtons[tButton.name]>
+  [ 16] setlocal 0 .............................. tList = gGame.menu.textButtons[tButton.name]
+  [ 18] getparam 0 .............................. <me>
+  [ 20] getparam 1 .............................. <tButton>
+  [ 22] pusharglistnoret 2 ...................... <me, tButton>
+  [ 24] objcall 2551 ............................ me.TextButtonLeave(tButton)
+  [ 27] getglobal 43 ............................ <gGame>
+  [ 29] getparam 1 .............................. <tButton>
+  [ 31] getobjprop 235 .......................... <tButton.name>
+  [ 33] setobjprop 1838 ......................... gGame.PressedButton = tButton.name
+  [ 36] getlocal 0 .............................. <tList>
+  [ 38] pushsymb 148 ............................ <#event>
+  [ 40] pusharglist 2 ........................... <tList, #event>
+  [ 42] objcall 105 ............................. <tList[#event]>
+  [ 44] getobjprop 122 .......................... <tList[#event].ilk>
+  [ 46] pushsymb 67 ............................. <#string>
+  [ 48] eq ...................................... <tList[#event].ilk = #string>
+  [ 49] jmpifz [ 64] ............................ if tList[#event].ilk = #string then
+  [ 52] getlocal 0 .............................. <tList>
+  [ 54] getobjprop 148 .......................... <tList.event>
+  [ 56] pusharglist 1 ........................... <tList.event>
+  [ 58] extcall 88 .............................. <symbol(tList.event)>
+  [ 60] pusharglistnoret 1 ...................... <symbol(tList.event)>
+  [ 62] extcall 148 ............................. event(symbol(tList.event))
+  [ 64] getlocal 0 .............................. <tList>
+  [ 66] pushsymb 786 ............................ <#handler>
+  [ 69] pusharglist 2 ........................... <tList, #handler>
+  [ 71] objcall 105 ............................. <tList[#handler]>
+  [ 73] getobjprop 122 .......................... <tList[#handler].ilk>
+  [ 75] pushsymb 67 ............................. <#string>
+  [ 77] eq ...................................... <tList[#handler].ilk = #string>
+  [ 78] jmpifz [100] ............................ if tList[#handler].ilk = #string then
+  [ 81] pushzero ................................ <0>
+  [ 82] getlocal 0 .............................. <tList>
+  [ 84] getobjprop 786 .......................... <tList.handler>
+  [ 87] pusharglist 1 ........................... <tList.handler>
+  [ 89] extcall 88 .............................. <symbol(tList.handler)>
+  [ 91] getparam 1 .............................. <tButton>
+  [ 93] getobjprop 235 .......................... <tButton.name>
+  [ 95] pusharglistnoret 3 ...................... <0, symbol(tList.handler), tButton.name>
+  [ 97] extcall 362 ............................. sendSprite(0, symbol(tList.handler), tButton.name)
+  [100] getglobal 43 ............................ <gGame>
+  [102] pushsymb 54 ............................. <#none>
+  [104] setobjprop 1838 ......................... gGame.PressedButton = #none
+  [107] ret
+end
+
+on NormalButtonEnter me, tButton
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getchainedprop 1833 ..................... <gGame.menu>
+  [  5] pushsymb 1826 ........................... <#buttons>
+  [  8] getparam 1 .............................. <tButton>
+  [ 10] getobjprop 235 .......................... <tButton.name>
+  [ 12] pusharglist 3 ........................... <gGame.menu, #buttons, tButton.name>
+  [ 14] objcall 70 .............................. <gGame.menu.buttons[tButton.name]>
+  [ 16] setlocal 0 .............................. tList = gGame.menu.buttons[tButton.name]
+  [ 18] getlocal 0 .............................. <tList>
+  [ 20] getobjprop 208 .......................... <tList.shader>
+  [ 22] pushint8 1 .............................. <1>
+  [ 24] eq ...................................... <tList.shader = 1>
+  [ 25] jmpifz [ 49] ............................ if tList.shader = 1 then / else
+  [ 28] getparam 1 .............................. <tButton>
+  [ 30] getprop 563 ............................. <p>
+  [ 33] getchainedprop 64 ....................... <p.member>
+  [ 35] getlocal 0 .............................. <tList>
+  [ 37] getobjprop 1828 ......................... <tList.rolloverShader>
+  [ 40] pusharglist 2 ........................... <p.member, tList.rolloverShader>
+  [ 42] objcall 208 ............................. <p.member.shader(tList.rolloverShader)>
+  [ 44] setobjprop 208 .......................... tButton.shader = p.member.shader(tList.rolloverShader)
+  [ 46] jmp [ 76]
+  [ 49] getparam 1 .............................. <tButton>
+  [ 51] getchainedprop 208 ...................... <tButton.shader>
+  [ 53] pushsymb 1244 ........................... <#textureList>
+  [ 56] pushint8 1 .............................. <1>
+  [ 58] getprop 563 ............................. <p>
+  [ 61] getchainedprop 64 ....................... <p.member>
+  [ 63] getlocal 0 .............................. <tList>
+  [ 65] getobjprop 1821 ......................... <tList.rollover>
+  [ 68] pusharglist 2 ........................... <p.member, tList.rollover>
+  [ 70] objcall 218 ............................. <p.member.texture(tList.rollover)>
+  [ 72] pusharglistnoret 4 ...................... <tButton.shader, #textureList, 1, p.member.texture(tList.rollover)>
+  [ 74] objcall 99 .............................. tButton.shader.textureList[1] = p.member.texture(tList.rollover)
+  [ 76] getlocal 0 .............................. <tList>
+  [ 78] getobjprop 1615 ......................... <tList.effect>
+  [ 81] pushsymb 54 ............................. <#none>
+  [ 83] nteq .................................... <tList.effect <> #none>
+  [ 84] jmpifz [148] ............................ if tList.effect <> #none then
+  [ 87] getlocal 0 .............................. <tList>
+  [ 89] getobjprop 1615 ......................... <tList.effect>
+  [ 92] peek 0 .................................. case tList.effect of
+  [ 94] pushsymb 307 ............................ <#scale>
+  [ 97] eq
+  [ 98] jmpifz [129] ............................ (case) #scale:
+  [101] getparam 1 .............................. <tButton>
+  [103] getchainedprop 214 ...................... <tButton.transform>
+  [105] getparam 1 .............................. <tButton>
+  [107] getchainedprop 214 ...................... <tButton.transform>
+  [109] getobjprop 307 .......................... <tButton.transform.scale>
+  [112] getglobal 86 ............................ <gData>
+  [114] getchainedprop 87 ....................... <gData.data>
+  [116] getchainedprop 2562 ..................... <gData.data.ButtonEffects>
+  [119] getobjprop 307 .......................... <gData.data.ButtonEffects.scale>
+  [122] add ..................................... <tButton.transform.scale + gData.data.ButtonEffects.scale>
+  [123] setobjprop 307 .......................... tButton.transform.scale = tButton.transform.scale + gData.data.ButtonEffects.scale
+  [126] jmp [146]
+  [129] peek 0
+  [131] pushsymb 1837 ........................... <#HiddenPackage>
+  [134] eq
+  [135] jmpifz [146] ............................ (case) #HiddenPackage:
+  [138] pushzero ................................ <0>
+  [139] getparam 1 .............................. <tButton>
+  [141] pusharglistnoret 2 ...................... <0, tButton>
+  [143] extcall 1802 ............................ EnterHiddenPackage(0, tButton)
+  [146] pop 1 ................................... end case
+  [148] getlocal 0 .............................. <tList>
+  [150] getobjprop 1822 ......................... <tList.rollover_sfx>
+  [153] pushsymb 1056 ........................... <#Override>
+  [156] pushint8 1 .............................. <1>
+  [158] pusharglist 2 ........................... <[#Override: 1]>
+  [160] pushproplist ............................ <[#Override: 1]>
+  [161] pusharglistnoret 2 ...................... <tList.rollover_sfx, [#Override: 1]>
+  [163] extcall 289 ............................. PlaySound(tList.rollover_sfx, [#Override: 1])
+  [166] ret
+end
+
+on NormalButtonLeave me, tButton
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getchainedprop 1833 ..................... <gGame.menu>
+  [  5] pushsymb 1826 ........................... <#buttons>
+  [  8] getparam 1 .............................. <tButton>
+  [ 10] getobjprop 235 .......................... <tButton.name>
+  [ 12] pusharglist 3 ........................... <gGame.menu, #buttons, tButton.name>
+  [ 14] objcall 70 .............................. <gGame.menu.buttons[tButton.name]>
+  [ 16] setlocal 0 .............................. tList = gGame.menu.buttons[tButton.name]
+  [ 18] getlocal 0 .............................. <tList>
+  [ 20] getobjprop 208 .......................... <tList.shader>
+  [ 22] pushint8 1 .............................. <1>
+  [ 24] eq ...................................... <tList.shader = 1>
+  [ 25] jmpifz [ 49] ............................ if tList.shader = 1 then / else
+  [ 28] getparam 1 .............................. <tButton>
+  [ 30] getprop 563 ............................. <p>
+  [ 33] getchainedprop 64 ....................... <p.member>
+  [ 35] getlocal 0 .............................. <tList>
+  [ 37] getobjprop 2486 ......................... <tList.normalShader>
+  [ 40] pusharglist 2 ........................... <p.member, tList.normalShader>
+  [ 42] objcall 208 ............................. <p.member.shader(tList.normalShader)>
+  [ 44] setobjprop 208 .......................... tButton.shader = p.member.shader(tList.normalShader)
+  [ 46] jmp [ 76]
+  [ 49] getparam 1 .............................. <tButton>
+  [ 51] getchainedprop 208 ...................... <tButton.shader>
+  [ 53] pushsymb 1244 ........................... <#textureList>
+  [ 56] pushint8 1 .............................. <1>
+  [ 58] getprop 563 ............................. <p>
+  [ 61] getchainedprop 64 ....................... <p.member>
+  [ 63] getlocal 0 .............................. <tList>
+  [ 65] getobjprop 2477 ......................... <tList.normal>
+  [ 68] pusharglist 2 ........................... <p.member, tList.normal>
+  [ 70] objcall 218 ............................. <p.member.texture(tList.normal)>
+  [ 72] pusharglistnoret 4 ...................... <tButton.shader, #textureList, 1, p.member.texture(tList.normal)>
+  [ 74] objcall 99 .............................. tButton.shader.textureList[1] = p.member.texture(tList.normal)
+  [ 76] getlocal 0 .............................. <tList>
+  [ 78] getobjprop 1615 ......................... <tList.effect>
+  [ 81] pushsymb 54 ............................. <#none>
+  [ 83] nteq .................................... <tList.effect <> #none>
+  [ 84] jmpifz [137] ............................ if tList.effect <> #none then
+  [ 87] getlocal 0 .............................. <tList>
+  [ 89] getobjprop 1615 ......................... <tList.effect>
+  [ 92] peek 0 .................................. case tList.effect of
+  [ 94] pushsymb 307 ............................ <#scale>
+  [ 97] eq
+  [ 98] jmpifz [118] ............................ (case) #scale:
+  [101] getparam 1 .............................. <tButton>
+  [103] getchainedprop 214 ...................... <tButton.transform>
+  [105] getlocal 0 .............................. <tList>
+  [107] getchainedprop 214 ...................... <tList.transform>
+  [109] getobjprop 307 .......................... <tList.transform.scale>
+  [112] setobjprop 307 .......................... tButton.transform.scale = tList.transform.scale
+  [115] jmp [135]
+  [118] peek 0
+  [120] pushsymb 1837 ........................... <#HiddenPackage>
+  [123] eq
+  [124] jmpifz [135] ............................ (case) #HiddenPackage:
+  [127] pushzero ................................ <0>
+  [128] getparam 1 .............................. <tButton>
+  [130] pusharglistnoret 2 ...................... <0, tButton>
+  [132] extcall 1803 ............................ LeaveHiddenPackage(0, tButton)
+  [135] pop 1 ................................... end case
+  [137] getprop 563 ............................. <p>
+  [140] pusharglist 0 ........................... <>
+  [142] extcall 40 .............................. <VOID>
+  [144] setobjprop 954 .......................... p.PreviousButton = VOID
+  [147] ret
+end
+
+on NormalButtonDown me, tButton
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getchainedprop 1833 ..................... <gGame.menu>
+  [  5] pushsymb 1826 ........................... <#buttons>
+  [  8] getparam 1 .............................. <tButton>
+  [ 10] getobjprop 235 .......................... <tButton.name>
+  [ 12] pusharglist 3 ........................... <gGame.menu, #buttons, tButton.name>
+  [ 14] objcall 70 .............................. <gGame.menu.buttons[tButton.name]>
+  [ 16] setlocal 0 .............................. tList = gGame.menu.buttons[tButton.name]
+  [ 18] getlocal 0 .............................. <tList>
+  [ 20] getobjprop 1823 ......................... <tList.pressed_sfx>
+  [ 23] pushsymb 1056 ........................... <#Override>
+  [ 26] pushint8 1 .............................. <1>
+  [ 28] pusharglist 2 ........................... <[#Override: 1]>
+  [ 30] pushproplist ............................ <[#Override: 1]>
+  [ 31] pusharglistnoret 2 ...................... <tList.pressed_sfx, [#Override: 1]>
+  [ 33] extcall 289 ............................. PlaySound(tList.pressed_sfx, [#Override: 1])
+  [ 36] ret
+end
+
+on NormalButtonUp me, tButton
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getchainedprop 1833 ..................... <gGame.menu>
+  [  5] pushsymb 1826 ........................... <#buttons>
+  [  8] getparam 1 .............................. <tButton>
+  [ 10] getobjprop 235 .......................... <tButton.name>
+  [ 12] pusharglist 3 ........................... <gGame.menu, #buttons, tButton.name>
+  [ 14] objcall 70 .............................. <gGame.menu.buttons[tButton.name]>
+  [ 16] setlocal 0 .............................. tList = gGame.menu.buttons[tButton.name]
+  [ 18] getparam 0 .............................. <me>
+  [ 20] getparam 1 .............................. <tButton>
+  [ 22] pusharglistnoret 2 ...................... <me, tButton>
+  [ 24] objcall 2555 ............................ me.NormalButtonLeave(tButton)
+  [ 27] getglobal 43 ............................ <gGame>
+  [ 29] getparam 1 .............................. <tButton>
+  [ 31] getobjprop 235 .......................... <tButton.name>
+  [ 33] setobjprop 1838 ......................... gGame.PressedButton = tButton.name
+  [ 36] getlocal 0 .............................. <tList>
+  [ 38] pushsymb 148 ............................ <#event>
+  [ 40] pusharglist 2 ........................... <tList, #event>
+  [ 42] objcall 105 ............................. <tList[#event]>
+  [ 44] getobjprop 122 .......................... <tList[#event].ilk>
+  [ 46] pushsymb 67 ............................. <#string>
+  [ 48] eq ...................................... <tList[#event].ilk = #string>
+  [ 49] jmpifz [ 64] ............................ if tList[#event].ilk = #string then
+  [ 52] getlocal 0 .............................. <tList>
+  [ 54] getobjprop 148 .......................... <tList.event>
+  [ 56] pusharglist 1 ........................... <tList.event>
+  [ 58] extcall 88 .............................. <symbol(tList.event)>
+  [ 60] pusharglistnoret 1 ...................... <symbol(tList.event)>
+  [ 62] extcall 148 ............................. event(symbol(tList.event))
+  [ 64] getlocal 0 .............................. <tList>
+  [ 66] pushsymb 786 ............................ <#handler>
+  [ 69] pusharglist 2 ........................... <tList, #handler>
+  [ 71] objcall 105 ............................. <tList[#handler]>
+  [ 73] getobjprop 122 .......................... <tList[#handler].ilk>
+  [ 75] pushsymb 67 ............................. <#string>
+  [ 77] eq ...................................... <tList[#handler].ilk = #string>
+  [ 78] jmpifz [100] ............................ if tList[#handler].ilk = #string then
+  [ 81] pushzero ................................ <0>
+  [ 82] getlocal 0 .............................. <tList>
+  [ 84] getobjprop 786 .......................... <tList.handler>
+  [ 87] pusharglist 1 ........................... <tList.handler>
+  [ 89] extcall 88 .............................. <symbol(tList.handler)>
+  [ 91] getparam 1 .............................. <tButton>
+  [ 93] getobjprop 235 .......................... <tButton.name>
+  [ 95] pusharglistnoret 3 ...................... <0, symbol(tList.handler), tButton.name>
+  [ 97] extcall 362 ............................. sendSprite(0, symbol(tList.handler), tButton.name)
+  [100] getglobal 43 ............................ <gGame>
+  [102] pushsymb 54 ............................. <#none>
+  [104] setobjprop 1838 ......................... gGame.PressedButton = #none
+  [107] ret
+end
+
+on GetAlphaPixel iSectList
+  [  0] getparam 0 .............................. <iSectList>
+  [  2] getobjprop 71 ........................... <iSectList.model>
+  [  4] setlocal 0 .............................. tmodel = iSectList.model
+  [  6] getlocal 0 .............................. <tmodel>
+  [  8] getchainedprop 208 ...................... <tmodel.shader>
+  [ 10] pushsymb 1244 ........................... <#textureList>
+  [ 13] pushint8 1 .............................. <1>
+  [ 15] pusharglist 3 ........................... <tmodel.shader, #textureList, 1>
+  [ 17] objcall 102 ............................. <tmodel.shader.textureList[1]>
+  [ 19] getobjprop 64 ........................... <tmodel.shader.textureList[1].member>
+  [ 21] setlocal 1 .............................. tmember = tmodel.shader.textureList[1].member
+  [ 23] getlocal 1 .............................. <tmember>
+  [ 25] getobjprop 319 .......................... <tmember.image>
+  [ 28] setlocal 2 .............................. tImage = tmember.image
+  [ 30] getlocal 0 .............................. <tmodel>
+  [ 32] pushsymb 995 ............................ <#meshDeform>
+  [ 35] pusharglistnoret 2 ...................... <tmodel, #meshDeform>
+  [ 37] objcall 261 ............................. tmodel.addModifier(#meshDeform)
+  [ 40] getparam 0 .............................. <iSectList>
+  [ 42] getobjprop 996 .......................... <iSectList.faceID>
+  [ 45] setlocal 3 .............................. tFace = iSectList.faceID
+  [ 47] getparam 0 .............................. <iSectList>
+  [ 49] getobjprop 997 .......................... <iSectList.uvCoord>
+  [ 52] setlocal 4 .............................. tUVCoord = iSectList.uvCoord
+  [ 54] getlocal 0 .............................. <tmodel>
+  [ 56] getchainedprop 995 ...................... <tmodel.meshDeform>
+  [ 59] pushsymb 998 ............................ <#mesh>
+  [ 62] getparam 0 .............................. <iSectList>
+  [ 64] getobjprop 999 .......................... <iSectList.meshID>
+  [ 67] pusharglist 3 ........................... <tmodel.meshDeform, #mesh, iSectList.meshID>
+  [ 69] objcall 102 ............................. <tmodel.meshDeform.mesh[iSectList.meshID]>
+  [ 71] getobjprop 886 .......................... <tmodel.meshDeform.mesh[iSectList.meshID].textureCoordinateList>
+  [ 74] setlocal 5 .............................. tCoordList = tmodel.meshDeform.mesh[iSectList.meshID].textureCoordinateList
+  [ 76] getlocal 0 .............................. <tmodel>
+  [ 78] getchainedprop 995 ...................... <tmodel.meshDeform>
+  [ 81] pushsymb 998 ............................ <#mesh>
+  [ 84] getparam 0 .............................. <iSectList>
+  [ 86] getobjprop 999 .......................... <iSectList.meshID>
+  [ 89] pusharglist 3 ........................... <tmodel.meshDeform, #mesh, iSectList.meshID>
+  [ 91] objcall 102 ............................. <tmodel.meshDeform.mesh[iSectList.meshID]>
+  [ 93] pushsymb 884 ............................ <#face>
+  [ 96] getlocal 3 .............................. <tFace>
+  [ 98] pusharglist 3 ........................... <tmodel.meshDeform.mesh[iSectList.meshID], #face, tFace>
+  [100] objcall 70 .............................. <tmodel.meshDeform.mesh[iSectList.meshID].face[tFace]>
+  [102] setlocal 6 .............................. tFaceList = tmodel.meshDeform.mesh[iSectList.meshID].face[tFace]
+  [104] getlocal 0 .............................. <tmodel>
+  [106] pushsymb 995 ............................ <#meshDeform>
+  [109] pusharglistnoret 2 ...................... <tmodel, #meshDeform>
+  [111] objcall 296 ............................. tmodel.removeModifier(#meshDeform)
+  [114] getlocal 5 .............................. <tCoordList>
+  [116] getlocal 6 .............................. <tFaceList>
+  [118] pushint8 1 .............................. <1>
+  [120] pusharglist 2 ........................... <tFaceList, 1>
+  [122] objcall 105 ............................. <tFaceList[1]>
+  [124] pusharglist 2 ........................... <tCoordList, tFaceList[1]>
+  [126] objcall 105 ............................. <tCoordList[tFaceList[1]]>
+  [128] setlocal 7 .............................. tLocA = tCoordList[tFaceList[1]]
+  [130] getlocal 7 .............................. <tLocA>
+  [132] pushint8 1 .............................. <1>
+  [134] pusharglist 2 ........................... <tLocA, 1>
+  [136] objcall 105 ............................. <tLocA[1]>
+  [138] getlocal 2 .............................. <tImage>
+  [140] getobjprop 229 .......................... <tImage.width>
+  [142] mul ..................................... <tLocA[1] * tImage.width>
+  [143] pushint8 1 .............................. <1>
+  [145] getlocal 7 .............................. <tLocA>
+  [147] pushint8 2 .............................. <2>
+  [149] pusharglist 2 ........................... <tLocA, 2>
+  [151] objcall 105 ............................. <tLocA[2]>
+  [153] sub ..................................... <1 - tLocA[2]>
+  [154] getlocal 2 .............................. <tImage>
+  [156] getobjprop 283 .......................... <tImage.height>
+  [159] mul ..................................... <(1 - tLocA[2]) * tImage.height>
+  [160] pusharglist 2 ........................... <tLocA[1] * tImage.width, (1 - tLocA[2]) * tImage.height>
+  [162] extcall 302 ............................. <point(tLocA[1] * tImage.width, (1 - tLocA[2]) * tImage.height)>
+  [165] setlocal 7 .............................. tLocA = point(tLocA[1] * tImage.width, (1 - tLocA[2]) * tImage.height)
+  [167] getlocal 5 .............................. <tCoordList>
+  [169] getlocal 6 .............................. <tFaceList>
+  [171] pushint8 2 .............................. <2>
+  [173] pusharglist 2 ........................... <tFaceList, 2>
+  [175] objcall 105 ............................. <tFaceList[2]>
+  [177] pusharglist 2 ........................... <tCoordList, tFaceList[2]>
+  [179] objcall 105 ............................. <tCoordList[tFaceList[2]]>
+  [181] setlocal 8 .............................. tLocB = tCoordList[tFaceList[2]]
+  [183] getlocal 8 .............................. <tLocB>
+  [185] pushint8 1 .............................. <1>
+  [187] pusharglist 2 ........................... <tLocB, 1>
+  [189] objcall 105 ............................. <tLocB[1]>
+  [191] getlocal 2 .............................. <tImage>
+  [193] getobjprop 229 .......................... <tImage.width>
+  [195] mul ..................................... <tLocB[1] * tImage.width>
+  [196] pushint8 1 .............................. <1>
+  [198] getlocal 8 .............................. <tLocB>
+  [200] pushint8 2 .............................. <2>
+  [202] pusharglist 2 ........................... <tLocB, 2>
+  [204] objcall 105 ............................. <tLocB[2]>
+  [206] sub ..................................... <1 - tLocB[2]>
+  [207] getlocal 2 .............................. <tImage>
+  [209] getobjprop 283 .......................... <tImage.height>
+  [212] mul ..................................... <(1 - tLocB[2]) * tImage.height>
+  [213] pusharglist 2 ........................... <tLocB[1] * tImage.width, (1 - tLocB[2]) * tImage.height>
+  [215] extcall 302 ............................. <point(tLocB[1] * tImage.width, (1 - tLocB[2]) * tImage.height)>
+  [218] setlocal 8 .............................. tLocB = point(tLocB[1] * tImage.width, (1 - tLocB[2]) * tImage.height)
+  [220] getlocal 5 .............................. <tCoordList>
+  [222] getlocal 6 .............................. <tFaceList>
+  [224] pushint8 3 .............................. <3>
+  [226] pusharglist 2 ........................... <tFaceList, 3>
+  [228] objcall 105 ............................. <tFaceList[3]>
+  [230] pusharglist 2 ........................... <tCoordList, tFaceList[3]>
+  [232] objcall 105 ............................. <tCoordList[tFaceList[3]]>
+  [234] setlocal 9 .............................. tLocC = tCoordList[tFaceList[3]]
+  [236] getlocal 9 .............................. <tLocC>
+  [238] pushint8 1 .............................. <1>
+  [240] pusharglist 2 ........................... <tLocC, 1>
+  [242] objcall 105 ............................. <tLocC[1]>
+  [244] getlocal 2 .............................. <tImage>
+  [246] getobjprop 229 .......................... <tImage.width>
+  [248] mul ..................................... <tLocC[1] * tImage.width>
+  [249] pushint8 1 .............................. <1>
+  [251] getlocal 9 .............................. <tLocC>
+  [253] pushint8 2 .............................. <2>
+  [255] pusharglist 2 ........................... <tLocC, 2>
+  [257] objcall 105 ............................. <tLocC[2]>
+  [259] sub ..................................... <1 - tLocC[2]>
+  [260] getlocal 2 .............................. <tImage>
+  [262] getobjprop 283 .......................... <tImage.height>
+  [265] mul ..................................... <(1 - tLocC[2]) * tImage.height>
+  [266] pusharglist 2 ........................... <tLocC[1] * tImage.width, (1 - tLocC[2]) * tImage.height>
+  [268] extcall 302 ............................. <point(tLocC[1] * tImage.width, (1 - tLocC[2]) * tImage.height)>
+  [271] setlocal 9 .............................. tLocC = point(tLocC[1] * tImage.width, (1 - tLocC[2]) * tImage.height)
+  [273] getlocal 8 .............................. <tLocB>
+  [275] getlocal 7 .............................. <tLocA>
+  [277] sub ..................................... <tLocB - tLocA>
+  [278] getlocal 4 .............................. <tUVCoord>
+  [280] getobjprop 1000 ......................... <tUVCoord.u>
+  [283] mul ..................................... <(tLocB - tLocA) * tUVCoord.u>
+  [284] setlocal 10 ............................. tUVector = (tLocB - tLocA) * tUVCoord.u
+  [286] getlocal 9 .............................. <tLocC>
+  [288] getlocal 7 .............................. <tLocA>
+  [290] sub ..................................... <tLocC - tLocA>
+  [291] getlocal 4 .............................. <tUVCoord>
+  [293] getobjprop 1001 ......................... <tUVCoord.V>
+  [296] mul ..................................... <(tLocC - tLocA) * tUVCoord.V>
+  [297] setlocal 11 ............................. tVVector = (tLocC - tLocA) * tUVCoord.V
+  [299] getlocal 7 .............................. <tLocA>
+  [301] getlocal 10 ............................. <tUVector>
+  [303] add ..................................... <tLocA + tUVector>
+  [304] getlocal 11 ............................. <tVVector>
+  [306] add ..................................... <tLocA + tUVector + tVVector>
+  [307] setlocal 12 ............................. tPos = tLocA + tUVector + tVVector
+  [309] getlocal 2 .............................. <tImage>
+  [311] pusharglist 1 ........................... <tImage>
+  [313] objcall 344 ............................. <tImage.extractAlpha()>
+  [316] getlocal 12 ............................. <tPos>
+  [318] pusharglist 2 ........................... <tImage.extractAlpha(), tPos>
+  [320] objcall 972 ............................. <tImage.extractAlpha().getPixel(tPos)>
+  [323] setlocal 13 ............................. tAlpha = tImage.extractAlpha().getPixel(tPos)
+  [325] getlocal 13 ............................. <tAlpha>
+  [327] pusharglistnoret 1 ...................... <tAlpha>
+  [329] extcall 52 .............................. return tAlpha
+  [331] ret
+end

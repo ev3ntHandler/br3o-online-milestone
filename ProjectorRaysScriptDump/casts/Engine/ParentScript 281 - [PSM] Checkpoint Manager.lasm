@@ -1,0 +1,698 @@
+property p
+global g
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 378 ............................ <#controller>
+  [ 12] getparam 1 .............................. <tParams>
+  [ 14] pushsymb 378 ............................ <#controller>
+  [ 17] pusharglist 2 ........................... <tParams, #controller>
+  [ 19] objcall 105 ............................. <tParams[#controller]>
+  [ 21] pusharglistnoret 3 ...................... <p, #controller, tParams[#controller]>
+  [ 23] objcall 103 ............................. p[#controller] = tParams[#controller]
+  [ 25] getprop 563 ............................. <p>
+  [ 28] pushsymb 377 ............................ <#tag>
+  [ 31] getparam 1 .............................. <tParams>
+  [ 33] pushsymb 377 ............................ <#tag>
+  [ 36] pusharglist 2 ........................... <tParams, #tag>
+  [ 38] objcall 105 ............................. <tParams[#tag]>
+  [ 40] pusharglistnoret 3 ...................... <p, #tag, tParams[#tag]>
+  [ 42] objcall 103 ............................. p[#tag] = tParams[#tag]
+  [ 44] getprop 563 ............................. <p>
+  [ 47] pushsymb 71 ............................. <#model>
+  [ 49] getparam 1 .............................. <tParams>
+  [ 51] pushsymb 3048 ........................... <#RayCastModel>
+  [ 54] pusharglist 2 ........................... <tParams, #RayCastModel>
+  [ 56] objcall 105 ............................. <tParams[#RayCastModel]>
+  [ 58] pusharglistnoret 3 ...................... <p, #model, tParams[#RayCastModel]>
+  [ 60] objcall 103 ............................. p[#model] = tParams[#RayCastModel]
+  [ 62] getprop 563 ............................. <p>
+  [ 65] pushsymb 3062 ........................... <#ScriptLimit>
+  [ 68] pushzero ................................ <0>
+  [ 69] pusharglistnoret 3 ...................... <p, #ScriptLimit, 0>
+  [ 71] objcall 103 ............................. p[#ScriptLimit] = 0
+  [ 73] getglobal 395 ........................... <g>
+  [ 76] pushsymb 1742 ........................... <#CheckPoints>
+  [ 79] pusharglist 2 ........................... <g, #CheckPoints>
+  [ 81] extcall 542 ............................. <getaProp(g, #CheckPoints)>
+  [ 84] pusharglist 0 ........................... <>
+  [ 86] extcall 40 .............................. <VOID>
+  [ 88] eq ...................................... <getaProp(g, #CheckPoints) = VOID>
+  [ 89] jmpifz [105] ............................ if getaProp(g, #CheckPoints) = VOID then
+  [ 92] pushcons 0 .............................. <"Script: [PSM] Checkpoint Manager. ">
+  [ 94] getparam 1 .............................. <tParams>
+  [ 96] joinstr ................................. <"Script: [PSM] Checkpoint Manager. " & tParams>
+  [ 97] pushcons 1 .............................. <" g.CheckPoints does not exist! Function not exited, but checkpoints will not be checked.">
+  [ 99] joinstr ................................. <"Script: [PSM] Checkpoint Manager. " & tParams & " g.CheckPoints does not exist! Function not exited, but checkpoints will not be checked.">
+  [100] pusharglistnoret 1 ...................... <"Script: [PSM] Checkpoint Manager. " & tParams & " g.CheckPoints does not exist! Function not exited, but checkpoints will not be checked.">
+  [102] extcall 511 ............................. ShowError("Script: [PSM] Checkpoint Manager. " & tParams & " g.CheckPoints does not exist! Function not exited, but checkpoints will not be checked.")
+  [105] getprop 563 ............................. <p>
+  [108] pushsymb 3384 ........................... <#CurrentT>
+  [111] pusharglist 0 ........................... <>
+  [113] extcall 214 ............................. <transform()>
+  [115] pusharglistnoret 3 ...................... <p, #CurrentT, transform()>
+  [117] objcall 103 ............................. p[#CurrentT] = transform()
+  [119] getprop 563 ............................. <p>
+  [122] pushsymb 2109 ........................... <#previousT>
+  [125] pusharglist 0 ........................... <>
+  [127] extcall 214 ............................. <transform()>
+  [129] pusharglistnoret 3 ...................... <p, #previousT, transform()>
+  [131] objcall 103 ............................. p[#previousT] = transform()
+  [133] getprop 563 ............................. <p>
+  [136] pushsymb 3159 ........................... <#UpdateWayPoints>
+  [139] pushzero ................................ <0>
+  [140] pusharglistnoret 3 ...................... <p, #UpdateWayPoints, 0>
+  [142] objcall 103 ............................. p[#UpdateWayPoints] = 0
+  [144] getprop 563 ............................. <p>
+  [147] pushsymb 3280 ........................... <#OldRootNr>
+  [150] pushzero ................................ <0>
+  [151] pusharglistnoret 3 ...................... <p, #OldRootNr, 0>
+  [153] objcall 103 ............................. p[#OldRootNr] = 0
+  [155] getparam 1 .............................. <tParams>
+  [157] pushsymb 3159 ........................... <#UpdateWayPoints>
+  [160] pusharglist 2 ........................... <tParams, #UpdateWayPoints>
+  [162] extcall 542 ............................. <getaProp(tParams, #UpdateWayPoints)>
+  [165] getobjprop 122 .......................... <getaProp(tParams, #UpdateWayPoints).ilk>
+  [167] pushsymb 123 ............................ <#integer>
+  [169] eq ...................................... <getaProp(tParams, #UpdateWayPoints).ilk = #integer>
+  [170] jmpifz [188] ............................ if getaProp(tParams, #UpdateWayPoints).ilk = #integer then
+  [173] getprop 563 ............................. <p>
+  [176] getparam 1 .............................. <tParams>
+  [178] pushsymb 3159 ........................... <#UpdateWayPoints>
+  [181] pusharglist 2 ........................... <tParams, #UpdateWayPoints>
+  [183] objcall 105 ............................. <tParams[#UpdateWayPoints]>
+  [185] setobjprop 3159 ......................... p.UpdateWayPoints = tParams[#UpdateWayPoints]
+  [188] getparam 0 .............................. <me>
+  [190] pusharglistnoret 1 ...................... <me>
+  [192] objcall 3382 ............................ me.SetFinalCheckpoint()
+  [195] getparam 0 .............................. <me>
+  [197] pusharglistnoret 1 ...................... <me>
+  [199] extcall 52 .............................. return me
+  [201] ret
+end
+
+on SetFinalCheckpoint me
+  [  0] getglobal 395 ........................... <g>
+  [  3] pushsymb 1405 ........................... <#RootList>
+  [  6] pusharglist 2 ........................... <g, #RootList>
+  [  8] objcall 129 ............................. <g.RootList.count>
+  [ 10] setlocal 0 .............................. tCount = g.RootList.count
+  [ 12] getglobal 395 ........................... <g>
+  [ 15] pushsymb 1405 ........................... <#RootList>
+  [ 18] getlocal 0 .............................. <tCount>
+  [ 20] pusharglist 3 ........................... <g, #RootList, tCount>
+  [ 22] objcall 102 ............................. <g.RootList[tCount]>
+  [ 24] pushsymb 1546 ........................... <#child>
+  [ 27] pusharglist 2 ........................... <g.RootList[tCount], #child>
+  [ 29] objcall 129 ............................. <g.RootList[tCount].child.count>
+  [ 31] setlocal 1 .............................. tChildCount = g.RootList[tCount].child.count
+  [ 33] pushint8 1 .............................. <1>
+  [ 35] setlocal 2
+  [ 37] getlocal 2
+  [ 39] getlocal 1 .............................. <tChildCount>
+  [ 41] lteq
+  [ 42] jmpifz [120] ............................ repeat with i = 1 to tChildCount
+  [ 45] getglobal 395 ........................... <g>
+  [ 48] pushsymb 1405 ........................... <#RootList>
+  [ 51] getlocal 0 .............................. <tCount>
+  [ 53] pusharglist 3 ........................... <g, #RootList, tCount>
+  [ 55] objcall 102 ............................. <g.RootList[tCount]>
+  [ 57] pushsymb 1546 ........................... <#child>
+  [ 60] getlocal 2 .............................. <i>
+  [ 62] pusharglist 3 ........................... <g.RootList[tCount], #child, i>
+  [ 64] objcall 70 .............................. <g.RootList[tCount].child[i]>
+  [ 66] setlocal 3 .............................. tChild = g.RootList[tCount].child[i]
+  [ 68] getlocal 3 .............................. <tChild>
+  [ 70] getobjprop 235 .......................... <tChild.name>
+  [ 72] pushcons 2 .............................. <"SkyTube">
+  [ 74] containsstr ............................. <tChild.name contains "SkyTube">
+  [ 75] jmpifz [111] ............................ if tChild.name contains "SkyTube" then
+  [ 78] getlocal 3 .............................. <tChild>
+  [ 80] getobjprop 235 .......................... <tChild.name>
+  [ 82] pushcons 3 .............................. <"SkyTubeBase">
+  [ 84] containsstr ............................. <tChild.name contains "SkyTubeBase">
+  [ 85] jmpifz [ 96] ............................ if tChild.name contains "SkyTubeBase" then
+  [ 88] pusharglistnoret 0 ...................... <>
+  [ 90] extcall 429 ............................. nothing()
+  [ 93] jmp [111] ............................... next repeat
+  [ 96] getlocal 3 .............................. <tChild>
+  [ 98] getglobal 395 ........................... <g>
+  [101] getchainedprop 64 ....................... <g.member>
+  [103] pushcons 4 .............................. <"SkyTubeChecker_Material">
+  [105] pusharglist 2 ........................... <g.member, "SkyTubeChecker_Material">
+  [107] objcall 208 ............................. <g.member.shader("SkyTubeChecker_Material")>
+  [109] setobjprop 208 .......................... tChild.shader = g.member.shader("SkyTubeChecker_Material")
+  [111] pushint8 1
+  [113] getlocal 2
+  [115] add
+  [116] setlocal 2
+  [118] endrepeat [ 37]
+  [120] ret
+end
+
+on enterFrame me
+  [  0] getglobal 395 ........................... <g>
+  [  3] pushsymb 1742 ........................... <#CheckPoints>
+  [  6] pusharglist 2 ........................... <g, #CheckPoints>
+  [  8] extcall 542 ............................. <getaProp(g, #CheckPoints)>
+  [ 11] pusharglist 0 ........................... <>
+  [ 13] extcall 40 .............................. <VOID>
+  [ 15] nteq .................................... <getaProp(g, #CheckPoints) <> VOID>
+  [ 16] jmpifz [ 23] ............................ if getaProp(g, #CheckPoints) <> VOID then
+  [ 19] pusharglistnoret 0 ...................... <>
+  [ 21] localcall 4 ............................. UpdateCheckpoints()
+  [ 23] getprop 563 ............................. <p>
+  [ 26] getobjprop 3159 ......................... <p.UpdateWayPoints>
+  [ 29] pushint8 1 .............................. <1>
+  [ 31] eq ...................................... <p.UpdateWayPoints = 1>
+  [ 32] jmpifz [ 39] ............................ if p.UpdateWayPoints = 1 then
+  [ 35] pusharglistnoret 0 ...................... <>
+  [ 37] localcall 3 ............................. UpdateWayPoints()
+  [ 39] ret
+end
+
+on UpdateWayPoints me
+  [  0] getglobal 395 ........................... <g>
+  [  3] pushsymb 1369 ........................... <#WayPointList>
+  [  6] pusharglist 2 ........................... <g, #WayPointList>
+  [  8] extcall 542 ............................. <getaProp(g, #WayPointList)>
+  [ 11] pusharglist 0 ........................... <>
+  [ 13] extcall 40 .............................. <VOID>
+  [ 15] eq ...................................... <getaProp(g, #WayPointList) = VOID>
+  [ 16] jmpifz [ 20] ............................ if getaProp(g, #WayPointList) = VOID then
+  [ 19] ret ..................................... exit
+  [ 20] getglobal 395 ........................... <g>
+  [ 23] pushsymb 1369 ........................... <#WayPointList>
+  [ 26] pusharglist 2 ........................... <g, #WayPointList>
+  [ 28] objcall 129 ............................. <g.WayPointList.count>
+  [ 30] pushzero ................................ <0>
+  [ 31] eq ...................................... <g.WayPointList.count = 0>
+  [ 32] jmpifz [ 36] ............................ if g.WayPointList.count = 0 then
+  [ 35] ret ..................................... exit
+  [ 36] getglobal 395 ........................... <g>
+  [ 39] pushsymb 137 ............................ <#cars>
+  [ 41] getprop 563 ............................. <p>
+  [ 44] getobjprop 377 .......................... <p.tag>
+  [ 47] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 49] objcall 102 ............................. <g.cars[p.tag]>
+  [ 51] pushsymb 1335 ........................... <#specifics>
+  [ 54] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [ 56] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [ 58] pushsymb 373 ............................ <#currentRootNr>
+  [ 61] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #currentRootNr>
+  [ 63] objcall 105 ............................. <g.cars[p.tag][#specifics][#currentRootNr]>
+  [ 65] setlocal 0 .............................. pCurrentRoot = g.cars[p.tag][#specifics][#currentRootNr]
+  [ 67] getprop 563 ............................. <p>
+  [ 70] getobjprop 3280 ......................... <p.OldRootNr>
+  [ 73] getlocal 0 .............................. <pCurrentRoot>
+  [ 75] nteq .................................... <p.OldRootNr <> pCurrentRoot>
+  [ 76] jmpifz [297] ............................ if p.OldRootNr <> pCurrentRoot then
+  [ 79] getglobal 395 ........................... <g>
+  [ 82] pushsymb 137 ............................ <#cars>
+  [ 84] getprop 563 ............................. <p>
+  [ 87] getobjprop 377 .......................... <p.tag>
+  [ 90] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 92] objcall 102 ............................. <g.cars[p.tag]>
+  [ 94] pushsymb 1335 ........................... <#specifics>
+  [ 97] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [ 99] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [101] pushsymb 373 ............................ <#currentRootNr>
+  [104] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #currentRootNr>
+  [106] objcall 105 ............................. <g.cars[p.tag][#specifics][#currentRootNr]>
+  [108] pushint8 1 .............................. <1>
+  [110] add ..................................... <g.cars[p.tag][#specifics][#currentRootNr] + 1>
+  [111] setlocal 1 .............................. pFutureRoot = g.cars[p.tag][#specifics][#currentRootNr] + 1
+  [113] getlocal 1 .............................. <pFutureRoot>
+  [115] getglobal 395 ........................... <g>
+  [118] pushsymb 1405 ........................... <#RootList>
+  [121] pusharglist 2 ........................... <g, #RootList>
+  [123] objcall 129 ............................. <g.RootList.count>
+  [125] gt ...................................... <pFutureRoot > g.RootList.count>
+  [126] jmpifz [133] ............................ if pFutureRoot > g.RootList.count then
+  [129] getlocal 0 .............................. <pCurrentRoot>
+  [131] setlocal 1 .............................. pFutureRoot = pCurrentRoot
+  [133] getprop 563 ............................. <p>
+  [136] pushsymb 3285 ........................... <#MyWayPointList>
+  [139] getglobal 395 ........................... <g>
+  [142] pushsymb 1369 ........................... <#WayPointList>
+  [145] pushcons 5 .............................. <"TrackRoot">
+  [147] getlocal 0 .............................. <pCurrentRoot>
+  [149] joinstr ................................. <"TrackRoot" & pCurrentRoot>
+  [150] pushcons 6 .............................. <"_Group">
+  [152] joinstr ................................. <"TrackRoot" & pCurrentRoot & "_Group">
+  [153] pusharglist 1 ........................... <"TrackRoot" & pCurrentRoot & "_Group">
+  [155] extcall 88 .............................. <symbol("TrackRoot" & pCurrentRoot & "_Group")>
+  [157] pusharglist 3 ........................... <g, #WayPointList, symbol("TrackRoot" & pCurrentRoot & "_Group")>
+  [159] objcall 102 ............................. <g.WayPointList[symbol("TrackRoot" & pCurrentRoot & "_Group")]>
+  [161] pusharglist 1 ........................... <g.WayPointList[symbol("TrackRoot" & pCurrentRoot & "_Group")]>
+  [163] objcall 233 ............................. <g.WayPointList[symbol("TrackRoot" & pCurrentRoot & "_Group")].duplicate()>
+  [165] pusharglistnoret 3 ...................... <p, #MyWayPointList, g.WayPointList[symbol("TrackRoot" & pCurrentRoot & "_Group")].duplicate()>
+  [167] objcall 103 ............................. p[#MyWayPointList] = g.WayPointList[symbol("TrackRoot" & pCurrentRoot & "_Group")].duplicate()
+  [169] getlocal 1 .............................. <pFutureRoot>
+  [171] getlocal 0 .............................. <pCurrentRoot>
+  [173] nteq .................................... <pFutureRoot <> pCurrentRoot>
+  [174] jmpifz [250] ............................ if pFutureRoot <> pCurrentRoot then
+  [177] getglobal 395 ........................... <g>
+  [180] pushsymb 1369 ........................... <#WayPointList>
+  [183] pushcons 5 .............................. <"TrackRoot">
+  [185] getlocal 1 .............................. <pFutureRoot>
+  [187] joinstr ................................. <"TrackRoot" & pFutureRoot>
+  [188] pushcons 6 .............................. <"_Group">
+  [190] joinstr ................................. <"TrackRoot" & pFutureRoot & "_Group">
+  [191] pusharglist 1 ........................... <"TrackRoot" & pFutureRoot & "_Group">
+  [193] extcall 88 .............................. <symbol("TrackRoot" & pFutureRoot & "_Group")>
+  [195] pusharglist 3 ........................... <g, #WayPointList, symbol("TrackRoot" & pFutureRoot & "_Group")>
+  [197] objcall 102 ............................. <g.WayPointList[symbol("TrackRoot" & pFutureRoot & "_Group")]>
+  [199] pusharglist 1 ........................... <g.WayPointList[symbol("TrackRoot" & pFutureRoot & "_Group")]>
+  [201] objcall 233 ............................. <g.WayPointList[symbol("TrackRoot" & pFutureRoot & "_Group")].duplicate()>
+  [203] setlocal 2 .............................. pExtraList = g.WayPointList[symbol("TrackRoot" & pFutureRoot & "_Group")].duplicate()
+  [205] getlocal 2 .............................. <pExtraList>
+  [207] getobjprop 129 .......................... <pExtraList.count>
+  [209] setlocal 3 .............................. pCount = pExtraList.count
+  [211] pushint8 1 .............................. <1>
+  [213] setlocal 4
+  [215] getlocal 4
+  [217] getlocal 3 .............................. <pCount>
+  [219] lteq
+  [220] jmpifz [250] ............................ repeat with i = 1 to pCount
+  [223] getprop 563 ............................. <p>
+  [226] getchainedprop 3285 ..................... <p.MyWayPointList>
+  [229] getlocal 2 .............................. <pExtraList>
+  [231] getlocal 4 .............................. <i>
+  [233] pusharglist 2 ........................... <pExtraList, i>
+  [235] objcall 105 ............................. <pExtraList[i]>
+  [237] pusharglistnoret 2 ...................... <p.MyWayPointList, pExtraList[i]>
+  [239] objcall 42 .............................. p.MyWayPointList.add(pExtraList[i])
+  [241] pushint8 1
+  [243] getlocal 4
+  [245] add
+  [246] setlocal 4
+  [248] endrepeat [215]
+  [250] getglobal 395 ........................... <g>
+  [253] pushsymb 137 ............................ <#cars>
+  [255] getprop 563 ............................. <p>
+  [258] getobjprop 377 .......................... <p.tag>
+  [261] pusharglist 3 ........................... <g, #cars, p.tag>
+  [263] objcall 102 ............................. <g.cars[p.tag]>
+  [265] pushsymb 1335 ........................... <#specifics>
+  [268] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [270] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [272] pushsymb 1369 ........................... <#WayPointList>
+  [275] getprop 563 ............................. <p>
+  [278] getchainedprop 3285 ..................... <p.MyWayPointList>
+  [281] pusharglist 1 ........................... <p.MyWayPointList>
+  [283] objcall 233 ............................. <p.MyWayPointList.duplicate()>
+  [285] pusharglistnoret 3 ...................... <g.cars[p.tag][#specifics], #WayPointList, p.MyWayPointList.duplicate()>
+  [287] objcall 103 ............................. g.cars[p.tag][#specifics][#WayPointList] = p.MyWayPointList.duplicate()
+  [289] getprop 563 ............................. <p>
+  [292] getlocal 0 .............................. <pCurrentRoot>
+  [294] setobjprop 3280 ......................... p.OldRootNr = pCurrentRoot
+  [297] getprop 563 ............................. <p>
+  [300] pushsymb 3285 ........................... <#MyWayPointList>
+  [303] pusharglist 2 ........................... <p, #MyWayPointList>
+  [305] objcall 129 ............................. <p.MyWayPointList.count>
+  [307] setlocal 3 .............................. pCount = p.MyWayPointList.count
+  [309] pushint8 1 .............................. <1>
+  [311] setlocal 5 .............................. pNearestWaypoint = 1
+  [313] pushfloat32 0.0 ......................... <0.0>
+  [318] pushfloat32 0.0 ......................... <0.0>
+  [323] pushfloat32 0.0 ......................... <0.0>
+  [328] pusharglist 3 ........................... <0.0, 0.0, 0.0>
+  [330] extcall 212 ............................. <vector(0.0, 0.0, 0.0)>
+  [332] setlocal 6 .............................. pNearestWaypointPos = vector(0.0, 0.0, 0.0)
+  [334] pushfloat32 15.0 ........................ <15.0>
+  [339] setlocal 7 .............................. pNearestDistance = 15.0
+  [341] getglobal 395 ........................... <g>
+  [344] pushsymb 137 ............................ <#cars>
+  [346] getprop 563 ............................. <p>
+  [349] getobjprop 377 .......................... <p.tag>
+  [352] pusharglist 3 ........................... <g, #cars, p.tag>
+  [354] objcall 102 ............................. <g.cars[p.tag]>
+  [356] pushsymb 1335 ........................... <#specifics>
+  [359] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [361] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [363] pushsymb 3037 ........................... <#currentWaypoint>
+  [366] pushint8 1 .............................. <1>
+  [368] pusharglistnoret 3 ...................... <g.cars[p.tag][#specifics], #currentWaypoint, 1>
+  [370] objcall 103 ............................. g.cars[p.tag][#specifics][#currentWaypoint] = 1
+  [372] pushint8 1 .............................. <1>
+  [374] setlocal 4
+  [376] getlocal 4
+  [378] getlocal 3 .............................. <pCount>
+  [380] lteq
+  [381] jmpifz [558] ............................ repeat with i = 1 to pCount
+  [384] getprop 563 ............................. <p>
+  [387] pushsymb 3285 ........................... <#MyWayPointList>
+  [390] getlocal 4 .............................. <i>
+  [392] pusharglist 3 ........................... <p, #MyWayPointList, i>
+  [394] objcall 102 ............................. <p.MyWayPointList[i]>
+  [396] pushint8 1 .............................. <1>
+  [398] pusharglist 2 ........................... <p.MyWayPointList[i], 1>
+  [400] objcall 105 ............................. <p.MyWayPointList[i][1]>
+  [402] setlocal 8 .............................. pWaypointPos = p.MyWayPointList[i][1]
+  [404] getlocal 8 .............................. <pWaypointPos>
+  [406] getprop 563 ............................. <p>
+  [409] getchainedprop 71 ....................... <p.model>
+  [411] getobjprop 1161 ......................... <p.model.worldPosition>
+  [414] pusharglist 2 ........................... <pWaypointPos, p.model.worldPosition>
+  [416] objcall 1117 ............................ <pWaypointPos.distanceTo(p.model.worldPosition)>
+  [419] setlocal 9 .............................. pTempDistance = pWaypointPos.distanceTo(p.model.worldPosition)
+  [421] getlocal 9 .............................. <pTempDistance>
+  [423] getlocal 7 .............................. <pNearestDistance>
+  [425] lteq .................................... <pTempDistance <= pNearestDistance>
+  [426] jmpifz [549] ............................ if pTempDistance <= pNearestDistance then
+  [429] getlocal 4 .............................. <i>
+  [431] pushint8 1 .............................. <1>
+  [433] add ..................................... <i + 1>
+  [434] setlocal 5 .............................. pNearestWaypoint = i + 1
+  [436] getlocal 5 .............................. <pNearestWaypoint>
+  [438] getprop 563 ............................. <p>
+  [441] pushsymb 3285 ........................... <#MyWayPointList>
+  [444] pusharglist 2 ........................... <p, #MyWayPointList>
+  [446] objcall 129 ............................. <p.MyWayPointList.count>
+  [448] gt ...................................... <pNearestWaypoint > p.MyWayPointList.count>
+  [449] jmpifz [464] ............................ if pNearestWaypoint > p.MyWayPointList.count then
+  [452] getprop 563 ............................. <p>
+  [455] pushsymb 3285 ........................... <#MyWayPointList>
+  [458] pusharglist 2 ........................... <p, #MyWayPointList>
+  [460] objcall 129 ............................. <p.MyWayPointList.count>
+  [462] setlocal 5 .............................. pNearestWaypoint = p.MyWayPointList.count
+  [464] getprop 563 ............................. <p>
+  [467] pushsymb 3285 ........................... <#MyWayPointList>
+  [470] getlocal 5 .............................. <pNearestWaypoint>
+  [472] pusharglist 3 ........................... <p, #MyWayPointList, pNearestWaypoint>
+  [474] objcall 102 ............................. <p.MyWayPointList[pNearestWaypoint]>
+  [476] pushint8 1 .............................. <1>
+  [478] pusharglist 2 ........................... <p.MyWayPointList[pNearestWaypoint], 1>
+  [480] objcall 105 ............................. <p.MyWayPointList[pNearestWaypoint][1]>
+  [482] setlocal 6 .............................. pNearestWaypointPos = p.MyWayPointList[pNearestWaypoint][1]
+  [484] getglobal 395 ........................... <g>
+  [487] pushsymb 137 ............................ <#cars>
+  [489] getprop 563 ............................. <p>
+  [492] getobjprop 377 .......................... <p.tag>
+  [495] pusharglist 3 ........................... <g, #cars, p.tag>
+  [497] objcall 102 ............................. <g.cars[p.tag]>
+  [499] pushsymb 1335 ........................... <#specifics>
+  [502] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [504] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [506] pushsymb 3037 ........................... <#currentWaypoint>
+  [509] getlocal 5 .............................. <pNearestWaypoint>
+  [511] pusharglistnoret 3 ...................... <g.cars[p.tag][#specifics], #currentWaypoint, pNearestWaypoint>
+  [513] objcall 103 ............................. g.cars[p.tag][#specifics][#currentWaypoint] = pNearestWaypoint
+  [515] getglobal 395 ........................... <g>
+  [518] pushsymb 137 ............................ <#cars>
+  [520] getprop 563 ............................. <p>
+  [523] getobjprop 377 .......................... <p.tag>
+  [526] pusharglist 3 ........................... <g, #cars, p.tag>
+  [528] objcall 102 ............................. <g.cars[p.tag]>
+  [530] pushsymb 1335 ........................... <#specifics>
+  [533] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [535] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [537] pushsymb 3038 ........................... <#currentDistance>
+  [540] getlocal 9 .............................. <pTempDistance>
+  [542] pusharglistnoret 3 ...................... <g.cars[p.tag][#specifics], #currentDistance, pTempDistance>
+  [544] objcall 103 ............................. g.cars[p.tag][#specifics][#currentDistance] = pTempDistance
+  [546] jmp [558] ............................... exit repeat
+  [549] pushint8 1
+  [551] getlocal 4
+  [553] add
+  [554] setlocal 4
+  [556] endrepeat [376]
+  [558] getprop 563 ............................. <p>
+  [561] pushsymb 3285 ........................... <#MyWayPointList>
+  [564] getglobal 395 ........................... <g>
+  [567] pushsymb 137 ............................ <#cars>
+  [569] getprop 563 ............................. <p>
+  [572] getobjprop 377 .......................... <p.tag>
+  [575] pusharglist 3 ........................... <g, #cars, p.tag>
+  [577] objcall 102 ............................. <g.cars[p.tag]>
+  [579] pushsymb 1335 ........................... <#specifics>
+  [582] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [584] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [586] pushsymb 3037 ........................... <#currentWaypoint>
+  [589] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #currentWaypoint>
+  [591] objcall 105 ............................. <g.cars[p.tag][#specifics][#currentWaypoint]>
+  [593] pusharglist 3 ........................... <p, #MyWayPointList, g.cars[p.tag][#specifics][#currentWaypoint]>
+  [595] objcall 102 ............................. <p.MyWayPointList[g.cars[p.tag][#specifics][#currentWaypoint]]>
+  [597] pushint8 1 .............................. <1>
+  [599] pusharglist 2 ........................... <p.MyWayPointList[g.cars[p.tag][#specifics][#currentWaypoint]], 1>
+  [601] objcall 105 ............................. <p.MyWayPointList[g.cars[p.tag][#specifics][#currentWaypoint]][1]>
+  [603] setlocal 10 ............................. tCurrentWaypoint = p.MyWayPointList[g.cars[p.tag][#specifics][#currentWaypoint]][1]
+  [605] getlocal 10 ............................. <tCurrentWaypoint>
+  [607] pusharglist 0 ........................... <>
+  [609] extcall 40 .............................. <VOID>
+  [611] nteq .................................... <tCurrentWaypoint <> VOID>
+  [612] jmpifz [695] ............................ if tCurrentWaypoint <> VOID then
+  [615] getlocal 10 ............................. <tCurrentWaypoint>
+  [617] getobjprop 1190 ......................... <tCurrentWaypoint.z>
+  [620] getprop 563 ............................. <p>
+  [623] getchainedprop 71 ....................... <p.model>
+  [625] getchainedprop 1161 ..................... <p.model.worldPosition>
+  [628] getobjprop 1190 ......................... <p.model.worldPosition.z>
+  [631] sub ..................................... <tCurrentWaypoint.z - p.model.worldPosition.z>
+  [632] pusharglist 1 ........................... <tCurrentWaypoint.z - p.model.worldPosition.z>
+  [634] extcall 973 ............................. <abs(tCurrentWaypoint.z - p.model.worldPosition.z)>
+  [637] setlocal 11 ............................. tZDistance = abs(tCurrentWaypoint.z - p.model.worldPosition.z)
+  [639] getprop 563 ............................. <p>
+  [642] getchainedprop 71 ....................... <p.model>
+  [644] getchainedprop 1161 ..................... <p.model.worldPosition>
+  [647] getobjprop 1190 ......................... <p.model.worldPosition.z>
+  [650] getlocal 10 ............................. <tCurrentWaypoint>
+  [652] getobjprop 1190 ......................... <tCurrentWaypoint.z>
+  [655] lt ...................................... <p.model.worldPosition.z < tCurrentWaypoint.z>
+  [656] jmpifz [664] ............................ if p.model.worldPosition.z < tCurrentWaypoint.z then
+  [659] getlocal 11 ............................. <tZDistance>
+  [661] inv ..................................... <-tZDistance>
+  [662] setlocal 11 ............................. tZDistance = -tZDistance
+  [664] getglobal 395 ........................... <g>
+  [667] pushsymb 137 ............................ <#cars>
+  [669] getprop 563 ............................. <p>
+  [672] getobjprop 377 .......................... <p.tag>
+  [675] pusharglist 3 ........................... <g, #cars, p.tag>
+  [677] objcall 102 ............................. <g.cars[p.tag]>
+  [679] pushsymb 1335 ........................... <#specifics>
+  [682] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [684] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [686] pushsymb 3385 ........................... <#currentDistanceZ>
+  [689] getlocal 11 ............................. <tZDistance>
+  [691] pusharglistnoret 3 ...................... <g.cars[p.tag][#specifics], #currentDistanceZ, tZDistance>
+  [693] objcall 103 ............................. g.cars[p.tag][#specifics][#currentDistanceZ] = tZDistance
+  [695] ret
+end
+
+on UpdateCheckpoints me
+  [  0] getglobal 395 ........................... <g>
+  [  3] pushsymb 1742 ........................... <#CheckPoints>
+  [  6] pusharglist 2 ........................... <g, #CheckPoints>
+  [  8] objcall 129 ............................. <g.CheckPoints.count>
+  [ 10] pushzero ................................ <0>
+  [ 11] eq ...................................... <g.CheckPoints.count = 0>
+  [ 12] jmpifz [ 16] ............................ if g.CheckPoints.count = 0 then
+  [ 15] ret ..................................... exit
+  [ 16] getglobal 395 ........................... <g>
+  [ 19] pushsymb 137 ............................ <#cars>
+  [ 21] getprop 563 ............................. <p>
+  [ 24] getobjprop 377 .......................... <p.tag>
+  [ 27] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 29] objcall 102 ............................. <g.cars[p.tag]>
+  [ 31] getchainedprop 1335 ..................... <g.cars[p.tag].specifics>
+  [ 34] getobjprop 2260 ......................... <g.cars[p.tag].specifics.currentFloor>
+  [ 37] setlocal 0 .............................. tFloor = g.cars[p.tag].specifics.currentFloor
+  [ 39] getlocal 0 .............................. <tFloor>
+  [ 41] getobjprop 235 .......................... <tFloor.name>
+  [ 43] setlocal 1 .............................. tRootName = tFloor.name
+  [ 45] getmovieprop 145 ........................ <the itemDelimiter>
+  [ 47] setlocal 2 .............................. tOldDelimiter = the itemDelimiter
+  [ 49] pushcons 7 .............................. <"_">
+  [ 51] setmovieprop 145 ........................ the itemDelimiter = "_"
+  [ 53] getlocal 1 .............................. <tRootName>
+  [ 55] pushsymb 83 ............................. <#item>
+  [ 57] pushint8 1 .............................. <1>
+  [ 59] pusharglist 3 ........................... <tRootName, #item, 1>
+  [ 61] objcall 70 .............................. <tRootName.item[1]>
+  [ 63] setlocal 1 .............................. tRootName = tRootName.item[1]
+  [ 65] getlocal 2 .............................. <tOldDelimiter>
+  [ 67] setmovieprop 145 ........................ the itemDelimiter = tOldDelimiter
+  [ 69] getlocal 1 .............................. <tRootName>
+  [ 71] pusharglist 1 ........................... <tRootName>
+  [ 73] extcall 88 .............................. <symbol(tRootName)>
+  [ 75] setlocal 3 .............................. tProp = symbol(tRootName)
+  [ 77] getglobal 395 ........................... <g>
+  [ 80] getchainedprop 1742 ..................... <g.CheckPoints>
+  [ 83] getlocal 3 .............................. <tProp>
+  [ 85] pusharglist 2 ........................... <g.CheckPoints, tProp>
+  [ 87] objcall 161 ............................. <g.CheckPoints.findPos(tProp)>
+  [ 89] setlocal 4 .............................. tPos = g.CheckPoints.findPos(tProp)
+  [ 91] getglobal 395 ........................... <g>
+  [ 94] pushsymb 1742 ........................... <#CheckPoints>
+  [ 97] getlocal 3 .............................. <tProp>
+  [ 99] pusharglist 3 ........................... <g, #CheckPoints, tProp>
+  [101] objcall 70 .............................. <g.CheckPoints[tProp]>
+  [103] pusharglist 0 ........................... <>
+  [105] extcall 40 .............................. <VOID>
+  [107] nteq .................................... <g.CheckPoints[tProp] <> VOID>
+  [108] jmpifz [371] ............................ if g.CheckPoints[tProp] <> VOID then
+  [111] getglobal 395 ........................... <g>
+  [114] pushsymb 1742 ........................... <#CheckPoints>
+  [117] getlocal 4 .............................. <tPos>
+  [119] pusharglist 3 ........................... <g, #CheckPoints, tPos>
+  [121] objcall 102 ............................. <g.CheckPoints[tPos]>
+  [123] pusharglist 1 ........................... <g.CheckPoints[tPos]>
+  [125] objcall 233 ............................. <g.CheckPoints[tPos].duplicate()>
+  [127] setlocal 5 .............................. tTransform1 = g.CheckPoints[tPos].duplicate()
+  [129] getprop 563 ............................. <p>
+  [132] getchainedprop 71 ....................... <p.model>
+  [134] getchainedprop 214 ...................... <p.model.transform>
+  [136] pusharglist 1 ........................... <p.model.transform>
+  [138] objcall 233 ............................. <p.model.transform.duplicate()>
+  [140] setlocal 6 .............................. tTransform2 = p.model.transform.duplicate()
+  [142] getlocal 6 .............................. <tTransform2>
+  [144] getobjprop 215 .......................... <tTransform2.position>
+  [146] getprop 563 ............................. <p>
+  [149] getchainedprop 2109 ..................... <p.previousT>
+  [152] getobjprop 215 .......................... <p.previousT.position>
+  [154] sub ..................................... <tTransform2.position - p.previousT.position>
+  [155] setlocal 7 .............................. tAxis = tTransform2.position - p.previousT.position
+  [157] getlocal 7 .............................. <tAxis>
+  [159] pusharglistnoret 1 ...................... <tAxis>
+  [161] objcall 1179 ............................ tAxis.normalize()
+  [164] getlocal 5 .............................. <tTransform1>
+  [166] getlocal 6 .............................. <tTransform2>
+  [168] pushsymb 1189 ........................... <#y>
+  [171] getlocal 7 .............................. <tAxis>
+  [173] pusharglist 4 ........................... <tTransform1, tTransform2, #y, tAxis>
+  [175] extcall 1178 ............................ <LineLineIntersect(tTransform1, tTransform2, #y, tAxis)>
+  [178] setlocal 8 .............................. tInt = LineLineIntersect(tTransform1, tTransform2, #y, tAxis)
+  [180] getprop 563 ............................. <p>
+  [183] getchainedprop 2109 ..................... <p.previousT>
+  [186] getchainedprop 215 ...................... <p.previousT.position>
+  [188] getobjprop 557 .......................... <p.previousT.position.x>
+  [191] getprop 563 ............................. <p>
+  [194] getchainedprop 2109 ..................... <p.previousT>
+  [197] getchainedprop 215 ...................... <p.previousT.position>
+  [199] getobjprop 1189 ......................... <p.previousT.position.y>
+  [202] pusharglist 2 ........................... <p.previousT.position.x, p.previousT.position.y>
+  [204] extcall 302 ............................. <point(p.previousT.position.x, p.previousT.position.y)>
+  [207] setlocal 9 .............................. tPoint1 = point(p.previousT.position.x, p.previousT.position.y)
+  [209] getprop 563 ............................. <p>
+  [212] getchainedprop 71 ....................... <p.model>
+  [214] getchainedprop 214 ...................... <p.model.transform>
+  [216] getchainedprop 215 ...................... <p.model.transform.position>
+  [218] getobjprop 557 .......................... <p.model.transform.position.x>
+  [221] getprop 563 ............................. <p>
+  [224] getchainedprop 71 ....................... <p.model>
+  [226] getchainedprop 214 ...................... <p.model.transform>
+  [228] getchainedprop 215 ...................... <p.model.transform.position>
+  [230] getobjprop 1189 ......................... <p.model.transform.position.y>
+  [233] pusharglist 2 ........................... <p.model.transform.position.x, p.model.transform.position.y>
+  [235] extcall 302 ............................. <point(p.model.transform.position.x, p.model.transform.position.y)>
+  [238] setlocal 10 ............................. tPoint2 = point(p.model.transform.position.x, p.model.transform.position.y)
+  [240] getlocal 8 .............................. <tInt>
+  [242] getobjprop 557 .......................... <tInt.x>
+  [245] getlocal 9 .............................. <tPoint1>
+  [247] getobjprop 1192 ......................... <tPoint1.locH>
+  [250] getlocal 10 ............................. <tPoint2>
+  [252] getobjprop 1192 ......................... <tPoint2.locH>
+  [255] pusharglist 3 ........................... <[tInt.x, tPoint1.locH, tPoint2.locH]>
+  [257] pushlist ................................ <[tInt.x, tPoint1.locH, tPoint2.locH]>
+  [258] setlocal 11 ............................. tXList = [tInt.x, tPoint1.locH, tPoint2.locH]
+  [260] getlocal 8 .............................. <tInt>
+  [262] getobjprop 1189 ......................... <tInt.y>
+  [265] getlocal 9 .............................. <tPoint1>
+  [267] getobjprop 1193 ......................... <tPoint1.locV>
+  [270] getlocal 10 ............................. <tPoint2>
+  [272] getobjprop 1193 ......................... <tPoint2.locV>
+  [275] pusharglist 3 ........................... <[tInt.y, tPoint1.locV, tPoint2.locV]>
+  [277] pushlist ................................ <[tInt.y, tPoint1.locV, tPoint2.locV]>
+  [278] setlocal 12 ............................. tYList = [tInt.y, tPoint1.locV, tPoint2.locV]
+  [280] getlocal 11 ............................. <tXList>
+  [282] pusharglistnoret 1 ...................... <tXList>
+  [284] objcall 304 ............................. tXList.sort()
+  [287] getlocal 12 ............................. <tYList>
+  [289] pusharglistnoret 1 ...................... <tYList>
+  [291] objcall 304 ............................. tYList.sort()
+  [294] getlocal 11 ............................. <tXList>
+  [296] pushint8 2 .............................. <2>
+  [298] pusharglist 2 ........................... <tXList, 2>
+  [300] objcall 105 ............................. <tXList[2]>
+  [302] getlocal 8 .............................. <tInt>
+  [304] getobjprop 557 .......................... <tInt.x>
+  [307] eq ...................................... <tXList[2] = tInt.x>
+  [308] getlocal 12 ............................. <tYList>
+  [310] pushint8 2 .............................. <2>
+  [312] pusharglist 2 ........................... <tYList, 2>
+  [314] objcall 105 ............................. <tYList[2]>
+  [316] getlocal 8 .............................. <tInt>
+  [318] getobjprop 1189 ......................... <tInt.y>
+  [321] eq ...................................... <tYList[2] = tInt.y>
+  [322] and ..................................... <(tXList[2] = tInt.x) and (tYList[2] = tInt.y)>
+  [323] jmpifz [371] ............................ if (tXList[2] = tInt.x) and (tYList[2] = tInt.y) then
+  [326] getlocal 4 .............................. <tPos>
+  [328] getlocal 3 .............................. <tProp>
+  [330] pusharglistnoret 2 ...................... <tPos, tProp>
+  [332] extcall 3387 ............................ UpdateCheckpoint(tPos, tProp)
+  [335] getglobal 395 ........................... <g>
+  [338] pushsymb 1742 ........................... <#CheckPoints>
+  [341] getlocal 4 .............................. <tPos>
+  [343] pusharglist 0 ........................... <>
+  [345] extcall 40 .............................. <VOID>
+  [347] pusharglistnoret 4 ...................... <g, #CheckPoints, tPos, VOID>
+  [349] objcall 99 .............................. g.CheckPoints[tPos] = VOID
+  [351] getglobal 395 ........................... <g>
+  [354] pushsymb 1742 ........................... <#CheckPoints>
+  [357] pusharglist 2 ........................... <g, #CheckPoints>
+  [359] objcall 129 ............................. <g.CheckPoints.count>
+  [361] getlocal 4 .............................. <tPos>
+  [363] eq ...................................... <g.CheckPoints.count = tPos>
+  [364] jmpifz [371] ............................ if g.CheckPoints.count = tPos then
+  [367] pusharglistnoret 0 ...................... <>
+  [369] localcall 5 ............................. finish()
+  [371] getprop 563 ............................. <p>
+  [374] getprop 563 ............................. <p>
+  [377] getchainedprop 71 ....................... <p.model>
+  [379] getchainedprop 214 ...................... <p.model.transform>
+  [381] pusharglist 1 ........................... <p.model.transform>
+  [383] objcall 233 ............................. <p.model.transform.duplicate()>
+  [385] setobjprop 2109 ......................... p.previousT = p.model.transform.duplicate()
+  [388] ret
+end
+
+on finish me
+  [  0] getglobal 395 ........................... <g>
+  [  3] pushsymb 137 ............................ <#cars>
+  [  5] getprop 563 ............................. <p>
+  [  8] getobjprop 377 .......................... <p.tag>
+  [ 11] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 13] objcall 102 ............................. <g.cars[p.tag]>
+  [ 15] pushsymb 89 ............................. <#state>
+  [ 17] pushcons 8 .............................. <"Done">
+  [ 19] pusharglistnoret 3 ...................... <g.cars[p.tag], #state, "Done">
+  [ 21] objcall 103 ............................. g.cars[p.tag][#state] = "Done"
+  [ 23] getglobal 395 ........................... <g>
+  [ 26] pushsymb 137 ............................ <#cars>
+  [ 28] getprop 563 ............................. <p>
+  [ 31] getobjprop 377 .......................... <p.tag>
+  [ 34] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 36] objcall 102 ............................. <g.cars[p.tag]>
+  [ 38] pushsymb 1335 ........................... <#specifics>
+  [ 41] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [ 43] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [ 45] pushsymb 3039 ........................... <#finalTime>
+  [ 48] getglobal 395 ........................... <g>
+  [ 51] getobjprop 3139 ......................... <g.RaceTime>
+  [ 54] pusharglistnoret 3 ...................... <g.cars[p.tag][#specifics], #finalTime, g.RaceTime>
+  [ 56] objcall 103 ............................. g.cars[p.tag][#specifics][#finalTime] = g.RaceTime
+  [ 58] getglobal 395 ........................... <g>
+  [ 61] pushcons 9 .............................. <"Finished">
+  [ 63] setobjprop 245 .......................... g.RaceState = "Finished"
+  [ 65] getglobal 395 ........................... <g>
+  [ 68] pushcons 10 ............................. <"Succes">
+  [ 70] setobjprop 3144 ......................... g.MissionState = "Succes"
+  [ 73] pushcons 11 ............................. <"FinishRace">
+  [ 75] pusharglistnoret 1 ...................... <"FinishRace">
+  [ 77] extcall 148 ............................. event("FinishRace")
+  [ 79] ret
+end

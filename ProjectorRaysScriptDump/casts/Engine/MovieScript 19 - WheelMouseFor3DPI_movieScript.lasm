@@ -1,0 +1,11 @@
+on WheelMouseEvent val
+  [  0] getmovieprop 586 ........................ <the frontWindow>
+  [  3] starttell ............................... tell the frontWindow
+  [  4] pushint8 1 .............................. <1>
+  [  6] pushsymb 587 ............................ <#do3DPI_WheelMouseEvent>
+  [  9] getparam 0 .............................. <val>
+  [ 11] pusharglistnoret 3 ...................... <1, #do3DPI_WheelMouseEvent, val>
+  [ 13] tellcall 362 ............................ sendSprite(1, #do3DPI_WheelMouseEvent, val)
+  [ 16] endtell
+  [ 17] ret
+end

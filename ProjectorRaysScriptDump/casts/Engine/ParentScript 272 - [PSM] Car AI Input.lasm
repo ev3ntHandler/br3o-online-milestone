@@ -1,0 +1,1523 @@
+property p
+global gGame
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 64 ............................. <#member>
+  [ 11] getparam 1 .............................. <tParams>
+  [ 13] pushsymb 64 ............................. <#member>
+  [ 15] pusharglist 2 ........................... <tParams, #member>
+  [ 17] objcall 105 ............................. <tParams[#member]>
+  [ 19] pusharglistnoret 3 ...................... <p, #member, tParams[#member]>
+  [ 21] objcall 103 ............................. p[#member] = tParams[#member]
+  [ 23] getprop 563 ............................. <p>
+  [ 26] pushsymb 377 ............................ <#tag>
+  [ 29] getparam 1 .............................. <tParams>
+  [ 31] pushsymb 377 ............................ <#tag>
+  [ 34] pusharglist 2 ........................... <tParams, #tag>
+  [ 36] objcall 105 ............................. <tParams[#tag]>
+  [ 38] pusharglistnoret 3 ...................... <p, #tag, tParams[#tag]>
+  [ 40] objcall 103 ............................. p[#tag] = tParams[#tag]
+  [ 42] getprop 563 ............................. <p>
+  [ 45] pushsymb 71 ............................. <#model>
+  [ 47] getparam 1 .............................. <tParams>
+  [ 49] pushsymb 3048 ........................... <#RayCastModel>
+  [ 52] pusharglist 2 ........................... <tParams, #RayCastModel>
+  [ 54] objcall 105 ............................. <tParams[#RayCastModel]>
+  [ 56] pusharglistnoret 3 ...................... <p, #model, tParams[#RayCastModel]>
+  [ 58] objcall 103 ............................. p[#model] = tParams[#RayCastModel]
+  [ 60] getprop 563 ............................. <p>
+  [ 63] pushsymb 207 ............................ <#parent>
+  [ 65] getparam 1 .............................. <tParams>
+  [ 67] pushsymb 207 ............................ <#parent>
+  [ 69] pusharglist 2 ........................... <tParams, #parent>
+  [ 71] objcall 105 ............................. <tParams[#parent]>
+  [ 73] pusharglistnoret 3 ...................... <p, #parent, tParams[#parent]>
+  [ 75] objcall 103 ............................. p[#parent] = tParams[#parent]
+  [ 77] getprop 563 ............................. <p>
+  [ 80] pushsymb 3062 ........................... <#ScriptLimit>
+  [ 83] pushzero ................................ <0>
+  [ 84] pusharglistnoret 3 ...................... <p, #ScriptLimit, 0>
+  [ 86] objcall 103 ............................. p[#ScriptLimit] = 0
+  [ 88] pusharglistnoret 0 ...................... <>
+  [ 90] localcall 1 ............................. PrepareAI()
+  [ 92] getprop 563 ............................. <p>
+  [ 95] pushsymb 45 ............................. <#me>
+  [ 97] getparam 0 .............................. <me>
+  [ 99] pusharglistnoret 3 ...................... <p, #me, me>
+  [101] objcall 103 ............................. p[#me] = me
+  [103] getprop 563 ............................. <p>
+  [106] getobjprop 45 ........................... <p.me>
+  [108] pusharglistnoret 1 ...................... <p.me>
+  [110] extcall 52 .............................. return p.me
+  [112] ret
+end
+
+on PrepareAI me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 64 ........................... <p.member>
+  [  5] pushsymb 1366 ........................... <#cloneMember>
+  [  8] pushcons 0 .............................. <"LeaderHelper">
+  [ 10] pushsymb 969 ............................ <#modelList>
+  [ 13] pushcons 0 .............................. <"LeaderHelper">
+  [ 15] pusharglist 1 ........................... <["LeaderHelper"]>
+  [ 17] pushlist ................................ <["LeaderHelper"]>
+  [ 18] pushsymb 2211 ........................... <#NameList>
+  [ 21] getprop 563 ............................. <p>
+  [ 24] getobjprop 377 .......................... <p.tag>
+  [ 27] pushcons 0 .............................. <"LeaderHelper">
+  [ 29] joinstr ................................. <p.tag & "LeaderHelper">
+  [ 30] pusharglist 1 ........................... <[p.tag & "LeaderHelper"]>
+  [ 32] pushlist ................................ <[p.tag & "LeaderHelper"]>
+  [ 33] pusharglist 6 ........................... <[#cloneMember: "LeaderHelper", #modelList: ["LeaderHelper"], #NameList: [p.tag & "LeaderHelper"]]>
+  [ 35] pushproplist ............................ <[#cloneMember: "LeaderHelper", #modelList: ["LeaderHelper"], #NameList: [p.tag & "LeaderHelper"]]>
+  [ 36] pusharglistnoret 2 ...................... <p.member, [#cloneMember: "LeaderHelper", #modelList: ["LeaderHelper"], #NameList: [p.tag & "LeaderHelper"]]>
+  [ 38] extcall 690 ............................. CLONEMODELS(p.member, [#cloneMember: "LeaderHelper", #modelList: ["LeaderHelper"], #NameList: [p.tag & "LeaderHelper"]])
+  [ 41] getprop 563 ............................. <p>
+  [ 44] pushsymb 3269 ........................... <#LeaderHelper>
+  [ 47] getprop 563 ............................. <p>
+  [ 50] getchainedprop 64 ....................... <p.member>
+  [ 52] getprop 563 ............................. <p>
+  [ 55] getobjprop 377 .......................... <p.tag>
+  [ 58] pushcons 0 .............................. <"LeaderHelper">
+  [ 60] joinstr ................................. <p.tag & "LeaderHelper">
+  [ 61] pusharglist 2 ........................... <p.member, p.tag & "LeaderHelper">
+  [ 63] objcall 71 .............................. <p.member.model(p.tag & "LeaderHelper")>
+  [ 65] pusharglistnoret 3 ...................... <p, #LeaderHelper, p.member.model(p.tag & "LeaderHelper")>
+  [ 67] objcall 103 ............................. p[#LeaderHelper] = p.member.model(p.tag & "LeaderHelper")
+  [ 69] getprop 563 ............................. <p>
+  [ 72] getchainedprop 3269 ..................... <p.LeaderHelper>
+  [ 75] getchainedprop 208 ...................... <p.LeaderHelper.shader>
+  [ 77] pushzero ................................ <0>
+  [ 78] setobjprop 367 .......................... p.LeaderHelper.shader.blend = 0
+  [ 81] getprop 563 ............................. <p>
+  [ 84] getchainedprop 3269 ..................... <p.LeaderHelper>
+  [ 87] pushfloat32 0.0 ......................... <0.0>
+  [ 92] pushfloat32 1.0 ......................... <1.0>
+  [ 97] pushfloat32 0.0 ......................... <0.0>
+  [102] pusharglist 3 ........................... <0.0, 1.0, 0.0>
+  [104] extcall 212 ............................. <vector(0.0, 1.0, 0.0)>
+  [106] pushfloat32 0.0 ......................... <0.0>
+  [111] pushfloat32 0.0 ......................... <0.0>
+  [116] pushfloat32 1.0 ......................... <1.0>
+  [121] pusharglist 3 ........................... <0.0, 0.0, 1.0>
+  [123] extcall 212 ............................. <vector(0.0, 0.0, 1.0)>
+  [125] pusharglist 2 ........................... <[vector(0.0, 1.0, 0.0), vector(0.0, 0.0, 1.0)]>
+  [127] pushlist ................................ <[vector(0.0, 1.0, 0.0), vector(0.0, 0.0, 1.0)]>
+  [128] setobjprop 1172 ......................... p.LeaderHelper.pointAtOrientation = [vector(0.0, 1.0, 0.0), vector(0.0, 0.0, 1.0)]
+  [131] getprop 563 ............................. <p>
+  [134] pushsymb 2472 ........................... <#TargetList>
+  [137] pusharglist 0 ........................... <[]>
+  [139] pushlist ................................ <[]>
+  [140] pusharglistnoret 3 ...................... <p, #TargetList, []>
+  [142] objcall 103 ............................. p[#TargetList] = []
+  [144] getprop 563 ............................. <p>
+  [147] pushsymb 3270 ........................... <#TargetEntries>
+  [150] pushint8 8 .............................. <8>
+  [152] pusharglistnoret 3 ...................... <p, #TargetEntries, 8>
+  [154] objcall 103 ............................. p[#TargetEntries] = 8
+  [156] getprop 563 ............................. <p>
+  [159] pushsymb 3271 ........................... <#DefaultEntries>
+  [162] pushint8 8 .............................. <8>
+  [164] pusharglistnoret 3 ...................... <p, #DefaultEntries, 8>
+  [166] objcall 103 ............................. p[#DefaultEntries] = 8
+  [168] getprop 563 ............................. <p>
+  [171] pushsymb 3272 ........................... <#DifferenceList>
+  [174] pusharglist 0 ........................... <[]>
+  [176] pushlist ................................ <[]>
+  [177] pusharglistnoret 3 ...................... <p, #DifferenceList, []>
+  [179] objcall 103 ............................. p[#DifferenceList] = []
+  [181] getprop 563 ............................. <p>
+  [184] pushsymb 3273 ........................... <#StartEntry>
+  [187] pushint8 3 .............................. <3>
+  [189] pusharglistnoret 3 ...................... <p, #StartEntry, 3>
+  [191] objcall 103 ............................. p[#StartEntry] = 3
+  [193] getprop 563 ............................. <p>
+  [196] pushsymb 3274 ........................... <#minDistance>
+  [199] pushfloat32 5.0 ......................... <5.0>
+  [204] pusharglistnoret 3 ...................... <p, #minDistance, 5.0>
+  [206] objcall 103 ............................. p[#minDistance] = 5.0
+  [208] getprop 563 ............................. <p>
+  [211] pushsymb 3006 ........................... <#LocalDown>
+  [214] pushfloat32 0.0 ......................... <0.0>
+  [219] pushfloat32 0.0 ......................... <0.0>
+  [224] pushfloat32 1.0 ......................... <1.0>
+  [229] inv ..................................... <-1.0>
+  [230] pusharglist 3 ........................... <0.0, 0.0, -1.0>
+  [232] extcall 212 ............................. <vector(0.0, 0.0, -1.0)>
+  [234] pusharglistnoret 3 ...................... <p, #LocalDown, vector(0.0, 0.0, -1.0)>
+  [236] objcall 103 ............................. p[#LocalDown] = vector(0.0, 0.0, -1.0)
+  [238] getprop 563 ............................. <p>
+  [241] pushsymb 3007 ........................... <#LocalForward>
+  [244] pushfloat32 0.0 ......................... <0.0>
+  [249] pushfloat32 1.0 ......................... <1.0>
+  [254] pushfloat32 0.0 ......................... <0.0>
+  [259] pusharglist 3 ........................... <0.0, 1.0, 0.0>
+  [261] extcall 212 ............................. <vector(0.0, 1.0, 0.0)>
+  [263] pusharglistnoret 3 ...................... <p, #LocalForward, vector(0.0, 1.0, 0.0)>
+  [265] objcall 103 ............................. p[#LocalForward] = vector(0.0, 1.0, 0.0)
+  [267] getprop 563 ............................. <p>
+  [270] pushsymb 3008 ........................... <#LocalRight>
+  [273] pushfloat32 1.0 ......................... <1.0>
+  [278] pushfloat32 0.0 ......................... <0.0>
+  [283] pushfloat32 0.0 ......................... <0.0>
+  [288] pusharglist 3 ........................... <1.0, 0.0, 0.0>
+  [290] extcall 212 ............................. <vector(1.0, 0.0, 0.0)>
+  [292] pusharglistnoret 3 ...................... <p, #LocalRight, vector(1.0, 0.0, 0.0)>
+  [294] objcall 103 ............................. p[#LocalRight] = vector(1.0, 0.0, 0.0)
+  [296] getprop 563 ............................. <p>
+  [299] pushsymb 89 ............................. <#state>
+  [301] pushcons 1 .............................. <"Drive">
+  [303] pusharglistnoret 3 ...................... <p, #state, "Drive">
+  [305] objcall 103 ............................. p[#state] = "Drive"
+  [307] getprop 563 ............................. <p>
+  [310] pushsymb 3275 ........................... <#subState>
+  [313] pushcons 2 .............................. <EMPTY>
+  [315] pusharglistnoret 3 ...................... <p, #subState, EMPTY>
+  [317] objcall 103 ............................. p[#subState] = EMPTY
+  [319] getprop 563 ............................. <p>
+  [322] pushsymb 3276 ........................... <#PreviousLeft>
+  [325] pushzero ................................ <0>
+  [326] pusharglistnoret 3 ...................... <p, #PreviousLeft, 0>
+  [328] objcall 103 ............................. p[#PreviousLeft] = 0
+  [330] getprop 563 ............................. <p>
+  [333] pushsymb 3277 ........................... <#PreviousRight>
+  [336] pushzero ................................ <0>
+  [337] pusharglistnoret 3 ...................... <p, #PreviousRight, 0>
+  [339] objcall 103 ............................. p[#PreviousRight] = 0
+  [341] getprop 563 ............................. <p>
+  [344] pushsymb 2148 ........................... <#stuckCounter>
+  [347] pushzero ................................ <0>
+  [348] pusharglistnoret 3 ...................... <p, #stuckCounter, 0>
+  [350] objcall 103 ............................. p[#stuckCounter] = 0
+  [352] getprop 563 ............................. <p>
+  [355] pushsymb 3278 ........................... <#StuckAngle>
+  [358] pushzero ................................ <0>
+  [359] pusharglistnoret 3 ...................... <p, #StuckAngle, 0>
+  [361] objcall 103 ............................. p[#StuckAngle] = 0
+  [363] getprop 563 ............................. <p>
+  [366] pushsymb 3279 ........................... <#ForwardCounter>
+  [369] pushzero ................................ <0>
+  [370] pusharglistnoret 3 ...................... <p, #ForwardCounter, 0>
+  [372] objcall 103 ............................. p[#ForwardCounter] = 0
+  [374] getprop 563 ............................. <p>
+  [377] pushsymb 3280 ........................... <#OldRootNr>
+  [380] pushzero ................................ <0>
+  [381] pusharglistnoret 3 ...................... <p, #OldRootNr, 0>
+  [383] objcall 103 ............................. p[#OldRootNr] = 0
+  [385] getprop 563 ............................. <p>
+  [388] pushsymb 3281 ........................... <#Sphere1>
+  [391] pusharglist 0 ........................... <>
+  [393] extcall 40 .............................. <VOID>
+  [395] pusharglistnoret 3 ...................... <p, #Sphere1, VOID>
+  [397] objcall 103 ............................. p[#Sphere1] = VOID
+  [399] getprop 563 ............................. <p>
+  [402] pushsymb 3282 ........................... <#Sphere2>
+  [405] pusharglist 0 ........................... <>
+  [407] extcall 40 .............................. <VOID>
+  [409] pusharglistnoret 3 ...................... <p, #Sphere2, VOID>
+  [411] objcall 103 ............................. p[#Sphere2] = VOID
+  [413] getglobal 43 ............................ <gGame>
+  [415] pushsymb 3283 ........................... <#AIHelpers>
+  [418] pusharglist 2 ........................... <gGame, #AIHelpers>
+  [420] extcall 542 ............................. <getaProp(gGame, #AIHelpers)>
+  [423] pusharglist 0 ........................... <>
+  [425] extcall 40 .............................. <VOID>
+  [427] nteq .................................... <getaProp(gGame, #AIHelpers) <> VOID>
+  [428] jmpifz [583] ............................ if getaProp(gGame, #AIHelpers) <> VOID then
+  [431] getglobal 43 ............................ <gGame>
+  [433] getobjprop 3283 ......................... <gGame.AIHelpers>
+  [436] pushint8 1 .............................. <1>
+  [438] eq ...................................... <gGame.AIHelpers = 1>
+  [439] jmpifz [583] ............................ if gGame.AIHelpers = 1 then
+  [442] getprop 563 ............................. <p>
+  [445] getchainedprop 64 ....................... <p.member>
+  [447] getprop 563 ............................. <p>
+  [450] getobjprop 377 .......................... <p.tag>
+  [453] pushcons 3 .............................. <"sphere_1">
+  [455] joinstr ................................. <p.tag & "sphere_1">
+  [456] pushsymb 1527 ........................... <#sphere>
+  [459] pusharglist 3 ........................... <p.member, p.tag & "sphere_1", #sphere>
+  [461] objcall 1287 ............................ <p.member.newModelResource(p.tag & "sphere_1", #sphere)>
+  [464] setlocal 0 .............................. theModelResource = p.member.newModelResource(p.tag & "sphere_1", #sphere)
+  [466] getlocal 0 .............................. <theModelResource>
+  [468] pushfloat32 0.5 ......................... <0.5>
+  [473] setobjprop 2210 ......................... theModelResource.radius = 0.5
+  [476] getprop 563 ............................. <p>
+  [479] pushsymb 3281 ........................... <#Sphere1>
+  [482] getprop 563 ............................. <p>
+  [485] getchainedprop 64 ....................... <p.member>
+  [487] getprop 563 ............................. <p>
+  [490] getobjprop 377 .......................... <p.tag>
+  [493] pushcons 4 .............................. <"TestSphere1">
+  [495] joinstr ................................. <p.tag & "TestSphere1">
+  [496] getlocal 0 .............................. <theModelResource>
+  [498] pusharglist 3 ........................... <p.member, p.tag & "TestSphere1", theModelResource>
+  [500] objcall 892 ............................. <p.member.newModel(p.tag & "TestSphere1", theModelResource)>
+  [503] pusharglistnoret 3 ...................... <p, #Sphere1, p.member.newModel(p.tag & "TestSphere1", theModelResource)>
+  [505] objcall 103 ............................. p[#Sphere1] = p.member.newModel(p.tag & "TestSphere1", theModelResource)
+  [507] getprop 563 ............................. <p>
+  [510] getchainedprop 3281 ..................... <p.Sphere1>
+  [513] getprop 563 ............................. <p>
+  [516] getchainedprop 3269 ..................... <p.LeaderHelper>
+  [519] getobjprop 208 .......................... <p.LeaderHelper.shader>
+  [521] setobjprop 208 .......................... p.Sphere1.shader = p.LeaderHelper.shader
+  [523] getprop 563 ............................. <p>
+  [526] pushsymb 3282 ........................... <#Sphere2>
+  [529] getprop 563 ............................. <p>
+  [532] getchainedprop 64 ....................... <p.member>
+  [534] getprop 563 ............................. <p>
+  [537] getobjprop 377 .......................... <p.tag>
+  [540] pushcons 5 .............................. <"TestSphere2">
+  [542] joinstr ................................. <p.tag & "TestSphere2">
+  [543] getlocal 0 .............................. <theModelResource>
+  [545] pusharglist 3 ........................... <p.member, p.tag & "TestSphere2", theModelResource>
+  [547] objcall 892 ............................. <p.member.newModel(p.tag & "TestSphere2", theModelResource)>
+  [550] pusharglistnoret 3 ...................... <p, #Sphere2, p.member.newModel(p.tag & "TestSphere2", theModelResource)>
+  [552] objcall 103 ............................. p[#Sphere2] = p.member.newModel(p.tag & "TestSphere2", theModelResource)
+  [554] getprop 563 ............................. <p>
+  [557] getchainedprop 3282 ..................... <p.Sphere2>
+  [560] getprop 563 ............................. <p>
+  [563] getchainedprop 3269 ..................... <p.LeaderHelper>
+  [566] getobjprop 208 .......................... <p.LeaderHelper.shader>
+  [568] setobjprop 208 .......................... p.Sphere2.shader = p.LeaderHelper.shader
+  [570] getprop 563 ............................. <p>
+  [573] getchainedprop 3269 ..................... <p.LeaderHelper>
+  [576] getchainedprop 208 ...................... <p.LeaderHelper.shader>
+  [578] pushint8 65 ............................. <65>
+  [580] setobjprop 367 .......................... p.LeaderHelper.shader.blend = 65
+  [583] ret
+end
+
+on enterFrame me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getobjprop 391 .......................... <gGame.input>
+  [  5] pushzero ................................ <0>
+  [  6] eq ...................................... <gGame.input = 0>
+  [  7] jmpifz [ 11] ............................ if gGame.input = 0 then
+  [ 10] ret ..................................... exit
+  [ 11] getglobal 43 ............................ <gGame>
+  [ 13] pushsymb 137 ............................ <#cars>
+  [ 15] getprop 563 ............................. <p>
+  [ 18] getobjprop 377 .......................... <p.tag>
+  [ 21] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 23] objcall 102 ............................. <gGame.cars[p.tag]>
+  [ 25] pushsymb 89 ............................. <#state>
+  [ 27] pusharglist 2 ........................... <gGame.cars[p.tag], #state>
+  [ 29] objcall 105 ............................. <gGame.cars[p.tag][#state]>
+  [ 31] pushcons 6 .............................. <"Finished">
+  [ 33] eq ...................................... <gGame.cars[p.tag][#state] = "Finished">
+  [ 34] jmpifz [ 38] ............................ if gGame.cars[p.tag][#state] = "Finished" then
+  [ 37] ret ..................................... exit
+  [ 38] getglobal 43 ............................ <gGame>
+  [ 40] pushsymb 137 ............................ <#cars>
+  [ 42] getprop 563 ............................. <p>
+  [ 45] getobjprop 377 .......................... <p.tag>
+  [ 48] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 50] objcall 102 ............................. <gGame.cars[p.tag]>
+  [ 52] pushsymb 1335 ........................... <#specifics>
+  [ 55] pusharglist 2 ........................... <gGame.cars[p.tag], #specifics>
+  [ 57] objcall 105 ............................. <gGame.cars[p.tag][#specifics]>
+  [ 59] pushsymb 1556 ........................... <#Health>
+  [ 62] pusharglist 2 ........................... <gGame.cars[p.tag][#specifics], #Health>
+  [ 64] objcall 105 ............................. <gGame.cars[p.tag][#specifics][#Health]>
+  [ 66] pushzero ................................ <0>
+  [ 67] eq ...................................... <gGame.cars[p.tag][#specifics][#Health] = 0>
+  [ 68] jmpifz [ 72] ............................ if gGame.cars[p.tag][#specifics][#Health] = 0 then
+  [ 71] ret ..................................... exit
+  [ 72] pusharglistnoret 0 ...................... <>
+  [ 74] localcall 3 ............................. CreateAIData()
+  [ 76] getprop 563 ............................. <p>
+  [ 79] getobjprop 89 ........................... <p.state>
+  [ 81] peek 0 .................................. case p.state of
+  [ 83] pushcons 1 .............................. <"Drive">
+  [ 85] eq
+  [ 86] jmpifz [ 96] ............................ (case) "Drive":
+  [ 89] pusharglistnoret 0 ...................... <>
+  [ 91] localcall 4 ............................. Drive()
+  [ 93] jmp [140]
+  [ 96] peek 0
+  [ 98] pushcons 7 .............................. <"Unstuck">
+  [100] eq
+  [101] jmpifz [111] ............................ (case) "Unstuck":
+  [104] pusharglistnoret 0 ...................... <>
+  [106] localcall 6 ............................. Unstuck()
+  [108] jmp [140]
+  [111] peek 0
+  [113] pushcons 8 .............................. <"Reset">
+  [115] eq
+  [116] jmpifz [127] ............................ (case) "Reset":
+  [119] pusharglistnoret 0 ...................... <>
+  [121] extcall 428 ............................. reset()
+  [124] jmp [140]
+  [127] peek 0
+  [129] pushcons 2 .............................. <EMPTY>
+  [131] eq
+  [132] jmpifz [140] ............................ (case) EMPTY:
+  [135] pusharglistnoret 0 ...................... <>
+  [137] extcall 429 ............................. nothing()
+  [140] pop 1 ................................... end case
+  [142] getglobal 43 ............................ <gGame>
+  [144] pushsymb 137 ............................ <#cars>
+  [146] getprop 563 ............................. <p>
+  [149] getobjprop 377 .......................... <p.tag>
+  [152] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [154] objcall 102 ............................. <gGame.cars[p.tag]>
+  [156] pushsymb 89 ............................. <#state>
+  [158] pusharglist 2 ........................... <gGame.cars[p.tag], #state>
+  [160] objcall 105 ............................. <gGame.cars[p.tag][#state]>
+  [162] pushcons 9 .............................. <"Done">
+  [164] eq ...................................... <gGame.cars[p.tag][#state] = "Done">
+  [165] jmpifz [375] ............................ if gGame.cars[p.tag][#state] = "Done" then
+  [168] getglobal 43 ............................ <gGame>
+  [170] pushsymb 137 ............................ <#cars>
+  [172] getprop 563 ............................. <p>
+  [175] getobjprop 377 .......................... <p.tag>
+  [178] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [180] objcall 102 ............................. <gGame.cars[p.tag]>
+  [182] pushsymb 929 ............................ <#Keys>
+  [185] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [187] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [189] pushsymb 2132 ........................... <#forward>
+  [192] pushzero ................................ <0>
+  [193] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #forward, 0>
+  [195] objcall 103 ............................. gGame.cars[p.tag][#Keys][#forward] = 0
+  [197] getglobal 43 ............................ <gGame>
+  [199] pushsymb 137 ............................ <#cars>
+  [201] getprop 563 ............................. <p>
+  [204] getobjprop 377 .......................... <p.tag>
+  [207] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [209] objcall 102 ............................. <gGame.cars[p.tag]>
+  [211] pushsymb 929 ............................ <#Keys>
+  [214] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [216] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [218] pushsymb 2133 ........................... <#backward>
+  [221] pushzero ................................ <0>
+  [222] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #backward, 0>
+  [224] objcall 103 ............................. gGame.cars[p.tag][#Keys][#backward] = 0
+  [226] getglobal 43 ............................ <gGame>
+  [228] pushsymb 137 ............................ <#cars>
+  [230] getprop 563 ............................. <p>
+  [233] getobjprop 377 .......................... <p.tag>
+  [236] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [238] objcall 102 ............................. <gGame.cars[p.tag]>
+  [240] pushsymb 929 ............................ <#Keys>
+  [243] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [245] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [247] pushsymb 203 ............................ <#left>
+  [249] pushzero ................................ <0>
+  [250] pushint8 1 .............................. <1>
+  [252] pusharglist 2 ........................... <0, 1>
+  [254] extcall 176 ............................. <random(0, 1)>
+  [256] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #left, random(0, 1)>
+  [258] objcall 103 ............................. gGame.cars[p.tag][#Keys][#left] = random(0, 1)
+  [260] getglobal 43 ............................ <gGame>
+  [262] pushsymb 137 ............................ <#cars>
+  [264] getprop 563 ............................. <p>
+  [267] getobjprop 377 .......................... <p.tag>
+  [270] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [272] objcall 102 ............................. <gGame.cars[p.tag]>
+  [274] pushsymb 929 ............................ <#Keys>
+  [277] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [279] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [281] pushsymb 220 ............................ <#right>
+  [283] pushzero ................................ <0>
+  [284] pushint8 1 .............................. <1>
+  [286] pusharglist 2 ........................... <0, 1>
+  [288] extcall 176 ............................. <random(0, 1)>
+  [290] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #right, random(0, 1)>
+  [292] objcall 103 ............................. gGame.cars[p.tag][#Keys][#right] = random(0, 1)
+  [294] getglobal 43 ............................ <gGame>
+  [296] pushsymb 137 ............................ <#cars>
+  [298] getprop 563 ............................. <p>
+  [301] getobjprop 377 .......................... <p.tag>
+  [304] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [306] objcall 102 ............................. <gGame.cars[p.tag]>
+  [308] pushsymb 929 ............................ <#Keys>
+  [311] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [313] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [315] pushsymb 371 ............................ <#Nitro>
+  [318] pushzero ................................ <0>
+  [319] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #Nitro, 0>
+  [321] objcall 103 ............................. gGame.cars[p.tag][#Keys][#Nitro] = 0
+  [323] getglobal 43 ............................ <gGame>
+  [325] pushsymb 137 ............................ <#cars>
+  [327] getprop 563 ............................. <p>
+  [330] getobjprop 377 .......................... <p.tag>
+  [333] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [335] objcall 102 ............................. <gGame.cars[p.tag]>
+  [337] pushsymb 929 ............................ <#Keys>
+  [340] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [342] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [344] pushsymb 2134 ........................... <#brake>
+  [347] pushint8 1 .............................. <1>
+  [349] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #brake, 1>
+  [351] objcall 103 ............................. gGame.cars[p.tag][#Keys][#brake] = 1
+  [353] getglobal 43 ............................ <gGame>
+  [355] pushsymb 137 ............................ <#cars>
+  [357] getprop 563 ............................. <p>
+  [360] getobjprop 377 .......................... <p.tag>
+  [363] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [365] objcall 102 ............................. <gGame.cars[p.tag]>
+  [367] pushsymb 89 ............................. <#state>
+  [369] pushcons 6 .............................. <"Finished">
+  [371] pusharglistnoret 3 ...................... <gGame.cars[p.tag], #state, "Finished">
+  [373] objcall 103 ............................. gGame.cars[p.tag][#state] = "Finished"
+  [375] ret
+end
+
+on CreateAIData me
+  [  0] getprop 563 ............................. <p>
+  [  3] pushsymb 3284 ........................... <#CarPos>
+  [  6] getprop 563 ............................. <p>
+  [  9] getchainedprop 71 ....................... <p.model>
+  [ 11] getobjprop 1161 ......................... <p.model.worldPosition>
+  [ 14] pusharglistnoret 3 ...................... <p, #CarPos, p.model.worldPosition>
+  [ 16] objcall 103 ............................. p[#CarPos] = p.model.worldPosition
+  [ 18] getprop 563 ............................. <p>
+  [ 21] pushsymb 3015 ........................... <#CurrentSpeed>
+  [ 24] getglobal 43 ............................ <gGame>
+  [ 26] pushsymb 137 ............................ <#cars>
+  [ 28] getprop 563 ............................. <p>
+  [ 31] getobjprop 377 .......................... <p.tag>
+  [ 34] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 36] objcall 102 ............................. <gGame.cars[p.tag]>
+  [ 38] pushsymb 1335 ........................... <#specifics>
+  [ 41] pusharglist 2 ........................... <gGame.cars[p.tag], #specifics>
+  [ 43] objcall 105 ............................. <gGame.cars[p.tag][#specifics]>
+  [ 45] pushsymb 3033 ........................... <#speedMS>
+  [ 48] pusharglist 2 ........................... <gGame.cars[p.tag][#specifics], #speedMS>
+  [ 50] objcall 105 ............................. <gGame.cars[p.tag][#specifics][#speedMS]>
+  [ 52] pusharglistnoret 3 ...................... <p, #CurrentSpeed, gGame.cars[p.tag][#specifics][#speedMS]>
+  [ 54] objcall 103 ............................. p[#CurrentSpeed] = gGame.cars[p.tag][#specifics][#speedMS]
+  [ 56] getprop 563 ............................. <p>
+  [ 59] getchainedprop 3269 ..................... <p.LeaderHelper>
+  [ 62] getprop 563 ............................. <p>
+  [ 65] getchainedprop 71 ....................... <p.model>
+  [ 67] getobjprop 1161 ......................... <p.model.worldPosition>
+  [ 70] pushfloat32 0.0 ......................... <0.0>
+  [ 75] pushfloat32 0.0 ......................... <0.0>
+  [ 80] pushfloat32 1.5 ......................... <1.5>
+  [ 85] pusharglist 3 ........................... <0.0, 0.0, 1.5>
+  [ 87] extcall 212 ............................. <vector(0.0, 0.0, 1.5)>
+  [ 89] add ..................................... <p.model.worldPosition + vector(0.0, 0.0, 1.5)>
+  [ 90] setobjprop 1161 ......................... p.LeaderHelper.worldPosition = p.model.worldPosition + vector(0.0, 0.0, 1.5)
+  [ 93] getglobal 43 ............................ <gGame>
+  [ 95] pushsymb 137 ............................ <#cars>
+  [ 97] getprop 563 ............................. <p>
+  [100] getobjprop 377 .......................... <p.tag>
+  [103] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [105] objcall 102 ............................. <gGame.cars[p.tag]>
+  [107] pushsymb 1335 ........................... <#specifics>
+  [110] pusharglist 2 ........................... <gGame.cars[p.tag], #specifics>
+  [112] objcall 105 ............................. <gGame.cars[p.tag][#specifics]>
+  [114] pushsymb 373 ............................ <#currentRootNr>
+  [117] pusharglist 2 ........................... <gGame.cars[p.tag][#specifics], #currentRootNr>
+  [119] objcall 105 ............................. <gGame.cars[p.tag][#specifics][#currentRootNr]>
+  [121] setlocal 0 .............................. pCurrentRoot = gGame.cars[p.tag][#specifics][#currentRootNr]
+  [123] getlocal 0 .............................. <pCurrentRoot>
+  [125] pusharglist 0 ........................... <>
+  [127] extcall 40 .............................. <VOID>
+  [129] eq ...................................... <pCurrentRoot = VOID>
+  [130] jmpifz [141] ............................ if pCurrentRoot = VOID then
+  [133] getprop 563 ............................. <p>
+  [136] getobjprop 3280 ......................... <p.OldRootNr>
+  [139] setlocal 0 .............................. pCurrentRoot = p.OldRootNr
+  [141] getlocal 0 .............................. <pCurrentRoot>
+  [143] pushzero ................................ <0>
+  [144] eq ...................................... <pCurrentRoot = 0>
+  [145] jmpifz [152] ............................ if pCurrentRoot = 0 then
+  [148] pushint8 1 .............................. <1>
+  [150] setlocal 0 .............................. pCurrentRoot = 1
+  [152] getprop 563 ............................. <p>
+  [155] getobjprop 3280 ......................... <p.OldRootNr>
+  [158] getlocal 0 .............................. <pCurrentRoot>
+  [160] nteq .................................... <p.OldRootNr <> pCurrentRoot>
+  [161] jmpifz [377] ............................ if p.OldRootNr <> pCurrentRoot then
+  [164] getglobal 43 ............................ <gGame>
+  [166] pushsymb 137 ............................ <#cars>
+  [168] getprop 563 ............................. <p>
+  [171] getobjprop 377 .......................... <p.tag>
+  [174] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [176] objcall 102 ............................. <gGame.cars[p.tag]>
+  [178] pushsymb 1335 ........................... <#specifics>
+  [181] pusharglist 2 ........................... <gGame.cars[p.tag], #specifics>
+  [183] objcall 105 ............................. <gGame.cars[p.tag][#specifics]>
+  [185] pushsymb 373 ............................ <#currentRootNr>
+  [188] pusharglist 2 ........................... <gGame.cars[p.tag][#specifics], #currentRootNr>
+  [190] objcall 105 ............................. <gGame.cars[p.tag][#specifics][#currentRootNr]>
+  [192] pushint8 1 .............................. <1>
+  [194] add ..................................... <gGame.cars[p.tag][#specifics][#currentRootNr] + 1>
+  [195] setlocal 1 .............................. pFutureRoot = gGame.cars[p.tag][#specifics][#currentRootNr] + 1
+  [197] getlocal 1 .............................. <pFutureRoot>
+  [199] getglobal 43 ............................ <gGame>
+  [201] pushsymb 1405 ........................... <#RootList>
+  [204] pusharglist 2 ........................... <gGame, #RootList>
+  [206] objcall 129 ............................. <gGame.RootList.count>
+  [208] gt ...................................... <pFutureRoot > gGame.RootList.count>
+  [209] jmpifz [216] ............................ if pFutureRoot > gGame.RootList.count then
+  [212] getlocal 0 .............................. <pCurrentRoot>
+  [214] setlocal 1 .............................. pFutureRoot = pCurrentRoot
+  [216] getprop 563 ............................. <p>
+  [219] pushsymb 3285 ........................... <#MyWayPointList>
+  [222] getglobal 43 ............................ <gGame>
+  [224] pushsymb 1369 ........................... <#WayPointList>
+  [227] pushcons 10 ............................. <"TrackRoot">
+  [229] getlocal 0 .............................. <pCurrentRoot>
+  [231] joinstr ................................. <"TrackRoot" & pCurrentRoot>
+  [232] pushcons 11 ............................. <"_Group">
+  [234] joinstr ................................. <"TrackRoot" & pCurrentRoot & "_Group">
+  [235] pusharglist 1 ........................... <"TrackRoot" & pCurrentRoot & "_Group">
+  [237] extcall 88 .............................. <symbol("TrackRoot" & pCurrentRoot & "_Group")>
+  [239] pusharglist 3 ........................... <gGame, #WayPointList, symbol("TrackRoot" & pCurrentRoot & "_Group")>
+  [241] objcall 102 ............................. <gGame.WayPointList[symbol("TrackRoot" & pCurrentRoot & "_Group")]>
+  [243] pusharglist 1 ........................... <gGame.WayPointList[symbol("TrackRoot" & pCurrentRoot & "_Group")]>
+  [245] objcall 233 ............................. <gGame.WayPointList[symbol("TrackRoot" & pCurrentRoot & "_Group")].duplicate()>
+  [247] pusharglistnoret 3 ...................... <p, #MyWayPointList, gGame.WayPointList[symbol("TrackRoot" & pCurrentRoot & "_Group")].duplicate()>
+  [249] objcall 103 ............................. p[#MyWayPointList] = gGame.WayPointList[symbol("TrackRoot" & pCurrentRoot & "_Group")].duplicate()
+  [251] getlocal 1 .............................. <pFutureRoot>
+  [253] getlocal 0 .............................. <pCurrentRoot>
+  [255] nteq .................................... <pFutureRoot <> pCurrentRoot>
+  [256] jmpifz [331] ............................ if pFutureRoot <> pCurrentRoot then
+  [259] getglobal 43 ............................ <gGame>
+  [261] pushsymb 1369 ........................... <#WayPointList>
+  [264] pushcons 10 ............................. <"TrackRoot">
+  [266] getlocal 1 .............................. <pFutureRoot>
+  [268] joinstr ................................. <"TrackRoot" & pFutureRoot>
+  [269] pushcons 11 ............................. <"_Group">
+  [271] joinstr ................................. <"TrackRoot" & pFutureRoot & "_Group">
+  [272] pusharglist 1 ........................... <"TrackRoot" & pFutureRoot & "_Group">
+  [274] extcall 88 .............................. <symbol("TrackRoot" & pFutureRoot & "_Group")>
+  [276] pusharglist 3 ........................... <gGame, #WayPointList, symbol("TrackRoot" & pFutureRoot & "_Group")>
+  [278] objcall 102 ............................. <gGame.WayPointList[symbol("TrackRoot" & pFutureRoot & "_Group")]>
+  [280] pusharglist 1 ........................... <gGame.WayPointList[symbol("TrackRoot" & pFutureRoot & "_Group")]>
+  [282] objcall 233 ............................. <gGame.WayPointList[symbol("TrackRoot" & pFutureRoot & "_Group")].duplicate()>
+  [284] setlocal 2 .............................. pExtraList = gGame.WayPointList[symbol("TrackRoot" & pFutureRoot & "_Group")].duplicate()
+  [286] getlocal 2 .............................. <pExtraList>
+  [288] getobjprop 129 .......................... <pExtraList.count>
+  [290] setlocal 3 .............................. pCount = pExtraList.count
+  [292] pushint8 1 .............................. <1>
+  [294] setlocal 4
+  [296] getlocal 4
+  [298] getlocal 3 .............................. <pCount>
+  [300] lteq
+  [301] jmpifz [331] ............................ repeat with i = 1 to pCount
+  [304] getprop 563 ............................. <p>
+  [307] getchainedprop 3285 ..................... <p.MyWayPointList>
+  [310] getlocal 2 .............................. <pExtraList>
+  [312] getlocal 4 .............................. <i>
+  [314] pusharglist 2 ........................... <pExtraList, i>
+  [316] objcall 105 ............................. <pExtraList[i]>
+  [318] pusharglistnoret 2 ...................... <p.MyWayPointList, pExtraList[i]>
+  [320] objcall 42 .............................. p.MyWayPointList.add(pExtraList[i])
+  [322] pushint8 1
+  [324] getlocal 4
+  [326] add
+  [327] setlocal 4
+  [329] endrepeat [296]
+  [331] getglobal 43 ............................ <gGame>
+  [333] pushsymb 137 ............................ <#cars>
+  [335] getprop 563 ............................. <p>
+  [338] getobjprop 377 .......................... <p.tag>
+  [341] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [343] objcall 102 ............................. <gGame.cars[p.tag]>
+  [345] pushsymb 1335 ........................... <#specifics>
+  [348] pusharglist 2 ........................... <gGame.cars[p.tag], #specifics>
+  [350] objcall 105 ............................. <gGame.cars[p.tag][#specifics]>
+  [352] pushsymb 1369 ........................... <#WayPointList>
+  [355] getprop 563 ............................. <p>
+  [358] getchainedprop 3285 ..................... <p.MyWayPointList>
+  [361] pusharglist 1 ........................... <p.MyWayPointList>
+  [363] objcall 233 ............................. <p.MyWayPointList.duplicate()>
+  [365] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#specifics], #WayPointList, p.MyWayPointList.duplicate()>
+  [367] objcall 103 ............................. gGame.cars[p.tag][#specifics][#WayPointList] = p.MyWayPointList.duplicate()
+  [369] getprop 563 ............................. <p>
+  [372] getlocal 0 .............................. <pCurrentRoot>
+  [374] setobjprop 3280 ......................... p.OldRootNr = pCurrentRoot
+  [377] getprop 563 ............................. <p>
+  [380] pushsymb 3285 ........................... <#MyWayPointList>
+  [383] pusharglist 2 ........................... <p, #MyWayPointList>
+  [385] objcall 129 ............................. <p.MyWayPointList.count>
+  [387] setlocal 3 .............................. pCount = p.MyWayPointList.count
+  [389] pushint8 1 .............................. <1>
+  [391] setlocal 5 .............................. pNearestWaypoint = 1
+  [393] pushfloat32 0.0 ......................... <0.0>
+  [398] pushfloat32 0.0 ......................... <0.0>
+  [403] pushfloat32 0.0 ......................... <0.0>
+  [408] pusharglist 3 ........................... <0.0, 0.0, 0.0>
+  [410] extcall 212 ............................. <vector(0.0, 0.0, 0.0)>
+  [412] setlocal 6 .............................. pNearestWaypointPos = vector(0.0, 0.0, 0.0)
+  [414] pushfloat32 15.0 ........................ <15.0>
+  [419] setlocal 7 .............................. pNearestDistance = 15.0
+  [421] pushint8 1 .............................. <1>
+  [423] setlocal 4
+  [425] getlocal 4
+  [427] getlocal 3 .............................. <pCount>
+  [429] lteq
+  [430] jmpifz [603] ............................ repeat with i = 1 to pCount
+  [433] getprop 563 ............................. <p>
+  [436] pushsymb 3285 ........................... <#MyWayPointList>
+  [439] getlocal 4 .............................. <i>
+  [441] pusharglist 3 ........................... <p, #MyWayPointList, i>
+  [443] objcall 102 ............................. <p.MyWayPointList[i]>
+  [445] pushint8 1 .............................. <1>
+  [447] pusharglist 2 ........................... <p.MyWayPointList[i], 1>
+  [449] objcall 105 ............................. <p.MyWayPointList[i][1]>
+  [451] setlocal 8 .............................. pWaypointPos = p.MyWayPointList[i][1]
+  [453] getlocal 8 .............................. <pWaypointPos>
+  [455] getprop 563 ............................. <p>
+  [458] getobjprop 3284 ......................... <p.CarPos>
+  [461] pusharglist 2 ........................... <pWaypointPos, p.CarPos>
+  [463] objcall 1117 ............................ <pWaypointPos.distanceTo(p.CarPos)>
+  [466] setlocal 9 .............................. pTempDistance = pWaypointPos.distanceTo(p.CarPos)
+  [468] getlocal 9 .............................. <pTempDistance>
+  [470] getlocal 7 .............................. <pNearestDistance>
+  [472] lteq .................................... <pTempDistance <= pNearestDistance>
+  [473] jmpifz [594] ............................ if pTempDistance <= pNearestDistance then
+  [476] getlocal 4 .............................. <i>
+  [478] pushint8 1 .............................. <1>
+  [480] add ..................................... <i + 1>
+  [481] setlocal 5 .............................. pNearestWaypoint = i + 1
+  [483] getlocal 5 .............................. <pNearestWaypoint>
+  [485] getprop 563 ............................. <p>
+  [488] pushsymb 3285 ........................... <#MyWayPointList>
+  [491] pusharglist 2 ........................... <p, #MyWayPointList>
+  [493] objcall 129 ............................. <p.MyWayPointList.count>
+  [495] gt ...................................... <pNearestWaypoint > p.MyWayPointList.count>
+  [496] jmpifz [511] ............................ if pNearestWaypoint > p.MyWayPointList.count then
+  [499] getprop 563 ............................. <p>
+  [502] pushsymb 3285 ........................... <#MyWayPointList>
+  [505] pusharglist 2 ........................... <p, #MyWayPointList>
+  [507] objcall 129 ............................. <p.MyWayPointList.count>
+  [509] setlocal 5 .............................. pNearestWaypoint = p.MyWayPointList.count
+  [511] getprop 563 ............................. <p>
+  [514] pushsymb 3285 ........................... <#MyWayPointList>
+  [517] getlocal 5 .............................. <pNearestWaypoint>
+  [519] pusharglist 3 ........................... <p, #MyWayPointList, pNearestWaypoint>
+  [521] objcall 102 ............................. <p.MyWayPointList[pNearestWaypoint]>
+  [523] pushint8 1 .............................. <1>
+  [525] pusharglist 2 ........................... <p.MyWayPointList[pNearestWaypoint], 1>
+  [527] objcall 105 ............................. <p.MyWayPointList[pNearestWaypoint][1]>
+  [529] setlocal 6 .............................. pNearestWaypointPos = p.MyWayPointList[pNearestWaypoint][1]
+  [531] getglobal 43 ............................ <gGame>
+  [533] pushsymb 137 ............................ <#cars>
+  [535] getprop 563 ............................. <p>
+  [538] getobjprop 377 .......................... <p.tag>
+  [541] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [543] objcall 102 ............................. <gGame.cars[p.tag]>
+  [545] pushsymb 1335 ........................... <#specifics>
+  [548] pusharglist 2 ........................... <gGame.cars[p.tag], #specifics>
+  [550] objcall 105 ............................. <gGame.cars[p.tag][#specifics]>
+  [552] pushsymb 3037 ........................... <#currentWaypoint>
+  [555] getlocal 5 .............................. <pNearestWaypoint>
+  [557] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#specifics], #currentWaypoint, pNearestWaypoint>
+  [559] objcall 103 ............................. gGame.cars[p.tag][#specifics][#currentWaypoint] = pNearestWaypoint
+  [561] getglobal 43 ............................ <gGame>
+  [563] pushsymb 137 ............................ <#cars>
+  [565] getprop 563 ............................. <p>
+  [568] getobjprop 377 .......................... <p.tag>
+  [571] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [573] objcall 102 ............................. <gGame.cars[p.tag]>
+  [575] pushsymb 1335 ........................... <#specifics>
+  [578] pusharglist 2 ........................... <gGame.cars[p.tag], #specifics>
+  [580] objcall 105 ............................. <gGame.cars[p.tag][#specifics]>
+  [582] pushsymb 3038 ........................... <#currentDistance>
+  [585] getlocal 9 .............................. <pTempDistance>
+  [587] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#specifics], #currentDistance, pTempDistance>
+  [589] objcall 103 ............................. gGame.cars[p.tag][#specifics][#currentDistance] = pTempDistance
+  [591] jmp [603] ............................... exit repeat
+  [594] pushint8 1
+  [596] getlocal 4
+  [598] add
+  [599] setlocal 4
+  [601] endrepeat [425]
+  [603] getprop 563 ............................. <p>
+  [606] getobjprop 3282 ......................... <p.Sphere2>
+  [609] pusharglist 0 ........................... <>
+  [611] extcall 40 .............................. <VOID>
+  [613] nteq .................................... <p.Sphere2 <> VOID>
+  [614] jmpifz [636] ............................ if p.Sphere2 <> VOID then
+  [617] getlocal 5 .............................. <pNearestWaypoint>
+  [619] pushzero ................................ <0>
+  [620] nteq .................................... <pNearestWaypoint <> 0>
+  [621] jmpifz [636] ............................ if pNearestWaypoint <> 0 then
+  [624] getprop 563 ............................. <p>
+  [627] getchainedprop 3282 ..................... <p.Sphere2>
+  [630] getchainedprop 214 ...................... <p.Sphere2.transform>
+  [632] getlocal 6 .............................. <pNearestWaypointPos>
+  [634] setobjprop 215 .......................... p.Sphere2.transform.position = pNearestWaypointPos
+  [636] getprop 563 ............................. <p>
+  [639] pusharglist 0 ........................... <[]>
+  [641] pushlist ................................ <[]>
+  [642] setobjprop 2472 ......................... p.TargetList = []
+  [645] pushint8 1 .............................. <1>
+  [647] setlocal 10
+  [649] getlocal 10
+  [651] getprop 563 ............................. <p>
+  [654] getobjprop 3270 ......................... <p.TargetEntries>
+  [657] lteq
+  [658] jmpifz [742] ............................ repeat with j = 1 to p.TargetEntries
+  [661] getlocal 5 .............................. <pNearestWaypoint>
+  [663] getlocal 10 ............................. <j>
+  [665] add ..................................... <pNearestWaypoint + j>
+  [666] setlocal 11 ............................. pNR = pNearestWaypoint + j
+  [668] getlocal 11 ............................. <pNR>
+  [670] getprop 563 ............................. <p>
+  [673] pushsymb 3285 ........................... <#MyWayPointList>
+  [676] pusharglist 2 ........................... <p, #MyWayPointList>
+  [678] objcall 129 ............................. <p.MyWayPointList.count>
+  [680] gt ...................................... <pNR > p.MyWayPointList.count>
+  [681] jmpifz [696] ............................ if pNR > p.MyWayPointList.count then
+  [684] getprop 563 ............................. <p>
+  [687] pushsymb 3285 ........................... <#MyWayPointList>
+  [690] pusharglist 2 ........................... <p, #MyWayPointList>
+  [692] objcall 129 ............................. <p.MyWayPointList.count>
+  [694] setlocal 11 ............................. pNR = p.MyWayPointList.count
+  [696] getlocal 11 ............................. <pNR>
+  [698] pushzero ................................ <0>
+  [699] eq ...................................... <pNR = 0>
+  [700] jmpifz [706] ............................ if pNR = 0 then
+  [703] jmp [733] ............................... next repeat
+  [706] getprop 563 ............................. <p>
+  [709] pushsymb 3285 ........................... <#MyWayPointList>
+  [712] getlocal 11 ............................. <pNR>
+  [714] pusharglist 3 ........................... <p, #MyWayPointList, pNR>
+  [716] objcall 70 .............................. <p.MyWayPointList[pNR]>
+  [718] setlocal 12 ............................. pEntry = p.MyWayPointList[pNR]
+  [720] getprop 563 ............................. <p>
+  [723] getchainedprop 2472 ..................... <p.TargetList>
+  [726] getlocal 12 ............................. <pEntry>
+  [728] pusharglistnoret 2 ...................... <p.TargetList, pEntry>
+  [730] objcall 1629 ............................ p.TargetList.append(pEntry)
+  [733] pushint8 1
+  [735] getlocal 10
+  [737] add
+  [738] setlocal 10
+  [740] endrepeat [649]
+  [742] getprop 563 ............................. <p>
+  [745] pusharglist 0 ........................... <[]>
+  [747] pushlist ................................ <[]>
+  [748] setobjprop 3272 ......................... p.DifferenceList = []
+  [751] pushint8 1 .............................. <1>
+  [753] setlocal 4
+  [755] getlocal 4
+  [757] getprop 563 ............................. <p>
+  [760] getobjprop 3270 ......................... <p.TargetEntries>
+  [763] lteq
+  [764] jmpifz [957] ............................ repeat with i = 1 to p.TargetEntries
+  [767] getprop 563 ............................. <p>
+  [770] pushsymb 2472 ........................... <#TargetList>
+  [773] getlocal 4 .............................. <i>
+  [775] pusharglist 3 ........................... <p, #TargetList, i>
+  [777] objcall 102 ............................. <p.TargetList[i]>
+  [779] pushint8 1 .............................. <1>
+  [781] pusharglist 2 ........................... <p.TargetList[i], 1>
+  [783] objcall 105 ............................. <p.TargetList[i][1]>
+  [785] pusharglist 1 ........................... <p.TargetList[i][1]>
+  [787] objcall 233 ............................. <p.TargetList[i][1].duplicate()>
+  [789] setlocal 13 ............................. thisWorldPosn = p.TargetList[i][1].duplicate()
+  [791] getlocal 13 ............................. <thisWorldPosn>
+  [793] getprop 563 ............................. <p>
+  [796] getchainedprop 3269 ..................... <p.LeaderHelper>
+  [799] getchainedprop 214 ...................... <p.LeaderHelper.transform>
+  [801] getchainedprop 215 ...................... <p.LeaderHelper.transform.position>
+  [803] getobjprop 1190 ......................... <p.LeaderHelper.transform.position.z>
+  [806] setobjprop 1190 ......................... thisWorldPosn.z = p.LeaderHelper.transform.position.z
+  [809] getlocal 13 ............................. <thisWorldPosn>
+  [811] getprop 563 ............................. <p>
+  [814] getchainedprop 3269 ..................... <p.LeaderHelper>
+  [817] getchainedprop 214 ...................... <p.LeaderHelper.transform>
+  [819] getobjprop 215 .......................... <p.LeaderHelper.transform.position>
+  [821] eq ...................................... <thisWorldPosn = p.LeaderHelper.transform.position>
+  [822] jmpifz [844] ............................ if thisWorldPosn = p.LeaderHelper.transform.position then
+  [825] getprop 563 ............................. <p>
+  [828] getchainedprop 3272 ..................... <p.DifferenceList>
+  [831] pushfloat32 0.0 ......................... <0.0>
+  [836] pusharglistnoret 2 ...................... <p.DifferenceList, 0.0>
+  [838] objcall 1629 ............................ p.DifferenceList.append(0.0)
+  [841] jmp [948] ............................... next repeat
+  [844] getprop 563 ............................. <p>
+  [847] getchainedprop 3269 ..................... <p.LeaderHelper>
+  [850] getlocal 13 ............................. <thisWorldPosn>
+  [852] pushfloat32 0.0 ......................... <0.0>
+  [857] pushfloat32 0.0 ......................... <0.0>
+  [862] pushfloat32 1.0 ......................... <1.0>
+  [867] pusharglist 3 ........................... <0.0, 0.0, 1.0>
+  [869] extcall 212 ............................. <vector(0.0, 0.0, 1.0)>
+  [871] pusharglistnoret 3 ...................... <p.LeaderHelper, thisWorldPosn, vector(0.0, 0.0, 1.0)>
+  [873] objcall 1340 ............................ p.LeaderHelper.pointAt(thisWorldPosn, vector(0.0, 0.0, 1.0))
+  [876] getprop 563 ............................. <p>
+  [879] getchainedprop 71 ....................... <p.model>
+  [881] getchainedprop 214 ...................... <p.model.transform>
+  [883] pushsymb 1991 ........................... <#axisAngle>
+  [886] pushint8 2 .............................. <2>
+  [888] pusharglist 3 ........................... <p.model.transform, #axisAngle, 2>
+  [890] objcall 70 .............................. <p.model.transform.axisAngle[2]>
+  [892] pusharglist 1 ........................... <p.model.transform.axisAngle[2]>
+  [894] extcall 973 ............................. <abs(p.model.transform.axisAngle[2])>
+  [897] setlocal 14 ............................. pChassisAxis = abs(p.model.transform.axisAngle[2])
+  [899] getprop 563 ............................. <p>
+  [902] getchainedprop 3269 ..................... <p.LeaderHelper>
+  [905] getchainedprop 214 ...................... <p.LeaderHelper.transform>
+  [907] pushsymb 1991 ........................... <#axisAngle>
+  [910] pushint8 2 .............................. <2>
+  [912] pusharglist 3 ........................... <p.LeaderHelper.transform, #axisAngle, 2>
+  [914] objcall 70 .............................. <p.LeaderHelper.transform.axisAngle[2]>
+  [916] pusharglist 1 ........................... <p.LeaderHelper.transform.axisAngle[2]>
+  [918] extcall 973 ............................. <abs(p.LeaderHelper.transform.axisAngle[2])>
+  [921] setlocal 15 ............................. pLeaderHelperAxis = abs(p.LeaderHelper.transform.axisAngle[2])
+  [923] getlocal 15 ............................. <pLeaderHelperAxis>
+  [925] getlocal 14 ............................. <pChassisAxis>
+  [927] sub ..................................... <pLeaderHelperAxis - pChassisAxis>
+  [928] pusharglist 1 ........................... <pLeaderHelperAxis - pChassisAxis>
+  [930] extcall 973 ............................. <abs(pLeaderHelperAxis - pChassisAxis)>
+  [933] setlocal 16 ............................. pDifferenceEntry = abs(pLeaderHelperAxis - pChassisAxis)
+  [935] getprop 563 ............................. <p>
+  [938] getchainedprop 3272 ..................... <p.DifferenceList>
+  [941] getlocal 16 ............................. <pDifferenceEntry>
+  [943] pusharglistnoret 2 ...................... <p.DifferenceList, pDifferenceEntry>
+  [945] objcall 1629 ............................ p.DifferenceList.append(pDifferenceEntry)
+  [948] pushint8 1
+  [950] getlocal 4
+  [952] add
+  [953] setlocal 4
+  [955] endrepeat [755]
+  [957] ret
+end
+
+on Drive me
+  [  0] getprop 563 ............................. <p>
+  [  3] pushsymb 2472 ........................... <#TargetList>
+  [  6] getprop 563 ............................. <p>
+  [  9] getobjprop 3273 ......................... <p.StartEntry>
+  [ 12] pusharglist 3 ........................... <p, #TargetList, p.StartEntry>
+  [ 14] objcall 70 .............................. <p.TargetList[p.StartEntry]>
+  [ 16] setlocal 0 .............................. pTarget = p.TargetList[p.StartEntry]
+  [ 18] getprop 563 ............................. <p>
+  [ 21] pushsymb 3272 ........................... <#DifferenceList>
+  [ 24] getprop 563 ............................. <p>
+  [ 27] getobjprop 3273 ......................... <p.StartEntry>
+  [ 30] pusharglist 3 ........................... <p, #DifferenceList, p.StartEntry>
+  [ 32] objcall 70 .............................. <p.DifferenceList[p.StartEntry]>
+  [ 34] setlocal 1 .............................. pDifference = p.DifferenceList[p.StartEntry]
+  [ 36] getprop 563 ............................. <p>
+  [ 39] getobjprop 3281 ......................... <p.Sphere1>
+  [ 42] pusharglist 0 ........................... <>
+  [ 44] extcall 40 .............................. <VOID>
+  [ 46] nteq .................................... <p.Sphere1 <> VOID>
+  [ 47] jmpifz [ 68] ............................ if p.Sphere1 <> VOID then
+  [ 50] getprop 563 ............................. <p>
+  [ 53] getchainedprop 3281 ..................... <p.Sphere1>
+  [ 56] getchainedprop 214 ...................... <p.Sphere1.transform>
+  [ 58] getlocal 0 .............................. <pTarget>
+  [ 60] pushint8 1 .............................. <1>
+  [ 62] pusharglist 2 ........................... <pTarget, 1>
+  [ 64] objcall 105 ............................. <pTarget[1]>
+  [ 66] setobjprop 215 .......................... p.Sphere1.transform.position = pTarget[1]
+  [ 68] getlocal 0 .............................. <pTarget>
+  [ 70] pushint8 1 .............................. <1>
+  [ 72] pusharglist 2 ........................... <pTarget, 1>
+  [ 74] objcall 105 ............................. <pTarget[1]>
+  [ 76] pusharglist 1 ........................... <pTarget[1]>
+  [ 78] objcall 233 ............................. <pTarget[1].duplicate()>
+  [ 80] setlocal 2 .............................. thisWorldPosn = pTarget[1].duplicate()
+  [ 82] getlocal 2 .............................. <thisWorldPosn>
+  [ 84] getprop 563 ............................. <p>
+  [ 87] getchainedprop 3269 ..................... <p.LeaderHelper>
+  [ 90] getchainedprop 214 ...................... <p.LeaderHelper.transform>
+  [ 92] getchainedprop 215 ...................... <p.LeaderHelper.transform.position>
+  [ 94] getobjprop 1190 ......................... <p.LeaderHelper.transform.position.z>
+  [ 97] setobjprop 1190 ......................... thisWorldPosn.z = p.LeaderHelper.transform.position.z
+  [100] getprop 563 ............................. <p>
+  [103] getchainedprop 3269 ..................... <p.LeaderHelper>
+  [106] getlocal 2 .............................. <thisWorldPosn>
+  [108] pushfloat32 0.0 ......................... <0.0>
+  [113] pushfloat32 0.0 ......................... <0.0>
+  [118] pushfloat32 1.0 ......................... <1.0>
+  [123] pusharglist 3 ........................... <0.0, 0.0, 1.0>
+  [125] extcall 212 ............................. <vector(0.0, 0.0, 1.0)>
+  [127] pusharglistnoret 3 ...................... <p.LeaderHelper, thisWorldPosn, vector(0.0, 0.0, 1.0)>
+  [129] objcall 1340 ............................ p.LeaderHelper.pointAt(thisWorldPosn, vector(0.0, 0.0, 1.0))
+  [132] getlocal 0 .............................. <pTarget>
+  [134] pushint8 1 .............................. <1>
+  [136] pusharglist 2 ........................... <pTarget, 1>
+  [138] objcall 105 ............................. <pTarget[1]>
+  [140] getprop 563 ............................. <p>
+  [143] getobjprop 3284 ......................... <p.CarPos>
+  [146] sub ..................................... <pTarget[1] - p.CarPos>
+  [147] setlocal 3 .............................. pos1 = pTarget[1] - p.CarPos
+  [149] getlocal 3 .............................. <pos1>
+  [151] pusharglistnoret 1 ...................... <pos1>
+  [153] objcall 1179 ............................ pos1.normalize()
+  [156] getprop 563 ............................. <p>
+  [159] getchainedprop 71 ....................... <p.model>
+  [161] getchainedprop 214 ...................... <p.model.transform>
+  [163] pusharglist 1 ........................... <p.model.transform>
+  [165] objcall 233 ............................. <p.model.transform.duplicate()>
+  [167] setlocal 4 .............................. TempTrans = p.model.transform.duplicate()
+  [169] getlocal 4 .............................. <TempTrans>
+  [171] pushzero ................................ <0>
+  [172] pushzero ................................ <0>
+  [173] pushzero ................................ <0>
+  [174] pusharglist 3 ........................... <0, 0, 0>
+  [176] extcall 212 ............................. <vector(0, 0, 0)>
+  [178] setobjprop 215 .......................... TempTrans.position = vector(0, 0, 0)
+  [180] getlocal 4 .............................. <TempTrans>
+  [182] pushint8 1 .............................. <1>
+  [184] pushint8 1 .............................. <1>
+  [186] pushint8 1 .............................. <1>
+  [188] pusharglist 3 ........................... <1, 1, 1>
+  [190] extcall 212 ............................. <vector(1, 1, 1)>
+  [192] setobjprop 307 .......................... TempTrans.scale = vector(1, 1, 1)
+  [195] getlocal 4 .............................. <TempTrans>
+  [197] getprop 563 ............................. <p>
+  [200] getobjprop 3007 ......................... <p.LocalForward>
+  [203] mul ..................................... <TempTrans * p.LocalForward>
+  [204] setlocal 5 .............................. WorldForward = TempTrans * p.LocalForward
+  [206] getlocal 4 .............................. <TempTrans>
+  [208] getprop 563 ............................. <p>
+  [211] getobjprop 3006 ......................... <p.LocalDown>
+  [214] inv ..................................... <-p.LocalDown>
+  [215] mul ..................................... <TempTrans * -p.LocalDown>
+  [216] setlocal 6 .............................. WorldAxis = TempTrans * -p.LocalDown
+  [218] getlocal 5 .............................. <WorldForward>
+  [220] getlocal 6 .............................. <WorldAxis>
+  [222] pusharglist 2 ........................... <WorldForward, WorldAxis>
+  [224] objcall 2302 ............................ <WorldForward.cross(WorldAxis)>
+  [227] setlocal 7 .............................. WorldRight = WorldForward.cross(WorldAxis)
+  [229] getlocal 3 .............................. <pos1>
+  [231] getlocal 7 .............................. <WorldRight>
+  [233] pusharglist 2 ........................... <pos1, WorldRight>
+  [235] objcall 1181 ............................ <pos1.dot(WorldRight)>
+  [238] setlocal 8 .............................. pLeftRight = pos1.dot(WorldRight)
+  [240] getprop 563 ............................. <p>
+  [243] getobjprop 3273 ......................... <p.StartEntry>
+  [246] setlocal 9 .............................. pCheckNr1 = p.StartEntry
+  [248] getprop 563 ............................. <p>
+  [251] getobjprop 3270 ......................... <p.TargetEntries>
+  [254] setlocal 10 ............................. pCheckNr2 = p.TargetEntries
+  [256] pushzero ................................ <0>
+  [257] setlocal 11 ............................. pAmount = 0
+  [259] pushint8 1 .............................. <1>
+  [261] setlocal 12
+  [263] getlocal 12
+  [265] getlocal 9 .............................. <pCheckNr1>
+  [267] lteq
+  [268] jmpifz [297] ............................ repeat with j = 1 to pCheckNr1
+  [271] getlocal 11 ............................. <pAmount>
+  [273] getprop 563 ............................. <p>
+  [276] pushsymb 3272 ........................... <#DifferenceList>
+  [279] getlocal 12 ............................. <j>
+  [281] pusharglist 3 ........................... <p, #DifferenceList, j>
+  [283] objcall 70 .............................. <p.DifferenceList[j]>
+  [285] add ..................................... <pAmount + p.DifferenceList[j]>
+  [286] setlocal 11 ............................. pAmount = pAmount + p.DifferenceList[j]
+  [288] pushint8 1
+  [290] getlocal 12
+  [292] add
+  [293] setlocal 12
+  [295] endrepeat [263]
+  [297] getlocal 11 ............................. <pAmount>
+  [299] getlocal 9 .............................. <pCheckNr1>
+  [301] div ..................................... <pAmount / pCheckNr1>
+  [302] setlocal 13 ............................. pGeneralDifference1 = pAmount / pCheckNr1
+  [304] pushzero ................................ <0>
+  [305] setlocal 11 ............................. pAmount = 0
+  [307] pushint8 1 .............................. <1>
+  [309] setlocal 14
+  [311] getlocal 14
+  [313] getlocal 10 ............................. <pCheckNr2>
+  [315] lteq
+  [316] jmpifz [345] ............................ repeat with k = 1 to pCheckNr2
+  [319] getlocal 11 ............................. <pAmount>
+  [321] getprop 563 ............................. <p>
+  [324] pushsymb 3272 ........................... <#DifferenceList>
+  [327] getlocal 14 ............................. <k>
+  [329] pusharglist 3 ........................... <p, #DifferenceList, k>
+  [331] objcall 70 .............................. <p.DifferenceList[k]>
+  [333] add ..................................... <pAmount + p.DifferenceList[k]>
+  [334] setlocal 11 ............................. pAmount = pAmount + p.DifferenceList[k]
+  [336] pushint8 1
+  [338] getlocal 14
+  [340] add
+  [341] setlocal 14
+  [343] endrepeat [311]
+  [345] getlocal 11 ............................. <pAmount>
+  [347] getlocal 10 ............................. <pCheckNr2>
+  [349] div ..................................... <pAmount / pCheckNr2>
+  [350] setlocal 15 ............................. pGeneralDifference2 = pAmount / pCheckNr2
+  [352] getglobal 43 ............................ <gGame>
+  [354] pushsymb 137 ............................ <#cars>
+  [356] getprop 563 ............................. <p>
+  [359] getobjprop 377 .......................... <p.tag>
+  [362] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [364] objcall 102 ............................. <gGame.cars[p.tag]>
+  [366] pushsymb 929 ............................ <#Keys>
+  [369] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [371] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [373] pushsymb 2132 ........................... <#forward>
+  [376] pushint8 1 .............................. <1>
+  [378] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #forward, 1>
+  [380] objcall 103 ............................. gGame.cars[p.tag][#Keys][#forward] = 1
+  [382] getlocal 1 .............................. <pDifference>
+  [384] getlocal 13 ............................. <pGeneralDifference1>
+  [386] sub ..................................... <pDifference - pGeneralDifference1>
+  [387] pusharglist 1 ........................... <pDifference - pGeneralDifference1>
+  [389] extcall 973 ............................. <abs(pDifference - pGeneralDifference1)>
+  [392] setlocal 16 ............................. pBackwardDifference = abs(pDifference - pGeneralDifference1)
+  [394] getlocal 1 .............................. <pDifference>
+  [396] getlocal 15 ............................. <pGeneralDifference2>
+  [398] sub ..................................... <pDifference - pGeneralDifference2>
+  [399] pusharglist 1 ........................... <pDifference - pGeneralDifference2>
+  [401] extcall 973 ............................. <abs(pDifference - pGeneralDifference2)>
+  [404] setlocal 17 ............................. pBrakingDifference = abs(pDifference - pGeneralDifference2)
+  [406] getlocal 17 ............................. <pBrakingDifference>
+  [408] pushfloat32 14.0 ........................ <14.0>
+  [413] gt ...................................... <pBrakingDifference > 14.0>
+  [414] jmpifz [450] ............................ if pBrakingDifference > 14.0 then / else
+  [417] getglobal 43 ............................ <gGame>
+  [419] pushsymb 137 ............................ <#cars>
+  [421] getprop 563 ............................. <p>
+  [424] getobjprop 377 .......................... <p.tag>
+  [427] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [429] objcall 102 ............................. <gGame.cars[p.tag]>
+  [431] pushsymb 929 ............................ <#Keys>
+  [434] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [436] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [438] pushsymb 2134 ........................... <#brake>
+  [441] pushint8 1 .............................. <1>
+  [443] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #brake, 1>
+  [445] objcall 103 ............................. gGame.cars[p.tag][#Keys][#brake] = 1
+  [447] jmp [479]
+  [450] getglobal 43 ............................ <gGame>
+  [452] pushsymb 137 ............................ <#cars>
+  [454] getprop 563 ............................. <p>
+  [457] getobjprop 377 .......................... <p.tag>
+  [460] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [462] objcall 102 ............................. <gGame.cars[p.tag]>
+  [464] pushsymb 929 ............................ <#Keys>
+  [467] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [469] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [471] pushsymb 2134 ........................... <#brake>
+  [474] pushzero ................................ <0>
+  [475] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #brake, 0>
+  [477] objcall 103 ............................. gGame.cars[p.tag][#Keys][#brake] = 0
+  [479] getglobal 43 ............................ <gGame>
+  [481] pushsymb 137 ............................ <#cars>
+  [483] getprop 563 ............................. <p>
+  [486] getobjprop 377 .......................... <p.tag>
+  [489] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [491] objcall 102 ............................. <gGame.cars[p.tag]>
+  [493] pushsymb 1335 ........................... <#specifics>
+  [496] pusharglist 2 ........................... <gGame.cars[p.tag], #specifics>
+  [498] objcall 105 ............................. <gGame.cars[p.tag][#specifics]>
+  [500] pushsymb 3024 ........................... <#nitroState>
+  [503] pusharglist 2 ........................... <gGame.cars[p.tag][#specifics], #nitroState>
+  [505] objcall 105 ............................. <gGame.cars[p.tag][#specifics][#nitroState]>
+  [507] setlocal 18 ............................. pNitroState = gGame.cars[p.tag][#specifics][#nitroState]
+  [509] getlocal 18 ............................. <pNitroState>
+  [511] pushint8 1 .............................. <1>
+  [513] nteq .................................... <pNitroState <> 1>
+  [514] getlocal 17 ............................. <pBrakingDifference>
+  [516] pushfloat32 2.0 ......................... <2.0>
+  [521] lteq .................................... <pBrakingDifference <= 2.0>
+  [522] and ..................................... <(pNitroState <> 1) and (pBrakingDifference <= 2.0)>
+  [523] jmpifz [632] ............................ if (pNitroState <> 1) and (pBrakingDifference <= 2.0) then
+  [526] getglobal 43 ............................ <gGame>
+  [528] pushsymb 137 ............................ <#cars>
+  [530] getprop 563 ............................. <p>
+  [533] getobjprop 377 .......................... <p.tag>
+  [536] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [538] objcall 102 ............................. <gGame.cars[p.tag]>
+  [540] pushsymb 929 ............................ <#Keys>
+  [543] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [545] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [547] pushsymb 220 ............................ <#right>
+  [549] pusharglist 2 ........................... <gGame.cars[p.tag][#Keys], #right>
+  [551] objcall 105 ............................. <gGame.cars[p.tag][#Keys][#right]>
+  [553] pushzero ................................ <0>
+  [554] eq ...................................... <gGame.cars[p.tag][#Keys][#right] = 0>
+  [555] getglobal 43 ............................ <gGame>
+  [557] pushsymb 137 ............................ <#cars>
+  [559] getprop 563 ............................. <p>
+  [562] getobjprop 377 .......................... <p.tag>
+  [565] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [567] objcall 102 ............................. <gGame.cars[p.tag]>
+  [569] pushsymb 929 ............................ <#Keys>
+  [572] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [574] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [576] pushsymb 203 ............................ <#left>
+  [578] pusharglist 2 ........................... <gGame.cars[p.tag][#Keys], #left>
+  [580] objcall 105 ............................. <gGame.cars[p.tag][#Keys][#left]>
+  [582] pushzero ................................ <0>
+  [583] eq ...................................... <gGame.cars[p.tag][#Keys][#left] = 0>
+  [584] and ..................................... <(gGame.cars[p.tag][#Keys][#right] = 0) and (gGame.cars[p.tag][#Keys][#left] = 0)>
+  [585] jmpifz [632] ............................ if (gGame.cars[p.tag][#Keys][#right] = 0) and (gGame.cars[p.tag][#Keys][#left] = 0) then
+  [588] pushint8 1 .............................. <1>
+  [590] pushint8 50 ............................. <50>
+  [592] pusharglist 2 ........................... <1, 50>
+  [594] extcall 176 ............................. <random(1, 50)>
+  [596] pushint8 1 .............................. <1>
+  [598] eq ...................................... <random(1, 50) = 1>
+  [599] jmpifz [632] ............................ if random(1, 50) = 1 then
+  [602] getglobal 43 ............................ <gGame>
+  [604] pushsymb 137 ............................ <#cars>
+  [606] getprop 563 ............................. <p>
+  [609] getobjprop 377 .......................... <p.tag>
+  [612] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [614] objcall 102 ............................. <gGame.cars[p.tag]>
+  [616] pushsymb 929 ............................ <#Keys>
+  [619] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [621] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [623] pushsymb 371 ............................ <#Nitro>
+  [626] pushint8 1 .............................. <1>
+  [628] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #Nitro, 1>
+  [630] objcall 103 ............................. gGame.cars[p.tag][#Keys][#Nitro] = 1
+  [632] getlocal 1 .............................. <pDifference>
+  [634] pushfloat32 3.5 ......................... <3.5>
+  [639] gt ...................................... <pDifference > 3.5>
+  [640] jmpifz [774] ............................ if pDifference > 3.5 then / else
+  [643] getlocal 8 .............................. <pLeftRight>
+  [645] pushfloat32 0.0 ......................... <0.0>
+  [650] lt ...................................... <pLeftRight < 0.0>
+  [651] jmpifz [714] ............................ if pLeftRight < 0.0 then / else
+  [654] getglobal 43 ............................ <gGame>
+  [656] pushsymb 137 ............................ <#cars>
+  [658] getprop 563 ............................. <p>
+  [661] getobjprop 377 .......................... <p.tag>
+  [664] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [666] objcall 102 ............................. <gGame.cars[p.tag]>
+  [668] pushsymb 929 ............................ <#Keys>
+  [671] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [673] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [675] pushsymb 220 ............................ <#right>
+  [677] pushzero ................................ <0>
+  [678] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #right, 0>
+  [680] objcall 103 ............................. gGame.cars[p.tag][#Keys][#right] = 0
+  [682] getglobal 43 ............................ <gGame>
+  [684] pushsymb 137 ............................ <#cars>
+  [686] getprop 563 ............................. <p>
+  [689] getobjprop 377 .......................... <p.tag>
+  [692] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [694] objcall 102 ............................. <gGame.cars[p.tag]>
+  [696] pushsymb 929 ............................ <#Keys>
+  [699] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [701] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [703] pushsymb 203 ............................ <#left>
+  [705] pushint8 1 .............................. <1>
+  [707] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #left, 1>
+  [709] objcall 103 ............................. gGame.cars[p.tag][#Keys][#left] = 1
+  [711] jmp [771]
+  [714] getglobal 43 ............................ <gGame>
+  [716] pushsymb 137 ............................ <#cars>
+  [718] getprop 563 ............................. <p>
+  [721] getobjprop 377 .......................... <p.tag>
+  [724] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [726] objcall 102 ............................. <gGame.cars[p.tag]>
+  [728] pushsymb 929 ............................ <#Keys>
+  [731] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [733] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [735] pushsymb 220 ............................ <#right>
+  [737] pushint8 1 .............................. <1>
+  [739] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #right, 1>
+  [741] objcall 103 ............................. gGame.cars[p.tag][#Keys][#right] = 1
+  [743] getglobal 43 ............................ <gGame>
+  [745] pushsymb 137 ............................ <#cars>
+  [747] getprop 563 ............................. <p>
+  [750] getobjprop 377 .......................... <p.tag>
+  [753] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [755] objcall 102 ............................. <gGame.cars[p.tag]>
+  [757] pushsymb 929 ............................ <#Keys>
+  [760] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [762] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [764] pushsymb 203 ............................ <#left>
+  [766] pushzero ................................ <0>
+  [767] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #left, 0>
+  [769] objcall 103 ............................. gGame.cars[p.tag][#Keys][#left] = 0
+  [771] jmp [830]
+  [774] getglobal 43 ............................ <gGame>
+  [776] pushsymb 137 ............................ <#cars>
+  [778] getprop 563 ............................. <p>
+  [781] getobjprop 377 .......................... <p.tag>
+  [784] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [786] objcall 102 ............................. <gGame.cars[p.tag]>
+  [788] pushsymb 929 ............................ <#Keys>
+  [791] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [793] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [795] pushsymb 220 ............................ <#right>
+  [797] pushzero ................................ <0>
+  [798] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #right, 0>
+  [800] objcall 103 ............................. gGame.cars[p.tag][#Keys][#right] = 0
+  [802] getglobal 43 ............................ <gGame>
+  [804] pushsymb 137 ............................ <#cars>
+  [806] getprop 563 ............................. <p>
+  [809] getobjprop 377 .......................... <p.tag>
+  [812] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [814] objcall 102 ............................. <gGame.cars[p.tag]>
+  [816] pushsymb 929 ............................ <#Keys>
+  [819] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [821] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [823] pushsymb 203 ............................ <#left>
+  [825] pushzero ................................ <0>
+  [826] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #left, 0>
+  [828] objcall 103 ............................. gGame.cars[p.tag][#Keys][#left] = 0
+  [830] getglobal 43 ............................ <gGame>
+  [832] pushsymb 137 ............................ <#cars>
+  [834] getprop 563 ............................. <p>
+  [837] getobjprop 377 .......................... <p.tag>
+  [840] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [842] objcall 102 ............................. <gGame.cars[p.tag]>
+  [844] pushsymb 929 ............................ <#Keys>
+  [847] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [849] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [851] pushsymb 203 ............................ <#left>
+  [853] pusharglist 2 ........................... <gGame.cars[p.tag][#Keys], #left>
+  [855] objcall 105 ............................. <gGame.cars[p.tag][#Keys][#left]>
+  [857] setlocal 19 ............................. pPreviousLeft = gGame.cars[p.tag][#Keys][#left]
+  [859] getglobal 43 ............................ <gGame>
+  [861] pushsymb 137 ............................ <#cars>
+  [863] getprop 563 ............................. <p>
+  [866] getobjprop 377 .......................... <p.tag>
+  [869] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [871] objcall 102 ............................. <gGame.cars[p.tag]>
+  [873] pushsymb 929 ............................ <#Keys>
+  [876] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [878] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [880] pushsymb 220 ............................ <#right>
+  [882] pusharglist 2 ........................... <gGame.cars[p.tag][#Keys], #right>
+  [884] objcall 105 ............................. <gGame.cars[p.tag][#Keys][#right]>
+  [886] setlocal 20 ............................. pPreviousRight = gGame.cars[p.tag][#Keys][#right]
+  [888] getprop 563 ............................. <p>
+  [891] getobjprop 3015 ......................... <p.CurrentSpeed>
+  [894] pushfloat32 1.5 ......................... <1.5>
+  [899] lteq .................................... <p.CurrentSpeed <= 1.5>
+  [900] jmpifz [943] ............................ if p.CurrentSpeed <= 1.5 then / else
+  [903] getprop 563 ............................. <p>
+  [906] getprop 563 ............................. <p>
+  [909] getobjprop 2148 ......................... <p.stuckCounter>
+  [912] pushint8 1 .............................. <1>
+  [914] add ..................................... <p.stuckCounter + 1>
+  [915] setobjprop 2148 ......................... p.stuckCounter = p.stuckCounter + 1
+  [918] getprop 563 ............................. <p>
+  [921] getobjprop 2148 ......................... <p.stuckCounter>
+  [924] pushint8 50 ............................. <50>
+  [926] eq ...................................... <p.stuckCounter = 50>
+  [927] jmpifz [940] ............................ if p.stuckCounter = 50 then
+  [930] getprop 563 ............................. <p>
+  [933] getchainedprop 207 ...................... <p.parent>
+  [935] pusharglistnoret 1 ...................... <p.parent>
+  [937] objcall 2983 ............................ p.parent.Flip()
+  [940] jmp [965]
+  [943] getprop 563 ............................. <p>
+  [946] getobjprop 3015 ......................... <p.CurrentSpeed>
+  [949] pushfloat32 1.5 ......................... <1.5>
+  [954] gteq .................................... <p.CurrentSpeed >= 1.5>
+  [955] jmpifz [965] ............................ if p.CurrentSpeed >= 1.5 then
+  [958] getprop 563 ............................. <p>
+  [961] pushzero ................................ <0>
+  [962] setobjprop 2148 ......................... p.stuckCounter = 0
+  [965] ret
+end
+
+on AutoUnstuck me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 3278 ......................... <p.StuckAngle>
+  [  6] getprop 563 ............................. <p>
+  [  9] getchainedprop 71 ....................... <p.model>
+  [ 11] getchainedprop 214 ...................... <p.model.transform>
+  [ 13] pushsymb 1991 ........................... <#axisAngle>
+  [ 16] pushint8 2 .............................. <2>
+  [ 18] pusharglist 3 ........................... <p.model.transform, #axisAngle, 2>
+  [ 20] objcall 70 .............................. <p.model.transform.axisAngle[2]>
+  [ 22] sub ..................................... <p.StuckAngle - p.model.transform.axisAngle[2]>
+  [ 23] pusharglist 1 ........................... <p.StuckAngle - p.model.transform.axisAngle[2]>
+  [ 25] extcall 973 ............................. <abs(p.StuckAngle - p.model.transform.axisAngle[2])>
+  [ 28] setlocal 0 .............................. pangle = abs(p.StuckAngle - p.model.transform.axisAngle[2])
+  [ 30] getlocal 0 .............................. <pangle>
+  [ 32] pushfloat32 10.0 ........................ <10.0>
+  [ 37] lteq .................................... <pangle <= 10.0>
+  [ 38] jmpifz [ 59] ............................ if pangle <= 10.0 then
+  [ 41] getprop 563 ............................. <p>
+  [ 44] pushcons 12 ............................. <"Forwards">
+  [ 46] setobjprop 3275 ......................... p.subState = "Forwards"
+  [ 49] pushcons 13 ............................. <"AutoUnstuck">
+  [ 51] pusharglist 1 ........................... <"AutoUnstuck">
+  [ 53] extcall 238 ............................. <timeout("AutoUnstuck")>
+  [ 55] pusharglistnoret 1 ...................... <timeout("AutoUnstuck")>
+  [ 57] objcall 255 ............................. timeout("AutoUnstuck").forget()
+  [ 59] ret
+end
+
+on Unstuck me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 3275 ......................... <p.subState>
+  [  6] pushcons 14 ............................. <"Backwards">
+  [  8] eq ...................................... <p.subState = "Backwards">
+  [  9] jmpifz [226] ............................ if p.subState = "Backwards" then / else
+  [ 12] getglobal 43 ............................ <gGame>
+  [ 14] pushsymb 137 ............................ <#cars>
+  [ 16] getprop 563 ............................. <p>
+  [ 19] getobjprop 377 .......................... <p.tag>
+  [ 22] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 24] objcall 102 ............................. <gGame.cars[p.tag]>
+  [ 26] pushsymb 929 ............................ <#Keys>
+  [ 29] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [ 31] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [ 33] pushsymb 2132 ........................... <#forward>
+  [ 36] pushzero ................................ <0>
+  [ 37] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #forward, 0>
+  [ 39] objcall 103 ............................. gGame.cars[p.tag][#Keys][#forward] = 0
+  [ 41] getglobal 43 ............................ <gGame>
+  [ 43] pushsymb 137 ............................ <#cars>
+  [ 45] getprop 563 ............................. <p>
+  [ 48] getobjprop 377 .......................... <p.tag>
+  [ 51] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 53] objcall 102 ............................. <gGame.cars[p.tag]>
+  [ 55] pushsymb 929 ............................ <#Keys>
+  [ 58] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [ 60] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [ 62] pushsymb 2133 ........................... <#backward>
+  [ 65] pushint8 1 .............................. <1>
+  [ 67] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #backward, 1>
+  [ 69] objcall 103 ............................. gGame.cars[p.tag][#Keys][#backward] = 1
+  [ 71] getglobal 43 ............................ <gGame>
+  [ 73] pushsymb 137 ............................ <#cars>
+  [ 75] getprop 563 ............................. <p>
+  [ 78] getobjprop 377 .......................... <p.tag>
+  [ 81] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 83] objcall 102 ............................. <gGame.cars[p.tag]>
+  [ 85] pushsymb 929 ............................ <#Keys>
+  [ 88] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [ 90] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [ 92] pushsymb 203 ............................ <#left>
+  [ 94] getprop 563 ............................. <p>
+  [ 97] getobjprop 3277 ......................... <p.PreviousRight>
+  [100] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #left, p.PreviousRight>
+  [102] objcall 103 ............................. gGame.cars[p.tag][#Keys][#left] = p.PreviousRight
+  [104] getglobal 43 ............................ <gGame>
+  [106] pushsymb 137 ............................ <#cars>
+  [108] getprop 563 ............................. <p>
+  [111] getobjprop 377 .......................... <p.tag>
+  [114] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [116] objcall 102 ............................. <gGame.cars[p.tag]>
+  [118] pushsymb 929 ............................ <#Keys>
+  [121] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [123] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [125] pushsymb 220 ............................ <#right>
+  [127] getprop 563 ............................. <p>
+  [130] getobjprop 3276 ......................... <p.PreviousLeft>
+  [133] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #right, p.PreviousLeft>
+  [135] objcall 103 ............................. gGame.cars[p.tag][#Keys][#right] = p.PreviousLeft
+  [137] getprop 563 ............................. <p>
+  [140] getobjprop 3278 ......................... <p.StuckAngle>
+  [143] getprop 563 ............................. <p>
+  [146] getchainedprop 71 ....................... <p.model>
+  [148] getchainedprop 214 ...................... <p.model.transform>
+  [150] pushsymb 1991 ........................... <#axisAngle>
+  [153] pushint8 2 .............................. <2>
+  [155] pusharglist 3 ........................... <p.model.transform, #axisAngle, 2>
+  [157] objcall 70 .............................. <p.model.transform.axisAngle[2]>
+  [159] sub ..................................... <p.StuckAngle - p.model.transform.axisAngle[2]>
+  [160] pusharglist 1 ........................... <p.StuckAngle - p.model.transform.axisAngle[2]>
+  [162] extcall 973 ............................. <abs(p.StuckAngle - p.model.transform.axisAngle[2])>
+  [165] setlocal 0 .............................. pangle = abs(p.StuckAngle - p.model.transform.axisAngle[2])
+  [167] getlocal 0 .............................. <pangle>
+  [169] pushfloat32 45.0 ........................ <45.0>
+  [174] gteq .................................... <pangle >= 45.0>
+  [175] jmpifz [216] ............................ if pangle >= 45.0 then
+  [178] getprop 563 ............................. <p>
+  [181] pushcons 12 ............................. <"Forwards">
+  [183] setobjprop 3275 ......................... p.subState = "Forwards"
+  [186] gettoplevelprop 33 ...................... <_movie>
+  [188] getchainedprop 427 ...................... <_movie.timeoutList>
+  [191] pushcons 13 ............................. <"AutoUnstuck">
+  [193] pusharglist 1 ........................... <"AutoUnstuck">
+  [195] extcall 238 ............................. <timeout("AutoUnstuck")>
+  [197] pusharglist 2 ........................... <_movie.timeoutList, timeout("AutoUnstuck")>
+  [199] objcall 166 ............................. <_movie.timeoutList.getPos(timeout("AutoUnstuck"))>
+  [201] pushzero ................................ <0>
+  [202] nteq .................................... <_movie.timeoutList.getPos(timeout("AutoUnstuck")) <> 0>
+  [203] jmpifz [216] ............................ if _movie.timeoutList.getPos(timeout("AutoUnstuck")) <> 0 then
+  [206] pushcons 13 ............................. <"AutoUnstuck">
+  [208] pusharglist 1 ........................... <"AutoUnstuck">
+  [210] extcall 238 ............................. <timeout("AutoUnstuck")>
+  [212] pusharglistnoret 1 ...................... <timeout("AutoUnstuck")>
+  [214] objcall 255 ............................. timeout("AutoUnstuck").forget()
+  [216] getprop 563 ............................. <p>
+  [219] pushzero ................................ <0>
+  [220] setobjprop 3279 ......................... p.ForwardCounter = 0
+  [223] jmp [383]
+  [226] getglobal 43 ............................ <gGame>
+  [228] pushsymb 137 ............................ <#cars>
+  [230] getprop 563 ............................. <p>
+  [233] getobjprop 377 .......................... <p.tag>
+  [236] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [238] objcall 102 ............................. <gGame.cars[p.tag]>
+  [240] pushsymb 929 ............................ <#Keys>
+  [243] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [245] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [247] pushsymb 2132 ........................... <#forward>
+  [250] pushint8 1 .............................. <1>
+  [252] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #forward, 1>
+  [254] objcall 103 ............................. gGame.cars[p.tag][#Keys][#forward] = 1
+  [256] getglobal 43 ............................ <gGame>
+  [258] pushsymb 137 ............................ <#cars>
+  [260] getprop 563 ............................. <p>
+  [263] getobjprop 377 .......................... <p.tag>
+  [266] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [268] objcall 102 ............................. <gGame.cars[p.tag]>
+  [270] pushsymb 929 ............................ <#Keys>
+  [273] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [275] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [277] pushsymb 2133 ........................... <#backward>
+  [280] pushzero ................................ <0>
+  [281] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #backward, 0>
+  [283] objcall 103 ............................. gGame.cars[p.tag][#Keys][#backward] = 0
+  [285] getglobal 43 ............................ <gGame>
+  [287] pushsymb 137 ............................ <#cars>
+  [289] getprop 563 ............................. <p>
+  [292] getobjprop 377 .......................... <p.tag>
+  [295] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [297] objcall 102 ............................. <gGame.cars[p.tag]>
+  [299] pushsymb 929 ............................ <#Keys>
+  [302] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [304] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [306] pushsymb 203 ............................ <#left>
+  [308] pushzero ................................ <0>
+  [309] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #left, 0>
+  [311] objcall 103 ............................. gGame.cars[p.tag][#Keys][#left] = 0
+  [313] getglobal 43 ............................ <gGame>
+  [315] pushsymb 137 ............................ <#cars>
+  [317] getprop 563 ............................. <p>
+  [320] getobjprop 377 .......................... <p.tag>
+  [323] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [325] objcall 102 ............................. <gGame.cars[p.tag]>
+  [327] pushsymb 929 ............................ <#Keys>
+  [330] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [332] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [334] pushsymb 220 ............................ <#right>
+  [336] pushzero ................................ <0>
+  [337] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #right, 0>
+  [339] objcall 103 ............................. gGame.cars[p.tag][#Keys][#right] = 0
+  [341] getprop 563 ............................. <p>
+  [344] getprop 563 ............................. <p>
+  [347] getobjprop 3279 ......................... <p.ForwardCounter>
+  [350] pushint8 1 .............................. <1>
+  [352] add ..................................... <p.ForwardCounter + 1>
+  [353] setobjprop 3279 ......................... p.ForwardCounter = p.ForwardCounter + 1
+  [356] getprop 563 ............................. <p>
+  [359] getobjprop 3279 ......................... <p.ForwardCounter>
+  [362] pushint8 20 ............................. <20>
+  [364] eq ...................................... <p.ForwardCounter = 20>
+  [365] jmpifz [383] ............................ if p.ForwardCounter = 20 then
+  [368] getprop 563 ............................. <p>
+  [371] pushcons 1 .............................. <"Drive">
+  [373] setobjprop 89 ........................... p.state = "Drive"
+  [375] getprop 563 ............................. <p>
+  [378] pushcons 2 .............................. <EMPTY>
+  [380] setobjprop 3275 ......................... p.subState = EMPTY
+  [383] ret
+end

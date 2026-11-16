@@ -1,0 +1,965 @@
+property p
+global g
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getparam 1 .............................. <tParams>
+  [  8] pushsymb 949 ............................ <#memberName>
+  [ 11] pusharglist 2 ........................... <tParams, #memberName>
+  [ 13] objcall 105 ............................. <tParams[#memberName]>
+  [ 15] setlocal 0 .............................. pRayMemberName = tParams[#memberName]
+  [ 17] getlocal 0 .............................. <pRayMemberName>
+  [ 19] pusharglist 0 ........................... <>
+  [ 21] extcall 40 .............................. <VOID>
+  [ 23] eq ...................................... <pRayMemberName = VOID>
+  [ 24] jmpifz [ 41] ............................ if pRayMemberName = VOID then
+  [ 27] pushcons 0 .............................. <"Script: [PS] 3D Button Script. Params: ">
+  [ 29] getparam 1 .............................. <tParams>
+  [ 31] joinstr ................................. <"Script: [PS] 3D Button Script. Params: " & tParams>
+  [ 32] pushcons 1 .............................. <" Need a member to cast ray into...">
+  [ 34] joinstr ................................. <"Script: [PS] 3D Button Script. Params: " & tParams & " Need a member to cast ray into...">
+  [ 35] pusharglistnoret 1 ...................... <"Script: [PS] 3D Button Script. Params: " & tParams & " Need a member to cast ray into...">
+  [ 37] extcall 511 ............................. ShowError("Script: [PS] 3D Button Script. Params: " & tParams & " Need a member to cast ray into...")
+  [ 40] ret ..................................... exit
+  [ 41] getlocal 0 .............................. <pRayMemberName>
+  [ 43] pusharglist 1 ........................... <pRayMemberName>
+  [ 45] extcall 64 .............................. <member(pRayMemberName)>
+  [ 47] setlocal 1 .............................. pRayMember = member(pRayMemberName)
+  [ 49] getlocal 1 .............................. <pRayMember>
+  [ 51] pusharglist 0 ........................... <>
+  [ 53] extcall 40 .............................. <VOID>
+  [ 55] eq ...................................... <pRayMember = VOID>
+  [ 56] jmpifz [ 73] ............................ if pRayMember = VOID then
+  [ 59] pushcons 0 .............................. <"Script: [PS] 3D Button Script. Params: ">
+  [ 61] getparam 1 .............................. <tParams>
+  [ 63] joinstr ................................. <"Script: [PS] 3D Button Script. Params: " & tParams>
+  [ 64] pushcons 2 .............................. <"No such member to cast ray into..">
+  [ 66] joinstr ................................. <"Script: [PS] 3D Button Script. Params: " & tParams & "No such member to cast ray into..">
+  [ 67] pusharglistnoret 1 ...................... <"Script: [PS] 3D Button Script. Params: " & tParams & "No such member to cast ray into..">
+  [ 69] extcall 511 ............................. ShowError("Script: [PS] 3D Button Script. Params: " & tParams & "No such member to cast ray into..")
+  [ 72] ret ..................................... exit
+  [ 73] getparam 1 .............................. <tParams>
+  [ 75] pushsymb 950 ............................ <#cameraName>
+  [ 78] pusharglist 2 ........................... <tParams, #cameraName>
+  [ 80] objcall 105 ............................. <tParams[#cameraName]>
+  [ 82] setlocal 2 .............................. pCameraName = tParams[#cameraName]
+  [ 84] getlocal 2 .............................. <pCameraName>
+  [ 86] pusharglist 0 ........................... <>
+  [ 88] extcall 40 .............................. <VOID>
+  [ 90] eq ...................................... <pCameraName = VOID>
+  [ 91] jmpifz [111] ............................ if pCameraName = VOID then
+  [ 94] pushcons 0 .............................. <"Script: [PS] 3D Button Script. Params: ">
+  [ 96] getparam 1 .............................. <tParams>
+  [ 98] joinstr ................................. <"Script: [PS] 3D Button Script. Params: " & tParams>
+  [ 99] pushcons 3 .............................. <" No cameraname. DefaultView has been set.">
+  [101] joinstr ................................. <"Script: [PS] 3D Button Script. Params: " & tParams & " No cameraname. DefaultView has been set.">
+  [102] pusharglistnoret 1 ...................... <"Script: [PS] 3D Button Script. Params: " & tParams & " No cameraname. DefaultView has been set.">
+  [104] extcall 511 ............................. ShowError("Script: [PS] 3D Button Script. Params: " & tParams & " No cameraname. DefaultView has been set.")
+  [107] pushcons 4 .............................. <"Interface_Camera">
+  [109] setlocal 2 .............................. pCameraName = "Interface_Camera"
+  [111] gettoplevelprop 33 ...................... <_movie>
+  [113] getobjprop 951 .......................... <_movie.frameLabel>
+  [116] pushcons 5 .............................. <"Race">
+  [118] nteq .................................... <_movie.frameLabel <> "Race">
+  [119] jmpifz [126] ............................ if _movie.frameLabel <> "Race" then
+  [122] pushcons 6 .............................. <"Menu_Camera">
+  [124] setlocal 2 .............................. pCameraName = "Menu_Camera"
+  [126] getprop 563 ............................. <p>
+  [129] pushsymb 298 ............................ <#camera>
+  [132] getlocal 1 .............................. <pRayMember>
+  [134] getlocal 2 .............................. <pCameraName>
+  [136] pusharglist 2 ........................... <pRayMember, pCameraName>
+  [138] objcall 298 ............................. <pRayMember.camera(pCameraName)>
+  [141] pusharglistnoret 3 ...................... <p, #camera, pRayMember.camera(pCameraName)>
+  [143] objcall 103 ............................. p[#camera] = pRayMember.camera(pCameraName)
+  [145] getprop 563 ............................. <p>
+  [148] getobjprop 298 .......................... <p.camera>
+  [151] pusharglist 0 ........................... <>
+  [153] extcall 40 .............................. <VOID>
+  [155] eq ...................................... <p.camera = VOID>
+  [156] jmpifz [173] ............................ if p.camera = VOID then
+  [159] pushcons 0 .............................. <"Script: [PS] 3D Button Script. Params: ">
+  [161] getparam 1 .............................. <tParams>
+  [163] joinstr ................................. <"Script: [PS] 3D Button Script. Params: " & tParams>
+  [164] pushcons 7 .............................. <" No such camera in this member.">
+  [166] joinstr ................................. <"Script: [PS] 3D Button Script. Params: " & tParams & " No such camera in this member.">
+  [167] pusharglistnoret 1 ...................... <"Script: [PS] 3D Button Script. Params: " & tParams & " No such camera in this member.">
+  [169] extcall 511 ............................. ShowError("Script: [PS] 3D Button Script. Params: " & tParams & " No such camera in this member.")
+  [172] ret ..................................... exit
+  [173] getprop 563 ............................. <p>
+  [176] pushsymb 64 ............................. <#member>
+  [178] getlocal 1 .............................. <pRayMember>
+  [180] pusharglistnoret 3 ...................... <p, #member, pRayMember>
+  [182] objcall 103 ............................. p[#member] = pRayMember
+  [184] getprop 563 ............................. <p>
+  [187] pushsymb 565 ............................ <#ScriptName>
+  [190] pushcons 8 .............................. <"3D Button Script">
+  [192] pusharglistnoret 3 ...................... <p, #ScriptName, "3D Button Script">
+  [194] objcall 103 ............................. p[#ScriptName] = "3D Button Script"
+  [196] getglobal 395 ........................... <g>
+  [199] pushsymb 952 ............................ <#Button3DList>
+  [202] pusharglist 0 ........................... <[]>
+  [204] pushlist ................................ <[]>
+  [205] pusharglistnoret 3 ...................... <g, #Button3DList, []>
+  [207] objcall 103 ............................. g[#Button3DList] = []
+  [209] getprop 563 ............................. <p>
+  [212] pushsymb 953 ............................ <#button>
+  [215] pusharglist 0 ........................... <>
+  [217] extcall 40 .............................. <VOID>
+  [219] pusharglistnoret 3 ...................... <p, #button, VOID>
+  [221] objcall 103 ............................. p[#button] = VOID
+  [223] getprop 563 ............................. <p>
+  [226] pushsymb 954 ............................ <#PreviousButton>
+  [229] pusharglist 0 ........................... <>
+  [231] extcall 40 .............................. <VOID>
+  [233] pusharglistnoret 3 ...................... <p, #PreviousButton, VOID>
+  [235] objcall 103 ............................. p[#PreviousButton] = VOID
+  [237] getprop 563 ............................. <p>
+  [240] pushsymb 955 ............................ <#SoundPlayed>
+  [243] pushzero ................................ <0>
+  [244] pusharglistnoret 3 ...................... <p, #SoundPlayed, 0>
+  [246] objcall 103 ............................. p[#SoundPlayed] = 0
+  [248] getprop 563 ............................. <p>
+  [251] pushsymb 956 ............................ <#dataList>
+  [254] pusharglist 0 ........................... <>
+  [256] extcall 40 .............................. <VOID>
+  [258] pusharglistnoret 3 ...................... <p, #dataList, VOID>
+  [260] objcall 103 ............................. p[#dataList] = VOID
+  [262] getprop 563 ............................. <p>
+  [265] pushsymb 148 ............................ <#event>
+  [267] pusharglist 0 ........................... <>
+  [269] extcall 40 .............................. <VOID>
+  [271] pusharglistnoret 3 ...................... <p, #event, VOID>
+  [273] objcall 103 ............................. p[#event] = VOID
+  [275] getprop 563 ............................. <p>
+  [278] pushsymb 786 ............................ <#handler>
+  [281] pushcons 9 .............................. <"Nothing">
+  [283] pusharglistnoret 3 ...................... <p, #handler, "Nothing">
+  [285] objcall 103 ............................. p[#handler] = "Nothing"
+  [287] getprop 563 ............................. <p>
+  [290] pushsymb 957 ............................ <#alpha>
+  [293] pushint8 1 .............................. <1>
+  [295] pusharglistnoret 3 ...................... <p, #alpha, 1>
+  [297] objcall 103 ............................. p[#alpha] = 1
+  [299] getprop 563 ............................. <p>
+  [302] pushsymb 958 ............................ <#CosOffset>
+  [305] pusharglist 0 ........................... <>
+  [307] extcall 959 ............................. <PI>
+  [310] inv ..................................... <-PI>
+  [311] pushfloat32 2.0 ......................... <2.0>
+  [316] div ..................................... <-PI / 2.0>
+  [317] pusharglistnoret 3 ...................... <p, #CosOffset, -PI / 2.0>
+  [319] objcall 103 ............................. p[#CosOffset] = -PI / 2.0
+  [321] getprop 563 ............................. <p>
+  [324] pushsymb 960 ............................ <#StepList>
+  [327] pusharglist 0 ........................... <[]>
+  [329] pushlist ................................ <[]>
+  [330] pusharglistnoret 3 ...................... <p, #StepList, []>
+  [332] objcall 103 ............................. p[#StepList] = []
+  [334] getparam 0 .............................. <me>
+  [336] pusharglistnoret 1 ...................... <me>
+  [338] extcall 52 .............................. return me
+  [340] ret
+end
+
+on stepFrame me
+  [  0] gettoplevelprop 964 ..................... <_mouse>
+  [  3] getobjprop 365 .......................... <_mouse.mouseUp>
+  [  6] pushint8 1 .............................. <1>
+  [  8] eq ...................................... <_mouse.mouseUp = 1>
+  [  9] jmpifz [138] ............................ if _mouse.mouseUp = 1 then
+  [ 12] getprop 563 ............................. <p>
+  [ 15] getobjprop 148 .......................... <p.event>
+  [ 17] pusharglist 0 ........................... <>
+  [ 19] extcall 40 .............................. <VOID>
+  [ 21] nteq .................................... <p.event <> VOID>
+  [ 22] jmpifz [ 75] ............................ if p.event <> VOID then
+  [ 25] getprop 563 ............................. <p>
+  [ 28] pushsymb 956 ............................ <#dataList>
+  [ 31] pushsymb 965 ............................ <#pressedSoundName>
+  [ 34] pusharglist 3 ........................... <p, #dataList, #pressedSoundName>
+  [ 36] objcall 70 .............................. <p.dataList[#pressedSoundName]>
+  [ 38] setlocal 0 .............................. pSoundName = p.dataList[#pressedSoundName]
+  [ 40] getlocal 0 .............................. <pSoundName>
+  [ 42] pusharglist 0 ........................... <>
+  [ 44] extcall 40 .............................. <VOID>
+  [ 46] nteq .................................... <pSoundName <> VOID>
+  [ 47] jmpifz [ 57] ............................ if pSoundName <> VOID then
+  [ 50] getlocal 0 .............................. <pSoundName>
+  [ 52] pusharglistnoret 1 ...................... <pSoundName>
+  [ 54] extcall 289 ............................. PlaySound(pSoundName)
+  [ 57] getprop 563 ............................. <p>
+  [ 60] getobjprop 148 .......................... <p.event>
+  [ 62] pusharglistnoret 1 ...................... <p.event>
+  [ 64] extcall 148 ............................. event(p.event)
+  [ 66] getprop 563 ............................. <p>
+  [ 69] pusharglist 0 ........................... <>
+  [ 71] extcall 40 .............................. <VOID>
+  [ 73] setobjprop 148 .......................... p.event = VOID
+  [ 75] getprop 563 ............................. <p>
+  [ 78] getobjprop 786 .......................... <p.handler>
+  [ 81] pushcons 9 .............................. <"Nothing">
+  [ 83] nteq .................................... <p.handler <> "Nothing">
+  [ 84] jmpifz [138] ............................ if p.handler <> "Nothing" then
+  [ 87] getprop 563 ............................. <p>
+  [ 90] pushsymb 956 ............................ <#dataList>
+  [ 93] pushsymb 965 ............................ <#pressedSoundName>
+  [ 96] pusharglist 3 ........................... <p, #dataList, #pressedSoundName>
+  [ 98] objcall 70 .............................. <p.dataList[#pressedSoundName]>
+  [100] setlocal 0 .............................. pSoundName = p.dataList[#pressedSoundName]
+  [102] getlocal 0 .............................. <pSoundName>
+  [104] pusharglist 0 ........................... <>
+  [106] extcall 40 .............................. <VOID>
+  [108] nteq .................................... <pSoundName <> VOID>
+  [109] jmpifz [119] ............................ if pSoundName <> VOID then
+  [112] getlocal 0 .............................. <pSoundName>
+  [114] pusharglistnoret 1 ...................... <pSoundName>
+  [116] extcall 289 ............................. PlaySound(pSoundName)
+  [119] getprop 563 ............................. <p>
+  [122] getobjprop 786 .......................... <p.handler>
+  [125] pusharglistnoret 1 ...................... <p.handler>
+  [127] extcall 535 ............................. do(p.handler)
+  [130] getprop 563 ............................. <p>
+  [133] pushcons 9 .............................. <"Nothing">
+  [135] setobjprop 786 .......................... p.handler = "Nothing"
+  [138] getglobal 395 ........................... <g>
+  [141] pushsymb 952 ............................ <#Button3DList>
+  [144] pusharglist 2 ........................... <g, #Button3DList>
+  [146] extcall 542 ............................. <getaProp(g, #Button3DList)>
+  [149] pusharglist 0 ........................... <>
+  [151] extcall 40 .............................. <VOID>
+  [153] eq ...................................... <getaProp(g, #Button3DList) = VOID>
+  [154] jmpifz [158] ............................ if getaProp(g, #Button3DList) = VOID then
+  [157] ret ..................................... exit
+  [158] getprop 563 ............................. <p>
+  [161] getobjprop 298 .......................... <p.camera>
+  [164] pusharglist 0 ........................... <>
+  [166] extcall 40 .............................. <VOID>
+  [168] eq ...................................... <p.camera = VOID>
+  [169] jmpifz [173] ............................ if p.camera = VOID then
+  [172] ret ..................................... exit
+  [173] pusharglist 0 ........................... <[]>
+  [175] pushlist ................................ <[]>
+  [176] setlocal 1 .............................. pButtonList = []
+  [178] getglobal 395 ........................... <g>
+  [181] pushsymb 952 ............................ <#Button3DList>
+  [184] pusharglist 2 ........................... <g, #Button3DList>
+  [186] objcall 129 ............................. <g.Button3DList.count>
+  [188] setlocal 2 .............................. pCount = g.Button3DList.count
+  [190] pushint8 1 .............................. <1>
+  [192] setlocal 3
+  [194] getlocal 3
+  [196] getlocal 2 .............................. <pCount>
+  [198] lteq
+  [199] jmpifz [249] ............................ repeat with i = 1 to pCount
+  [202] getglobal 395 ........................... <g>
+  [205] pushsymb 952 ............................ <#Button3DList>
+  [208] getlocal 3 .............................. <i>
+  [210] pusharglist 3 ........................... <g, #Button3DList, i>
+  [212] objcall 102 ............................. <g.Button3DList[i]>
+  [214] pushsymb 71 ............................. <#model>
+  [216] pusharglist 2 ........................... <g.Button3DList[i], #model>
+  [218] objcall 105 ............................. <g.Button3DList[i][#model]>
+  [220] setlocal 4 .............................. pButtonModel = g.Button3DList[i][#model]
+  [222] getlocal 4 .............................. <pButtonModel>
+  [224] getobjprop 122 .......................... <pButtonModel.ilk>
+  [226] pushsymb 88 ............................. <#symbol>
+  [228] nteq .................................... <pButtonModel.ilk <> #symbol>
+  [229] jmpifz [240] ............................ if pButtonModel.ilk <> #symbol then
+  [232] getlocal 1 .............................. <pButtonList>
+  [234] getlocal 4 .............................. <pButtonModel>
+  [236] pusharglistnoret 2 ...................... <pButtonList, pButtonModel>
+  [238] objcall 42 .............................. pButtonList.add(pButtonModel)
+  [240] pushint8 1
+  [242] getlocal 3
+  [244] add
+  [245] setlocal 3
+  [247] endrepeat [194]
+  [249] pushsymb 966 ............................ <#maxNumberOfModels>
+  [252] pushint8 1 .............................. <1>
+  [254] pushsymb 967 ............................ <#levelOfDetail>
+  [257] pushsymb 968 ............................ <#detailed>
+  [260] pushsymb 969 ............................ <#modelList>
+  [263] getlocal 1 .............................. <pButtonList>
+  [265] pusharglist 6 ........................... <[#maxNumberOfModels: 1, #levelOfDetail: #detailed, #modelList: pButtonList]>
+  [267] pushproplist ............................ <[#maxNumberOfModels: 1, #levelOfDetail: #detailed, #modelList: pButtonList]>
+  [268] setlocal 5 .............................. pOptionList = [#maxNumberOfModels: 1, #levelOfDetail: #detailed, #modelList: pButtonList]
+  [270] gettoplevelprop 964 ..................... <_mouse>
+  [273] getobjprop 970 .......................... <_mouse.mouseLoc>
+  [276] setlocal 6 .............................. pPoint = _mouse.mouseLoc
+  [278] getprop 563 ............................. <p>
+  [281] getchainedprop 298 ...................... <p.camera>
+  [284] getlocal 6 .............................. <pPoint>
+  [286] getlocal 5 .............................. <pOptionList>
+  [288] pusharglist 3 ........................... <p.camera, pPoint, pOptionList>
+  [290] objcall 971 ............................. <p.camera.modelsUnderLoc(pPoint, pOptionList)>
+  [293] setlocal 7 .............................. pModelList = p.camera.modelsUnderLoc(pPoint, pOptionList)
+  [295] getlocal 7 .............................. <pModelList>
+  [297] pusharglist 0 ........................... <[]>
+  [299] pushlist ................................ <[]>
+  [300] nteq .................................... <pModelList <> []>
+  [301] jmpifz [921] ............................ if pModelList <> [] then / else
+  [304] getlocal 7 .............................. <pModelList>
+  [306] pushint8 1 .............................. <1>
+  [308] pusharglist 2 ........................... <pModelList, 1>
+  [310] objcall 105 ............................. <pModelList[1]>
+  [312] pushsymb 71 ............................. <#model>
+  [314] pusharglist 2 ........................... <pModelList[1], #model>
+  [316] objcall 105 ............................. <pModelList[1][#model]>
+  [318] setlocal 8 .............................. pmodel = pModelList[1][#model]
+  [320] getlocal 8 .............................. <pmodel>
+  [322] getprop 563 ............................. <p>
+  [325] getobjprop 954 .......................... <p.PreviousButton>
+  [328] nteq .................................... <pmodel <> p.PreviousButton>
+  [329] jmpifz [336] ............................ if pmodel <> p.PreviousButton then
+  [332] pusharglistnoret 0 ...................... <>
+  [334] localcall 2 ............................. ClearButton()
+  [336] getglobal 395 ........................... <g>
+  [339] pushsymb 952 ............................ <#Button3DList>
+  [342] pusharglist 2 ........................... <g, #Button3DList>
+  [344] objcall 129 ............................. <g.Button3DList.count>
+  [346] setlocal 2 .............................. pCount = g.Button3DList.count
+  [348] getprop 563 ............................. <p>
+  [351] pusharglist 0 ........................... <>
+  [353] extcall 40 .............................. <VOID>
+  [355] setobjprop 956 .......................... p.dataList = VOID
+  [358] pushint8 1 .............................. <1>
+  [360] setlocal 3
+  [362] getlocal 3
+  [364] getlocal 2 .............................. <pCount>
+  [366] lteq
+  [367] jmpifz [444] ............................ repeat with i = 1 to pCount
+  [370] getglobal 395 ........................... <g>
+  [373] pushsymb 952 ............................ <#Button3DList>
+  [376] getlocal 3 .............................. <i>
+  [378] pusharglist 3 ........................... <g, #Button3DList, i>
+  [380] objcall 102 ............................. <g.Button3DList[i]>
+  [382] pushsymb 71 ............................. <#model>
+  [384] pusharglist 2 ........................... <g.Button3DList[i], #model>
+  [386] objcall 105 ............................. <g.Button3DList[i][#model]>
+  [388] setlocal 4 .............................. pButtonModel = g.Button3DList[i][#model]
+  [390] getlocal 4 .............................. <pButtonModel>
+  [392] pusharglist 0 ........................... <>
+  [394] extcall 40 .............................. <VOID>
+  [396] eq ...................................... <pButtonModel = VOID>
+  [397] jmpifz [401] ............................ if pButtonModel = VOID then
+  [400] ret ..................................... exit
+  [401] getlocal 8 .............................. <pmodel>
+  [403] getlocal 4 .............................. <pButtonModel>
+  [405] eq ...................................... <pmodel = pButtonModel>
+  [406] jmpifz [427] ............................ if pmodel = pButtonModel then
+  [409] getprop 563 ............................. <p>
+  [412] getglobal 395 ........................... <g>
+  [415] pushsymb 952 ............................ <#Button3DList>
+  [418] getlocal 3 .............................. <i>
+  [420] pusharglist 3 ........................... <g, #Button3DList, i>
+  [422] objcall 70 .............................. <g.Button3DList[i]>
+  [424] setobjprop 956 .......................... p.dataList = g.Button3DList[i]
+  [427] getlocal 1 .............................. <pButtonList>
+  [429] getlocal 4 .............................. <pButtonModel>
+  [431] pusharglistnoret 2 ...................... <pButtonList, pButtonModel>
+  [433] objcall 42 .............................. pButtonList.add(pButtonModel)
+  [435] pushint8 1
+  [437] getlocal 3
+  [439] add
+  [440] setlocal 3
+  [442] endrepeat [362]
+  [444] pushint8 1 .............................. <1>
+  [446] setlocal 9 .............................. tPick = 1
+  [448] getprop 563 ............................. <p>
+  [451] getprop 563 ............................. <p>
+  [454] pushsymb 956 ............................ <#dataList>
+  [457] pushsymb 957 ............................ <#alpha>
+  [460] pusharglist 3 ........................... <p, #dataList, #alpha>
+  [462] objcall 70 .............................. <p.dataList[#alpha]>
+  [464] setobjprop 957 .......................... p.alpha = p.dataList[#alpha]
+  [467] getprop 563 ............................. <p>
+  [470] getobjprop 957 .......................... <p.alpha>
+  [473] pushint8 1 .............................. <1>
+  [475] eq ...................................... <p.alpha = 1>
+  [476] jmpifz [556] ............................ if p.alpha = 1 then
+  [479] getlocal 8 .............................. <pmodel>
+  [481] getchainedprop 208 ...................... <pmodel.shader>
+  [483] getchainedprop 218 ...................... <pmodel.shader.texture>
+  [485] getobjprop 64 ........................... <pmodel.shader.texture.member>
+  [487] setlocal 10 ............................. pTextureMember = pmodel.shader.texture.member
+  [489] getlocal 10 ............................. <pTextureMember>
+  [491] getobjprop 319 .......................... <pTextureMember.image>
+  [494] setlocal 11 ............................. pimage = pTextureMember.image
+  [496] getlocal 7 .............................. <pModelList>
+  [498] pushint8 1 .............................. <1>
+  [500] pusharglist 2 ........................... <pModelList, 1>
+  [502] objcall 105 ............................. <pModelList[1]>
+  [504] getlocal 11 ............................. <pimage>
+  [506] getobjprop 229 .......................... <pimage.width>
+  [508] getlocal 11 ............................. <pimage>
+  [510] getobjprop 283 .......................... <pimage.height>
+  [513] pusharglist 3 ........................... <pModelList[1], pimage.width, pimage.height>
+  [515] localcall 3 ............................. <mMapPointToTexture(pModelList[1], pimage.width, pimage.height)>
+  [517] setlocal 12 ............................. pPos = mMapPointToTexture(pModelList[1], pimage.width, pimage.height)
+  [519] getlocal 11 ............................. <pimage>
+  [521] pusharglist 1 ........................... <pimage>
+  [523] objcall 344 ............................. <pimage.extractAlpha()>
+  [526] getlocal 12 ............................. <pPos>
+  [528] pusharglist 2 ........................... <pimage.extractAlpha(), pPos>
+  [530] objcall 972 ............................. <pimage.extractAlpha().getPixel(pPos)>
+  [533] setlocal 13 ............................. pAlpha = pimage.extractAlpha().getPixel(pPos)
+  [535] getlocal 13 ............................. <pAlpha>
+  [537] pushzero ................................ <0>
+  [538] pusharglist 1 ........................... <0>
+  [540] extcall 223 ............................. <color(0)>
+  [542] nteq .................................... <pAlpha <> color(0)>
+  [543] jmpifz [553] ............................ if pAlpha <> color(0) then / else
+  [546] pushint8 1 .............................. <1>
+  [548] setlocal 9 .............................. tPick = 1
+  [550] jmp [556]
+  [553] pushzero ................................ <0>
+  [554] setlocal 9 .............................. tPick = 0
+  [556] getlocal 9 .............................. <tPick>
+  [558] pushint8 1 .............................. <1>
+  [560] eq ...................................... <tPick = 1>
+  [561] jmpifz [914] ............................ if tPick = 1 then / else
+  [564] gettoplevelprop 387 ..................... <_player>
+  [567] pushint16 280 ........................... <280>
+  [570] pusharglistnoret 2 ...................... <_player, 280>
+  [572] objcall 766 ............................. _player.cursor(280)
+  [575] getprop 563 ............................. <p>
+  [578] getlocal 8 .............................. <pmodel>
+  [580] setobjprop 953 .......................... p.button = pmodel
+  [583] getprop 563 ............................. <p>
+  [586] getchainedprop 953 ...................... <p.button>
+  [589] getobjprop 235 .......................... <p.button.name>
+  [591] pushcons 10 ............................. <"Branding">
+  [593] containsstr ............................. <p.button.name contains "Branding">
+  [594] jmpifz [605] ............................ if p.button.name contains "Branding" then / else
+  [597] pusharglistnoret 0 ...................... <>
+  [599] extcall 429 ............................. nothing()
+  [602] jmp [694]
+  [605] pushfloat32 1.0 ......................... <1.0>
+  [610] pushfloat32 1.0 ......................... <1.0>
+  [615] pushfloat32 1.0 ......................... <1.0>
+  [620] pusharglist 3 ........................... <1.0, 1.0, 1.0>
+  [622] extcall 212 ............................. <vector(1.0, 1.0, 1.0)>
+  [624] pushcons 11 ............................. <0.29999999999999999>
+  [626] mul ..................................... <vector(1.0, 1.0, 1.0) * 0.29999999999999999>
+  [627] getprop 563 ............................. <p>
+  [630] getobjprop 958 .......................... <p.CosOffset>
+  [633] pusharglist 1 ........................... <p.CosOffset>
+  [635] extcall 974 ............................. <cos(p.CosOffset)>
+  [638] pusharglist 1 ........................... <cos(p.CosOffset)>
+  [640] extcall 973 ............................. <abs(cos(p.CosOffset))>
+  [643] mul ..................................... <vector(1.0, 1.0, 1.0) * 0.29999999999999999 * abs(cos(p.CosOffset))>
+  [644] setlocal 14 ............................. tSize = vector(1.0, 1.0, 1.0) * 0.29999999999999999 * abs(cos(p.CosOffset))
+  [646] getprop 563 ............................. <p>
+  [649] getchainedprop 953 ...................... <p.button>
+  [652] getchainedprop 214 ...................... <p.button.transform>
+  [654] pushfloat32 1.0 ......................... <1.0>
+  [659] pushfloat32 1.0 ......................... <1.0>
+  [664] pushfloat32 1.0 ......................... <1.0>
+  [669] pusharglist 3 ........................... <1.0, 1.0, 1.0>
+  [671] extcall 212 ............................. <vector(1.0, 1.0, 1.0)>
+  [673] getlocal 14 ............................. <tSize>
+  [675] add ..................................... <vector(1.0, 1.0, 1.0) + tSize>
+  [676] setobjprop 307 .......................... p.button.transform.scale = vector(1.0, 1.0, 1.0) + tSize
+  [679] getprop 563 ............................. <p>
+  [682] getprop 563 ............................. <p>
+  [685] getobjprop 958 .......................... <p.CosOffset>
+  [688] pushcons 12 ............................. <0.19500000000000001>
+  [690] add ..................................... <p.CosOffset + 0.19500000000000001>
+  [691] setobjprop 958 .......................... p.CosOffset = p.CosOffset + 0.19500000000000001
+  [694] getprop 563 ............................. <p>
+  [697] getchainedprop 956 ...................... <p.dataList>
+  [700] getobjprop 975 .......................... <p.dataList.hack>
+  [703] pushzero ................................ <0>
+  [704] eq ...................................... <p.dataList.hack = 0>
+  [705] jmpifz [792] ............................ if p.dataList.hack = 0 then / else
+  [708] getprop 563 ............................. <p>
+  [711] getchainedprop 953 ...................... <p.button>
+  [714] pushsymb 305 ............................ <#shaderList>
+  [717] pushint8 1 .............................. <1>
+  [719] pusharglist 3 ........................... <p.button, #shaderList, 1>
+  [721] objcall 102 ............................. <p.button.shaderList[1]>
+  [723] getobjprop 235 .......................... <p.button.shaderList[1].name>
+  [725] setlocal 15 ............................. tName = p.button.shaderList[1].name
+  [727] getmovieprop 145 ........................ <the itemDelimiter>
+  [729] setlocal 16 ............................. tOldDelimiter = the itemDelimiter
+  [731] pushcons 13 ............................. <"_">
+  [733] setmovieprop 145 ........................ the itemDelimiter = "_"
+  [735] getlocal 15 ............................. <tName>
+  [737] pushsymb 83 ............................. <#item>
+  [739] pushint8 1 .............................. <1>
+  [741] pusharglist 3 ........................... <tName, #item, 1>
+  [743] objcall 70 .............................. <tName.item[1]>
+  [745] setlocal 15 ............................. tName = tName.item[1]
+  [747] getlocal 16 ............................. <tOldDelimiter>
+  [749] setmovieprop 145 ........................ the itemDelimiter = tOldDelimiter
+  [751] getprop 563 ............................. <p>
+  [754] getchainedprop 64 ....................... <p.member>
+  [756] getlocal 15 ............................. <tName>
+  [758] pushcons 14 ............................. <"RollOver_Texture">
+  [760] joinstr ................................. <tName & "RollOver_Texture">
+  [761] pusharglist 2 ........................... <p.member, tName & "RollOver_Texture">
+  [763] objcall 218 ............................. <p.member.texture(tName & "RollOver_Texture")>
+  [765] setlocal 17 ............................. pRollOverTexture = p.member.texture(tName & "RollOver_Texture")
+  [767] getlocal 17 ............................. <pRollOverTexture>
+  [769] pusharglist 0 ........................... <>
+  [771] extcall 40 .............................. <VOID>
+  [773] nteq .................................... <pRollOverTexture <> VOID>
+  [774] jmpifz [789] ............................ if pRollOverTexture <> VOID then
+  [777] getprop 563 ............................. <p>
+  [780] getchainedprop 953 ...................... <p.button>
+  [783] getchainedprop 208 ...................... <p.button.shader>
+  [785] getlocal 17 ............................. <pRollOverTexture>
+  [787] setobjprop 218 .......................... p.button.shader.texture = pRollOverTexture
+  [789] jmp [814]
+  [792] getprop 563 ............................. <p>
+  [795] getchainedprop 953 ...................... <p.button>
+  [798] getobjprop 236 .......................... <p.button.userData>
+  [800] setlocal 18 ............................. tData = p.button.userData
+  [802] getprop 563 ............................. <p>
+  [805] getchainedprop 953 ...................... <p.button>
+  [808] getlocal 18 ............................. <tData>
+  [810] getobjprop 207 .......................... <tData.parent>
+  [812] setobjprop 207 .......................... p.button.parent = tData.parent
+  [814] getprop 563 ............................. <p>
+  [817] pushsymb 956 ............................ <#dataList>
+  [820] pushsymb 976 ............................ <#rollOverSoundName>
+  [823] pusharglist 3 ........................... <p, #dataList, #rollOverSoundName>
+  [825] objcall 70 .............................. <p.dataList[#rollOverSoundName]>
+  [827] setlocal 0 .............................. pSoundName = p.dataList[#rollOverSoundName]
+  [829] getlocal 0 .............................. <pSoundName>
+  [831] pusharglist 0 ........................... <>
+  [833] extcall 40 .............................. <VOID>
+  [835] nteq .................................... <pSoundName <> VOID>
+  [836] getprop 563 ............................. <p>
+  [839] getobjprop 955 .......................... <p.SoundPlayed>
+  [842] pushzero ................................ <0>
+  [843] eq ...................................... <p.SoundPlayed = 0>
+  [844] and ..................................... <(pSoundName <> VOID) and (p.SoundPlayed = 0)>
+  [845] jmpifz [863] ............................ if (pSoundName <> VOID) and (p.SoundPlayed = 0) then
+  [848] getlocal 0 .............................. <pSoundName>
+  [850] pusharglistnoret 1 ...................... <pSoundName>
+  [852] extcall 289 ............................. PlaySound(pSoundName)
+  [855] getprop 563 ............................. <p>
+  [858] pushint8 1 .............................. <1>
+  [860] setobjprop 955 .......................... p.SoundPlayed = 1
+  [863] gettoplevelprop 964 ..................... <_mouse>
+  [866] getobjprop 363 .......................... <_mouse.mouseDown>
+  [869] pushint8 1 .............................. <1>
+  [871] eq ...................................... <_mouse.mouseDown = 1>
+  [872] jmpifz [911] ............................ if _mouse.mouseDown = 1 then
+  [875] getprop 563 ............................. <p>
+  [878] getprop 563 ............................. <p>
+  [881] pushsymb 956 ............................ <#dataList>
+  [884] pushsymb 148 ............................ <#event>
+  [886] pusharglist 3 ........................... <p, #dataList, #event>
+  [888] objcall 70 .............................. <p.dataList[#event]>
+  [890] setobjprop 148 .......................... p.event = p.dataList[#event]
+  [892] getprop 563 ............................. <p>
+  [895] getprop 563 ............................. <p>
+  [898] pushsymb 956 ............................ <#dataList>
+  [901] pushsymb 786 ............................ <#handler>
+  [904] pusharglist 3 ........................... <p, #dataList, #handler>
+  [906] objcall 70 .............................. <p.dataList[#handler]>
+  [908] setobjprop 786 .......................... p.handler = p.dataList[#handler]
+  [911] jmp [918]
+  [914] pusharglistnoret 0 ...................... <>
+  [916] localcall 2 ............................. ClearButton()
+  [918] jmp [925]
+  [921] pusharglistnoret 0 ...................... <>
+  [923] localcall 2 ............................. ClearButton()
+  [925] getprop 563 ............................. <p>
+  [928] pushsymb 960 ............................ <#StepList>
+  [931] pusharglist 2 ........................... <p, #StepList>
+  [933] objcall 129 ............................. <p.StepList.count>
+  [935] pushzero ................................ <0>
+  [936] gt ...................................... <p.StepList.count > 0>
+  [937] jmpifz [1025] ........................... if p.StepList.count > 0 then
+  [940] getprop 563 ............................. <p>
+  [943] getobjprop 960 .......................... <p.StepList>
+  [946] peek 0
+  [948] pusharglist 1
+  [950] extcall 129
+  [952] pushint8 1
+  [954] peek 0
+  [956] peek 2
+  [958] lteq
+  [959] jmpifz [1023] ........................... repeat with i in p.StepList
+  [962] peek 2
+  [964] peek 1
+  [966] pusharglist 2
+  [968] extcall 105
+  [970] setlocal 3
+  [972] getlocal 3 .............................. <i>
+  [974] getchainedprop 953 ...................... <i.button>
+  [977] getobjprop 122 .......................... <i.button.ilk>
+  [979] pushsymb 71 ............................. <#model>
+  [981] eq ...................................... <i.button.ilk = #model>
+  [982] jmpifz [1006] ........................... if i.button.ilk = #model then
+  [985] getlocal 3 .............................. <i>
+  [987] getchainedprop 953 ...................... <i.button>
+  [990] getchainedprop 214 ...................... <i.button.transform>
+  [992] getlocal 3 .............................. <i>
+  [994] pushsymb 960 ............................ <#StepList>
+  [997] pushint8 1 .............................. <1>
+  [999] pusharglist 3 ........................... <i, #StepList, 1>
+  [1001] objcall 70 ............................. <i.StepList[1]>
+  [1003] setobjprop 307 ......................... i.button.transform.scale = i.StepList[1]
+  [1006] getlocal 3 ............................. <i>
+  [1008] getchainedprop 960 ..................... <i.StepList>
+  [1011] pushint8 1 ............................. <1>
+  [1013] pusharglistnoret 2 ..................... <i.StepList, 1>
+  [1015] objcall 661 ............................ i.StepList.deleteAt(1)
+  [1018] pushint8 1
+  [1020] add
+  [1021] endrepeat [954]
+  [1023] pop 3
+  [1025] getprop 563 ............................ <p>
+  [1028] getchainedprop 960 ..................... <p.StepList>
+  [1031] pusharglist 1 .......................... <p.StepList>
+  [1033] objcall 233 ............................ <p.StepList.duplicate()>
+  [1035] setlocal 19 ............................ tList = p.StepList.duplicate()
+  [1037] getprop 563 ............................ <p>
+  [1040] getobjprop 960 ......................... <p.StepList>
+  [1043] peek 0
+  [1045] pusharglist 1
+  [1047] extcall 129
+  [1049] pushint8 1
+  [1051] peek 0
+  [1053] peek 2
+  [1055] lteq
+  [1056] jmpifz [1096] .......................... repeat with i in p.StepList
+  [1059] peek 2
+  [1061] peek 1
+  [1063] pusharglist 2
+  [1065] extcall 105
+  [1067] setlocal 3
+  [1069] getlocal 3 ............................. <i>
+  [1071] pushsymb 960 ........................... <#StepList>
+  [1074] pusharglist 2 .......................... <i, #StepList>
+  [1076] objcall 129 ............................ <i.StepList.count>
+  [1078] pushzero ............................... <0>
+  [1079] eq ..................................... <i.StepList.count = 0>
+  [1080] jmpifz [1091] .......................... if i.StepList.count = 0 then
+  [1083] getlocal 19 ............................ <tList>
+  [1085] getlocal 3 ............................. <i>
+  [1087] pusharglistnoret 2 ..................... <tList, i>
+  [1089] objcall 175 ............................ tList.deleteOne(i)
+  [1091] pushint8 1
+  [1093] add
+  [1094] endrepeat [1051]
+  [1096] pop 3
+  [1098] getprop 563 ............................ <p>
+  [1101] getlocal 19 ............................ <tList>
+  [1103] pusharglist 1 .......................... <tList>
+  [1105] objcall 233 ............................ <tList.duplicate()>
+  [1107] setobjprop 960 ......................... p.StepList = tList.duplicate()
+  [1110] ret
+end
+
+on ClearButton me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 953 .......................... <p.button>
+  [  6] pusharglist 0 ........................... <>
+  [  8] extcall 40 .............................. <VOID>
+  [ 10] nteq .................................... <p.button <> VOID>
+  [ 11] jmpifz [323] ............................ if p.button <> VOID then
+  [ 14] getprop 563 ............................. <p>
+  [ 17] getprop 563 ............................. <p>
+  [ 20] getobjprop 953 .......................... <p.button>
+  [ 23] setobjprop 954 .......................... p.PreviousButton = p.button
+  [ 26] getprop 563 ............................. <p>
+  [ 29] getchainedprop 956 ...................... <p.dataList>
+  [ 32] getobjprop 975 .......................... <p.dataList.hack>
+  [ 35] pushzero ................................ <0>
+  [ 36] eq ...................................... <p.dataList.hack = 0>
+  [ 37] jmpifz [124] ............................ if p.dataList.hack = 0 then / else
+  [ 40] getprop 563 ............................. <p>
+  [ 43] getchainedprop 953 ...................... <p.button>
+  [ 46] pushsymb 305 ............................ <#shaderList>
+  [ 49] pushint8 1 .............................. <1>
+  [ 51] pusharglist 3 ........................... <p.button, #shaderList, 1>
+  [ 53] objcall 102 ............................. <p.button.shaderList[1]>
+  [ 55] getobjprop 235 .......................... <p.button.shaderList[1].name>
+  [ 57] setlocal 0 .............................. tName = p.button.shaderList[1].name
+  [ 59] getmovieprop 145 ........................ <the itemDelimiter>
+  [ 61] setlocal 1 .............................. tOldDelimiter = the itemDelimiter
+  [ 63] pushcons 13 ............................. <"_">
+  [ 65] setmovieprop 145 ........................ the itemDelimiter = "_"
+  [ 67] getlocal 0 .............................. <tName>
+  [ 69] pushsymb 83 ............................. <#item>
+  [ 71] pushint8 1 .............................. <1>
+  [ 73] pusharglist 3 ........................... <tName, #item, 1>
+  [ 75] objcall 70 .............................. <tName.item[1]>
+  [ 77] setlocal 0 .............................. tName = tName.item[1]
+  [ 79] getlocal 1 .............................. <tOldDelimiter>
+  [ 81] setmovieprop 145 ........................ the itemDelimiter = tOldDelimiter
+  [ 83] getprop 563 ............................. <p>
+  [ 86] getchainedprop 64 ....................... <p.member>
+  [ 88] getlocal 0 .............................. <tName>
+  [ 90] pushcons 15 ............................. <"Normal_Texture">
+  [ 92] joinstr ................................. <tName & "Normal_Texture">
+  [ 93] pusharglist 2 ........................... <p.member, tName & "Normal_Texture">
+  [ 95] objcall 218 ............................. <p.member.texture(tName & "Normal_Texture")>
+  [ 97] setlocal 2 .............................. pNormalTexture = p.member.texture(tName & "Normal_Texture")
+  [ 99] getlocal 2 .............................. <pNormalTexture>
+  [101] pusharglist 0 ........................... <>
+  [103] extcall 40 .............................. <VOID>
+  [105] nteq .................................... <pNormalTexture <> VOID>
+  [106] jmpifz [121] ............................ if pNormalTexture <> VOID then
+  [109] getprop 563 ............................. <p>
+  [112] getchainedprop 953 ...................... <p.button>
+  [115] getchainedprop 208 ...................... <p.button.shader>
+  [117] getlocal 2 .............................. <pNormalTexture>
+  [119] setobjprop 218 .......................... p.button.shader.texture = pNormalTexture
+  [121] jmp [135]
+  [124] getprop 563 ............................. <p>
+  [127] getchainedprop 953 ...................... <p.button>
+  [130] pusharglistnoret 1 ...................... <p.button>
+  [132] objcall 662 ............................. p.button.removeFromWorld()
+  [135] getprop 563 ............................. <p>
+  [138] getchainedprop 953 ...................... <p.button>
+  [141] getobjprop 235 .......................... <p.button.name>
+  [143] pushcons 10 ............................. <"Branding">
+  [145] containsstr ............................. <p.button.name contains "Branding">
+  [146] jmpifz [157] ............................ if p.button.name contains "Branding" then / else
+  [149] pusharglistnoret 0 ...................... <>
+  [151] extcall 429 ............................. nothing()
+  [154] jmp [323]
+  [157] pushint8 3 .............................. <3>
+  [159] setlocal 3 .............................. tSteps = 3
+  [161] pushfloat32 1.0 ......................... <1.0>
+  [166] pushfloat32 1.0 ......................... <1.0>
+  [171] pushfloat32 1.0 ......................... <1.0>
+  [176] pusharglist 3 ........................... <1.0, 1.0, 1.0>
+  [178] extcall 212 ............................. <vector(1.0, 1.0, 1.0)>
+  [180] setlocal 4 .............................. tScale = vector(1.0, 1.0, 1.0)
+  [182] getprop 563 ............................. <p>
+  [185] getchainedprop 953 ...................... <p.button>
+  [188] getchainedprop 214 ...................... <p.button.transform>
+  [190] getobjprop 307 .......................... <p.button.transform.scale>
+  [193] getlocal 4 .............................. <tScale>
+  [195] sub ..................................... <p.button.transform.scale - tScale>
+  [196] setlocal 5 .............................. tdiff = p.button.transform.scale - tScale
+  [198] getlocal 5 .............................. <tdiff>
+  [200] getlocal 3 .............................. <tSteps>
+  [202] pusharglist 1 ........................... <tSteps>
+  [204] extcall 544 ............................. <float(tSteps)>
+  [207] div ..................................... <tdiff / float(tSteps)>
+  [208] setlocal 6 .............................. tStep = tdiff / float(tSteps)
+  [210] pushsymb 953 ............................ <#button>
+  [213] getprop 563 ............................. <p>
+  [216] getobjprop 953 .......................... <p.button>
+  [219] pushsymb 960 ............................ <#StepList>
+  [222] pusharglist 0 ........................... <[]>
+  [224] pushlist ................................ <[]>
+  [225] pusharglist 4 ........................... <[#button: p.button, #StepList: []]>
+  [227] pushproplist ............................ <[#button: p.button, #StepList: []]>
+  [228] setlocal 7 .............................. tList = [#button: p.button, #StepList: []]
+  [230] pushint8 1 .............................. <1>
+  [232] setlocal 8
+  [234] getlocal 8
+  [236] getlocal 3 .............................. <tSteps>
+  [238] lteq
+  [239] jmpifz [311] ............................ repeat with i = 1 to tSteps
+  [242] getlocal 8 .............................. <i>
+  [244] pushint8 1 .............................. <1>
+  [246] eq ...................................... <i = 1>
+  [247] jmpifz [276] ............................ if i = 1 then
+  [250] getlocal 7 .............................. <tList>
+  [252] getchainedprop 960 ...................... <tList.StepList>
+  [255] getprop 563 ............................. <p>
+  [258] getchainedprop 953 ...................... <p.button>
+  [261] getchainedprop 214 ...................... <p.button.transform>
+  [263] getobjprop 307 .......................... <p.button.transform.scale>
+  [266] getlocal 6 .............................. <tStep>
+  [268] sub ..................................... <p.button.transform.scale - tStep>
+  [269] pusharglistnoret 2 ...................... <tList.StepList, p.button.transform.scale - tStep>
+  [271] objcall 42 .............................. tList.StepList.add(p.button.transform.scale - tStep)
+  [273] jmp [302] ............................... next repeat
+  [276] getlocal 7 .............................. <tList>
+  [278] getchainedprop 960 ...................... <tList.StepList>
+  [281] getlocal 7 .............................. <tList>
+  [283] pushsymb 960 ............................ <#StepList>
+  [286] getlocal 8 .............................. <i>
+  [288] pushint8 1 .............................. <1>
+  [290] sub ..................................... <i - 1>
+  [291] pusharglist 3 ........................... <tList, #StepList, i - 1>
+  [293] objcall 70 .............................. <tList.StepList[i - 1]>
+  [295] getlocal 6 .............................. <tStep>
+  [297] sub ..................................... <tList.StepList[i - 1] - tStep>
+  [298] pusharglistnoret 2 ...................... <tList.StepList, tList.StepList[i - 1] - tStep>
+  [300] objcall 42 .............................. tList.StepList.add(tList.StepList[i - 1] - tStep)
+  [302] pushint8 1
+  [304] getlocal 8
+  [306] add
+  [307] setlocal 8
+  [309] endrepeat [234]
+  [311] getprop 563 ............................. <p>
+  [314] getchainedprop 960 ...................... <p.StepList>
+  [317] getlocal 7 .............................. <tList>
+  [319] pusharglistnoret 2 ...................... <p.StepList, tList>
+  [321] objcall 42 .............................. p.StepList.add(tList)
+  [323] getprop 563 ............................. <p>
+  [326] pusharglist 0 ........................... <>
+  [328] extcall 40 .............................. <VOID>
+  [330] setobjprop 953 .......................... p.button = VOID
+  [333] getprop 563 ............................. <p>
+  [336] pushzero ................................ <0>
+  [337] setobjprop 955 .......................... p.SoundPlayed = 0
+  [340] getprop 563 ............................. <p>
+  [343] pushsymb 958 ............................ <#CosOffset>
+  [346] pusharglist 0 ........................... <>
+  [348] extcall 959 ............................. <PI>
+  [351] inv ..................................... <-PI>
+  [352] pushfloat32 2.0 ......................... <2.0>
+  [357] div ..................................... <-PI / 2.0>
+  [358] pusharglistnoret 3 ...................... <p, #CosOffset, -PI / 2.0>
+  [360] objcall 103 ............................. p[#CosOffset] = -PI / 2.0
+  [362] gettoplevelprop 387 ..................... <_player>
+  [365] pushint8 1 .............................. <1>
+  [367] inv ..................................... <-1>
+  [368] pusharglistnoret 2 ...................... <_player, -1>
+  [370] objcall 766 ............................. _player.cursor(-1)
+  [373] ret
+end
+
+on mMapPointToTexture iSectList, tWidth, tHeight
+  [  0] getparam 0 .............................. <iSectList>
+  [  2] getobjprop 71 ........................... <iSectList.model>
+  [  4] setlocal 0 .............................. tmodel = iSectList.model
+  [  6] getlocal 0 .............................. <tmodel>
+  [  8] pushsymb 995 ............................ <#meshDeform>
+  [ 11] pusharglistnoret 2 ...................... <tmodel, #meshDeform>
+  [ 13] objcall 261 ............................. tmodel.addModifier(#meshDeform)
+  [ 16] getparam 0 .............................. <iSectList>
+  [ 18] getobjprop 996 .......................... <iSectList.faceID>
+  [ 21] setlocal 1 .............................. tFace = iSectList.faceID
+  [ 23] getparam 0 .............................. <iSectList>
+  [ 25] getobjprop 997 .......................... <iSectList.uvCoord>
+  [ 28] setlocal 2 .............................. tUVCoord = iSectList.uvCoord
+  [ 30] getlocal 0 .............................. <tmodel>
+  [ 32] getchainedprop 995 ...................... <tmodel.meshDeform>
+  [ 35] pushsymb 998 ............................ <#mesh>
+  [ 38] getparam 0 .............................. <iSectList>
+  [ 40] getobjprop 999 .......................... <iSectList.meshID>
+  [ 43] pusharglist 3 ........................... <tmodel.meshDeform, #mesh, iSectList.meshID>
+  [ 45] objcall 102 ............................. <tmodel.meshDeform.mesh[iSectList.meshID]>
+  [ 47] getobjprop 886 .......................... <tmodel.meshDeform.mesh[iSectList.meshID].textureCoordinateList>
+  [ 50] setlocal 3 .............................. tCoordList = tmodel.meshDeform.mesh[iSectList.meshID].textureCoordinateList
+  [ 52] getlocal 0 .............................. <tmodel>
+  [ 54] getchainedprop 995 ...................... <tmodel.meshDeform>
+  [ 57] pushsymb 998 ............................ <#mesh>
+  [ 60] getparam 0 .............................. <iSectList>
+  [ 62] getobjprop 999 .......................... <iSectList.meshID>
+  [ 65] pusharglist 3 ........................... <tmodel.meshDeform, #mesh, iSectList.meshID>
+  [ 67] objcall 102 ............................. <tmodel.meshDeform.mesh[iSectList.meshID]>
+  [ 69] pushsymb 884 ............................ <#face>
+  [ 72] getlocal 1 .............................. <tFace>
+  [ 74] pusharglist 3 ........................... <tmodel.meshDeform.mesh[iSectList.meshID], #face, tFace>
+  [ 76] objcall 70 .............................. <tmodel.meshDeform.mesh[iSectList.meshID].face[tFace]>
+  [ 78] setlocal 4 .............................. tFaceList = tmodel.meshDeform.mesh[iSectList.meshID].face[tFace]
+  [ 80] getlocal 0 .............................. <tmodel>
+  [ 82] pushsymb 995 ............................ <#meshDeform>
+  [ 85] pusharglistnoret 2 ...................... <tmodel, #meshDeform>
+  [ 87] objcall 296 ............................. tmodel.removeModifier(#meshDeform)
+  [ 90] getlocal 3 .............................. <tCoordList>
+  [ 92] getlocal 4 .............................. <tFaceList>
+  [ 94] pushint8 1 .............................. <1>
+  [ 96] pusharglist 2 ........................... <tFaceList, 1>
+  [ 98] objcall 105 ............................. <tFaceList[1]>
+  [100] pusharglist 2 ........................... <tCoordList, tFaceList[1]>
+  [102] objcall 105 ............................. <tCoordList[tFaceList[1]]>
+  [104] setlocal 5 .............................. tLocA = tCoordList[tFaceList[1]]
+  [106] getlocal 5 .............................. <tLocA>
+  [108] pushint8 1 .............................. <1>
+  [110] pusharglist 2 ........................... <tLocA, 1>
+  [112] objcall 105 ............................. <tLocA[1]>
+  [114] getparam 1 .............................. <tWidth>
+  [116] mul ..................................... <tLocA[1] * tWidth>
+  [117] pushint8 1 .............................. <1>
+  [119] getlocal 5 .............................. <tLocA>
+  [121] pushint8 2 .............................. <2>
+  [123] pusharglist 2 ........................... <tLocA, 2>
+  [125] objcall 105 ............................. <tLocA[2]>
+  [127] sub ..................................... <1 - tLocA[2]>
+  [128] getparam 2 .............................. <tHeight>
+  [130] mul ..................................... <(1 - tLocA[2]) * tHeight>
+  [131] pusharglist 2 ........................... <tLocA[1] * tWidth, (1 - tLocA[2]) * tHeight>
+  [133] extcall 302 ............................. <point(tLocA[1] * tWidth, (1 - tLocA[2]) * tHeight)>
+  [136] setlocal 5 .............................. tLocA = point(tLocA[1] * tWidth, (1 - tLocA[2]) * tHeight)
+  [138] getlocal 3 .............................. <tCoordList>
+  [140] getlocal 4 .............................. <tFaceList>
+  [142] pushint8 2 .............................. <2>
+  [144] pusharglist 2 ........................... <tFaceList, 2>
+  [146] objcall 105 ............................. <tFaceList[2]>
+  [148] pusharglist 2 ........................... <tCoordList, tFaceList[2]>
+  [150] objcall 105 ............................. <tCoordList[tFaceList[2]]>
+  [152] setlocal 6 .............................. tLocB = tCoordList[tFaceList[2]]
+  [154] getlocal 6 .............................. <tLocB>
+  [156] pushint8 1 .............................. <1>
+  [158] pusharglist 2 ........................... <tLocB, 1>
+  [160] objcall 105 ............................. <tLocB[1]>
+  [162] getparam 1 .............................. <tWidth>
+  [164] mul ..................................... <tLocB[1] * tWidth>
+  [165] pushint8 1 .............................. <1>
+  [167] getlocal 6 .............................. <tLocB>
+  [169] pushint8 2 .............................. <2>
+  [171] pusharglist 2 ........................... <tLocB, 2>
+  [173] objcall 105 ............................. <tLocB[2]>
+  [175] sub ..................................... <1 - tLocB[2]>
+  [176] getparam 2 .............................. <tHeight>
+  [178] mul ..................................... <(1 - tLocB[2]) * tHeight>
+  [179] pusharglist 2 ........................... <tLocB[1] * tWidth, (1 - tLocB[2]) * tHeight>
+  [181] extcall 302 ............................. <point(tLocB[1] * tWidth, (1 - tLocB[2]) * tHeight)>
+  [184] setlocal 6 .............................. tLocB = point(tLocB[1] * tWidth, (1 - tLocB[2]) * tHeight)
+  [186] getlocal 3 .............................. <tCoordList>
+  [188] getlocal 4 .............................. <tFaceList>
+  [190] pushint8 3 .............................. <3>
+  [192] pusharglist 2 ........................... <tFaceList, 3>
+  [194] objcall 105 ............................. <tFaceList[3]>
+  [196] pusharglist 2 ........................... <tCoordList, tFaceList[3]>
+  [198] objcall 105 ............................. <tCoordList[tFaceList[3]]>
+  [200] setlocal 7 .............................. tLocC = tCoordList[tFaceList[3]]
+  [202] getlocal 7 .............................. <tLocC>
+  [204] pushint8 1 .............................. <1>
+  [206] pusharglist 2 ........................... <tLocC, 1>
+  [208] objcall 105 ............................. <tLocC[1]>
+  [210] getparam 1 .............................. <tWidth>
+  [212] mul ..................................... <tLocC[1] * tWidth>
+  [213] pushint8 1 .............................. <1>
+  [215] getlocal 7 .............................. <tLocC>
+  [217] pushint8 2 .............................. <2>
+  [219] pusharglist 2 ........................... <tLocC, 2>
+  [221] objcall 105 ............................. <tLocC[2]>
+  [223] sub ..................................... <1 - tLocC[2]>
+  [224] getparam 2 .............................. <tHeight>
+  [226] mul ..................................... <(1 - tLocC[2]) * tHeight>
+  [227] pusharglist 2 ........................... <tLocC[1] * tWidth, (1 - tLocC[2]) * tHeight>
+  [229] extcall 302 ............................. <point(tLocC[1] * tWidth, (1 - tLocC[2]) * tHeight)>
+  [232] setlocal 7 .............................. tLocC = point(tLocC[1] * tWidth, (1 - tLocC[2]) * tHeight)
+  [234] getlocal 6 .............................. <tLocB>
+  [236] getlocal 5 .............................. <tLocA>
+  [238] sub ..................................... <tLocB - tLocA>
+  [239] getlocal 2 .............................. <tUVCoord>
+  [241] getobjprop 1000 ......................... <tUVCoord.u>
+  [244] mul ..................................... <(tLocB - tLocA) * tUVCoord.u>
+  [245] setlocal 8 .............................. tUVector = (tLocB - tLocA) * tUVCoord.u
+  [247] getlocal 7 .............................. <tLocC>
+  [249] getlocal 5 .............................. <tLocA>
+  [251] sub ..................................... <tLocC - tLocA>
+  [252] getlocal 2 .............................. <tUVCoord>
+  [254] getobjprop 1001 ......................... <tUVCoord.V>
+  [257] mul ..................................... <(tLocC - tLocA) * tUVCoord.V>
+  [258] setlocal 9 .............................. tVVector = (tLocC - tLocA) * tUVCoord.V
+  [260] getlocal 5 .............................. <tLocA>
+  [262] getlocal 8 .............................. <tUVector>
+  [264] add ..................................... <tLocA + tUVector>
+  [265] getlocal 9 .............................. <tVVector>
+  [267] add ..................................... <tLocA + tUVector + tVVector>
+  [268] pusharglistnoret 1 ...................... <tLocA + tUVector + tVVector>
+  [270] extcall 52 .............................. return tLocA + tUVector + tVVector
+  [272] ret
+end

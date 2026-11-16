@@ -1,0 +1,439 @@
+global g
+
+on CreateImage tTarget, tDataList
+  [  0] getparam 0 .............................. <tTarget>
+  [  2] pusharglist 0 ........................... <>
+  [  4] extcall 40 .............................. <VOID>
+  [  6] eq ...................................... <tTarget = VOID>
+  [  7] jmpifz [ 11] ............................ if tTarget = VOID then
+  [ 10] ret ..................................... exit
+  [ 11] getparam 0 .............................. <tTarget>
+  [ 13] getobjprop 122 .......................... <tTarget.ilk>
+  [ 15] pushsymb 67 ............................. <#string>
+  [ 17] nteq .................................... <tTarget.ilk <> #string>
+  [ 18] jmpifz [ 22] ............................ if tTarget.ilk <> #string then
+  [ 21] ret ..................................... exit
+  [ 22] getparam 0 .............................. <tTarget>
+  [ 24] pusharglist 1 ........................... <tTarget>
+  [ 26] extcall 64 .............................. <member(tTarget)>
+  [ 28] pusharglist 0 ........................... <>
+  [ 30] extcall 40 .............................. <VOID>
+  [ 32] eq ...................................... <member(tTarget) = VOID>
+  [ 33] jmpifz [ 37] ............................ if member(tTarget) = VOID then
+  [ 36] ret ..................................... exit
+  [ 37] getparam 1 .............................. <tDataList>
+  [ 39] getobjprop 122 .......................... <tDataList.ilk>
+  [ 41] pushsymb 541 ............................ <#propList>
+  [ 44] nteq .................................... <tDataList.ilk <> #propList>
+  [ 45] jmpifz [ 71] ............................ if tDataList.ilk <> #propList then
+  [ 48] getparam 1 .............................. <tDataList>
+  [ 50] getobjprop 122 .......................... <tDataList.ilk>
+  [ 52] pushsymb 67 ............................. <#string>
+  [ 54] eq ...................................... <tDataList.ilk = #string>
+  [ 55] jmpifz [ 70] ............................ if tDataList.ilk = #string then / else
+  [ 58] getparam 1 .............................. <tDataList>
+  [ 60] pusharglist 1 ........................... <tDataList>
+  [ 62] extcall 503 ............................. <value(tDataList)>
+  [ 65] setparam 1 .............................. tDataList = value(tDataList)
+  [ 67] jmp [ 71]
+  [ 70] ret ..................................... exit
+  [ 71] pushcons 0 .............................. <"Shared">
+  [ 73] pusharglist 1 ........................... <"Shared">
+  [ 75] extcall 58 .............................. <castLib("Shared")>
+  [ 77] pusharglist 1 ........................... <castLib("Shared")>
+  [ 79] objcall 316 ............................. <castLib("Shared").findEmpty()>
+  [ 82] setlocal 0 .............................. tEmpty = castLib("Shared").findEmpty()
+  [ 84] pushsymb 317 ............................ <#bitmap>
+  [ 87] getlocal 0 .............................. <tEmpty>
+  [ 89] pushcons 0 .............................. <"Shared">
+  [ 91] pusharglist 2 ........................... <tEmpty, "Shared">
+  [ 93] extcall 64 .............................. <member(tEmpty, "Shared")>
+  [ 95] pusharglist 2 ........................... <#bitmap, member(tEmpty, "Shared")>
+  [ 97] extcall 35 .............................. <new(#bitmap, member(tEmpty, "Shared"))>
+  [ 99] setlocal 1 .............................. tmember = new(#bitmap, member(tEmpty, "Shared"))
+  [101] getlocal 1 .............................. <tmember>
+  [103] getparam 1 .............................. <tDataList>
+  [105] getobjprop 235 .......................... <tDataList.name>
+  [107] setobjprop 235 .......................... tmember.name = tDataList.name
+  [109] getglobal 395 ........................... <g>
+  [112] getchainedprop 318 ...................... <g.DynamicMembers>
+  [115] getlocal 1 .............................. <tmember>
+  [117] pusharglistnoret 2 ...................... <g.DynamicMembers, tmember>
+  [119] objcall 42 .............................. g.DynamicMembers.add(tmember)
+  [121] getparam 0 .............................. <tTarget>
+  [123] pusharglist 1 ........................... <tTarget>
+  [125] extcall 64 .............................. <member(tTarget)>
+  [127] getobjprop 319 .......................... <member(tTarget).image>
+  [130] setlocal 2 .............................. tTargetImage = member(tTarget).image
+  [132] getparam 1 .............................. <tDataList>
+  [134] pushsymb 201 ............................ <#size>
+  [136] pushint8 1 .............................. <1>
+  [138] pusharglist 3 ........................... <tDataList, #size, 1>
+  [140] objcall 70 .............................. <tDataList.size[1]>
+  [142] getparam 1 .............................. <tDataList>
+  [144] pushsymb 201 ............................ <#size>
+  [146] pushint8 2 .............................. <2>
+  [148] pusharglist 3 ........................... <tDataList, #size, 2>
+  [150] objcall 70 .............................. <tDataList.size[2]>
+  [152] pushint8 32 ............................. <32>
+  [154] pushint8 1 .............................. <1>
+  [156] pusharglist 4 ........................... <tDataList.size[1], tDataList.size[2], 32, 1>
+  [158] extcall 319 ............................. <image(tDataList.size[1], tDataList.size[2], 32, 1)>
+  [161] setlocal 3 .............................. tImage = image(tDataList.size[1], tDataList.size[2], 32, 1)
+  [163] getparam 1 .............................. <tDataList>
+  [165] getchainedprop 2940 ..................... <tDataList.startPoint>
+  [168] getobjprop 1192 ......................... <tDataList.startPoint.locH>
+  [171] setlocal 4 .............................. x = tDataList.startPoint.locH
+  [173] getparam 1 .............................. <tDataList>
+  [175] getchainedprop 2940 ..................... <tDataList.startPoint>
+  [178] getobjprop 1193 ......................... <tDataList.startPoint.locV>
+  [181] setlocal 5 .............................. y = tDataList.startPoint.locV
+  [183] getlocal 4 .............................. <x>
+  [185] getlocal 5 .............................. <y>
+  [187] getlocal 4 .............................. <x>
+  [189] getparam 1 .............................. <tDataList>
+  [191] pushsymb 201 ............................ <#size>
+  [193] pushint8 1 .............................. <1>
+  [195] pusharglist 3 ........................... <tDataList, #size, 1>
+  [197] objcall 70 .............................. <tDataList.size[1]>
+  [199] add ..................................... <x + tDataList.size[1]>
+  [200] getlocal 5 .............................. <y>
+  [202] getparam 1 .............................. <tDataList>
+  [204] pushsymb 201 ............................ <#size>
+  [206] pushint8 2 .............................. <2>
+  [208] pusharglist 3 ........................... <tDataList, #size, 2>
+  [210] objcall 70 .............................. <tDataList.size[2]>
+  [212] add ..................................... <y + tDataList.size[2]>
+  [213] pusharglist 4 ........................... <x, y, x + tDataList.size[1], y + tDataList.size[2]>
+  [215] extcall 320 ............................. <rect(x, y, x + tDataList.size[1], y + tDataList.size[2])>
+  [218] setlocal 6 .............................. tRect = rect(x, y, x + tDataList.size[1], y + tDataList.size[2])
+  [220] getlocal 3 .............................. <tImage>
+  [222] getlocal 2 .............................. <tTargetImage>
+  [224] pushzero ................................ <0>
+  [225] pushzero ................................ <0>
+  [226] getparam 1 .............................. <tDataList>
+  [228] pushsymb 201 ............................ <#size>
+  [230] pushint8 1 .............................. <1>
+  [232] pusharglist 3 ........................... <tDataList, #size, 1>
+  [234] objcall 70 .............................. <tDataList.size[1]>
+  [236] getparam 1 .............................. <tDataList>
+  [238] pushsymb 201 ............................ <#size>
+  [240] pushint8 2 .............................. <2>
+  [242] pusharglist 3 ........................... <tDataList, #size, 2>
+  [244] objcall 70 .............................. <tDataList.size[2]>
+  [246] pusharglist 4 ........................... <0, 0, tDataList.size[1], tDataList.size[2]>
+  [248] extcall 320 ............................. <rect(0, 0, tDataList.size[1], tDataList.size[2])>
+  [251] getlocal 6 .............................. <tRect>
+  [253] pusharglistnoret 4 ...................... <tImage, tTargetImage, rect(0, 0, tDataList.size[1], tDataList.size[2]), tRect>
+  [255] objcall 321 ............................. tImage.copyPixels(tTargetImage, rect(0, 0, tDataList.size[1], tDataList.size[2]), tRect)
+  [258] getlocal 1 .............................. <tmember>
+  [260] getlocal 3 .............................. <tImage>
+  [262] setobjprop 319 .......................... tmember.image = tImage
+  [265] ret
+end
+
+on SetText tTarget, tDataList
+  [  0] getparam 0 .............................. <tTarget>
+  [  2] pusharglist 0 ........................... <>
+  [  4] extcall 40 .............................. <VOID>
+  [  6] eq ...................................... <tTarget = VOID>
+  [  7] jmpifz [ 11] ............................ if tTarget = VOID then
+  [ 10] ret ..................................... exit
+  [ 11] getparam 0 .............................. <tTarget>
+  [ 13] getobjprop 122 .......................... <tTarget.ilk>
+  [ 15] pushsymb 67 ............................. <#string>
+  [ 17] nteq .................................... <tTarget.ilk <> #string>
+  [ 18] jmpifz [ 22] ............................ if tTarget.ilk <> #string then
+  [ 21] ret ..................................... exit
+  [ 22] getparam 0 .............................. <tTarget>
+  [ 24] pusharglist 1 ........................... <tTarget>
+  [ 26] extcall 64 .............................. <member(tTarget)>
+  [ 28] pusharglist 0 ........................... <>
+  [ 30] extcall 40 .............................. <VOID>
+  [ 32] eq ...................................... <member(tTarget) = VOID>
+  [ 33] jmpifz [ 37] ............................ if member(tTarget) = VOID then
+  [ 36] ret ..................................... exit
+  [ 37] getparam 0 .............................. <tTarget>
+  [ 39] pusharglist 1 ........................... <tTarget>
+  [ 41] extcall 64 .............................. <member(tTarget)>
+  [ 43] getobjprop 598 .......................... <member(tTarget).type>
+  [ 46] pushsymb 80 ............................. <#text>
+  [ 48] nteq .................................... <member(tTarget).type <> #text>
+  [ 49] jmpifz [ 53] ............................ if member(tTarget).type <> #text then
+  [ 52] ret ..................................... exit
+  [ 53] getparam 1 .............................. <tDataList>
+  [ 55] getobjprop 122 .......................... <tDataList.ilk>
+  [ 57] pushsymb 541 ............................ <#propList>
+  [ 60] nteq .................................... <tDataList.ilk <> #propList>
+  [ 61] jmpifz [ 87] ............................ if tDataList.ilk <> #propList then
+  [ 64] getparam 1 .............................. <tDataList>
+  [ 66] getobjprop 122 .......................... <tDataList.ilk>
+  [ 68] pushsymb 67 ............................. <#string>
+  [ 70] eq ...................................... <tDataList.ilk = #string>
+  [ 71] jmpifz [ 86] ............................ if tDataList.ilk = #string then / else
+  [ 74] getparam 1 .............................. <tDataList>
+  [ 76] pusharglist 1 ........................... <tDataList>
+  [ 78] extcall 503 ............................. <value(tDataList)>
+  [ 81] setparam 1 .............................. tDataList = value(tDataList)
+  [ 83] jmp [ 87]
+  [ 86] ret ..................................... exit
+  [ 87] pushcons 1 .............................. <EMPTY>
+  [ 89] setlocal 0 .............................. tString = EMPTY
+  [ 91] getparam 1 .............................. <tDataList>
+  [ 93] getobjprop 80 ........................... <tDataList.text>
+  [ 95] pushsymb 975 ............................ <#hack>
+  [ 98] eq ...................................... <tDataList.text = #hack>
+  [ 99] jmpifz [147] ............................ if tDataList.text = #hack then / else
+  [102] getglobal 395 ........................... <g>
+  [105] getobjprop 2941 ......................... <g.targetAmount>
+  [108] pushzero ................................ <0>
+  [109] eq ...................................... <g.targetAmount = 0>
+  [110] jmpifz [120] ............................ if g.targetAmount = 0 then / else
+  [113] pushcons 2 .............................. <"  = ">
+  [115] setlocal 0 .............................. tString = "  = "
+  [117] jmp [134]
+  [120] pushcons 3 .............................. <" x ">
+  [122] getglobal 395 ........................... <g>
+  [125] getobjprop 2941 ......................... <g.targetAmount>
+  [128] joinstr ................................. <" x " & g.targetAmount>
+  [129] pushcons 4 .............................. <" = ">
+  [131] joinstr ................................. <" x " & g.targetAmount & " = ">
+  [132] setlocal 0 .............................. tString = " x " & g.targetAmount & " = "
+  [134] getparam 0 .............................. <tTarget>
+  [136] pusharglist 1 ........................... <tTarget>
+  [138] extcall 64 .............................. <member(tTarget)>
+  [140] getlocal 0 .............................. <tString>
+  [142] setobjprop 80 ........................... member(tTarget).text = tString
+  [144] jmp [163]
+  [147] getparam 0 .............................. <tTarget>
+  [149] pusharglist 1 ........................... <tTarget>
+  [151] extcall 64 .............................. <member(tTarget)>
+  [153] getparam 1 .............................. <tDataList>
+  [155] getobjprop 80 ........................... <tDataList.text>
+  [157] pusharglist 1 ........................... <tDataList.text>
+  [159] extcall 67 .............................. <string(tDataList.text)>
+  [161] setobjprop 80 ........................... member(tTarget).text = string(tDataList.text)
+  [163] ret
+end
+
+on DeleteSprite tTarget, tDataList
+  [  0] getparam 0 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 503 ............................. <value(tTarget)>
+  [  7] setparam 0 .............................. tTarget = value(tTarget)
+  [  9] getparam 0 .............................. <tTarget>
+  [ 11] pusharglist 1 ........................... <tTarget>
+  [ 13] extcall 487 ............................. <sprite(tTarget)>
+  [ 16] pusharglist 0 ........................... <[]>
+  [ 18] pushlist ................................ <[]>
+  [ 19] setobjprop 580 .......................... sprite(tTarget).scriptInstanceList = []
+  [ 22] getparam 0 .............................. <tTarget>
+  [ 24] pusharglist 1 ........................... <tTarget>
+  [ 26] extcall 487 ............................. <sprite(tTarget)>
+  [ 29] pusharglist 0 ........................... <>
+  [ 31] extcall 40 .............................. <VOID>
+  [ 33] setobjprop 64 ........................... sprite(tTarget).member = VOID
+  [ 35] gettoplevelprop 33 ...................... <_movie>
+  [ 37] getparam 0 .............................. <tTarget>
+  [ 39] pushzero ................................ <0>
+  [ 40] pusharglistnoret 3 ...................... <_movie, tTarget, 0>
+  [ 42] objcall 1132 ............................ _movie.puppetSprite(tTarget, 0)
+  [ 45] ret
+end
+
+on ShowHideSprites tProperties
+  [  0] getparam 0 .............................. <tProperties>
+  [  2] pushsymb 841 ............................ <#start>
+  [  5] pusharglist 2 ........................... <tProperties, #start>
+  [  7] objcall 105 ............................. <tProperties[#start]>
+  [  9] setlocal 0 .............................. P1 = tProperties[#start]
+  [ 11] getparam 0 .............................. <tProperties>
+  [ 13] pushsymb 1294 ........................... <#end>
+  [ 16] pusharglist 2 ........................... <tProperties, #end>
+  [ 18] objcall 105 ............................. <tProperties[#end]>
+  [ 20] setlocal 1 .............................. P2 = tProperties[#end]
+  [ 22] getparam 0 .............................. <tProperties>
+  [ 24] pushsymb 89 ............................. <#state>
+  [ 26] pusharglist 2 ........................... <tProperties, #state>
+  [ 28] objcall 105 ............................. <tProperties[#state]>
+  [ 30] setlocal 2 .............................. pState = tProperties[#state]
+  [ 32] getlocal 0 .............................. <P1>
+  [ 34] pusharglist 0 ........................... <>
+  [ 36] extcall 40 .............................. <VOID>
+  [ 38] eq ...................................... <P1 = VOID>
+  [ 39] jmpifz [ 46] ............................ if P1 = VOID then
+  [ 42] pushint8 1 .............................. <1>
+  [ 44] setlocal 0 .............................. P1 = 1
+  [ 46] getlocal 1 .............................. <P2>
+  [ 48] pusharglist 0 ........................... <>
+  [ 50] extcall 40 .............................. <VOID>
+  [ 52] eq ...................................... <P2 = VOID>
+  [ 53] jmpifz [ 60] ............................ if P2 = VOID then
+  [ 56] getlocal 0 .............................. <P1>
+  [ 58] setlocal 1 .............................. P2 = P1
+  [ 60] getlocal 0 .............................. <P1>
+  [ 62] setlocal 3
+  [ 64] getlocal 3
+  [ 66] getlocal 1 .............................. <P2>
+  [ 68] lteq
+  [ 69] jmpifz [105] ............................ repeat with i = P1 to P2
+  [ 72] getlocal 3 .............................. <i>
+  [ 74] pusharglist 1 ........................... <i>
+  [ 76] extcall 487 ............................. <sprite(i)>
+  [ 79] getlocal 2 .............................. <pState>
+  [ 81] setobjprop 2942 ......................... sprite(i).visible = pState
+  [ 84] getlocal 3 .............................. <i>
+  [ 86] pusharglist 1 ........................... <i>
+  [ 88] extcall 487 ............................. <sprite(i)>
+  [ 91] getlocal 3 .............................. <i>
+  [ 93] setobjprop 2943 ......................... sprite(i).locZ = i
+  [ 96] pushint8 1
+  [ 98] getlocal 3
+  [100] add
+  [101] setlocal 3
+  [103] endrepeat [ 64]
+  [105] ret
+end
+
+on ResetSprites tTarget, tDataList
+  [  0] getparam 1 .............................. <tDataList>
+  [  2] setlocal 0 .............................. pDataList = tDataList
+  [  4] getlocal 0 .............................. <pDataList>
+  [  6] getobjprop 122 .......................... <pDataList.ilk>
+  [  8] pushsymb 67 ............................. <#string>
+  [ 10] eq ...................................... <pDataList.ilk = #string>
+  [ 11] jmpifz [ 23] ............................ if pDataList.ilk = #string then
+  [ 14] getlocal 0 .............................. <pDataList>
+  [ 16] pusharglist 1 ........................... <pDataList>
+  [ 18] extcall 503 ............................. <value(pDataList)>
+  [ 21] setlocal 0 .............................. pDataList = value(pDataList)
+  [ 23] getlocal 0 .............................. <pDataList>
+  [ 25] pusharglist 0 ........................... <>
+  [ 27] extcall 40 .............................. <VOID>
+  [ 29] eq ...................................... <pDataList = VOID>
+  [ 30] getlocal 0 .............................. <pDataList>
+  [ 32] getobjprop 122 .......................... <pDataList.ilk>
+  [ 34] pushsymb 541 ............................ <#propList>
+  [ 37] nteq .................................... <pDataList.ilk <> #propList>
+  [ 38] or ...................................... <(pDataList = VOID) or (pDataList.ilk <> #propList)>
+  [ 39] jmpifz [ 62] ............................ if (pDataList = VOID) or (pDataList.ilk <> #propList) then
+  [ 42] pushcons 5 .............................. <"Function: ResetSprites. Target: ">
+  [ 44] getparam 0 .............................. <tTarget>
+  [ 46] joinstr ................................. <"Function: ResetSprites. Target: " & tTarget>
+  [ 47] pushcons 6 .............................. <" Parameters: ">
+  [ 49] joinstr ................................. <"Function: ResetSprites. Target: " & tTarget & " Parameters: ">
+  [ 50] getparam 1 .............................. <tDataList>
+  [ 52] joinstr ................................. <"Function: ResetSprites. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 53] pushcons 7 .............................. <" Datalist obsolete (VOID or not #proplist).">
+  [ 55] joinstr ................................. <"Function: ResetSprites. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [ 56] pusharglistnoret 1 ...................... <"Function: ResetSprites. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [ 58] extcall 511 ............................. ShowError("Function: ResetSprites. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).")
+  [ 61] ret ..................................... exit
+  [ 62] getlocal 0 .............................. <pDataList>
+  [ 64] pusharglist 0 ........................... <>
+  [ 66] extcall 40 .............................. <VOID>
+  [ 68] eq ...................................... <pDataList = VOID>
+  [ 69] getlocal 0 .............................. <pDataList>
+  [ 71] pushcons 1 .............................. <EMPTY>
+  [ 73] eq ...................................... <pDataList = EMPTY>
+  [ 74] or ...................................... <(pDataList = VOID) or (pDataList = EMPTY)>
+  [ 75] jmpifz [ 95] ............................ if (pDataList = VOID) or (pDataList = EMPTY) then / else
+  [ 78] pushint8 1 .............................. <1>
+  [ 80] setlocal 1 .............................. P1 = 1
+  [ 82] gettoplevelprop 33 ...................... <_movie>
+  [ 84] getobjprop 486 .......................... <_movie.lastChannel>
+  [ 87] setlocal 2 .............................. P2 = _movie.lastChannel
+  [ 89] pushzero ................................ <0>
+  [ 90] setlocal 3 .............................. pState = 0
+  [ 92] jmp [127]
+  [ 95] getlocal 0 .............................. <pDataList>
+  [ 97] pushsymb 841 ............................ <#start>
+  [100] pusharglist 2 ........................... <pDataList, #start>
+  [102] objcall 105 ............................. <pDataList[#start]>
+  [104] setlocal 1 .............................. P1 = pDataList[#start]
+  [106] getlocal 0 .............................. <pDataList>
+  [108] pushsymb 1294 ........................... <#end>
+  [111] pusharglist 2 ........................... <pDataList, #end>
+  [113] objcall 105 ............................. <pDataList[#end]>
+  [115] setlocal 2 .............................. P2 = pDataList[#end]
+  [117] getlocal 0 .............................. <pDataList>
+  [119] pushsymb 89 ............................. <#state>
+  [121] pusharglist 2 ........................... <pDataList, #state>
+  [123] objcall 105 ............................. <pDataList[#state]>
+  [125] setlocal 3 .............................. pState = pDataList[#state]
+  [127] getlocal 1 .............................. <P1>
+  [129] pusharglist 0 ........................... <>
+  [131] extcall 40 .............................. <VOID>
+  [133] eq ...................................... <P1 = VOID>
+  [134] jmpifz [140] ............................ if P1 = VOID then
+  [137] pushzero ................................ <0>
+  [138] setlocal 1 .............................. P1 = 0
+  [140] getlocal 2 .............................. <P2>
+  [142] pusharglist 0 ........................... <>
+  [144] extcall 40 .............................. <VOID>
+  [146] eq ...................................... <P2 = VOID>
+  [147] jmpifz [157] ............................ if P2 = VOID then
+  [150] gettoplevelprop 33 ...................... <_movie>
+  [152] getobjprop 486 .......................... <_movie.lastChannel>
+  [155] setlocal 2 .............................. P2 = _movie.lastChannel
+  [157] getlocal 3 .............................. <pState>
+  [159] pusharglist 0 ........................... <>
+  [161] extcall 40 .............................. <VOID>
+  [163] eq ...................................... <pState = VOID>
+  [164] getlocal 3 .............................. <pState>
+  [166] pushzero ................................ <0>
+  [167] eq ...................................... <pState = 0>
+  [168] or ...................................... <(pState = VOID) or (pState = 0)>
+  [169] jmpifz [175] ............................ if (pState = VOID) or (pState = 0) then
+  [172] pushzero ................................ <0>
+  [173] setlocal 3 .............................. pState = 0
+  [175] getlocal 1 .............................. <P1>
+  [177] setlocal 4
+  [179] getlocal 4
+  [181] getlocal 2 .............................. <P2>
+  [183] lteq
+  [184] jmpifz [272] ............................ repeat with i = P1 to P2
+  [187] getlocal 4 .............................. <i>
+  [189] pusharglist 1 ........................... <i>
+  [191] extcall 487 ............................. <sprite(i)>
+  [194] getobjprop 580 .......................... <sprite(i).scriptInstanceList>
+  [197] peek 0
+  [199] pusharglist 1
+  [201] extcall 129
+  [203] pushint8 1
+  [205] peek 0
+  [207] peek 2
+  [209] lteq
+  [210] jmpifz [235] ............................ repeat with j in sprite(i).scriptInstanceList
+  [213] peek 2
+  [215] peek 1
+  [217] pusharglist 2
+  [219] extcall 105
+  [221] setlocal 5
+  [223] getlocal 5 .............................. <j>
+  [225] pusharglistnoret 1 ...................... <j>
+  [227] objcall 562 ............................. delete j
+  [230] pushint8 1
+  [232] add
+  [233] endrepeat [205]
+  [235] pop 3
+  [237] getlocal 4 .............................. <i>
+  [239] pusharglist 1 ........................... <i>
+  [241] extcall 487 ............................. <sprite(i)>
+  [244] pushzero ................................ <0>
+  [245] pushzero ................................ <0>
+  [246] pusharglist 2 ........................... <0, 0>
+  [248] extcall 64 .............................. <member(0, 0)>
+  [250] setobjprop 64 ........................... sprite(i).member = member(0, 0)
+  [252] gettoplevelprop 33 ...................... <_movie>
+  [254] getlocal 4 .............................. <i>
+  [256] getlocal 3 .............................. <pState>
+  [258] pusharglistnoret 3 ...................... <_movie, i, pState>
+  [260] objcall 1132 ............................ _movie.puppetSprite(i, pState)
+  [263] pushint8 1
+  [265] getlocal 4
+  [267] add
+  [268] setlocal 4
+  [270] endrepeat [179]
+  [272] ret
+end

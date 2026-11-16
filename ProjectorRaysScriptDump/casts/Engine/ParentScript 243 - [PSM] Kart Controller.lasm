@@ -1,0 +1,232 @@
+property p
+global g
+
+on new me, tTag
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 377 ............................ <#tag>
+  [ 12] getparam 1 .............................. <tTag>
+  [ 14] pusharglistnoret 3 ...................... <p, #tag, tTag>
+  [ 16] objcall 103 ............................. p[#tag] = tTag
+  [ 18] getprop 563 ............................. <p>
+  [ 21] pushsymb 3062 ........................... <#ScriptLimit>
+  [ 24] pushzero ................................ <0>
+  [ 25] pusharglistnoret 3 ...................... <p, #ScriptLimit, 0>
+  [ 27] objcall 103 ............................. p[#ScriptLimit] = 0
+  [ 29] getparam 0 .............................. <me>
+  [ 31] pusharglistnoret 1 ...................... <me>
+  [ 33] objcall 3154 ............................ me.prepare()
+  [ 36] getparam 0 .............................. <me>
+  [ 38] pusharglistnoret 1 ...................... <me>
+  [ 40] extcall 52 .............................. return me
+  [ 42] ret
+end
+
+on prepare me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 377 .......................... <p.tag>
+  [  6] pusharglistnoret 1 ...................... <p.tag>
+  [  8] extcall 3155 ............................ SetKartProps(p.tag)
+  [ 11] getglobal 395 ........................... <g>
+  [ 14] getobjprop 3156 ......................... <g.KartHelpers>
+  [ 17] pushint8 1 .............................. <1>
+  [ 19] eq ...................................... <g.KartHelpers = 1>
+  [ 20] jmpifz [ 34] ............................ if g.KartHelpers = 1 then
+  [ 23] getprop 563 ............................. <p>
+  [ 26] getobjprop 377 .......................... <p.tag>
+  [ 29] pusharglistnoret 1 ...................... <p.tag>
+  [ 31] extcall 3157 ............................ BuildKartHelpers(p.tag)
+  [ 34] ret
+end
+
+on enterFrame me
+  [  0] getglobal 395 ........................... <g>
+  [  3] getobjprop 3137 ......................... <g.GameInput>
+  [  6] pushzero ................................ <0>
+  [  7] eq ...................................... <g.GameInput = 0>
+  [  8] jmpifz [ 56] ............................ if g.GameInput = 0 then
+  [ 11] getglobal 395 ........................... <g>
+  [ 14] pushsymb 137 ............................ <#cars>
+  [ 16] getprop 563 ............................. <p>
+  [ 19] getobjprop 377 .......................... <p.tag>
+  [ 22] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 24] objcall 102 ............................. <g.cars[p.tag]>
+  [ 26] getchainedprop 376 ...................... <g.cars[p.tag].general>
+  [ 29] getchainedprop 1439 ..................... <g.cars[p.tag].general.States>
+  [ 32] pushsymb 3158 ........................... <#UpdateKartMixer>
+  [ 35] pusharglist 2 ........................... <g.cars[p.tag].general.States, #UpdateKartMixer>
+  [ 37] objcall 166 ............................. <g.cars[p.tag].general.States.getPos(#UpdateKartMixer)>
+  [ 39] pushzero ................................ <0>
+  [ 40] nteq .................................... <g.cars[p.tag].general.States.getPos(#UpdateKartMixer) <> 0>
+  [ 41] jmpifz [ 55] ............................ if g.cars[p.tag].general.States.getPos(#UpdateKartMixer) <> 0 then
+  [ 44] getprop 563 ............................. <p>
+  [ 47] getobjprop 377 .......................... <p.tag>
+  [ 50] pusharglistnoret 1 ...................... <p.tag>
+  [ 52] extcall 3158 ............................ UpdateKartMixer(p.tag)
+  [ 55] ret ..................................... exit
+  [ 56] getglobal 395 ........................... <g>
+  [ 59] getobjprop 3137 ......................... <g.GameInput>
+  [ 62] pushint8 1 .............................. <1>
+  [ 64] eq ...................................... <g.GameInput = 1>
+  [ 65] getglobal 395 ........................... <g>
+  [ 68] pushsymb 137 ............................ <#cars>
+  [ 70] getprop 563 ............................. <p>
+  [ 73] getobjprop 377 .......................... <p.tag>
+  [ 76] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 78] objcall 102 ............................. <g.cars[p.tag]>
+  [ 80] getchainedprop 376 ...................... <g.cars[p.tag].general>
+  [ 83] getobjprop 89 ........................... <g.cars[p.tag].general.state>
+  [ 85] pushsymb 2147 ........................... <#Pending>
+  [ 88] eq ...................................... <g.cars[p.tag].general.state = #Pending>
+  [ 89] and ..................................... <(g.GameInput = 1) and (g.cars[p.tag].general.state = #Pending)>
+  [ 90] jmpifz [116] ............................ if (g.GameInput = 1) and (g.cars[p.tag].general.state = #Pending) then
+  [ 93] getglobal 395 ........................... <g>
+  [ 96] pushsymb 137 ............................ <#cars>
+  [ 98] getprop 563 ............................. <p>
+  [101] getobjprop 377 .......................... <p.tag>
+  [104] pusharglist 3 ........................... <g, #cars, p.tag>
+  [106] objcall 102 ............................. <g.cars[p.tag]>
+  [108] getchainedprop 376 ...................... <g.cars[p.tag].general>
+  [111] pushsymb 393 ............................ <#Racing>
+  [114] setobjprop 89 ........................... g.cars[p.tag].general.state = #Racing
+  [116] getglobal 395 ........................... <g>
+  [119] pushsymb 137 ............................ <#cars>
+  [121] getprop 563 ............................. <p>
+  [124] getobjprop 377 .......................... <p.tag>
+  [127] pusharglist 3 ........................... <g, #cars, p.tag>
+  [129] objcall 102 ............................. <g.cars[p.tag]>
+  [131] getchainedprop 376 ...................... <g.cars[p.tag].general>
+  [134] getchainedprop 1439 ..................... <g.cars[p.tag].general.States>
+  [137] pusharglist 1 ........................... <g.cars[p.tag].general.States>
+  [139] objcall 233 ............................. <g.cars[p.tag].general.States.duplicate()>
+  [141] setlocal 0 .............................. tList = g.cars[p.tag].general.States.duplicate()
+  [143] getlocal 0 .............................. <tList>
+  [145] peek 0
+  [147] pusharglist 1
+  [149] extcall 129
+  [151] pushint8 1
+  [153] peek 0
+  [155] peek 2
+  [157] lteq
+  [158] jmpifz [453] ............................ repeat with i in tList
+  [161] peek 2
+  [163] peek 1
+  [165] pusharglist 2
+  [167] extcall 105
+  [169] setlocal 1
+  [171] getlocal 1 .............................. <i>
+  [173] peek 0 .................................. case i of
+  [175] pushsymb 817 ............................ <#default>
+  [178] eq
+  [179] jmpifz [218] ............................ (case) #default:
+  [182] getprop 563 ............................. <p>
+  [185] getobjprop 377 .......................... <p.tag>
+  [188] pusharglistnoret 1 ...................... <p.tag>
+  [190] extcall 3159 ............................ UpdateWayPoints(p.tag)
+  [193] getprop 563 ............................. <p>
+  [196] getobjprop 377 .......................... <p.tag>
+  [199] pusharglistnoret 1 ...................... <p.tag>
+  [201] extcall 3160 ............................ UpdateLaps(p.tag)
+  [204] getprop 563 ............................. <p>
+  [207] getobjprop 377 .......................... <p.tag>
+  [210] pusharglistnoret 1 ...................... <p.tag>
+  [212] extcall 3161 ............................ UpdateMaterials(p.tag)
+  [215] jmp [445]
+  [218] peek 0
+  [220] pushsymb 3162 ........................... <#InputKeys>
+  [223] eq
+  [224] jmpifz [241] ............................ (case) #InputKeys:
+  [227] getprop 563 ............................. <p>
+  [230] getobjprop 377 .......................... <p.tag>
+  [233] pusharglistnoret 1 ...................... <p.tag>
+  [235] extcall 3162 ............................ InputKeys(p.tag)
+  [238] jmp [445]
+  [241] peek 0
+  [243] pushsymb 3163 ........................... <#UpdateAnimations>
+  [246] eq
+  [247] jmpifz [264] ............................ (case) #UpdateAnimations:
+  [250] getprop 563 ............................. <p>
+  [253] getobjprop 377 .......................... <p.tag>
+  [256] pusharglistnoret 1 ...................... <p.tag>
+  [258] extcall 3163 ............................ UpdateAnimations(p.tag)
+  [261] jmp [445]
+  [264] peek 0
+  [266] pushsymb 3164 ........................... <#updateEffects>
+  [269] eq
+  [270] jmpifz [287] ............................ (case) #updateEffects:
+  [273] getprop 563 ............................. <p>
+  [276] getobjprop 377 .......................... <p.tag>
+  [279] pusharglistnoret 1 ...................... <p.tag>
+  [281] extcall 3164 ............................ updateEffects(p.tag)
+  [284] jmp [445]
+  [287] peek 0
+  [289] pushsymb 393 ............................ <#Racing>
+  [292] eq
+  [293] jmpifz [310] ............................ (case) #Racing:
+  [296] getprop 563 ............................. <p>
+  [299] getobjprop 377 .......................... <p.tag>
+  [302] pusharglistnoret 1 ...................... <p.tag>
+  [304] extcall 393 ............................. Racing(p.tag)
+  [307] jmp [445]
+  [310] peek 0
+  [312] pushsymb 3165 ........................... <#UpdateHelpers>
+  [315] eq
+  [316] jmpifz [333] ............................ (case) #UpdateHelpers:
+  [319] getprop 563 ............................. <p>
+  [322] getobjprop 377 .......................... <p.tag>
+  [325] pusharglistnoret 1 ...................... <p.tag>
+  [327] extcall 3165 ............................ UpdateHelpers(p.tag)
+  [330] jmp [445]
+  [333] peek 0
+  [335] pushsymb 3166 ........................... <#ItemUse>
+  [338] eq
+  [339] jmpifz [356] ............................ (case) #ItemUse:
+  [342] getprop 563 ............................. <p>
+  [345] getobjprop 377 .......................... <p.tag>
+  [348] pusharglistnoret 1 ...................... <p.tag>
+  [350] extcall 3166 ............................ ItemUse(p.tag)
+  [353] jmp [445]
+  [356] peek 0
+  [358] pushsymb 3167 ........................... <#Think>
+  [361] eq
+  [362] jmpifz [379] ............................ (case) #Think:
+  [365] getprop 563 ............................. <p>
+  [368] getobjprop 377 .......................... <p.tag>
+  [371] pusharglistnoret 1 ...................... <p.tag>
+  [373] extcall 3167 ............................ Think(p.tag)
+  [376] jmp [445]
+  [379] peek 0
+  [381] pushsymb 3168 ........................... <#Unstuck>
+  [384] eq
+  [385] jmpifz [402] ............................ (case) #Unstuck:
+  [388] getprop 563 ............................. <p>
+  [391] getobjprop 377 .......................... <p.tag>
+  [394] pusharglistnoret 1 ...................... <p.tag>
+  [396] extcall 3168 ............................ Unstuck(p.tag)
+  [399] jmp [445]
+  [402] peek 0
+  [404] pushsymb 3169 ........................... <#Hit>
+  [407] eq
+  [408] jmpifz [425] ............................ (case) #Hit:
+  [411] getprop 563 ............................. <p>
+  [414] getobjprop 377 .......................... <p.tag>
+  [417] pusharglistnoret 1 ...................... <p.tag>
+  [419] extcall 3169 ............................ Hit(p.tag)
+  [422] jmp [445]
+  [425] peek 0
+  [427] pushsymb 3158 ........................... <#UpdateKartMixer>
+  [430] eq
+  [431] jmpifz [445] ............................ (case) #UpdateKartMixer:
+  [434] getprop 563 ............................. <p>
+  [437] getobjprop 377 .......................... <p.tag>
+  [440] pusharglistnoret 1 ...................... <p.tag>
+  [442] extcall 3158 ............................ UpdateKartMixer(p.tag)
+  [445] pop 1 ................................... end case
+  [447] pushint8 1
+  [449] add
+  [450] endrepeat [153]
+  [453] pop 3
+  [455] ret
+end

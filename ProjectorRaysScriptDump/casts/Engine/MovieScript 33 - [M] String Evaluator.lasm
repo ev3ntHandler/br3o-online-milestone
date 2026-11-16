@@ -1,0 +1,359 @@
+global gSystem, gLoader, gData, gGame
+
+on StringEvaluator tString
+  [  0] getparam 0 .............................. <tString>
+  [  2] setlocal 0 .............................. pString = tString
+  [  4] getlocal 0 .............................. <pString>
+  [  6] pusharglist 0 ........................... <>
+  [  8] extcall 40 .............................. <VOID>
+  [ 10] eq ...................................... <pString = VOID>
+  [ 11] getlocal 0 .............................. <pString>
+  [ 13] getobjprop 122 .......................... <pString.ilk>
+  [ 15] pushsymb 67 ............................. <#string>
+  [ 17] nteq .................................... <pString.ilk <> #string>
+  [ 18] or ...................................... <(pString = VOID) or (pString.ilk <> #string)>
+  [ 19] jmpifz [ 36] ............................ if (pString = VOID) or (pString.ilk <> #string) then
+  [ 22] pushcons 0 .............................. <"Function: StringEvaluator. String: ">
+  [ 24] getparam 0 .............................. <tString>
+  [ 26] joinstr ................................. <"Function: StringEvaluator. String: " & tString>
+  [ 27] pushcons 1 .............................. <" No string or string type.">
+  [ 29] joinstr ................................. <"Function: StringEvaluator. String: " & tString & " No string or string type.">
+  [ 30] pusharglistnoret 1 ...................... <"Function: StringEvaluator. String: " & tString & " No string or string type.">
+  [ 32] extcall 511 ............................. ShowError("Function: StringEvaluator. String: " & tString & " No string or string type.")
+  [ 35] ret ..................................... exit
+  [ 36] getlocal 0 .............................. <pString>
+  [ 38] pushcons 2 .............................. <"{">
+  [ 40] containsstr ............................. <pString contains "{">
+  [ 41] jmpifz [382] ............................ if pString contains "{" then / else
+  [ 44] pusharglist 0 ........................... <[]>
+  [ 46] pushlist ................................ <[]>
+  [ 47] setlocal 1 .............................. PList = []
+  [ 49] pusharglist 0 ........................... <[]>
+  [ 51] pushlist ................................ <[]>
+  [ 52] setlocal 2 .............................. pSubList = []
+  [ 54] pushint8 1 .............................. <1>
+  [ 56] setlocal 3
+  [ 58] getlocal 3
+  [ 60] getlocal 0 .............................. <pString>
+  [ 62] getobjprop 69 ........................... <pString.length>
+  [ 64] lteq
+  [ 65] jmpifz [134] ............................ repeat with i = 1 to pString.length
+  [ 68] getlocal 0 .............................. <pString>
+  [ 70] pushsymb 68 ............................. <#char>
+  [ 72] getlocal 3 .............................. <i>
+  [ 74] pusharglist 3 ........................... <pString, #char, i>
+  [ 76] objcall 70 .............................. <pString.char[i]>
+  [ 78] setlocal 4 .............................. pChar = pString.char[i]
+  [ 80] getlocal 4 .............................. <pChar>
+  [ 82] pushcons 2 .............................. <"{">
+  [ 84] eq ...................................... <pChar = "{">
+  [ 85] jmpifz [ 96] ............................ if pChar = "{" then
+  [ 88] getlocal 2 .............................. <pSubList>
+  [ 90] getlocal 3 .............................. <i>
+  [ 92] pusharglistnoret 2 ...................... <pSubList, i>
+  [ 94] objcall 42 .............................. pSubList.add(i)
+  [ 96] getlocal 4 .............................. <pChar>
+  [ 98] pushcons 3 .............................. <"}">
+  [100] eq ...................................... <pChar = "}">
+  [101] jmpifz [125] ............................ if pChar = "}" then
+  [104] getlocal 2 .............................. <pSubList>
+  [106] getlocal 3 .............................. <i>
+  [108] pusharglistnoret 2 ...................... <pSubList, i>
+  [110] objcall 42 .............................. pSubList.add(i)
+  [112] getlocal 1 .............................. <PList>
+  [114] getlocal 2 .............................. <pSubList>
+  [116] pusharglistnoret 2 ...................... <PList, pSubList>
+  [118] objcall 42 .............................. PList.add(pSubList)
+  [120] pusharglist 0 ........................... <[]>
+  [122] pushlist ................................ <[]>
+  [123] setlocal 2 .............................. pSubList = []
+  [125] pushint8 1
+  [127] getlocal 3
+  [129] add
+  [130] setlocal 3
+  [132] endrepeat [ 58]
+  [134] pusharglist 0 ........................... <[]>
+  [136] pushlist ................................ <[]>
+  [137] setlocal 5 .............................. pVarStringList = []
+  [139] pushint8 1 .............................. <1>
+  [141] setlocal 6
+  [143] getlocal 6
+  [145] getlocal 1 .............................. <PList>
+  [147] getobjprop 129 .......................... <PList.count>
+  [149] lteq
+  [150] jmpifz [217] ............................ repeat with j = 1 to PList.count
+  [153] getlocal 0 .............................. <pString>
+  [155] getlocal 1 .............................. <PList>
+  [157] getlocal 6 .............................. <j>
+  [159] pusharglist 2 ........................... <PList, j>
+  [161] objcall 105 ............................. <PList[j]>
+  [163] pushint8 1 .............................. <1>
+  [165] pusharglist 2 ........................... <PList[j], 1>
+  [167] objcall 105 ............................. <PList[j][1]>
+  [169] pushint8 1 .............................. <1>
+  [171] add ..................................... <PList[j][1] + 1>
+  [172] getlocal 1 .............................. <PList>
+  [174] getlocal 6 .............................. <j>
+  [176] pusharglist 2 ........................... <PList, j>
+  [178] objcall 105 ............................. <PList[j]>
+  [180] pushint8 2 .............................. <2>
+  [182] pusharglist 2 ........................... <PList[j], 2>
+  [184] objcall 105 ............................. <PList[j][2]>
+  [186] pushint8 1 .............................. <1>
+  [188] sub ..................................... <PList[j][2] - 1>
+  [189] pusharglist 3 ........................... <pString, PList[j][1] + 1, PList[j][2] - 1>
+  [191] extcall 431 ............................. <chars(pString, PList[j][1] + 1, PList[j][2] - 1)>
+  [194] setlocal 7 .............................. pVariable = chars(pString, PList[j][1] + 1, PList[j][2] - 1)
+  [196] getlocal 5 .............................. <pVarStringList>
+  [198] getlocal 7 .............................. <pVariable>
+  [200] pusharglist 1 ........................... <pVariable>
+  [202] localcall 1 ............................. <GetStringVariable(pVariable)>
+  [204] pusharglistnoret 2 ...................... <pVarStringList, GetStringVariable(pVariable)>
+  [206] objcall 42 .............................. pVarStringList.add(GetStringVariable(pVariable))
+  [208] pushint8 1
+  [210] getlocal 6
+  [212] add
+  [213] setlocal 6
+  [215] endrepeat [143]
+  [217] getlocal 1 .............................. <PList>
+  [219] getobjprop 129 .......................... <PList.count>
+  [221] setlocal 8
+  [223] getlocal 8
+  [225] pushint8 1 .............................. <1>
+  [227] gteq
+  [228] jmpifz [356] ............................ repeat with k = PList.count down to 1
+  [231] getlocal 1 .............................. <PList>
+  [233] getlocal 8 .............................. <k>
+  [235] pusharglist 2 ........................... <PList, k>
+  [237] objcall 105 ............................. <PList[k]>
+  [239] pushint8 2 .............................. <2>
+  [241] pusharglist 2 ........................... <PList[k], 2>
+  [243] objcall 105 ............................. <PList[k][2]>
+  [245] getlocal 1 .............................. <PList>
+  [247] getlocal 8 .............................. <k>
+  [249] pusharglist 2 ........................... <PList, k>
+  [251] objcall 105 ............................. <PList[k]>
+  [253] pushint8 1 .............................. <1>
+  [255] pusharglist 2 ........................... <PList[k], 1>
+  [257] objcall 105 ............................. <PList[k][1]>
+  [259] sub ..................................... <PList[k][2] - PList[k][1]>
+  [260] pushint8 1 .............................. <1>
+  [262] add ..................................... <PList[k][2] - PList[k][1] + 1>
+  [263] setlocal 9 .............................. pAmount = PList[k][2] - PList[k][1] + 1
+  [265] pushint8 1 .............................. <1>
+  [267] setlocal 10
+  [269] getlocal 10
+  [271] getlocal 9 .............................. <pAmount>
+  [273] lteq
+  [274] jmpifz [310] ............................ repeat with m = 1 to pAmount
+  [277] getlocal 1 .............................. <PList>
+  [279] getlocal 8 .............................. <k>
+  [281] pusharglist 2 ........................... <PList, k>
+  [283] objcall 105 ............................. <PList[k]>
+  [285] pushint8 1 .............................. <1>
+  [287] pusharglist 2 ........................... <PList[k], 1>
+  [289] objcall 105 ............................. <PList[k][1]>
+  [291] pushzero ................................ <0>
+  [292] pushzero ................................ <0>
+  [293] pushzero ................................ <0>
+  [294] pushzero ................................ <0>
+  [295] pushzero ................................ <0>
+  [296] pushzero ................................ <0>
+  [297] pushzero ................................ <0>
+  [298] pushzero ................................ <0>
+  [299] deletechunk 5 ........................... delete char PList[k][1] of pString
+  [301] pushint8 1
+  [303] getlocal 10
+  [305] add
+  [306] setlocal 10
+  [308] endrepeat [269]
+  [310] getlocal 5 .............................. <pVarStringList>
+  [312] getlocal 8 .............................. <k>
+  [314] pusharglist 2 ........................... <pVarStringList, k>
+  [316] objcall 105 ............................. <pVarStringList[k]>
+  [318] pushzero ................................ <0>
+  [319] pushchunkvarref 5 ....................... <pString>
+  [321] pushsymb 68 ............................. <#char>
+  [323] getlocal 1 .............................. <PList>
+  [325] getlocal 8 .............................. <k>
+  [327] pusharglist 2 ........................... <PList, k>
+  [329] objcall 105 ............................. <PList[k]>
+  [331] pushint8 1 .............................. <1>
+  [333] pusharglist 2 ........................... <PList[k], 1>
+  [335] objcall 105 ............................. <PList[k][1]>
+  [337] pusharglist 3 ........................... <pString, #char, PList[k][1]>
+  [339] objcall 102 ............................. <pString.char[PList[k][1]]>
+  [341] swap
+  [342] pusharglistnoret 2 ...................... <pString.char[PList[k][1]], pVarStringList[k]>
+  [344] objcall 800 ............................. put pVarStringList[k] before pString.char[PList[k][1]]
+  [347] pushint8 -1
+  [349] getlocal 8
+  [351] add
+  [352] setlocal 8
+  [354] endrepeat [223]
+  [356] getglobal 50 ............................ <gSystem>
+  [358] getobjprop 51 ........................... <gSystem.local>
+  [360] pushzero ................................ <0>
+  [361] eq ...................................... <gSystem.local = 0>
+  [362] jmpifz [373] ............................ if gSystem.local = 0 then
+  [365] getlocal 0 .............................. <pString>
+  [367] pusharglist 1 ........................... <pString>
+  [369] localcall 2 ............................. <FormatURL(pString)>
+  [371] setlocal 0 .............................. pString = FormatURL(pString)
+  [373] getlocal 0 .............................. <pString>
+  [375] pusharglistnoret 1 ...................... <pString>
+  [377] extcall 52 .............................. return pString
+  [379] jmp [405]
+  [382] getglobal 50 ............................ <gSystem>
+  [384] getobjprop 51 ........................... <gSystem.local>
+  [386] pushzero ................................ <0>
+  [387] eq ...................................... <gSystem.local = 0>
+  [388] jmpifz [399] ............................ if gSystem.local = 0 then
+  [391] getlocal 0 .............................. <pString>
+  [393] pusharglist 1 ........................... <pString>
+  [395] localcall 2 ............................. <FormatURL(pString)>
+  [397] setlocal 0 .............................. pString = FormatURL(pString)
+  [399] getlocal 0 .............................. <pString>
+  [401] pusharglistnoret 1 ...................... <pString>
+  [403] extcall 52 .............................. return pString
+  [405] ret
+end
+
+on GetStringVariable tString
+  [  0] getparam 0 .............................. <tString>
+  [  2] pushsymb 68 ............................. <#char>
+  [  4] pushint8 1 .............................. <1>
+  [  6] pusharglist 3 ........................... <tString, #char, 1>
+  [  8] objcall 70 .............................. <tString.char[1]>
+  [ 10] pushcons 4 .............................. <":">
+  [ 12] eq ...................................... <tString.char[1] = ":">
+  [ 13] jmpifz [ 28] ............................ if tString.char[1] = ":" then
+  [ 16] pushint8 1 .............................. <1>
+  [ 18] pushzero ................................ <0>
+  [ 19] pushzero ................................ <0>
+  [ 20] pushzero ................................ <0>
+  [ 21] pushzero ................................ <0>
+  [ 22] pushzero ................................ <0>
+  [ 23] pushzero ................................ <0>
+  [ 24] pushzero ................................ <0>
+  [ 25] pushzero ................................ <0>
+  [ 26] deletechunk 4 ........................... delete char 1 of tString
+  [ 28] getglobal 43 ............................ <gGame>
+  [ 30] setlocal 0 .............................. tList = gGame
+  [ 32] getglobal 43 ............................ <gGame>
+  [ 34] getparam 0 .............................. <tString>
+  [ 36] pusharglist 1 ........................... <tString>
+  [ 38] extcall 88 .............................. <symbol(tString)>
+  [ 40] pusharglist 2 ........................... <gGame, symbol(tString)>
+  [ 42] objcall 105 ............................. <gGame[symbol(tString)]>
+  [ 44] pusharglist 1 ........................... <gGame[symbol(tString)]>
+  [ 46] extcall 389 ............................. <voidp(gGame[symbol(tString)])>
+  [ 49] pushzero ................................ <0>
+  [ 50] eq ...................................... <voidp(gGame[symbol(tString)]) = 0>
+  [ 51] jmpifz [ 74] ............................ if voidp(gGame[symbol(tString)]) = 0 then
+  [ 54] getglobal 43 ............................ <gGame>
+  [ 56] getparam 0 .............................. <tString>
+  [ 58] pusharglist 1 ........................... <tString>
+  [ 60] extcall 88 .............................. <symbol(tString)>
+  [ 62] pusharglist 2 ........................... <gGame, symbol(tString)>
+  [ 64] objcall 105 ............................. <gGame[symbol(tString)]>
+  [ 66] pusharglist 1 ........................... <gGame[symbol(tString)]>
+  [ 68] extcall 67 .............................. <string(gGame[symbol(tString)])>
+  [ 70] pusharglistnoret 1 ...................... <string(gGame[symbol(tString)])>
+  [ 72] extcall 52 .............................. return string(gGame[symbol(tString)])
+  [ 74] getglobal 50 ............................ <gSystem>
+  [ 76] getparam 0 .............................. <tString>
+  [ 78] pusharglist 1 ........................... <tString>
+  [ 80] extcall 88 .............................. <symbol(tString)>
+  [ 82] pusharglist 2 ........................... <gSystem, symbol(tString)>
+  [ 84] objcall 105 ............................. <gSystem[symbol(tString)]>
+  [ 86] pusharglist 1 ........................... <gSystem[symbol(tString)]>
+  [ 88] extcall 389 ............................. <voidp(gSystem[symbol(tString)])>
+  [ 91] pushzero ................................ <0>
+  [ 92] eq ...................................... <voidp(gSystem[symbol(tString)]) = 0>
+  [ 93] jmpifz [116] ............................ if voidp(gSystem[symbol(tString)]) = 0 then
+  [ 96] getglobal 50 ............................ <gSystem>
+  [ 98] getparam 0 .............................. <tString>
+  [100] pusharglist 1 ........................... <tString>
+  [102] extcall 88 .............................. <symbol(tString)>
+  [104] pusharglist 2 ........................... <gSystem, symbol(tString)>
+  [106] objcall 105 ............................. <gSystem[symbol(tString)]>
+  [108] pusharglist 1 ........................... <gSystem[symbol(tString)]>
+  [110] extcall 67 .............................. <string(gSystem[symbol(tString)])>
+  [112] pusharglistnoret 1 ...................... <string(gSystem[symbol(tString)])>
+  [114] extcall 52 .............................. return string(gSystem[symbol(tString)])
+  [116] getglobal 416 ........................... <gLoader>
+  [119] getparam 0 .............................. <tString>
+  [121] pusharglist 1 ........................... <tString>
+  [123] extcall 88 .............................. <symbol(tString)>
+  [125] pusharglist 2 ........................... <gLoader, symbol(tString)>
+  [127] objcall 105 ............................. <gLoader[symbol(tString)]>
+  [129] pusharglist 1 ........................... <gLoader[symbol(tString)]>
+  [131] extcall 389 ............................. <voidp(gLoader[symbol(tString)])>
+  [134] pushzero ................................ <0>
+  [135] eq ...................................... <voidp(gLoader[symbol(tString)]) = 0>
+  [136] jmpifz [160] ............................ if voidp(gLoader[symbol(tString)]) = 0 then
+  [139] getglobal 416 ........................... <gLoader>
+  [142] getparam 0 .............................. <tString>
+  [144] pusharglist 1 ........................... <tString>
+  [146] extcall 88 .............................. <symbol(tString)>
+  [148] pusharglist 2 ........................... <gLoader, symbol(tString)>
+  [150] objcall 105 ............................. <gLoader[symbol(tString)]>
+  [152] pusharglist 1 ........................... <gLoader[symbol(tString)]>
+  [154] extcall 67 .............................. <string(gLoader[symbol(tString)])>
+  [156] pusharglistnoret 1 ...................... <string(gLoader[symbol(tString)])>
+  [158] extcall 52 .............................. return string(gLoader[symbol(tString)])
+  [160] ret
+end
+
+on FormatURL tString
+  [  0] pushint8 1 .............................. <1>
+  [  2] setlocal 0
+  [  4] getlocal 0
+  [  6] getparam 0 .............................. <tString>
+  [  8] getobjprop 69 ........................... <tString.length>
+  [ 10] lteq
+  [ 11] jmpifz [ 62] ............................ repeat with i = 1 to tString.length
+  [ 14] getparam 0 .............................. <tString>
+  [ 16] pushsymb 68 ............................. <#char>
+  [ 18] getlocal 0 .............................. <i>
+  [ 20] pusharglist 3 ........................... <tString, #char, i>
+  [ 22] objcall 70 .............................. <tString.char[i]>
+  [ 24] setlocal 1 .............................. tChar = tString.char[i]
+  [ 26] getlocal 1 .............................. <tChar>
+  [ 28] pushcons 5 .............................. <"\\">
+  [ 30] eq ...................................... <tChar = "\\">
+  [ 31] jmpifz [ 53] ............................ if tChar = "\\" then
+  [ 34] pushcons 6 .............................. <"/">
+  [ 36] pushzero ................................ <0>
+  [ 37] pushchunkvarref 4 ....................... <tString>
+  [ 39] pushsymb 68 ............................. <#char>
+  [ 41] getlocal 0 .............................. <i>
+  [ 43] pusharglist 3 ........................... <tString, #char, i>
+  [ 45] objcall 102 ............................. <tString.char[i]>
+  [ 47] swap
+  [ 48] pusharglistnoret 2 ...................... <tString.char[i], "/">
+  [ 50] objcall 804 ............................. put "/" into tString.char[i]
+  [ 53] pushint8 1
+  [ 55] getlocal 0
+  [ 57] add
+  [ 58] setlocal 0
+  [ 60] endrepeat [  4]
+  [ 62] getparam 0 .............................. <tString>
+  [ 64] pusharglistnoret 1 ...................... <tString>
+  [ 66] extcall 52 .............................. return tString
+  [ 68] ret
+end
+
+on SetItemDelimiter tChar
+  [  0] getparam 0 .............................. <tChar>
+  [  2] setmovieprop 145 ........................ the itemDelimiter = tChar
+  [  4] ret
+end
+
+on ResetItemDelimiter
+  [  0] getglobal 50 ............................ <gSystem>
+  [  2] getobjprop 145 .......................... <gSystem.itemDelimiter>
+  [  4] setmovieprop 145 ........................ the itemDelimiter = gSystem.itemDelimiter
+  [  6] ret
+end

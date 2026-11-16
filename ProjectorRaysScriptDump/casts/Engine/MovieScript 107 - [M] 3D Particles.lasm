@@ -1,0 +1,566 @@
+global gSystem, gData, gGame
+
+on CreateParticleSystem tTarget, tDataList
+  [  0] getparam 0 .............................. <tTarget>
+  [  2] pusharglist 0 ........................... <>
+  [  4] extcall 40 .............................. <VOID>
+  [  6] eq ...................................... <tTarget = VOID>
+  [  7] jmpifz [ 11] ............................ if tTarget = VOID then
+  [ 10] ret ..................................... exit
+  [ 11] getparam 0 .............................. <tTarget>
+  [ 13] pusharglist 1 ........................... <tTarget>
+  [ 15] extcall 64 .............................. <member(tTarget)>
+  [ 17] setlocal 0 .............................. tmember = member(tTarget)
+  [ 19] getlocal 0 .............................. <tmember>
+  [ 21] pusharglist 0 ........................... <>
+  [ 23] extcall 40 .............................. <VOID>
+  [ 25] eq ...................................... <tmember = VOID>
+  [ 26] jmpifz [ 30] ............................ if tmember = VOID then
+  [ 29] ret ..................................... exit
+  [ 30] getparam 1 .............................. <tDataList>
+  [ 32] getobjprop 122 .......................... <tDataList.ilk>
+  [ 34] pushsymb 67 ............................. <#string>
+  [ 36] eq ...................................... <tDataList.ilk = #string>
+  [ 37] jmpifz [ 47] ............................ if tDataList.ilk = #string then
+  [ 40] getparam 1 .............................. <tDataList>
+  [ 42] pusharglistnoret 1 ...................... <tDataList>
+  [ 44] extcall 503 ............................. value(tDataList)
+  [ 47] pusharglist 0 ........................... <>
+  [ 49] extcall 40 .............................. <VOID>
+  [ 51] setlocal 1 .............................. tType = VOID
+  [ 53] getparam 1 .............................. <tDataList>
+  [ 55] pushsymb 598 ............................ <#type>
+  [ 58] pusharglist 2 ........................... <tDataList, #type>
+  [ 60] extcall 542 ............................. <getaProp(tDataList, #type)>
+  [ 63] getobjprop 122 .......................... <getaProp(tDataList, #type).ilk>
+  [ 65] pushsymb 88 ............................. <#symbol>
+  [ 67] eq ...................................... <getaProp(tDataList, #type).ilk = #symbol>
+  [ 68] jmpifz [ 82] ............................ if getaProp(tDataList, #type).ilk = #symbol then
+  [ 71] getparam 1 .............................. <tDataList>
+  [ 73] pushsymb 598 ............................ <#type>
+  [ 76] pusharglist 2 ........................... <tDataList, #type>
+  [ 78] objcall 105 ............................. <tDataList[#type]>
+  [ 80] setlocal 1 .............................. tType = tDataList[#type]
+  [ 82] pushcons 0 .............................. <EMPTY>
+  [ 84] setlocal 2 .............................. tNameTag = EMPTY
+  [ 86] getparam 1 .............................. <tDataList>
+  [ 88] pushsymb 1213 ........................... <#NameTag>
+  [ 91] pusharglist 2 ........................... <tDataList, #NameTag>
+  [ 93] objcall 105 ............................. <tDataList[#NameTag]>
+  [ 95] getobjprop 122 .......................... <tDataList[#NameTag].ilk>
+  [ 97] pushsymb 67 ............................. <#string>
+  [ 99] eq ...................................... <tDataList[#NameTag].ilk = #string>
+  [100] jmpifz [114] ............................ if tDataList[#NameTag].ilk = #string then
+  [103] getparam 1 .............................. <tDataList>
+  [105] pushsymb 1213 ........................... <#NameTag>
+  [108] pusharglist 2 ........................... <tDataList, #NameTag>
+  [110] objcall 105 ............................. <tDataList[#NameTag]>
+  [112] setlocal 2 .............................. tNameTag = tDataList[#NameTag]
+  [114] getglobal 86 ............................ <gData>
+  [116] getchainedprop 87 ....................... <gData.data>
+  [118] pushsymb 1285 ........................... <#Particles>
+  [121] getlocal 1 .............................. <tType>
+  [123] pusharglist 3 ........................... <gData.data, #Particles, tType>
+  [125] objcall 70 .............................. <gData.data.Particles[tType]>
+  [127] setlocal 3 .............................. tPartDataList = gData.data.Particles[tType]
+  [129] getlocal 3 .............................. <tPartDataList>
+  [131] pusharglist 0 ........................... <>
+  [133] extcall 40 .............................. <VOID>
+  [135] eq ...................................... <tPartDataList = VOID>
+  [136] jmpifz [144] ............................ if tPartDataList = VOID then
+  [139] pushzero ................................ <0>
+  [140] pusharglistnoret 1 ...................... <0>
+  [142] extcall 52 .............................. return 0
+  [144] pushint8 1 .............................. <1>
+  [146] setlocal 4 .............................. tNr = 1
+  [148] getlocal 2 .............................. <tNameTag>
+  [150] getlocal 1 .............................. <tType>
+  [152] joinstr ................................. <tNameTag & tType>
+  [153] getlocal 4 .............................. <tNr>
+  [155] joinstr ................................. <tNameTag & tType & tNr>
+  [156] pushcons 1 .............................. <"_Particle">
+  [158] joinstr ................................. <tNameTag & tType & tNr & "_Particle">
+  [159] gettoplevelprop 462 ..................... <_system>
+  [162] getobjprop 463 .......................... <_system.milliSeconds>
+  [165] joinstr ................................. <tNameTag & tType & tNr & "_Particle" & _system.milliSeconds>
+  [166] setlocal 5 .............................. tFutureName = tNameTag & tType & tNr & "_Particle" & _system.milliSeconds
+  [168] getlocal 0 .............................. <tmember>
+  [170] getlocal 5 .............................. <tFutureName>
+  [172] pushsymb 1286 ........................... <#particle>
+  [175] pusharglist 3 ........................... <tmember, tFutureName, #particle>
+  [177] objcall 1287 ............................ <tmember.newModelResource(tFutureName, #particle)>
+  [180] setlocal 6 .............................. tPartResource = tmember.newModelResource(tFutureName, #particle)
+  [182] getlocal 6 .............................. <tPartResource>
+  [184] getchainedprop 1288 ..................... <tPartResource.emitter>
+  [187] pushint8 20 ............................. <20>
+  [189] setobjprop 1289 ......................... tPartResource.emitter.numParticles = 20
+  [192] getlocal 6 .............................. <tPartResource>
+  [194] pushfloat32 500.0 ....................... <500.0>
+  [199] setobjprop 1290 ......................... tPartResource.lifeTime = 500.0
+  [202] getlocal 6 .............................. <tPartResource>
+  [204] getchainedprop 1288 ..................... <tPartResource.emitter>
+  [207] pushfloat32 0.0 ......................... <0.0>
+  [212] setobjprop 1291 ......................... tPartResource.emitter.minSpeed = 0.0
+  [215] getlocal 6 .............................. <tPartResource>
+  [217] getchainedprop 1288 ..................... <tPartResource.emitter>
+  [220] pushfloat32 0.0 ......................... <0.0>
+  [225] setobjprop 1292 ......................... tPartResource.emitter.maxSpeed = 0.0
+  [228] getlocal 6 .............................. <tPartResource>
+  [230] getchainedprop 1293 ..................... <tPartResource.sizeRange>
+  [233] pushfloat32 1.0 ......................... <1.0>
+  [238] setobjprop 841 .......................... tPartResource.sizeRange.start = 1.0
+  [241] getlocal 6 .............................. <tPartResource>
+  [243] getchainedprop 1293 ..................... <tPartResource.sizeRange>
+  [246] pushfloat32 0.0 ......................... <0.0>
+  [251] setobjprop 1294 ......................... tPartResource.sizeRange.end = 0.0
+  [254] getlocal 6 .............................. <tPartResource>
+  [256] getchainedprop 1295 ..................... <tPartResource.blendRange>
+  [259] pushfloat32 100.0 ....................... <100.0>
+  [264] setobjprop 841 .......................... tPartResource.blendRange.start = 100.0
+  [267] getlocal 6 .............................. <tPartResource>
+  [269] getchainedprop 1295 ..................... <tPartResource.blendRange>
+  [272] pushfloat32 0.0 ......................... <0.0>
+  [277] setobjprop 1294 ......................... tPartResource.blendRange.end = 0.0
+  [280] getlocal 6 .............................. <tPartResource>
+  [282] getchainedprop 1296 ..................... <tPartResource.colorRange>
+  [285] pushint16 255 ........................... <255>
+  [288] pushint16 255 ........................... <255>
+  [291] pushint16 255 ........................... <255>
+  [294] pusharglist 3 ........................... <255, 255, 255>
+  [296] extcall 223 ............................. <color(255, 255, 255)>
+  [298] setobjprop 841 .......................... tPartResource.colorRange.start = color(255, 255, 255)
+  [301] getlocal 6 .............................. <tPartResource>
+  [303] getchainedprop 1296 ..................... <tPartResource.colorRange>
+  [306] pushint16 255 ........................... <255>
+  [309] pushint16 255 ........................... <255>
+  [312] pushint16 255 ........................... <255>
+  [315] pusharglist 3 ........................... <255, 255, 255>
+  [317] extcall 223 ............................. <color(255, 255, 255)>
+  [319] setobjprop 1294 ......................... tPartResource.colorRange.end = color(255, 255, 255)
+  [322] getlocal 6 .............................. <tPartResource>
+  [324] getchainedprop 1288 ..................... <tPartResource.emitter>
+  [327] pushsymb 1297 ........................... <#linear>
+  [330] setobjprop 1298 ......................... tPartResource.emitter.distribution = #linear
+  [333] getlocal 6 .............................. <tPartResource>
+  [335] getchainedprop 1288 ..................... <tPartResource.emitter>
+  [338] pushsymb 1299 ........................... <#stream>
+  [341] setobjprop 1300 ......................... tPartResource.emitter.mode = #stream
+  [344] getlocal 6 .............................. <tPartResource>
+  [346] pushsymb 1301 ........................... <#age>
+  [349] setobjprop 1302 ......................... tPartResource.tweenMode = #age
+  [352] getlocal 6 .............................. <tPartResource>
+  [354] getchainedprop 1288 ..................... <tPartResource.emitter>
+  [357] pushint8 1 .............................. <1>
+  [359] setobjprop 1303 ......................... tPartResource.emitter.loop = 1
+  [362] getlocal 6 .............................. <tPartResource>
+  [364] getchainedprop 1288 ..................... <tPartResource.emitter>
+  [367] pushfloat32 0.0 ......................... <0.0>
+  [372] setobjprop 1304 ......................... tPartResource.emitter.angle = 0.0
+  [375] getlocal 6 .............................. <tPartResource>
+  [377] pushfloat32 0.0 ......................... <0.0>
+  [382] setobjprop 1305 ......................... tPartResource.drag = 0.0
+  [385] getlocal 6 .............................. <tPartResource>
+  [387] getchainedprop 1288 ..................... <tPartResource.emitter>
+  [390] pushfloat32 0.0 ......................... <0.0>
+  [395] pushfloat32 0.0 ......................... <0.0>
+  [400] pushfloat32 1.0 ......................... <1.0>
+  [405] pusharglist 3 ........................... <0.0, 0.0, 1.0>
+  [407] extcall 212 ............................. <vector(0.0, 0.0, 1.0)>
+  [409] setobjprop 1306 ......................... tPartResource.emitter.direction = vector(0.0, 0.0, 1.0)
+  [412] getlocal 6 .............................. <tPartResource>
+  [414] pushfloat32 0.0 ......................... <0.0>
+  [419] pushfloat32 0.0 ......................... <0.0>
+  [424] pushfloat32 0.0 ......................... <0.0>
+  [429] pusharglist 3 ........................... <0.0, 0.0, 0.0>
+  [431] extcall 212 ............................. <vector(0.0, 0.0, 0.0)>
+  [433] setobjprop 1307 ......................... tPartResource.gravity = vector(0.0, 0.0, 0.0)
+  [436] getlocal 6 .............................. <tPartResource>
+  [438] pushfloat32 0.0 ......................... <0.0>
+  [443] pushfloat32 0.0 ......................... <0.0>
+  [448] pushfloat32 0.0 ......................... <0.0>
+  [453] pusharglist 3 ........................... <0.0, 0.0, 0.0>
+  [455] extcall 212 ............................. <vector(0.0, 0.0, 0.0)>
+  [457] setobjprop 1308 ......................... tPartResource.wind = vector(0.0, 0.0, 0.0)
+  [460] getlocal 6 .............................. <tPartResource>
+  [462] getchainedprop 1288 ..................... <tPartResource.emitter>
+  [465] pushfloat32 0.0 ......................... <0.0>
+  [470] pushfloat32 0.0 ......................... <0.0>
+  [475] pushfloat32 0.0 ......................... <0.0>
+  [480] pusharglist 3 ........................... <0.0, 0.0, 0.0>
+  [482] extcall 212 ............................. <vector(0.0, 0.0, 0.0)>
+  [484] pusharglist 1 ........................... <[vector(0.0, 0.0, 0.0)]>
+  [486] pushlist ................................ <[vector(0.0, 0.0, 0.0)]>
+  [487] setobjprop 1309 ......................... tPartResource.emitter.region = [vector(0.0, 0.0, 0.0)]
+  [490] getlocal 6 .............................. <tPartResource>
+  [492] pusharglist 0 ........................... <>
+  [494] extcall 40 .............................. <VOID>
+  [496] setobjprop 218 .......................... tPartResource.texture = VOID
+  [498] getlocal 6 .............................. <tPartResource>
+  [500] pushzero ................................ <0>
+  [501] setobjprop 1310 ......................... tPartResource.paused = 0
+  [504] getlocal 3 .............................. <tPartDataList>
+  [506] pusharglist 0 ........................... <>
+  [508] extcall 40 .............................. <VOID>
+  [510] nteq .................................... <tPartDataList <> VOID>
+  [511] jmpifz [1328] ........................... if tPartDataList <> VOID then
+  [514] getlocal 3 .............................. <tPartDataList>
+  [516] pushsymb 1311 ........................... <#amount>
+  [519] pusharglist 2 ........................... <tPartDataList, #amount>
+  [521] extcall 542 ............................. <getaProp(tPartDataList, #amount)>
+  [524] getobjprop 122 .......................... <getaProp(tPartDataList, #amount).ilk>
+  [526] pushsymb 123 ............................ <#integer>
+  [528] eq ...................................... <getaProp(tPartDataList, #amount).ilk = #integer>
+  [529] jmpifz [549] ............................ if getaProp(tPartDataList, #amount).ilk = #integer then
+  [532] getlocal 6 .............................. <tPartResource>
+  [534] getchainedprop 1288 ..................... <tPartResource.emitter>
+  [537] getlocal 3 .............................. <tPartDataList>
+  [539] pushsymb 1311 ........................... <#amount>
+  [542] pusharglist 2 ........................... <tPartDataList, #amount>
+  [544] objcall 105 ............................. <tPartDataList[#amount]>
+  [546] setobjprop 1289 ......................... tPartResource.emitter.numParticles = tPartDataList[#amount]
+  [549] getlocal 3 .............................. <tPartDataList>
+  [551] pushsymb 1290 ........................... <#lifeTime>
+  [554] pusharglist 2 ........................... <tPartDataList, #lifeTime>
+  [556] extcall 542 ............................. <getaProp(tPartDataList, #lifeTime)>
+  [559] getobjprop 122 .......................... <getaProp(tPartDataList, #lifeTime).ilk>
+  [561] pushsymb 544 ............................ <#float>
+  [564] eq ...................................... <getaProp(tPartDataList, #lifeTime).ilk = #float>
+  [565] jmpifz [582] ............................ if getaProp(tPartDataList, #lifeTime).ilk = #float then
+  [568] getlocal 6 .............................. <tPartResource>
+  [570] getlocal 3 .............................. <tPartDataList>
+  [572] pushsymb 1290 ........................... <#lifeTime>
+  [575] pusharglist 2 ........................... <tPartDataList, #lifeTime>
+  [577] objcall 105 ............................. <tPartDataList[#lifeTime]>
+  [579] setobjprop 1290 ......................... tPartResource.lifeTime = tPartDataList[#lifeTime]
+  [582] getlocal 3 .............................. <tPartDataList>
+  [584] pushsymb 1291 ........................... <#minSpeed>
+  [587] pusharglist 2 ........................... <tPartDataList, #minSpeed>
+  [589] extcall 542 ............................. <getaProp(tPartDataList, #minSpeed)>
+  [592] getobjprop 122 .......................... <getaProp(tPartDataList, #minSpeed).ilk>
+  [594] pushsymb 544 ............................ <#float>
+  [597] eq ...................................... <getaProp(tPartDataList, #minSpeed).ilk = #float>
+  [598] jmpifz [618] ............................ if getaProp(tPartDataList, #minSpeed).ilk = #float then
+  [601] getlocal 6 .............................. <tPartResource>
+  [603] getchainedprop 1288 ..................... <tPartResource.emitter>
+  [606] getlocal 3 .............................. <tPartDataList>
+  [608] pushsymb 1291 ........................... <#minSpeed>
+  [611] pusharglist 2 ........................... <tPartDataList, #minSpeed>
+  [613] objcall 105 ............................. <tPartDataList[#minSpeed]>
+  [615] setobjprop 1291 ......................... tPartResource.emitter.minSpeed = tPartDataList[#minSpeed]
+  [618] getlocal 3 .............................. <tPartDataList>
+  [620] pushsymb 1292 ........................... <#maxSpeed>
+  [623] pusharglist 2 ........................... <tPartDataList, #maxSpeed>
+  [625] extcall 542 ............................. <getaProp(tPartDataList, #maxSpeed)>
+  [628] getobjprop 122 .......................... <getaProp(tPartDataList, #maxSpeed).ilk>
+  [630] pushsymb 544 ............................ <#float>
+  [633] eq ...................................... <getaProp(tPartDataList, #maxSpeed).ilk = #float>
+  [634] jmpifz [654] ............................ if getaProp(tPartDataList, #maxSpeed).ilk = #float then
+  [637] getlocal 6 .............................. <tPartResource>
+  [639] getchainedprop 1288 ..................... <tPartResource.emitter>
+  [642] getlocal 3 .............................. <tPartDataList>
+  [644] pushsymb 1292 ........................... <#maxSpeed>
+  [647] pusharglist 2 ........................... <tPartDataList, #maxSpeed>
+  [649] objcall 105 ............................. <tPartDataList[#maxSpeed]>
+  [651] setobjprop 1292 ......................... tPartResource.emitter.maxSpeed = tPartDataList[#maxSpeed]
+  [654] getlocal 3 .............................. <tPartDataList>
+  [656] pushsymb 1312 ........................... <#SizeStart>
+  [659] pusharglist 2 ........................... <tPartDataList, #SizeStart>
+  [661] extcall 542 ............................. <getaProp(tPartDataList, #SizeStart)>
+  [664] getobjprop 122 .......................... <getaProp(tPartDataList, #SizeStart).ilk>
+  [666] pushsymb 544 ............................ <#float>
+  [669] eq ...................................... <getaProp(tPartDataList, #SizeStart).ilk = #float>
+  [670] jmpifz [690] ............................ if getaProp(tPartDataList, #SizeStart).ilk = #float then
+  [673] getlocal 6 .............................. <tPartResource>
+  [675] getchainedprop 1293 ..................... <tPartResource.sizeRange>
+  [678] getlocal 3 .............................. <tPartDataList>
+  [680] pushsymb 1312 ........................... <#SizeStart>
+  [683] pusharglist 2 ........................... <tPartDataList, #SizeStart>
+  [685] objcall 105 ............................. <tPartDataList[#SizeStart]>
+  [687] setobjprop 841 .......................... tPartResource.sizeRange.start = tPartDataList[#SizeStart]
+  [690] getlocal 3 .............................. <tPartDataList>
+  [692] pushsymb 1313 ........................... <#SizeEnd>
+  [695] pusharglist 2 ........................... <tPartDataList, #SizeEnd>
+  [697] extcall 542 ............................. <getaProp(tPartDataList, #SizeEnd)>
+  [700] getobjprop 122 .......................... <getaProp(tPartDataList, #SizeEnd).ilk>
+  [702] pushsymb 544 ............................ <#float>
+  [705] eq ...................................... <getaProp(tPartDataList, #SizeEnd).ilk = #float>
+  [706] jmpifz [726] ............................ if getaProp(tPartDataList, #SizeEnd).ilk = #float then
+  [709] getlocal 6 .............................. <tPartResource>
+  [711] getchainedprop 1293 ..................... <tPartResource.sizeRange>
+  [714] getlocal 3 .............................. <tPartDataList>
+  [716] pushsymb 1313 ........................... <#SizeEnd>
+  [719] pusharglist 2 ........................... <tPartDataList, #SizeEnd>
+  [721] objcall 105 ............................. <tPartDataList[#SizeEnd]>
+  [723] setobjprop 1294 ......................... tPartResource.sizeRange.end = tPartDataList[#SizeEnd]
+  [726] getlocal 3 .............................. <tPartDataList>
+  [728] pushsymb 1314 ........................... <#blendStart>
+  [731] pusharglist 2 ........................... <tPartDataList, #blendStart>
+  [733] extcall 542 ............................. <getaProp(tPartDataList, #blendStart)>
+  [736] getobjprop 122 .......................... <getaProp(tPartDataList, #blendStart).ilk>
+  [738] pushsymb 544 ............................ <#float>
+  [741] eq ...................................... <getaProp(tPartDataList, #blendStart).ilk = #float>
+  [742] jmpifz [762] ............................ if getaProp(tPartDataList, #blendStart).ilk = #float then
+  [745] getlocal 6 .............................. <tPartResource>
+  [747] getchainedprop 1295 ..................... <tPartResource.blendRange>
+  [750] getlocal 3 .............................. <tPartDataList>
+  [752] pushsymb 1314 ........................... <#blendStart>
+  [755] pusharglist 2 ........................... <tPartDataList, #blendStart>
+  [757] objcall 105 ............................. <tPartDataList[#blendStart]>
+  [759] setobjprop 841 .......................... tPartResource.blendRange.start = tPartDataList[#blendStart]
+  [762] getlocal 3 .............................. <tPartDataList>
+  [764] pushsymb 1315 ........................... <#blendEnd>
+  [767] pusharglist 2 ........................... <tPartDataList, #blendEnd>
+  [769] extcall 542 ............................. <getaProp(tPartDataList, #blendEnd)>
+  [772] getobjprop 122 .......................... <getaProp(tPartDataList, #blendEnd).ilk>
+  [774] pushsymb 544 ............................ <#float>
+  [777] eq ...................................... <getaProp(tPartDataList, #blendEnd).ilk = #float>
+  [778] jmpifz [798] ............................ if getaProp(tPartDataList, #blendEnd).ilk = #float then
+  [781] getlocal 6 .............................. <tPartResource>
+  [783] getchainedprop 1295 ..................... <tPartResource.blendRange>
+  [786] getlocal 3 .............................. <tPartDataList>
+  [788] pushsymb 1315 ........................... <#blendEnd>
+  [791] pusharglist 2 ........................... <tPartDataList, #blendEnd>
+  [793] objcall 105 ............................. <tPartDataList[#blendEnd]>
+  [795] setobjprop 1294 ......................... tPartResource.blendRange.end = tPartDataList[#blendEnd]
+  [798] getlocal 3 .............................. <tPartDataList>
+  [800] pushsymb 1316 ........................... <#colorStart>
+  [803] pusharglist 2 ........................... <tPartDataList, #colorStart>
+  [805] extcall 542 ............................. <getaProp(tPartDataList, #colorStart)>
+  [808] getobjprop 122 .......................... <getaProp(tPartDataList, #colorStart).ilk>
+  [810] pushsymb 223 ............................ <#color>
+  [812] eq ...................................... <getaProp(tPartDataList, #colorStart).ilk = #color>
+  [813] jmpifz [833] ............................ if getaProp(tPartDataList, #colorStart).ilk = #color then
+  [816] getlocal 6 .............................. <tPartResource>
+  [818] getchainedprop 1296 ..................... <tPartResource.colorRange>
+  [821] getlocal 3 .............................. <tPartDataList>
+  [823] pushsymb 1316 ........................... <#colorStart>
+  [826] pusharglist 2 ........................... <tPartDataList, #colorStart>
+  [828] objcall 105 ............................. <tPartDataList[#colorStart]>
+  [830] setobjprop 841 .......................... tPartResource.colorRange.start = tPartDataList[#colorStart]
+  [833] getlocal 3 .............................. <tPartDataList>
+  [835] pushsymb 1317 ........................... <#colorEnd>
+  [838] pusharglist 2 ........................... <tPartDataList, #colorEnd>
+  [840] extcall 542 ............................. <getaProp(tPartDataList, #colorEnd)>
+  [843] getobjprop 122 .......................... <getaProp(tPartDataList, #colorEnd).ilk>
+  [845] pushsymb 223 ............................ <#color>
+  [847] eq ...................................... <getaProp(tPartDataList, #colorEnd).ilk = #color>
+  [848] jmpifz [868] ............................ if getaProp(tPartDataList, #colorEnd).ilk = #color then
+  [851] getlocal 6 .............................. <tPartResource>
+  [853] getchainedprop 1296 ..................... <tPartResource.colorRange>
+  [856] getlocal 3 .............................. <tPartDataList>
+  [858] pushsymb 1317 ........................... <#colorEnd>
+  [861] pusharglist 2 ........................... <tPartDataList, #colorEnd>
+  [863] objcall 105 ............................. <tPartDataList[#colorEnd]>
+  [865] setobjprop 1294 ......................... tPartResource.colorRange.end = tPartDataList[#colorEnd]
+  [868] getlocal 3 .............................. <tPartDataList>
+  [870] pushsymb 1298 ........................... <#distribution>
+  [873] pusharglist 2 ........................... <tPartDataList, #distribution>
+  [875] extcall 542 ............................. <getaProp(tPartDataList, #distribution)>
+  [878] getobjprop 122 .......................... <getaProp(tPartDataList, #distribution).ilk>
+  [880] pushsymb 88 ............................. <#symbol>
+  [882] eq ...................................... <getaProp(tPartDataList, #distribution).ilk = #symbol>
+  [883] jmpifz [903] ............................ if getaProp(tPartDataList, #distribution).ilk = #symbol then
+  [886] getlocal 6 .............................. <tPartResource>
+  [888] getchainedprop 1288 ..................... <tPartResource.emitter>
+  [891] getlocal 3 .............................. <tPartDataList>
+  [893] pushsymb 1298 ........................... <#distribution>
+  [896] pusharglist 2 ........................... <tPartDataList, #distribution>
+  [898] objcall 105 ............................. <tPartDataList[#distribution]>
+  [900] setobjprop 1298 ......................... tPartResource.emitter.distribution = tPartDataList[#distribution]
+  [903] getlocal 3 .............................. <tPartDataList>
+  [905] pushsymb 1300 ........................... <#mode>
+  [908] pusharglist 2 ........................... <tPartDataList, #mode>
+  [910] extcall 542 ............................. <getaProp(tPartDataList, #mode)>
+  [913] getobjprop 122 .......................... <getaProp(tPartDataList, #mode).ilk>
+  [915] pushsymb 88 ............................. <#symbol>
+  [917] eq ...................................... <getaProp(tPartDataList, #mode).ilk = #symbol>
+  [918] jmpifz [938] ............................ if getaProp(tPartDataList, #mode).ilk = #symbol then
+  [921] getlocal 6 .............................. <tPartResource>
+  [923] getchainedprop 1288 ..................... <tPartResource.emitter>
+  [926] getlocal 3 .............................. <tPartDataList>
+  [928] pushsymb 1300 ........................... <#mode>
+  [931] pusharglist 2 ........................... <tPartDataList, #mode>
+  [933] objcall 105 ............................. <tPartDataList[#mode]>
+  [935] setobjprop 1300 ......................... tPartResource.emitter.mode = tPartDataList[#mode]
+  [938] getlocal 3 .............................. <tPartDataList>
+  [940] pushsymb 1302 ........................... <#tweenMode>
+  [943] pusharglist 2 ........................... <tPartDataList, #tweenMode>
+  [945] extcall 542 ............................. <getaProp(tPartDataList, #tweenMode)>
+  [948] getobjprop 122 .......................... <getaProp(tPartDataList, #tweenMode).ilk>
+  [950] pushsymb 88 ............................. <#symbol>
+  [952] eq ...................................... <getaProp(tPartDataList, #tweenMode).ilk = #symbol>
+  [953] jmpifz [970] ............................ if getaProp(tPartDataList, #tweenMode).ilk = #symbol then
+  [956] getlocal 6 .............................. <tPartResource>
+  [958] getlocal 3 .............................. <tPartDataList>
+  [960] pushsymb 1302 ........................... <#tweenMode>
+  [963] pusharglist 2 ........................... <tPartDataList, #tweenMode>
+  [965] objcall 105 ............................. <tPartDataList[#tweenMode]>
+  [967] setobjprop 1302 ......................... tPartResource.tweenMode = tPartDataList[#tweenMode]
+  [970] getlocal 3 .............................. <tPartDataList>
+  [972] pushsymb 1303 ........................... <#loop>
+  [975] pusharglist 2 ........................... <tPartDataList, #loop>
+  [977] extcall 542 ............................. <getaProp(tPartDataList, #loop)>
+  [980] getobjprop 122 .......................... <getaProp(tPartDataList, #loop).ilk>
+  [982] pushsymb 123 ............................ <#integer>
+  [984] eq ...................................... <getaProp(tPartDataList, #loop).ilk = #integer>
+  [985] jmpifz [1005] ........................... if getaProp(tPartDataList, #loop).ilk = #integer then
+  [988] getlocal 6 .............................. <tPartResource>
+  [990] getchainedprop 1288 ..................... <tPartResource.emitter>
+  [993] getlocal 3 .............................. <tPartDataList>
+  [995] pushsymb 1303 ........................... <#loop>
+  [998] pusharglist 2 ........................... <tPartDataList, #loop>
+  [1000] objcall 105 ............................ <tPartDataList[#loop]>
+  [1002] setobjprop 1303 ........................ tPartResource.emitter.loop = tPartDataList[#loop]
+  [1005] getlocal 3 ............................. <tPartDataList>
+  [1007] pushsymb 1304 .......................... <#angle>
+  [1010] pusharglist 2 .......................... <tPartDataList, #angle>
+  [1012] extcall 542 ............................ <getaProp(tPartDataList, #angle)>
+  [1015] getobjprop 122 ......................... <getaProp(tPartDataList, #angle).ilk>
+  [1017] pushsymb 544 ........................... <#float>
+  [1020] eq ..................................... <getaProp(tPartDataList, #angle).ilk = #float>
+  [1021] jmpifz [1041] .......................... if getaProp(tPartDataList, #angle).ilk = #float then
+  [1024] getlocal 6 ............................. <tPartResource>
+  [1026] getchainedprop 1288 .................... <tPartResource.emitter>
+  [1029] getlocal 3 ............................. <tPartDataList>
+  [1031] pushsymb 1304 .......................... <#angle>
+  [1034] pusharglist 2 .......................... <tPartDataList, #angle>
+  [1036] objcall 105 ............................ <tPartDataList[#angle]>
+  [1038] setobjprop 1304 ........................ tPartResource.emitter.angle = tPartDataList[#angle]
+  [1041] getlocal 3 ............................. <tPartDataList>
+  [1043] pushsymb 1305 .......................... <#drag>
+  [1046] pusharglist 2 .......................... <tPartDataList, #drag>
+  [1048] extcall 542 ............................ <getaProp(tPartDataList, #drag)>
+  [1051] getobjprop 122 ......................... <getaProp(tPartDataList, #drag).ilk>
+  [1053] pushsymb 544 ........................... <#float>
+  [1056] eq ..................................... <getaProp(tPartDataList, #drag).ilk = #float>
+  [1057] jmpifz [1074] .......................... if getaProp(tPartDataList, #drag).ilk = #float then
+  [1060] getlocal 6 ............................. <tPartResource>
+  [1062] getlocal 3 ............................. <tPartDataList>
+  [1064] pushsymb 1305 .......................... <#drag>
+  [1067] pusharglist 2 .......................... <tPartDataList, #drag>
+  [1069] objcall 105 ............................ <tPartDataList[#drag]>
+  [1071] setobjprop 1305 ........................ tPartResource.drag = tPartDataList[#drag]
+  [1074] getlocal 3 ............................. <tPartDataList>
+  [1076] pushsymb 1306 .......................... <#direction>
+  [1079] pusharglist 2 .......................... <tPartDataList, #direction>
+  [1081] extcall 542 ............................ <getaProp(tPartDataList, #direction)>
+  [1084] getobjprop 122 ......................... <getaProp(tPartDataList, #direction).ilk>
+  [1086] pushsymb 212 ........................... <#vector>
+  [1088] eq ..................................... <getaProp(tPartDataList, #direction).ilk = #vector>
+  [1089] jmpifz [1109] .......................... if getaProp(tPartDataList, #direction).ilk = #vector then
+  [1092] getlocal 6 ............................. <tPartResource>
+  [1094] getchainedprop 1288 .................... <tPartResource.emitter>
+  [1097] getlocal 3 ............................. <tPartDataList>
+  [1099] pushsymb 1306 .......................... <#direction>
+  [1102] pusharglist 2 .......................... <tPartDataList, #direction>
+  [1104] objcall 105 ............................ <tPartDataList[#direction]>
+  [1106] setobjprop 1306 ........................ tPartResource.emitter.direction = tPartDataList[#direction]
+  [1109] getlocal 3 ............................. <tPartDataList>
+  [1111] pushsymb 1307 .......................... <#gravity>
+  [1114] pusharglist 2 .......................... <tPartDataList, #gravity>
+  [1116] extcall 542 ............................ <getaProp(tPartDataList, #gravity)>
+  [1119] getobjprop 122 ......................... <getaProp(tPartDataList, #gravity).ilk>
+  [1121] pushsymb 212 ........................... <#vector>
+  [1123] eq ..................................... <getaProp(tPartDataList, #gravity).ilk = #vector>
+  [1124] jmpifz [1141] .......................... if getaProp(tPartDataList, #gravity).ilk = #vector then
+  [1127] getlocal 6 ............................. <tPartResource>
+  [1129] getlocal 3 ............................. <tPartDataList>
+  [1131] pushsymb 1307 .......................... <#gravity>
+  [1134] pusharglist 2 .......................... <tPartDataList, #gravity>
+  [1136] objcall 105 ............................ <tPartDataList[#gravity]>
+  [1138] setobjprop 1307 ........................ tPartResource.gravity = tPartDataList[#gravity]
+  [1141] getlocal 3 ............................. <tPartDataList>
+  [1143] pushsymb 1308 .......................... <#wind>
+  [1146] pusharglist 2 .......................... <tPartDataList, #wind>
+  [1148] extcall 542 ............................ <getaProp(tPartDataList, #wind)>
+  [1151] getobjprop 122 ......................... <getaProp(tPartDataList, #wind).ilk>
+  [1153] pushsymb 212 ........................... <#vector>
+  [1155] eq ..................................... <getaProp(tPartDataList, #wind).ilk = #vector>
+  [1156] jmpifz [1173] .......................... if getaProp(tPartDataList, #wind).ilk = #vector then
+  [1159] getlocal 6 ............................. <tPartResource>
+  [1161] getlocal 3 ............................. <tPartDataList>
+  [1163] pushsymb 1308 .......................... <#wind>
+  [1166] pusharglist 2 .......................... <tPartDataList, #wind>
+  [1168] objcall 105 ............................ <tPartDataList[#wind]>
+  [1170] setobjprop 1308 ........................ tPartResource.wind = tPartDataList[#wind]
+  [1173] getlocal 3 ............................. <tPartDataList>
+  [1175] pushsymb 1309 .......................... <#region>
+  [1178] pusharglist 2 .......................... <tPartDataList, #region>
+  [1180] extcall 542 ............................ <getaProp(tPartDataList, #region)>
+  [1183] getobjprop 122 ......................... <getaProp(tPartDataList, #region).ilk>
+  [1185] pushsymb 126 ........................... <#list>
+  [1187] eq ..................................... <getaProp(tPartDataList, #region).ilk = #list>
+  [1188] jmpifz [1208] .......................... if getaProp(tPartDataList, #region).ilk = #list then
+  [1191] getlocal 6 ............................. <tPartResource>
+  [1193] getchainedprop 1288 .................... <tPartResource.emitter>
+  [1196] getlocal 3 ............................. <tPartDataList>
+  [1198] pushsymb 1309 .......................... <#region>
+  [1201] pusharglist 2 .......................... <tPartDataList, #region>
+  [1203] objcall 105 ............................ <tPartDataList[#region]>
+  [1205] setobjprop 1309 ........................ tPartResource.emitter.region = tPartDataList[#region]
+  [1208] getlocal 3 ............................. <tPartDataList>
+  [1210] pushsymb 218 ........................... <#texture>
+  [1212] pusharglist 2 .......................... <tPartDataList, #texture>
+  [1214] extcall 542 ............................ <getaProp(tPartDataList, #texture)>
+  [1217] getobjprop 122 ......................... <getaProp(tPartDataList, #texture).ilk>
+  [1219] pushsymb 67 ............................ <#string>
+  [1221] eq ..................................... <getaProp(tPartDataList, #texture).ilk = #string>
+  [1222] jmpifz [1293] .......................... if getaProp(tPartDataList, #texture).ilk = #string then
+  [1225] getlocal 0 ............................. <tmember>
+  [1227] getlocal 3 ............................. <tPartDataList>
+  [1229] pushsymb 218 ........................... <#texture>
+  [1231] pusharglist 2 .......................... <tPartDataList, #texture>
+  [1233] objcall 105 ............................ <tPartDataList[#texture]>
+  [1235] pusharglist 2 .......................... <tmember, tPartDataList[#texture]>
+  [1237] objcall 218 ............................ <tmember.texture(tPartDataList[#texture])>
+  [1239] setlocal 7 ............................. tTexture = tmember.texture(tPartDataList[#texture])
+  [1241] getlocal 7 ............................. <tTexture>
+  [1243] pusharglist 0 .......................... <>
+  [1245] extcall 40 ............................. <VOID>
+  [1247] eq ..................................... <tTexture = VOID>
+  [1248] jmpifz [1287] .......................... if tTexture = VOID then
+  [1251] getlocal 0 ............................. <tmember>
+  [1253] getobjprop 235 ......................... <tmember.name>
+  [1255] pushsymb 59 ............................ <#fileName>
+  [1257] getlocal 3 ............................. <tPartDataList>
+  [1259] pushsymb 218 ........................... <#texture>
+  [1261] pusharglist 2 .......................... <tPartDataList, #texture>
+  [1263] objcall 105 ............................ <tPartDataList[#texture]>
+  [1265] pushsymb 866 ........................... <#filtering>
+  [1268] pushsymb 867 ........................... <#lowFiltered>
+  [1271] pushsymb 348 ........................... <#renderFormat>
+  [1274] pushsymb 865 ........................... <#rgba8888>
+  [1277] pusharglist 6 .......................... <[#fileName: tPartDataList[#texture], #filtering: #lowFiltered, #renderFormat: #rgba8888]>
+  [1279] pushproplist ........................... <[#fileName: tPartDataList[#texture], #filtering: #lowFiltered, #renderFormat: #rgba8888]>
+  [1280] pusharglist 2 .......................... <tmember.name, [#fileName: tPartDataList[#texture], #filtering: #lowFiltered, #renderFormat: #rgba8888]>
+  [1282] extcall 681 ............................ <createTexture(tmember.name, [#fileName: tPartDataList[#texture], #filtering: #lowFiltered, #renderFormat: #rgba8888])>
+  [1285] setlocal 7 ............................. tTexture = createTexture(tmember.name, [#fileName: tPartDataList[#texture], #filtering: #lowFiltered, #renderFormat: #rgba8888])
+  [1287] getlocal 6 ............................. <tPartResource>
+  [1289] getlocal 7 ............................. <tTexture>
+  [1291] setobjprop 218 ......................... tPartResource.texture = tTexture
+  [1293] getlocal 3 ............................. <tPartDataList>
+  [1295] pushsymb 392 ........................... <#pause>
+  [1298] pusharglist 2 .......................... <tPartDataList, #pause>
+  [1300] extcall 542 ............................ <getaProp(tPartDataList, #pause)>
+  [1303] getobjprop 122 ......................... <getaProp(tPartDataList, #pause).ilk>
+  [1305] pushsymb 123 ........................... <#integer>
+  [1307] eq ..................................... <getaProp(tPartDataList, #pause).ilk = #integer>
+  [1308] jmpifz [1328] .......................... if getaProp(tPartDataList, #pause).ilk = #integer then
+  [1311] getlocal 6 ............................. <tPartResource>
+  [1313] getchainedprop 1288 .................... <tPartResource.emitter>
+  [1316] getlocal 3 ............................. <tPartDataList>
+  [1318] pushsymb 392 ........................... <#pause>
+  [1321] pusharglist 2 .......................... <tPartDataList, #pause>
+  [1323] objcall 105 ............................ <tPartDataList[#pause]>
+  [1325] setobjprop 392 ......................... tPartResource.emitter.pause = tPartDataList[#pause]
+  [1328] getlocal 0 ............................. <tmember>
+  [1330] getlocal 5 ............................. <tFutureName>
+  [1332] getlocal 6 ............................. <tPartResource>
+  [1334] pusharglist 3 .......................... <tmember, tFutureName, tPartResource>
+  [1336] objcall 892 ............................ <tmember.newModel(tFutureName, tPartResource)>
+  [1339] setlocal 8 ............................. tPartModel = tmember.newModel(tFutureName, tPartResource)
+  [1341] getlocal 8 ............................. <tPartModel>
+  [1343] pusharglistnoret 1 ..................... <tPartModel>
+  [1345] extcall 52 ............................. return tPartModel
+  [1347] ret
+end

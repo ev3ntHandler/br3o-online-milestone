@@ -1,0 +1,349 @@
+property p
+global g
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 64 ............................. <#member>
+  [ 11] getparam 1 .............................. <tParams>
+  [ 13] pushsymb 949 ............................ <#memberName>
+  [ 16] pusharglist 2 ........................... <tParams, #memberName>
+  [ 18] objcall 105 ............................. <tParams[#memberName]>
+  [ 20] pusharglist 1 ........................... <tParams[#memberName]>
+  [ 22] extcall 64 .............................. <member(tParams[#memberName])>
+  [ 24] pusharglistnoret 3 ...................... <p, #member, member(tParams[#memberName])>
+  [ 26] objcall 103 ............................. p[#member] = member(tParams[#memberName])
+  [ 28] getprop 563 ............................. <p>
+  [ 31] pushsymb 378 ............................ <#controller>
+  [ 34] getparam 1 .............................. <tParams>
+  [ 36] pushsymb 378 ............................ <#controller>
+  [ 39] pusharglist 2 ........................... <tParams, #controller>
+  [ 41] objcall 105 ............................. <tParams[#controller]>
+  [ 43] pusharglistnoret 3 ...................... <p, #controller, tParams[#controller]>
+  [ 45] objcall 103 ............................. p[#controller] = tParams[#controller]
+  [ 47] getprop 563 ............................. <p>
+  [ 50] pushsymb 377 ............................ <#tag>
+  [ 53] getparam 1 .............................. <tParams>
+  [ 55] pushsymb 377 ............................ <#tag>
+  [ 58] pusharglist 2 ........................... <tParams, #tag>
+  [ 60] objcall 105 ............................. <tParams[#tag]>
+  [ 62] pusharglistnoret 3 ...................... <p, #tag, tParams[#tag]>
+  [ 64] objcall 103 ............................. p[#tag] = tParams[#tag]
+  [ 66] getprop 563 ............................. <p>
+  [ 69] pushsymb 2067 ........................... <#CarName>
+  [ 72] pushcons 0 .............................. <"Car">
+  [ 74] pusharglistnoret 3 ...................... <p, #CarName, "Car">
+  [ 76] objcall 103 ............................. p[#CarName] = "Car"
+  [ 78] getprop 563 ............................. <p>
+  [ 81] pushsymb 3049 ........................... <#collModelName>
+  [ 84] getparam 1 .............................. <tParams>
+  [ 86] pushsymb 3049 ........................... <#collModelName>
+  [ 89] pusharglist 2 ........................... <tParams, #collModelName>
+  [ 91] objcall 105 ............................. <tParams[#collModelName]>
+  [ 93] pusharglistnoret 3 ...................... <p, #collModelName, tParams[#collModelName]>
+  [ 95] objcall 103 ............................. p[#collModelName] = tParams[#collModelName]
+  [ 97] pusharglist 0 ........................... <>
+  [ 99] extcall 40 .............................. <VOID>
+  [101] setparam 1 .............................. tParams = VOID
+  [103] getprop 563 ............................. <p>
+  [106] pushsymb 428 ............................ <#reset>
+  [109] pushzero ................................ <0>
+  [110] pusharglistnoret 3 ...................... <p, #reset, 0>
+  [112] objcall 103 ............................. p[#reset] = 0
+  [114] getparam 0 .............................. <me>
+  [116] pusharglistnoret 1 ...................... <me>
+  [118] objcall 3396 ............................ me.SetupCarMixer()
+  [121] getprop 563 ............................. <p>
+  [124] pushsymb 45 ............................. <#me>
+  [126] getparam 0 .............................. <me>
+  [128] pusharglistnoret 3 ...................... <p, #me, me>
+  [130] objcall 103 ............................. p[#me] = me
+  [132] getprop 563 ............................. <p>
+  [135] pushsymb 3062 ........................... <#ScriptLimit>
+  [138] pushzero ................................ <0>
+  [139] pusharglistnoret 3 ...................... <p, #ScriptLimit, 0>
+  [141] objcall 103 ............................. p[#ScriptLimit] = 0
+  [143] getparam 0 .............................. <me>
+  [145] pusharglistnoret 1 ...................... <me>
+  [147] extcall 52 .............................. return me
+  [149] ret
+end
+
+on SetupCarMixer tTag, tNr
+  [  0] getglobal 395 ........................... <g>
+  [  3] pushsymb 137 ............................ <#cars>
+  [  5] pushint8 1 .............................. <1>
+  [  7] pusharglist 3 ........................... <g, #cars, 1>
+  [  9] objcall 70 .............................. <g.cars[1]>
+  [ 11] setlocal 0 .............................. t = g.cars[1]
+  [ 13] getlocal 0 .............................. <t>
+  [ 15] pushsymb 611 ............................ <#sound>
+  [ 18] pusharglist 0 ........................... <[:]>
+  [ 20] pushproplist ............................ <[:]>
+  [ 21] pusharglistnoret 3 ...................... <t, #sound, [:]>
+  [ 23] objcall 103 ............................. t[#sound] = [:]
+  [ 25] getlocal 0 .............................. <t>
+  [ 27] pushsymb 611 ............................ <#sound>
+  [ 30] pushsymb 1023 ........................... <#Mixer>
+  [ 33] pusharglist 0 ........................... <>
+  [ 35] extcall 1019 ............................ <CreateMixer()>
+  [ 38] pusharglistnoret 4 ...................... <t, #sound, #Mixer, CreateMixer()>
+  [ 40] objcall 99 .............................. t.sound[#Mixer] = CreateMixer()
+  [ 42] getlocal 0 .............................. <t>
+  [ 44] getchainedprop 611 ...................... <t.sound>
+  [ 47] getchainedprop 1023 ..................... <t.sound.Mixer>
+  [ 50] pushint16 128 ........................... <128>
+  [ 53] setobjprop 1030 ......................... t.sound.Mixer.volume = 128
+  [ 56] getlocal 0 .............................. <t>
+  [ 58] pushsymb 611 ............................ <#sound>
+  [ 61] pushsymb 1102 ........................... <#channel>
+  [ 64] getglobal 395 ........................... <g>
+  [ 67] getchainedprop 611 ...................... <g.sound>
+  [ 70] pushsymb 1029 ........................... <#DataSoundChannels>
+  [ 73] pusharglist 2 ........................... <g.sound, #DataSoundChannels>
+  [ 75] objcall 129 ............................. <g.sound.DataSoundChannels.count>
+  [ 77] pushint8 1 .............................. <1>
+  [ 79] add ..................................... <g.sound.DataSoundChannels.count + 1>
+  [ 80] pusharglistnoret 4 ...................... <t, #sound, #channel, g.sound.DataSoundChannels.count + 1>
+  [ 82] objcall 99 .............................. t.sound[#channel] = g.sound.DataSoundChannels.count + 1
+  [ 84] getlocal 0 .............................. <t>
+  [ 86] pushsymb 611 ............................ <#sound>
+  [ 89] pushsymb 2226 ........................... <#rate>
+  [ 92] pushfloat32 1.0 ......................... <1.0>
+  [ 97] pusharglistnoret 4 ...................... <t, #sound, #rate, 1.0>
+  [ 99] objcall 99 .............................. t.sound[#rate] = 1.0
+  [101] getlocal 0 .............................. <t>
+  [103] pushsymb 611 ............................ <#sound>
+  [106] pushsymb 2074 ........................... <#engine>
+  [109] getlocal 0 .............................. <t>
+  [111] getchainedprop 611 ...................... <t.sound>
+  [114] getchainedprop 1023 ..................... <t.sound.Mixer>
+  [117] pushcons 1 .............................. <"Engine">
+  [119] pushcons 2 .............................. <"Engine01_SFX">
+  [121] pusharglist 1 ........................... <"Engine01_SFX">
+  [123] extcall 64 .............................. <member("Engine01_SFX")>
+  [125] pushsymb 1042 ........................... <#loopCount>
+  [128] pushzero ................................ <0>
+  [129] pushsymb 2238 ........................... <#playRate>
+  [132] getlocal 0 .............................. <t>
+  [134] getchainedprop 611 ...................... <t.sound>
+  [137] getobjprop 2226 ......................... <t.sound.rate>
+  [140] pusharglist 4 ........................... <[#loopCount: 0, #playRate: t.sound.rate]>
+  [142] pushproplist ............................ <[#loopCount: 0, #playRate: t.sound.rate]>
+  [143] pusharglist 4 ........................... <t.sound.Mixer, "Engine", member("Engine01_SFX"), [#loopCount: 0, #playRate: t.sound.rate]>
+  [145] objcall 2227 ............................ <t.sound.Mixer.createSoundObject("Engine", member("Engine01_SFX"), [#loopCount: 0, #playRate: t.sound.rate])>
+  [148] pusharglistnoret 4 ...................... <t, #sound, #engine, t.sound.Mixer.createSoundObject("Engine", member("Engine01_SFX"), [#loopCount: 0, #playRate: t.sound.rate])>
+  [150] objcall 99 .............................. t.sound[#engine] = t.sound.Mixer.createSoundObject("Engine", member("Engine01_SFX"), [#loopCount: 0, #playRate: t.sound.rate])
+  [152] getlocal 0 .............................. <t>
+  [154] getchainedprop 611 ...................... <t.sound>
+  [157] getchainedprop 2074 ..................... <t.sound.engine>
+  [160] pushint16 255 ........................... <255>
+  [163] setobjprop 1030 ......................... t.sound.engine.volume = 255
+  [166] getlocal 0 .............................. <t>
+  [168] pushsymb 611 ............................ <#sound>
+  [171] pushsymb 327 ............................ <#filter>
+  [174] pushsymb 2229 ........................... <#PitchShiftFilter>
+  [177] pushsymb 2230 ........................... <#Shift>
+  [180] getlocal 0 .............................. <t>
+  [182] getchainedprop 611 ...................... <t.sound>
+  [185] getobjprop 2226 ......................... <t.sound.rate>
+  [188] pusharglist 2 ........................... <[#Shift: t.sound.rate]>
+  [190] pushproplist ............................ <[#Shift: t.sound.rate]>
+  [191] pusharglist 2 ........................... <#PitchShiftFilter, [#Shift: t.sound.rate]>
+  [193] extcall 2228 ............................ <audioFilter(#PitchShiftFilter, [#Shift: t.sound.rate])>
+  [196] pusharglistnoret 4 ...................... <t, #sound, #filter, audioFilter(#PitchShiftFilter, [#Shift: t.sound.rate])>
+  [198] objcall 99 .............................. t.sound[#filter] = audioFilter(#PitchShiftFilter, [#Shift: t.sound.rate])
+  [200] getlocal 0 .............................. <t>
+  [202] getchainedprop 611 ...................... <t.sound>
+  [205] getchainedprop 2074 ..................... <t.sound.engine>
+  [208] getchainedprop 2231 ..................... <t.sound.engine.filterList>
+  [211] getlocal 0 .............................. <t>
+  [213] getchainedprop 611 ...................... <t.sound>
+  [216] getobjprop 327 .......................... <t.sound.filter>
+  [219] pusharglistnoret 2 ...................... <t.sound.engine.filterList, t.sound.filter>
+  [221] objcall 1629 ............................ t.sound.engine.filterList.append(t.sound.filter)
+  [224] getlocal 0 .............................. <t>
+  [226] pushsymb 611 ............................ <#sound>
+  [229] pushsymb 2233 ........................... <#slip>
+  [232] getlocal 0 .............................. <t>
+  [234] getchainedprop 611 ...................... <t.sound>
+  [237] getchainedprop 1023 ..................... <t.sound.Mixer>
+  [240] pushcons 3 .............................. <"Drift">
+  [242] pushcons 4 .............................. <"Drift_SFX">
+  [244] pusharglist 1 ........................... <"Drift_SFX">
+  [246] extcall 64 .............................. <member("Drift_SFX")>
+  [248] pushsymb 1042 ........................... <#loopCount>
+  [251] pushzero ................................ <0>
+  [252] pushsymb 1043 ........................... <#loopStartTime>
+  [255] pushint8 10 ............................. <10>
+  [257] pusharglist 4 ........................... <[#loopCount: 0, #loopStartTime: 10]>
+  [259] pushproplist ............................ <[#loopCount: 0, #loopStartTime: 10]>
+  [260] pusharglist 4 ........................... <t.sound.Mixer, "Drift", member("Drift_SFX"), [#loopCount: 0, #loopStartTime: 10]>
+  [262] objcall 2227 ............................ <t.sound.Mixer.createSoundObject("Drift", member("Drift_SFX"), [#loopCount: 0, #loopStartTime: 10])>
+  [265] pusharglistnoret 4 ...................... <t, #sound, #slip, t.sound.Mixer.createSoundObject("Drift", member("Drift_SFX"), [#loopCount: 0, #loopStartTime: 10])>
+  [267] objcall 99 .............................. t.sound[#slip] = t.sound.Mixer.createSoundObject("Drift", member("Drift_SFX"), [#loopCount: 0, #loopStartTime: 10])
+  [269] getlocal 0 .............................. <t>
+  [271] getchainedprop 611 ...................... <t.sound>
+  [274] getchainedprop 2233 ..................... <t.sound.slip>
+  [277] pushzero ................................ <0>
+  [278] setobjprop 1030 ......................... t.sound.slip.volume = 0
+  [281] getlocal 0 .............................. <t>
+  [283] getchainedprop 611 ...................... <t.sound>
+  [286] getchainedprop 1023 ..................... <t.sound.Mixer>
+  [289] pusharglistnoret 1 ...................... <t.sound.Mixer>
+  [291] objcall 1110 ............................ t.sound.Mixer.play()
+  [294] getglobal 395 ........................... <g>
+  [297] getchainedprop 611 ...................... <g.sound>
+  [300] getobjprop 293 .......................... <g.sound.mute>
+  [303] pushint8 1 .............................. <1>
+  [305] eq ...................................... <g.sound.mute = 1>
+  [306] jmpifz [329] ............................ if g.sound.mute = 1 then / else
+  [309] getlocal 0 .............................. <t>
+  [311] getchainedprop 611 ...................... <t.sound>
+  [314] getobjprop 1102 ......................... <t.sound.channel>
+  [317] pusharglist 1 ........................... <t.sound.channel>
+  [319] extcall 611 ............................. <sound(t.sound.channel)>
+  [322] pushzero ................................ <0>
+  [323] setobjprop 1030 ......................... sound(t.sound.channel).volume = 0
+  [326] jmp [348]
+  [329] getlocal 0 .............................. <t>
+  [331] getchainedprop 611 ...................... <t.sound>
+  [334] getobjprop 1102 ......................... <t.sound.channel>
+  [337] pusharglist 1 ........................... <t.sound.channel>
+  [339] extcall 611 ............................. <sound(t.sound.channel)>
+  [342] pushint16 255 ........................... <255>
+  [345] setobjprop 1030 ......................... sound(t.sound.channel).volume = 255
+  [348] ret
+end
+
+on enterFrame me
+  [  0] getglobal 395 ........................... <g>
+  [  3] pushsymb 137 ............................ <#cars>
+  [  5] pushint8 1 .............................. <1>
+  [  7] pusharglist 3 ........................... <g, #cars, 1>
+  [  9] objcall 70 .............................. <g.cars[1]>
+  [ 11] setlocal 0 .............................. t = g.cars[1]
+  [ 13] getlocal 0 .............................. <t>
+  [ 15] getobjprop 89 ........................... <t.state>
+  [ 17] pushcons 5 .............................. <"Done">
+  [ 19] eq ...................................... <t.state = "Done">
+  [ 20] getlocal 0 .............................. <t>
+  [ 22] getobjprop 89 ........................... <t.state>
+  [ 24] pushcons 6 .............................. <"Finished">
+  [ 26] eq ...................................... <t.state = "Finished">
+  [ 27] or ...................................... <(t.state = "Done") or (t.state = "Finished")>
+  [ 28] jmpifz [ 50] ............................ if (t.state = "Done") or (t.state = "Finished") then
+  [ 31] getprop 563 ............................. <p>
+  [ 34] getobjprop 428 .......................... <p.reset>
+  [ 37] pushzero ................................ <0>
+  [ 38] eq ...................................... <p.reset = 0>
+  [ 39] jmpifz [ 49] ............................ if p.reset = 0 then
+  [ 42] getparam 0 .............................. <me>
+  [ 44] pusharglistnoret 1 ...................... <me>
+  [ 46] objcall 428 ............................. me.reset()
+  [ 49] ret ..................................... exit
+  [ 50] getlocal 0 .............................. <t>
+  [ 52] getchainedprop 1335 ..................... <t.specifics>
+  [ 55] getobjprop 3033 ......................... <t.specifics.speedMS>
+  [ 58] getlocal 0 .............................. <t>
+  [ 60] getchainedprop 1335 ..................... <t.specifics>
+  [ 63] getobjprop 1292 ......................... <t.specifics.maxSpeed>
+  [ 66] div ..................................... <t.specifics.speedMS / t.specifics.maxSpeed>
+  [ 67] setlocal 1 .............................. tPerc = t.specifics.speedMS / t.specifics.maxSpeed
+  [ 69] pushfloat32 1.0 ......................... <1.0>
+  [ 74] getlocal 1 .............................. <tPerc>
+  [ 76] pushcons 7 .............................. <1.69999999999999996>
+  [ 78] mul ..................................... <tPerc * 1.69999999999999996>
+  [ 79] add ..................................... <1.0 + (tPerc * 1.69999999999999996)>
+  [ 80] setlocal 2 .............................. tRate = 1.0 + (tPerc * 1.69999999999999996)
+  [ 82] pushfloat32 1.0 ......................... <1.0>
+  [ 87] getlocal 2 .............................. <tRate>
+  [ 89] pushfloat32 5.0 ......................... <5.0>
+  [ 94] pusharglist 2 ........................... <tRate, 5.0>
+  [ 96] extcall 356 ............................. <min(tRate, 5.0)>
+  [ 99] pusharglist 2 ........................... <1.0, min(tRate, 5.0)>
+  [101] extcall 370 ............................. <max(1.0, min(tRate, 5.0))>
+  [104] setlocal 2 .............................. tRate = max(1.0, min(tRate, 5.0))
+  [106] getlocal 0 .............................. <t>
+  [108] getchainedprop 611 ...................... <t.sound>
+  [111] getchainedprop 327 ...................... <t.sound.filter>
+  [114] getobjprop 2230 ......................... <t.sound.filter.Shift>
+  [117] getlocal 2 .............................. <tRate>
+  [119] nteq .................................... <t.sound.filter.Shift <> tRate>
+  [120] jmpifz [136] ............................ if t.sound.filter.Shift <> tRate then
+  [123] getlocal 0 .............................. <t>
+  [125] getchainedprop 611 ...................... <t.sound>
+  [128] getchainedprop 327 ...................... <t.sound.filter>
+  [131] getlocal 2 .............................. <tRate>
+  [133] setobjprop 2230 ......................... t.sound.filter.Shift = tRate
+  [136] getlocal 0 .............................. <t>
+  [138] getchainedprop 1335 ..................... <t.specifics>
+  [141] getobjprop 3028 ......................... <t.specifics.falling>
+  [144] pushzero ................................ <0>
+  [145] eq ...................................... <t.specifics.falling = 0>
+  [146] getlocal 0 .............................. <t>
+  [148] getchainedprop 929 ...................... <t.Keys>
+  [151] getobjprop 2134 ......................... <t.Keys.brake>
+  [154] pushint8 1 .............................. <1>
+  [156] eq ...................................... <t.Keys.brake = 1>
+  [157] and ..................................... <(t.specifics.falling = 0) and (t.Keys.brake = 1)>
+  [158] jmpifz [176] ............................ if (t.specifics.falling = 0) and (t.Keys.brake = 1) then / else
+  [161] pushint16 160 ........................... <160>
+  [164] getlocal 1 .............................. <tPerc>
+  [166] mul ..................................... <160 * tPerc>
+  [167] pusharglist 1 ........................... <160 * tPerc>
+  [169] extcall 123 ............................. <integer(160 * tPerc)>
+  [171] setlocal 3 .............................. tVolume = integer(160 * tPerc)
+  [173] jmp [179]
+  [176] pushzero ................................ <0>
+  [177] setlocal 3 .............................. tVolume = 0
+  [179] getlocal 0 .............................. <t>
+  [181] getchainedprop 611 ...................... <t.sound>
+  [184] getchainedprop 2233 ..................... <t.sound.slip>
+  [187] getlocal 3 .............................. <tVolume>
+  [189] setobjprop 1030 ......................... t.sound.slip.volume = tVolume
+  [192] getglobal 395 ........................... <g>
+  [195] getchainedprop 611 ...................... <g.sound>
+  [198] getobjprop 293 .......................... <g.sound.mute>
+  [201] pushint8 1 .............................. <1>
+  [203] eq ...................................... <g.sound.mute = 1>
+  [204] jmpifz [224] ............................ if g.sound.mute = 1 then
+  [207] getlocal 0 .............................. <t>
+  [209] getchainedprop 611 ...................... <t.sound>
+  [212] getobjprop 1102 ......................... <t.sound.channel>
+  [215] pusharglist 1 ........................... <t.sound.channel>
+  [217] extcall 611 ............................. <sound(t.sound.channel)>
+  [220] pushzero ................................ <0>
+  [221] setobjprop 1030 ......................... sound(t.sound.channel).volume = 0
+  [224] getlocal 0 .............................. <t>
+  [226] getchainedprop 611 ...................... <t.sound>
+  [229] getchainedprop 1023 ..................... <t.sound.Mixer>
+  [232] pushint16 128 ........................... <128>
+  [235] setobjprop 1030 ......................... t.sound.Mixer.volume = 128
+  [238] ret
+end
+
+on reset me
+  [  0] getglobal 395 ........................... <g>
+  [  3] pushsymb 137 ............................ <#cars>
+  [  5] pushint8 1 .............................. <1>
+  [  7] pusharglist 3 ........................... <g, #cars, 1>
+  [  9] objcall 70 .............................. <g.cars[1]>
+  [ 11] setlocal 0 .............................. t = g.cars[1]
+  [ 13] getlocal 0 .............................. <t>
+  [ 15] getchainedprop 611 ...................... <t.sound>
+  [ 18] getchainedprop 2074 ..................... <t.sound.engine>
+  [ 21] pushzero ................................ <0>
+  [ 22] setobjprop 1030 ......................... t.sound.engine.volume = 0
+  [ 25] getlocal 0 .............................. <t>
+  [ 27] getchainedprop 611 ...................... <t.sound>
+  [ 30] getchainedprop 2233 ..................... <t.sound.slip>
+  [ 33] pushzero ................................ <0>
+  [ 34] setobjprop 1030 ......................... t.sound.slip.volume = 0
+  [ 37] getprop 563 ............................. <p>
+  [ 40] pushint8 1 .............................. <1>
+  [ 42] setobjprop 428 .......................... p.reset = 1
+  [ 45] ret
+end

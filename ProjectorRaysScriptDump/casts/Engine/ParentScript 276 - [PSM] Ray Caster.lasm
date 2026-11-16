@@ -1,0 +1,450 @@
+property p
+global g
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 64 ............................. <#member>
+  [ 11] getparam 1 .............................. <tParams>
+  [ 13] pushsymb 949 ............................ <#memberName>
+  [ 16] pusharglist 2 ........................... <tParams, #memberName>
+  [ 18] objcall 105 ............................. <tParams[#memberName]>
+  [ 20] pusharglist 1 ........................... <tParams[#memberName]>
+  [ 22] extcall 64 .............................. <member(tParams[#memberName])>
+  [ 24] pusharglistnoret 3 ...................... <p, #member, member(tParams[#memberName])>
+  [ 26] objcall 103 ............................. p[#member] = member(tParams[#memberName])
+  [ 28] getprop 563 ............................. <p>
+  [ 31] getobjprop 64 ........................... <p.member>
+  [ 33] pusharglist 0 ........................... <>
+  [ 35] extcall 40 .............................. <VOID>
+  [ 37] eq ...................................... <p.member = VOID>
+  [ 38] getprop 563 ............................. <p>
+  [ 41] getchainedprop 64 ....................... <p.member>
+  [ 43] getobjprop 598 .......................... <p.member.type>
+  [ 46] pushsymb 610 ............................ <#shockwave3d>
+  [ 49] nteq .................................... <p.member.type <> #shockwave3d>
+  [ 50] or ...................................... <(p.member = VOID) or (p.member.type <> #shockwave3d)>
+  [ 51] jmpifz [ 68] ............................ if (p.member = VOID) or (p.member.type <> #shockwave3d) then
+  [ 54] pushcons 0 .............................. <"Script: [PSM] Ray Caster. ">
+  [ 56] getparam 1 .............................. <tParams>
+  [ 58] joinstr ................................. <"Script: [PSM] Ray Caster. " & tParams>
+  [ 59] pushcons 1 .............................. <" No such member or type is NOT shockwave3d">
+  [ 61] joinstr ................................. <"Script: [PSM] Ray Caster. " & tParams & " No such member or type is NOT shockwave3d">
+  [ 62] pusharglistnoret 1 ...................... <"Script: [PSM] Ray Caster. " & tParams & " No such member or type is NOT shockwave3d">
+  [ 64] extcall 511 ............................. ShowError("Script: [PSM] Ray Caster. " & tParams & " No such member or type is NOT shockwave3d")
+  [ 67] ret ..................................... exit
+  [ 68] getprop 563 ............................. <p>
+  [ 71] pushsymb 71 ............................. <#model>
+  [ 73] pusharglist 0 ........................... <>
+  [ 75] extcall 40 .............................. <VOID>
+  [ 77] pusharglistnoret 3 ...................... <p, #model, VOID>
+  [ 79] objcall 103 ............................. p[#model] = VOID
+  [ 81] getparam 1 .............................. <tParams>
+  [ 83] pushsymb 1668 ........................... <#ModelName>
+  [ 86] pusharglist 2 ........................... <tParams, #ModelName>
+  [ 88] objcall 105 ............................. <tParams[#ModelName]>
+  [ 90] setlocal 0 .............................. pModelName = tParams[#ModelName]
+  [ 92] getlocal 0 .............................. <pModelName>
+  [ 94] pusharglist 0 ........................... <>
+  [ 96] extcall 40 .............................. <VOID>
+  [ 98] eq ...................................... <pModelName = VOID>
+  [ 99] jmpifz [123] ............................ if pModelName = VOID then / else
+  [102] getprop 563 ............................. <p>
+  [105] pushsymb 71 ............................. <#model>
+  [107] getparam 1 .............................. <tParams>
+  [109] pushsymb 3048 ........................... <#RayCastModel>
+  [112] pusharglist 2 ........................... <tParams, #RayCastModel>
+  [114] objcall 105 ............................. <tParams[#RayCastModel]>
+  [116] pusharglistnoret 3 ...................... <p, #model, tParams[#RayCastModel]>
+  [118] objcall 103 ............................. p[#model] = tParams[#RayCastModel]
+  [120] jmp [139]
+  [123] getprop 563 ............................. <p>
+  [126] getprop 563 ............................. <p>
+  [129] getchainedprop 64 ....................... <p.member>
+  [131] getlocal 0 .............................. <pModelName>
+  [133] pusharglist 2 ........................... <p.member, pModelName>
+  [135] objcall 71 .............................. <p.member.model(pModelName)>
+  [137] setobjprop 71 ........................... p.model = p.member.model(pModelName)
+  [139] getprop 563 ............................. <p>
+  [142] getobjprop 71 ........................... <p.model>
+  [144] pusharglist 0 ........................... <>
+  [146] extcall 40 .............................. <VOID>
+  [148] eq ...................................... <p.model = VOID>
+  [149] jmpifz [166] ............................ if p.model = VOID then
+  [152] pushcons 0 .............................. <"Script: [PSM] Ray Caster. ">
+  [154] getparam 1 .............................. <tParams>
+  [156] joinstr ................................. <"Script: [PSM] Ray Caster. " & tParams>
+  [157] pushcons 2 .............................. <" No model found based upon modelName AND/OR no model returned from parent script">
+  [159] joinstr ................................. <"Script: [PSM] Ray Caster. " & tParams & " No model found based upon modelName AND/OR no model returned from parent script">
+  [160] pusharglistnoret 1 ...................... <"Script: [PSM] Ray Caster. " & tParams & " No model found based upon modelName AND/OR no model returned from parent script">
+  [162] extcall 511 ............................. ShowError("Script: [PSM] Ray Caster. " & tParams & " No model found based upon modelName AND/OR no model returned from parent script")
+  [165] ret ..................................... exit
+  [166] getprop 563 ............................. <p>
+  [169] pushsymb 1306 ........................... <#direction>
+  [172] getparam 1 .............................. <tParams>
+  [174] pushsymb 1306 ........................... <#direction>
+  [177] pusharglist 2 ........................... <tParams, #direction>
+  [179] objcall 105 ............................. <tParams[#direction]>
+  [181] pusharglistnoret 3 ...................... <p, #direction, tParams[#direction]>
+  [183] objcall 103 ............................. p[#direction] = tParams[#direction]
+  [185] getprop 563 ............................. <p>
+  [188] getobjprop 1306 ......................... <p.direction>
+  [191] pusharglist 0 ........................... <>
+  [193] extcall 40 .............................. <VOID>
+  [195] eq ...................................... <p.direction = VOID>
+  [196] getprop 563 ............................. <p>
+  [199] getchainedprop 1306 ..................... <p.direction>
+  [202] getobjprop 122 .......................... <p.direction.ilk>
+  [204] pushsymb 212 ............................ <#vector>
+  [206] nteq .................................... <p.direction.ilk <> #vector>
+  [207] or ...................................... <(p.direction = VOID) or (p.direction.ilk <> #vector)>
+  [208] jmpifz [264] ............................ if (p.direction = VOID) or (p.direction.ilk <> #vector) then / else
+  [211] getprop 563 ............................. <p>
+  [214] pushfloat32 0.0 ......................... <0.0>
+  [219] pushfloat32 0.0 ......................... <0.0>
+  [224] pushfloat32 1.0 ......................... <1.0>
+  [229] inv ..................................... <-1.0>
+  [230] pusharglist 3 ........................... <0.0, 0.0, -1.0>
+  [232] extcall 212 ............................. <vector(0.0, 0.0, -1.0)>
+  [234] pushcons 3 .............................. <0.0001>
+  [236] pushcons 3 .............................. <0.0001>
+  [238] pushcons 3 .............................. <0.0001>
+  [240] pusharglist 3 ........................... <0.0001, 0.0001, 0.0001>
+  [242] extcall 212 ............................. <vector(0.0001, 0.0001, 0.0001)>
+  [244] add ..................................... <vector(0.0, 0.0, -1.0) + vector(0.0001, 0.0001, 0.0001)>
+  [245] setobjprop 1306 ......................... p.direction = vector(0.0, 0.0, -1.0) + vector(0.0001, 0.0001, 0.0001)
+  [248] pushcons 0 .............................. <"Script: [PSM] Ray Caster. ">
+  [250] getparam 1 .............................. <tParams>
+  [252] joinstr ................................. <"Script: [PSM] Ray Caster. " & tParams>
+  [253] pushcons 4 .............................. <" No direction found. Default direction set (=down).">
+  [255] joinstr ................................. <"Script: [PSM] Ray Caster. " & tParams & " No direction found. Default direction set (=down).">
+  [256] pusharglistnoret 1 ...................... <"Script: [PSM] Ray Caster. " & tParams & " No direction found. Default direction set (=down).">
+  [258] extcall 511 ............................. ShowError("Script: [PSM] Ray Caster. " & tParams & " No direction found. Default direction set (=down).")
+  [261] jmp [287]
+  [264] getprop 563 ............................. <p>
+  [267] getprop 563 ............................. <p>
+  [270] getobjprop 1306 ......................... <p.direction>
+  [273] pushcons 3 .............................. <0.0001>
+  [275] pushcons 3 .............................. <0.0001>
+  [277] pushcons 3 .............................. <0.0001>
+  [279] pusharglist 3 ........................... <0.0001, 0.0001, 0.0001>
+  [281] extcall 212 ............................. <vector(0.0001, 0.0001, 0.0001)>
+  [283] add ..................................... <p.direction + vector(0.0001, 0.0001, 0.0001)>
+  [284] setobjprop 1306 ......................... p.direction = p.direction + vector(0.0001, 0.0001, 0.0001)
+  [287] getprop 563 ............................. <p>
+  [290] pushsymb 969 ............................ <#modelList>
+  [293] getparam 1 .............................. <tParams>
+  [295] pushsymb 969 ............................ <#modelList>
+  [298] pusharglist 2 ........................... <tParams, #modelList>
+  [300] objcall 105 ............................. <tParams[#modelList]>
+  [302] pusharglistnoret 3 ...................... <p, #modelList, tParams[#modelList]>
+  [304] objcall 103 ............................. p[#modelList] = tParams[#modelList]
+  [306] getprop 563 ............................. <p>
+  [309] pushsymb 3365 ........................... <#OrigModelList>
+  [312] getparam 1 .............................. <tParams>
+  [314] pushsymb 969 ............................ <#modelList>
+  [317] pusharglist 2 ........................... <tParams, #modelList>
+  [319] objcall 105 ............................. <tParams[#modelList]>
+  [321] pusharglistnoret 3 ...................... <p, #OrigModelList, tParams[#modelList]>
+  [323] objcall 103 ............................. p[#OrigModelList] = tParams[#modelList]
+  [325] getprop 563 ............................. <p>
+  [328] pushsymb 3366 ........................... <#OptionList>
+  [331] getparam 1 .............................. <tParams>
+  [333] pushsymb 3366 ........................... <#OptionList>
+  [336] pusharglist 2 ........................... <tParams, #OptionList>
+  [338] objcall 105 ............................. <tParams[#OptionList]>
+  [340] pusharglistnoret 3 ...................... <p, #OptionList, tParams[#OptionList]>
+  [342] objcall 103 ............................. p[#OptionList] = tParams[#OptionList]
+  [344] getprop 563 ............................. <p>
+  [347] pushsymb 378 ............................ <#controller>
+  [350] getparam 1 .............................. <tParams>
+  [352] pushsymb 378 ............................ <#controller>
+  [355] pusharglist 2 ........................... <tParams, #controller>
+  [357] objcall 105 ............................. <tParams[#controller]>
+  [359] pusharglistnoret 3 ...................... <p, #controller, tParams[#controller]>
+  [361] objcall 103 ............................. p[#controller] = tParams[#controller]
+  [363] getprop 563 ............................. <p>
+  [366] pushsymb 377 ............................ <#tag>
+  [369] getparam 1 .............................. <tParams>
+  [371] pushsymb 377 ............................ <#tag>
+  [374] pusharglist 2 ........................... <tParams, #tag>
+  [376] objcall 105 ............................. <tParams[#tag]>
+  [378] pusharglistnoret 3 ...................... <p, #tag, tParams[#tag]>
+  [380] objcall 103 ............................. p[#tag] = tParams[#tag]
+  [382] getprop 563 ............................. <p>
+  [385] pushsymb 3062 ........................... <#ScriptLimit>
+  [388] pushint8 1 .............................. <1>
+  [390] pusharglistnoret 3 ...................... <p, #ScriptLimit, 1>
+  [392] objcall 103 ............................. p[#ScriptLimit] = 1
+  [394] getprop 563 ............................. <p>
+  [397] pushsymb 1814 ........................... <#Cleared>
+  [400] pushzero ................................ <0>
+  [401] pusharglistnoret 3 ...................... <p, #Cleared, 0>
+  [403] objcall 103 ............................. p[#Cleared] = 0
+  [405] getprop 563 ............................. <p>
+  [408] getobjprop 3366 ......................... <p.OptionList>
+  [411] pusharglist 0 ........................... <>
+  [413] extcall 40 .............................. <VOID>
+  [415] eq ...................................... <p.OptionList = VOID>
+  [416] jmpifz [570] ............................ if p.OptionList = VOID then
+  [419] getprop 563 ............................. <p>
+  [422] getobjprop 969 .......................... <p.modelList>
+  [425] pusharglist 0 ........................... <>
+  [427] extcall 40 .............................. <VOID>
+  [429] eq ...................................... <p.modelList = VOID>
+  [430] getprop 563 ............................. <p>
+  [433] getobjprop 969 .......................... <p.modelList>
+  [436] pusharglist 0 ........................... <[]>
+  [438] pushlist ................................ <[]>
+  [439] eq ...................................... <p.modelList = []>
+  [440] or ...................................... <(p.modelList = VOID) or (p.modelList = [])>
+  [441] jmpifz [472] ............................ if (p.modelList = VOID) or (p.modelList = []) then / else
+  [444] getprop 563 ............................. <p>
+  [447] pushsymb 966 ............................ <#maxNumberOfModels>
+  [450] pushint8 1 .............................. <1>
+  [452] pushsymb 967 ............................ <#levelOfDetail>
+  [455] pushsymb 968 ............................ <#detailed>
+  [458] pushsymb 2303 ........................... <#maxDistance>
+  [461] pushint8 1 .............................. <1>
+  [463] pusharglist 6 ........................... <[#maxNumberOfModels: 1, #levelOfDetail: #detailed, #maxDistance: 1]>
+  [465] pushproplist ............................ <[#maxNumberOfModels: 1, #levelOfDetail: #detailed, #maxDistance: 1]>
+  [466] setobjprop 3366 ......................... p.OptionList = [#maxNumberOfModels: 1, #levelOfDetail: #detailed, #maxDistance: 1]
+  [469] jmp [570]
+  [472] getprop 563 ............................. <p>
+  [475] getobjprop 969 .......................... <p.modelList>
+  [478] pushsymb 3367 ........................... <#floors>
+  [481] eq ...................................... <p.modelList = #floors>
+  [482] jmpifz [536] ............................ if p.modelList = #floors then
+  [485] getglobal 395 ........................... <g>
+  [488] pushsymb 1741 ........................... <#FloorList>
+  [491] pusharglist 2 ........................... <g, #FloorList>
+  [493] extcall 542 ............................. <getaProp(g, #FloorList)>
+  [496] pusharglist 0 ........................... <>
+  [498] extcall 40 .............................. <VOID>
+  [500] eq ...................................... <getaProp(g, #FloorList) = VOID>
+  [501] jmpifz [520] ............................ if getaProp(g, #FloorList) = VOID then / else
+  [504] getprop 563 ............................. <p>
+  [507] pushsymb 969 ............................ <#modelList>
+  [510] pusharglist 0 ........................... <[]>
+  [512] pushlist ................................ <[]>
+  [513] pusharglistnoret 3 ...................... <p, #modelList, []>
+  [515] objcall 103 ............................. p[#modelList] = []
+  [517] jmp [536]
+  [520] getprop 563 ............................. <p>
+  [523] pushsymb 969 ............................ <#modelList>
+  [526] getglobal 395 ........................... <g>
+  [529] getobjprop 1741 ......................... <g.FloorList>
+  [532] pusharglistnoret 3 ...................... <p, #modelList, g.FloorList>
+  [534] objcall 103 ............................. p[#modelList] = g.FloorList
+  [536] getprop 563 ............................. <p>
+  [539] pushsymb 966 ............................ <#maxNumberOfModels>
+  [542] pushint8 1 .............................. <1>
+  [544] pushsymb 967 ............................ <#levelOfDetail>
+  [547] pushsymb 968 ............................ <#detailed>
+  [550] pushsymb 2303 ........................... <#maxDistance>
+  [553] pushint8 1 .............................. <1>
+  [555] pushsymb 969 ............................ <#modelList>
+  [558] getprop 563 ............................. <p>
+  [561] getobjprop 969 .......................... <p.modelList>
+  [564] pusharglist 8 ........................... <[#maxNumberOfModels: 1, #levelOfDetail: #detailed, #maxDistance: 1, #modelList: p.modelList]>
+  [566] pushproplist ............................ <[#maxNumberOfModels: 1, #levelOfDetail: #detailed, #maxDistance: 1, #modelList: p.modelList]>
+  [567] setobjprop 3366 ......................... p.OptionList = [#maxNumberOfModels: 1, #levelOfDetail: #detailed, #maxDistance: 1, #modelList: p.modelList]
+  [570] getprop 563 ............................. <p>
+  [573] getobjprop 377 .......................... <p.tag>
+  [576] pusharglist 0 ........................... <>
+  [578] extcall 40 .............................. <VOID>
+  [580] eq ...................................... <p.tag = VOID>
+  [581] jmpifz [593] ............................ if p.tag = VOID then
+  [584] getprop 563 ............................. <p>
+  [587] pushsymb 531 ............................ <#standard>
+  [590] setobjprop 377 .......................... p.tag = #standard
+  [593] getglobal 395 ........................... <g>
+  [596] pushsymb 1740 ........................... <#RayCastList>
+  [599] pusharglist 2 ........................... <g, #RayCastList>
+  [601] extcall 542 ............................. <getaProp(g, #RayCastList)>
+  [604] pusharglist 0 ........................... <>
+  [606] extcall 40 .............................. <VOID>
+  [608] eq ...................................... <getaProp(g, #RayCastList) = VOID>
+  [609] jmpifz [625] ............................ if getaProp(g, #RayCastList) = VOID then
+  [612] getglobal 395 ........................... <g>
+  [615] pushsymb 1740 ........................... <#RayCastList>
+  [618] pusharglist 0 ........................... <[:]>
+  [620] pushproplist ............................ <[:]>
+  [621] pusharglistnoret 3 ...................... <g, #RayCastList, [:]>
+  [623] objcall 103 ............................. g[#RayCastList] = [:]
+  [625] getparam 0 .............................. <me>
+  [627] pusharglistnoret 1 ...................... <me>
+  [629] extcall 52 .............................. return me
+  [631] ret
+end
+
+on enterFrame me
+  [  0] getprop 563 ............................. <p>
+  [  3] pushzero ................................ <0>
+  [  4] setobjprop 1814 ......................... p.Cleared = 0
+  [  7] getprop 563 ............................. <p>
+  [ 10] getobjprop 3365 ......................... <p.OrigModelList>
+  [ 13] pushsymb 3367 ........................... <#floors>
+  [ 16] eq ...................................... <p.OrigModelList = #floors>
+  [ 17] jmpifz [293] ............................ if p.OrigModelList = #floors then
+  [ 20] getglobal 395 ........................... <g>
+  [ 23] pushsymb 1741 ........................... <#FloorList>
+  [ 26] pusharglist 2 ........................... <g, #FloorList>
+  [ 28] extcall 542 ............................. <getaProp(g, #FloorList)>
+  [ 31] pusharglist 0 ........................... <>
+  [ 33] extcall 40 .............................. <VOID>
+  [ 35] eq ...................................... <getaProp(g, #FloorList) = VOID>
+  [ 36] jmpifz [ 55] ............................ if getaProp(g, #FloorList) = VOID then / else
+  [ 39] getprop 563 ............................. <p>
+  [ 42] pushsymb 969 ............................ <#modelList>
+  [ 45] pusharglist 0 ........................... <[]>
+  [ 47] pushlist ................................ <[]>
+  [ 48] pusharglistnoret 3 ...................... <p, #modelList, []>
+  [ 50] objcall 103 ............................. p[#modelList] = []
+  [ 52] jmp [259]
+  [ 55] getglobal 395 ........................... <g>
+  [ 58] pushsymb 137 ............................ <#cars>
+  [ 60] getprop 563 ............................. <p>
+  [ 63] getobjprop 377 .......................... <p.tag>
+  [ 66] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 68] objcall 102 ............................. <g.cars[p.tag]>
+  [ 70] pushsymb 1335 ........................... <#specifics>
+  [ 73] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [ 75] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [ 77] pushsymb 373 ............................ <#currentRootNr>
+  [ 80] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #currentRootNr>
+  [ 82] objcall 105 ............................. <g.cars[p.tag][#specifics][#currentRootNr]>
+  [ 84] setlocal 0 .............................. pCurrentRoot = g.cars[p.tag][#specifics][#currentRootNr]
+  [ 86] getprop 563 ............................. <p>
+  [ 89] pushsymb 969 ............................ <#modelList>
+  [ 92] pusharglist 0 ........................... <[]>
+  [ 94] pushlist ................................ <[]>
+  [ 95] pusharglistnoret 3 ...................... <p, #modelList, []>
+  [ 97] objcall 103 ............................. p[#modelList] = []
+  [ 99] getlocal 0 .............................. <pCurrentRoot>
+  [101] pusharglist 1 ........................... <[pCurrentRoot]>
+  [103] pushlist ................................ <[pCurrentRoot]>
+  [104] setlocal 1 .............................. pSubList = [pCurrentRoot]
+  [106] getlocal 0 .............................. <pCurrentRoot>
+  [108] pushint8 1 .............................. <1>
+  [110] add ..................................... <pCurrentRoot + 1>
+  [111] setlocal 2 .............................. pFutureRoot = pCurrentRoot + 1
+  [113] getlocal 2 .............................. <pFutureRoot>
+  [115] getglobal 395 ........................... <g>
+  [118] pushsymb 1405 ........................... <#RootList>
+  [121] pusharglist 2 ........................... <g, #RootList>
+  [123] objcall 129 ............................. <g.RootList.count>
+  [125] lteq .................................... <pFutureRoot <= g.RootList.count>
+  [126] jmpifz [137] ............................ if pFutureRoot <= g.RootList.count then
+  [129] getlocal 1 .............................. <pSubList>
+  [131] getlocal 2 .............................. <pFutureRoot>
+  [133] pusharglistnoret 2 ...................... <pSubList, pFutureRoot>
+  [135] objcall 42 .............................. pSubList.add(pFutureRoot)
+  [137] getlocal 1 .............................. <pSubList>
+  [139] getobjprop 129 .......................... <pSubList.count>
+  [141] setlocal 3 .............................. pCount = pSubList.count
+  [143] pushint8 1 .............................. <1>
+  [145] setlocal 4
+  [147] getlocal 4
+  [149] getlocal 3 .............................. <pCount>
+  [151] lteq
+  [152] jmpifz [259] ............................ repeat with i = 1 to pCount
+  [155] pushcons 5 .............................. <"TrackRoot">
+  [157] getlocal 1 .............................. <pSubList>
+  [159] getlocal 4 .............................. <i>
+  [161] pusharglist 2 ........................... <pSubList, i>
+  [163] objcall 105 ............................. <pSubList[i]>
+  [165] joinstr ................................. <"TrackRoot" & pSubList[i]>
+  [166] pushcons 6 .............................. <"_">
+  [168] joinstr ................................. <"TrackRoot" & pSubList[i] & "_">
+  [169] setlocal 5 .............................. pRootName = "TrackRoot" & pSubList[i] & "_"
+  [171] getglobal 395 ........................... <g>
+  [174] pushsymb 1741 ........................... <#FloorList>
+  [177] pusharglist 2 ........................... <g, #FloorList>
+  [179] objcall 129 ............................. <g.FloorList.count>
+  [181] setlocal 6 .............................. pCount2 = g.FloorList.count
+  [183] pushint8 1 .............................. <1>
+  [185] setlocal 7
+  [187] getlocal 7
+  [189] getlocal 6 .............................. <pCount2>
+  [191] lteq
+  [192] jmpifz [250] ............................ repeat with j = 1 to pCount2
+  [195] getglobal 395 ........................... <g>
+  [198] pushsymb 1741 ........................... <#FloorList>
+  [201] getlocal 7 .............................. <j>
+  [203] pusharglist 3 ........................... <g, #FloorList, j>
+  [205] objcall 102 ............................. <g.FloorList[j]>
+  [207] getobjprop 235 .......................... <g.FloorList[j].name>
+  [209] setlocal 8 .............................. pModelName = g.FloorList[j].name
+  [211] getlocal 8 .............................. <pModelName>
+  [213] getlocal 5 .............................. <pRootName>
+  [215] containsstr ............................. <pModelName contains pRootName>
+  [216] jmpifz [241] ............................ if pModelName contains pRootName then
+  [219] getprop 563 ............................. <p>
+  [222] getchainedprop 969 ...................... <p.modelList>
+  [225] getglobal 395 ........................... <g>
+  [228] pushsymb 1741 ........................... <#FloorList>
+  [231] getlocal 7 .............................. <j>
+  [233] pusharglist 3 ........................... <g, #FloorList, j>
+  [235] objcall 70 .............................. <g.FloorList[j]>
+  [237] pusharglistnoret 2 ...................... <p.modelList, g.FloorList[j]>
+  [239] objcall 42 .............................. p.modelList.add(g.FloorList[j])
+  [241] pushint8 1
+  [243] getlocal 7
+  [245] add
+  [246] setlocal 7
+  [248] endrepeat [187]
+  [250] pushint8 1
+  [252] getlocal 4
+  [254] add
+  [255] setlocal 4
+  [257] endrepeat [147]
+  [259] getprop 563 ............................. <p>
+  [262] pushsymb 966 ............................ <#maxNumberOfModels>
+  [265] pushint8 1 .............................. <1>
+  [267] pushsymb 967 ............................ <#levelOfDetail>
+  [270] pushsymb 968 ............................ <#detailed>
+  [273] pushsymb 2303 ........................... <#maxDistance>
+  [276] pushint8 1 .............................. <1>
+  [278] pushsymb 969 ............................ <#modelList>
+  [281] getprop 563 ............................. <p>
+  [284] getobjprop 969 .......................... <p.modelList>
+  [287] pusharglist 8 ........................... <[#maxNumberOfModels: 1, #levelOfDetail: #detailed, #maxDistance: 1, #modelList: p.modelList]>
+  [289] pushproplist ............................ <[#maxNumberOfModels: 1, #levelOfDetail: #detailed, #maxDistance: 1, #modelList: p.modelList]>
+  [290] setobjprop 3366 ......................... p.OptionList = [#maxNumberOfModels: 1, #levelOfDetail: #detailed, #maxDistance: 1, #modelList: p.modelList]
+  [293] getprop 563 ............................. <p>
+  [296] getchainedprop 64 ....................... <p.member>
+  [298] getprop 563 ............................. <p>
+  [301] getchainedprop 71 ....................... <p.model>
+  [303] getobjprop 1161 ......................... <p.model.worldPosition>
+  [306] getprop 563 ............................. <p>
+  [309] getobjprop 1306 ......................... <p.direction>
+  [312] getprop 563 ............................. <p>
+  [315] getobjprop 3366 ......................... <p.OptionList>
+  [318] pusharglist 4 ........................... <p.member, p.model.worldPosition, p.direction, p.OptionList>
+  [320] objcall 2304 ............................ <p.member.modelsUnderRay(p.model.worldPosition, p.direction, p.OptionList)>
+  [323] setlocal 9 .............................. intersectInfo = p.member.modelsUnderRay(p.model.worldPosition, p.direction, p.OptionList)
+  [325] getglobal 395 ........................... <g>
+  [328] pushsymb 1740 ........................... <#RayCastList>
+  [331] getprop 563 ............................. <p>
+  [334] getobjprop 377 .......................... <p.tag>
+  [337] getlocal 9 .............................. <intersectInfo>
+  [339] pusharglistnoret 4 ...................... <g, #RayCastList, p.tag, intersectInfo>
+  [341] objcall 99 .............................. g.RayCastList[p.tag] = intersectInfo
+  [343] ret
+end
+
+on clear me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 1814 ......................... <p.Cleared>
+  [  6] pushint8 1 .............................. <1>
+  [  8] eq ...................................... <p.Cleared = 1>
+  [  9] jmpifz [ 13] ............................ if p.Cleared = 1 then
+  [ 12] ret ..................................... exit
+  [ 13] getprop 563 ............................. <p>
+  [ 16] pushint8 1 .............................. <1>
+  [ 18] setobjprop 1814 ......................... p.Cleared = 1
+  [ 21] ret
+end

@@ -1,0 +1,615 @@
+property p
+global gGame, gData
+
+on new me, tURLList, tCastList, tProps, tHolder, tWorld
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getparam 1 .............................. <tURLList>
+  [  8] getobjprop 122 .......................... <tURLList.ilk>
+  [ 10] pushsymb 126 ............................ <#list>
+  [ 12] nteq .................................... <tURLList.ilk <> #list>
+  [ 13] jmpifz [ 21] ............................ if tURLList.ilk <> #list then
+  [ 16] pushzero ................................ <0>
+  [ 17] pusharglistnoret 1 ...................... <0>
+  [ 19] extcall 52 .............................. return 0
+  [ 21] getparam 1 .............................. <tURLList>
+  [ 23] getobjprop 129 .......................... <tURLList.count>
+  [ 25] pushzero ................................ <0>
+  [ 26] eq ...................................... <tURLList.count = 0>
+  [ 27] jmpifz [ 35] ............................ if tURLList.count = 0 then
+  [ 30] pushzero ................................ <0>
+  [ 31] pusharglistnoret 1 ...................... <0>
+  [ 33] extcall 52 .............................. return 0
+  [ 35] getprop 563 ............................. <p>
+  [ 38] pushsymb 596 ............................ <#cast>
+  [ 41] getparam 2 .............................. <tCastList>
+  [ 43] pushint8 1 .............................. <1>
+  [ 45] pusharglist 2 ........................... <tCastList, 1>
+  [ 47] objcall 105 ............................. <tCastList[1]>
+  [ 49] pusharglistnoret 3 ...................... <p, #cast, tCastList[1]>
+  [ 51] objcall 103 ............................. p[#cast] = tCastList[1]
+  [ 53] getprop 563 ............................. <p>
+  [ 56] pushsymb 632 ............................ <#url>
+  [ 59] getparam 1 .............................. <tURLList>
+  [ 61] pushint8 1 .............................. <1>
+  [ 63] pusharglist 2 ........................... <tURLList, 1>
+  [ 65] objcall 105 ............................. <tURLList[1]>
+  [ 67] pusharglistnoret 3 ...................... <p, #url, tURLList[1]>
+  [ 69] objcall 103 ............................. p[#url] = tURLList[1]
+  [ 71] getprop 563 ............................. <p>
+  [ 74] pushsymb 633 ............................ <#props>
+  [ 77] getparam 3 .............................. <tProps>
+  [ 79] pusharglistnoret 3 ...................... <p, #props, tProps>
+  [ 81] objcall 103 ............................. p[#props] = tProps
+  [ 83] getprop 563 ............................. <p>
+  [ 86] pushsymb 634 ............................ <#NetID>
+  [ 89] getprop 563 ............................. <p>
+  [ 92] getobjprop 632 .......................... <p.url>
+  [ 95] pusharglist 1 ........................... <p.url>
+  [ 97] extcall 635 ............................. <preloadNetThing(p.url)>
+  [100] pusharglistnoret 3 ...................... <p, #NetID, preloadNetThing(p.url)>
+  [102] objcall 103 ............................. p[#NetID] = preloadNetThing(p.url)
+  [104] getprop 563 ............................. <p>
+  [107] pushsymb 636 ............................ <#URLList>
+  [110] getparam 1 .............................. <tURLList>
+  [112] pusharglist 1 ........................... <tURLList>
+  [114] objcall 233 ............................. <tURLList.duplicate()>
+  [116] pusharglistnoret 3 ...................... <p, #URLList, tURLList.duplicate()>
+  [118] objcall 103 ............................. p[#URLList] = tURLList.duplicate()
+  [120] getprop 563 ............................. <p>
+  [123] pushsymb 637 ............................ <#CastList>
+  [126] getparam 2 .............................. <tCastList>
+  [128] pusharglist 1 ........................... <tCastList>
+  [130] objcall 233 ............................. <tCastList.duplicate()>
+  [132] pusharglistnoret 3 ...................... <p, #CastList, tCastList.duplicate()>
+  [134] objcall 103 ............................. p[#CastList] = tCastList.duplicate()
+  [136] getprop 563 ............................. <p>
+  [139] pushsymb 638 ............................ <#Holder>
+  [142] getparam 4 .............................. <tHolder>
+  [144] pusharglistnoret 3 ...................... <p, #Holder, tHolder>
+  [146] objcall 103 ............................. p[#Holder] = tHolder
+  [148] getprop 563 ............................. <p>
+  [151] pushsymb 56 ............................. <#world>
+  [153] getparam 5 .............................. <tWorld>
+  [155] pusharglistnoret 3 ...................... <p, #world, tWorld>
+  [157] objcall 103 ............................. p[#world] = tWorld
+  [159] getprop 563 ............................. <p>
+  [162] pushsymb 639 ............................ <#Percentage>
+  [165] pushzero ................................ <0>
+  [166] pusharglistnoret 3 ...................... <p, #Percentage, 0>
+  [168] objcall 103 ............................. p[#Percentage] = 0
+  [170] getprop 563 ............................. <p>
+  [173] pushsymb 64 ............................. <#member>
+  [175] pushcons 0 .............................. <"Main">
+  [177] pusharglist 1 ........................... <"Main">
+  [179] extcall 64 .............................. <member("Main")>
+  [181] pusharglistnoret 3 ...................... <p, #member, member("Main")>
+  [183] objcall 103 ............................. p[#member] = member("Main")
+  [185] getprop 563 ............................. <p>
+  [188] pushsymb 71 ............................. <#model>
+  [190] getprop 563 ............................. <p>
+  [193] getchainedprop 64 ....................... <p.member>
+  [195] pushcons 1 .............................. <"DownloadingTag">
+  [197] pusharglist 2 ........................... <p.member, "DownloadingTag">
+  [199] objcall 71 .............................. <p.member.model("DownloadingTag")>
+  [201] pusharglistnoret 3 ...................... <p, #model, p.member.model("DownloadingTag")>
+  [203] objcall 103 ............................. p[#model] = p.member.model("DownloadingTag")
+  [205] getprop 563 ............................. <p>
+  [208] getchainedprop 71 ....................... <p.model>
+  [210] pusharglist 1 ........................... <p.model>
+  [212] objcall 640 ............................. <p.model.isInWorld()>
+  [215] pushzero ................................ <0>
+  [216] eq ...................................... <p.model.isInWorld() = 0>
+  [217] getglobal 43 ............................ <gGame>
+  [219] getobjprop 361 .......................... <gGame.CurrentMenu>
+  [222] pushcons 2 .............................. <"Logo">
+  [224] nteq .................................... <gGame.CurrentMenu <> "Logo">
+  [225] and ..................................... <(p.model.isInWorld() = 0) and (gGame.CurrentMenu <> "Logo")>
+  [226] jmpifz [239] ............................ if (p.model.isInWorld() = 0) and (gGame.CurrentMenu <> "Logo") then
+  [229] getprop 563 ............................. <p>
+  [232] getchainedprop 71 ....................... <p.model>
+  [234] pusharglistnoret 1 ...................... <p.model>
+  [236] objcall 641 ............................. p.model.addToWorld()
+  [239] pushcons 3 .............................. <"DOWNLOADING SHARED DATA 100 %">
+  [241] setlocal 0 .............................. tText = "DOWNLOADING SHARED DATA 100 %"
+  [243] pushzero ................................ <0>
+  [244] getprop 563 ............................. <p>
+  [247] getchainedprop 64 ....................... <p.member>
+  [249] getobjprop 235 .......................... <p.member.name>
+  [251] pushsymb 80 ............................. <#text>
+  [253] getlocal 0 .............................. <tText>
+  [255] pushsymb 218 ............................ <#texture>
+  [257] pushcons 4 .............................. <"Downloading_Texture">
+  [259] pushsymb 221 ............................ <#fontSize>
+  [261] pushint8 10 ............................. <10>
+  [263] pushsymb 219 ............................ <#align>
+  [265] pushsymb 220 ............................ <#right>
+  [267] pushsymb 223 ............................ <#color>
+  [269] getglobal 86 ............................ <gData>
+  [271] getchainedprop 87 ....................... <gData.data>
+  [273] getchainedprop 224 ...................... <gData.data.TextColor>
+  [275] getobjprop 225 .......................... <gData.data.TextColor.White>
+  [277] pushsymb 229 ............................ <#width>
+  [279] pushint16 256 ........................... <256>
+  [282] pushsymb 642 ............................ <#filters>
+  [285] getglobal 86 ............................ <gData>
+  [287] getchainedprop 87 ....................... <gData.data>
+  [289] getchainedprop 643 ...................... <gData.data.ButtonFilters>
+  [292] getobjprop 644 .......................... <gData.data.ButtonFilters.BR3GlowWhite>
+  [295] pusharglist 1 ........................... <[gData.data.ButtonFilters.BR3GlowWhite]>
+  [297] pushlist ................................ <[gData.data.ButtonFilters.BR3GlowWhite]>
+  [298] pusharglist 14 .......................... <[#text: tText, #texture: "Downloading_Texture", #fontSize: 10, #align: #right, #color: gData.data.TextColor.White, #width: 256, #filters: [gData.data.ButtonFilters.BR3GlowWhite]]>
+  [300] pushproplist ............................ <[#text: tText, #texture: "Downloading_Texture", #fontSize: 10, #align: #right, #color: gData.data.TextColor.White, #width: 256, #filters: [gData.data.ButtonFilters.BR3GlowWhite]]>
+  [301] pusharglistnoret 3 ...................... <0, p.member.name, [#text: tText, #texture: "Downloading_Texture", #fontSize: 10, #align: #right, #color: gData.data.TextColor.White, #width: 256, #filters: [gData.data.ButtonFilters.BR3GlowWhite]]>
+  [303] extcall 217 ............................. CreateTextTexture(0, p.member.name, [#text: tText, #texture: "Downloading_Texture", #fontSize: 10, #align: #right, #color: gData.data.TextColor.White, #width: 256, #filters: [gData.data.ButtonFilters.BR3GlowWhite]])
+  [305] getprop 563 ............................. <p>
+  [308] getchainedprop 64 ....................... <p.member>
+  [310] getobjprop 235 .......................... <p.member.name>
+  [312] pushsymb 646 ............................ <#material>
+  [315] pushcons 5 .............................. <"Downloading_Material">
+  [317] pushsymb 647 ............................ <#texture1>
+  [320] pushcons 4 .............................. <"Downloading_Texture">
+  [322] pusharglist 4 ........................... <[#material: "Downloading_Material", #texture1: "Downloading_Texture"]>
+  [324] pushproplist ............................ <[#material: "Downloading_Material", #texture1: "Downloading_Texture"]>
+  [325] pusharglistnoret 2 ...................... <p.member.name, [#material: "Downloading_Material", #texture1: "Downloading_Texture"]>
+  [327] extcall 645 ............................. ASSIGNTEXTURE(p.member.name, [#material: "Downloading_Material", #texture1: "Downloading_Texture"])
+  [330] getprop 563 ............................. <p>
+  [333] pushsymb 45 ............................. <#me>
+  [335] getparam 0 .............................. <me>
+  [337] pusharglistnoret 3 ...................... <p, #me, me>
+  [339] objcall 103 ............................. p[#me] = me
+  [341] getparam 0 .............................. <me>
+  [343] pusharglistnoret 1 ...................... <me>
+  [345] extcall 52 .............................. return me
+  [347] ret
+end
+
+on stepFrame me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 634 .......................... <p.NetID>
+  [  6] pusharglist 1 ........................... <p.NetID>
+  [  8] extcall 651 ............................. <netDone(p.NetID)>
+  [ 11] pushint8 1 .............................. <1>
+  [ 13] eq ...................................... <netDone(p.NetID) = 1>
+  [ 14] getprop 563 ............................. <p>
+  [ 17] getobjprop 634 .......................... <p.NetID>
+  [ 20] pusharglist 1 ........................... <p.NetID>
+  [ 22] extcall 652 ............................. <netError(p.NetID)>
+  [ 25] pushcons 6 .............................. <"OK">
+  [ 27] eq ...................................... <netError(p.NetID) = "OK">
+  [ 28] and ..................................... <(netDone(p.NetID) = 1) and (netError(p.NetID) = "OK")>
+  [ 29] jmpifz [ 41] ............................ if (netDone(p.NetID) = 1) and (netError(p.NetID) = "OK") then / else
+  [ 32] pushint8 1 .............................. <1>
+  [ 34] pusharglistnoret 1 ...................... <1>
+  [ 36] localcall 2 ............................. DownloadDone(1)
+  [ 38] jmp [456]
+  [ 41] getprop 563 ............................. <p>
+  [ 44] getobjprop 634 .......................... <p.NetID>
+  [ 47] pusharglist 1 ........................... <p.NetID>
+  [ 49] extcall 652 ............................. <netError(p.NetID)>
+  [ 52] pushcons 7 .............................. <EMPTY>
+  [ 54] nteq .................................... <netError(p.NetID) <> EMPTY>
+  [ 55] jmpifz [456] ............................ if netError(p.NetID) <> EMPTY then
+  [ 58] getprop 563 ............................. <p>
+  [ 61] pushsymb 653 ............................ <#NetIDError>
+  [ 64] getprop 563 ............................. <p>
+  [ 67] getobjprop 634 .......................... <p.NetID>
+  [ 70] pusharglist 1 ........................... <p.NetID>
+  [ 72] extcall 652 ............................. <netError(p.NetID)>
+  [ 75] pusharglistnoret 3 ...................... <p, #NetIDError, netError(p.NetID)>
+  [ 77] objcall 103 ............................. p[#NetIDError] = netError(p.NetID)
+  [ 79] getprop 563 ............................. <p>
+  [ 82] getobjprop 653 .......................... <p.NetIDError>
+  [ 85] peek 0 .................................. case p.NetIDError of
+  [ 87] pushint8 4 .............................. <4>
+  [ 89] eq
+  [ 90] jmpifz [104] ............................ (case) 4:
+  [ 93] getprop 563 ............................. <p>
+  [ 96] pushcons 8 .............................. <"Bad MOA class. The required network or nonnetwork Xtra extensions are improperly installed or not installed at all.">
+  [ 98] setobjprop 654 .......................... p.error = "Bad MOA class. The required network or nonnetwork Xtra extensions are improperly installed or not installed at all."
+  [101] jmp [449]
+  [104] peek 0
+  [106] pushint8 5 .............................. <5>
+  [108] eq
+  [109] jmpifz [123] ............................ (case) 5:
+  [112] getprop 563 ............................. <p>
+  [115] pushcons 9 .............................. <"Bad MOA Interface.">
+  [117] setobjprop 654 .......................... p.error = "Bad MOA Interface."
+  [120] jmp [449]
+  [123] peek 0
+  [125] pushint8 6 .............................. <6>
+  [127] eq
+  [128] jmpifz [142] ............................ (case) 6:
+  [131] getprop 563 ............................. <p>
+  [134] pushcons 10 ............................. <"Bad URL or Bad MOA class. The required network or nonnetwork Xtra extensions are improperly installed or not installed at all.">
+  [136] setobjprop 654 .......................... p.error = "Bad URL or Bad MOA class. The required network or nonnetwork Xtra extensions are improperly installed or not installed at all."
+  [139] jmp [449]
+  [142] peek 0
+  [144] pushint8 20 ............................. <20>
+  [146] eq
+  [147] jmpifz [161] ............................ (case) 20:
+  [150] getprop 563 ............................. <p>
+  [153] pushcons 11 ............................. <"Internal error. Returned by netError() in the Netscape browser if the browser detected a network or internal error.">
+  [155] setobjprop 654 .......................... p.error = "Internal error. Returned by netError() in the Netscape browser if the browser detected a network or internal error."
+  [158] jmp [449]
+  [161] peek 0
+  [163] pushint16 4146 .......................... <4146>
+  [166] eq
+  [167] jmpifz [181] ............................ (case) 4146:
+  [170] getprop 563 ............................. <p>
+  [173] pushcons 12 ............................. <"Connection could not be established with the remote host.">
+  [175] setobjprop 654 .......................... p.error = "Connection could not be established with the remote host."
+  [178] jmp [449]
+  [181] peek 0
+  [183] pushint16 4149 .......................... <4149>
+  [186] eq
+  [187] jmpifz [201] ............................ (case) 4149:
+  [190] getprop 563 ............................. <p>
+  [193] pushcons 13 ............................. <"Data supplied by the server was in an unexpected format.">
+  [195] setobjprop 654 .......................... p.error = "Data supplied by the server was in an unexpected format."
+  [198] jmp [449]
+  [201] peek 0
+  [203] pushint16 415 ........................... <415>
+  [206] eq
+  [207] jmpifz [221] ............................ (case) 415:
+  [210] getprop 563 ............................. <p>
+  [213] pushcons 14 ............................. <"Unexpected early closing of connection.">
+  [215] setobjprop 654 .......................... p.error = "Unexpected early closing of connection."
+  [218] jmp [449]
+  [221] peek 0
+  [223] pushint16 4154 .......................... <4154>
+  [226] eq
+  [227] jmpifz [241] ............................ (case) 4154:
+  [230] getprop 563 ............................. <p>
+  [233] pushcons 15 ............................. <"Operation could not be completed due to timeout.">
+  [235] setobjprop 654 .......................... p.error = "Operation could not be completed due to timeout."
+  [238] jmp [449]
+  [241] peek 0
+  [243] pushint16 4155 .......................... <4155>
+  [246] eq
+  [247] jmpifz [261] ............................ (case) 4155:
+  [250] getprop 563 ............................. <p>
+  [253] pushcons 16 ............................. <"Not enough memory available to complete the transaction.">
+  [255] setobjprop 654 .......................... p.error = "Not enough memory available to complete the transaction."
+  [258] jmp [449]
+  [261] peek 0
+  [263] pushint16 4156 .......................... <4156>
+  [266] eq
+  [267] jmpifz [281] ............................ (case) 4156:
+  [270] getprop 563 ............................. <p>
+  [273] pushcons 17 ............................. <"Protocol reply to request indicates an error in the reply.">
+  [275] setobjprop 654 .......................... p.error = "Protocol reply to request indicates an error in the reply."
+  [278] jmp [449]
+  [281] peek 0
+  [283] pushint16 4157 .......................... <4157>
+  [286] eq
+  [287] jmpifz [301] ............................ (case) 4157:
+  [290] getprop 563 ............................. <p>
+  [293] pushcons 18 ............................. <"Transaction failed to be authenticated.">
+  [295] setobjprop 654 .......................... p.error = "Transaction failed to be authenticated."
+  [298] jmp [449]
+  [301] peek 0
+  [303] pushint16 4159 .......................... <4159>
+  [306] eq
+  [307] jmpifz [321] ............................ (case) 4159:
+  [310] getprop 563 ............................. <p>
+  [313] pushcons 19 ............................. <"Invalid URL.">
+  [315] setobjprop 654 .......................... p.error = "Invalid URL."
+  [318] jmp [449]
+  [321] peek 0
+  [323] pushint16 4164 .......................... <4164>
+  [326] eq
+  [327] jmpifz [341] ............................ (case) 4164:
+  [330] getprop 563 ............................. <p>
+  [333] pushcons 20 ............................. <"Could not create a socket.">
+  [335] setobjprop 654 .......................... p.error = "Could not create a socket."
+  [338] jmp [449]
+  [341] peek 0
+  [343] pushint16 4165 .......................... <4165>
+  [346] eq
+  [347] jmpifz [361] ............................ (case) 4165:
+  [350] getprop 563 ............................. <p>
+  [353] pushcons 21 ............................. <"Requested object could not be found (URL may be incorrect).">
+  [355] setobjprop 654 .......................... p.error = "Requested object could not be found (URL may be incorrect)."
+  [358] jmp [449]
+  [361] peek 0
+  [363] pushint16 4166 .......................... <4166>
+  [366] eq
+  [367] jmpifz [381] ............................ (case) 4166:
+  [370] getprop 563 ............................. <p>
+  [373] pushcons 22 ............................. <"Generic proxy failure.">
+  [375] setobjprop 654 .......................... p.error = "Generic proxy failure."
+  [378] jmp [449]
+  [381] peek 0
+  [383] pushint16 4167 .......................... <4167>
+  [386] eq
+  [387] jmpifz [401] ............................ (case) 4167:
+  [390] getprop 563 ............................. <p>
+  [393] pushcons 23 ............................. <"Transfer was intentionally interrupted by client.">
+  [395] setobjprop 654 .......................... p.error = "Transfer was intentionally interrupted by client."
+  [398] jmp [449]
+  [401] peek 0
+  [403] pushint16 4242 .......................... <4242>
+  [406] eq
+  [407] jmpifz [421] ............................ (case) 4242:
+  [410] getprop 563 ............................. <p>
+  [413] pushcons 24 ............................. <"Download stopped by netAbort(url).">
+  [415] setobjprop 654 .......................... p.error = "Download stopped by netAbort(url)."
+  [418] jmp [449]
+  [421] peek 0
+  [423] pushint16 4836 .......................... <4836>
+  [426] eq
+  [427] jmpifz [441] ............................ (case) 4836:
+  [430] getprop 563 ............................. <p>
+  [433] pushcons 25 ............................. <"Download stopped for an unknown reason, possibly a network error, or the download was abandoned.">
+  [435] setobjprop 654 .......................... p.error = "Download stopped for an unknown reason, possibly a network error, or the download was abandoned."
+  [438] jmp [449] ............................... (case) otherwise:
+  [441] getprop 563 ............................. <p>
+  [444] pushcons 26 ............................. <"Error unknown">
+  [446] setobjprop 654 .......................... p.error = "Error unknown"
+  [449] pop 1 ................................... end case
+  [451] pushzero ................................ <0>
+  [452] pusharglistnoret 1 ...................... <0>
+  [454] localcall 2 ............................. DownloadDone(0)
+  [456] getprop 563 ............................. <p>
+  [459] getobjprop 634 .......................... <p.NetID>
+  [462] pusharglist 1 ........................... <p.NetID>
+  [464] extcall 655 ............................. <getStreamStatus(p.NetID)>
+  [467] setlocal 0 .............................. tData = getStreamStatus(p.NetID)
+  [469] getlocal 0 .............................. <tData>
+  [471] getobjprop 656 .......................... <tData.bytesSoFar>
+  [474] pushint16 10000 ......................... <10000>
+  [477] gt ...................................... <tData.bytesSoFar > 10000>
+  [478] jmpifz [650] ............................ if tData.bytesSoFar > 10000 then
+  [481] getlocal 0 .............................. <tData>
+  [483] getobjprop 656 .......................... <tData.bytesSoFar>
+  [486] pusharglist 1 ........................... <tData.bytesSoFar>
+  [488] extcall 544 ............................. <float(tData.bytesSoFar)>
+  [491] getlocal 0 .............................. <tData>
+  [493] getobjprop 657 .......................... <tData.bytesTotal>
+  [496] pusharglist 1 ........................... <tData.bytesTotal>
+  [498] extcall 544 ............................. <float(tData.bytesTotal)>
+  [501] div ..................................... <float(tData.bytesSoFar) / float(tData.bytesTotal)>
+  [502] setlocal 1 .............................. tFPerc = float(tData.bytesSoFar) / float(tData.bytesTotal)
+  [504] pushfloat32 100.0 ....................... <100.0>
+  [509] getlocal 1 .............................. <tFPerc>
+  [511] mul ..................................... <100.0 * tFPerc>
+  [512] setlocal 2 .............................. tIPerc = 100.0 * tFPerc
+  [514] getprop 563 ............................. <p>
+  [517] getlocal 2 .............................. <tIPerc>
+  [519] pusharglist 1 ........................... <tIPerc>
+  [521] extcall 123 ............................. <integer(tIPerc)>
+  [523] setobjprop 639 .......................... p.Percentage = integer(tIPerc)
+  [526] pushcons 27 ............................. <"00">
+  [528] getprop 563 ............................. <p>
+  [531] getobjprop 639 .......................... <p.Percentage>
+  [534] pusharglist 1 ........................... <p.Percentage>
+  [536] extcall 67 .............................. <string(p.Percentage)>
+  [538] joinstr ................................. <"00" & string(p.Percentage)>
+  [539] setlocal 3 .............................. tString = "00" & string(p.Percentage)
+  [541] getlocal 3 .............................. <tString>
+  [543] pushsymb 68 ............................. <#char>
+  [545] getlocal 3 .............................. <tString>
+  [547] getobjprop 69 ........................... <tString.length>
+  [549] pushint8 2 .............................. <2>
+  [551] sub ..................................... <tString.length - 2>
+  [552] getlocal 3 .............................. <tString>
+  [554] getobjprop 69 ........................... <tString.length>
+  [556] pusharglist 4 ........................... <tString, #char, tString.length - 2, tString.length>
+  [558] objcall 70 .............................. <tString.char[tString.length - 2..tString.length]>
+  [560] setlocal 3 .............................. tString = tString.char[tString.length - 2..tString.length]
+  [562] pushzero ................................ <0>
+  [563] pushcons 28 ............................. <"downloading ">
+  [565] getprop 563 ............................. <p>
+  [568] getobjprop 596 .......................... <p.cast>
+  [571] joinstr ................................. <"downloading " & p.cast>
+  [572] pushcons 29 ............................. <": ">
+  [574] joinstr ................................. <"downloading " & p.cast & ": ">
+  [575] getlocal 3 .............................. <tString>
+  [577] joinstr ................................. <"downloading " & p.cast & ": " & tString>
+  [578] pushcons 30 ............................. <" %">
+  [580] joinstr ................................. <"downloading " & p.cast & ": " & tString & " %">
+  [581] pusharglist 2 ........................... <0, "downloading " & p.cast & ": " & tString & " %">
+  [583] extcall 325 ............................. <convertToUpperCase(0, "downloading " & p.cast & ": " & tString & " %")>
+  [586] setlocal 4 .............................. tText = convertToUpperCase(0, "downloading " & p.cast & ": " & tString & " %")
+  [588] pushzero ................................ <0>
+  [589] getprop 563 ............................. <p>
+  [592] getchainedprop 64 ....................... <p.member>
+  [594] getobjprop 235 .......................... <p.member.name>
+  [596] pushsymb 80 ............................. <#text>
+  [598] getlocal 4 .............................. <tText>
+  [600] pushsymb 218 ............................ <#texture>
+  [602] pushcons 4 .............................. <"Downloading_Texture">
+  [604] pushsymb 221 ............................ <#fontSize>
+  [606] pushint8 10 ............................. <10>
+  [608] pushsymb 219 ............................ <#align>
+  [610] pushsymb 220 ............................ <#right>
+  [612] pushsymb 223 ............................ <#color>
+  [614] getglobal 86 ............................ <gData>
+  [616] getchainedprop 87 ....................... <gData.data>
+  [618] getchainedprop 224 ...................... <gData.data.TextColor>
+  [620] getobjprop 225 .......................... <gData.data.TextColor.White>
+  [622] pushsymb 229 ............................ <#width>
+  [624] pushint16 256 ........................... <256>
+  [627] pushsymb 642 ............................ <#filters>
+  [630] getglobal 86 ............................ <gData>
+  [632] getchainedprop 87 ....................... <gData.data>
+  [634] getchainedprop 643 ...................... <gData.data.ButtonFilters>
+  [637] getobjprop 644 .......................... <gData.data.ButtonFilters.BR3GlowWhite>
+  [640] pusharglist 1 ........................... <[gData.data.ButtonFilters.BR3GlowWhite]>
+  [642] pushlist ................................ <[gData.data.ButtonFilters.BR3GlowWhite]>
+  [643] pusharglist 14 .......................... <[#text: tText, #texture: "Downloading_Texture", #fontSize: 10, #align: #right, #color: gData.data.TextColor.White, #width: 256, #filters: [gData.data.ButtonFilters.BR3GlowWhite]]>
+  [645] pushproplist ............................ <[#text: tText, #texture: "Downloading_Texture", #fontSize: 10, #align: #right, #color: gData.data.TextColor.White, #width: 256, #filters: [gData.data.ButtonFilters.BR3GlowWhite]]>
+  [646] pusharglistnoret 3 ...................... <0, p.member.name, [#text: tText, #texture: "Downloading_Texture", #fontSize: 10, #align: #right, #color: gData.data.TextColor.White, #width: 256, #filters: [gData.data.ButtonFilters.BR3GlowWhite]]>
+  [648] extcall 217 ............................. CreateTextTexture(0, p.member.name, [#text: tText, #texture: "Downloading_Texture", #fontSize: 10, #align: #right, #color: gData.data.TextColor.White, #width: 256, #filters: [gData.data.ButtonFilters.BR3GlowWhite]])
+  [650] ret
+end
+
+on DownloadDone tState
+  [  0] getparam 0 .............................. <tState>
+  [  2] pushint8 1 .............................. <1>
+  [  4] eq ...................................... <tState = 1>
+  [  5] jmpifz [234] ............................ if tState = 1 then / else
+  [  8] getprop 563 ............................. <p>
+  [ 11] getobjprop 596 .......................... <p.cast>
+  [ 14] pushcons 31 ............................. <" was downloaded succesfull. URL was: ">
+  [ 16] joinstr ................................. <p.cast & " was downloaded succesfull. URL was: ">
+  [ 17] getprop 563 ............................. <p>
+  [ 20] getobjprop 632 .......................... <p.url>
+  [ 23] joinstr ................................. <p.cast & " was downloaded succesfull. URL was: " & p.url>
+  [ 24] pusharglist 1 ........................... <p.cast & " was downloaded succesfull. URL was: " & p.url>
+  [ 26] extcall 67 .............................. <string(p.cast & " was downloaded succesfull. URL was: " & p.url)>
+  [ 28] pusharglistnoret 1 ...................... <string(p.cast & " was downloaded succesfull. URL was: " & p.url)>
+  [ 30] extcall 57 .............................. put string(p.cast & " was downloaded succesfull. URL was: " & p.url)
+  [ 32] gettoplevelprop 33 ...................... <_movie>
+  [ 34] getprop 563 ............................. <p>
+  [ 37] getobjprop 596 .......................... <p.cast>
+  [ 40] pusharglist 2 ........................... <_movie, p.cast>
+  [ 42] objcall 58 .............................. <_movie.castLib(p.cast)>
+  [ 44] getprop 563 ............................. <p>
+  [ 47] getobjprop 632 .......................... <p.url>
+  [ 50] setobjprop 59 ........................... _movie.castLib(p.cast).fileName = p.url
+  [ 52] getglobal 43 ............................ <gGame>
+  [ 54] getprop 563 ............................. <p>
+  [ 57] pushsymb 633 ............................ <#props>
+  [ 60] pushint8 1 .............................. <1>
+  [ 62] pusharglist 3 ........................... <p, #props, 1>
+  [ 64] objcall 70 .............................. <p.props[1]>
+  [ 66] pushint8 1 .............................. <1>
+  [ 68] pusharglistnoret 3 ...................... <gGame, p.props[1], 1>
+  [ 70] objcall 103 ............................. gGame[p.props[1]] = 1
+  [ 72] getprop 563 ............................. <p>
+  [ 75] getchainedprop 636 ...................... <p.URLList>
+  [ 78] pushint8 1 .............................. <1>
+  [ 80] pusharglistnoret 2 ...................... <p.URLList, 1>
+  [ 82] objcall 661 ............................. p.URLList.deleteAt(1)
+  [ 85] getprop 563 ............................. <p>
+  [ 88] getchainedprop 637 ...................... <p.CastList>
+  [ 91] pushint8 1 .............................. <1>
+  [ 93] pusharglistnoret 2 ...................... <p.CastList, 1>
+  [ 95] objcall 661 ............................. p.CastList.deleteAt(1)
+  [ 98] getprop 563 ............................. <p>
+  [101] getchainedprop 633 ...................... <p.props>
+  [104] pushint8 1 .............................. <1>
+  [106] pusharglistnoret 2 ...................... <p.props, 1>
+  [108] objcall 661 ............................. p.props.deleteAt(1)
+  [111] getprop 563 ............................. <p>
+  [114] pushsymb 636 ............................ <#URLList>
+  [117] pusharglist 2 ........................... <p, #URLList>
+  [119] objcall 129 ............................. <p.URLList.count>
+  [121] pushzero ................................ <0>
+  [122] eq ...................................... <p.URLList.count = 0>
+  [123] jmpifz [153] ............................ if p.URLList.count = 0 then / else
+  [126] getprop 563 ............................. <p>
+  [129] getchainedprop 71 ....................... <p.model>
+  [131] pusharglistnoret 1 ...................... <p.model>
+  [133] objcall 662 ............................. p.model.removeFromWorld()
+  [136] getglobal 43 ............................ <gGame>
+  [138] getprop 563 ............................. <p>
+  [141] getobjprop 638 .......................... <p.Holder>
+  [144] pushsymb 54 ............................. <#none>
+  [146] pusharglistnoret 3 ...................... <gGame, p.Holder, #none>
+  [148] objcall 103 ............................. gGame[p.Holder] = #none
+  [150] jmp [214]
+  [153] pushcons 32 ............................. <"[PS] Preload Casts">
+  [155] pusharglist 1 ........................... <"[PS] Preload Casts">
+  [157] extcall 36 .............................. <script("[PS] Preload Casts")>
+  [159] getprop 563 ............................. <p>
+  [162] getobjprop 636 .......................... <p.URLList>
+  [165] getprop 563 ............................. <p>
+  [168] getobjprop 637 .......................... <p.CastList>
+  [171] getprop 563 ............................. <p>
+  [174] getobjprop 633 .......................... <p.props>
+  [177] getprop 563 ............................. <p>
+  [180] getobjprop 638 .......................... <p.Holder>
+  [183] pusharglist 5 ........................... <script("[PS] Preload Casts"), p.URLList, p.CastList, p.props, p.Holder>
+  [185] extcall 35 .............................. <new(script("[PS] Preload Casts"), p.URLList, p.CastList, p.props, p.Holder)>
+  [187] setlocal 0 .............................. tScript = new(script("[PS] Preload Casts"), p.URLList, p.CastList, p.props, p.Holder)
+  [189] getlocal 0 .............................. <tScript>
+  [191] pusharglist 0 ........................... <>
+  [193] extcall 40 .............................. <VOID>
+  [195] nteq .................................... <tScript <> VOID>
+  [196] getlocal 0 .............................. <tScript>
+  [198] pushzero ................................ <0>
+  [199] nteq .................................... <tScript <> 0>
+  [200] or ...................................... <(tScript <> VOID) or (tScript <> 0)>
+  [201] jmpifz [214] ............................ if (tScript <> VOID) or (tScript <> 0) then
+  [204] gettoplevelprop 33 ...................... <_movie>
+  [206] getchainedprop 41 ....................... <_movie.actorList>
+  [208] getlocal 0 .............................. <tScript>
+  [210] pusharglistnoret 2 ...................... <_movie.actorList, tScript>
+  [212] objcall 42 .............................. _movie.actorList.add(tScript)
+  [214] getprop 563 ............................. <p>
+  [217] getobjprop 596 .......................... <p.cast>
+  [220] pushcons 33 ............................. <"Cars">
+  [222] eq ...................................... <p.cast = "Cars">
+  [223] jmpifz [231] ............................ if p.cast = "Cars" then
+  [226] pusharglistnoret 0 ...................... <>
+  [228] extcall 663 ............................. LoadExternalTextures()
+  [231] jmp [268]
+  [234] getprop 563 ............................. <p>
+  [237] getobjprop 596 .......................... <p.cast>
+  [240] pushcons 34 ............................. <" was not downloaded. URL was: ">
+  [242] joinstr ................................. <p.cast & " was not downloaded. URL was: ">
+  [243] getprop 563 ............................. <p>
+  [246] getobjprop 632 .......................... <p.url>
+  [249] joinstr ................................. <p.cast & " was not downloaded. URL was: " & p.url>
+  [250] pushcons 35 ............................. <" Error was: ">
+  [252] joinstr ................................. <p.cast & " was not downloaded. URL was: " & p.url & " Error was: ">
+  [253] getprop 563 ............................. <p>
+  [256] getobjprop 654 .......................... <p.error>
+  [259] joinstr ................................. <p.cast & " was not downloaded. URL was: " & p.url & " Error was: " & p.error>
+  [260] pusharglist 1 ........................... <p.cast & " was not downloaded. URL was: " & p.url & " Error was: " & p.error>
+  [262] extcall 67 .............................. <string(p.cast & " was not downloaded. URL was: " & p.url & " Error was: " & p.error)>
+  [264] pusharglistnoret 1 ...................... <string(p.cast & " was not downloaded. URL was: " & p.url & " Error was: " & p.error)>
+  [266] extcall 57 .............................. put string(p.cast & " was not downloaded. URL was: " & p.url & " Error was: " & p.error)
+  [268] gettoplevelprop 33 ...................... <_movie>
+  [270] getchainedprop 41 ....................... <_movie.actorList>
+  [272] getprop 563 ............................. <p>
+  [275] getobjprop 45 ........................... <p.me>
+  [277] pusharglistnoret 2 ...................... <_movie.actorList, p.me>
+  [279] objcall 175 ............................. _movie.actorList.deleteOne(p.me)
+  [281] ret
+end
+
+on AbortDownload me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 634 .......................... <p.NetID>
+  [  6] pusharglistnoret 1 ...................... <p.NetID>
+  [  8] extcall 664 ............................. netAbort(p.NetID)
+  [ 11] getprop 563 ............................. <p>
+  [ 14] getobjprop 596 .......................... <p.cast>
+  [ 17] pushcons 36 ............................. <" was aborted. URL was: ">
+  [ 19] joinstr ................................. <p.cast & " was aborted. URL was: ">
+  [ 20] getprop 563 ............................. <p>
+  [ 23] getobjprop 632 .......................... <p.url>
+  [ 26] joinstr ................................. <p.cast & " was aborted. URL was: " & p.url>
+  [ 27] pusharglist 1 ........................... <p.cast & " was aborted. URL was: " & p.url>
+  [ 29] extcall 67 .............................. <string(p.cast & " was aborted. URL was: " & p.url)>
+  [ 31] pusharglistnoret 1 ...................... <string(p.cast & " was aborted. URL was: " & p.url)>
+  [ 33] extcall 57 .............................. put string(p.cast & " was aborted. URL was: " & p.url)
+  [ 35] gettoplevelprop 33 ...................... <_movie>
+  [ 37] getchainedprop 41 ....................... <_movie.actorList>
+  [ 39] getprop 563 ............................. <p>
+  [ 42] getobjprop 45 ........................... <p.me>
+  [ 44] pusharglistnoret 2 ...................... <_movie.actorList, p.me>
+  [ 46] objcall 175 ............................. _movie.actorList.deleteOne(p.me)
+  [ 48] ret
+end
+
+on ReturnWorld me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 56 ........................... <p.world>
+  [  5] pusharglistnoret 1 ...................... <p.world>
+  [  7] extcall 52 .............................. return p.world
+  [  9] ret
+end
+
+on returnPercentage me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 639 .......................... <p.Percentage>
+  [  6] pusharglistnoret 1 ...................... <p.Percentage>
+  [  8] extcall 52 .............................. return p.Percentage
+  [ 10] ret
+end

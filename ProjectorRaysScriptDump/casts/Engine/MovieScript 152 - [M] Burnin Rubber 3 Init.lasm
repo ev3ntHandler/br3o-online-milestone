@@ -1,0 +1,1475 @@
+global g, gData, gGame, gSound, gSystem
+
+on BurninRubber3 me
+  [  0] gettoplevelprop 33 ...................... <_movie>
+  [  2] getglobal 43 ............................ <gGame>
+  [  4] getobjprop 457 .......................... <gGame.LockEscape>
+  [  7] setobjprop 465 .......................... _movie.exitLock = gGame.LockEscape
+  [ 10] getglobal 86 ............................ <gData>
+  [ 12] pushsymb 87 ............................. <#data>
+  [ 14] pushsymb 1735 ........................... <#Defaultbodykit>
+  [ 17] getglobal 86 ............................ <gData>
+  [ 19] getchainedprop 87 ....................... <gData.data>
+  [ 21] getchainedprop 1736 ..................... <gData.data.bodyKit>
+  [ 24] pusharglist 1 ........................... <gData.data.bodyKit>
+  [ 26] objcall 233 ............................. <gData.data.bodyKit.duplicate()>
+  [ 28] pusharglistnoret 4 ...................... <gData, #data, #Defaultbodykit, gData.data.bodyKit.duplicate()>
+  [ 30] objcall 99 .............................. gData.data[#Defaultbodykit] = gData.data.bodyKit.duplicate()
+  [ 32] getglobal 86 ............................ <gData>
+  [ 34] pushsymb 87 ............................. <#data>
+  [ 36] pushsymb 1737 ........................... <#DefaultUpgrades>
+  [ 39] getglobal 86 ............................ <gData>
+  [ 41] getchainedprop 87 ....................... <gData.data>
+  [ 43] getchainedprop 181 ...................... <gData.data.upgrades>
+  [ 45] pusharglist 1 ........................... <gData.data.upgrades>
+  [ 47] objcall 233 ............................. <gData.data.upgrades.duplicate()>
+  [ 49] pusharglistnoret 4 ...................... <gData, #data, #DefaultUpgrades, gData.data.upgrades.duplicate()>
+  [ 51] objcall 99 .............................. gData.data[#DefaultUpgrades] = gData.data.upgrades.duplicate()
+  [ 53] getglobal 86 ............................ <gData>
+  [ 55] pushsymb 87 ............................. <#data>
+  [ 57] pushsymb 1738 ........................... <#DefaultWeapons>
+  [ 60] getglobal 86 ............................ <gData>
+  [ 62] getchainedprop 87 ....................... <gData.data>
+  [ 64] getchainedprop 185 ...................... <gData.data.Weapons>
+  [ 66] pusharglist 1 ........................... <gData.data.Weapons>
+  [ 68] objcall 233 ............................. <gData.data.Weapons.duplicate()>
+  [ 70] pusharglistnoret 4 ...................... <gData, #data, #DefaultWeapons, gData.data.Weapons.duplicate()>
+  [ 72] objcall 99 .............................. gData.data[#DefaultWeapons] = gData.data.Weapons.duplicate()
+  [ 74] pusharglistnoret 0 ...................... <>
+  [ 76] localcall 2 ............................. LoadData()
+  [ 78] getglobal 50 ............................ <gSystem>
+  [ 80] pushint8 1 .............................. <1>
+  [ 82] setobjprop 415 .......................... gSystem.Init = 1
+  [ 85] ret
+end
+
+on ResetGame me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pusharglist 0 ........................... <[]>
+  [  4] pushlist ................................ <[]>
+  [  5] setobjprop 300 .......................... gGame.scriptList = []
+  [  8] getglobal 43 ............................ <gGame>
+  [ 10] pushsymb 392 ............................ <#pause>
+  [ 13] pushzero ................................ <0>
+  [ 14] pusharglistnoret 3 ...................... <gGame, #pause, 0>
+  [ 16] objcall 103 ............................. gGame[#pause] = 0
+  [ 18] getglobal 43 ............................ <gGame>
+  [ 20] pushsymb 1389 ........................... <#Physics>
+  [ 23] pusharglist 2 ........................... <gGame, #Physics>
+  [ 25] objcall 105 ............................. <gGame[#Physics]>
+  [ 27] pusharglist 1 ........................... <gGame[#Physics]>
+  [ 29] extcall 389 ............................. <voidp(gGame[#Physics])>
+  [ 32] pushzero ................................ <0>
+  [ 33] eq ...................................... <voidp(gGame[#Physics]) = 0>
+  [ 34] jmpifz [ 74] ............................ if voidp(gGame[#Physics]) = 0 then
+  [ 37] getglobal 43 ............................ <gGame>
+  [ 39] pushsymb 1389 ........................... <#Physics>
+  [ 42] pusharglist 2 ........................... <gGame, #Physics>
+  [ 44] objcall 105 ............................. <gGame[#Physics]>
+  [ 46] pusharglistnoret 1 ...................... <gGame[#Physics]>
+  [ 48] objcall 1097 ............................ gGame[#Physics].erase()
+  [ 51] getglobal 43 ............................ <gGame>
+  [ 53] pushsymb 1739 ........................... <#Physisc>
+  [ 56] pusharglist 0 ........................... <>
+  [ 58] extcall 40 .............................. <VOID>
+  [ 60] pusharglistnoret 3 ...................... <gGame, #Physisc, VOID>
+  [ 62] objcall 103 ............................. gGame[#Physisc] = VOID
+  [ 64] getglobal 43 ............................ <gGame>
+  [ 66] pushsymb 1389 ........................... <#Physics>
+  [ 69] pusharglistnoret 2 ...................... <gGame, #Physics>
+  [ 71] objcall 605 ............................. gGame.deleteProp(#Physics)
+  [ 74] getglobal 43 ............................ <gGame>
+  [ 76] pushfloat32 1.0 ......................... <1.0>
+  [ 81] setobjprop 454 .......................... gGame.TimeMP = 1.0
+  [ 84] getglobal 43 ............................ <gGame>
+  [ 86] pushsymb 1330 ........................... <#Items3D>
+  [ 89] pusharglist 2 ........................... <gGame, #Items3D>
+  [ 91] extcall 542 ............................. <getaProp(gGame, #Items3D)>
+  [ 94] getobjprop 122 .......................... <getaProp(gGame, #Items3D).ilk>
+  [ 96] pushsymb 541 ............................ <#propList>
+  [ 99] eq ...................................... <getaProp(gGame, #Items3D).ilk = #propList>
+  [100] jmpifz [113] ............................ if getaProp(gGame, #Items3D).ilk = #propList then
+  [103] getglobal 43 ............................ <gGame>
+  [105] pushsymb 1330 ........................... <#Items3D>
+  [108] pusharglistnoret 2 ...................... <gGame, #Items3D>
+  [110] objcall 605 ............................. gGame.deleteProp(#Items3D)
+  [113] getglobal 43 ............................ <gGame>
+  [115] pushsymb 952 ............................ <#Button3DList>
+  [118] pusharglist 2 ........................... <gGame, #Button3DList>
+  [120] extcall 542 ............................. <getaProp(gGame, #Button3DList)>
+  [123] getobjprop 122 .......................... <getaProp(gGame, #Button3DList).ilk>
+  [125] pushsymb 126 ............................ <#list>
+  [127] eq ...................................... <getaProp(gGame, #Button3DList).ilk = #list>
+  [128] jmpifz [141] ............................ if getaProp(gGame, #Button3DList).ilk = #list then
+  [131] getglobal 43 ............................ <gGame>
+  [133] pushsymb 952 ............................ <#Button3DList>
+  [136] pusharglistnoret 2 ...................... <gGame, #Button3DList>
+  [138] objcall 605 ............................. gGame.deleteProp(#Button3DList)
+  [141] getglobal 43 ............................ <gGame>
+  [143] pushsymb 952 ............................ <#Button3DList>
+  [146] pusharglist 2 ........................... <gGame, #Button3DList>
+  [148] objcall 105 ............................. <gGame[#Button3DList]>
+  [150] pusharglist 1 ........................... <gGame[#Button3DList]>
+  [152] extcall 389 ............................. <voidp(gGame[#Button3DList])>
+  [155] pushzero ................................ <0>
+  [156] eq ...................................... <voidp(gGame[#Button3DList]) = 0>
+  [157] jmpifz [170] ............................ if voidp(gGame[#Button3DList]) = 0 then
+  [160] getglobal 43 ............................ <gGame>
+  [162] pushsymb 952 ............................ <#Button3DList>
+  [165] pusharglistnoret 2 ...................... <gGame, #Button3DList>
+  [167] extcall 605 ............................. deleteProp(gGame, #Button3DList)
+  [170] getglobal 43 ............................ <gGame>
+  [172] pushsymb 137 ............................ <#cars>
+  [174] pusharglist 2 ........................... <gGame, #cars>
+  [176] extcall 542 ............................. <getaProp(gGame, #cars)>
+  [179] getobjprop 122 .......................... <getaProp(gGame, #cars).ilk>
+  [181] pushsymb 541 ............................ <#propList>
+  [184] eq ...................................... <getaProp(gGame, #cars).ilk = #propList>
+  [185] jmpifz [197] ............................ if getaProp(gGame, #cars).ilk = #propList then
+  [188] getglobal 43 ............................ <gGame>
+  [190] pushsymb 137 ............................ <#cars>
+  [192] pusharglistnoret 2 ...................... <gGame, #cars>
+  [194] objcall 605 ............................. gGame.deleteProp(#cars)
+  [197] getglobal 43 ............................ <gGame>
+  [199] pushsymb 1740 ........................... <#RayCastList>
+  [202] pusharglist 2 ........................... <gGame, #RayCastList>
+  [204] extcall 542 ............................. <getaProp(gGame, #RayCastList)>
+  [207] getobjprop 122 .......................... <getaProp(gGame, #RayCastList).ilk>
+  [209] pushsymb 541 ............................ <#propList>
+  [212] eq ...................................... <getaProp(gGame, #RayCastList).ilk = #propList>
+  [213] jmpifz [226] ............................ if getaProp(gGame, #RayCastList).ilk = #propList then
+  [216] getglobal 43 ............................ <gGame>
+  [218] pushsymb 1740 ........................... <#RayCastList>
+  [221] pusharglistnoret 2 ...................... <gGame, #RayCastList>
+  [223] objcall 605 ............................. gGame.deleteProp(#RayCastList)
+  [226] getglobal 43 ............................ <gGame>
+  [228] pushsymb 298 ............................ <#camera>
+  [231] pusharglist 2 ........................... <gGame, #camera>
+  [233] extcall 542 ............................. <getaProp(gGame, #camera)>
+  [236] getobjprop 122 .......................... <getaProp(gGame, #camera).ilk>
+  [238] pushsymb 541 ............................ <#propList>
+  [241] eq ...................................... <getaProp(gGame, #camera).ilk = #propList>
+  [242] jmpifz [255] ............................ if getaProp(gGame, #camera).ilk = #propList then
+  [245] getglobal 43 ............................ <gGame>
+  [247] pushsymb 298 ............................ <#camera>
+  [250] pusharglistnoret 2 ...................... <gGame, #camera>
+  [252] objcall 605 ............................. gGame.deleteProp(#camera)
+  [255] getglobal 43 ............................ <gGame>
+  [257] pushsymb 1741 ........................... <#FloorList>
+  [260] pusharglist 2 ........................... <gGame, #FloorList>
+  [262] extcall 542 ............................. <getaProp(gGame, #FloorList)>
+  [265] getobjprop 122 .......................... <getaProp(gGame, #FloorList).ilk>
+  [267] pushsymb 126 ............................ <#list>
+  [269] eq ...................................... <getaProp(gGame, #FloorList).ilk = #list>
+  [270] jmpifz [283] ............................ if getaProp(gGame, #FloorList).ilk = #list then
+  [273] getglobal 43 ............................ <gGame>
+  [275] pushsymb 1741 ........................... <#FloorList>
+  [278] pusharglistnoret 2 ...................... <gGame, #FloorList>
+  [280] objcall 605 ............................. gGame.deleteProp(#FloorList)
+  [283] getglobal 43 ............................ <gGame>
+  [285] pushsymb 1391 ........................... <#collisionReports>
+  [288] pusharglist 2 ........................... <gGame, #collisionReports>
+  [290] extcall 542 ............................. <getaProp(gGame, #collisionReports)>
+  [293] getobjprop 122 .......................... <getaProp(gGame, #collisionReports).ilk>
+  [295] pushsymb 541 ............................ <#propList>
+  [298] eq ...................................... <getaProp(gGame, #collisionReports).ilk = #propList>
+  [299] jmpifz [312] ............................ if getaProp(gGame, #collisionReports).ilk = #propList then
+  [302] getglobal 43 ............................ <gGame>
+  [304] pushsymb 1391 ........................... <#collisionReports>
+  [307] pusharglistnoret 2 ...................... <gGame, #collisionReports>
+  [309] objcall 605 ............................. gGame.deleteProp(#collisionReports)
+  [312] getglobal 43 ............................ <gGame>
+  [314] pushsymb 929 ............................ <#Keys>
+  [317] pusharglist 2 ........................... <gGame, #Keys>
+  [319] extcall 542 ............................. <getaProp(gGame, #Keys)>
+  [322] getobjprop 122 .......................... <getaProp(gGame, #Keys).ilk>
+  [324] pushsymb 541 ............................ <#propList>
+  [327] eq ...................................... <getaProp(gGame, #Keys).ilk = #propList>
+  [328] jmpifz [339] ............................ if getaProp(gGame, #Keys).ilk = #propList then
+  [331] getglobal 43 ............................ <gGame>
+  [333] pusharglist 0 ........................... <[:]>
+  [335] pushproplist ............................ <[:]>
+  [336] setobjprop 929 .......................... gGame.Keys = [:]
+  [339] getglobal 43 ............................ <gGame>
+  [341] pushsymb 1405 ........................... <#RootList>
+  [344] pusharglist 2 ........................... <gGame, #RootList>
+  [346] extcall 542 ............................. <getaProp(gGame, #RootList)>
+  [349] getobjprop 122 .......................... <getaProp(gGame, #RootList).ilk>
+  [351] pushsymb 126 ............................ <#list>
+  [353] eq ...................................... <getaProp(gGame, #RootList).ilk = #list>
+  [354] jmpifz [367] ............................ if getaProp(gGame, #RootList).ilk = #list then
+  [357] getglobal 43 ............................ <gGame>
+  [359] pushsymb 1405 ........................... <#RootList>
+  [362] pusharglistnoret 2 ...................... <gGame, #RootList>
+  [364] objcall 605 ............................. gGame.deleteProp(#RootList)
+  [367] getglobal 43 ............................ <gGame>
+  [369] pushsymb 1369 ........................... <#WayPointList>
+  [372] pusharglist 2 ........................... <gGame, #WayPointList>
+  [374] extcall 542 ............................. <getaProp(gGame, #WayPointList)>
+  [377] getobjprop 122 .......................... <getaProp(gGame, #WayPointList).ilk>
+  [379] pushsymb 126 ............................ <#list>
+  [381] eq ...................................... <getaProp(gGame, #WayPointList).ilk = #list>
+  [382] jmpifz [395] ............................ if getaProp(gGame, #WayPointList).ilk = #list then
+  [385] getglobal 43 ............................ <gGame>
+  [387] pushsymb 1369 ........................... <#WayPointList>
+  [390] pusharglistnoret 2 ...................... <gGame, #WayPointList>
+  [392] objcall 605 ............................. gGame.deleteProp(#WayPointList)
+  [395] getglobal 43 ............................ <gGame>
+  [397] pushsymb 1742 ........................... <#CheckPoints>
+  [400] pusharglist 2 ........................... <gGame, #CheckPoints>
+  [402] extcall 542 ............................. <getaProp(gGame, #CheckPoints)>
+  [405] getobjprop 122 .......................... <getaProp(gGame, #CheckPoints).ilk>
+  [407] pushsymb 541 ............................ <#propList>
+  [410] eq ...................................... <getaProp(gGame, #CheckPoints).ilk = #propList>
+  [411] jmpifz [424] ............................ if getaProp(gGame, #CheckPoints).ilk = #propList then
+  [414] getglobal 43 ............................ <gGame>
+  [416] pushsymb 1742 ........................... <#CheckPoints>
+  [419] pusharglistnoret 2 ...................... <gGame, #CheckPoints>
+  [421] objcall 605 ............................. gGame.deleteProp(#CheckPoints)
+  [424] getglobal 43 ............................ <gGame>
+  [426] pushsymb 1278 ........................... <#AddShaders>
+  [429] pusharglist 2 ........................... <gGame, #AddShaders>
+  [431] extcall 542 ............................. <getaProp(gGame, #AddShaders)>
+  [434] getobjprop 122 .......................... <getaProp(gGame, #AddShaders).ilk>
+  [436] pushsymb 126 ............................ <#list>
+  [438] eq ...................................... <getaProp(gGame, #AddShaders).ilk = #list>
+  [439] jmpifz [452] ............................ if getaProp(gGame, #AddShaders).ilk = #list then
+  [442] getglobal 43 ............................ <gGame>
+  [444] pushsymb 1278 ........................... <#AddShaders>
+  [447] pusharglistnoret 2 ...................... <gGame, #AddShaders>
+  [449] objcall 605 ............................. gGame.deleteProp(#AddShaders)
+  [452] getglobal 50 ............................ <gSystem>
+  [454] pushsymb 1462 ........................... <#ScrollerList>
+  [457] pusharglist 2 ........................... <gSystem, #ScrollerList>
+  [459] extcall 542 ............................. <getaProp(gSystem, #ScrollerList)>
+  [462] getobjprop 122 .......................... <getaProp(gSystem, #ScrollerList).ilk>
+  [464] pushsymb 126 ............................ <#list>
+  [466] eq ...................................... <getaProp(gSystem, #ScrollerList).ilk = #list>
+  [467] jmpifz [480] ............................ if getaProp(gSystem, #ScrollerList).ilk = #list then
+  [470] getglobal 50 ............................ <gSystem>
+  [472] pushsymb 1462 ........................... <#ScrollerList>
+  [475] pusharglistnoret 2 ...................... <gSystem, #ScrollerList>
+  [477] objcall 605 ............................. gSystem.deleteProp(#ScrollerList)
+  [480] getglobal 50 ............................ <gSystem>
+  [482] pushsymb 1461 ........................... <#RotatorList>
+  [485] pusharglist 2 ........................... <gSystem, #RotatorList>
+  [487] extcall 542 ............................. <getaProp(gSystem, #RotatorList)>
+  [490] getobjprop 122 .......................... <getaProp(gSystem, #RotatorList).ilk>
+  [492] pushsymb 126 ............................ <#list>
+  [494] eq ...................................... <getaProp(gSystem, #RotatorList).ilk = #list>
+  [495] jmpifz [508] ............................ if getaProp(gSystem, #RotatorList).ilk = #list then
+  [498] getglobal 50 ............................ <gSystem>
+  [500] pushsymb 1461 ........................... <#RotatorList>
+  [503] pusharglistnoret 2 ...................... <gSystem, #RotatorList>
+  [505] objcall 605 ............................. gSystem.deleteProp(#RotatorList)
+  [508] getglobal 50 ............................ <gSystem>
+  [510] pushsymb 1463 ........................... <#BillBoardList>
+  [513] pusharglist 2 ........................... <gSystem, #BillBoardList>
+  [515] extcall 542 ............................. <getaProp(gSystem, #BillBoardList)>
+  [518] getobjprop 122 .......................... <getaProp(gSystem, #BillBoardList).ilk>
+  [520] pushsymb 126 ............................ <#list>
+  [522] eq ...................................... <getaProp(gSystem, #BillBoardList).ilk = #list>
+  [523] jmpifz [536] ............................ if getaProp(gSystem, #BillBoardList).ilk = #list then
+  [526] getglobal 50 ............................ <gSystem>
+  [528] pushsymb 1463 ........................... <#BillBoardList>
+  [531] pusharglistnoret 2 ...................... <gSystem, #BillBoardList>
+  [533] objcall 605 ............................. gSystem.deleteProp(#BillBoardList)
+  [536] getglobal 50 ............................ <gSystem>
+  [538] pushsymb 568 ............................ <#InterPolatorList>
+  [541] pusharglist 2 ........................... <gSystem, #InterPolatorList>
+  [543] extcall 542 ............................. <getaProp(gSystem, #InterPolatorList)>
+  [546] getobjprop 122 .......................... <getaProp(gSystem, #InterPolatorList).ilk>
+  [548] pushsymb 126 ............................ <#list>
+  [550] eq ...................................... <getaProp(gSystem, #InterPolatorList).ilk = #list>
+  [551] jmpifz [564] ............................ if getaProp(gSystem, #InterPolatorList).ilk = #list then
+  [554] getglobal 50 ............................ <gSystem>
+  [556] pushsymb 568 ............................ <#InterPolatorList>
+  [559] pusharglistnoret 2 ...................... <gSystem, #InterPolatorList>
+  [561] objcall 605 ............................. gSystem.deleteProp(#InterPolatorList)
+  [564] getglobal 50 ............................ <gSystem>
+  [566] pushsymb 1464 ........................... <#PointAtList>
+  [569] pusharglist 2 ........................... <gSystem, #PointAtList>
+  [571] extcall 542 ............................. <getaProp(gSystem, #PointAtList)>
+  [574] getobjprop 122 .......................... <getaProp(gSystem, #PointAtList).ilk>
+  [576] pushsymb 126 ............................ <#list>
+  [578] eq ...................................... <getaProp(gSystem, #PointAtList).ilk = #list>
+  [579] jmpifz [592] ............................ if getaProp(gSystem, #PointAtList).ilk = #list then
+  [582] getglobal 50 ............................ <gSystem>
+  [584] pushsymb 1464 ........................... <#PointAtList>
+  [587] pusharglistnoret 2 ...................... <gSystem, #PointAtList>
+  [589] objcall 605 ............................. gSystem.deleteProp(#PointAtList)
+  [592] getglobal 50 ............................ <gSystem>
+  [594] pushsymb 1459 ........................... <#Mimic>
+  [597] pusharglist 2 ........................... <gSystem, #Mimic>
+  [599] extcall 542 ............................. <getaProp(gSystem, #Mimic)>
+  [602] getobjprop 122 .......................... <getaProp(gSystem, #Mimic).ilk>
+  [604] pushsymb 126 ............................ <#list>
+  [606] eq ...................................... <getaProp(gSystem, #Mimic).ilk = #list>
+  [607] jmpifz [620] ............................ if getaProp(gSystem, #Mimic).ilk = #list then
+  [610] getglobal 50 ............................ <gSystem>
+  [612] pushsymb 1459 ........................... <#Mimic>
+  [615] pusharglistnoret 2 ...................... <gSystem, #Mimic>
+  [617] objcall 605 ............................. gSystem.deleteProp(#Mimic)
+  [620] getglobal 43 ............................ <gGame>
+  [622] pushsymb 1520 ........................... <#StaticRBList>
+  [625] pusharglist 2 ........................... <gGame, #StaticRBList>
+  [627] objcall 105 ............................. <gGame[#StaticRBList]>
+  [629] pusharglist 1 ........................... <gGame[#StaticRBList]>
+  [631] extcall 389 ............................. <voidp(gGame[#StaticRBList])>
+  [634] pushzero ................................ <0>
+  [635] eq ...................................... <voidp(gGame[#StaticRBList]) = 0>
+  [636] jmpifz [649] ............................ if voidp(gGame[#StaticRBList]) = 0 then
+  [639] getglobal 43 ............................ <gGame>
+  [641] pushsymb 1520 ........................... <#StaticRBList>
+  [644] pusharglistnoret 2 ...................... <gGame, #StaticRBList>
+  [646] objcall 605 ............................. gGame.deleteProp(#StaticRBList)
+  [649] getglobal 43 ............................ <gGame>
+  [651] pushsymb 1743 ........................... <#DynamicList>
+  [654] pusharglist 2 ........................... <gGame, #DynamicList>
+  [656] objcall 105 ............................. <gGame[#DynamicList]>
+  [658] pusharglist 1 ........................... <gGame[#DynamicList]>
+  [660] extcall 389 ............................. <voidp(gGame[#DynamicList])>
+  [663] pushzero ................................ <0>
+  [664] eq ...................................... <voidp(gGame[#DynamicList]) = 0>
+  [665] jmpifz [678] ............................ if voidp(gGame[#DynamicList]) = 0 then
+  [668] getglobal 43 ............................ <gGame>
+  [670] pushsymb 1743 ........................... <#DynamicList>
+  [673] pusharglistnoret 2 ...................... <gGame, #DynamicList>
+  [675] objcall 605 ............................. gGame.deleteProp(#DynamicList)
+  [678] getglobal 43 ............................ <gGame>
+  [680] pushsymb 1607 ........................... <#destructiveList>
+  [683] pusharglist 2 ........................... <gGame, #destructiveList>
+  [685] objcall 105 ............................. <gGame[#destructiveList]>
+  [687] pusharglist 1 ........................... <gGame[#destructiveList]>
+  [689] extcall 389 ............................. <voidp(gGame[#destructiveList])>
+  [692] pushzero ................................ <0>
+  [693] eq ...................................... <voidp(gGame[#destructiveList]) = 0>
+  [694] jmpifz [707] ............................ if voidp(gGame[#destructiveList]) = 0 then
+  [697] getglobal 43 ............................ <gGame>
+  [699] pushsymb 1607 ........................... <#destructiveList>
+  [702] pusharglistnoret 2 ...................... <gGame, #destructiveList>
+  [704] objcall 605 ............................. gGame.deleteProp(#destructiveList)
+  [707] gettoplevelprop 33 ...................... <_movie>
+  [709] pusharglist 0 ........................... <[]>
+  [711] pushlist ................................ <[]>
+  [712] setobjprop 427 .......................... _movie.timeoutList = []
+  [715] gettoplevelprop 33 ...................... <_movie>
+  [717] pusharglist 0 ........................... <[]>
+  [719] pushlist ................................ <[]>
+  [720] setobjprop 41 ........................... _movie.actorList = []
+  [722] getglobal 50 ............................ <gSystem>
+  [724] pusharglist 0 ........................... <[]>
+  [726] pushlist ................................ <[]>
+  [727] setobjprop 440 .......................... gSystem.handlerList = []
+  [730] getglobal 43 ............................ <gGame>
+  [732] pushsymb 427 ............................ <#timeoutList>
+  [735] pusharglist 0 ........................... <[]>
+  [737] pushlist ................................ <[]>
+  [738] pusharglistnoret 3 ...................... <gGame, #timeoutList, []>
+  [740] objcall 103 ............................. gGame[#timeoutList] = []
+  [742] getglobal 43 ............................ <gGame>
+  [744] pushsymb 41 ............................. <#actorList>
+  [746] pusharglist 0 ........................... <[]>
+  [748] pushlist ................................ <[]>
+  [749] pusharglistnoret 3 ...................... <gGame, #actorList, []>
+  [751] objcall 103 ............................. gGame[#actorList] = []
+  [753] getglobal 43 ............................ <gGame>
+  [755] pushsymb 459 ............................ <#timerList>
+  [758] pusharglist 0 ........................... <[:]>
+  [760] pushproplist ............................ <[:]>
+  [761] pusharglistnoret 3 ...................... <gGame, #timerList, [:]>
+  [763] objcall 103 ............................. gGame[#timerList] = [:]
+  [765] getglobal 43 ............................ <gGame>
+  [767] pushsymb 1278 ........................... <#AddShaders>
+  [770] pusharglist 0 ........................... <[]>
+  [772] pushlist ................................ <[]>
+  [773] pusharglistnoret 3 ...................... <gGame, #AddShaders, []>
+  [775] objcall 103 ............................. gGame[#AddShaders] = []
+  [777] getglobal 291 ........................... <gSound>
+  [780] pushsymb 292 ............................ <#OldMute>
+  [783] pusharglist 2 ........................... <gSound, #OldMute>
+  [785] objcall 105 ............................. <gSound[#OldMute]>
+  [787] pusharglist 0 ........................... <>
+  [789] extcall 40 .............................. <VOID>
+  [791] nteq .................................... <gSound[#OldMute] <> VOID>
+  [792] jmpifz [839] ............................ if gSound[#OldMute] <> VOID then / else
+  [795] getglobal 291 ........................... <gSound>
+  [798] pushsymb 293 ............................ <#mute>
+  [801] pusharglist 2 ........................... <gSound, #mute>
+  [803] objcall 105 ............................. <gSound[#mute]>
+  [805] getglobal 291 ........................... <gSound>
+  [808] getobjprop 292 .......................... <gSound.OldMute>
+  [811] nteq .................................... <gSound[#mute] <> gSound.OldMute>
+  [812] jmpifz [836] ............................ if gSound[#mute] <> gSound.OldMute then
+  [815] pusharglistnoret 0 ...................... <>
+  [817] extcall 1014 ............................ MuteSound()
+  [820] getglobal 291 ........................... <gSound>
+  [823] pushsymb 293 ............................ <#mute>
+  [826] getglobal 291 ........................... <gSound>
+  [829] getobjprop 292 .......................... <gSound.OldMute>
+  [832] pusharglistnoret 3 ...................... <gSound, #mute, gSound.OldMute>
+  [834] objcall 103 ............................. gSound[#mute] = gSound.OldMute
+  [836] jmp [850]
+  [839] getglobal 291 ........................... <gSound>
+  [842] pushsymb 293 ............................ <#mute>
+  [845] pushzero ................................ <0>
+  [846] pusharglistnoret 3 ...................... <gSound, #mute, 0>
+  [848] objcall 103 ............................. gSound[#mute] = 0
+  [850] ret
+end
+
+on LoadData me
+  [  0] gettoplevelprop 387 ..................... <_player>
+  [  3] getglobal 43 ............................ <gGame>
+  [  5] getobjprop 452 .......................... <gGame.PrefFile>
+  [  8] pusharglist 2 ........................... <_player, gGame.PrefFile>
+  [ 10] objcall 1744 ............................ <_player.getPref(gGame.PrefFile)>
+  [ 13] setlocal 0 .............................. tLocalData = _player.getPref(gGame.PrefFile)
+  [ 15] getlocal 0 .............................. <tLocalData>
+  [ 17] pushint8 1 .............................. <1>
+  [ 19] pusharglist 2 ........................... <tLocalData, 1>
+  [ 21] extcall 471 ............................. <DecodeAndRetrieveData(tLocalData, 1)>
+  [ 24] setlocal 1 .............................. tList = DecodeAndRetrieveData(tLocalData, 1)
+  [ 26] getlocal 1 .............................. <tList>
+  [ 28] pusharglist 0 ........................... <>
+  [ 30] extcall 40 .............................. <VOID>
+  [ 32] nteq .................................... <tList <> VOID>
+  [ 33] jmpifz [110] ............................ if tList <> VOID then / else
+  [ 36] getglobal 43 ............................ <gGame>
+  [ 38] getlocal 1 .............................. <tList>
+  [ 40] setobjprop 1745 ......................... gGame.loadedData = tList
+  [ 43] getglobal 43 ............................ <gGame>
+  [ 45] getglobal 43 ............................ <gGame>
+  [ 47] getchainedprop 1745 ..................... <gGame.loadedData>
+  [ 50] getobjprop 150 .......................... <gGame.loadedData.Statistics>
+  [ 52] setobjprop 150 .......................... gGame.Statistics = gGame.loadedData.Statistics
+  [ 54] getglobal 43 ............................ <gGame>
+  [ 56] getglobal 43 ............................ <gGame>
+  [ 58] getchainedprop 1745 ..................... <gGame.loadedData>
+  [ 61] getobjprop 263 .......................... <gGame.loadedData.Trophies>
+  [ 64] setobjprop 263 .......................... gGame.Trophies = gGame.loadedData.Trophies
+  [ 67] pusharglist 0 ........................... <>
+  [ 69] thebuiltin 78 ........................... <the systemDate>
+  [ 71] getobjprop 79 ........................... <(the systemDate).day>
+  [ 73] setlocal 2 .............................. tSW1 = (the systemDate).day
+  [ 75] getlocal 1 .............................. <tList>
+  [ 77] getobjprop 1746 ......................... <tList.sw1>
+  [ 80] getlocal 2 .............................. <tSW1>
+  [ 82] eq ...................................... <tList.sw1 = tSW1>
+  [ 83] jmpifz [ 94] ............................ if tList.sw1 = tSW1 then
+  [ 86] getglobal 43 ............................ <gGame>
+  [ 88] getlocal 1 .............................. <tList>
+  [ 90] getobjprop 98 ........................... <tList.DailyPlayed>
+  [ 92] setobjprop 98 ........................... gGame.DailyPlayed = tList.DailyPlayed
+  [ 94] pushcons 0 .............................. <"Updated the daily played tag">
+  [ 96] pusharglistnoret 1 ...................... <"Updated the daily played tag">
+  [ 98] extcall 57 .............................. put "Updated the daily played tag"
+  [100] getglobal 43 ............................ <gGame>
+  [102] pushint8 1 .............................. <1>
+  [104] setobjprop 1747 ......................... gGame.gameSaved = 1
+  [107] jmp [116]
+  [110] getglobal 43 ............................ <gGame>
+  [112] pushzero ................................ <0>
+  [113] setobjprop 1747 ......................... gGame.gameSaved = 0
+  [116] ret
+end
+
+on SaveData me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pushint8 1 .............................. <1>
+  [  4] setobjprop 1750 ......................... gGame.LocalSave = 1
+  [  7] getglobal 43 ............................ <gGame>
+  [  9] getobjprop 1440 ......................... <gGame.Cheat>
+  [ 12] pushint8 1 .............................. <1>
+  [ 14] eq ...................................... <gGame.Cheat = 1>
+  [ 15] getglobal 43 ............................ <gGame>
+  [ 17] getobjprop 1751 ......................... <gGame.save>
+  [ 20] pushzero ................................ <0>
+  [ 21] eq ...................................... <gGame.save = 0>
+  [ 22] or ...................................... <(gGame.Cheat = 1) or (gGame.save = 0)>
+  [ 23] getglobal 43 ............................ <gGame>
+  [ 25] getobjprop 1750 ......................... <gGame.LocalSave>
+  [ 28] pushzero ................................ <0>
+  [ 29] eq ...................................... <gGame.LocalSave = 0>
+  [ 30] or ...................................... <(gGame.Cheat = 1) or (gGame.save = 0) or (gGame.LocalSave = 0)>
+  [ 31] jmpifz [ 41] ............................ if (gGame.Cheat = 1) or (gGame.save = 0) or (gGame.LocalSave = 0) then
+  [ 34] pushcons 1 .............................. <"Will not save because you are either a cheater or Pieter has turned it off!">
+  [ 36] pusharglistnoret 1 ...................... <"Will not save because you are either a cheater or Pieter has turned it off!">
+  [ 38] extcall 57 .............................. put "Will not save because you are either a cheater or Pieter has turned it off!"
+  [ 40] ret ..................................... exit
+  [ 41] pusharglist 0 ........................... <[:]>
+  [ 43] pushproplist ............................ <[:]>
+  [ 44] setlocal 0 .............................. tList = [:]
+  [ 46] getlocal 0 .............................. <tList>
+  [ 48] pushsymb 1752 ........................... <#game>
+  [ 51] getglobal 43 ............................ <gGame>
+  [ 53] getobjprop 235 .......................... <gGame.name>
+  [ 55] pusharglistnoret 3 ...................... <tList, #game, gGame.name>
+  [ 57] objcall 103 ............................. tList[#game] = gGame.name
+  [ 59] getlocal 0 .............................. <tList>
+  [ 61] pushsymb 451 ............................ <#version>
+  [ 64] pushcons 2 .............................. <"Version">
+  [ 66] pusharglist 1 ........................... <"Version">
+  [ 68] extcall 64 .............................. <member("Version")>
+  [ 70] getobjprop 80 ........................... <member("Version").text>
+  [ 72] pusharglist 1 ........................... <member("Version").text>
+  [ 74] extcall 503 ............................. <value(member("Version").text)>
+  [ 77] pushsymb 451 ............................ <#version>
+  [ 80] pusharglist 2 ........................... <value(member("Version").text), #version>
+  [ 82] objcall 105 ............................. <value(member("Version").text)[#version]>
+  [ 84] pusharglistnoret 3 ...................... <tList, #version, value(member("Version").text)[#version]>
+  [ 86] objcall 103 ............................. tList[#version] = value(member("Version").text)[#version]
+  [ 88] getlocal 0 .............................. <tList>
+  [ 90] pushsymb 1753 ........................... <#LastDate>
+  [ 93] pusharglist 0 ........................... <>
+  [ 95] thebuiltin 1754 ......................... <the date>
+  [ 98] pusharglistnoret 3 ...................... <tList, #LastDate, the date>
+  [100] objcall 103 ............................. tList[#LastDate] = the date
+  [102] getlocal 0 .............................. <tList>
+  [104] pushsymb 1755 ........................... <#LastTime>
+  [107] pusharglist 0 ........................... <>
+  [109] thebuiltin 142 .......................... <the time>
+  [111] pusharglistnoret 3 ...................... <tList, #LastTime, the time>
+  [113] objcall 103 ............................. tList[#LastTime] = the time
+  [115] getlocal 0 .............................. <tList>
+  [117] pushsymb 1756 ........................... <#PlayerName>
+  [120] getglobal 43 ............................ <gGame>
+  [122] getobjprop 1756 ......................... <gGame.PlayerName>
+  [125] pusharglistnoret 3 ...................... <tList, #PlayerName, gGame.PlayerName>
+  [127] objcall 103 ............................. tList[#PlayerName] = gGame.PlayerName
+  [129] getlocal 0 .............................. <tList>
+  [131] pushsymb 265 ............................ <#Cash>
+  [134] getglobal 43 ............................ <gGame>
+  [136] getobjprop 265 .......................... <gGame.Cash>
+  [139] pusharglistnoret 3 ...................... <tList, #Cash, gGame.Cash>
+  [141] objcall 103 ............................. tList[#Cash] = gGame.Cash
+  [143] getlocal 0 .............................. <tList>
+  [145] pushsymb 250 ............................ <#car>
+  [147] getglobal 43 ............................ <gGame>
+  [149] getobjprop 250 .......................... <gGame.car>
+  [151] pusharglistnoret 3 ...................... <tList, #car, gGame.car>
+  [153] objcall 103 ............................. tList[#car] = gGame.car
+  [155] getlocal 0 .............................. <tList>
+  [157] pushsymb 98 ............................. <#DailyPlayed>
+  [159] getglobal 43 ............................ <gGame>
+  [161] getobjprop 98 ........................... <gGame.DailyPlayed>
+  [163] pusharglistnoret 3 ...................... <tList, #DailyPlayed, gGame.DailyPlayed>
+  [165] objcall 103 ............................. tList[#DailyPlayed] = gGame.DailyPlayed
+  [167] getlocal 0 .............................. <tList>
+  [169] pushsymb 1746 ........................... <#sw1>
+  [172] pusharglist 0 ........................... <>
+  [174] thebuiltin 78 ........................... <the systemDate>
+  [176] getobjprop 79 ........................... <(the systemDate).day>
+  [178] pusharglistnoret 3 ...................... <tList, #sw1, (the systemDate).day>
+  [180] objcall 103 ............................. tList[#sw1] = (the systemDate).day
+  [182] getlocal 0 .............................. <tList>
+  [184] pushsymb 164 ............................ <#CarsList>
+  [186] getglobal 43 ............................ <gGame>
+  [188] getobjprop 164 .......................... <gGame.CarsList>
+  [190] pusharglistnoret 3 ...................... <tList, #CarsList, gGame.CarsList>
+  [192] objcall 103 ............................. tList[#CarsList] = gGame.CarsList
+  [194] getlocal 0 .............................. <tList>
+  [196] pushsymb 180 ............................ <#UpgradesList>
+  [198] getglobal 43 ............................ <gGame>
+  [200] getobjprop 180 .......................... <gGame.UpgradesList>
+  [202] pusharglistnoret 3 ...................... <tList, #UpgradesList, gGame.UpgradesList>
+  [204] objcall 103 ............................. tList[#UpgradesList] = gGame.UpgradesList
+  [206] getlocal 0 .............................. <tList>
+  [208] pushsymb 169 ............................ <#BodykitList>
+  [210] getglobal 43 ............................ <gGame>
+  [212] getobjprop 169 .......................... <gGame.BodykitList>
+  [214] pusharglistnoret 3 ...................... <tList, #BodykitList, gGame.BodykitList>
+  [216] objcall 103 ............................. tList[#BodykitList] = gGame.BodykitList
+  [218] getlocal 0 .............................. <tList>
+  [220] pushsymb 184 ............................ <#PrimaryWeaponsList>
+  [222] getglobal 43 ............................ <gGame>
+  [224] getobjprop 184 .......................... <gGame.PrimaryWeaponsList>
+  [226] pusharglistnoret 3 ...................... <tList, #PrimaryWeaponsList, gGame.PrimaryWeaponsList>
+  [228] objcall 103 ............................. tList[#PrimaryWeaponsList] = gGame.PrimaryWeaponsList
+  [230] getlocal 0 .............................. <tList>
+  [232] pushsymb 188 ............................ <#SecondaryWeaponsList>
+  [234] getglobal 43 ............................ <gGame>
+  [236] getobjprop 188 .......................... <gGame.SecondaryWeaponsList>
+  [238] pusharglistnoret 3 ...................... <tList, #SecondaryWeaponsList, gGame.SecondaryWeaponsList>
+  [240] objcall 103 ............................. tList[#SecondaryWeaponsList] = gGame.SecondaryWeaponsList
+  [242] getlocal 0 .............................. <tList>
+  [244] pushsymb 147 ............................ <#trackList>
+  [246] getglobal 43 ............................ <gGame>
+  [248] getobjprop 147 .......................... <gGame.trackList>
+  [250] pusharglistnoret 3 ...................... <tList, #trackList, gGame.trackList>
+  [252] objcall 103 ............................. tList[#trackList] = gGame.trackList
+  [254] getlocal 0 .............................. <tList>
+  [256] pushsymb 257 ............................ <#HiddenPackageList>
+  [259] getglobal 43 ............................ <gGame>
+  [261] getobjprop 257 .......................... <gGame.HiddenPackageList>
+  [264] pusharglistnoret 3 ...................... <tList, #HiddenPackageList, gGame.HiddenPackageList>
+  [266] objcall 103 ............................. tList[#HiddenPackageList] = gGame.HiddenPackageList
+  [268] getlocal 0 .............................. <tList>
+  [270] pushsymb 150 ............................ <#Statistics>
+  [272] getglobal 43 ............................ <gGame>
+  [274] getobjprop 150 .......................... <gGame.Statistics>
+  [276] pusharglistnoret 3 ...................... <tList, #Statistics, gGame.Statistics>
+  [278] objcall 103 ............................. tList[#Statistics] = gGame.Statistics
+  [280] getlocal 0 .............................. <tList>
+  [282] pushsymb 263 ............................ <#Trophies>
+  [285] getglobal 43 ............................ <gGame>
+  [287] getobjprop 263 .......................... <gGame.Trophies>
+  [290] pusharglistnoret 3 ...................... <tList, #Trophies, gGame.Trophies>
+  [292] objcall 103 ............................. tList[#Trophies] = gGame.Trophies
+  [294] pushcons 3 .............................. <"BMW">
+  [296] pushcons 4 .............................. <"AstonMartin">
+  [298] pushcons 5 .............................. <"AudiR8">
+  [300] pushcons 6 .............................. <"Corvette">
+  [302] pushcons 7 .............................. <"DodgeRam">
+  [304] pushcons 8 .............................. <"Eclipse">
+  [306] pushcons 9 .............................. <"FordGT">
+  [308] pushcons 10 ............................. <"Marcos">
+  [310] pushcons 11 ............................. <"MiniCooper">
+  [312] pushcons 12 ............................. <"Mustang">
+  [314] pushcons 13 ............................. <"Nissan">
+  [316] pushcons 14 ............................. <"Porsche">
+  [318] pushcons 15 ............................. <"Seat">
+  [320] pushcons 16 ............................. <"Tank">
+  [322] pushcons 17 ............................. <"BlackTruck">
+  [324] pusharglist 15 .......................... <["BMW", "AstonMartin", "AudiR8", "Corvette", "DodgeRam", "Eclipse", "FordGT", "Marcos", "MiniCooper", "Mustang", "Nissan", "Porsche", "Seat", "Tank", "BlackTruck"]>
+  [326] pushlist ................................ <["BMW", "AstonMartin", "AudiR8", "Corvette", "DodgeRam", "Eclipse", "FordGT", "Marcos", "MiniCooper", "Mustang", "Nissan", "Porsche", "Seat", "Tank", "BlackTruck"]>
+  [327] setlocal 1 .............................. tCarList = ["BMW", "AstonMartin", "AudiR8", "Corvette", "DodgeRam", "Eclipse", "FordGT", "Marcos", "MiniCooper", "Mustang", "Nissan", "Porsche", "Seat", "Tank", "BlackTruck"]
+  [329] pushsymb 1736 ........................... <#bodyKit>
+  [332] pusharglist 0 ........................... <[:]>
+  [334] pushproplist ............................ <[:]>
+  [335] pushsymb 181 ............................ <#upgrades>
+  [337] pusharglist 0 ........................... <[:]>
+  [339] pushproplist ............................ <[:]>
+  [340] pushsymb 185 ............................ <#Weapons>
+  [342] pusharglist 0 ........................... <[:]>
+  [344] pushproplist ............................ <[:]>
+  [345] pusharglist 6 ........................... <[#bodyKit: [:], #upgrades: [:], #Weapons: [:]]>
+  [347] pushproplist ............................ <[#bodyKit: [:], #upgrades: [:], #Weapons: [:]]>
+  [348] setlocal 2 .............................. tCarData = [#bodyKit: [:], #upgrades: [:], #Weapons: [:]]
+  [350] getlocal 1 .............................. <tCarList>
+  [352] peek 0
+  [354] pusharglist 1
+  [356] extcall 129
+  [358] pushint8 1
+  [360] peek 0
+  [362] peek 2
+  [364] lteq
+  [365] jmpifz [505] ............................ repeat with i in tCarList
+  [368] peek 2
+  [370] peek 1
+  [372] pusharglist 2
+  [374] extcall 105
+  [376] setlocal 3
+  [378] getlocal 2 .............................. <tCarData>
+  [380] pushsymb 1736 ........................... <#bodyKit>
+  [383] pusharglist 2 ........................... <tCarData, #bodyKit>
+  [385] objcall 105 ............................. <tCarData[#bodyKit]>
+  [387] pushcons 18 ............................. <"Player">
+  [389] getlocal 3 .............................. <i>
+  [391] joinstr ................................. <"Player" & i>
+  [392] pusharglist 1 ........................... <"Player" & i>
+  [394] extcall 88 .............................. <symbol("Player" & i)>
+  [396] getglobal 86 ............................ <gData>
+  [398] getchainedprop 87 ....................... <gData.data>
+  [400] pushsymb 1736 ........................... <#bodyKit>
+  [403] pushcons 18 ............................. <"Player">
+  [405] getlocal 3 .............................. <i>
+  [407] joinstr ................................. <"Player" & i>
+  [408] pusharglist 1 ........................... <"Player" & i>
+  [410] extcall 88 .............................. <symbol("Player" & i)>
+  [412] pusharglist 3 ........................... <gData.data, #bodyKit, symbol("Player" & i)>
+  [414] objcall 70 .............................. <gData.data.bodyKit[symbol("Player" & i)]>
+  [416] pusharglistnoret 3 ...................... <tCarData[#bodyKit], symbol("Player" & i), gData.data.bodyKit[symbol("Player" & i)]>
+  [418] objcall 103 ............................. tCarData[#bodyKit][symbol("Player" & i)] = gData.data.bodyKit[symbol("Player" & i)]
+  [420] getlocal 2 .............................. <tCarData>
+  [422] pushsymb 181 ............................ <#upgrades>
+  [424] pusharglist 2 ........................... <tCarData, #upgrades>
+  [426] objcall 105 ............................. <tCarData[#upgrades]>
+  [428] pushcons 18 ............................. <"Player">
+  [430] getlocal 3 .............................. <i>
+  [432] joinstr ................................. <"Player" & i>
+  [433] pusharglist 1 ........................... <"Player" & i>
+  [435] extcall 88 .............................. <symbol("Player" & i)>
+  [437] getglobal 86 ............................ <gData>
+  [439] getchainedprop 87 ....................... <gData.data>
+  [441] pushsymb 181 ............................ <#upgrades>
+  [443] pushcons 18 ............................. <"Player">
+  [445] getlocal 3 .............................. <i>
+  [447] joinstr ................................. <"Player" & i>
+  [448] pusharglist 1 ........................... <"Player" & i>
+  [450] extcall 88 .............................. <symbol("Player" & i)>
+  [452] pusharglist 3 ........................... <gData.data, #upgrades, symbol("Player" & i)>
+  [454] objcall 70 .............................. <gData.data.upgrades[symbol("Player" & i)]>
+  [456] pusharglistnoret 3 ...................... <tCarData[#upgrades], symbol("Player" & i), gData.data.upgrades[symbol("Player" & i)]>
+  [458] objcall 103 ............................. tCarData[#upgrades][symbol("Player" & i)] = gData.data.upgrades[symbol("Player" & i)]
+  [460] getlocal 2 .............................. <tCarData>
+  [462] pushsymb 185 ............................ <#Weapons>
+  [464] pusharglist 2 ........................... <tCarData, #Weapons>
+  [466] objcall 105 ............................. <tCarData[#Weapons]>
+  [468] pushcons 18 ............................. <"Player">
+  [470] getlocal 3 .............................. <i>
+  [472] joinstr ................................. <"Player" & i>
+  [473] pusharglist 1 ........................... <"Player" & i>
+  [475] extcall 88 .............................. <symbol("Player" & i)>
+  [477] getglobal 86 ............................ <gData>
+  [479] getchainedprop 87 ....................... <gData.data>
+  [481] pushsymb 185 ............................ <#Weapons>
+  [483] pushcons 18 ............................. <"Player">
+  [485] getlocal 3 .............................. <i>
+  [487] joinstr ................................. <"Player" & i>
+  [488] pusharglist 1 ........................... <"Player" & i>
+  [490] extcall 88 .............................. <symbol("Player" & i)>
+  [492] pusharglist 3 ........................... <gData.data, #Weapons, symbol("Player" & i)>
+  [494] objcall 70 .............................. <gData.data.Weapons[symbol("Player" & i)]>
+  [496] pusharglistnoret 3 ...................... <tCarData[#Weapons], symbol("Player" & i), gData.data.Weapons[symbol("Player" & i)]>
+  [498] objcall 103 ............................. tCarData[#Weapons][symbol("Player" & i)] = gData.data.Weapons[symbol("Player" & i)]
+  [500] pushint8 1
+  [502] add
+  [503] endrepeat [360]
+  [505] pop 3
+  [507] getlocal 0 .............................. <tList>
+  [509] pushsymb 1757 ........................... <#carData>
+  [512] getlocal 2 .............................. <tCarData>
+  [514] pusharglistnoret 3 ...................... <tList, #carData, tCarData>
+  [516] objcall 103 ............................. tList[#carData] = tCarData
+  [518] getlocal 0 .............................. <tList>
+  [520] pushint8 1 .............................. <1>
+  [522] pusharglistnoret 2 ...................... <tList, 1>
+  [524] extcall 470 ............................. EncodeAndSaveData(tList, 1)
+  [527] getglobal 43 ............................ <gGame>
+  [529] pushint8 1 .............................. <1>
+  [531] setobjprop 1747 ......................... gGame.gameSaved = 1
+  [534] pushcons 19 ............................. <"Data saved!">
+  [536] pusharglistnoret 1 ...................... <"Data saved!">
+  [538] extcall 57 .............................. put "Data saved!"
+  [540] ret
+end
+
+on RestoreData me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getobjprop 1440 ......................... <gGame.Cheat>
+  [  5] pushint8 1 .............................. <1>
+  [  7] eq ...................................... <gGame.Cheat = 1>
+  [  8] jmpifz [ 12] ............................ if gGame.Cheat = 1 then
+  [ 11] ret ..................................... exit
+  [ 12] pusharglistnoret 0 ...................... <>
+  [ 14] localcall 2 ............................. LoadData()
+  [ 16] getglobal 43 ............................ <gGame>
+  [ 18] pushsymb 1745 ........................... <#loadedData>
+  [ 21] pusharglist 2 ........................... <gGame, #loadedData>
+  [ 23] objcall 129 ............................. <gGame.loadedData.count>
+  [ 25] pushzero ................................ <0>
+  [ 26] eq ...................................... <gGame.loadedData.count = 0>
+  [ 27] jmpifz [ 35] ............................ if gGame.loadedData.count = 0 then
+  [ 30] pushzero ................................ <0>
+  [ 31] pusharglistnoret 1 ...................... <0>
+  [ 33] extcall 52 .............................. return 0
+  [ 35] getglobal 43 ............................ <gGame>
+  [ 37] getglobal 43 ............................ <gGame>
+  [ 39] getchainedprop 1745 ..................... <gGame.loadedData>
+  [ 42] getobjprop 1756 ......................... <gGame.loadedData.PlayerName>
+  [ 45] setobjprop 1756 ......................... gGame.PlayerName = gGame.loadedData.PlayerName
+  [ 48] getglobal 43 ............................ <gGame>
+  [ 50] getglobal 43 ............................ <gGame>
+  [ 52] getchainedprop 1745 ..................... <gGame.loadedData>
+  [ 55] getobjprop 265 .......................... <gGame.loadedData.Cash>
+  [ 58] setobjprop 265 .......................... gGame.Cash = gGame.loadedData.Cash
+  [ 61] getglobal 43 ............................ <gGame>
+  [ 63] getglobal 43 ............................ <gGame>
+  [ 65] getchainedprop 1745 ..................... <gGame.loadedData>
+  [ 68] getobjprop 250 .......................... <gGame.loadedData.car>
+  [ 70] setobjprop 250 .......................... gGame.car = gGame.loadedData.car
+  [ 72] getglobal 43 ............................ <gGame>
+  [ 74] getglobal 43 ............................ <gGame>
+  [ 76] getchainedprop 1745 ..................... <gGame.loadedData>
+  [ 79] getobjprop 164 .......................... <gGame.loadedData.CarsList>
+  [ 81] setobjprop 164 .......................... gGame.CarsList = gGame.loadedData.CarsList
+  [ 83] getglobal 43 ............................ <gGame>
+  [ 85] getglobal 43 ............................ <gGame>
+  [ 87] getchainedprop 1745 ..................... <gGame.loadedData>
+  [ 90] getobjprop 180 .......................... <gGame.loadedData.UpgradesList>
+  [ 92] setobjprop 180 .......................... gGame.UpgradesList = gGame.loadedData.UpgradesList
+  [ 94] getglobal 43 ............................ <gGame>
+  [ 96] getglobal 43 ............................ <gGame>
+  [ 98] getchainedprop 1745 ..................... <gGame.loadedData>
+  [101] getobjprop 169 .......................... <gGame.loadedData.BodykitList>
+  [103] setobjprop 169 .......................... gGame.BodykitList = gGame.loadedData.BodykitList
+  [105] getglobal 43 ............................ <gGame>
+  [107] getglobal 43 ............................ <gGame>
+  [109] getchainedprop 1745 ..................... <gGame.loadedData>
+  [112] getobjprop 184 .......................... <gGame.loadedData.PrimaryWeaponsList>
+  [114] setobjprop 184 .......................... gGame.PrimaryWeaponsList = gGame.loadedData.PrimaryWeaponsList
+  [116] getglobal 43 ............................ <gGame>
+  [118] getglobal 43 ............................ <gGame>
+  [120] getchainedprop 1745 ..................... <gGame.loadedData>
+  [123] getobjprop 188 .......................... <gGame.loadedData.SecondaryWeaponsList>
+  [125] setobjprop 188 .......................... gGame.SecondaryWeaponsList = gGame.loadedData.SecondaryWeaponsList
+  [127] getglobal 43 ............................ <gGame>
+  [129] getglobal 43 ............................ <gGame>
+  [131] getchainedprop 1745 ..................... <gGame.loadedData>
+  [134] getobjprop 147 .......................... <gGame.loadedData.trackList>
+  [136] setobjprop 147 .......................... gGame.trackList = gGame.loadedData.trackList
+  [138] getglobal 43 ............................ <gGame>
+  [140] getglobal 43 ............................ <gGame>
+  [142] getchainedprop 1745 ..................... <gGame.loadedData>
+  [145] getobjprop 257 .......................... <gGame.loadedData.HiddenPackageList>
+  [148] setobjprop 257 .......................... gGame.HiddenPackageList = gGame.loadedData.HiddenPackageList
+  [151] getglobal 43 ............................ <gGame>
+  [153] getglobal 43 ............................ <gGame>
+  [155] getchainedprop 1745 ..................... <gGame.loadedData>
+  [158] getobjprop 150 .......................... <gGame.loadedData.Statistics>
+  [160] setobjprop 150 .......................... gGame.Statistics = gGame.loadedData.Statistics
+  [162] getglobal 43 ............................ <gGame>
+  [164] getglobal 43 ............................ <gGame>
+  [166] getchainedprop 1745 ..................... <gGame.loadedData>
+  [169] getobjprop 263 .......................... <gGame.loadedData.Trophies>
+  [172] setobjprop 263 .......................... gGame.Trophies = gGame.loadedData.Trophies
+  [175] pushcons 3 .............................. <"BMW">
+  [177] pushcons 4 .............................. <"AstonMartin">
+  [179] pushcons 5 .............................. <"AudiR8">
+  [181] pushcons 6 .............................. <"Corvette">
+  [183] pushcons 7 .............................. <"DodgeRam">
+  [185] pushcons 8 .............................. <"Eclipse">
+  [187] pushcons 9 .............................. <"FordGT">
+  [189] pushcons 10 ............................. <"Marcos">
+  [191] pushcons 11 ............................. <"MiniCooper">
+  [193] pushcons 12 ............................. <"Mustang">
+  [195] pushcons 13 ............................. <"Nissan">
+  [197] pushcons 14 ............................. <"Porsche">
+  [199] pushcons 15 ............................. <"Seat">
+  [201] pushcons 16 ............................. <"Tank">
+  [203] pushcons 17 ............................. <"BlackTruck">
+  [205] pusharglist 15 .......................... <["BMW", "AstonMartin", "AudiR8", "Corvette", "DodgeRam", "Eclipse", "FordGT", "Marcos", "MiniCooper", "Mustang", "Nissan", "Porsche", "Seat", "Tank", "BlackTruck"]>
+  [207] pushlist ................................ <["BMW", "AstonMartin", "AudiR8", "Corvette", "DodgeRam", "Eclipse", "FordGT", "Marcos", "MiniCooper", "Mustang", "Nissan", "Porsche", "Seat", "Tank", "BlackTruck"]>
+  [208] setlocal 0 .............................. tCarList = ["BMW", "AstonMartin", "AudiR8", "Corvette", "DodgeRam", "Eclipse", "FordGT", "Marcos", "MiniCooper", "Mustang", "Nissan", "Porsche", "Seat", "Tank", "BlackTruck"]
+  [210] pushsymb 1736 ........................... <#bodyKit>
+  [213] pusharglist 0 ........................... <[:]>
+  [215] pushproplist ............................ <[:]>
+  [216] pushsymb 181 ............................ <#upgrades>
+  [218] pusharglist 0 ........................... <[:]>
+  [220] pushproplist ............................ <[:]>
+  [221] pushsymb 185 ............................ <#Weapons>
+  [223] pusharglist 0 ........................... <[:]>
+  [225] pushproplist ............................ <[:]>
+  [226] pusharglist 6 ........................... <[#bodyKit: [:], #upgrades: [:], #Weapons: [:]]>
+  [228] pushproplist ............................ <[#bodyKit: [:], #upgrades: [:], #Weapons: [:]]>
+  [229] setlocal 1 .............................. tCarData = [#bodyKit: [:], #upgrades: [:], #Weapons: [:]]
+  [231] getlocal 0 .............................. <tCarList>
+  [233] peek 0
+  [235] pusharglist 1
+  [237] extcall 129
+  [239] pushint8 1
+  [241] peek 0
+  [243] peek 2
+  [245] lteq
+  [246] jmpifz [392] ............................ repeat with i in tCarList
+  [249] peek 2
+  [251] peek 1
+  [253] pusharglist 2
+  [255] extcall 105
+  [257] setlocal 2
+  [259] getglobal 86 ............................ <gData>
+  [261] getchainedprop 87 ....................... <gData.data>
+  [263] pushsymb 1736 ........................... <#bodyKit>
+  [266] pushcons 18 ............................. <"Player">
+  [268] getlocal 2 .............................. <i>
+  [270] joinstr ................................. <"Player" & i>
+  [271] pusharglist 1 ........................... <"Player" & i>
+  [273] extcall 88 .............................. <symbol("Player" & i)>
+  [275] getglobal 43 ............................ <gGame>
+  [277] getchainedprop 1745 ..................... <gGame.loadedData>
+  [280] getchainedprop 1757 ..................... <gGame.loadedData.carData>
+  [283] pushsymb 1736 ........................... <#bodyKit>
+  [286] pushcons 18 ............................. <"Player">
+  [288] getlocal 2 .............................. <i>
+  [290] joinstr ................................. <"Player" & i>
+  [291] pusharglist 1 ........................... <"Player" & i>
+  [293] extcall 88 .............................. <symbol("Player" & i)>
+  [295] pusharglist 3 ........................... <gGame.loadedData.carData, #bodyKit, symbol("Player" & i)>
+  [297] objcall 70 .............................. <gGame.loadedData.carData.bodyKit[symbol("Player" & i)]>
+  [299] pusharglistnoret 4 ...................... <gData.data, #bodyKit, symbol("Player" & i), gGame.loadedData.carData.bodyKit[symbol("Player" & i)]>
+  [301] objcall 99 .............................. gData.data.bodyKit[symbol("Player" & i)] = gGame.loadedData.carData.bodyKit[symbol("Player" & i)]
+  [303] getglobal 86 ............................ <gData>
+  [305] getchainedprop 87 ....................... <gData.data>
+  [307] pushsymb 181 ............................ <#upgrades>
+  [309] pushcons 18 ............................. <"Player">
+  [311] getlocal 2 .............................. <i>
+  [313] joinstr ................................. <"Player" & i>
+  [314] pusharglist 1 ........................... <"Player" & i>
+  [316] extcall 88 .............................. <symbol("Player" & i)>
+  [318] getglobal 43 ............................ <gGame>
+  [320] getchainedprop 1745 ..................... <gGame.loadedData>
+  [323] getchainedprop 1757 ..................... <gGame.loadedData.carData>
+  [326] pushsymb 181 ............................ <#upgrades>
+  [328] pushcons 18 ............................. <"Player">
+  [330] getlocal 2 .............................. <i>
+  [332] joinstr ................................. <"Player" & i>
+  [333] pusharglist 1 ........................... <"Player" & i>
+  [335] extcall 88 .............................. <symbol("Player" & i)>
+  [337] pusharglist 3 ........................... <gGame.loadedData.carData, #upgrades, symbol("Player" & i)>
+  [339] objcall 70 .............................. <gGame.loadedData.carData.upgrades[symbol("Player" & i)]>
+  [341] pusharglistnoret 4 ...................... <gData.data, #upgrades, symbol("Player" & i), gGame.loadedData.carData.upgrades[symbol("Player" & i)]>
+  [343] objcall 99 .............................. gData.data.upgrades[symbol("Player" & i)] = gGame.loadedData.carData.upgrades[symbol("Player" & i)]
+  [345] getglobal 86 ............................ <gData>
+  [347] getchainedprop 87 ....................... <gData.data>
+  [349] pushsymb 185 ............................ <#Weapons>
+  [351] pushcons 18 ............................. <"Player">
+  [353] getlocal 2 .............................. <i>
+  [355] joinstr ................................. <"Player" & i>
+  [356] pusharglist 1 ........................... <"Player" & i>
+  [358] extcall 88 .............................. <symbol("Player" & i)>
+  [360] getglobal 43 ............................ <gGame>
+  [362] getchainedprop 1745 ..................... <gGame.loadedData>
+  [365] getchainedprop 1757 ..................... <gGame.loadedData.carData>
+  [368] pushsymb 185 ............................ <#Weapons>
+  [370] pushcons 18 ............................. <"Player">
+  [372] getlocal 2 .............................. <i>
+  [374] joinstr ................................. <"Player" & i>
+  [375] pusharglist 1 ........................... <"Player" & i>
+  [377] extcall 88 .............................. <symbol("Player" & i)>
+  [379] pusharglist 3 ........................... <gGame.loadedData.carData, #Weapons, symbol("Player" & i)>
+  [381] objcall 70 .............................. <gGame.loadedData.carData.Weapons[symbol("Player" & i)]>
+  [383] pusharglistnoret 4 ...................... <gData.data, #Weapons, symbol("Player" & i), gGame.loadedData.carData.Weapons[symbol("Player" & i)]>
+  [385] objcall 99 .............................. gData.data.Weapons[symbol("Player" & i)] = gGame.loadedData.carData.Weapons[symbol("Player" & i)]
+  [387] pushint8 1
+  [389] add
+  [390] endrepeat [241]
+  [392] pop 3
+  [394] ret
+end
+
+on SetupDefaultData me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pushint16 10000 ......................... <10000>
+  [  5] setobjprop 265 .......................... gGame.Cash = 10000
+  [  8] getglobal 43 ............................ <gGame>
+  [ 10] pushcons 3 .............................. <"BMW">
+  [ 12] setobjprop 250 .......................... gGame.car = "BMW"
+  [ 14] getglobal 43 ............................ <gGame>
+  [ 16] pushsymb 35 ............................. <#new>
+  [ 18] setobjprop 98 ........................... gGame.DailyPlayed = #new
+  [ 20] getglobal 43 ............................ <gGame>
+  [ 22] pushsymb 54 ............................. <#none>
+  [ 24] setobjprop 84 ........................... gGame.DailyTrack = #none
+  [ 26] getglobal 43 ............................ <gGame>
+  [ 28] pushsymb 1760 ........................... <#BMW>
+  [ 31] pushsymb 90 ............................. <#Unlocked>
+  [ 33] pusharglist 2 ........................... <[#BMW: #Unlocked]>
+  [ 35] pushproplist ............................ <[#BMW: #Unlocked]>
+  [ 36] setobjprop 164 .......................... gGame.CarsList = [#BMW: #Unlocked]
+  [ 38] getglobal 43 ............................ <gGame>
+  [ 40] pusharglist 0 ........................... <[:]>
+  [ 42] pushproplist ............................ <[:]>
+  [ 43] setobjprop 180 .......................... gGame.UpgradesList = [:]
+  [ 45] getglobal 43 ............................ <gGame>
+  [ 47] pushsymb 1760 ........................... <#BMW>
+  [ 50] pusharglist 0 ........................... <[:]>
+  [ 52] pushproplist ............................ <[:]>
+  [ 53] pushsymb 1761 ........................... <#AstonMartin>
+  [ 56] pusharglist 0 ........................... <[:]>
+  [ 58] pushproplist ............................ <[:]>
+  [ 59] pushsymb 1762 ........................... <#AudiR8>
+  [ 62] pusharglist 0 ........................... <[:]>
+  [ 64] pushproplist ............................ <[:]>
+  [ 65] pushsymb 1763 ........................... <#FordGT>
+  [ 68] pusharglist 0 ........................... <[:]>
+  [ 70] pushproplist ............................ <[:]>
+  [ 71] pushsymb 1764 ........................... <#Corvette>
+  [ 74] pusharglist 0 ........................... <[:]>
+  [ 76] pushproplist ............................ <[:]>
+  [ 77] pushsymb 1765 ........................... <#Eclipse>
+  [ 80] pusharglist 0 ........................... <[:]>
+  [ 82] pushproplist ............................ <[:]>
+  [ 83] pushsymb 1766 ........................... <#Mustang>
+  [ 86] pusharglist 0 ........................... <[:]>
+  [ 88] pushproplist ............................ <[:]>
+  [ 89] pushsymb 1767 ........................... <#Nissan>
+  [ 92] pusharglist 0 ........................... <[:]>
+  [ 94] pushproplist ............................ <[:]>
+  [ 95] pushsymb 1768 ........................... <#Porsche>
+  [ 98] pusharglist 0 ........................... <[:]>
+  [100] pushproplist ............................ <[:]>
+  [101] pushsymb 1769 ........................... <#Seat>
+  [104] pusharglist 0 ........................... <[:]>
+  [106] pushproplist ............................ <[:]>
+  [107] pushsymb 1770 ........................... <#MiniCooper>
+  [110] pusharglist 0 ........................... <[:]>
+  [112] pushproplist ............................ <[:]>
+  [113] pushsymb 1771 ........................... <#DodgeRam>
+  [116] pusharglist 0 ........................... <[:]>
+  [118] pushproplist ............................ <[:]>
+  [119] pushsymb 1772 ........................... <#Marcos>
+  [122] pusharglist 0 ........................... <[:]>
+  [124] pushproplist ............................ <[:]>
+  [125] pushsymb 1773 ........................... <#BlackTruck>
+  [128] pusharglist 0 ........................... <[:]>
+  [130] pushproplist ............................ <[:]>
+  [131] pushsymb 1774 ........................... <#Tank>
+  [134] pusharglist 0 ........................... <[:]>
+  [136] pushproplist ............................ <[:]>
+  [137] pusharglist 30 .......................... <[#BMW: [:], #AstonMartin: [:], #AudiR8: [:], #FordGT: [:], #Corvette: [:], #Eclipse: [:], #Mustang: [:], #Nissan: [:], #Porsche: [:], #Seat: [:], #MiniCooper: [:], #DodgeRam: [:], #Marcos: [:], #BlackTruck: [:], #Tank: [:]]>
+  [139] pushproplist ............................ <[#BMW: [:], #AstonMartin: [:], #AudiR8: [:], #FordGT: [:], #Corvette: [:], #Eclipse: [:], #Mustang: [:], #Nissan: [:], #Porsche: [:], #Seat: [:], #MiniCooper: [:], #DodgeRam: [:], #Marcos: [:], #BlackTruck: [:], #Tank: [:]]>
+  [140] setobjprop 169 .......................... gGame.BodykitList = [#BMW: [:], #AstonMartin: [:], #AudiR8: [:], #FordGT: [:], #Corvette: [:], #Eclipse: [:], #Mustang: [:], #Nissan: [:], #Porsche: [:], #Seat: [:], #MiniCooper: [:], #DodgeRam: [:], #Marcos: [:], #BlackTruck: [:], #Tank: [:]]
+  [142] getglobal 43 ............................ <gGame>
+  [144] pushsymb 1775 ........................... <#noPrimary>
+  [147] pushsymb 90 ............................. <#Unlocked>
+  [149] pushsymb 1776 ........................... <#MachineGun>
+  [152] pushsymb 90 ............................. <#Unlocked>
+  [154] pusharglist 4 ........................... <[#noPrimary: #Unlocked, #MachineGun: #Unlocked]>
+  [156] pushproplist ............................ <[#noPrimary: #Unlocked, #MachineGun: #Unlocked]>
+  [157] setobjprop 184 .......................... gGame.PrimaryWeaponsList = [#noPrimary: #Unlocked, #MachineGun: #Unlocked]
+  [159] getglobal 43 ............................ <gGame>
+  [161] pushsymb 1777 ........................... <#noSecondary>
+  [164] pushsymb 90 ............................. <#Unlocked>
+  [166] pusharglist 2 ........................... <[#noSecondary: #Unlocked]>
+  [168] pushproplist ............................ <[#noSecondary: #Unlocked]>
+  [169] setobjprop 188 .......................... gGame.SecondaryWeaponsList = [#noSecondary: #Unlocked]
+  [171] getglobal 43 ............................ <gGame>
+  [173] pushsymb 1778 ........................... <#CityTrack1>
+  [176] pushsymb 35 ............................. <#new>
+  [178] pushsymb 1779 ........................... <#cityTrack2>
+  [181] pushsymb 35 ............................. <#new>
+  [183] pushsymb 1780 ........................... <#CityTrack3>
+  [186] pushsymb 35 ............................. <#new>
+  [188] pushsymb 1781 ........................... <#cityTrack4>
+  [191] pushsymb 35 ............................. <#new>
+  [193] pusharglist 8 ........................... <[#CityTrack1: #new, #cityTrack2: #new, #CityTrack3: #new, #cityTrack4: #new]>
+  [195] pushproplist ............................ <[#CityTrack1: #new, #cityTrack2: #new, #CityTrack3: #new, #cityTrack4: #new]>
+  [196] setobjprop 147 .......................... gGame.trackList = [#CityTrack1: #new, #cityTrack2: #new, #CityTrack3: #new, #cityTrack4: #new]
+  [198] getglobal 43 ............................ <gGame>
+  [200] pusharglist 0 ........................... <[]>
+  [202] pushlist ................................ <[]>
+  [203] setobjprop 257 .......................... gGame.HiddenPackageList = []
+  [206] getglobal 43 ............................ <gGame>
+  [208] pushsymb 142 ............................ <#time>
+  [210] pushzero ................................ <0>
+  [211] pushsymb 151 ............................ <#wd>
+  [213] pushzero ................................ <0>
+  [214] pushint8 51 ............................. <51>
+  [216] pusharglist 2 ........................... <[0, 51]>
+  [218] pushlist ................................ <[0, 51]>
+  [219] pushsymb 153 ............................ <#played>
+  [221] pushzero ................................ <0>
+  [222] pushsymb 149 ............................ <#Completed>
+  [224] pushzero ................................ <0>
+  [225] pushsymb 154 ............................ <#failed>
+  [227] pushzero ................................ <0>
+  [228] pushsymb 138 ............................ <#race>
+  [230] pushzero ................................ <0>
+  [231] pushsymb 1782 ........................... <#BattleRace>
+  [234] pushzero ................................ <0>
+  [235] pushsymb 275 ............................ <#Rampage>
+  [238] pushzero ................................ <0>
+  [239] pushsymb 1783 ........................... <#RivalBattle>
+  [242] pushzero ................................ <0>
+  [243] pushsymb 273 ............................ <#Survivor>
+  [246] pushzero ................................ <0>
+  [247] pushsymb 1784 ........................... <#GooseHunt>
+  [250] pushzero ................................ <0>
+  [251] pushsymb 252 ............................ <#Elimination>
+  [253] pushzero ................................ <0>
+  [254] pushsymb 1785 ........................... <#BossBattle>
+  [257] pushzero ................................ <0>
+  [258] pushsymb 277 ............................ <#Wrecked>
+  [261] pushzero ................................ <0>
+  [262] pushsymb 269 ............................ <#rivalWrecked>
+  [265] pushzero ................................ <0>
+  [266] pushsymb 267 ............................ <#vehicles>
+  [269] pushzero ................................ <0>
+  [270] pushsymb 137 ............................ <#cars>
+  [272] pushint8 1 .............................. <1>
+  [274] pushint8 16 ............................. <16>
+  [276] pusharglist 2 ........................... <[1, 16]>
+  [278] pushlist ................................ <[1, 16]>
+  [279] pushsymb 181 ............................ <#upgrades>
+  [281] pushzero ................................ <0>
+  [282] pushint8 5 .............................. <5>
+  [284] pusharglist 2 ........................... <[0, 5]>
+  [286] pushlist ................................ <[0, 5]>
+  [287] pushsymb 177 ............................ <#BODYKITS>
+  [289] pushzero ................................ <0>
+  [290] pushint8 50 ............................. <50>
+  [292] pusharglist 2 ........................... <[0, 50]>
+  [294] pushlist ................................ <[0, 50]>
+  [295] pushsymb 185 ............................ <#Weapons>
+  [297] pushint8 1 .............................. <1>
+  [299] pushint8 8 .............................. <8>
+  [301] pusharglist 2 ........................... <[1, 8]>
+  [303] pushlist ................................ <[1, 8]>
+  [304] pushsymb 258 ............................ <#packages>
+  [307] pushzero ................................ <0>
+  [308] pushint8 51 ............................. <51>
+  [310] pusharglist 2 ........................... <[0, 51]>
+  [312] pushlist ................................ <[0, 51]>
+  [313] pushsymb 239 ............................ <#detonators>
+  [315] pushzero ................................ <0>
+  [316] pushsymb 1786 ........................... <#bullets>
+  [319] pushzero ................................ <0>
+  [320] pushsymb 152 ............................ <#timeB>
+  [322] pushzero ................................ <0>
+  [323] pusharglist 48 .......................... <[#time: 0, #wd: [0, 51], #played: 0, #Completed: 0, #failed: 0, #race: 0, #BattleRace: 0, #Rampage: 0, #RivalBattle: 0, #Survivor: 0, #GooseHunt: 0, #Elimination: 0, #BossBattle: 0, #Wrecked: 0, #rivalWrecked: 0, #vehicles: 0, #cars: [1, 16], #upgrades: [0, 5], #BODYKITS: [0, 50], #Weapons: [1, 8], #packages: [0, 51], #detonators: 0, #bullets: 0, #timeB: 0]>
+  [325] pushproplist ............................ <[#time: 0, #wd: [0, 51], #played: 0, #Completed: 0, #failed: 0, #race: 0, #BattleRace: 0, #Rampage: 0, #RivalBattle: 0, #Survivor: 0, #GooseHunt: 0, #Elimination: 0, #BossBattle: 0, #Wrecked: 0, #rivalWrecked: 0, #vehicles: 0, #cars: [1, 16], #upgrades: [0, 5], #BODYKITS: [0, 50], #Weapons: [1, 8], #packages: [0, 51], #detonators: 0, #bullets: 0, #timeB: 0]>
+  [326] setobjprop 150 .......................... gGame.Statistics = [#time: 0, #wd: [0, 51], #played: 0, #Completed: 0, #failed: 0, #race: 0, #BattleRace: 0, #Rampage: 0, #RivalBattle: 0, #Survivor: 0, #GooseHunt: 0, #Elimination: 0, #BossBattle: 0, #Wrecked: 0, #rivalWrecked: 0, #vehicles: 0, #cars: [1, 16], #upgrades: [0, 5], #BODYKITS: [0, 50], #Weapons: [1, 8], #packages: [0, 51], #detonators: 0, #bullets: 0, #timeB: 0]
+  [328] getglobal 43 ............................ <gGame>
+  [330] pushsymb 264 ............................ <#Worlddomination>
+  [333] pushzero ................................ <0>
+  [334] pushsymb 266 ............................ <#ilikemoney>
+  [337] pushzero ................................ <0>
+  [338] pushsymb 268 ............................ <#menacetosociety>
+  [341] pushzero ................................ <0>
+  [342] pushsymb 270 ............................ <#toughguy>
+  [345] pushzero ................................ <0>
+  [346] pushsymb 280 ............................ <#ibelieveicanfly>
+  [349] pushzero ................................ <0>
+  [350] pushsymb 271 ............................ <#actionhero>
+  [353] pushzero ................................ <0>
+  [354] pushsymb 272 ............................ <#speeddemon>
+  [357] pushzero ................................ <0>
+  [358] pushsymb 279 ............................ <#GREEDY>
+  [361] pushzero ................................ <0>
+  [362] pushsymb 1787 ........................... <#godofwar>
+  [365] pushzero ................................ <0>
+  [366] pushsymb 274 ............................ <#eyeofthetiger>
+  [369] pushzero ................................ <0>
+  [370] pushsymb 276 ............................ <#thedestructor>
+  [373] pushzero ................................ <0>
+  [374] pushsymb 278 ............................ <#imnoquitter>
+  [377] pushzero ................................ <0>
+  [378] pushsymb 1788 ........................... <#thunderstruck>
+  [381] pushzero ................................ <0>
+  [382] pushsymb 17 ............................. <#monkeybusiness>
+  [384] pushzero ................................ <0>
+  [385] pushsymb 18 ............................. <#pigsFTW>
+  [387] pushzero ................................ <0>
+  [388] pusharglist 30 .......................... <[#Worlddomination: 0, #ilikemoney: 0, #menacetosociety: 0, #toughguy: 0, #ibelieveicanfly: 0, #actionhero: 0, #speeddemon: 0, #GREEDY: 0, #godofwar: 0, #eyeofthetiger: 0, #thedestructor: 0, #imnoquitter: 0, #thunderstruck: 0, #monkeybusiness: 0, #pigsFTW: 0]>
+  [390] pushproplist ............................ <[#Worlddomination: 0, #ilikemoney: 0, #menacetosociety: 0, #toughguy: 0, #ibelieveicanfly: 0, #actionhero: 0, #speeddemon: 0, #GREEDY: 0, #godofwar: 0, #eyeofthetiger: 0, #thedestructor: 0, #imnoquitter: 0, #thunderstruck: 0, #monkeybusiness: 0, #pigsFTW: 0]>
+  [391] setobjprop 263 .......................... gGame.Trophies = [#Worlddomination: 0, #ilikemoney: 0, #menacetosociety: 0, #toughguy: 0, #ibelieveicanfly: 0, #actionhero: 0, #speeddemon: 0, #GREEDY: 0, #godofwar: 0, #eyeofthetiger: 0, #thedestructor: 0, #imnoquitter: 0, #thunderstruck: 0, #monkeybusiness: 0, #pigsFTW: 0]
+  [394] getglobal 86 ............................ <gData>
+  [396] getchainedprop 87 ....................... <gData.data>
+  [398] getglobal 86 ............................ <gData>
+  [400] getchainedprop 87 ....................... <gData.data>
+  [402] getchainedprop 1735 ..................... <gData.data.Defaultbodykit>
+  [405] pusharglist 1 ........................... <gData.data.Defaultbodykit>
+  [407] objcall 233 ............................. <gData.data.Defaultbodykit.duplicate()>
+  [409] setobjprop 1736 ......................... gData.data.bodyKit = gData.data.Defaultbodykit.duplicate()
+  [412] getglobal 86 ............................ <gData>
+  [414] getchainedprop 87 ....................... <gData.data>
+  [416] getglobal 86 ............................ <gData>
+  [418] getchainedprop 87 ....................... <gData.data>
+  [420] getchainedprop 1737 ..................... <gData.data.DefaultUpgrades>
+  [423] pusharglist 1 ........................... <gData.data.DefaultUpgrades>
+  [425] objcall 233 ............................. <gData.data.DefaultUpgrades.duplicate()>
+  [427] setobjprop 181 .......................... gData.data.upgrades = gData.data.DefaultUpgrades.duplicate()
+  [429] getglobal 86 ............................ <gData>
+  [431] getchainedprop 87 ....................... <gData.data>
+  [433] getglobal 86 ............................ <gData>
+  [435] getchainedprop 87 ....................... <gData.data>
+  [437] getchainedprop 1738 ..................... <gData.data.DefaultWeapons>
+  [440] pusharglist 1 ........................... <gData.data.DefaultWeapons>
+  [442] objcall 233 ............................. <gData.data.DefaultWeapons.duplicate()>
+  [444] setobjprop 185 .......................... gData.data.Weapons = gData.data.DefaultWeapons.duplicate()
+  [446] ret
+end
+
+on SetExitLock me
+  [  0] gettoplevelprop 33 ...................... <_movie>
+  [  2] getglobal 43 ............................ <gGame>
+  [  4] getobjprop 457 .......................... <gGame.LockEscape>
+  [  7] setobjprop 465 .......................... _movie.exitLock = gGame.LockEscape
+  [ 10] ret
+end
+
+on closeRequest me
+  [  0] pushint8 53 ............................. <53>
+  [  2] pusharglist 1 ........................... <53>
+  [  4] extcall 582 ............................. <keyPressed(53)>
+  [  7] jmpifz [ 11] ............................ if keyPressed(53) then
+  [ 10] ret ..................................... exit
+  [ 11] gettoplevelprop 387 ..................... <_player>
+  [ 14] pusharglistnoret 1 ...................... <_player>
+  [ 16] objcall 558 ............................. _player.quit()
+  [ 19] ret
+end
+
+on StoreCastFilenames me
+  [  0] getglobal 395 ........................... <g>
+  [  3] pushsymb 1789 ........................... <#StoredCastFileNames>
+  [  6] pusharglist 0 ........................... <[]>
+  [  8] pushlist ................................ <[]>
+  [  9] pusharglistnoret 3 ...................... <g, #StoredCastFileNames, []>
+  [ 11] objcall 103 ............................. g[#StoredCastFileNames] = []
+  [ 13] gettoplevelprop 33 ...................... <_movie>
+  [ 15] pushsymb 58 ............................. <#castLib>
+  [ 17] pusharglist 2 ........................... <_movie, #castLib>
+  [ 19] objcall 129 ............................. <_movie.castLib.count>
+  [ 21] setlocal 0 .............................. pCount = _movie.castLib.count
+  [ 23] pushint8 1 .............................. <1>
+  [ 25] setlocal 1
+  [ 27] getlocal 1
+  [ 29] getlocal 0 .............................. <pCount>
+  [ 31] lteq
+  [ 32] jmpifz [122] ............................ repeat with i = 1 to pCount
+  [ 35] gettoplevelprop 33 ...................... <_movie>
+  [ 37] pushsymb 58 ............................. <#castLib>
+  [ 39] getlocal 1 .............................. <i>
+  [ 41] pusharglist 3 ........................... <_movie, #castLib, i>
+  [ 43] objcall 102 ............................. <_movie.castLib[i]>
+  [ 45] getobjprop 235 .......................... <_movie.castLib[i].name>
+  [ 47] setlocal 2 .............................. pCast = _movie.castLib[i].name
+  [ 49] gettoplevelprop 33 ...................... <_movie>
+  [ 51] pushsymb 58 ............................. <#castLib>
+  [ 53] getlocal 1 .............................. <i>
+  [ 55] pusharglist 3 ........................... <_movie, #castLib, i>
+  [ 57] objcall 102 ............................. <_movie.castLib[i]>
+  [ 59] getobjprop 59 ........................... <_movie.castLib[i].fileName>
+  [ 61] setlocal 3 .............................. pFilename = _movie.castLib[i].fileName
+  [ 63] getglobal 395 ........................... <g>
+  [ 66] getchainedprop 1789 ..................... <g.StoredCastFileNames>
+  [ 69] getlocal 2 .............................. <pCast>
+  [ 71] getlocal 3 .............................. <pFilename>
+  [ 73] pusharglist 2 ........................... <[pCast, pFilename]>
+  [ 75] pushlist ................................ <[pCast, pFilename]>
+  [ 76] pusharglistnoret 2 ...................... <g.StoredCastFileNames, [pCast, pFilename]>
+  [ 78] objcall 42 .............................. g.StoredCastFileNames.add([pCast, pFilename])
+  [ 80] getlocal 2 .............................. <pCast>
+  [ 82] pushcons 20 ............................. <"Internal">
+  [ 84] eq ...................................... <pCast = "Internal">
+  [ 85] jmpifz [ 91] ............................ if pCast = "Internal" then
+  [ 88] jmp [113] ............................... next repeat
+  [ 91] getlocal 2 .............................. <pCast>
+  [ 93] pushcons 21 ............................. <"Engine">
+  [ 95] eq ...................................... <pCast = "Engine">
+  [ 96] jmpifz [102] ............................ if pCast = "Engine" then
+  [ 99] jmp [113] ............................... next repeat
+  [102] getlocal 2 .............................. <pCast>
+  [104] pushcons 22 ............................. <"BurninRubber2">
+  [106] eq ...................................... <pCast = "BurninRubber2">
+  [107] jmpifz [113] ............................ if pCast = "BurninRubber2" then
+  [110] jmp [113] ............................... next repeat
+  [113] pushint8 1
+  [115] getlocal 1
+  [117] add
+  [118] setlocal 1
+  [120] endrepeat [ 27]
+  [122] ret
+end
+
+on RestoreCastFilenames me
+  [  0] getglobal 395 ........................... <g>
+  [  3] pushsymb 1789 ........................... <#StoredCastFileNames>
+  [  6] pusharglist 2 ........................... <g, #StoredCastFileNames>
+  [  8] extcall 542 ............................. <getaProp(g, #StoredCastFileNames)>
+  [ 11] pusharglist 0 ........................... <>
+  [ 13] extcall 40 .............................. <VOID>
+  [ 15] eq ...................................... <getaProp(g, #StoredCastFileNames) = VOID>
+  [ 16] jmpifz [ 20] ............................ if getaProp(g, #StoredCastFileNames) = VOID then
+  [ 19] ret ..................................... exit
+  [ 20] getglobal 395 ........................... <g>
+  [ 23] getobjprop 1789 ......................... <g.StoredCastFileNames>
+  [ 26] setlocal 0 .............................. pCount = g.StoredCastFileNames
+  [ 28] pushint8 1 .............................. <1>
+  [ 30] setlocal 1
+  [ 32] getlocal 1
+  [ 34] getlocal 0 .............................. <pCount>
+  [ 36] lteq
+  [ 37] jmpifz [120] ............................ repeat with i = 1 to pCount
+  [ 40] getglobal 395 ........................... <g>
+  [ 43] pushsymb 1789 ........................... <#StoredCastFileNames>
+  [ 46] getlocal 1 .............................. <i>
+  [ 48] pusharglist 3 ........................... <g, #StoredCastFileNames, i>
+  [ 50] objcall 102 ............................. <g.StoredCastFileNames[i]>
+  [ 52] pushint8 1 .............................. <1>
+  [ 54] pusharglist 2 ........................... <g.StoredCastFileNames[i], 1>
+  [ 56] objcall 105 ............................. <g.StoredCastFileNames[i][1]>
+  [ 58] setlocal 2 .............................. pName = g.StoredCastFileNames[i][1]
+  [ 60] getglobal 395 ........................... <g>
+  [ 63] pushsymb 1789 ........................... <#StoredCastFileNames>
+  [ 66] getlocal 1 .............................. <i>
+  [ 68] pusharglist 3 ........................... <g, #StoredCastFileNames, i>
+  [ 70] objcall 102 ............................. <g.StoredCastFileNames[i]>
+  [ 72] pushint8 2 .............................. <2>
+  [ 74] pusharglist 2 ........................... <g.StoredCastFileNames[i], 2>
+  [ 76] objcall 105 ............................. <g.StoredCastFileNames[i][2]>
+  [ 78] setlocal 3 .............................. pFilename = g.StoredCastFileNames[i][2]
+  [ 80] gettoplevelprop 33 ...................... <_movie>
+  [ 82] getlocal 2 .............................. <pName>
+  [ 84] pusharglist 2 ........................... <_movie, pName>
+  [ 86] objcall 58 .............................. <_movie.castLib(pName)>
+  [ 88] getlocal 3 .............................. <pFilename>
+  [ 90] setobjprop 59 ........................... _movie.castLib(pName).fileName = pFilename
+  [ 92] gettoplevelprop 33 ...................... <_movie>
+  [ 94] getlocal 2 .............................. <pName>
+  [ 96] pusharglist 2 ........................... <_movie, pName>
+  [ 98] objcall 58 .............................. <_movie.castLib(pName)>
+  [100] getobjprop 59 ........................... <_movie.castLib(pName).fileName>
+  [102] pusharglist 1 ........................... <_movie.castLib(pName).fileName>
+  [104] extcall 67 .............................. <string(_movie.castLib(pName).fileName)>
+  [106] pusharglistnoret 1 ...................... <string(_movie.castLib(pName).fileName)>
+  [108] extcall 773 ............................. alert(string(_movie.castLib(pName).fileName))
+  [111] pushint8 1
+  [113] getlocal 1
+  [115] add
+  [116] setlocal 1
+  [118] endrepeat [ 32]
+  [120] ret
+end
+
+on reset tState
+  [  0] pusharglistnoret 0 ...................... <>
+  [  2] localcall 11 ............................ ResetCasts()
+  [  4] pusharglistnoret 0 ...................... <>
+  [  6] extcall 1790 ............................ clearGlobals()
+  [  9] gettoplevelprop 33 ...................... <_movie>
+  [ 11] pusharglist 0 ........................... <[]>
+  [ 13] pushlist ................................ <[]>
+  [ 14] setobjprop 427 .......................... _movie.timeoutList = []
+  [ 17] gettoplevelprop 33 ...................... <_movie>
+  [ 19] pusharglist 0 ........................... <[]>
+  [ 21] pushlist ................................ <[]>
+  [ 22] setobjprop 41 ........................... _movie.actorList = []
+  [ 24] getparam 0 .............................. <tState>
+  [ 26] pushsymb 429 ............................ <#nothing>
+  [ 29] nteq .................................... <tState <> #nothing>
+  [ 30] jmpifz [ 81] ............................ if tState <> #nothing then
+  [ 33] pushint32 35334 ......................... <35334>
+  [ 38] pusharglistnoret 1 ...................... <35334>
+  [ 40] extcall 1791 ............................ dispatchcommand(35334)
+  [ 43] pushint32 58370 ......................... <58370>
+  [ 48] pusharglistnoret 1 ...................... <58370>
+  [ 50] extcall 1791 ............................ dispatchcommand(58370)
+  [ 53] pushint16 4103 .......................... <4103>
+  [ 56] pusharglistnoret 1 ...................... <4103>
+  [ 58] extcall 1791 ............................ dispatchcommand(4103)
+  [ 61] pushcons 23 ............................. <"All is reset @ ">
+  [ 63] pusharglist 0 ........................... <>
+  [ 65] thebuiltin 142 .......................... <the time>
+  [ 67] joinstr ................................. <"All is reset @ " & the time>
+  [ 68] pusharglist 0 ........................... <>
+  [ 70] thebuiltin 1754 ......................... <the date>
+  [ 73] joinstr ................................. <"All is reset @ " & the time & the date>
+  [ 74] pushcons 24 ............................. <" from Message Window.">
+  [ 76] joinstr ................................. <"All is reset @ " & the time & the date & " from Message Window.">
+  [ 77] pusharglistnoret 1 ...................... <"All is reset @ " & the time & the date & " from Message Window.">
+  [ 79] extcall 57 .............................. put "All is reset @ " & the time & the date & " from Message Window."
+  [ 81] ret
+end
+
+on ResetCasts
+  [  0] pushcons 20 ............................. <"Internal">
+  [  2] pusharglistnoret 1 ...................... <"Internal">
+  [  4] extcall 1125 ............................ ClearCast("Internal")
+  [  7] pushcons 25 ............................. <"Menu">
+  [  9] pusharglistnoret 1 ...................... <"Menu">
+  [ 11] extcall 1125 ............................ ClearCast("Menu")
+  [ 14] pushcons 26 ............................. <"TrackData">
+  [ 16] pusharglistnoret 1 ...................... <"TrackData">
+  [ 18] extcall 1125 ............................ ClearCast("TrackData")
+  [ 21] pushcons 27 ............................. <"Shared">
+  [ 23] pusharglistnoret 1 ...................... <"Shared">
+  [ 25] extcall 1125 ............................ ClearCast("Shared")
+  [ 28] pushcons 28 ............................. <"Cars">
+  [ 30] pusharglistnoret 1 ...................... <"Cars">
+  [ 32] extcall 1125 ............................ ClearCast("Cars")
+  [ 35] pushcons 29 ............................. <"Tracks">
+  [ 37] pusharglistnoret 1 ...................... <"Tracks">
+  [ 39] extcall 1125 ............................ ClearCast("Tracks")
+  [ 42] ret
+end
+
+on PrePublish
+  [  0] pusharglistnoret 0 ...................... <>
+  [  2] extcall 399 ............................. InitGlobals()
+  [  5] pushcons 30 ............................. <"\\Data\\PrePublishLoadingArray.txt">
+  [  7] pusharglistnoret 1 ...................... <"\\Data\\PrePublishLoadingArray.txt">
+  [  9] extcall 419 ............................. load("\\Data\\PrePublishLoadingArray.txt")
+  [ 12] pusharglistnoret 0 ...................... <>
+  [ 14] extcall 1790 ............................ clearGlobals()
+  [ 17] ret
+end
+
+on Publish me
+  [  0] pusharglistnoret 0 ...................... <>
+  [  2] localcall 10 ............................ reset()
+  [  4] pusharglistnoret 0 ...................... <>
+  [  6] localcall 12 ............................ PrePublish()
+  [  8] pushint16 4104 .......................... <4104>
+  [ 11] pusharglistnoret 1 ...................... <4104>
+  [ 13] extcall 1791 ............................ dispatchcommand(4104)
+  [ 16] ret
+end
+
+on UpdateVersion me
+  [  0] pushcons 2 .............................. <"Version">
+  [  2] pusharglist 1 ........................... <"Version">
+  [  4] extcall 64 .............................. <member("Version")>
+  [  6] getobjprop 80 ........................... <member("Version").text>
+  [  8] pusharglist 1 ........................... <member("Version").text>
+  [ 10] extcall 503 ............................. <value(member("Version").text)>
+  [ 13] setlocal 0 .............................. tVersionData = value(member("Version").text)
+  [ 15] getlocal 0 .............................. <tVersionData>
+  [ 17] pushsymb 451 ............................ <#version>
+  [ 20] pusharglist 2 ........................... <tVersionData, #version>
+  [ 22] objcall 105 ............................. <tVersionData[#version]>
+  [ 24] pushcons 31 ............................. <0.01>
+  [ 26] add ..................................... <tVersionData[#version] + 0.01>
+  [ 27] setlocal 1 .............................. tNewVersion = tVersionData[#version] + 0.01
+  [ 29] getlocal 1 .............................. <tNewVersion>
+  [ 31] pusharglist 1 ........................... <tNewVersion>
+  [ 33] extcall 67 .............................. <string(tNewVersion)>
+  [ 35] setlocal 1 .............................. tNewVersion = string(tNewVersion)
+  [ 37] getlocal 1 .............................. <tNewVersion>
+  [ 39] pushsymb 68 ............................. <#char>
+  [ 41] pushint8 1 .............................. <1>
+  [ 43] pushint8 4 .............................. <4>
+  [ 45] pusharglist 4 ........................... <tNewVersion, #char, 1, 4>
+  [ 47] objcall 70 .............................. <tNewVersion.char[1..4]>
+  [ 49] setlocal 1 .............................. tNewVersion = tNewVersion.char[1..4]
+  [ 51] getlocal 0 .............................. <tVersionData>
+  [ 53] pushsymb 451 ............................ <#version>
+  [ 56] getlocal 1 .............................. <tNewVersion>
+  [ 58] pusharglist 1 ........................... <tNewVersion>
+  [ 60] extcall 503 ............................. <value(tNewVersion)>
+  [ 63] pusharglistnoret 3 ...................... <tVersionData, #version, value(tNewVersion)>
+  [ 65] objcall 103 ............................. tVersionData[#version] = value(tNewVersion)
+  [ 67] pushcons 2 .............................. <"Version">
+  [ 69] pusharglist 1 ........................... <"Version">
+  [ 71] extcall 64 .............................. <member("Version")>
+  [ 73] getlocal 0 .............................. <tVersionData>
+  [ 75] pusharglist 1 ........................... <tVersionData>
+  [ 77] extcall 67 .............................. <string(tVersionData)>
+  [ 79] setobjprop 80 ........................... member("Version").text = string(tVersionData)
+  [ 81] ret
+end
+
+on ShowVersion me
+  [  0] pushcons 2 .............................. <"Version">
+  [  2] pusharglist 1 ........................... <"Version">
+  [  4] extcall 64 .............................. <member("Version")>
+  [  6] getobjprop 80 ........................... <member("Version").text>
+  [  8] pusharglist 1 ........................... <member("Version").text>
+  [ 10] extcall 503 ............................. <value(member("Version").text)>
+  [ 13] pushsymb 451 ............................ <#version>
+  [ 16] pusharglist 2 ........................... <value(member("Version").text), #version>
+  [ 18] objcall 105 ............................. <value(member("Version").text)[#version]>
+  [ 20] setlocal 0 .............................. tVersion = value(member("Version").text)[#version]
+  [ 22] getlocal 0 .............................. <tVersion>
+  [ 24] pusharglist 1 ........................... <tVersion>
+  [ 26] extcall 67 .............................. <string(tVersion)>
+  [ 28] pushsymb 68 ............................. <#char>
+  [ 30] pushint8 1 .............................. <1>
+  [ 32] pushint8 4 .............................. <4>
+  [ 34] pusharglist 4 ........................... <string(tVersion), #char, 1, 4>
+  [ 36] objcall 70 .............................. <string(tVersion).char[1..4]>
+  [ 38] setlocal 0 .............................. tVersion = string(tVersion).char[1..4]
+  [ 40] getglobal 43 ............................ <gGame>
+  [ 42] getobjprop 235 .......................... <gGame.name>
+  [ 44] pushcons 32 ............................. <" Version: ">
+  [ 46] joinstr ................................. <gGame.name & " Version: ">
+  [ 47] getlocal 0 .............................. <tVersion>
+  [ 49] joinstr ................................. <gGame.name & " Version: " & tVersion>
+  [ 50] pusharglist 1 ........................... <gGame.name & " Version: " & tVersion>
+  [ 52] extcall 67 .............................. <string(gGame.name & " Version: " & tVersion)>
+  [ 54] pusharglistnoret 1 ...................... <string(gGame.name & " Version: " & tVersion)>
+  [ 56] extcall 773 ............................. alert(string(gGame.name & " Version: " & tVersion))
+  [ 59] ret
+end

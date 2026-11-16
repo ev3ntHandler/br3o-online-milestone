@@ -1,0 +1,2072 @@
+global gSystem, gLoader, gData, gGame
+
+on event tEvent
+  [  0] getparam 0 .............................. <tEvent>
+  [  2] getobjprop 122 .......................... <tEvent.ilk>
+  [  4] pushsymb 67 ............................. <#string>
+  [  6] eq ...................................... <tEvent.ilk = #string>
+  [  7] jmpifz [ 19] ............................ if tEvent.ilk = #string then
+  [ 10] getparam 0 .............................. <tEvent>
+  [ 12] pusharglist 1 ........................... <tEvent>
+  [ 14] extcall 594 ............................. <StringEvaluator(tEvent)>
+  [ 17] setparam 0 .............................. tEvent = StringEvaluator(tEvent)
+  [ 19] getglobal 86 ............................ <gData>
+  [ 21] pushsymb 120 ............................ <#Events>
+  [ 23] pusharglist 2 ........................... <gData, #Events>
+  [ 25] objcall 105 ............................. <gData[#Events]>
+  [ 27] getparam 0 .............................. <tEvent>
+  [ 29] pusharglist 2 ........................... <gData[#Events], tEvent>
+  [ 31] objcall 105 ............................. <gData[#Events][tEvent]>
+  [ 33] pusharglist 1 ........................... <gData[#Events][tEvent]>
+  [ 35] extcall 389 ............................. <voidp(gData[#Events][tEvent])>
+  [ 38] pushint8 1 .............................. <1>
+  [ 40] eq ...................................... <voidp(gData[#Events][tEvent]) = 1>
+  [ 41] jmpifz [ 62] ............................ if voidp(gData[#Events][tEvent]) = 1 then
+  [ 44] getparam 0 .............................. <tEvent>
+  [ 46] pusharglist 1 ........................... <tEvent>
+  [ 48] extcall 67 .............................. <string(tEvent)>
+  [ 50] pushcons 0 .............................. <" does not exist.">
+  [ 52] joinstr ................................. <string(tEvent) & " does not exist.">
+  [ 53] pusharglistnoret 1 ...................... <string(tEvent) & " does not exist.">
+  [ 55] localcall 8 ............................. ShowError(string(tEvent) & " does not exist.")
+  [ 57] pushzero ................................ <0>
+  [ 58] pusharglistnoret 1 ...................... <0>
+  [ 60] extcall 52 .............................. return 0
+  [ 62] getglobal 50 ............................ <gSystem>
+  [ 64] getparam 0 .............................. <tEvent>
+  [ 66] setobjprop 148 .......................... gSystem.event = tEvent
+  [ 68] getglobal 50 ............................ <gSystem>
+  [ 70] getobjprop 430 .......................... <gSystem.debug>
+  [ 73] pushint8 1 .............................. <1>
+  [ 75] eq ...................................... <gSystem.debug = 1>
+  [ 76] jmpifz [ 85] ............................ if gSystem.debug = 1 then
+  [ 79] getparam 0 .............................. <tEvent>
+  [ 81] pusharglistnoret 1 ...................... <tEvent>
+  [ 83] extcall 57 .............................. put tEvent
+  [ 85] pushint8 1 .............................. <1>
+  [ 87] setlocal 0
+  [ 89] getlocal 0
+  [ 91] getglobal 86 ............................ <gData>
+  [ 93] pushsymb 120 ............................ <#Events>
+  [ 95] pusharglist 2 ........................... <gData, #Events>
+  [ 97] objcall 105 ............................. <gData[#Events]>
+  [ 99] getparam 0 .............................. <tEvent>
+  [101] pusharglist 2 ........................... <gData[#Events], tEvent>
+  [103] objcall 105 ............................. <gData[#Events][tEvent]>
+  [105] getobjprop 129 .......................... <gData[#Events][tEvent].count>
+  [107] lteq
+  [108] jmpifz [2858] ........................... repeat with i = 1 to gData[#Events][tEvent].count
+  [111] getglobal 86 ............................ <gData>
+  [113] pushsymb 120 ............................ <#Events>
+  [115] pusharglist 2 ........................... <gData, #Events>
+  [117] objcall 105 ............................. <gData[#Events]>
+  [119] getparam 0 .............................. <tEvent>
+  [121] pusharglist 2 ........................... <gData[#Events], tEvent>
+  [123] objcall 105 ............................. <gData[#Events][tEvent]>
+  [125] getlocal 0 .............................. <i>
+  [127] pusharglist 2 ........................... <gData[#Events][tEvent], i>
+  [129] objcall 130 ............................. <gData[#Events][tEvent].getPropAt(i)>
+  [131] setlocal 1 .............................. tFunction = gData[#Events][tEvent].getPropAt(i)
+  [133] getglobal 86 ............................ <gData>
+  [135] pushsymb 120 ............................ <#Events>
+  [137] pusharglist 2 ........................... <gData, #Events>
+  [139] objcall 105 ............................. <gData[#Events]>
+  [141] getparam 0 .............................. <tEvent>
+  [143] pusharglist 2 ........................... <gData[#Events], tEvent>
+  [145] objcall 105 ............................. <gData[#Events][tEvent]>
+  [147] getlocal 0 .............................. <i>
+  [149] pusharglist 2 ........................... <gData[#Events][tEvent], i>
+  [151] objcall 105 ............................. <gData[#Events][tEvent][i]>
+  [153] pushint8 1 .............................. <1>
+  [155] pusharglist 2 ........................... <gData[#Events][tEvent][i], 1>
+  [157] objcall 105 ............................. <gData[#Events][tEvent][i][1]>
+  [159] setlocal 2 .............................. tTarget = gData[#Events][tEvent][i][1]
+  [161] getglobal 86 ............................ <gData>
+  [163] pushsymb 120 ............................ <#Events>
+  [165] pusharglist 2 ........................... <gData, #Events>
+  [167] objcall 105 ............................. <gData[#Events]>
+  [169] getparam 0 .............................. <tEvent>
+  [171] pusharglist 2 ........................... <gData[#Events], tEvent>
+  [173] objcall 105 ............................. <gData[#Events][tEvent]>
+  [175] getlocal 0 .............................. <i>
+  [177] pusharglist 2 ........................... <gData[#Events][tEvent], i>
+  [179] objcall 105 ............................. <gData[#Events][tEvent][i]>
+  [181] pushint8 2 .............................. <2>
+  [183] pusharglist 2 ........................... <gData[#Events][tEvent][i], 2>
+  [185] objcall 105 ............................. <gData[#Events][tEvent][i][2]>
+  [187] setlocal 3 .............................. tDataList = gData[#Events][tEvent][i][2]
+  [189] getlocal 1 .............................. <tFunction>
+  [191] pushsymb 671 ............................ <#AddTrigger>
+  [194] nteq .................................... <tFunction <> #AddTrigger>
+  [195] getlocal 1 .............................. <tFunction>
+  [197] pushsymb 672 ............................ <#AddToList>
+  [200] nteq .................................... <tFunction <> #AddToList>
+  [201] and ..................................... <(tFunction <> #AddTrigger) and (tFunction <> #AddToList)>
+  [202] getlocal 1 .............................. <tFunction>
+  [204] pushsymb 673 ............................ <#RemoveFromList>
+  [207] nteq .................................... <tFunction <> #RemoveFromList>
+  [208] and ..................................... <(tFunction <> #AddTrigger) and (tFunction <> #AddToList) and (tFunction <> #RemoveFromList)>
+  [209] jmpifz [221] ............................ if (tFunction <> #AddTrigger) and (tFunction <> #AddToList) and (tFunction <> #RemoveFromList) then
+  [212] getlocal 2 .............................. <tTarget>
+  [214] pusharglist 1 ........................... <tTarget>
+  [216] extcall 594 ............................. <StringEvaluator(tTarget)>
+  [219] setlocal 2 .............................. tTarget = StringEvaluator(tTarget)
+  [221] getlocal 3 .............................. <tDataList>
+  [223] pusharglist 1 ........................... <tDataList>
+  [225] extcall 594 ............................. <StringEvaluator(tDataList)>
+  [228] setlocal 3 .............................. tDataList = StringEvaluator(tDataList)
+  [230] getglobal 50 ............................ <gSystem>
+  [232] getobjprop 430 .......................... <gSystem.debug>
+  [235] pushint8 1 .............................. <1>
+  [237] eq ...................................... <gSystem.debug = 1>
+  [238] jmpifz [253] ............................ if gSystem.debug = 1 then
+  [241] getlocal 1 .............................. <tFunction>
+  [243] getlocal 2 .............................. <tTarget>
+  [245] joinpadstr .............................. <tFunction && tTarget>
+  [246] getlocal 3 .............................. <tDataList>
+  [248] joinpadstr .............................. <tFunction && tTarget && tDataList>
+  [249] pusharglistnoret 1 ...................... <tFunction && tTarget && tDataList>
+  [251] extcall 57 .............................. put tFunction && tTarget && tDataList
+  [253] getlocal 1 .............................. <tFunction>
+  [255] peek 0 .................................. case tFunction of
+  [257] pushsymb 674 ............................ <#resetWorld>
+  [260] eq
+  [261] jmpifz [275] ............................ (case) #resetWorld:
+  [264] pushzero ................................ <0>
+  [265] getlocal 2 .............................. <tTarget>
+  [267] pusharglistnoret 2 ...................... <0, tTarget>
+  [269] extcall 674 ............................. resetWorld(0, tTarget)
+  [272] jmp [2846]
+  [275] peek 0
+  [277] pushsymb 675 ............................ <#RESETCAST3D>
+  [280] eq
+  [281] jmpifz [294] ............................ (case) #RESETCAST3D:
+  [284] getlocal 2 .............................. <tTarget>
+  [286] pusharglistnoret 1 ...................... <tTarget>
+  [288] extcall 675 ............................. RESETCAST3D(tTarget)
+  [291] jmp [2846]
+  [294] peek 0
+  [296] pushsymb 676 ............................ <#RemoveLod>
+  [299] eq
+  [300] jmpifz [315] ............................ (case) #RemoveLod:
+  [303] getlocal 2 .............................. <tTarget>
+  [305] getlocal 3 .............................. <tDataList>
+  [307] pusharglistnoret 2 ...................... <tTarget, tDataList>
+  [309] extcall 676 ............................. RemoveLod(tTarget, tDataList)
+  [312] jmp [2846]
+  [315] peek 0
+  [317] pushsymb 677 ............................ <#RemoveLodCast>
+  [320] eq
+  [321] jmpifz [334] ............................ (case) #RemoveLodCast:
+  [324] getlocal 2 .............................. <tTarget>
+  [326] pusharglistnoret 1 ...................... <tTarget>
+  [328] extcall 677 ............................. RemoveLodCast(tTarget)
+  [331] jmp [2846]
+  [334] peek 0
+  [336] pushsymb 678 ............................ <#ADDMESHMODIFIER>
+  [339] eq
+  [340] jmpifz [355] ............................ (case) #ADDMESHMODIFIER:
+  [343] getlocal 2 .............................. <tTarget>
+  [345] getlocal 3 .............................. <tDataList>
+  [347] pusharglistnoret 2 ...................... <tTarget, tDataList>
+  [349] extcall 678 ............................. ADDMESHMODIFIER(tTarget, tDataList)
+  [352] jmp [2846]
+  [355] peek 0
+  [357] pushsymb 679 ............................ <#RESETALL3D>
+  [360] eq
+  [361] jmpifz [372] ............................ (case) #RESETALL3D:
+  [364] pusharglistnoret 0 ...................... <>
+  [366] extcall 679 ............................. RESETALL3D()
+  [369] jmp [2846]
+  [372] peek 0
+  [374] pushsymb 680 ............................ <#CreateObject>
+  [377] eq
+  [378] jmpifz [394] ............................ (case) #CreateObject:
+  [381] pushzero ................................ <0>
+  [382] getlocal 2 .............................. <tTarget>
+  [384] getlocal 3 .............................. <tDataList>
+  [386] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [388] extcall 680 ............................. CreateObject(0, tTarget, tDataList)
+  [391] jmp [2846]
+  [394] peek 0
+  [396] pushsymb 681 ............................ <#createTexture>
+  [399] eq
+  [400] jmpifz [415] ............................ (case) #createTexture:
+  [403] getlocal 2 .............................. <tTarget>
+  [405] getlocal 3 .............................. <tDataList>
+  [407] pusharglistnoret 2 ...................... <tTarget, tDataList>
+  [409] extcall 681 ............................. createTexture(tTarget, tDataList)
+  [412] jmp [2846]
+  [415] peek 0
+  [417] pushsymb 645 ............................ <#ASSIGNTEXTURE>
+  [420] eq
+  [421] jmpifz [436] ............................ (case) #ASSIGNTEXTURE:
+  [424] getlocal 2 .............................. <tTarget>
+  [426] getlocal 3 .............................. <tDataList>
+  [428] pusharglistnoret 2 ...................... <tTarget, tDataList>
+  [430] extcall 645 ............................. ASSIGNTEXTURE(tTarget, tDataList)
+  [433] jmp [2846]
+  [436] peek 0
+  [438] pushsymb 682 ............................ <#deleteTexture>
+  [441] eq
+  [442] jmpifz [457] ............................ (case) #deleteTexture:
+  [445] getlocal 2 .............................. <tTarget>
+  [447] getlocal 3 .............................. <tDataList>
+  [449] pusharglistnoret 2 ...................... <tTarget, tDataList>
+  [451] extcall 682 ............................. deleteTexture(tTarget, tDataList)
+  [454] jmp [2846]
+  [457] peek 0
+  [459] pushsymb 683 ............................ <#SETMATERIAL>
+  [462] eq
+  [463] jmpifz [478] ............................ (case) #SETMATERIAL:
+  [466] getlocal 2 .............................. <tTarget>
+  [468] getlocal 3 .............................. <tDataList>
+  [470] pusharglistnoret 2 ...................... <tTarget, tDataList>
+  [472] extcall 683 ............................. SETMATERIAL(tTarget, tDataList)
+  [475] jmp [2846]
+  [478] peek 0
+  [480] pushsymb 684 ............................ <#SetTexture>
+  [483] eq
+  [484] jmpifz [499] ............................ (case) #SetTexture:
+  [487] getlocal 2 .............................. <tTarget>
+  [489] getlocal 3 .............................. <tDataList>
+  [491] pusharglistnoret 2 ...................... <tTarget, tDataList>
+  [493] extcall 684 ............................. SetTexture(tTarget, tDataList)
+  [496] jmp [2846]
+  [499] peek 0
+  [501] pushsymb 685 ............................ <#CleanMaterials>
+  [504] eq
+  [505] jmpifz [520] ............................ (case) #CleanMaterials:
+  [508] getlocal 2 .............................. <tTarget>
+  [510] getlocal 3 .............................. <tDataList>
+  [512] pusharglistnoret 2 ...................... <tTarget, tDataList>
+  [514] extcall 685 ............................. CleanMaterials(tTarget, tDataList)
+  [517] jmp [2846]
+  [520] peek 0
+  [522] pushsymb 686 ............................ <#DuplicateShader>
+  [525] eq
+  [526] jmpifz [542] ............................ (case) #DuplicateShader:
+  [529] pushzero ................................ <0>
+  [530] getlocal 2 .............................. <tTarget>
+  [532] getlocal 3 .............................. <tDataList>
+  [534] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [536] extcall 686 ............................. DuplicateShader(0, tTarget, tDataList)
+  [539] jmp [2846]
+  [542] peek 0
+  [544] pushsymb 687 ............................ <#SetShader>
+  [547] eq
+  [548] jmpifz [564] ............................ (case) #SetShader:
+  [551] pushzero ................................ <0>
+  [552] getlocal 2 .............................. <tTarget>
+  [554] getlocal 3 .............................. <tDataList>
+  [556] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [558] extcall 687 ............................. SetShader(0, tTarget, tDataList)
+  [561] jmp [2846]
+  [564] peek 0
+  [566] pushsymb 688 ............................ <#SetSkybox>
+  [569] eq
+  [570] jmpifz [586] ............................ (case) #SetSkybox:
+  [573] pushzero ................................ <0>
+  [574] getlocal 2 .............................. <tTarget>
+  [576] getlocal 3 .............................. <tDataList>
+  [578] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [580] extcall 688 ............................. SetSkybox(0, tTarget, tDataList)
+  [583] jmp [2846]
+  [586] peek 0
+  [588] pushsymb 689 ............................ <#Iterate>
+  [591] eq
+  [592] jmpifz [608] ............................ (case) #Iterate:
+  [595] pushzero ................................ <0>
+  [596] getlocal 2 .............................. <tTarget>
+  [598] getlocal 3 .............................. <tDataList>
+  [600] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [602] extcall 689 ............................. Iterate(0, tTarget, tDataList)
+  [605] jmp [2846]
+  [608] peek 0
+  [610] pushsymb 690 ............................ <#CLONEMODELS>
+  [613] eq
+  [614] jmpifz [629] ............................ (case) #CLONEMODELS:
+  [617] getlocal 2 .............................. <tTarget>
+  [619] getlocal 3 .............................. <tDataList>
+  [621] pusharglistnoret 2 ...................... <tTarget, tDataList>
+  [623] extcall 690 ............................. CLONEMODELS(tTarget, tDataList)
+  [626] jmp [2846]
+  [629] peek 0
+  [631] pushsymb 691 ............................ <#CloneCameras>
+  [634] eq
+  [635] jmpifz [650] ............................ (case) #CloneCameras:
+  [638] getlocal 2 .............................. <tTarget>
+  [640] getlocal 3 .............................. <tDataList>
+  [642] pusharglistnoret 2 ...................... <tTarget, tDataList>
+  [644] extcall 691 ............................. CloneCameras(tTarget, tDataList)
+  [647] jmp [2846]
+  [650] peek 0
+  [652] pushsymb 692 ............................ <#CloneModel>
+  [655] eq
+  [656] jmpifz [672] ............................ (case) #CloneModel:
+  [659] pushzero ................................ <0>
+  [660] getlocal 2 .............................. <tTarget>
+  [662] getlocal 3 .............................. <tDataList>
+  [664] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [666] extcall 692 ............................. CloneModel(0, tTarget, tDataList)
+  [669] jmp [2846]
+  [672] peek 0
+  [674] pushsymb 199 ............................ <#Create3DText>
+  [676] eq
+  [677] jmpifz [692] ............................ (case) #Create3DText:
+  [680] pushzero ................................ <0>
+  [681] getlocal 2 .............................. <tTarget>
+  [683] getlocal 3 .............................. <tDataList>
+  [685] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [687] extcall 199 ............................. Create3DText(0, tTarget, tDataList)
+  [689] jmp [2846]
+  [692] peek 0
+  [694] pushsymb 217 ............................ <#CreateTextTexture>
+  [696] eq
+  [697] jmpifz [712] ............................ (case) #CreateTextTexture:
+  [700] pushzero ................................ <0>
+  [701] getlocal 2 .............................. <tTarget>
+  [703] getlocal 3 .............................. <tDataList>
+  [705] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [707] extcall 217 ............................. CreateTextTexture(0, tTarget, tDataList)
+  [709] jmp [2846]
+  [712] peek 0
+  [714] pushsymb 693 ............................ <#CreateTextButton>
+  [717] eq
+  [718] jmpifz [734] ............................ (case) #CreateTextButton:
+  [721] pushzero ................................ <0>
+  [722] getlocal 2 .............................. <tTarget>
+  [724] getlocal 3 .............................. <tDataList>
+  [726] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [728] extcall 693 ............................. CreateTextButton(0, tTarget, tDataList)
+  [731] jmp [2846]
+  [734] peek 0
+  [736] pushsymb 694 ............................ <#CreateButton>
+  [739] eq
+  [740] jmpifz [756] ............................ (case) #CreateButton:
+  [743] pushzero ................................ <0>
+  [744] getlocal 2 .............................. <tTarget>
+  [746] getlocal 3 .............................. <tDataList>
+  [748] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [750] extcall 694 ............................. CreateButton(0, tTarget, tDataList)
+  [753] jmp [2846]
+  [756] peek 0
+  [758] pushsymb 695 ............................ <#DeleteButton>
+  [761] eq
+  [762] jmpifz [778] ............................ (case) #DeleteButton:
+  [765] pushzero ................................ <0>
+  [766] getlocal 2 .............................. <tTarget>
+  [768] getlocal 3 .............................. <tDataList>
+  [770] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [772] extcall 695 ............................. DeleteButton(0, tTarget, tDataList)
+  [775] jmp [2846]
+  [778] peek 0
+  [780] pushsymb 696 ............................ <#SetButton>
+  [783] eq
+  [784] jmpifz [800] ............................ (case) #SetButton:
+  [787] pushzero ................................ <0>
+  [788] getlocal 2 .............................. <tTarget>
+  [790] getlocal 3 .............................. <tDataList>
+  [792] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [794] extcall 696 ............................. SetButton(0, tTarget, tDataList)
+  [797] jmp [2846]
+  [800] peek 0
+  [802] pushsymb 261 ............................ <#addModifier>
+  [805] eq
+  [806] jmpifz [822] ............................ (case) #addModifier:
+  [809] pushzero ................................ <0>
+  [810] getlocal 2 .............................. <tTarget>
+  [812] getlocal 3 .............................. <tDataList>
+  [814] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [816] extcall 261 ............................. addModifier(0, tTarget, tDataList)
+  [819] jmp [2846]
+  [822] peek 0
+  [824] pushsymb 697 ............................ <#AddToRotator>
+  [827] eq
+  [828] jmpifz [844] ............................ (case) #AddToRotator:
+  [831] pushzero ................................ <0>
+  [832] getlocal 2 .............................. <tTarget>
+  [834] getlocal 3 .............................. <tDataList>
+  [836] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [838] extcall 697 ............................. AddToRotator(0, tTarget, tDataList)
+  [841] jmp [2846]
+  [844] peek 0
+  [846] pushsymb 698 ............................ <#AddToScroller>
+  [849] eq
+  [850] jmpifz [866] ............................ (case) #AddToScroller:
+  [853] pushzero ................................ <0>
+  [854] getlocal 2 .............................. <tTarget>
+  [856] getlocal 3 .............................. <tDataList>
+  [858] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [860] extcall 698 ............................. AddToScroller(0, tTarget, tDataList)
+  [863] jmp [2846]
+  [866] peek 0
+  [868] pushsymb 699 ............................ <#AddToBillBoard>
+  [871] eq
+  [872] jmpifz [888] ............................ (case) #AddToBillBoard:
+  [875] pushzero ................................ <0>
+  [876] getlocal 2 .............................. <tTarget>
+  [878] getlocal 3 .............................. <tDataList>
+  [880] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [882] extcall 699 ............................. AddToBillBoard(0, tTarget, tDataList)
+  [885] jmp [2846]
+  [888] peek 0
+  [890] pushsymb 700 ............................ <#AddToInterPolator>
+  [893] eq
+  [894] jmpifz [910] ............................ (case) #AddToInterPolator:
+  [897] pushzero ................................ <0>
+  [898] getlocal 2 .............................. <tTarget>
+  [900] getlocal 3 .............................. <tDataList>
+  [902] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [904] extcall 700 ............................. AddToInterPolator(0, tTarget, tDataList)
+  [907] jmp [2846]
+  [910] peek 0
+  [912] pushsymb 701 ............................ <#AddToPointAt>
+  [915] eq
+  [916] jmpifz [932] ............................ (case) #AddToPointAt:
+  [919] pushzero ................................ <0>
+  [920] getlocal 2 .............................. <tTarget>
+  [922] getlocal 3 .............................. <tDataList>
+  [924] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [926] extcall 701 ............................. AddToPointAt(0, tTarget, tDataList)
+  [929] jmp [2846]
+  [932] peek 0
+  [934] pushsymb 702 ............................ <#AddToMimic>
+  [937] eq
+  [938] jmpifz [954] ............................ (case) #AddToMimic:
+  [941] pushzero ................................ <0>
+  [942] getlocal 2 .............................. <tTarget>
+  [944] getlocal 3 .............................. <tDataList>
+  [946] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [948] extcall 702 ............................. AddToMimic(0, tTarget, tDataList)
+  [951] jmp [2846]
+  [954] peek 0
+  [956] pushsymb 703 ............................ <#StoreParent>
+  [959] eq
+  [960] jmpifz [976] ............................ (case) #StoreParent:
+  [963] pushzero ................................ <0>
+  [964] getlocal 2 .............................. <tTarget>
+  [966] getlocal 3 .............................. <tDataList>
+  [968] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [970] extcall 703 ............................. StoreParent(0, tTarget, tDataList)
+  [973] jmp [2846]
+  [976] peek 0
+  [978] pushsymb 704 ............................ <#SetParent>
+  [981] eq
+  [982] jmpifz [998] ............................ (case) #SetParent:
+  [985] pushzero ................................ <0>
+  [986] getlocal 2 .............................. <tTarget>
+  [988] getlocal 3 .............................. <tDataList>
+  [990] pusharglistnoret 3 ...................... <0, tTarget, tDataList>
+  [992] extcall 704 ............................. SetParent(0, tTarget, tDataList)
+  [995] jmp [2846]
+  [998] peek 0
+  [1000] pushsymb 705 ........................... <#SetPosDir>
+  [1003] eq
+  [1004] jmpifz [1020] .......................... (case) #SetPosDir:
+  [1007] pushzero ............................... <0>
+  [1008] getlocal 2 ............................. <tTarget>
+  [1010] getlocal 3 ............................. <tDataList>
+  [1012] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1014] extcall 705 ............................ SetPosDir(0, tTarget, tDataList)
+  [1017] jmp [2846]
+  [1020] peek 0
+  [1022] pushsymb 706 ........................... <#CopyTextureCoordinates>
+  [1025] eq
+  [1026] jmpifz [1041] .......................... (case) #CopyTextureCoordinates:
+  [1029] getlocal 2 ............................. <tTarget>
+  [1031] getlocal 3 ............................. <tDataList>
+  [1033] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1035] extcall 706 ............................ CopyTextureCoordinates(tTarget, tDataList)
+  [1038] jmp [2846]
+  [1041] peek 0
+  [1043] pushsymb 228 ........................... <#SETVISIBLE>
+  [1045] eq
+  [1046] jmpifz [1061] .......................... (case) #SETVISIBLE:
+  [1049] pushzero ............................... <0>
+  [1050] getlocal 2 ............................. <tTarget>
+  [1052] getlocal 3 ............................. <tDataList>
+  [1054] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1056] extcall 228 ............................ SETVISIBLE(0, tTarget, tDataList)
+  [1058] jmp [2846]
+  [1061] peek 0
+  [1063] pushsymb 707 ........................... <#SetAntiAliasing>
+  [1066] eq
+  [1067] jmpifz [1082] .......................... (case) #SetAntiAliasing:
+  [1070] getlocal 2 ............................. <tTarget>
+  [1072] getlocal 3 ............................. <tDataList>
+  [1074] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1076] extcall 707 ............................ SetAntiAliasing(tTarget, tDataList)
+  [1079] jmp [2846]
+  [1082] peek 0
+  [1084] pushsymb 708 ........................... <#setCamera>
+  [1087] eq
+  [1088] jmpifz [1103] .......................... (case) #setCamera:
+  [1091] getlocal 2 ............................. <tTarget>
+  [1093] getlocal 3 ............................. <tDataList>
+  [1095] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1097] extcall 708 ............................ setCamera(tTarget, tDataList)
+  [1100] jmp [2846]
+  [1103] peek 0
+  [1105] pushsymb 709 ........................... <#AddCameraToSprite>
+  [1108] eq
+  [1109] jmpifz [1125] .......................... (case) #AddCameraToSprite:
+  [1112] pushzero ............................... <0>
+  [1113] getlocal 2 ............................. <tTarget>
+  [1115] getlocal 3 ............................. <tDataList>
+  [1117] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1119] extcall 709 ............................ AddCameraToSprite(0, tTarget, tDataList)
+  [1122] jmp [2846]
+  [1125] peek 0
+  [1127] pushsymb 710 ........................... <#RemoveCameraFromSprite>
+  [1130] eq
+  [1131] jmpifz [1147] .......................... (case) #RemoveCameraFromSprite:
+  [1134] pushzero ............................... <0>
+  [1135] getlocal 2 ............................. <tTarget>
+  [1137] getlocal 3 ............................. <tDataList>
+  [1139] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1141] extcall 710 ............................ RemoveCameraFromSprite(0, tTarget, tDataList)
+  [1144] jmp [2846]
+  [1147] peek 0
+  [1149] pushsymb 711 ........................... <#ActivateCamera>
+  [1152] eq
+  [1153] jmpifz [1168] .......................... (case) #ActivateCamera:
+  [1156] getlocal 2 ............................. <tTarget>
+  [1158] getlocal 3 ............................. <tDataList>
+  [1160] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1162] extcall 711 ............................ ActivateCamera(tTarget, tDataList)
+  [1165] jmp [2846]
+  [1168] peek 0
+  [1170] pushsymb 712 ........................... <#deleteLight>
+  [1173] eq
+  [1174] jmpifz [1189] .......................... (case) #deleteLight:
+  [1177] getlocal 2 ............................. <tTarget>
+  [1179] getlocal 3 ............................. <tDataList>
+  [1181] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1183] extcall 712 ............................ deleteLight(tTarget, tDataList)
+  [1186] jmp [2846]
+  [1189] peek 0
+  [1191] pushsymb 713 ........................... <#createlight>
+  [1194] eq
+  [1195] jmpifz [1210] .......................... (case) #createlight:
+  [1198] getlocal 2 ............................. <tTarget>
+  [1200] getlocal 3 ............................. <tDataList>
+  [1202] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1204] extcall 713 ............................ createlight(tTarget, tDataList)
+  [1207] jmp [2846]
+  [1210] peek 0
+  [1212] pushsymb 714 ........................... <#SetLight>
+  [1215] eq
+  [1216] jmpifz [1232] .......................... (case) #SetLight:
+  [1219] pushzero ............................... <0>
+  [1220] getlocal 2 ............................. <tTarget>
+  [1222] getlocal 3 ............................. <tDataList>
+  [1224] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1226] extcall 714 ............................ SetLight(0, tTarget, tDataList)
+  [1229] jmp [2846]
+  [1232] peek 0
+  [1234] pushsymb 715 ........................... <#CreateGroup>
+  [1237] eq
+  [1238] jmpifz [1253] .......................... (case) #CreateGroup:
+  [1241] getlocal 2 ............................. <tTarget>
+  [1243] getlocal 3 ............................. <tDataList>
+  [1245] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1247] extcall 715 ............................ CreateGroup(tTarget, tDataList)
+  [1250] jmp [2846]
+  [1253] peek 0
+  [1255] pushsymb 716 ........................... <#AddToGroup>
+  [1258] eq
+  [1259] jmpifz [1274] .......................... (case) #AddToGroup:
+  [1262] getlocal 2 ............................. <tTarget>
+  [1264] getlocal 3 ............................. <tDataList>
+  [1266] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1268] extcall 716 ............................ AddToGroup(tTarget, tDataList)
+  [1271] jmp [2846]
+  [1274] peek 0
+  [1276] pushsymb 419 ........................... <#load>
+  [1279] eq
+  [1280] jmpifz [1295] .......................... (case) #load:
+  [1283] getlocal 2 ............................. <tTarget>
+  [1285] getlocal 3 ............................. <tDataList>
+  [1287] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1289] extcall 419 ............................ load(tTarget, tDataList)
+  [1292] jmp [2846]
+  [1295] peek 0
+  [1297] pushsymb 717 ........................... <#AddValue>
+  [1300] eq
+  [1301] jmpifz [1317] .......................... (case) #AddValue:
+  [1304] pushzero ............................... <0>
+  [1305] getlocal 2 ............................. <tTarget>
+  [1307] getlocal 3 ............................. <tDataList>
+  [1309] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1311] extcall 717 ............................ AddValue(0, tTarget, tDataList)
+  [1314] jmp [2846]
+  [1317] peek 0
+  [1319] pushsymb 718 ........................... <#SetValue>
+  [1322] eq
+  [1323] jmpifz [1339] .......................... (case) #SetValue:
+  [1326] pushzero ............................... <0>
+  [1327] getlocal 2 ............................. <tTarget>
+  [1329] getlocal 3 ............................. <tDataList>
+  [1331] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1333] extcall 718 ............................ SetValue(0, tTarget, tDataList)
+  [1336] jmp [2846]
+  [1339] peek 0
+  [1341] pushsymb 719 ........................... <#RemoveValue>
+  [1344] eq
+  [1345] jmpifz [1361] .......................... (case) #RemoveValue:
+  [1348] pushzero ............................... <0>
+  [1349] getlocal 2 ............................. <tTarget>
+  [1351] getlocal 3 ............................. <tDataList>
+  [1353] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1355] extcall 719 ............................ RemoveValue(0, tTarget, tDataList)
+  [1358] jmp [2846]
+  [1361] peek 0
+  [1363] pushsymb 672 ........................... <#AddToList>
+  [1366] eq
+  [1367] jmpifz [1383] .......................... (case) #AddToList:
+  [1370] pushzero ............................... <0>
+  [1371] getlocal 2 ............................. <tTarget>
+  [1373] getlocal 3 ............................. <tDataList>
+  [1375] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1377] extcall 672 ............................ AddToList(0, tTarget, tDataList)
+  [1380] jmp [2846]
+  [1383] peek 0
+  [1385] pushsymb 673 ........................... <#RemoveFromList>
+  [1388] eq
+  [1389] jmpifz [1405] .......................... (case) #RemoveFromList:
+  [1392] pushzero ............................... <0>
+  [1393] getlocal 2 ............................. <tTarget>
+  [1395] getlocal 3 ............................. <tDataList>
+  [1397] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1399] extcall 673 ............................ RemoveFromList(0, tTarget, tDataList)
+  [1402] jmp [2846]
+  [1405] peek 0
+  [1407] pushsymb 720 ........................... <#RemoveFromHandlerList>
+  [1410] eq
+  [1411] jmpifz [1427] .......................... (case) #RemoveFromHandlerList:
+  [1414] pushzero ............................... <0>
+  [1415] getlocal 2 ............................. <tTarget>
+  [1417] getlocal 3 ............................. <tDataList>
+  [1419] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1421] extcall 720 ............................ RemoveFromHandlerList(0, tTarget, tDataList)
+  [1424] jmp [2846]
+  [1427] peek 0
+  [1429] pushsymb 721 ........................... <#AddScript>
+  [1432] eq
+  [1433] jmpifz [1448] .......................... (case) #AddScript:
+  [1436] getlocal 2 ............................. <tTarget>
+  [1438] getlocal 3 ............................. <tDataList>
+  [1440] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1442] extcall 721 ............................ AddScript(tTarget, tDataList)
+  [1445] jmp [2846]
+  [1448] peek 0
+  [1450] pushsymb 722 ........................... <#AddModule>
+  [1453] eq
+  [1454] jmpifz [1469] .......................... (case) #AddModule:
+  [1457] getlocal 2 ............................. <tTarget>
+  [1459] getlocal 3 ............................. <tDataList>
+  [1461] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1463] extcall 722 ............................ AddModule(tTarget, tDataList)
+  [1466] jmp [2846]
+  [1469] peek 0
+  [1471] pushsymb 723 ........................... <#DeleteScript>
+  [1474] eq
+  [1475] jmpifz [1491] .......................... (case) #DeleteScript:
+  [1478] pushzero ............................... <0>
+  [1479] getlocal 2 ............................. <tTarget>
+  [1481] getlocal 3 ............................. <tDataList>
+  [1483] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1485] extcall 723 ............................ DeleteScript(0, tTarget, tDataList)
+  [1488] jmp [2846]
+  [1491] peek 0
+  [1493] pushsymb 724 ........................... <#SetAttribute>
+  [1496] eq
+  [1497] jmpifz [1512] .......................... (case) #SetAttribute:
+  [1500] getlocal 2 ............................. <tTarget>
+  [1502] getlocal 3 ............................. <tDataList>
+  [1504] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1506] extcall 724 ............................ SetAttribute(tTarget, tDataList)
+  [1509] jmp [2846]
+  [1512] peek 0
+  [1514] pushsymb 725 ........................... <#AddObstacle>
+  [1517] eq
+  [1518] jmpifz [1534] .......................... (case) #AddObstacle:
+  [1521] pushzero ............................... <0>
+  [1522] getlocal 2 ............................. <tTarget>
+  [1524] getlocal 3 ............................. <tDataList>
+  [1526] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1528] extcall 725 ............................ AddObstacle(0, tTarget, tDataList)
+  [1531] jmp [2846]
+  [1534] peek 0
+  [1536] pushsymb 726 ........................... <#SetObstacle>
+  [1539] eq
+  [1540] jmpifz [1555] .......................... (case) #SetObstacle:
+  [1543] getlocal 2 ............................. <tTarget>
+  [1545] getlocal 3 ............................. <tDataList>
+  [1547] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1549] extcall 726 ............................ SetObstacle(tTarget, tDataList)
+  [1552] jmp [2846]
+  [1555] peek 0
+  [1557] pushsymb 727 ........................... <#AddCollisionReport>
+  [1560] eq
+  [1561] jmpifz [1576] .......................... (case) #AddCollisionReport:
+  [1564] getlocal 2 ............................. <tTarget>
+  [1566] getlocal 3 ............................. <tDataList>
+  [1568] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1570] extcall 727 ............................ AddCollisionReport(tTarget, tDataList)
+  [1573] jmp [2846]
+  [1576] peek 0
+  [1578] pushsymb 728 ........................... <#Defog>
+  [1581] eq
+  [1582] jmpifz [1595] .......................... (case) #Defog:
+  [1585] getlocal 2 ............................. <tTarget>
+  [1587] pusharglistnoret 1 ..................... <tTarget>
+  [1589] extcall 728 ............................ Defog(tTarget)
+  [1592] jmp [2846]
+  [1595] peek 0
+  [1597] pushsymb 729 ........................... <#SetFog>
+  [1600] eq
+  [1601] jmpifz [1617] .......................... (case) #SetFog:
+  [1604] pushzero ............................... <0>
+  [1605] getlocal 2 ............................. <tTarget>
+  [1607] getlocal 3 ............................. <tDataList>
+  [1609] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1611] extcall 729 ............................ SetFog(0, tTarget, tDataList)
+  [1614] jmp [2846]
+  [1617] peek 0
+  [1619] pushsymb 730 ........................... <#CreateSprite>
+  [1622] eq
+  [1623] jmpifz [1638] .......................... (case) #CreateSprite:
+  [1626] getlocal 2 ............................. <tTarget>
+  [1628] getlocal 3 ............................. <tDataList>
+  [1630] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1632] extcall 730 ............................ CreateSprite(tTarget, tDataList)
+  [1635] jmp [2846]
+  [1638] peek 0
+  [1640] pushsymb 731 ........................... <#ResetSprites>
+  [1643] eq
+  [1644] jmpifz [1659] .......................... (case) #ResetSprites:
+  [1647] getlocal 2 ............................. <tTarget>
+  [1649] getlocal 3 ............................. <tDataList>
+  [1651] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1653] extcall 731 ............................ ResetSprites(tTarget, tDataList)
+  [1656] jmp [2846]
+  [1659] peek 0
+  [1661] pushsymb 732 ........................... <#DeleteSprite>
+  [1664] eq
+  [1665] jmpifz [1680] .......................... (case) #DeleteSprite:
+  [1668] getlocal 2 ............................. <tTarget>
+  [1670] getlocal 3 ............................. <tDataList>
+  [1672] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1674] extcall 732 ............................ DeleteSprite(tTarget, tDataList)
+  [1677] jmp [2846]
+  [1680] peek 0
+  [1682] pushsymb 733 ........................... <#CreateImage>
+  [1685] eq
+  [1686] jmpifz [1701] .......................... (case) #CreateImage:
+  [1689] getlocal 2 ............................. <tTarget>
+  [1691] getlocal 3 ............................. <tDataList>
+  [1693] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1695] extcall 733 ............................ CreateImage(tTarget, tDataList)
+  [1698] jmp [2846]
+  [1701] peek 0
+  [1703] pushsymb 734 ........................... <#SetText>
+  [1706] eq
+  [1707] jmpifz [1722] .......................... (case) #SetText:
+  [1710] getlocal 2 ............................. <tTarget>
+  [1712] getlocal 3 ............................. <tDataList>
+  [1714] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1716] extcall 734 ............................ SetText(tTarget, tDataList)
+  [1719] jmp [2846]
+  [1722] peek 0
+  [1724] pushsymb 735 ........................... <#SetModel>
+  [1727] eq
+  [1728] jmpifz [1744] .......................... (case) #SetModel:
+  [1731] pushzero ............................... <0>
+  [1732] getlocal 2 ............................. <tTarget>
+  [1734] getlocal 3 ............................. <tDataList>
+  [1736] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1738] extcall 735 ............................ SetModel(0, tTarget, tDataList)
+  [1741] jmp [2846]
+  [1744] peek 0
+  [1746] pushsymb 736 ........................... <#AddTimer>
+  [1749] eq
+  [1750] jmpifz [1766] .......................... (case) #AddTimer:
+  [1753] pushzero ............................... <0>
+  [1754] getlocal 2 ............................. <tTarget>
+  [1756] getlocal 3 ............................. <tDataList>
+  [1758] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1760] extcall 736 ............................ AddTimer(0, tTarget, tDataList)
+  [1763] jmp [2846]
+  [1766] peek 0
+  [1768] pushsymb 737 ........................... <#RemoveTimer>
+  [1771] eq
+  [1772] jmpifz [1788] .......................... (case) #RemoveTimer:
+  [1775] pushzero ............................... <0>
+  [1776] getlocal 2 ............................. <tTarget>
+  [1778] getlocal 3 ............................. <tDataList>
+  [1780] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1782] extcall 737 ............................ RemoveTimer(0, tTarget, tDataList)
+  [1785] jmp [2846]
+  [1788] peek 0
+  [1790] pushsymb 738 ........................... <#LinkToTheRoot>
+  [1793] eq
+  [1794] jmpifz [1810] .......................... (case) #LinkToTheRoot:
+  [1797] pushzero ............................... <0>
+  [1798] getlocal 2 ............................. <tTarget>
+  [1800] getlocal 3 ............................. <tDataList>
+  [1802] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1804] extcall 738 ............................ LinkToTheRoot(0, tTarget, tDataList)
+  [1807] jmp [2846]
+  [1810] peek 0
+  [1812] pushsymb 739 ........................... <#DeleteTheModels>
+  [1815] eq
+  [1816] jmpifz [1832] .......................... (case) #DeleteTheModels:
+  [1819] pushzero ............................... <0>
+  [1820] getlocal 2 ............................. <tTarget>
+  [1822] getlocal 3 ............................. <tDataList>
+  [1824] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [1826] extcall 739 ............................ DeleteTheModels(0, tTarget, tDataList)
+  [1829] jmp [2846]
+  [1832] peek 0
+  [1834] pushsymb 740 ........................... <#SetAnimation>
+  [1837] eq
+  [1838] jmpifz [1853] .......................... (case) #SetAnimation:
+  [1841] getlocal 2 ............................. <tTarget>
+  [1843] getlocal 3 ............................. <tDataList>
+  [1845] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1847] extcall 740 ............................ SetAnimation(tTarget, tDataList)
+  [1850] jmp [2846]
+  [1853] peek 0
+  [1855] pushsymb 741 ........................... <#BlendShader>
+  [1858] eq
+  [1859] jmpifz [1874] .......................... (case) #BlendShader:
+  [1862] getlocal 2 ............................. <tTarget>
+  [1864] getlocal 3 ............................. <tDataList>
+  [1866] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1868] extcall 741 ............................ BlendShader(tTarget, tDataList)
+  [1871] jmp [2846]
+  [1874] peek 0
+  [1876] pushsymb 742 ........................... <#CMCreateTexturesCast>
+  [1879] eq
+  [1880] jmpifz [1893] .......................... (case) #CMCreateTexturesCast:
+  [1883] getlocal 2 ............................. <tTarget>
+  [1885] pusharglistnoret 1 ..................... <tTarget>
+  [1887] extcall 742 ............................ CMCreateTexturesCast(tTarget)
+  [1890] jmp [2846]
+  [1893] peek 0
+  [1895] pushsymb 743 ........................... <#CMCloneAndSetModelsCast>
+  [1898] eq
+  [1899] jmpifz [1914] .......................... (case) #CMCloneAndSetModelsCast:
+  [1902] getlocal 2 ............................. <tTarget>
+  [1904] getlocal 3 ............................. <tDataList>
+  [1906] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1908] extcall 743 ............................ CMCloneAndSetModelsCast(tTarget, tDataList)
+  [1911] jmp [2846]
+  [1914] peek 0
+  [1916] pushsymb 744 ........................... <#SetParameters>
+  [1919] eq
+  [1920] jmpifz [1935] .......................... (case) #SetParameters:
+  [1923] getlocal 2 ............................. <tTarget>
+  [1925] getlocal 3 ............................. <tDataList>
+  [1927] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1929] extcall 744 ............................ SetParameters(tTarget, tDataList)
+  [1932] jmp [2846]
+  [1935] peek 0
+  [1937] pushsymb 745 ........................... <#PlayMenuAnimation>
+  [1940] eq
+  [1941] jmpifz [1956] .......................... (case) #PlayMenuAnimation:
+  [1944] getlocal 2 ............................. <tTarget>
+  [1946] getlocal 3 ............................. <tDataList>
+  [1948] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1950] extcall 745 ............................ PlayMenuAnimation(tTarget, tDataList)
+  [1953] jmp [2846]
+  [1956] peek 0
+  [1958] pushsymb 421 ........................... <#SetupSoundManager>
+  [1961] eq
+  [1962] jmpifz [1973] .......................... (case) #SetupSoundManager:
+  [1965] pusharglistnoret 0 ..................... <>
+  [1967] extcall 421 ............................ SetupSoundManager()
+  [1970] jmp [2846]
+  [1973] peek 0
+  [1975] pushsymb 289 ........................... <#PlaySound>
+  [1978] eq
+  [1979] jmpifz [1994] .......................... (case) #PlaySound:
+  [1982] getlocal 2 ............................. <tTarget>
+  [1984] getlocal 3 ............................. <tDataList>
+  [1986] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [1988] extcall 289 ............................ PlaySound(tTarget, tDataList)
+  [1991] jmp [2846]
+  [1994] peek 0
+  [1996] pushsymb 746 ........................... <#StopSound>
+  [1999] eq
+  [2000] jmpifz [2015] .......................... (case) #StopSound:
+  [2003] getlocal 2 ............................. <tTarget>
+  [2005] getlocal 3 ............................. <tDataList>
+  [2007] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2009] extcall 746 ............................ StopSound(tTarget, tDataList)
+  [2012] jmp [2846]
+  [2015] peek 0
+  [2017] pushsymb 360 ........................... <#StopAllSound>
+  [2020] eq
+  [2021] jmpifz [2032] .......................... (case) #StopAllSound:
+  [2024] pusharglistnoret 0 ..................... <>
+  [2026] extcall 360 ............................ StopAllSound()
+  [2029] jmp [2846]
+  [2032] peek 0
+  [2034] pushsymb 747 ........................... <#SetSound>
+  [2037] eq
+  [2038] jmpifz [2053] .......................... (case) #SetSound:
+  [2041] getlocal 2 ............................. <tTarget>
+  [2043] getlocal 3 ............................. <tDataList>
+  [2045] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2047] extcall 747 ............................ SetSound(tTarget, tDataList)
+  [2050] jmp [2846]
+  [2053] peek 0
+  [2055] pushsymb 748 ........................... <#FadeSound>
+  [2058] eq
+  [2059] jmpifz [2074] .......................... (case) #FadeSound:
+  [2062] getlocal 2 ............................. <tTarget>
+  [2064] getlocal 3 ............................. <tDataList>
+  [2066] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2068] extcall 748 ............................ FadeSound(tTarget, tDataList)
+  [2071] jmp [2846]
+  [2074] peek 0
+  [2076] pushsymb 749 ........................... <#BindKey>
+  [2079] eq
+  [2080] jmpifz [2095] .......................... (case) #BindKey:
+  [2083] getlocal 2 ............................. <tTarget>
+  [2085] getlocal 3 ............................. <tDataList>
+  [2087] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2089] extcall 749 ............................ BindKey(tTarget, tDataList)
+  [2092] jmp [2846]
+  [2095] peek 0
+  [2097] pushsymb 750 ........................... <#UnBindKey>
+  [2100] eq
+  [2101] jmpifz [2116] .......................... (case) #UnBindKey:
+  [2104] getlocal 2 ............................. <tTarget>
+  [2106] getlocal 3 ............................. <tDataList>
+  [2108] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2110] extcall 750 ............................ UnBindKey(tTarget, tDataList)
+  [2113] jmp [2846]
+  [2116] peek 0
+  [2118] pushsymb 751 ........................... <#AddButton3D>
+  [2121] eq
+  [2122] jmpifz [2137] .......................... (case) #AddButton3D:
+  [2125] getlocal 2 ............................. <tTarget>
+  [2127] getlocal 3 ............................. <tDataList>
+  [2129] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2131] extcall 751 ............................ AddButton3D(tTarget, tDataList)
+  [2134] jmp [2846]
+  [2137] peek 0
+  [2139] pushsymb 752 ........................... <#RemoveButton3D>
+  [2142] eq
+  [2143] jmpifz [2158] .......................... (case) #RemoveButton3D:
+  [2146] getlocal 2 ............................. <tTarget>
+  [2148] getlocal 3 ............................. <tDataList>
+  [2150] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2152] extcall 752 ............................ RemoveButton3D(tTarget, tDataList)
+  [2155] jmp [2846]
+  [2158] peek 0
+  [2160] pushsymb 753 ........................... <#SetupLighting>
+  [2163] eq
+  [2164] jmpifz [2179] .......................... (case) #SetupLighting:
+  [2167] getlocal 2 ............................. <tTarget>
+  [2169] getlocal 3 ............................. <tDataList>
+  [2171] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2173] extcall 753 ............................ SetupLighting(tTarget, tDataList)
+  [2176] jmp [2846]
+  [2179] peek 0
+  [2181] pushsymb 754 ........................... <#wait>
+  [2184] eq
+  [2185] jmpifz [2198] .......................... (case) #wait:
+  [2188] gettoplevelprop 33 ..................... <_movie>
+  [2190] pusharglistnoret 1 ..................... <_movie>
+  [2192] objcall 364 ............................ _movie.updateStage()
+  [2195] jmp [2846]
+  [2198] peek 0
+  [2200] pushsymb 364 ........................... <#updateStage>
+  [2203] eq
+  [2204] jmpifz [2217] .......................... (case) #updateStage:
+  [2207] gettoplevelprop 33 ..................... <_movie>
+  [2209] pusharglistnoret 1 ..................... <_movie>
+  [2211] objcall 364 ............................ _movie.updateStage()
+  [2214] jmp [2846]
+  [2217] peek 0
+  [2219] pushsymb 755 ........................... <#puppetTempo>
+  [2222] eq
+  [2223] jmpifz [2243] .......................... (case) #puppetTempo:
+  [2226] gettoplevelprop 33 ..................... <_movie>
+  [2228] getlocal 2 ............................. <tTarget>
+  [2230] pusharglist 1 .......................... <tTarget>
+  [2232] extcall 503 ............................ <value(tTarget)>
+  [2235] pusharglistnoret 2 ..................... <_movie, value(tTarget)>
+  [2237] objcall 755 ............................ _movie.puppetTempo(value(tTarget))
+  [2240] jmp [2846]
+  [2243] peek 0
+  [2245] pushsymb 756 ........................... <#registerForEvent>
+  [2248] eq
+  [2249] jmpifz [2264] .......................... (case) #registerForEvent:
+  [2252] getlocal 2 ............................. <tTarget>
+  [2254] getlocal 3 ............................. <tDataList>
+  [2256] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2258] extcall 756 ............................ registerForEvent(tTarget, tDataList)
+  [2261] jmp [2846]
+  [2264] peek 0
+  [2266] pushsymb 757 ........................... <#unregisterAllEvents>
+  [2269] eq
+  [2270] jmpifz [2285] .......................... (case) #unregisterAllEvents:
+  [2273] getlocal 2 ............................. <tTarget>
+  [2275] getlocal 3 ............................. <tDataList>
+  [2277] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2279] extcall 757 ............................ unregisterAllEvents(tTarget, tDataList)
+  [2282] jmp [2846]
+  [2285] peek 0
+  [2287] pushsymb 758 ........................... <#BlackOut>
+  [2290] eq
+  [2291] jmpifz [2306] .......................... (case) #BlackOut:
+  [2294] getlocal 2 ............................. <tTarget>
+  [2296] getlocal 3 ............................. <tDataList>
+  [2298] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2300] extcall 758 ............................ BlackOut(tTarget, tDataList)
+  [2303] jmp [2846]
+  [2306] peek 0
+  [2308] pushsymb 759 ........................... <#Fade>
+  [2311] eq
+  [2312] jmpifz [2327] .......................... (case) #Fade:
+  [2315] getlocal 2 ............................. <tTarget>
+  [2317] getlocal 3 ............................. <tDataList>
+  [2319] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2321] extcall 759 ............................ Fade(tTarget, tDataList)
+  [2324] jmp [2846]
+  [2327] peek 0
+  [2329] pushsymb 760 ........................... <#ClearFades>
+  [2332] eq
+  [2333] jmpifz [2348] .......................... (case) #ClearFades:
+  [2336] getlocal 2 ............................. <tTarget>
+  [2338] getlocal 3 ............................. <tDataList>
+  [2340] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2342] extcall 760 ............................ ClearFades(tTarget, tDataList)
+  [2345] jmp [2846]
+  [2348] peek 0
+  [2350] pushsymb 761 ........................... <#RunHandler>
+  [2353] eq
+  [2354] jmpifz [2369] .......................... (case) #RunHandler:
+  [2357] getlocal 2 ............................. <tTarget>
+  [2359] getlocal 3 ............................. <tDataList>
+  [2361] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2363] extcall 761 ............................ RunHandler(tTarget, tDataList)
+  [2366] jmp [2846]
+  [2369] peek 0
+  [2371] pushsymb 762 ........................... <#CreateItem3D>
+  [2374] eq
+  [2375] jmpifz [2390] .......................... (case) #CreateItem3D:
+  [2378] getlocal 2 ............................. <tTarget>
+  [2380] getlocal 3 ............................. <tDataList>
+  [2382] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2384] extcall 762 ............................ CreateItem3D(tTarget, tDataList)
+  [2387] jmp [2846]
+  [2390] peek 0
+  [2392] pushsymb 763 ........................... <#DeleteItem3D>
+  [2395] eq
+  [2396] jmpifz [2411] .......................... (case) #DeleteItem3D:
+  [2399] getlocal 2 ............................. <tTarget>
+  [2401] getlocal 3 ............................. <tDataList>
+  [2403] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2405] extcall 763 ............................ DeleteItem3D(tTarget, tDataList)
+  [2408] jmp [2846]
+  [2411] peek 0
+  [2413] pushsymb 764 ........................... <#SetItem3D>
+  [2416] eq
+  [2417] jmpifz [2432] .......................... (case) #SetItem3D:
+  [2420] getlocal 2 ............................. <tTarget>
+  [2422] getlocal 3 ............................. <tDataList>
+  [2424] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2426] extcall 764 ............................ SetItem3D(tTarget, tDataList)
+  [2429] jmp [2846]
+  [2432] peek 0
+  [2434] pushsymb 480 ........................... <#ManipulateTime>
+  [2437] eq
+  [2438] jmpifz [2453] .......................... (case) #ManipulateTime:
+  [2441] getlocal 2 ............................. <tTarget>
+  [2443] getlocal 3 ............................. <tDataList>
+  [2445] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2447] extcall 480 ............................ ManipulateTime(tTarget, tDataList)
+  [2450] jmp [2846]
+  [2453] peek 0
+  [2455] pushsymb 765 ........................... <#MiniCalculator>
+  [2458] eq
+  [2459] jmpifz [2475] .......................... (case) #MiniCalculator:
+  [2462] pushzero ............................... <0>
+  [2463] getlocal 2 ............................. <tTarget>
+  [2465] getlocal 3 ............................. <tDataList>
+  [2467] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [2469] extcall 765 ............................ MiniCalculator(0, tTarget, tDataList)
+  [2472] jmp [2846]
+  [2475] peek 0
+  [2477] pushsymb 766 ........................... <#cursor>
+  [2480] eq
+  [2481] jmpifz [2502] .......................... (case) #cursor:
+  [2484] gettoplevelprop 387 .................... <_player>
+  [2487] getlocal 2 ............................. <tTarget>
+  [2489] pusharglist 1 .......................... <tTarget>
+  [2491] extcall 503 ............................ <value(tTarget)>
+  [2494] pusharglistnoret 2 ..................... <_player, value(tTarget)>
+  [2496] objcall 766 ............................ _player.cursor(value(tTarget))
+  [2499] jmp [2846]
+  [2502] peek 0
+  [2504] pushsymb 767 ........................... <#unload>
+  [2507] eq
+  [2508] jmpifz [2525] .......................... (case) #unload:
+  [2511] getlocal 2 ............................. <tTarget>
+  [2513] pusharglist 1 .......................... <tTarget>
+  [2515] extcall 64 ............................. <member(tTarget)>
+  [2517] pusharglistnoret 1 ..................... <member(tTarget)>
+  [2519] objcall 767 ............................ member(tTarget).unload()
+  [2522] jmp [2846]
+  [2525] peek 0
+  [2527] pushsymb 768 ........................... <#CreateTimeOut>
+  [2530] eq
+  [2531] jmpifz [2546] .......................... (case) #CreateTimeOut:
+  [2534] getlocal 2 ............................. <tTarget>
+  [2536] getlocal 3 ............................. <tDataList>
+  [2538] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2540] extcall 768 ............................ CreateTimeOut(tTarget, tDataList)
+  [2543] jmp [2846]
+  [2546] peek 0
+  [2548] pushsymb 769 ........................... <#goto>
+  [2551] eq
+  [2552] jmpifz [2567] .......................... (case) #goto:
+  [2555] getlocal 2 ............................. <tTarget>
+  [2557] getlocal 3 ............................. <tDataList>
+  [2559] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2561] extcall 769 ............................ goto(tTarget, tDataList)
+  [2564] jmp [2846]
+  [2567] peek 0
+  [2569] pushsymb 535 ........................... <#do>
+  [2572] eq
+  [2573] jmpifz [2588] .......................... (case) #do:
+  [2576] getlocal 2 ............................. <tTarget>
+  [2578] getlocal 3 ............................. <tDataList>
+  [2580] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2582] extcall 770 ............................ DoHandler(tTarget, tDataList)
+  [2585] jmp [2846]
+  [2588] peek 0
+  [2590] pushsymb 771 ........................... <#PutMessage>
+  [2593] eq
+  [2594] jmpifz [2606] .......................... (case) #PutMessage:
+  [2597] getlocal 2 ............................. <tTarget>
+  [2599] pusharglistnoret 1 ..................... <tTarget>
+  [2601] extcall 57 ............................. put tTarget
+  [2603] jmp [2846]
+  [2606] peek 0
+  [2608] pushsymb 772 ........................... <#AlertMessage>
+  [2611] eq
+  [2612] jmpifz [2629] .......................... (case) #AlertMessage:
+  [2615] getlocal 2 ............................. <tTarget>
+  [2617] pusharglist 1 .......................... <tTarget>
+  [2619] extcall 67 ............................. <string(tTarget)>
+  [2621] pusharglistnoret 1 ..................... <string(tTarget)>
+  [2623] extcall 773 ............................ alert(string(tTarget))
+  [2626] jmp [2846]
+  [2629] peek 0
+  [2631] pushsymb 774 ........................... <#OpenWebPage>
+  [2634] eq
+  [2635] jmpifz [2650] .......................... (case) #OpenWebPage:
+  [2638] getlocal 2 ............................. <tTarget>
+  [2640] pushcons 1 ............................. <"_new">
+  [2642] pusharglistnoret 2 ..................... <tTarget, "_new">
+  [2644] extcall 414 ............................ gotoNetPage(tTarget, "_new")
+  [2647] jmp [2846]
+  [2650] peek 0
+  [2652] pushsymb 671 ........................... <#AddTrigger>
+  [2655] eq
+  [2656] jmpifz [2671] .......................... (case) #AddTrigger:
+  [2659] getlocal 2 ............................. <tTarget>
+  [2661] getlocal 3 ............................. <tDataList>
+  [2663] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2665] extcall 671 ............................ AddTrigger(tTarget, tDataList)
+  [2668] jmp [2846]
+  [2671] peek 0
+  [2673] pushsymb 775 ........................... <#Evaluate>
+  [2676] eq
+  [2677] jmpifz [2693] .......................... (case) #Evaluate:
+  [2680] pushzero ............................... <0>
+  [2681] getlocal 2 ............................. <tTarget>
+  [2683] getlocal 3 ............................. <tDataList>
+  [2685] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [2687] extcall 775 ............................ Evaluate(0, tTarget, tDataList)
+  [2690] jmp [2846]
+  [2693] peek 0
+  [2695] pushsymb 776 ........................... <#AllShadersFullEmissive>
+  [2698] eq
+  [2699] jmpifz [2714] .......................... (case) #AllShadersFullEmissive:
+  [2702] getlocal 2 ............................. <tTarget>
+  [2704] getlocal 3 ............................. <tDataList>
+  [2706] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2708] extcall 776 ............................ AllShadersFullEmissive(tTarget, tDataList)
+  [2711] jmp [2846]
+  [2714] peek 0
+  [2716] pushsymb 777 ........................... <#DefineWayPoints>
+  [2719] eq
+  [2720] jmpifz [2735] .......................... (case) #DefineWayPoints:
+  [2723] getlocal 2 ............................. <tTarget>
+  [2725] getlocal 3 ............................. <tDataList>
+  [2727] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2729] extcall 777 ............................ DefineWayPoints(tTarget, tDataList)
+  [2732] jmp [2846]
+  [2735] peek 0
+  [2737] pushsymb 778 ........................... <#CreateTile>
+  [2740] eq
+  [2741] jmpifz [2757] .......................... (case) #CreateTile:
+  [2744] pushzero ............................... <0>
+  [2745] getlocal 2 ............................. <tTarget>
+  [2747] getlocal 3 ............................. <tDataList>
+  [2749] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [2751] extcall 778 ............................ CreateTile(0, tTarget, tDataList)
+  [2754] jmp [2846]
+  [2757] peek 0
+  [2759] pushsymb 779 ........................... <#SetCheckPoints>
+  [2762] eq
+  [2763] jmpifz [2778] .......................... (case) #SetCheckPoints:
+  [2766] getlocal 2 ............................. <tTarget>
+  [2768] getlocal 3 ............................. <tDataList>
+  [2770] pusharglistnoret 2 ..................... <tTarget, tDataList>
+  [2772] extcall 779 ............................ SetCheckPoints(tTarget, tDataList)
+  [2775] jmp [2846]
+  [2778] peek 0
+  [2780] pushsymb 148 ........................... <#event>
+  [2782] eq
+  [2783] jmpifz [2795] .......................... (case) #event:
+  [2786] getlocal 3 ............................. <tDataList>
+  [2788] pusharglistnoret 1 ..................... <tDataList>
+  [2790] localcall 0 ............................ event(tDataList)
+  [2792] jmp [2846]
+  [2795] peek 0
+  [2797] pushsymb 286 ........................... <#DelayEvent>
+  [2800] eq
+  [2801] jmpifz [2816] .......................... (case) #DelayEvent:
+  [2804] pushzero ............................... <0>
+  [2805] getlocal 2 ............................. <tTarget>
+  [2807] getlocal 3 ............................. <tDataList>
+  [2809] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [2811] localcall 1 ............................ DelayEvent(0, tTarget, tDataList)
+  [2813] jmp [2846]
+  [2816] peek 0
+  [2818] pushsymb 668 ........................... <#DelayCommand>
+  [2821] eq
+  [2822] jmpifz [2837] .......................... (case) #DelayCommand:
+  [2825] pushzero ............................... <0>
+  [2826] getlocal 2 ............................. <tTarget>
+  [2828] getlocal 3 ............................. <tDataList>
+  [2830] pusharglistnoret 3 ..................... <0, tTarget, tDataList>
+  [2832] localcall 3 ............................ DelayCommand(0, tTarget, tDataList)
+  [2834] jmp [2846] ............................. (case) otherwise:
+  [2837] pushcons 2 ............................. <"No Such Function. Function was: ">
+  [2839] getlocal 1 ............................. <tFunction>
+  [2841] joinstr ................................ <"No Such Function. Function was: " & tFunction>
+  [2842] pusharglistnoret 1 ..................... <"No Such Function. Function was: " & tFunction>
+  [2844] localcall 8 ............................ ShowError("No Such Function. Function was: " & tFunction)
+  [2846] pop 1 .................................. end case
+  [2848] pushint8 1
+  [2850] getlocal 0
+  [2852] add
+  [2853] setlocal 0
+  [2855] endrepeat [ 89]
+  [2858] getglobal 50 ........................... <gSystem>
+  [2860] pushcons 3 ............................. <EMPTY>
+  [2862] setobjprop 148 ......................... gSystem.event = EMPTY
+  [2864] ret
+end
+
+on DelayEvent me, tTarget, tDataList
+  [  0] pushcons 4 .............................. <"Function: DelayEvent. Target: ">
+  [  2] getparam 1 .............................. <tTarget>
+  [  4] joinstr ................................. <"Function: DelayEvent. Target: " & tTarget>
+  [  5] pushcons 5 .............................. <" Parameters: ">
+  [  7] joinstr ................................. <"Function: DelayEvent. Target: " & tTarget & " Parameters: ">
+  [  8] getparam 2 .............................. <tDataList>
+  [ 10] joinstr ................................. <"Function: DelayEvent. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 11] pusharglistnoret 1 ...................... <"Function: DelayEvent. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 13] localcall 8 ............................. ShowError("Function: DelayEvent. Target: " & tTarget & " Parameters: " & tDataList)
+  [ 15] getparam 2 .............................. <tDataList>
+  [ 17] setparam 2 .............................. tDataList = tDataList
+  [ 19] getparam 2 .............................. <tDataList>
+  [ 21] getobjprop 122 .......................... <tDataList.ilk>
+  [ 23] pushsymb 67 ............................. <#string>
+  [ 25] eq ...................................... <tDataList.ilk = #string>
+  [ 26] jmpifz [ 38] ............................ if tDataList.ilk = #string then
+  [ 29] getparam 2 .............................. <tDataList>
+  [ 31] pusharglist 1 ........................... <tDataList>
+  [ 33] extcall 503 ............................. <value(tDataList)>
+  [ 36] setparam 2 .............................. tDataList = value(tDataList)
+  [ 38] getparam 2 .............................. <tDataList>
+  [ 40] pusharglist 0 ........................... <>
+  [ 42] extcall 40 .............................. <VOID>
+  [ 44] eq ...................................... <tDataList = VOID>
+  [ 45] getparam 2 .............................. <tDataList>
+  [ 47] getobjprop 122 .......................... <tDataList.ilk>
+  [ 49] pushsymb 541 ............................ <#propList>
+  [ 52] nteq .................................... <tDataList.ilk <> #propList>
+  [ 53] or ...................................... <(tDataList = VOID) or (tDataList.ilk <> #propList)>
+  [ 54] jmpifz [ 76] ............................ if (tDataList = VOID) or (tDataList.ilk <> #propList) then
+  [ 57] pushcons 4 .............................. <"Function: DelayEvent. Target: ">
+  [ 59] getparam 1 .............................. <tTarget>
+  [ 61] joinstr ................................. <"Function: DelayEvent. Target: " & tTarget>
+  [ 62] pushcons 5 .............................. <" Parameters: ">
+  [ 64] joinstr ................................. <"Function: DelayEvent. Target: " & tTarget & " Parameters: ">
+  [ 65] getparam 2 .............................. <tDataList>
+  [ 67] joinstr ................................. <"Function: DelayEvent. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 68] pushcons 6 .............................. <" Datalist obsolete (VOID or not #proplist).">
+  [ 70] joinstr ................................. <"Function: DelayEvent. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [ 71] pusharglistnoret 1 ...................... <"Function: DelayEvent. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [ 73] localcall 8 ............................. ShowError("Function: DelayEvent. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).")
+  [ 75] ret ..................................... exit
+  [ 76] getparam 2 .............................. <tDataList>
+  [ 78] pushsymb 287 ............................ <#delay>
+  [ 81] pusharglist 2 ........................... <tDataList, #delay>
+  [ 83] objcall 105 ............................. <tDataList[#delay]>
+  [ 85] setlocal 0 .............................. pDelay = tDataList[#delay]
+  [ 87] getlocal 0 .............................. <pDelay>
+  [ 89] pusharglist 0 ........................... <>
+  [ 91] extcall 40 .............................. <VOID>
+  [ 93] eq ...................................... <pDelay = VOID>
+  [ 94] jmpifz [102] ............................ if pDelay = VOID then
+  [ 97] pushint16 1000 .......................... <1000>
+  [100] setlocal 0 .............................. pDelay = 1000
+  [102] getparam 2 .............................. <tDataList>
+  [104] pushsymb 148 ............................ <#event>
+  [106] pusharglist 2 ........................... <tDataList, #event>
+  [108] objcall 105 ............................. <tDataList[#event]>
+  [110] setlocal 1 .............................. pevent = tDataList[#event]
+  [112] getlocal 1 .............................. <pevent>
+  [114] pusharglist 0 ........................... <>
+  [116] extcall 40 .............................. <VOID>
+  [118] eq ...................................... <pevent = VOID>
+  [119] jmpifz [126] ............................ if pevent = VOID then
+  [122] pushcons 3 .............................. <EMPTY>
+  [124] setlocal 1 .............................. pevent = EMPTY
+  [126] gettoplevelprop 33 ...................... <_movie>
+  [128] pushsymb 427 ............................ <#timeoutList>
+  [131] pusharglist 2 ........................... <_movie, #timeoutList>
+  [133] objcall 129 ............................. <_movie.timeoutList.count>
+  [135] pushint8 1 .............................. <1>
+  [137] add ..................................... <_movie.timeoutList.count + 1>
+  [138] setlocal 2 .............................. pAmount = _movie.timeoutList.count + 1
+  [140] getparam 2 .............................. <tDataList>
+  [142] pushsymb 235 ............................ <#name>
+  [144] pusharglist 2 ........................... <tDataList, #name>
+  [146] objcall 105 ............................. <tDataList[#name]>
+  [148] getobjprop 122 .......................... <tDataList[#name].ilk>
+  [150] pushsymb 67 ............................. <#string>
+  [152] eq ...................................... <tDataList[#name].ilk = #string>
+  [153] jmpifz [165] ............................ if tDataList[#name].ilk = #string then / else
+  [156] getparam 2 .............................. <tDataList>
+  [158] getobjprop 235 .......................... <tDataList.name>
+  [160] setlocal 3 .............................. tName = tDataList.name
+  [162] jmp [202]
+  [165] pushcons 7 .............................. <"Delay">
+  [167] getlocal 1 .............................. <pevent>
+  [169] joinstr ................................. <"Delay" & pevent>
+  [170] gettoplevelprop 462 ..................... <_system>
+  [173] getobjprop 463 .......................... <_system.milliSeconds>
+  [176] joinstr ................................. <"Delay" & pevent & _system.milliSeconds>
+  [177] gettoplevelprop 33 ...................... <_movie>
+  [179] pushsymb 427 ............................ <#timeoutList>
+  [182] pusharglist 2 ........................... <_movie, #timeoutList>
+  [184] objcall 129 ............................. <_movie.timeoutList.count>
+  [186] pushint8 1 .............................. <1>
+  [188] add ..................................... <_movie.timeoutList.count + 1>
+  [189] joinstr ................................. <"Delay" & pevent & _system.milliSeconds & _movie.timeoutList.count + 1>
+  [190] pushint8 1 .............................. <1>
+  [192] pushint16 10000 ......................... <10000>
+  [195] pusharglist 2 ........................... <1, 10000>
+  [197] extcall 176 ............................. <random(1, 10000)>
+  [199] joinstr ................................. <"Delay" & pevent & _system.milliSeconds & _movie.timeoutList.count + 1 & random(1, 10000)>
+  [200] setlocal 3 .............................. tName = "Delay" & pevent & _system.milliSeconds & _movie.timeoutList.count + 1 & random(1, 10000)
+  [202] pusharglist 0 ........................... <>
+  [204] extcall 238 ............................. <timeout()>
+  [206] getlocal 3 .............................. <tName>
+  [208] getlocal 0 .............................. <pDelay>
+  [210] pushsymb 667 ............................ <#DelayEventTimeOut>
+  [213] getlocal 1 .............................. <pevent>
+  [215] pusharglistnoret 5 ...................... <timeout(), tName, pDelay, #DelayEventTimeOut, pevent>
+  [217] objcall 35 .............................. timeout().new(tName, pDelay, #DelayEventTimeOut, pevent)
+  [219] ret
+end
+
+on DelayEventTimeOut tEvent, tTimeOut
+  [  0] getparam 0 .............................. <tEvent>
+  [  2] pusharglistnoret 1 ...................... <tEvent>
+  [  4] localcall 0 ............................. event(tEvent)
+  [  6] gettoplevelprop 33 ...................... <_movie>
+  [  8] getchainedprop 427 ...................... <_movie.timeoutList>
+  [ 11] getparam 1 .............................. <tTimeOut>
+  [ 13] pusharglist 2 ........................... <_movie.timeoutList, tTimeOut>
+  [ 15] objcall 166 ............................. <_movie.timeoutList.getPos(tTimeOut)>
+  [ 17] pushzero ................................ <0>
+  [ 18] nteq .................................... <_movie.timeoutList.getPos(tTimeOut) <> 0>
+  [ 19] jmpifz [ 28] ............................ if _movie.timeoutList.getPos(tTimeOut) <> 0 then
+  [ 22] getparam 1 .............................. <tTimeOut>
+  [ 24] pusharglistnoret 1 ...................... <tTimeOut>
+  [ 26] objcall 255 ............................. tTimeOut.forget()
+  [ 28] ret
+end
+
+on DelayCommand me, tTarget, tDataList
+  [  0] getparam 2 .............................. <tDataList>
+  [  2] getobjprop 122 .......................... <tDataList.ilk>
+  [  4] pushsymb 67 ............................. <#string>
+  [  6] eq ...................................... <tDataList.ilk = #string>
+  [  7] jmpifz [ 19] ............................ if tDataList.ilk = #string then
+  [ 10] getparam 2 .............................. <tDataList>
+  [ 12] pusharglist 1 ........................... <tDataList>
+  [ 14] extcall 503 ............................. <value(tDataList)>
+  [ 17] setparam 2 .............................. tDataList = value(tDataList)
+  [ 19] getparam 2 .............................. <tDataList>
+  [ 21] getobjprop 122 .......................... <tDataList.ilk>
+  [ 23] pushsymb 541 ............................ <#propList>
+  [ 26] nteq .................................... <tDataList.ilk <> #propList>
+  [ 27] jmpifz [ 35] ............................ if tDataList.ilk <> #propList then
+  [ 30] pushzero ................................ <0>
+  [ 31] pusharglistnoret 1 ...................... <0>
+  [ 33] extcall 52 .............................. return 0
+  [ 35] getparam 2 .............................. <tDataList>
+  [ 37] pushsymb 287 ............................ <#delay>
+  [ 40] pusharglist 2 ........................... <tDataList, #delay>
+  [ 42] objcall 105 ............................. <tDataList[#delay]>
+  [ 44] setlocal 0 .............................. tDelay = tDataList[#delay]
+  [ 46] getparam 2 .............................. <tDataList>
+  [ 48] pushsymb 287 ............................ <#delay>
+  [ 51] pusharglist 2 ........................... <tDataList, #delay>
+  [ 53] objcall 105 ............................. <tDataList[#delay]>
+  [ 55] getobjprop 122 .......................... <tDataList[#delay].ilk>
+  [ 57] pushsymb 123 ............................ <#integer>
+  [ 59] eq ...................................... <tDataList[#delay].ilk = #integer>
+  [ 60] jmpifz [ 73] ............................ if tDataList[#delay].ilk = #integer then / else
+  [ 63] getparam 2 .............................. <tDataList>
+  [ 65] getobjprop 287 .......................... <tDataList.delay>
+  [ 68] setlocal 0 .............................. tDelay = tDataList.delay
+  [ 70] jmp [ 78]
+  [ 73] pushint16 1000 .......................... <1000>
+  [ 76] setlocal 0 .............................. tDelay = 1000
+  [ 78] pusharglist 0 ........................... <[]>
+  [ 80] pushlist ................................ <[]>
+  [ 81] setlocal 1 .............................. tList = []
+  [ 83] getparam 2 .............................. <tDataList>
+  [ 85] pushsymb 785 ............................ <#command>
+  [ 88] pusharglist 2 ........................... <tDataList, #command>
+  [ 90] objcall 105 ............................. <tDataList[#command]>
+  [ 92] getobjprop 122 .......................... <tDataList[#command].ilk>
+  [ 94] pushsymb 67 ............................. <#string>
+  [ 96] eq ...................................... <tDataList[#command].ilk = #string>
+  [ 97] jmpifz [110] ............................ if tDataList[#command].ilk = #string then / else
+  [100] getparam 2 .............................. <tDataList>
+  [102] getobjprop 785 .......................... <tDataList.command>
+  [105] setlocal 2 .............................. tCommand = tDataList.command
+  [107] jmp [115]
+  [110] pushzero ................................ <0>
+  [111] pusharglistnoret 1 ...................... <0>
+  [113] extcall 52 .............................. return 0
+  [115] getparam 2 .............................. <tDataList>
+  [117] pushsymb 93 ............................. <#target>
+  [119] pusharglist 2 ........................... <tDataList, #target>
+  [121] objcall 105 ............................. <tDataList[#target]>
+  [123] getobjprop 122 .......................... <tDataList[#target].ilk>
+  [125] pushsymb 67 ............................. <#string>
+  [127] eq ...................................... <tDataList[#target].ilk = #string>
+  [128] jmpifz [140] ............................ if tDataList[#target].ilk = #string then / else
+  [131] getparam 2 .............................. <tDataList>
+  [133] getobjprop 93 ........................... <tDataList.target>
+  [135] setparam 1 .............................. tTarget = tDataList.target
+  [137] jmp [145]
+  [140] pushzero ................................ <0>
+  [141] pusharglistnoret 1 ...................... <0>
+  [143] extcall 52 .............................. return 0
+  [145] getparam 2 .............................. <tDataList>
+  [147] pushsymb 87 ............................. <#data>
+  [149] pusharglist 2 ........................... <tDataList, #data>
+  [151] objcall 105 ............................. <tDataList[#data]>
+  [153] getobjprop 122 .......................... <tDataList[#data].ilk>
+  [155] pushsymb 541 ............................ <#propList>
+  [158] eq ...................................... <tDataList[#data].ilk = #propList>
+  [159] jmpifz [171] ............................ if tDataList[#data].ilk = #propList then / else
+  [162] getparam 2 .............................. <tDataList>
+  [164] getobjprop 87 ........................... <tDataList.data>
+  [166] setlocal 3 .............................. tData = tDataList.data
+  [168] jmp [176]
+  [171] pushzero ................................ <0>
+  [172] pusharglistnoret 1 ...................... <0>
+  [174] extcall 52 .............................. return 0
+  [176] pusharglist 0 ........................... <>
+  [178] extcall 238 ............................. <timeout()>
+  [180] pushcons 7 .............................. <"Delay">
+  [182] getlocal 2 .............................. <tCommand>
+  [184] joinstr ................................. <"Delay" & tCommand>
+  [185] gettoplevelprop 462 ..................... <_system>
+  [188] getobjprop 463 .......................... <_system.milliSeconds>
+  [191] joinstr ................................. <"Delay" & tCommand & _system.milliSeconds>
+  [192] gettoplevelprop 33 ...................... <_movie>
+  [194] pushsymb 427 ............................ <#timeoutList>
+  [197] pusharglist 2 ........................... <_movie, #timeoutList>
+  [199] objcall 129 ............................. <_movie.timeoutList.count>
+  [201] pushint8 1 .............................. <1>
+  [203] add ..................................... <_movie.timeoutList.count + 1>
+  [204] joinstr ................................. <"Delay" & tCommand & _system.milliSeconds & _movie.timeoutList.count + 1>
+  [205] pushint8 1 .............................. <1>
+  [207] pushint16 10000 ......................... <10000>
+  [210] pusharglist 2 ........................... <1, 10000>
+  [212] extcall 176 ............................. <random(1, 10000)>
+  [214] joinstr ................................. <"Delay" & tCommand & _system.milliSeconds & _movie.timeoutList.count + 1 & random(1, 10000)>
+  [215] getlocal 0 .............................. <tDelay>
+  [217] pushsymb 669 ............................ <#DelayCommandTimeOut>
+  [220] pushsymb 786 ............................ <#handler>
+  [223] getlocal 2 .............................. <tCommand>
+  [225] pushsymb 93 ............................. <#target>
+  [227] getparam 1 .............................. <tTarget>
+  [229] pushsymb 87 ............................. <#data>
+  [231] getlocal 3 .............................. <tData>
+  [233] pusharglist 6 ........................... <[#handler: tCommand, #target: tTarget, #data: tData]>
+  [235] pushproplist ............................ <[#handler: tCommand, #target: tTarget, #data: tData]>
+  [236] pusharglistnoret 5 ...................... <timeout(), "Delay" & tCommand & _system.milliSeconds & _movie.timeoutList.count + 1 & random(1, 10000), tDelay, #DelayCommandTimeOut, [#handler: tCommand, #target: tTarget, #data: tData]>
+  [238] objcall 35 .............................. timeout().new("Delay" & tCommand & _system.milliSeconds & _movie.timeoutList.count + 1 & random(1, 10000), tDelay, #DelayCommandTimeOut, [#handler: tCommand, #target: tTarget, #data: tData])
+  [240] ret
+end
+
+on DelayCommandTimeOut tList, tTimeOut
+  [  0] pushzero ................................ <0>
+  [  1] getparam 0 .............................. <tList>
+  [  3] getobjprop 786 .......................... <tList.handler>
+  [  6] pusharglist 1 ........................... <tList.handler>
+  [  8] extcall 88 .............................. <symbol(tList.handler)>
+  [ 10] getparam 0 .............................. <tList>
+  [ 12] getobjprop 93 ........................... <tList.target>
+  [ 14] getparam 0 .............................. <tList>
+  [ 16] getobjprop 87 ........................... <tList.data>
+  [ 18] pusharglistnoret 4 ...................... <0, symbol(tList.handler), tList.target, tList.data>
+  [ 20] extcall 362 ............................. sendSprite(0, symbol(tList.handler), tList.target, tList.data)
+  [ 23] gettoplevelprop 33 ...................... <_movie>
+  [ 25] getchainedprop 427 ...................... <_movie.timeoutList>
+  [ 28] getparam 1 .............................. <tTimeOut>
+  [ 30] pusharglist 2 ........................... <_movie.timeoutList, tTimeOut>
+  [ 32] objcall 166 ............................. <_movie.timeoutList.getPos(tTimeOut)>
+  [ 34] pushzero ................................ <0>
+  [ 35] nteq .................................... <_movie.timeoutList.getPos(tTimeOut) <> 0>
+  [ 36] jmpifz [ 45] ............................ if _movie.timeoutList.getPos(tTimeOut) <> 0 then
+  [ 39] getparam 1 .............................. <tTimeOut>
+  [ 41] pusharglistnoret 1 ...................... <tTimeOut>
+  [ 43] objcall 255 ............................. tTimeOut.forget()
+  [ 45] ret
+end
+
+on AddToGlobals tmember, tDataList
+  [  0] pushint8 1 .............................. <1>
+  [  2] setlocal 0
+  [  4] getlocal 0
+  [  6] getparam 0 .............................. <tmember>
+  [  8] getchainedprop 80 ....................... <tmember.text>
+  [ 10] pushsymb 81 ............................. <#line>
+  [ 12] pusharglist 2 ........................... <tmember.text, #line>
+  [ 14] objcall 129 ............................. <tmember.text.line.count>
+  [ 16] lteq
+  [ 17] jmpifz [107] ............................ repeat with i = 1 to tmember.text.line.count
+  [ 20] getparam 0 .............................. <tmember>
+  [ 22] getchainedprop 80 ....................... <tmember.text>
+  [ 24] pushsymb 81 ............................. <#line>
+  [ 26] getlocal 0 .............................. <i>
+  [ 28] pusharglist 3 ........................... <tmember.text, #line, i>
+  [ 30] objcall 70 .............................. <tmember.text.line[i]>
+  [ 32] setlocal 1 .............................. tLine = tmember.text.line[i]
+  [ 34] getlocal 1 .............................. <tLine>
+  [ 36] pushsymb 334 ............................ <#word>
+  [ 39] pusharglist 2 ........................... <tLine, #word>
+  [ 41] objcall 129 ............................. <tLine.word.count>
+  [ 43] pushzero ................................ <0>
+  [ 44] eq ...................................... <tLine.word.count = 0>
+  [ 45] jmpifz [ 51] ............................ if tLine.word.count = 0 then
+  [ 48] jmp [ 98] ............................... next repeat
+  [ 51] getlocal 1 .............................. <tLine>
+  [ 53] pushcons 8 .............................. <"//">
+  [ 55] containsstr ............................. <tLine contains "//">
+  [ 56] jmpifz [ 62] ............................ if tLine contains "//" then
+  [ 59] jmp [ 98] ............................... next repeat
+  [ 62] pushzero ................................ <0>
+  [ 63] pushcons 3 .............................. <EMPTY>
+  [ 65] pushsymb 235 ............................ <#name>
+  [ 67] getlocal 1 .............................. <tLine>
+  [ 69] pushsymb 83 ............................. <#item>
+  [ 71] pushint8 1 .............................. <1>
+  [ 73] pusharglist 3 ........................... <tLine, #item, 1>
+  [ 75] objcall 70 .............................. <tLine.item[1]>
+  [ 77] pushsymb 503 ............................ <#value>
+  [ 80] getlocal 1 .............................. <tLine>
+  [ 82] pushsymb 83 ............................. <#item>
+  [ 84] pushint8 2 .............................. <2>
+  [ 86] pusharglist 3 ........................... <tLine, #item, 2>
+  [ 88] objcall 70 .............................. <tLine.item[2]>
+  [ 90] pusharglist 4 ........................... <[#name: tLine.item[1], #value: tLine.item[2]]>
+  [ 92] pushproplist ............................ <[#name: tLine.item[1], #value: tLine.item[2]]>
+  [ 93] pusharglistnoret 3 ...................... <0, EMPTY, [#name: tLine.item[1], #value: tLine.item[2]]>
+  [ 95] extcall 717 ............................. AddValue(0, EMPTY, [#name: tLine.item[1], #value: tLine.item[2]])
+  [ 98] pushint8 1
+  [100] getlocal 0
+  [102] add
+  [103] setlocal 0
+  [105] endrepeat [  4]
+  [107] ret
+end
+
+on AddToData tmember, tDataList
+  [  0] getparam 0 .............................. <tmember>
+  [  2] pusharglist 0 ........................... <>
+  [  4] extcall 40 .............................. <VOID>
+  [  6] eq ...................................... <tmember = VOID>
+  [  7] getparam 0 .............................. <tmember>
+  [  9] getobjprop 598 .......................... <tmember.type>
+  [ 12] pushsymb 80 ............................. <#text>
+  [ 14] nteq .................................... <tmember.type <> #text>
+  [ 15] or ...................................... <(tmember = VOID) or (tmember.type <> #text)>
+  [ 16] jmpifz [ 32] ............................ if (tmember = VOID) or (tmember.type <> #text) then
+  [ 19] pushcons 9 .............................. <"Function: AddEventsFromFile. Member: ">
+  [ 21] getparam 0 .............................. <tmember>
+  [ 23] joinstr ................................. <"Function: AddEventsFromFile. Member: " & tmember>
+  [ 24] pushcons 10 ............................. <" Member VOID or no text member. Function aborted.">
+  [ 26] joinstr ................................. <"Function: AddEventsFromFile. Member: " & tmember & " Member VOID or no text member. Function aborted.">
+  [ 27] pusharglistnoret 1 ...................... <"Function: AddEventsFromFile. Member: " & tmember & " Member VOID or no text member. Function aborted.">
+  [ 29] localcall 8 ............................. ShowError("Function: AddEventsFromFile. Member: " & tmember & " Member VOID or no text member. Function aborted.")
+  [ 31] ret ..................................... exit
+  [ 32] getparam 1 .............................. <tDataList>
+  [ 34] pusharglist 1 ........................... <tDataList>
+  [ 36] extcall 503 ............................. <value(tDataList)>
+  [ 39] setparam 1 .............................. tDataList = value(tDataList)
+  [ 41] getparam 1 .............................. <tDataList>
+  [ 43] getobjprop 122 .......................... <tDataList.ilk>
+  [ 45] pushsymb 541 ............................ <#propList>
+  [ 48] nteq .................................... <tDataList.ilk <> #propList>
+  [ 49] jmpifz [ 57] ............................ if tDataList.ilk <> #propList then
+  [ 52] pusharglist 0 ........................... <[:]>
+  [ 54] pushproplist ............................ <[:]>
+  [ 55] setparam 1 .............................. tDataList = [:]
+  [ 57] pushzero ................................ <0>
+  [ 58] setlocal 0 .............................. tRemove = 0
+  [ 60] getparam 1 .............................. <tDataList>
+  [ 62] pushsymb 666 ............................ <#Remove>
+  [ 65] pusharglist 2 ........................... <tDataList, #Remove>
+  [ 67] objcall 105 ............................. <tDataList[#Remove]>
+  [ 69] pusharglist 1 ........................... <tDataList[#Remove]>
+  [ 71] extcall 389 ............................. <voidp(tDataList[#Remove])>
+  [ 74] pushzero ................................ <0>
+  [ 75] eq ...................................... <voidp(tDataList[#Remove]) = 0>
+  [ 76] jmpifz [ 86] ............................ if voidp(tDataList[#Remove]) = 0 then
+  [ 79] getparam 1 .............................. <tDataList>
+  [ 81] getobjprop 666 .......................... <tDataList.Remove>
+  [ 84] setlocal 0 .............................. tRemove = tDataList.Remove
+  [ 86] pushzero ................................ <0>
+  [ 87] setlocal 1 .............................. tAddEventState = 0
+  [ 89] pusharglist 0 ........................... <>
+  [ 91] extcall 40 .............................. <VOID>
+  [ 93] setlocal 2 .............................. tTag = VOID
+  [ 95] getparam 1 .............................. <tDataList>
+  [ 97] getobjprop 126 .......................... <tDataList.list>
+  [ 99] pushsymb 447 ............................ <#Triggers>
+  [102] eq ...................................... <tDataList.list = #Triggers>
+  [103] jmpifz [227] ............................ if tDataList.list = #Triggers then / else
+  [106] pushint8 1 .............................. <1>
+  [108] setlocal 3
+  [110] getlocal 3
+  [112] getparam 0 .............................. <tmember>
+  [114] pushsymb 81 ............................. <#line>
+  [116] pusharglist 2 ........................... <tmember, #line>
+  [118] objcall 129 ............................. <tmember.line.count>
+  [120] lteq
+  [121] jmpifz [224] ............................ repeat with qw = 1 to tmember.line.count
+  [124] getparam 0 .............................. <tmember>
+  [126] pushsymb 81 ............................. <#line>
+  [128] getlocal 3 .............................. <qw>
+  [130] pusharglist 3 ........................... <tmember, #line, qw>
+  [132] objcall 70 .............................. <tmember.line[qw]>
+  [134] setlocal 4 .............................. tLine = tmember.line[qw]
+  [136] getlocal 4 .............................. <tLine>
+  [138] pushsymb 334 ............................ <#word>
+  [141] pusharglist 2 ........................... <tLine, #word>
+  [143] objcall 129 ............................. <tLine.word.count>
+  [145] pushzero ................................ <0>
+  [146] eq ...................................... <tLine.word.count = 0>
+  [147] getlocal 4 .............................. <tLine>
+  [149] getobjprop 69 ........................... <tLine.length>
+  [151] pushzero ................................ <0>
+  [152] eq ...................................... <tLine.length = 0>
+  [153] or ...................................... <(tLine.word.count = 0) or (tLine.length = 0)>
+  [154] getlocal 4 .............................. <tLine>
+  [156] pushcons 8 .............................. <"//">
+  [158] containsstr ............................. <tLine contains "//">
+  [159] or ...................................... <(tLine.word.count = 0) or (tLine.length = 0) or (tLine contains "//")>
+  [160] jmpifz [166] ............................ if (tLine.word.count = 0) or (tLine.length = 0) or (tLine contains "//") then
+  [163] jmp [215] ............................... next repeat
+  [166] pusharglist 0 ........................... <[:]>
+  [168] pushproplist ............................ <[:]>
+  [169] setlocal 5 .............................. tTrigger = [:]
+  [171] pushcons 11 ............................. <TAB>
+  [173] pusharglistnoret 1 ...................... <TAB>
+  [175] extcall 82 .............................. SetItemDelimiter(TAB)
+  [177] getlocal 4 .............................. <tLine>
+  [179] pushsymb 83 ............................. <#item>
+  [181] pushint8 1 .............................. <1>
+  [183] pusharglist 3 ........................... <tLine, #item, 1>
+  [185] objcall 70 .............................. <tLine.item[1]>
+  [187] setlocal 6 .............................. tTriggers = tLine.item[1]
+  [189] getlocal 4 .............................. <tLine>
+  [191] pushsymb 83 ............................. <#item>
+  [193] pushint8 2 .............................. <2>
+  [195] pusharglist 3 ........................... <tLine, #item, 2>
+  [197] objcall 70 .............................. <tLine.item[2]>
+  [199] pusharglist 1 ........................... <tLine.item[2]>
+  [201] extcall 503 ............................. <value(tLine.item[2])>
+  [204] setparam 1 .............................. tDataList = value(tLine.item[2])
+  [206] getlocal 6 .............................. <tTriggers>
+  [208] getparam 1 .............................. <tDataList>
+  [210] pusharglistnoret 2 ...................... <tTriggers, tDataList>
+  [212] extcall 671 ............................. AddTrigger(tTriggers, tDataList)
+  [215] pushint8 1
+  [217] getlocal 3
+  [219] add
+  [220] setlocal 3
+  [222] endrepeat [110]
+  [224] jmp [713]
+  [227] pushint8 1 .............................. <1>
+  [229] setlocal 3
+  [231] getlocal 3
+  [233] getparam 0 .............................. <tmember>
+  [235] pushsymb 81 ............................. <#line>
+  [237] pusharglist 2 ........................... <tmember, #line>
+  [239] objcall 129 ............................. <tmember.line.count>
+  [241] lteq
+  [242] jmpifz [713] ............................ repeat with qw = 1 to tmember.line.count
+  [245] getparam 0 .............................. <tmember>
+  [247] pushsymb 81 ............................. <#line>
+  [249] getlocal 3 .............................. <qw>
+  [251] pusharglist 3 ........................... <tmember, #line, qw>
+  [253] objcall 70 .............................. <tmember.line[qw]>
+  [255] setlocal 4 .............................. tLine = tmember.line[qw]
+  [257] getlocal 4 .............................. <tLine>
+  [259] pushsymb 334 ............................ <#word>
+  [262] pusharglist 2 ........................... <tLine, #word>
+  [264] objcall 129 ............................. <tLine.word.count>
+  [266] pushzero ................................ <0>
+  [267] eq ...................................... <tLine.word.count = 0>
+  [268] getlocal 4 .............................. <tLine>
+  [270] getobjprop 69 ........................... <tLine.length>
+  [272] pushzero ................................ <0>
+  [273] eq ...................................... <tLine.length = 0>
+  [274] or ...................................... <(tLine.word.count = 0) or (tLine.length = 0)>
+  [275] getlocal 4 .............................. <tLine>
+  [277] pushcons 8 .............................. <"//">
+  [279] containsstr ............................. <tLine contains "//">
+  [280] or ...................................... <(tLine.word.count = 0) or (tLine.length = 0) or (tLine contains "//")>
+  [281] jmpifz [287] ............................ if (tLine.word.count = 0) or (tLine.length = 0) or (tLine contains "//") then
+  [284] jmp [703] ............................... next repeat
+  [287] getlocal 4 .............................. <tLine>
+  [289] pushsymb 334 ............................ <#word>
+  [292] pusharglist 2 ........................... <tLine, #word>
+  [294] objcall 129 ............................. <tLine.word.count>
+  [296] pushint8 1 .............................. <1>
+  [298] eq ...................................... <tLine.word.count = 1>
+  [299] jmpifz [434] ............................ if tLine.word.count = 1 then
+  [302] getlocal 4 .............................. <tLine>
+  [304] pushsymb 334 ............................ <#word>
+  [307] pushint8 1 .............................. <1>
+  [309] pusharglist 3 ........................... <tLine, #word, 1>
+  [311] objcall 70 .............................. <tLine.word[1]>
+  [313] setlocal 7 .............................. tWord = tLine.word[1]
+  [315] getlocal 7 .............................. <tWord>
+  [317] pushcons 12 ............................. <"_Begin">
+  [319] containsstr ............................. <tWord contains "_Begin">
+  [320] jmpifz [392] ............................ if tWord contains "_Begin" then
+  [323] pushcons 13 ............................. <"_">
+  [325] pusharglistnoret 1 ...................... <"_">
+  [327] extcall 82 .............................. SetItemDelimiter("_")
+  [329] getlocal 7 .............................. <tWord>
+  [331] pushsymb 83 ............................. <#item>
+  [333] pushint8 1 .............................. <1>
+  [335] pusharglist 3 ........................... <tWord, #item, 1>
+  [337] objcall 70 .............................. <tWord.item[1]>
+  [339] setlocal 2 .............................. tTag = tWord.item[1]
+  [341] getlocal 0 .............................. <tRemove>
+  [343] pushint8 1 .............................. <1>
+  [345] eq ...................................... <tRemove = 1>
+  [346] jmpifz [380] ............................ if tRemove = 1 then
+  [349] getglobal 86 ............................ <gData>
+  [351] pushcons 14 ............................. <"Stored">
+  [353] getparam 1 .............................. <tDataList>
+  [355] getobjprop 126 .......................... <tDataList.list>
+  [357] pusharglist 1 ........................... <tDataList.list>
+  [359] extcall 67 .............................. <string(tDataList.list)>
+  [361] joinstr ................................. <"Stored" & string(tDataList.list)>
+  [362] pusharglist 1 ........................... <"Stored" & string(tDataList.list)>
+  [364] extcall 88 .............................. <symbol("Stored" & string(tDataList.list))>
+  [366] pusharglist 2 ........................... <gData, symbol("Stored" & string(tDataList.list))>
+  [368] objcall 105 ............................. <gData[symbol("Stored" & string(tDataList.list))]>
+  [370] getlocal 2 .............................. <tTag>
+  [372] pusharglist 1 ........................... <tTag>
+  [374] extcall 88 .............................. <symbol(tTag)>
+  [376] pusharglistnoret 2 ...................... <gData[symbol("Stored" & string(tDataList.list))], symbol(tTag)>
+  [378] objcall 42 .............................. gData[symbol("Stored" & string(tDataList.list))].add(symbol(tTag))
+  [380] pushint8 1 .............................. <1>
+  [382] setlocal 1 .............................. tAddEventState = 1
+  [384] pusharglist 0 ........................... <[:]>
+  [386] pushproplist ............................ <[:]>
+  [387] setlocal 8 .............................. tSubList = [:]
+  [389] jmp [703] ............................... next repeat
+  [392] getlocal 7 .............................. <tWord>
+  [394] pushcons 15 ............................. <"_End">
+  [396] containsstr ............................. <tWord contains "_End">
+  [397] jmpifz [434] ............................ if tWord contains "_End" then
+  [400] getglobal 86 ............................ <gData>
+  [402] getparam 1 .............................. <tDataList>
+  [404] getobjprop 126 .......................... <tDataList.list>
+  [406] pusharglist 2 ........................... <gData, tDataList.list>
+  [408] objcall 105 ............................. <gData[tDataList.list]>
+  [410] getlocal 2 .............................. <tTag>
+  [412] pusharglist 1 ........................... <tTag>
+  [414] extcall 88 .............................. <symbol(tTag)>
+  [416] getlocal 8 .............................. <tSubList>
+  [418] pusharglistnoret 3 ...................... <gData[tDataList.list], symbol(tTag), tSubList>
+  [420] objcall 103 ............................. gData[tDataList.list][symbol(tTag)] = tSubList
+  [422] pusharglist 0 ........................... <>
+  [424] extcall 40 .............................. <VOID>
+  [426] setlocal 2 .............................. tTag = VOID
+  [428] pushzero ................................ <0>
+  [429] setlocal 1 .............................. tAddEventState = 0
+  [431] jmp [703] ............................... next repeat
+  [434] getlocal 1 .............................. <tAddEventState>
+  [436] pushint8 1 .............................. <1>
+  [438] eq ...................................... <tAddEventState = 1>
+  [439] jmpifz [703] ............................ if tAddEventState = 1 then
+  [442] pushcons 11 ............................. <TAB>
+  [444] pusharglistnoret 1 ...................... <TAB>
+  [446] extcall 82 .............................. SetItemDelimiter(TAB)
+  [448] pushint8 4 .............................. <4>
+  [450] pushchunkvarref 5 ....................... <tLine>
+  [452] pushsymb 68 ............................. <#char>
+  [454] pushint8 1 .............................. <1>
+  [456] pushint8 1 .............................. <1>
+  [458] pusharglist 4 ........................... <tLine, #char, 1, 1>
+  [460] objcall 102 ............................. <tLine.char[1..1]>
+  [462] pusharglistnoret 1 ...................... <tLine.char[1..1]>
+  [464] objcall 562 ............................. delete tLine.char[1..1]
+  [467] getlocal 4 .............................. <tLine>
+  [469] pushsymb 83 ............................. <#item>
+  [471] pushint8 1 .............................. <1>
+  [473] pusharglist 3 ........................... <tLine, #item, 1>
+  [475] objcall 70 .............................. <tLine.item[1]>
+  [477] pusharglist 1 ........................... <tLine.item[1]>
+  [479] extcall 88 .............................. <symbol(tLine.item[1])>
+  [481] setlocal 9 .............................. tProp = symbol(tLine.item[1])
+  [483] getparam 1 .............................. <tDataList>
+  [485] getobjprop 126 .......................... <tDataList.list>
+  [487] pushsymb 87 ............................. <#data>
+  [489] eq ...................................... <tDataList.list = #data>
+  [490] getlocal 7 .............................. <tWord>
+  [492] pushcons 16 ............................. <"Data">
+  [494] containsstr ............................. <tWord contains "Data">
+  [495] or ...................................... <(tDataList.list = #data) or (tWord contains "Data")>
+  [496] jmpifz [672] ............................ if (tDataList.list = #data) or (tWord contains "Data") then
+  [499] getlocal 4 .............................. <tLine>
+  [501] pushsymb 83 ............................. <#item>
+  [503] pushint8 2 .............................. <2>
+  [505] pusharglist 3 ........................... <tLine, #item, 2>
+  [507] objcall 70 .............................. <tLine.item[2]>
+  [509] pusharglist 1 ........................... <tLine.item[2]>
+  [511] extcall 503 ............................. <value(tLine.item[2])>
+  [514] setlocal 10 ............................. tPropList = value(tLine.item[2])
+  [516] getlocal 10 ............................. <tPropList>
+  [518] pusharglist 0 ........................... <>
+  [520] extcall 40 .............................. <VOID>
+  [522] eq ...................................... <tPropList = VOID>
+  [523] jmpifz [659] ............................ if tPropList = VOID then
+  [526] getlocal 4 .............................. <tLine>
+  [528] pushsymb 83 ............................. <#item>
+  [530] pusharglist 2 ........................... <tLine, #item>
+  [532] objcall 129 ............................. <tLine.item.count>
+  [534] pushint8 2 .............................. <2>
+  [536] gt ...................................... <tLine.item.count > 2>
+  [537] jmpifz [647] ............................ if tLine.item.count > 2 then / else
+  [540] pusharglist 0 ........................... <[]>
+  [542] pushlist ................................ <[]>
+  [543] setlocal 10 ............................. tPropList = []
+  [545] pushint8 2 .............................. <2>
+  [547] setlocal 11
+  [549] getlocal 11
+  [551] getlocal 4 .............................. <tLine>
+  [553] pushsymb 83 ............................. <#item>
+  [555] pusharglist 2 ........................... <tLine, #item>
+  [557] objcall 129 ............................. <tLine.item.count>
+  [559] lteq
+  [560] jmpifz [624] ............................ repeat with n = 2 to tLine.item.count
+  [563] getlocal 11 ............................. <n>
+  [565] getlocal 4 .............................. <tLine>
+  [567] pushsymb 83 ............................. <#item>
+  [569] pusharglist 2 ........................... <tLine, #item>
+  [571] objcall 129 ............................. <tLine.item.count>
+  [573] eq ...................................... <n = tLine.item.count>
+  [574] getlocal 4 .............................. <tLine>
+  [576] pushsymb 83 ............................. <#item>
+  [578] getlocal 11 ............................. <n>
+  [580] pusharglist 3 ........................... <tLine, #item, n>
+  [582] objcall 70 .............................. <tLine.item[n]>
+  [584] pushcons 3 .............................. <EMPTY>
+  [586] eq ...................................... <tLine.item[n] = EMPTY>
+  [587] and ..................................... <(n = tLine.item.count) and (tLine.item[n] = EMPTY)>
+  [588] jmpifz [599] ............................ if (n = tLine.item.count) and (tLine.item[n] = EMPTY) then
+  [591] pusharglistnoret 0 ...................... <>
+  [593] extcall 429 ............................. nothing()
+  [596] jmp [615] ............................... next repeat
+  [599] getlocal 10 ............................. <tPropList>
+  [601] getlocal 4 .............................. <tLine>
+  [603] pushsymb 83 ............................. <#item>
+  [605] getlocal 11 ............................. <n>
+  [607] pusharglist 3 ........................... <tLine, #item, n>
+  [609] objcall 70 .............................. <tLine.item[n]>
+  [611] pusharglistnoret 2 ...................... <tPropList, tLine.item[n]>
+  [613] objcall 42 .............................. tPropList.add(tLine.item[n])
+  [615] pushint8 1
+  [617] getlocal 11
+  [619] add
+  [620] setlocal 11
+  [622] endrepeat [549]
+  [624] getlocal 10 ............................. <tPropList>
+  [626] getobjprop 129 .......................... <tPropList.count>
+  [628] pushint8 1 .............................. <1>
+  [630] eq ...................................... <tPropList.count = 1>
+  [631] jmpifz [644] ............................ if tPropList.count = 1 then
+  [634] getlocal 10 ............................. <tPropList>
+  [636] pushint8 1 .............................. <1>
+  [638] pusharglist 2 ........................... <tPropList, 1>
+  [640] objcall 105 ............................. <tPropList[1]>
+  [642] setlocal 10 ............................. tPropList = tPropList[1]
+  [644] jmp [659]
+  [647] getlocal 4 .............................. <tLine>
+  [649] pushsymb 83 ............................. <#item>
+  [651] pushint8 2 .............................. <2>
+  [653] pusharglist 3 ........................... <tLine, #item, 2>
+  [655] objcall 70 .............................. <tLine.item[2]>
+  [657] setlocal 10 ............................. tPropList = tLine.item[2]
+  [659] getlocal 8 .............................. <tSubList>
+  [661] getlocal 9 .............................. <tProp>
+  [663] getlocal 10 ............................. <tPropList>
+  [665] pusharglistnoret 3 ...................... <tSubList, tProp, tPropList>
+  [667] objcall 146 ............................. tSubList.addProp(tProp, tPropList)
+  [669] jmp [703] ............................... next repeat
+  [672] getlocal 8 .............................. <tSubList>
+  [674] getlocal 9 .............................. <tProp>
+  [676] getlocal 4 .............................. <tLine>
+  [678] pushsymb 83 ............................. <#item>
+  [680] pushint8 2 .............................. <2>
+  [682] pusharglist 3 ........................... <tLine, #item, 2>
+  [684] objcall 70 .............................. <tLine.item[2]>
+  [686] getlocal 4 .............................. <tLine>
+  [688] pushsymb 83 ............................. <#item>
+  [690] pushint8 3 .............................. <3>
+  [692] pusharglist 3 ........................... <tLine, #item, 3>
+  [694] objcall 70 .............................. <tLine.item[3]>
+  [696] pusharglist 2 ........................... <[tLine.item[2], tLine.item[3]]>
+  [698] pushlist ................................ <[tLine.item[2], tLine.item[3]]>
+  [699] pusharglistnoret 3 ...................... <tSubList, tProp, [tLine.item[2], tLine.item[3]]>
+  [701] objcall 146 ............................. tSubList.addProp(tProp, [tLine.item[2], tLine.item[3]])
+  [703] pushint8 1
+  [705] getlocal 3
+  [707] add
+  [708] setlocal 3
+  [710] endrepeat [231]
+  [713] ret
+end
+
+on RemoveFromData tTag
+  [  0] getparam 0 .............................. <tTag>
+  [  2] pusharglist 0 ........................... <>
+  [  4] extcall 40 .............................. <VOID>
+  [  6] eq ...................................... <tTag = VOID>
+  [  7] jmpifz [ 11] ............................ if tTag = VOID then
+  [ 10] ret ..................................... exit
+  [ 11] getglobal 86 ............................ <gData>
+  [ 13] pushcons 14 ............................. <"Stored">
+  [ 15] getparam 0 .............................. <tTag>
+  [ 17] joinstr ................................. <"Stored" & tTag>
+  [ 18] pusharglist 1 ........................... <"Stored" & tTag>
+  [ 20] extcall 88 .............................. <symbol("Stored" & tTag)>
+  [ 22] pusharglist 2 ........................... <gData, symbol("Stored" & tTag)>
+  [ 24] objcall 105 ............................. <gData[symbol("Stored" & tTag)]>
+  [ 26] getobjprop 122 .......................... <gData[symbol("Stored" & tTag)].ilk>
+  [ 28] pushsymb 126 ............................ <#list>
+  [ 30] nteq .................................... <gData[symbol("Stored" & tTag)].ilk <> #list>
+  [ 31] jmpifz [ 35] ............................ if gData[symbol("Stored" & tTag)].ilk <> #list then
+  [ 34] ret ..................................... exit
+  [ 35] getglobal 86 ............................ <gData>
+  [ 37] pushcons 14 ............................. <"Stored">
+  [ 39] getparam 0 .............................. <tTag>
+  [ 41] joinstr ................................. <"Stored" & tTag>
+  [ 42] pusharglist 1 ........................... <"Stored" & tTag>
+  [ 44] extcall 88 .............................. <symbol("Stored" & tTag)>
+  [ 46] pusharglist 2 ........................... <gData, symbol("Stored" & tTag)>
+  [ 48] objcall 105 ............................. <gData[symbol("Stored" & tTag)]>
+  [ 50] getobjprop 129 .......................... <gData[symbol("Stored" & tTag)].count>
+  [ 52] pushzero ................................ <0>
+  [ 53] gt ...................................... <gData[symbol("Stored" & tTag)].count > 0>
+  [ 54] jmpifz [120] ............................ if gData[symbol("Stored" & tTag)].count > 0 then
+  [ 57] getglobal 86 ............................ <gData>
+  [ 59] pushcons 14 ............................. <"Stored">
+  [ 61] getparam 0 .............................. <tTag>
+  [ 63] joinstr ................................. <"Stored" & tTag>
+  [ 64] pusharglist 1 ........................... <"Stored" & tTag>
+  [ 66] extcall 88 .............................. <symbol("Stored" & tTag)>
+  [ 68] pusharglist 2 ........................... <gData, symbol("Stored" & tTag)>
+  [ 70] objcall 105 ............................. <gData[symbol("Stored" & tTag)]>
+  [ 72] peek 0
+  [ 74] pusharglist 1
+  [ 76] extcall 129
+  [ 78] pushint8 1
+  [ 80] peek 0
+  [ 82] peek 2
+  [ 84] lteq
+  [ 85] jmpifz [118] ............................ repeat with i in gData[symbol("Stored" & tTag)]
+  [ 88] peek 2
+  [ 90] peek 1
+  [ 92] pusharglist 2
+  [ 94] extcall 105
+  [ 96] setlocal 0
+  [ 98] getglobal 86 ............................ <gData>
+  [100] getparam 0 .............................. <tTag>
+  [102] pusharglist 2 ........................... <gData, tTag>
+  [104] objcall 105 ............................. <gData[tTag]>
+  [106] getlocal 0 .............................. <i>
+  [108] pusharglistnoret 2 ...................... <gData[tTag], i>
+  [110] objcall 605 ............................. gData[tTag].deleteProp(i)
+  [113] pushint8 1
+  [115] add
+  [116] endrepeat [ 80]
+  [118] pop 3
+  [120] getglobal 86 ............................ <gData>
+  [122] pushcons 14 ............................. <"Stored">
+  [124] getparam 0 .............................. <tTag>
+  [126] joinstr ................................. <"Stored" & tTag>
+  [127] pusharglist 1 ........................... <"Stored" & tTag>
+  [129] extcall 88 .............................. <symbol("Stored" & tTag)>
+  [131] pusharglist 0 ........................... <[]>
+  [133] pushlist ................................ <[]>
+  [134] pusharglistnoret 3 ...................... <gData, symbol("Stored" & tTag), []>
+  [136] objcall 103 ............................. gData[symbol("Stored" & tTag)] = []
+  [138] ret
+end
+
+on ShowError tString
+  [  0] getglobal 50 ............................ <gSystem>
+  [  2] getobjprop 430 .......................... <gSystem.debug>
+  [  5] pushint8 1 .............................. <1>
+  [  7] eq ...................................... <gSystem.debug = 1>
+  [  8] jmpifz [ 17] ............................ if gSystem.debug = 1 then
+  [ 11] getparam 0 .............................. <tString>
+  [ 13] pusharglistnoret 1 ...................... <tString>
+  [ 15] extcall 57 .............................. put tString
+  [ 17] ret
+end

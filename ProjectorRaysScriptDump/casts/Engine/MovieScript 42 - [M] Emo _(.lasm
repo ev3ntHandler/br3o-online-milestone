@@ -1,0 +1,469 @@
+global gSystem, gLoader, gData, gSound, gGame, gEmo
+
+on Emo me, tSpriteNr
+  [  0] getparam 1 .............................. <tSpriteNr>
+  [  2] pusharglistnoret 1 ...................... <tSpriteNr>
+  [  4] extcall 57 .............................. put tSpriteNr
+  [  6] getglobal 50 ............................ <gSystem>
+  [  8] getobjprop 441 .......................... <gSystem.Emo>
+  [ 11] pushzero ................................ <0>
+  [ 12] eq ...................................... <gSystem.Emo = 0>
+  [ 13] jmpifz [ 26] ............................ if gSystem.Emo = 0 then / else
+  [ 16] pushzero ................................ <0>
+  [ 17] getparam 1 .............................. <tSpriteNr>
+  [ 19] pusharglistnoret 2 ...................... <0, tSpriteNr>
+  [ 21] localcall 1 ............................. InitEmo(0, tSpriteNr)
+  [ 23] jmp [ 30]
+  [ 26] pusharglistnoret 0 ...................... <>
+  [ 28] localcall 2 ............................. closeEmo()
+  [ 30] ret
+end
+
+on InitEmo me, tSpriteNr
+  [  0] pushcons 0 .............................. <"InitEMo">
+  [  2] pusharglistnoret 1 ...................... <"InitEMo">
+  [  4] extcall 57 .............................. put "InitEMo"
+  [  6] getglobal 50 ............................ <gSystem>
+  [  8] pushint8 1 .............................. <1>
+  [ 10] setobjprop 441 .......................... gSystem.Emo = 1
+  [ 13] pusharglist 0 ........................... <[:]>
+  [ 15] pushproplist ............................ <[:]>
+  [ 16] setglobal 864 ........................... gEmo = [:]
+  [ 19] getglobal 864 ........................... <gEmo>
+  [ 22] pushsymb 64 ............................. <#member>
+  [ 24] pushcons 1 .............................. <"Console">
+  [ 26] pusharglist 1 ........................... <"Console">
+  [ 28] extcall 64 .............................. <member("Console")>
+  [ 30] pusharglistnoret 3 ...................... <gEmo, #member, member("Console")>
+  [ 32] objcall 103 ............................. gEmo[#member] = member("Console")
+  [ 34] getglobal 864 ........................... <gEmo>
+  [ 37] getchainedprop 64 ....................... <gEmo.member>
+  [ 39] pusharglistnoret 1 ...................... <gEmo.member>
+  [ 41] objcall 674 ............................. gEmo.member.resetWorld()
+  [ 44] getglobal 864 ........................... <gEmo>
+  [ 47] getchainedprop 64 ....................... <gEmo.member>
+  [ 49] getobjprop 235 .......................... <gEmo.member.name>
+  [ 51] pushsymb 59 ............................. <#fileName>
+  [ 53] pushcons 2 .............................. <"WindowStyle_Texture">
+  [ 55] pushsymb 348 ............................ <#renderFormat>
+  [ 58] pushsymb 865 ............................ <#rgba8888>
+  [ 61] pushsymb 866 ............................ <#filtering>
+  [ 64] pushsymb 867 ............................ <#lowFiltered>
+  [ 67] pushsymb 226 ............................ <#nearFiltering>
+  [ 69] pushzero ................................ <0>
+  [ 70] pusharglist 8 ........................... <[#fileName: "WindowStyle_Texture", #renderFormat: #rgba8888, #filtering: #lowFiltered, #nearFiltering: 0]>
+  [ 72] pushproplist ............................ <[#fileName: "WindowStyle_Texture", #renderFormat: #rgba8888, #filtering: #lowFiltered, #nearFiltering: 0]>
+  [ 73] pusharglistnoret 2 ...................... <gEmo.member.name, [#fileName: "WindowStyle_Texture", #renderFormat: #rgba8888, #filtering: #lowFiltered, #nearFiltering: 0]>
+  [ 75] extcall 681 ............................. createTexture(gEmo.member.name, [#fileName: "WindowStyle_Texture", #renderFormat: #rgba8888, #filtering: #lowFiltered, #nearFiltering: 0])
+  [ 78] getglobal 864 ........................... <gEmo>
+  [ 81] pushsymb 298 ............................ <#camera>
+  [ 84] getglobal 864 ........................... <gEmo>
+  [ 87] getchainedprop 64 ....................... <gEmo.member>
+  [ 89] pushcons 3 .............................. <"DefaultView">
+  [ 91] pusharglist 2 ........................... <gEmo.member, "DefaultView">
+  [ 93] objcall 298 ............................. <gEmo.member.camera("DefaultView")>
+  [ 96] pusharglistnoret 3 ...................... <gEmo, #camera, gEmo.member.camera("DefaultView")>
+  [ 98] objcall 103 ............................. gEmo[#camera] = gEmo.member.camera("DefaultView")
+  [100] getglobal 864 ........................... <gEmo>
+  [103] getchainedprop 298 ...................... <gEmo.camera>
+  [106] getchainedprop 214 ...................... <gEmo.camera.transform>
+  [108] getglobal 43 ............................ <gGame>
+  [110] pushsymb 409 ............................ <#resolution>
+  [113] pushint8 1 .............................. <1>
+  [115] pusharglist 3 ........................... <gGame, #resolution, 1>
+  [117] objcall 70 .............................. <gGame.resolution[1]>
+  [119] pushint8 2 .............................. <2>
+  [121] div ..................................... <gGame.resolution[1] / 2>
+  [122] getglobal 43 ............................ <gGame>
+  [124] pushsymb 409 ............................ <#resolution>
+  [127] pushint8 2 .............................. <2>
+  [129] pusharglist 3 ........................... <gGame, #resolution, 2>
+  [131] objcall 70 .............................. <gGame.resolution[2]>
+  [133] inv ..................................... <-gGame.resolution[2]>
+  [134] pushint8 2 .............................. <2>
+  [136] div ..................................... <-gGame.resolution[2] / 2>
+  [137] pushfloat32 775.0 ....................... <775.0>
+  [142] pusharglist 3 ........................... <gGame.resolution[1] / 2, -gGame.resolution[2] / 2, 775.0>
+  [144] extcall 212 ............................. <vector(gGame.resolution[1] / 2, -gGame.resolution[2] / 2, 775.0)>
+  [146] setobjprop 215 .......................... gEmo.camera.transform.position = vector(gGame.resolution[1] / 2, -gGame.resolution[2] / 2, 775.0)
+  [148] getglobal 864 ........................... <gEmo>
+  [151] getchainedprop 298 ...................... <gEmo.camera>
+  [154] pushzero ................................ <0>
+  [155] pushzero ................................ <0>
+  [156] getglobal 43 ............................ <gGame>
+  [158] pushsymb 409 ............................ <#resolution>
+  [161] pushint8 1 .............................. <1>
+  [163] pusharglist 3 ........................... <gGame, #resolution, 1>
+  [165] objcall 70 .............................. <gGame.resolution[1]>
+  [167] getglobal 43 ............................ <gGame>
+  [169] pushsymb 409 ............................ <#resolution>
+  [172] pushint8 2 .............................. <2>
+  [174] pusharglist 3 ........................... <gGame, #resolution, 2>
+  [176] objcall 70 .............................. <gGame.resolution[2]>
+  [178] pusharglist 4 ........................... <0, 0, gGame.resolution[1], gGame.resolution[2]>
+  [180] extcall 320 ............................. <rect(0, 0, gGame.resolution[1], gGame.resolution[2])>
+  [183] setobjprop 320 .......................... gEmo.camera.rect = rect(0, 0, gGame.resolution[1], gGame.resolution[2])
+  [186] getglobal 864 ........................... <gEmo>
+  [189] getchainedprop 298 ...................... <gEmo.camera>
+  [192] pushsymb 868 ............................ <#orthographic>
+  [195] setobjprop 869 .......................... gEmo.camera.projection = #orthographic
+  [198] getglobal 864 ........................... <gEmo>
+  [201] getchainedprop 298 ...................... <gEmo.camera>
+  [204] getglobal 43 ............................ <gGame>
+  [206] pushsymb 409 ............................ <#resolution>
+  [209] pushint8 2 .............................. <2>
+  [211] pusharglist 3 ........................... <gGame, #resolution, 2>
+  [213] objcall 70 .............................. <gGame.resolution[2]>
+  [215] setobjprop 870 .......................... gEmo.camera.orthoHeight = gGame.resolution[2]
+  [218] getglobal 864 ........................... <gEmo>
+  [221] getchainedprop 298 ...................... <gEmo.camera>
+  [224] getchainedprop 871 ...................... <gEmo.camera.colorBuffer>
+  [227] pushzero ................................ <0>
+  [228] setobjprop 872 .......................... gEmo.camera.colorBuffer.clearAtRender = 0
+  [231] getparam 1 .............................. <tSpriteNr>
+  [233] pusharglist 1 ........................... <tSpriteNr>
+  [235] extcall 487 ............................. <sprite(tSpriteNr)>
+  [238] getglobal 864 ........................... <gEmo>
+  [241] getobjprop 298 .......................... <gEmo.camera>
+  [244] pusharglistnoret 2 ...................... <sprite(tSpriteNr), gEmo.camera>
+  [246] objcall 873 ............................. sprite(tSpriteNr).addCamera(gEmo.camera)
+  [249] getglobal 864 ........................... <gEmo>
+  [252] pushsymb 874 ............................ <#windows>
+  [255] pusharglist 0 ........................... <[:]>
+  [257] pushproplist ............................ <[:]>
+  [258] pusharglistnoret 3 ...................... <gEmo, #windows, [:]>
+  [260] objcall 103 ............................. gEmo[#windows] = [:]
+  [262] pushzero ................................ <0>
+  [263] pushsymb 875 ............................ <#console>
+  [266] pusharglistnoret 2 ...................... <0, #console>
+  [268] localcall 3 ............................. SetupWindow(0, #console)
+  [270] ret
+end
+
+on closeEmo
+  [  0] pushcons 4 .............................. <"closeEmo">
+  [  2] pusharglistnoret 1 ...................... <"closeEmo">
+  [  4] extcall 57 .............................. put "closeEmo"
+  [  6] getglobal 50 ............................ <gSystem>
+  [  8] pushzero ................................ <0>
+  [  9] setobjprop 441 .......................... gSystem.Emo = 0
+  [ 12] ret
+end
+
+on SetupWindow me, tWindowName
+  [  0] getparam 1 .............................. <tWindowName>
+  [  2] pusharglist 0 ........................... <>
+  [  4] extcall 40 .............................. <VOID>
+  [  6] eq ...................................... <tWindowName = VOID>
+  [  7] jmpifz [ 11] ............................ if tWindowName = VOID then
+  [ 10] ret ..................................... exit
+  [ 11] pusharglist 0 ........................... <[:]>
+  [ 13] pushproplist ............................ <[:]>
+  [ 14] setlocal 0 .............................. tWindow = [:]
+  [ 16] getlocal 0 .............................. <tWindow>
+  [ 18] pushsymb 876 ............................ <#ROOT>
+  [ 21] getglobal 864 ........................... <gEmo>
+  [ 24] getchainedprop 64 ....................... <gEmo.member>
+  [ 26] getparam 1 .............................. <tWindowName>
+  [ 28] pushcons 5 .............................. <"_Window">
+  [ 30] joinstr ................................. <tWindowName & "_Window">
+  [ 31] pusharglist 2 ........................... <gEmo.member, tWindowName & "_Window">
+  [ 33] objcall 877 ............................. <gEmo.member.newGroup(tWindowName & "_Window")>
+  [ 36] pusharglistnoret 3 ...................... <tWindow, #ROOT, gEmo.member.newGroup(tWindowName & "_Window")>
+  [ 38] objcall 103 ............................. tWindow[#ROOT] = gEmo.member.newGroup(tWindowName & "_Window")
+  [ 40] pushsymb 878 ............................ <#consoleDisplay>
+  [ 43] pushsymb 235 ............................ <#name>
+  [ 45] pushcons 6 .............................. <"ConsoleTextDisplay">
+  [ 47] pushsymb 201 ............................ <#size>
+  [ 49] pushint16 512 ........................... <512>
+  [ 52] pushint16 256 ........................... <256>
+  [ 55] pusharglist 2 ........................... <[512, 256]>
+  [ 57] pushlist ................................ <[512, 256]>
+  [ 58] pusharglist 4 ........................... <[#name: "ConsoleTextDisplay", #size: [512, 256]]>
+  [ 60] pushproplist ............................ <[#name: "ConsoleTextDisplay", #size: [512, 256]]>
+  [ 61] pushsymb 879 ............................ <#consoleInput>
+  [ 64] pushsymb 235 ............................ <#name>
+  [ 66] pushcons 7 .............................. <"ConsoleTextInput">
+  [ 68] pushsymb 201 ............................ <#size>
+  [ 70] pushint16 512 ........................... <512>
+  [ 73] pushint8 16 ............................. <16>
+  [ 75] pusharglist 2 ........................... <[512, 16]>
+  [ 77] pushlist ................................ <[512, 16]>
+  [ 78] pushsymb 219 ............................ <#align>
+  [ 80] pushsymb 880 ............................ <#TextDisplay>
+  [ 83] pushsymb 881 ............................ <#bottom>
+  [ 86] pusharglist 2 ........................... <[#TextDisplay: #bottom]>
+  [ 88] pushproplist ............................ <[#TextDisplay: #bottom]>
+  [ 89] pushsymb 839 ............................ <#Function>
+  [ 92] pushsymb 879 ............................ <#consoleInput>
+  [ 95] pusharglist 8 ........................... <[#name: "ConsoleTextInput", #size: [512, 16], #align: [#TextDisplay: #bottom], #Function: #consoleInput]>
+  [ 97] pushproplist ............................ <[#name: "ConsoleTextInput", #size: [512, 16], #align: [#TextDisplay: #bottom], #Function: #consoleInput]>
+  [ 98] pusharglist 4 ........................... <[#consoleDisplay: [#name: "ConsoleTextDisplay", #size: [512, 256]], #consoleInput: [#name: "ConsoleTextInput", #size: [512, 16], #align: [#TextDisplay: #bottom], #Function: #consoleInput]]>
+  [100] pushproplist ............................ <[#consoleDisplay: [#name: "ConsoleTextDisplay", #size: [512, 256]], #consoleInput: [#name: "ConsoleTextInput", #size: [512, 16], #align: [#TextDisplay: #bottom], #Function: #consoleInput]]>
+  [101] setlocal 1 .............................. tList = [#consoleDisplay: [#name: "ConsoleTextDisplay", #size: [512, 256]], #consoleInput: [#name: "ConsoleTextInput", #size: [512, 16], #align: [#TextDisplay: #bottom], #Function: #consoleInput]]
+  [103] pushsymb 880 ............................ <#TextDisplay>
+  [106] setlocal 2 .............................. tType = #TextDisplay
+  [108] getglobal 864 ........................... <gEmo>
+  [111] getchainedprop 64 ....................... <gEmo.member>
+  [113] getparam 1 .............................. <tWindowName>
+  [115] getlocal 2 .............................. <tType>
+  [117] joinstr ................................. <tWindowName & tType>
+  [118] pusharglist 1 ........................... <tWindowName & tType>
+  [120] extcall 67 .............................. <string(tWindowName & tType)>
+  [122] pushint8 2 .............................. <2>
+  [124] pushint8 4 .............................. <4>
+  [126] pushzero ................................ <0>
+  [127] pushzero ................................ <0>
+  [128] pushint8 4 .............................. <4>
+  [130] pusharglist 7 ........................... <gEmo.member, string(tWindowName & tType), 2, 4, 0, 0, 4>
+  [132] objcall 882 ............................. <gEmo.member.newMesh(string(tWindowName & tType), 2, 4, 0, 0, 4)>
+  [135] setlocal 3 .............................. tMesh = gEmo.member.newMesh(string(tWindowName & tType), 2, 4, 0, 0, 4)
+  [137] getlocal 3 .............................. <tMesh>
+  [139] pushzero ................................ <0>
+  [140] pushzero ................................ <0>
+  [141] pushzero ................................ <0>
+  [142] pusharglist 3 ........................... <0, 0, 0>
+  [144] extcall 212 ............................. <vector(0, 0, 0)>
+  [146] pushint16 512 ........................... <512>
+  [149] pushzero ................................ <0>
+  [150] pushzero ................................ <0>
+  [151] pusharglist 3 ........................... <512, 0, 0>
+  [153] extcall 212 ............................. <vector(512, 0, 0)>
+  [155] pushint16 512 ........................... <512>
+  [158] pushint16 256 ........................... <256>
+  [161] inv ..................................... <-256>
+  [162] pushzero ................................ <0>
+  [163] pusharglist 3 ........................... <512, -256, 0>
+  [165] extcall 212 ............................. <vector(512, -256, 0)>
+  [167] pushzero ................................ <0>
+  [168] pushint16 256 ........................... <256>
+  [171] inv ..................................... <-256>
+  [172] pushzero ................................ <0>
+  [173] pusharglist 3 ........................... <0, -256, 0>
+  [175] extcall 212 ............................. <vector(0, -256, 0)>
+  [177] pusharglist 4 ........................... <[vector(0, 0, 0), vector(512, 0, 0), vector(512, -256, 0), vector(0, -256, 0)]>
+  [179] pushlist ................................ <[vector(0, 0, 0), vector(512, 0, 0), vector(512, -256, 0), vector(0, -256, 0)]>
+  [180] setobjprop 883 .......................... tMesh.vertexList = [vector(0, 0, 0), vector(512, 0, 0), vector(512, -256, 0), vector(0, -256, 0)]
+  [183] getlocal 3 .............................. <tMesh>
+  [185] pushsymb 884 ............................ <#face>
+  [188] pushint8 1 .............................. <1>
+  [190] pusharglist 3 ........................... <tMesh, #face, 1>
+  [192] objcall 102 ............................. <tMesh.face[1]>
+  [194] pushint8 3 .............................. <3>
+  [196] pushint8 2 .............................. <2>
+  [198] pushint8 1 .............................. <1>
+  [200] pusharglist 3 ........................... <[3, 2, 1]>
+  [202] pushlist ................................ <[3, 2, 1]>
+  [203] setobjprop 885 .......................... tMesh.face[1].vertices = [3, 2, 1]
+  [206] getlocal 3 .............................. <tMesh>
+  [208] pushsymb 884 ............................ <#face>
+  [211] pushint8 2 .............................. <2>
+  [213] pusharglist 3 ........................... <tMesh, #face, 2>
+  [215] objcall 102 ............................. <tMesh.face[2]>
+  [217] pushint8 4 .............................. <4>
+  [219] pushint8 3 .............................. <3>
+  [221] pushint8 1 .............................. <1>
+  [223] pusharglist 3 ........................... <[4, 3, 1]>
+  [225] pushlist ................................ <[4, 3, 1]>
+  [226] setobjprop 885 .......................... tMesh.face[2].vertices = [4, 3, 1]
+  [229] getlocal 3 .............................. <tMesh>
+  [231] pushfloat32 0.0 ......................... <0.0>
+  [236] pushfloat32 1.0 ......................... <1.0>
+  [241] pusharglist 2 ........................... <[0.0, 1.0]>
+  [243] pushlist ................................ <[0.0, 1.0]>
+  [244] pushfloat32 1.0 ......................... <1.0>
+  [249] pushfloat32 1.0 ......................... <1.0>
+  [254] pusharglist 2 ........................... <[1.0, 1.0]>
+  [256] pushlist ................................ <[1.0, 1.0]>
+  [257] pushfloat32 1.0 ......................... <1.0>
+  [262] pushfloat32 0.0 ......................... <0.0>
+  [267] pusharglist 2 ........................... <[1.0, 0.0]>
+  [269] pushlist ................................ <[1.0, 0.0]>
+  [270] pushfloat32 0.0 ......................... <0.0>
+  [275] pushfloat32 0.0 ......................... <0.0>
+  [280] pusharglist 2 ........................... <[0.0, 0.0]>
+  [282] pushlist ................................ <[0.0, 0.0]>
+  [283] pusharglist 4 ........................... <[[0.0, 1.0], [1.0, 1.0], [1.0, 0.0], [0.0, 0.0]]>
+  [285] pushlist ................................ <[[0.0, 1.0], [1.0, 1.0], [1.0, 0.0], [0.0, 0.0]]>
+  [286] setobjprop 886 .......................... tMesh.textureCoordinateList = [[0.0, 1.0], [1.0, 1.0], [1.0, 0.0], [0.0, 0.0]]
+  [289] getlocal 3 .............................. <tMesh>
+  [291] pushsymb 884 ............................ <#face>
+  [294] pushint8 1 .............................. <1>
+  [296] pusharglist 3 ........................... <tMesh, #face, 1>
+  [298] objcall 102 ............................. <tMesh.face[1]>
+  [300] pushint8 3 .............................. <3>
+  [302] pushint8 2 .............................. <2>
+  [304] pushint8 1 .............................. <1>
+  [306] pusharglist 3 ........................... <[3, 2, 1]>
+  [308] pushlist ................................ <[3, 2, 1]>
+  [309] setobjprop 887 .......................... tMesh.face[1].texCoords = [3, 2, 1]
+  [312] getlocal 3 .............................. <tMesh>
+  [314] pushsymb 884 ............................ <#face>
+  [317] pushint8 2 .............................. <2>
+  [319] pusharglist 3 ........................... <tMesh, #face, 2>
+  [321] objcall 102 ............................. <tMesh.face[2]>
+  [323] pushint8 4 .............................. <4>
+  [325] pushint8 3 .............................. <3>
+  [327] pushint8 1 .............................. <1>
+  [329] pusharglist 3 ........................... <[4, 3, 1]>
+  [331] pushlist ................................ <[4, 3, 1]>
+  [332] setobjprop 887 .......................... tMesh.face[2].texCoords = [4, 3, 1]
+  [335] getlocal 3 .............................. <tMesh>
+  [337] pushsymb 888 ............................ <#flat>
+  [340] pusharglistnoret 2 ...................... <tMesh, #flat>
+  [342] objcall 889 ............................. tMesh.generateNormals(#flat)
+  [345] pushint8 1 .............................. <1>
+  [347] setlocal 4
+  [349] getlocal 4
+  [351] getlocal 3 .............................. <tMesh>
+  [353] pushsymb 883 ............................ <#vertexList>
+  [356] pusharglist 2 ........................... <tMesh, #vertexList>
+  [358] objcall 129 ............................. <tMesh.vertexList.count>
+  [360] lteq
+  [361] jmpifz [392] ............................ repeat with i = 1 to tMesh.vertexList.count
+  [364] getlocal 3 .............................. <tMesh>
+  [366] pushsymb 890 ............................ <#normalList>
+  [369] getlocal 4 .............................. <i>
+  [371] pushzero ................................ <0>
+  [372] pushzero ................................ <0>
+  [373] pushint8 1 .............................. <1>
+  [375] pusharglist 3 ........................... <0, 0, 1>
+  [377] extcall 212 ............................. <vector(0, 0, 1)>
+  [379] pusharglistnoret 4 ...................... <tMesh, #normalList, i, vector(0, 0, 1)>
+  [381] objcall 99 .............................. tMesh.normalList[i] = vector(0, 0, 1)
+  [383] pushint8 1
+  [385] getlocal 4
+  [387] add
+  [388] setlocal 4
+  [390] endrepeat [349]
+  [392] getlocal 3 .............................. <tMesh>
+  [394] pusharglistnoret 1 ...................... <tMesh>
+  [396] objcall 891 ............................. tMesh.build()
+  [399] getglobal 864 ........................... <gEmo>
+  [402] getchainedprop 64 ....................... <gEmo.member>
+  [404] getparam 1 .............................. <tWindowName>
+  [406] getlocal 2 .............................. <tType>
+  [408] joinstr ................................. <tWindowName & tType>
+  [409] pusharglist 1 ........................... <tWindowName & tType>
+  [411] extcall 67 .............................. <string(tWindowName & tType)>
+  [413] getlocal 3 .............................. <tMesh>
+  [415] pusharglist 3 ........................... <gEmo.member, string(tWindowName & tType), tMesh>
+  [417] objcall 892 ............................. <gEmo.member.newModel(string(tWindowName & tType), tMesh)>
+  [420] setlocal 5 .............................. tmodel = gEmo.member.newModel(string(tWindowName & tType), tMesh)
+  [422] getlocal 5 .............................. <tmodel>
+  [424] pushzero ................................ <0>
+  [425] getparam 1 .............................. <tWindowName>
+  [427] getlocal 2 .............................. <tType>
+  [429] joinstr ................................. <tWindowName & tType>
+  [430] pusharglist 1 ........................... <tWindowName & tType>
+  [432] extcall 67 .............................. <string(tWindowName & tType)>
+  [434] pusharglist 0 ........................... <>
+  [436] extcall 40 .............................. <VOID>
+  [438] pushint16 512 ........................... <512>
+  [441] pushint16 256 ........................... <256>
+  [444] pusharglist 2 ........................... <[512, 256]>
+  [446] pushlist ................................ <[512, 256]>
+  [447] pusharglist 4 ........................... <0, string(tWindowName & tType), VOID, [512, 256]>
+  [449] localcall 4 ............................. <EmoStandardShaderAndTexture(0, string(tWindowName & tType), VOID, [512, 256])>
+  [451] setobjprop 208 .......................... tmodel.shader = EmoStandardShaderAndTexture(0, string(tWindowName & tType), VOID, [512, 256])
+  [453] ret
+end
+
+on EmoStandardShaderAndTexture me, tName, tTextureName, tTextureSize
+  [  0] getglobal 864 ........................... <gEmo>
+  [  3] getchainedprop 64 ....................... <gEmo.member>
+  [  5] getparam 1 .............................. <tName>
+  [  7] pushcons 8 .............................. <"_Material">
+  [  9] joinstr ................................. <tName & "_Material">
+  [ 10] pushsymb 531 ............................ <#standard>
+  [ 13] pusharglist 3 ........................... <gEmo.member, tName & "_Material", #standard>
+  [ 15] objcall 896 ............................. <gEmo.member.newShader(tName & "_Material", #standard)>
+  [ 18] setlocal 0 .............................. tShader = gEmo.member.newShader(tName & "_Material", #standard)
+  [ 20] getlocal 0 .............................. <tShader>
+  [ 22] pushzero ................................ <0>
+  [ 23] pushzero ................................ <0>
+  [ 24] pushzero ................................ <0>
+  [ 25] pusharglist 3 ........................... <0, 0, 0>
+  [ 27] extcall 282 ............................. <rgb(0, 0, 0)>
+  [ 30] setobjprop 897 .......................... tShader.ambient = rgb(0, 0, 0)
+  [ 33] getlocal 0 .............................. <tShader>
+  [ 35] pushzero ................................ <0>
+  [ 36] pushzero ................................ <0>
+  [ 37] pushzero ................................ <0>
+  [ 38] pusharglist 3 ........................... <0, 0, 0>
+  [ 40] extcall 282 ............................. <rgb(0, 0, 0)>
+  [ 43] setobjprop 898 .......................... tShader.diffuse = rgb(0, 0, 0)
+  [ 46] getlocal 0 .............................. <tShader>
+  [ 48] pushzero ................................ <0>
+  [ 49] pushzero ................................ <0>
+  [ 50] pushzero ................................ <0>
+  [ 51] pusharglist 3 ........................... <0, 0, 0>
+  [ 53] extcall 282 ............................. <rgb(0, 0, 0)>
+  [ 56] setobjprop 899 .......................... tShader.specular = rgb(0, 0, 0)
+  [ 59] getlocal 0 .............................. <tShader>
+  [ 61] pushint16 255 ........................... <255>
+  [ 64] pushint16 255 ........................... <255>
+  [ 67] pushint16 255 ........................... <255>
+  [ 70] pusharglist 3 ........................... <255, 255, 255>
+  [ 72] extcall 282 ............................. <rgb(255, 255, 255)>
+  [ 75] setobjprop 900 .......................... tShader.emissive = rgb(255, 255, 255)
+  [ 78] getlocal 0 .............................. <tShader>
+  [ 80] pushfloat32 0.0 ......................... <0.0>
+  [ 85] setobjprop 901 .......................... tShader.shininess = 0.0
+  [ 88] getparam 2 .............................. <tTextureName>
+  [ 90] pusharglist 0 ........................... <>
+  [ 92] extcall 40 .............................. <VOID>
+  [ 94] eq ...................................... <tTextureName = VOID>
+  [ 95] jmpifz [169] ............................ if tTextureName = VOID then / else
+  [ 98] getparam 3 .............................. <tTextureSize>
+  [100] pushint8 1 .............................. <1>
+  [102] pusharglist 2 ........................... <tTextureSize, 1>
+  [104] objcall 105 ............................. <tTextureSize[1]>
+  [106] getparam 3 .............................. <tTextureSize>
+  [108] pushint8 2 .............................. <2>
+  [110] pusharglist 2 ........................... <tTextureSize, 2>
+  [112] objcall 105 ............................. <tTextureSize[2]>
+  [114] pushint8 32 ............................. <32>
+  [116] pusharglist 3 ........................... <tTextureSize[1], tTextureSize[2], 32>
+  [118] extcall 319 ............................. <image(tTextureSize[1], tTextureSize[2], 32)>
+  [121] setlocal 1 .............................. tImage = image(tTextureSize[1], tTextureSize[2], 32)
+  [123] getglobal 864 ........................... <gEmo>
+  [126] getchainedprop 64 ....................... <gEmo.member>
+  [128] getparam 1 .............................. <tName>
+  [130] pushcons 9 .............................. <"_Texture">
+  [132] joinstr ................................. <tName & "_Texture">
+  [133] pushsymb 902 ............................ <#fromImageObject>
+  [136] getlocal 1 .............................. <tImage>
+  [138] pusharglist 4 ........................... <gEmo.member, tName & "_Texture", #fromImageObject, tImage>
+  [140] objcall 903 ............................. <gEmo.member.newTexture(tName & "_Texture", #fromImageObject, tImage)>
+  [143] setlocal 2 .............................. tTexture = gEmo.member.newTexture(tName & "_Texture", #fromImageObject, tImage)
+  [145] getlocal 2 .............................. <tTexture>
+  [147] pushsymb 865 ............................ <#rgba8888>
+  [150] setobjprop 348 .......................... tTexture.renderFormat = #rgba8888
+  [153] getlocal 2 .............................. <tTexture>
+  [155] pushsymb 867 ............................ <#lowFiltered>
+  [158] setobjprop 331 .......................... tTexture.quality = #lowFiltered
+  [161] getlocal 2 .............................. <tTexture>
+  [163] pushzero ................................ <0>
+  [164] setobjprop 226 .......................... tTexture.nearFiltering = 0
+  [166] jmp [182]
+  [169] getglobal 864 ........................... <gEmo>
+  [172] getchainedprop 64 ....................... <gEmo.member>
+  [174] getparam 2 .............................. <tTextureName>
+  [176] pusharglist 2 ........................... <gEmo.member, tTextureName>
+  [178] objcall 218 ............................. <gEmo.member.texture(tTextureName)>
+  [180] setlocal 2 .............................. tTexture = gEmo.member.texture(tTextureName)
+  [182] getlocal 0 .............................. <tShader>
+  [184] getlocal 2 .............................. <tTexture>
+  [186] setobjprop 218 .......................... tShader.texture = tTexture
+  [188] getlocal 0 .............................. <tShader>
+  [190] pushsymb 904 ............................ <#blendFunctionList>
+  [193] pushint8 2 .............................. <2>
+  [195] pushsymb 905 ............................ <#replace>
+  [198] pusharglistnoret 4 ...................... <tShader, #blendFunctionList, 2, #replace>
+  [200] objcall 99 .............................. tShader.blendFunctionList[2] = #replace
+  [202] getlocal 0 .............................. <tShader>
+  [204] pusharglistnoret 1 ...................... <tShader>
+  [206] extcall 52 .............................. return tShader
+  [208] ret
+end

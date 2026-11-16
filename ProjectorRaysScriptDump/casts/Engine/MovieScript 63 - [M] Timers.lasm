@@ -1,0 +1,373 @@
+global gSystem, gLoader, gData, gGame
+
+on AddTimer me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] getobjprop 122 .......................... <tTarget.ilk>
+  [  4] pushsymb 67 ............................. <#string>
+  [  6] nteq .................................... <tTarget.ilk <> #string>
+  [  7] jmpifz [ 27] ............................ if tTarget.ilk <> #string then
+  [ 10] pushcons 0 .............................. <"DefaultTimer">
+  [ 12] getglobal 43 ............................ <gGame>
+  [ 14] pushsymb 459 ............................ <#timerList>
+  [ 17] pusharglist 2 ........................... <gGame, #timerList>
+  [ 19] objcall 129 ............................. <gGame.timerList.count>
+  [ 21] pushint8 1 .............................. <1>
+  [ 23] add ..................................... <gGame.timerList.count + 1>
+  [ 24] joinstr ................................. <"DefaultTimer" & gGame.timerList.count + 1>
+  [ 25] setparam 1 .............................. tTarget = "DefaultTimer" & gGame.timerList.count + 1
+  [ 27] getparam 2 .............................. <tDataList>
+  [ 29] pusharglist 1 ........................... <tDataList>
+  [ 31] extcall 503 ............................. <value(tDataList)>
+  [ 34] setparam 2 .............................. tDataList = value(tDataList)
+  [ 36] getparam 2 .............................. <tDataList>
+  [ 38] getobjprop 122 .......................... <tDataList.ilk>
+  [ 40] pushsymb 541 ............................ <#propList>
+  [ 43] nteq .................................... <tDataList.ilk <> #propList>
+  [ 44] jmpifz [ 71] ............................ if tDataList.ilk <> #propList then
+  [ 47] pushcons 1 .............................. <"Function: SetupTimer. Target: ">
+  [ 49] getparam 1 .............................. <tTarget>
+  [ 51] joinstr ................................. <"Function: SetupTimer. Target: " & tTarget>
+  [ 52] pushcons 2 .............................. <" Parameters: ">
+  [ 54] joinstr ................................. <"Function: SetupTimer. Target: " & tTarget & " Parameters: ">
+  [ 55] getparam 2 .............................. <tDataList>
+  [ 57] joinstr ................................. <"Function: SetupTimer. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 58] pushcons 3 .............................. <" Datalist was not a #PropList after value().">
+  [ 60] joinstr ................................. <"Function: SetupTimer. Target: " & tTarget & " Parameters: " & tDataList & " Datalist was not a #PropList after value().">
+  [ 61] pusharglistnoret 1 ...................... <"Function: SetupTimer. Target: " & tTarget & " Parameters: " & tDataList & " Datalist was not a #PropList after value().">
+  [ 63] extcall 511 ............................. ShowError("Function: SetupTimer. Target: " & tTarget & " Parameters: " & tDataList & " Datalist was not a #PropList after value().")
+  [ 66] pushzero ................................ <0>
+  [ 67] pusharglistnoret 1 ...................... <0>
+  [ 69] extcall 52 .............................. return 0
+  [ 71] pusharglist 0 ........................... <>
+  [ 73] extcall 40 .............................. <VOID>
+  [ 75] setlocal 0 .............................. tValue = VOID
+  [ 77] getparam 2 .............................. <tDataList>
+  [ 79] pushsymb 503 ............................ <#value>
+  [ 82] pusharglist 2 ........................... <tDataList, #value>
+  [ 84] objcall 105 ............................. <tDataList[#value]>
+  [ 86] getobjprop 122 .......................... <tDataList[#value].ilk>
+  [ 88] pushsymb 67 ............................. <#string>
+  [ 90] eq ...................................... <tDataList[#value].ilk = #string>
+  [ 91] jmpifz [101] ............................ if tDataList[#value].ilk = #string then
+  [ 94] getparam 2 .............................. <tDataList>
+  [ 96] getobjprop 503 .......................... <tDataList.value>
+  [ 99] setlocal 0 .............................. tValue = tDataList.value
+  [101] getlocal 0 .............................. <tValue>
+  [103] pusharglist 0 ........................... <>
+  [105] extcall 40 .............................. <VOID>
+  [107] eq ...................................... <tValue = VOID>
+  [108] jmpifz [116] ............................ if tValue = VOID then
+  [111] pushzero ................................ <0>
+  [112] pusharglistnoret 1 ...................... <0>
+  [114] extcall 52 .............................. return 0
+  [116] pushzero ................................ <0>
+  [117] setlocal 1 .............................. tTime = 0
+  [119] getparam 2 .............................. <tDataList>
+  [121] pushsymb 142 ............................ <#time>
+  [123] pusharglist 2 ........................... <tDataList, #time>
+  [125] objcall 105 ............................. <tDataList[#time]>
+  [127] getobjprop 122 .......................... <tDataList[#time].ilk>
+  [129] pushsymb 123 ............................ <#integer>
+  [131] eq ...................................... <tDataList[#time].ilk = #integer>
+  [132] jmpifz [141] ............................ if tDataList[#time].ilk = #integer then
+  [135] getparam 2 .............................. <tDataList>
+  [137] getobjprop 142 .......................... <tDataList.time>
+  [139] setlocal 1 .............................. tTime = tDataList.time
+  [141] pushsymb 921 ............................ <#up>
+  [144] setlocal 2 .............................. tState = #up
+  [146] getparam 2 .............................. <tDataList>
+  [148] pushsymb 89 ............................. <#state>
+  [150] pusharglist 2 ........................... <tDataList, #state>
+  [152] objcall 105 ............................. <tDataList[#state]>
+  [154] getobjprop 122 .......................... <tDataList[#state].ilk>
+  [156] pushsymb 88 ............................. <#symbol>
+  [158] eq ...................................... <tDataList[#state].ilk = #symbol>
+  [159] jmpifz [168] ............................ if tDataList[#state].ilk = #symbol then
+  [162] getparam 2 .............................. <tDataList>
+  [164] getobjprop 89 ........................... <tDataList.state>
+  [166] setlocal 2 .............................. tState = tDataList.state
+  [168] pushsymb 54 ............................. <#none>
+  [170] setlocal 3 .............................. tLimit = #none
+  [172] getparam 2 .............................. <tDataList>
+  [174] pushsymb 922 ............................ <#limit>
+  [177] pusharglist 2 ........................... <tDataList, #limit>
+  [179] objcall 105 ............................. <tDataList[#limit]>
+  [181] getobjprop 122 .......................... <tDataList[#limit].ilk>
+  [183] pushsymb 123 ............................ <#integer>
+  [185] eq ...................................... <tDataList[#limit].ilk = #integer>
+  [186] jmpifz [196] ............................ if tDataList[#limit].ilk = #integer then
+  [189] getparam 2 .............................. <tDataList>
+  [191] getobjprop 922 .......................... <tDataList.limit>
+  [194] setlocal 3 .............................. tLimit = tDataList.limit
+  [196] pushzero ................................ <0>
+  [197] pushcons 4 .............................. <EMPTY>
+  [199] pushsymb 235 ............................ <#name>
+  [201] getlocal 0 .............................. <tValue>
+  [203] pushsymb 503 ............................ <#value>
+  [206] getlocal 1 .............................. <tTime>
+  [208] pusharglist 4 ........................... <[#name: tValue, #value: tTime]>
+  [210] pushproplist ............................ <[#name: tValue, #value: tTime]>
+  [211] pusharglist 3 ........................... <0, EMPTY, [#name: tValue, #value: tTime]>
+  [213] extcall 717 ............................. <AddValue(0, EMPTY, [#name: tValue, #value: tTime])>
+  [216] setlocal 4 .............................. tGlobal = AddValue(0, EMPTY, [#name: tValue, #value: tTime])
+  [218] getlocal 4 .............................. <tGlobal>
+  [220] getlocal 2 .............................. <tState>
+  [222] gettoplevelprop 462 ..................... <_system>
+  [225] getobjprop 463 .......................... <_system.milliSeconds>
+  [228] getlocal 3 .............................. <tLimit>
+  [230] pusharglist 4 ........................... <[tGlobal, tState, _system.milliSeconds, tLimit]>
+  [232] pushlist ................................ <[tGlobal, tState, _system.milliSeconds, tLimit]>
+  [233] setlocal 5 .............................. tList = [tGlobal, tState, _system.milliSeconds, tLimit]
+  [235] getglobal 43 ............................ <gGame>
+  [237] pushsymb 459 ............................ <#timerList>
+  [240] getparam 1 .............................. <tTarget>
+  [242] pusharglist 1 ........................... <tTarget>
+  [244] extcall 88 .............................. <symbol(tTarget)>
+  [246] getlocal 5 .............................. <tList>
+  [248] pusharglistnoret 4 ...................... <gGame, #timerList, symbol(tTarget), tList>
+  [250] objcall 99 .............................. gGame.timerList[symbol(tTarget)] = tList
+  [252] pushint8 1 .............................. <1>
+  [254] pusharglistnoret 1 ...................... <1>
+  [256] extcall 52 .............................. return 1
+  [258] ret
+end
+
+on RemoveTimer me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] pusharglist 0 ........................... <>
+  [  4] extcall 40 .............................. <VOID>
+  [  6] eq ...................................... <tTarget = VOID>
+  [  7] jmpifz [ 15] ............................ if tTarget = VOID then
+  [ 10] pushzero ................................ <0>
+  [ 11] pusharglistnoret 1 ...................... <0>
+  [ 13] extcall 52 .............................. return 0
+  [ 15] getparam 2 .............................. <tDataList>
+  [ 17] pusharglist 1 ........................... <tDataList>
+  [ 19] extcall 503 ............................. <value(tDataList)>
+  [ 22] setparam 2 .............................. tDataList = value(tDataList)
+  [ 24] getparam 1 .............................. <tTarget>
+  [ 26] pusharglist 1 ........................... <tTarget>
+  [ 28] extcall 88 .............................. <symbol(tTarget)>
+  [ 30] setlocal 0 .............................. tSymbol = symbol(tTarget)
+  [ 32] getglobal 43 ............................ <gGame>
+  [ 34] pushsymb 459 ............................ <#timerList>
+  [ 37] getlocal 0 .............................. <tSymbol>
+  [ 39] pusharglist 3 ........................... <gGame, #timerList, tSymbol>
+  [ 41] objcall 70 .............................. <gGame.timerList[tSymbol]>
+  [ 43] pusharglist 1 ........................... <gGame.timerList[tSymbol]>
+  [ 45] extcall 389 ............................. <voidp(gGame.timerList[tSymbol])>
+  [ 48] pushzero ................................ <0>
+  [ 49] eq ...................................... <voidp(gGame.timerList[tSymbol]) = 0>
+  [ 50] jmpifz [ 65] ............................ if voidp(gGame.timerList[tSymbol]) = 0 then
+  [ 53] getglobal 43 ............................ <gGame>
+  [ 55] getchainedprop 459 ...................... <gGame.timerList>
+  [ 58] getlocal 0 .............................. <tSymbol>
+  [ 60] pusharglistnoret 2 ...................... <gGame.timerList, tSymbol>
+  [ 62] objcall 605 ............................. gGame.timerList.deleteProp(tSymbol)
+  [ 65] pushint8 1 .............................. <1>
+  [ 67] pusharglistnoret 1 ...................... <1>
+  [ 69] extcall 52 .............................. return 1
+  [ 71] ret
+end
+
+on UpdateTimers me
+  [  0] pusharglist 0 ........................... <[]>
+  [  2] pushlist ................................ <[]>
+  [  3] setlocal 0 .............................. tDelList = []
+  [  5] getglobal 43 ............................ <gGame>
+  [  7] getobjprop 459 .......................... <gGame.timerList>
+  [ 10] peek 0
+  [ 12] pusharglist 1
+  [ 14] extcall 129
+  [ 16] pushint8 1
+  [ 18] peek 0
+  [ 20] peek 2
+  [ 22] lteq
+  [ 23] jmpifz [339] ............................ repeat with i in gGame.timerList
+  [ 26] peek 2
+  [ 28] peek 1
+  [ 30] pusharglist 2
+  [ 32] extcall 105
+  [ 34] setlocal 1
+  [ 36] gettoplevelprop 462 ..................... <_system>
+  [ 39] getobjprop 463 .......................... <_system.milliSeconds>
+  [ 42] getlocal 1 .............................. <i>
+  [ 44] pushint8 3 .............................. <3>
+  [ 46] pusharglist 2 ........................... <i, 3>
+  [ 48] objcall 105 ............................. <i[3]>
+  [ 50] sub ..................................... <_system.milliSeconds - i[3]>
+  [ 51] getglobal 43 ............................ <gGame>
+  [ 53] getobjprop 454 .......................... <gGame.TimeMP>
+  [ 56] mul ..................................... <(_system.milliSeconds - i[3]) * gGame.TimeMP>
+  [ 57] pusharglist 1 ........................... <(_system.milliSeconds - i[3]) * gGame.TimeMP>
+  [ 59] extcall 123 ............................. <integer((_system.milliSeconds - i[3]) * gGame.TimeMP)>
+  [ 61] setlocal 2 .............................. tdiff = integer((_system.milliSeconds - i[3]) * gGame.TimeMP)
+  [ 63] getlocal 1 .............................. <i>
+  [ 65] pushint8 2 .............................. <2>
+  [ 67] pusharglist 2 ........................... <i, 2>
+  [ 69] objcall 105 ............................. <i[2]>
+  [ 71] pushsymb 926 ............................ <#down>
+  [ 74] eq ...................................... <i[2] = #down>
+  [ 75] jmpifz [146] ............................ if i[2] = #down then / else
+  [ 78] getglobal 43 ............................ <gGame>
+  [ 80] getlocal 1 .............................. <i>
+  [ 82] pushint8 1 .............................. <1>
+  [ 84] pusharglist 2 ........................... <i, 1>
+  [ 86] objcall 105 ............................. <i[1]>
+  [ 88] getglobal 43 ............................ <gGame>
+  [ 90] getlocal 1 .............................. <i>
+  [ 92] pushint8 1 .............................. <1>
+  [ 94] pusharglist 2 ........................... <i, 1>
+  [ 96] objcall 105 ............................. <i[1]>
+  [ 98] pusharglist 2 ........................... <gGame, i[1]>
+  [100] objcall 105 ............................. <gGame[i[1]]>
+  [102] getlocal 2 .............................. <tdiff>
+  [104] sub ..................................... <gGame[i[1]] - tdiff>
+  [105] pusharglistnoret 3 ...................... <gGame, i[1], gGame[i[1]] - tdiff>
+  [107] objcall 103 ............................. gGame[i[1]] = gGame[i[1]] - tdiff
+  [109] getglobal 43 ............................ <gGame>
+  [111] getlocal 1 .............................. <i>
+  [113] pushint8 1 .............................. <1>
+  [115] pusharglist 2 ........................... <i, 1>
+  [117] objcall 105 ............................. <i[1]>
+  [119] getglobal 43 ............................ <gGame>
+  [121] getlocal 1 .............................. <i>
+  [123] pushint8 1 .............................. <1>
+  [125] pusharglist 2 ........................... <i, 1>
+  [127] objcall 105 ............................. <i[1]>
+  [129] pusharglist 2 ........................... <gGame, i[1]>
+  [131] objcall 105 ............................. <gGame[i[1]]>
+  [133] getglobal 43 ............................ <gGame>
+  [135] getobjprop 927 .......................... <gGame.PauseTime>
+  [138] add ..................................... <gGame[i[1]] + gGame.PauseTime>
+  [139] pusharglistnoret 3 ...................... <gGame, i[1], gGame[i[1]] + gGame.PauseTime>
+  [141] objcall 103 ............................. gGame[i[1]] = gGame[i[1]] + gGame.PauseTime
+  [143] jmp [211]
+  [146] getglobal 43 ............................ <gGame>
+  [148] getlocal 1 .............................. <i>
+  [150] pushint8 1 .............................. <1>
+  [152] pusharglist 2 ........................... <i, 1>
+  [154] objcall 105 ............................. <i[1]>
+  [156] getglobal 43 ............................ <gGame>
+  [158] getlocal 1 .............................. <i>
+  [160] pushint8 1 .............................. <1>
+  [162] pusharglist 2 ........................... <i, 1>
+  [164] objcall 105 ............................. <i[1]>
+  [166] pusharglist 2 ........................... <gGame, i[1]>
+  [168] objcall 105 ............................. <gGame[i[1]]>
+  [170] getlocal 2 .............................. <tdiff>
+  [172] add ..................................... <gGame[i[1]] + tdiff>
+  [173] pusharglistnoret 3 ...................... <gGame, i[1], gGame[i[1]] + tdiff>
+  [175] objcall 103 ............................. gGame[i[1]] = gGame[i[1]] + tdiff
+  [177] getglobal 43 ............................ <gGame>
+  [179] getlocal 1 .............................. <i>
+  [181] pushint8 1 .............................. <1>
+  [183] pusharglist 2 ........................... <i, 1>
+  [185] objcall 105 ............................. <i[1]>
+  [187] getglobal 43 ............................ <gGame>
+  [189] getlocal 1 .............................. <i>
+  [191] pushint8 1 .............................. <1>
+  [193] pusharglist 2 ........................... <i, 1>
+  [195] objcall 105 ............................. <i[1]>
+  [197] pusharglist 2 ........................... <gGame, i[1]>
+  [199] objcall 105 ............................. <gGame[i[1]]>
+  [201] getglobal 43 ............................ <gGame>
+  [203] getobjprop 927 .......................... <gGame.PauseTime>
+  [206] sub ..................................... <gGame[i[1]] - gGame.PauseTime>
+  [207] pusharglistnoret 3 ...................... <gGame, i[1], gGame[i[1]] - gGame.PauseTime>
+  [209] objcall 103 ............................. gGame[i[1]] = gGame[i[1]] - gGame.PauseTime
+  [211] getlocal 1 .............................. <i>
+  [213] pushint8 3 .............................. <3>
+  [215] gettoplevelprop 462 ..................... <_system>
+  [218] getobjprop 463 .......................... <_system.milliSeconds>
+  [221] pusharglistnoret 3 ...................... <i, 3, _system.milliSeconds>
+  [223] objcall 103 ............................. i[3] = _system.milliSeconds
+  [225] getlocal 1 .............................. <i>
+  [227] pushint8 4 .............................. <4>
+  [229] pusharglist 2 ........................... <i, 4>
+  [231] objcall 105 ............................. <i[4]>
+  [233] pushsymb 54 ............................. <#none>
+  [235] nteq .................................... <i[4] <> #none>
+  [236] jmpifz [333] ............................ if i[4] <> #none then
+  [239] getlocal 1 .............................. <i>
+  [241] pushint8 2 .............................. <2>
+  [243] pusharglist 2 ........................... <i, 2>
+  [245] objcall 105 ............................. <i[2]>
+  [247] pushsymb 926 ............................ <#down>
+  [250] eq ...................................... <i[2] = #down>
+  [251] getglobal 43 ............................ <gGame>
+  [253] getlocal 1 .............................. <i>
+  [255] pushint8 1 .............................. <1>
+  [257] pusharglist 2 ........................... <i, 1>
+  [259] objcall 105 ............................. <i[1]>
+  [261] pusharglist 2 ........................... <gGame, i[1]>
+  [263] objcall 105 ............................. <gGame[i[1]]>
+  [265] getlocal 1 .............................. <i>
+  [267] pushint8 4 .............................. <4>
+  [269] pusharglist 2 ........................... <i, 4>
+  [271] objcall 105 ............................. <i[4]>
+  [273] lteq .................................... <gGame[i[1]] <= i[4]>
+  [274] and ..................................... <(i[2] = #down) and (gGame[i[1]] <= i[4])>
+  [275] jmpifz [286] ............................ if (i[2] = #down) and (gGame[i[1]] <= i[4]) then
+  [278] getlocal 0 .............................. <tDelList>
+  [280] getlocal 1 .............................. <i>
+  [282] pusharglistnoret 2 ...................... <tDelList, i>
+  [284] objcall 42 .............................. tDelList.add(i)
+  [286] getlocal 1 .............................. <i>
+  [288] pushint8 2 .............................. <2>
+  [290] pusharglist 2 ........................... <i, 2>
+  [292] objcall 105 ............................. <i[2]>
+  [294] pushsymb 921 ............................ <#up>
+  [297] eq ...................................... <i[2] = #up>
+  [298] getglobal 43 ............................ <gGame>
+  [300] getlocal 1 .............................. <i>
+  [302] pushint8 1 .............................. <1>
+  [304] pusharglist 2 ........................... <i, 1>
+  [306] objcall 105 ............................. <i[1]>
+  [308] pusharglist 2 ........................... <gGame, i[1]>
+  [310] objcall 105 ............................. <gGame[i[1]]>
+  [312] getlocal 1 .............................. <i>
+  [314] pushint8 4 .............................. <4>
+  [316] pusharglist 2 ........................... <i, 4>
+  [318] objcall 105 ............................. <i[4]>
+  [320] gteq .................................... <gGame[i[1]] >= i[4]>
+  [321] and ..................................... <(i[2] = #up) and (gGame[i[1]] >= i[4])>
+  [322] jmpifz [333] ............................ if (i[2] = #up) and (gGame[i[1]] >= i[4]) then
+  [325] getlocal 0 .............................. <tDelList>
+  [327] getlocal 1 .............................. <i>
+  [329] pusharglistnoret 2 ...................... <tDelList, i>
+  [331] objcall 42 .............................. tDelList.add(i)
+  [333] pushint8 1
+  [335] add
+  [336] endrepeat [ 18]
+  [339] pop 3
+  [341] getlocal 0 .............................. <tDelList>
+  [343] peek 0
+  [345] pusharglist 1
+  [347] extcall 129
+  [349] pushint8 1
+  [351] peek 0
+  [353] peek 2
+  [355] lteq
+  [356] jmpifz [385] ............................ repeat with i in tDelList
+  [359] peek 2
+  [361] peek 1
+  [363] pusharglist 2
+  [365] extcall 105
+  [367] setlocal 1
+  [369] getglobal 43 ............................ <gGame>
+  [371] getchainedprop 459 ...................... <gGame.timerList>
+  [374] getlocal 1 .............................. <i>
+  [376] pusharglistnoret 2 ...................... <gGame.timerList, i>
+  [378] objcall 175 ............................. gGame.timerList.deleteOne(i)
+  [380] pushint8 1
+  [382] add
+  [383] endrepeat [351]
+  [385] pop 3
+  [387] getglobal 43 ............................ <gGame>
+  [389] pushsymb 927 ............................ <#PauseTime>
+  [392] pushzero ................................ <0>
+  [393] pusharglistnoret 3 ...................... <gGame, #PauseTime, 0>
+  [395] objcall 103 ............................. gGame[#PauseTime] = 0
+  [397] ret
+end

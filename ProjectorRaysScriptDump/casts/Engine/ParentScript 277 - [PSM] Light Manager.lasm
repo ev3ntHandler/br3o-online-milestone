@@ -1,0 +1,687 @@
+property p
+global g
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 64 ............................. <#member>
+  [ 11] getparam 1 .............................. <tParams>
+  [ 13] pushsymb 949 ............................ <#memberName>
+  [ 16] pusharglist 2 ........................... <tParams, #memberName>
+  [ 18] objcall 105 ............................. <tParams[#memberName]>
+  [ 20] pusharglist 1 ........................... <tParams[#memberName]>
+  [ 22] extcall 64 .............................. <member(tParams[#memberName])>
+  [ 24] pusharglistnoret 3 ...................... <p, #member, member(tParams[#memberName])>
+  [ 26] objcall 103 ............................. p[#member] = member(tParams[#memberName])
+  [ 28] getprop 563 ............................. <p>
+  [ 31] getobjprop 64 ........................... <p.member>
+  [ 33] pusharglist 0 ........................... <>
+  [ 35] extcall 40 .............................. <VOID>
+  [ 37] eq ...................................... <p.member = VOID>
+  [ 38] getprop 563 ............................. <p>
+  [ 41] getchainedprop 64 ....................... <p.member>
+  [ 43] getobjprop 598 .......................... <p.member.type>
+  [ 46] pushsymb 610 ............................ <#shockwave3d>
+  [ 49] nteq .................................... <p.member.type <> #shockwave3d>
+  [ 50] or ...................................... <(p.member = VOID) or (p.member.type <> #shockwave3d)>
+  [ 51] jmpifz [ 68] ............................ if (p.member = VOID) or (p.member.type <> #shockwave3d) then
+  [ 54] pushcons 0 .............................. <"Script: [PSM] Car Shadow. ">
+  [ 56] getparam 1 .............................. <tParams>
+  [ 58] joinstr ................................. <"Script: [PSM] Car Shadow. " & tParams>
+  [ 59] pushcons 1 .............................. <" No such member or type is NOT shockwave3d">
+  [ 61] joinstr ................................. <"Script: [PSM] Car Shadow. " & tParams & " No such member or type is NOT shockwave3d">
+  [ 62] pusharglistnoret 1 ...................... <"Script: [PSM] Car Shadow. " & tParams & " No such member or type is NOT shockwave3d">
+  [ 64] extcall 511 ............................. ShowError("Script: [PSM] Car Shadow. " & tParams & " No such member or type is NOT shockwave3d")
+  [ 67] ret ..................................... exit
+  [ 68] getprop 563 ............................. <p>
+  [ 71] pushsymb 71 ............................. <#model>
+  [ 73] pusharglist 0 ........................... <>
+  [ 75] extcall 40 .............................. <VOID>
+  [ 77] pusharglistnoret 3 ...................... <p, #model, VOID>
+  [ 79] objcall 103 ............................. p[#model] = VOID
+  [ 81] getparam 1 .............................. <tParams>
+  [ 83] pushsymb 1668 ........................... <#ModelName>
+  [ 86] pusharglist 2 ........................... <tParams, #ModelName>
+  [ 88] objcall 105 ............................. <tParams[#ModelName]>
+  [ 90] setlocal 0 .............................. pModelName = tParams[#ModelName]
+  [ 92] getlocal 0 .............................. <pModelName>
+  [ 94] pusharglist 0 ........................... <>
+  [ 96] extcall 40 .............................. <VOID>
+  [ 98] eq ...................................... <pModelName = VOID>
+  [ 99] jmpifz [123] ............................ if pModelName = VOID then / else
+  [102] getprop 563 ............................. <p>
+  [105] pushsymb 71 ............................. <#model>
+  [107] getparam 1 .............................. <tParams>
+  [109] pushsymb 3048 ........................... <#RayCastModel>
+  [112] pusharglist 2 ........................... <tParams, #RayCastModel>
+  [114] objcall 105 ............................. <tParams[#RayCastModel]>
+  [116] pusharglistnoret 3 ...................... <p, #model, tParams[#RayCastModel]>
+  [118] objcall 103 ............................. p[#model] = tParams[#RayCastModel]
+  [120] jmp [139]
+  [123] getprop 563 ............................. <p>
+  [126] getprop 563 ............................. <p>
+  [129] getchainedprop 64 ....................... <p.member>
+  [131] getlocal 0 .............................. <pModelName>
+  [133] pusharglist 2 ........................... <p.member, pModelName>
+  [135] objcall 71 .............................. <p.member.model(pModelName)>
+  [137] setobjprop 71 ........................... p.model = p.member.model(pModelName)
+  [139] getprop 563 ............................. <p>
+  [142] getobjprop 71 ........................... <p.model>
+  [144] pusharglist 0 ........................... <>
+  [146] extcall 40 .............................. <VOID>
+  [148] eq ...................................... <p.model = VOID>
+  [149] jmpifz [166] ............................ if p.model = VOID then
+  [152] pushcons 2 .............................. <"Script: [PSM] Light Manager. ">
+  [154] getparam 1 .............................. <tParams>
+  [156] joinstr ................................. <"Script: [PSM] Light Manager. " & tParams>
+  [157] pushcons 3 .............................. <" No model found based upon modelName AND/OR no model returned from parent script">
+  [159] joinstr ................................. <"Script: [PSM] Light Manager. " & tParams & " No model found based upon modelName AND/OR no model returned from parent script">
+  [160] pusharglistnoret 1 ...................... <"Script: [PSM] Light Manager. " & tParams & " No model found based upon modelName AND/OR no model returned from parent script">
+  [162] extcall 511 ............................. ShowError("Script: [PSM] Light Manager. " & tParams & " No model found based upon modelName AND/OR no model returned from parent script")
+  [165] ret ..................................... exit
+  [166] getprop 563 ............................. <p>
+  [169] pushsymb 377 ............................ <#tag>
+  [172] pushsymb 531 ............................ <#standard>
+  [175] pusharglistnoret 3 ...................... <p, #tag, #standard>
+  [177] objcall 103 ............................. p[#tag] = #standard
+  [179] getparam 1 .............................. <tParams>
+  [181] pushsymb 377 ............................ <#tag>
+  [184] pusharglist 2 ........................... <tParams, #tag>
+  [186] extcall 542 ............................. <getaProp(tParams, #tag)>
+  [189] getobjprop 122 .......................... <getaProp(tParams, #tag).ilk>
+  [191] pushsymb 88 ............................. <#symbol>
+  [193] eq ...................................... <getaProp(tParams, #tag).ilk = #symbol>
+  [194] jmpifz [212] ............................ if getaProp(tParams, #tag).ilk = #symbol then
+  [197] getprop 563 ............................. <p>
+  [200] getparam 1 .............................. <tParams>
+  [202] pushsymb 377 ............................ <#tag>
+  [205] pusharglist 2 ........................... <tParams, #tag>
+  [207] objcall 105 ............................. <tParams[#tag]>
+  [209] setobjprop 377 .......................... p.tag = tParams[#tag]
+  [212] getprop 563 ............................. <p>
+  [215] pushsymb 3062 ........................... <#ScriptLimit>
+  [218] pushint8 1 .............................. <1>
+  [220] pusharglistnoret 3 ...................... <p, #ScriptLimit, 1>
+  [222] objcall 103 ............................. p[#ScriptLimit] = 1
+  [224] getprop 563 ............................. <p>
+  [227] pushsymb 1814 ........................... <#Cleared>
+  [230] pushzero ................................ <0>
+  [231] pusharglistnoret 3 ...................... <p, #Cleared, 0>
+  [233] objcall 103 ............................. p[#Cleared] = 0
+  [235] getprop 563 ............................. <p>
+  [238] pushsymb 2183 ........................... <#adjColor>
+  [241] pushzero ................................ <0>
+  [242] pushzero ................................ <0>
+  [243] pushzero ................................ <0>
+  [244] pusharglist 3 ........................... <0, 0, 0>
+  [246] extcall 282 ............................. <rgb(0, 0, 0)>
+  [249] pusharglistnoret 3 ...................... <p, #adjColor, rgb(0, 0, 0)>
+  [251] objcall 103 ............................. p[#adjColor] = rgb(0, 0, 0)
+  [253] getparam 1 .............................. <tParams>
+  [255] pushsymb 2183 ........................... <#adjColor>
+  [258] pusharglist 2 ........................... <tParams, #adjColor>
+  [260] extcall 542 ............................. <getaProp(tParams, #adjColor)>
+  [263] getobjprop 122 .......................... <getaProp(tParams, #adjColor).ilk>
+  [265] pushsymb 223 ............................ <#color>
+  [267] eq ...................................... <getaProp(tParams, #adjColor).ilk = #color>
+  [268] jmpifz [286] ............................ if getaProp(tParams, #adjColor).ilk = #color then
+  [271] getprop 563 ............................. <p>
+  [274] getparam 1 .............................. <tParams>
+  [276] pushsymb 2183 ........................... <#adjColor>
+  [279] pusharglist 2 ........................... <tParams, #adjColor>
+  [281] objcall 105 ............................. <tParams[#adjColor]>
+  [283] setobjprop 2183 ......................... p.adjColor = tParams[#adjColor]
+  [286] getprop 563 ............................. <p>
+  [289] pushsymb 305 ............................ <#shaderList>
+  [292] pusharglist 0 ........................... <[]>
+  [294] pushlist ................................ <[]>
+  [295] pusharglistnoret 3 ...................... <p, #shaderList, []>
+  [297] objcall 103 ............................. p[#shaderList] = []
+  [299] getprop 563 ............................. <p>
+  [302] pushsymb 969 ............................ <#modelList>
+  [305] pusharglist 0 ........................... <>
+  [307] extcall 40 .............................. <VOID>
+  [309] pusharglistnoret 3 ...................... <p, #modelList, VOID>
+  [311] objcall 103 ............................. p[#modelList] = VOID
+  [313] getprop 563 ............................. <p>
+  [316] getparam 1 .............................. <tParams>
+  [318] pushsymb 2999 ........................... <#TotalModelList>
+  [321] pusharglist 2 ........................... <tParams, #TotalModelList>
+  [323] objcall 105 ............................. <tParams[#TotalModelList]>
+  [325] setobjprop 969 .......................... p.modelList = tParams[#TotalModelList]
+  [328] getprop 563 ............................. <p>
+  [331] getobjprop 969 .......................... <p.modelList>
+  [334] pusharglist 0 ........................... <>
+  [336] extcall 40 .............................. <VOID>
+  [338] eq ...................................... <p.modelList = VOID>
+  [339] jmpifz [356] ............................ if p.modelList = VOID then
+  [342] pushcons 2 .............................. <"Script: [PSM] Light Manager. ">
+  [344] getparam 1 .............................. <tParams>
+  [346] joinstr ................................. <"Script: [PSM] Light Manager. " & tParams>
+  [347] pushcons 4 .............................. <" No modellist. Can't compile shaderlist. Exit script.">
+  [349] joinstr ................................. <"Script: [PSM] Light Manager. " & tParams & " No modellist. Can't compile shaderlist. Exit script.">
+  [350] pusharglistnoret 1 ...................... <"Script: [PSM] Light Manager. " & tParams & " No modellist. Can't compile shaderlist. Exit script.">
+  [352] extcall 511 ............................. ShowError("Script: [PSM] Light Manager. " & tParams & " No modellist. Can't compile shaderlist. Exit script.")
+  [355] ret ..................................... exit
+  [356] getprop 563 ............................. <p>
+  [359] pushsymb 969 ............................ <#modelList>
+  [362] pusharglist 2 ........................... <p, #modelList>
+  [364] objcall 129 ............................. <p.modelList.count>
+  [366] setlocal 1 .............................. pCount = p.modelList.count
+  [368] pushint8 1 .............................. <1>
+  [370] setlocal 2
+  [372] getlocal 2
+  [374] getlocal 1 .............................. <pCount>
+  [376] lteq
+  [377] jmpifz [508] ............................ repeat with i = 1 to pCount
+  [380] getprop 563 ............................. <p>
+  [383] getchainedprop 64 ....................... <p.member>
+  [385] getprop 563 ............................. <p>
+  [388] pushsymb 969 ............................ <#modelList>
+  [391] getlocal 2 .............................. <i>
+  [393] pusharglist 3 ........................... <p, #modelList, i>
+  [395] objcall 70 .............................. <p.modelList[i]>
+  [397] pusharglist 2 ........................... <p.member, p.modelList[i]>
+  [399] objcall 71 .............................. <p.member.model(p.modelList[i])>
+  [401] setlocal 3 .............................. pmodel = p.member.model(p.modelList[i])
+  [403] getlocal 3 .............................. <pmodel>
+  [405] pusharglist 0 ........................... <>
+  [407] extcall 40 .............................. <VOID>
+  [409] nteq .................................... <pmodel <> VOID>
+  [410] jmpifz [499] ............................ if pmodel <> VOID then
+  [413] getlocal 3 .............................. <pmodel>
+  [415] getobjprop 305 .......................... <pmodel.shaderList>
+  [418] setlocal 4 .............................. pTempList = pmodel.shaderList
+  [420] getlocal 4 .............................. <pTempList>
+  [422] getobjprop 129 .......................... <pTempList.count>
+  [424] setlocal 5 .............................. pCount2 = pTempList.count
+  [426] pushint8 1 .............................. <1>
+  [428] setlocal 6
+  [430] getlocal 6
+  [432] getlocal 5 .............................. <pCount2>
+  [434] lteq
+  [435] jmpifz [499] ............................ repeat with j = 1 to pCount2
+  [438] getlocal 4 .............................. <pTempList>
+  [440] getlocal 6 .............................. <j>
+  [442] pusharglist 2 ........................... <pTempList, j>
+  [444] objcall 105 ............................. <pTempList[j]>
+  [446] setlocal 7 .............................. pShader = pTempList[j]
+  [448] getlocal 7 .............................. <pShader>
+  [450] getobjprop 235 .......................... <pShader.name>
+  [452] pushcons 5 .............................. <"proxy">
+  [454] containsstr ............................. <pShader.name contains "proxy">
+  [455] jmpifz [461] ............................ if pShader.name contains "proxy" then
+  [458] jmp [490] ............................... next repeat
+  [461] getprop 563 ............................. <p>
+  [464] getchainedprop 305 ...................... <p.shaderList>
+  [467] getlocal 7 .............................. <pShader>
+  [469] pusharglist 2 ........................... <p.shaderList, pShader>
+  [471] objcall 166 ............................. <p.shaderList.getPos(pShader)>
+  [473] pushzero ................................ <0>
+  [474] eq ...................................... <p.shaderList.getPos(pShader) = 0>
+  [475] jmpifz [490] ............................ if p.shaderList.getPos(pShader) = 0 then
+  [478] getprop 563 ............................. <p>
+  [481] getchainedprop 305 ...................... <p.shaderList>
+  [484] getlocal 7 .............................. <pShader>
+  [486] pusharglistnoret 2 ...................... <p.shaderList, pShader>
+  [488] objcall 42 .............................. p.shaderList.add(pShader)
+  [490] pushint8 1
+  [492] getlocal 6
+  [494] add
+  [495] setlocal 6
+  [497] endrepeat [430]
+  [499] pushint8 1
+  [501] getlocal 2
+  [503] add
+  [504] setlocal 2
+  [506] endrepeat [372]
+  [508] getprop 563 ............................. <p>
+  [511] pushsymb 3370 ........................... <#LastImageData>
+  [514] pusharglist 0 ........................... <>
+  [516] extcall 40 .............................. <VOID>
+  [518] pusharglist 0 ........................... <>
+  [520] extcall 40 .............................. <VOID>
+  [522] pusharglist 2 ........................... <[VOID, VOID]>
+  [524] pushlist ................................ <[VOID, VOID]>
+  [525] pusharglistnoret 3 ...................... <p, #LastImageData, [VOID, VOID]>
+  [527] objcall 103 ............................. p[#LastImageData] = [VOID, VOID]
+  [529] getprop 563 ............................. <p>
+  [532] pushsymb 3371 ........................... <#CoordList1>
+  [535] pusharglist 0 ........................... <>
+  [537] extcall 40 .............................. <VOID>
+  [539] pusharglistnoret 3 ...................... <p, #CoordList1, VOID>
+  [541] objcall 103 ............................. p[#CoordList1] = VOID
+  [543] getprop 563 ............................. <p>
+  [546] pushsymb 1943 ........................... <#CoordList2>
+  [549] pusharglist 0 ........................... <>
+  [551] extcall 40 .............................. <VOID>
+  [553] pusharglistnoret 3 ...................... <p, #CoordList2, VOID>
+  [555] objcall 103 ............................. p[#CoordList2] = VOID
+  [557] getparam 0 .............................. <me>
+  [559] pusharglistnoret 1 ...................... <me>
+  [561] extcall 52 .............................. return me
+  [563] ret
+end
+
+on enterFrame me
+  [  0] getprop 563 ............................. <p>
+  [  3] pushzero ................................ <0>
+  [  4] setobjprop 1814 ......................... p.Cleared = 0
+  [  7] getglobal 395 ........................... <g>
+  [ 10] pushsymb 1740 ........................... <#RayCastList>
+  [ 13] pusharglist 2 ........................... <g, #RayCastList>
+  [ 15] extcall 542 ............................. <getaProp(g, #RayCastList)>
+  [ 18] pusharglist 0 ........................... <>
+  [ 20] extcall 40 .............................. <VOID>
+  [ 22] eq ...................................... <getaProp(g, #RayCastList) = VOID>
+  [ 23] jmpifz [ 27] ............................ if getaProp(g, #RayCastList) = VOID then
+  [ 26] ret ..................................... exit
+  [ 27] getglobal 395 ........................... <g>
+  [ 30] getobjprop 1740 ......................... <g.RayCastList>
+  [ 33] getprop 563 ............................. <p>
+  [ 36] getobjprop 377 .......................... <p.tag>
+  [ 39] pusharglist 2 ........................... <g.RayCastList, p.tag>
+  [ 41] extcall 542 ............................. <getaProp(g.RayCastList, p.tag)>
+  [ 44] pusharglist 0 ........................... <>
+  [ 46] extcall 40 .............................. <VOID>
+  [ 48] eq ...................................... <getaProp(g.RayCastList, p.tag) = VOID>
+  [ 49] jmpifz [ 53] ............................ if getaProp(g.RayCastList, p.tag) = VOID then
+  [ 52] ret ..................................... exit
+  [ 53] getglobal 395 ........................... <g>
+  [ 56] pushsymb 1740 ........................... <#RayCastList>
+  [ 59] getprop 563 ............................. <p>
+  [ 62] getobjprop 377 .......................... <p.tag>
+  [ 65] pusharglist 3 ........................... <g, #RayCastList, p.tag>
+  [ 67] objcall 70 .............................. <g.RayCastList[p.tag]>
+  [ 69] pusharglist 0 ........................... <[]>
+  [ 71] pushlist ................................ <[]>
+  [ 72] eq ...................................... <g.RayCastList[p.tag] = []>
+  [ 73] jmpifz [ 77] ............................ if g.RayCastList[p.tag] = [] then
+  [ 76] ret ..................................... exit
+  [ 77] getglobal 395 ........................... <g>
+  [ 80] pushsymb 1740 ........................... <#RayCastList>
+  [ 83] getprop 563 ............................. <p>
+  [ 86] getobjprop 377 .......................... <p.tag>
+  [ 89] pusharglist 3 ........................... <g, #RayCastList, p.tag>
+  [ 91] objcall 102 ............................. <g.RayCastList[p.tag]>
+  [ 93] pushint8 1 .............................. <1>
+  [ 95] pusharglist 2 ........................... <g.RayCastList[p.tag], 1>
+  [ 97] objcall 105 ............................. <g.RayCastList[p.tag][1]>
+  [ 99] pushsymb 71 ............................. <#model>
+  [101] pusharglist 2 ........................... <g.RayCastList[p.tag][1], #model>
+  [103] objcall 105 ............................. <g.RayCastList[p.tag][1][#model]>
+  [105] setlocal 0 .............................. pIsectModel = g.RayCastList[p.tag][1][#model]
+  [107] getprop 563 ............................. <p>
+  [110] getchainedprop 64 ....................... <p.member>
+  [112] getlocal 0 .............................. <pIsectModel>
+  [114] getobjprop 235 .......................... <pIsectModel.name>
+  [116] pusharglist 2 ........................... <p.member, pIsectModel.name>
+  [118] objcall 71 .............................. <p.member.model(pIsectModel.name)>
+  [120] getchainedprop 208 ...................... <p.member.model(pIsectModel.name).shader>
+  [122] pushsymb 1244 ........................... <#textureList>
+  [125] pushint8 2 .............................. <2>
+  [127] pusharglist 3 ........................... <p.member.model(pIsectModel.name).shader, #textureList, 2>
+  [129] objcall 70 .............................. <p.member.model(pIsectModel.name).shader.textureList[2]>
+  [131] setlocal 1 .............................. pimage = p.member.model(pIsectModel.name).shader.textureList[2]
+  [133] getlocal 1 .............................. <pimage>
+  [135] pusharglist 0 ........................... <>
+  [137] extcall 40 .............................. <VOID>
+  [139] eq ...................................... <pimage = VOID>
+  [140] jmpifz [144] ............................ if pimage = VOID then
+  [143] ret ..................................... exit
+  [144] getlocal 1 .............................. <pimage>
+  [146] getobjprop 235 .......................... <pimage.name>
+  [148] getprop 563 ............................. <p>
+  [151] pushsymb 3370 ........................... <#LastImageData>
+  [154] pushint8 1 .............................. <1>
+  [156] pusharglist 3 ........................... <p, #LastImageData, 1>
+  [158] objcall 70 .............................. <p.LastImageData[1]>
+  [160] nteq .................................... <pimage.name <> p.LastImageData[1]>
+  [161] jmpifz [327] ............................ if pimage.name <> p.LastImageData[1] then
+  [164] getprop 563 ............................. <p>
+  [167] pushsymb 3370 ........................... <#LastImageData>
+  [170] pushint8 1 .............................. <1>
+  [172] getlocal 1 .............................. <pimage>
+  [174] getobjprop 235 .......................... <pimage.name>
+  [176] pusharglistnoret 4 ...................... <p, #LastImageData, 1, pimage.name>
+  [178] objcall 99 .............................. p.LastImageData[1] = pimage.name
+  [180] getprop 563 ............................. <p>
+  [183] pushsymb 3370 ........................... <#LastImageData>
+  [186] pushint8 2 .............................. <2>
+  [188] getlocal 1 .............................. <pimage>
+  [190] getobjprop 235 .......................... <pimage.name>
+  [192] pusharglist 1 ........................... <pimage.name>
+  [194] extcall 64 .............................. <member(pimage.name)>
+  [196] getobjprop 319 .......................... <member(pimage.name).image>
+  [199] pusharglistnoret 4 ...................... <p, #LastImageData, 2, member(pimage.name).image>
+  [201] objcall 99 .............................. p.LastImageData[2] = member(pimage.name).image
+  [203] getprop 563 ............................. <p>
+  [206] getlocal 0 .............................. <pIsectModel>
+  [208] getchainedprop 995 ...................... <pIsectModel.meshDeform>
+  [211] pushsymb 998 ............................ <#mesh>
+  [214] getglobal 395 ........................... <g>
+  [217] pushsymb 1740 ........................... <#RayCastList>
+  [220] getprop 563 ............................. <p>
+  [223] getobjprop 377 .......................... <p.tag>
+  [226] pusharglist 3 ........................... <g, #RayCastList, p.tag>
+  [228] objcall 102 ............................. <g.RayCastList[p.tag]>
+  [230] pushint8 1 .............................. <1>
+  [232] pusharglist 2 ........................... <g.RayCastList[p.tag], 1>
+  [234] objcall 105 ............................. <g.RayCastList[p.tag][1]>
+  [236] pushsymb 999 ............................ <#meshID>
+  [239] pusharglist 2 ........................... <g.RayCastList[p.tag][1], #meshID>
+  [241] objcall 105 ............................. <g.RayCastList[p.tag][1][#meshID]>
+  [243] pusharglist 3 ........................... <pIsectModel.meshDeform, #mesh, g.RayCastList[p.tag][1][#meshID]>
+  [245] objcall 102 ............................. <pIsectModel.meshDeform.mesh[g.RayCastList[p.tag][1][#meshID]]>
+  [247] getchainedprop 884 ...................... <pIsectModel.meshDeform.mesh[g.RayCastList[p.tag][1][#meshID]].face>
+  [250] pushsymb 1939 ........................... <#textureLayer>
+  [253] pushint8 1 .............................. <1>
+  [255] pusharglist 3 ........................... <pIsectModel.meshDeform.mesh[g.RayCastList[p.tag][1][#meshID]].face, #textureLayer, 1>
+  [257] objcall 102 ............................. <pIsectModel.meshDeform.mesh[g.RayCastList[p.tag][1][#meshID]].face.textureLayer[1]>
+  [259] getobjprop 886 .......................... <pIsectModel.meshDeform.mesh[g.RayCastList[p.tag][1][#meshID]].face.textureLayer[1].textureCoordinateList>
+  [262] setobjprop 3371 ......................... p.CoordList1 = pIsectModel.meshDeform.mesh[g.RayCastList[p.tag][1][#meshID]].face.textureLayer[1].textureCoordinateList
+  [265] getprop 563 ............................. <p>
+  [268] getlocal 0 .............................. <pIsectModel>
+  [270] getchainedprop 995 ...................... <pIsectModel.meshDeform>
+  [273] pushsymb 998 ............................ <#mesh>
+  [276] getglobal 395 ........................... <g>
+  [279] pushsymb 1740 ........................... <#RayCastList>
+  [282] getprop 563 ............................. <p>
+  [285] getobjprop 377 .......................... <p.tag>
+  [288] pusharglist 3 ........................... <g, #RayCastList, p.tag>
+  [290] objcall 102 ............................. <g.RayCastList[p.tag]>
+  [292] pushint8 1 .............................. <1>
+  [294] pusharglist 2 ........................... <g.RayCastList[p.tag], 1>
+  [296] objcall 105 ............................. <g.RayCastList[p.tag][1]>
+  [298] pushsymb 999 ............................ <#meshID>
+  [301] pusharglist 2 ........................... <g.RayCastList[p.tag][1], #meshID>
+  [303] objcall 105 ............................. <g.RayCastList[p.tag][1][#meshID]>
+  [305] pusharglist 3 ........................... <pIsectModel.meshDeform, #mesh, g.RayCastList[p.tag][1][#meshID]>
+  [307] objcall 102 ............................. <pIsectModel.meshDeform.mesh[g.RayCastList[p.tag][1][#meshID]]>
+  [309] getchainedprop 884 ...................... <pIsectModel.meshDeform.mesh[g.RayCastList[p.tag][1][#meshID]].face>
+  [312] pushsymb 1939 ........................... <#textureLayer>
+  [315] pushint8 2 .............................. <2>
+  [317] pusharglist 3 ........................... <pIsectModel.meshDeform.mesh[g.RayCastList[p.tag][1][#meshID]].face, #textureLayer, 2>
+  [319] objcall 102 ............................. <pIsectModel.meshDeform.mesh[g.RayCastList[p.tag][1][#meshID]].face.textureLayer[2]>
+  [321] getobjprop 886 .......................... <pIsectModel.meshDeform.mesh[g.RayCastList[p.tag][1][#meshID]].face.textureLayer[2].textureCoordinateList>
+  [324] setobjprop 1943 ......................... p.CoordList2 = pIsectModel.meshDeform.mesh[g.RayCastList[p.tag][1][#meshID]].face.textureLayer[2].textureCoordinateList
+  [327] getglobal 395 ........................... <g>
+  [330] pushsymb 1740 ........................... <#RayCastList>
+  [333] getprop 563 ............................. <p>
+  [336] getobjprop 377 .......................... <p.tag>
+  [339] pusharglist 3 ........................... <g, #RayCastList, p.tag>
+  [341] objcall 102 ............................. <g.RayCastList[p.tag]>
+  [343] pushint8 1 .............................. <1>
+  [345] pusharglist 2 ........................... <g.RayCastList[p.tag], 1>
+  [347] objcall 105 ............................. <g.RayCastList[p.tag][1]>
+  [349] getprop 563 ............................. <p>
+  [352] pushsymb 3370 ........................... <#LastImageData>
+  [355] pushint8 2 .............................. <2>
+  [357] pusharglist 3 ........................... <p, #LastImageData, 2>
+  [359] objcall 102 ............................. <p.LastImageData[2]>
+  [361] getobjprop 229 .......................... <p.LastImageData[2].width>
+  [363] getprop 563 ............................. <p>
+  [366] pushsymb 3370 ........................... <#LastImageData>
+  [369] pushint8 2 .............................. <2>
+  [371] pusharglist 3 ........................... <p, #LastImageData, 2>
+  [373] objcall 102 ............................. <p.LastImageData[2]>
+  [375] getobjprop 283 .......................... <p.LastImageData[2].height>
+  [378] getprop 563 ............................. <p>
+  [381] getobjprop 1943 ......................... <p.CoordList2>
+  [384] pusharglist 4 ........................... <g.RayCastList[p.tag][1], p.LastImageData[2].width, p.LastImageData[2].height, p.CoordList2>
+  [386] localcall 2 ............................. <mMapPointToTexture(g.RayCastList[p.tag][1], p.LastImageData[2].width, p.LastImageData[2].height, p.CoordList2)>
+  [388] setlocal 2 .............................. pPos = mMapPointToTexture(g.RayCastList[p.tag][1], p.LastImageData[2].width, p.LastImageData[2].height, p.CoordList2)
+  [390] getglobal 395 ........................... <g>
+  [393] pushsymb 137 ............................ <#cars>
+  [395] getprop 563 ............................. <p>
+  [398] getobjprop 377 .......................... <p.tag>
+  [401] pusharglist 3 ........................... <g, #cars, p.tag>
+  [403] objcall 102 ............................. <g.cars[p.tag]>
+  [405] pushsymb 1335 ........................... <#specifics>
+  [408] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [410] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [412] pushsymb 3035 ........................... <#rcPoint>
+  [415] getglobal 395 ........................... <g>
+  [418] pushsymb 1740 ........................... <#RayCastList>
+  [421] getprop 563 ............................. <p>
+  [424] getobjprop 377 .......................... <p.tag>
+  [427] pusharglist 3 ........................... <g, #RayCastList, p.tag>
+  [429] objcall 102 ............................. <g.RayCastList[p.tag]>
+  [431] pushint8 1 .............................. <1>
+  [433] pusharglist 2 ........................... <g.RayCastList[p.tag], 1>
+  [435] objcall 105 ............................. <g.RayCastList[p.tag][1]>
+  [437] pushint16 1024 .......................... <1024>
+  [440] pushint16 1024 .......................... <1024>
+  [443] getprop 563 ............................. <p>
+  [446] getobjprop 3371 ......................... <p.CoordList1>
+  [449] pusharglist 4 ........................... <g.RayCastList[p.tag][1], 1024, 1024, p.CoordList1>
+  [451] localcall 2 ............................. <mMapPointToTexture(g.RayCastList[p.tag][1], 1024, 1024, p.CoordList1)>
+  [453] pusharglistnoret 3 ...................... <g.cars[p.tag][#specifics], #rcPoint, mMapPointToTexture(g.RayCastList[p.tag][1], 1024, 1024, p.CoordList1)>
+  [455] objcall 103 ............................. g.cars[p.tag][#specifics][#rcPoint] = mMapPointToTexture(g.RayCastList[p.tag][1], 1024, 1024, p.CoordList1)
+  [457] getlocal 2 .............................. <pPos>
+  [459] pushzero ................................ <0>
+  [460] eq ...................................... <pPos = 0>
+  [461] jmpifz [483] ............................ if pPos = 0 then / else
+  [464] pushint16 255 ........................... <255>
+  [467] pushint16 255 ........................... <255>
+  [470] pushint16 255 ........................... <255>
+  [473] pusharglist 3 ........................... <255, 255, 255>
+  [475] extcall 282 ............................. <rgb(255, 255, 255)>
+  [478] setlocal 3 .............................. pcolor = rgb(255, 255, 255)
+  [480] jmp [504]
+  [483] getprop 563 ............................. <p>
+  [486] pushsymb 3370 ........................... <#LastImageData>
+  [489] pushint8 2 .............................. <2>
+  [491] pusharglist 3 ........................... <p, #LastImageData, 2>
+  [493] objcall 102 ............................. <p.LastImageData[2]>
+  [495] getlocal 2 .............................. <pPos>
+  [497] pusharglist 2 ........................... <p.LastImageData[2], pPos>
+  [499] objcall 972 ............................. <p.LastImageData[2].getPixel(pPos)>
+  [502] setlocal 3 .............................. pcolor = p.LastImageData[2].getPixel(pPos)
+  [504] getlocal 3 .............................. <pcolor>
+  [506] getprop 563 ............................. <p>
+  [509] getobjprop 2183 ......................... <p.adjColor>
+  [512] sub ..................................... <pcolor - p.adjColor>
+  [513] setlocal 3 .............................. pcolor = pcolor - p.adjColor
+  [515] getlocal 3 .............................. <pcolor>
+  [517] pushzero ................................ <0>
+  [518] eq ...................................... <pcolor = 0>
+  [519] getlocal 3 .............................. <pcolor>
+  [521] pusharglist 0 ........................... <>
+  [523] extcall 40 .............................. <VOID>
+  [525] eq ...................................... <pcolor = VOID>
+  [526] or ...................................... <(pcolor = 0) or (pcolor = VOID)>
+  [527] jmpifz [546] ............................ if (pcolor = 0) or (pcolor = VOID) then
+  [530] pushint16 255 ........................... <255>
+  [533] pushint16 255 ........................... <255>
+  [536] pushint16 255 ........................... <255>
+  [539] pusharglist 3 ........................... <255, 255, 255>
+  [541] extcall 282 ............................. <rgb(255, 255, 255)>
+  [544] setlocal 3 .............................. pcolor = rgb(255, 255, 255)
+  [546] getglobal 395 ........................... <g>
+  [549] pushsymb 137 ............................ <#cars>
+  [551] getprop 563 ............................. <p>
+  [554] getobjprop 377 .......................... <p.tag>
+  [557] pusharglist 3 ........................... <g, #cars, p.tag>
+  [559] objcall 102 ............................. <g.cars[p.tag]>
+  [561] pushsymb 1335 ........................... <#specifics>
+  [564] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [566] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [568] pushsymb 1628 ........................... <#LMColor>
+  [571] getlocal 3 .............................. <pcolor>
+  [573] pusharglistnoret 3 ...................... <g.cars[p.tag][#specifics], #LMColor, pcolor>
+  [575] objcall 103 ............................. g.cars[p.tag][#specifics][#LMColor] = pcolor
+  [577] getprop 563 ............................. <p>
+  [580] pushsymb 305 ............................ <#shaderList>
+  [583] pusharglist 2 ........................... <p, #shaderList>
+  [585] objcall 129 ............................. <p.shaderList.count>
+  [587] setlocal 4 .............................. pCount = p.shaderList.count
+  [589] pushint8 1 .............................. <1>
+  [591] setlocal 5
+  [593] getlocal 5
+  [595] getlocal 4 .............................. <pCount>
+  [597] lteq
+  [598] jmpifz [638] ............................ repeat with i = 1 to pCount
+  [601] getprop 563 ............................. <p>
+  [604] pushsymb 305 ............................ <#shaderList>
+  [607] getlocal 5 .............................. <i>
+  [609] pusharglist 3 ........................... <p, #shaderList, i>
+  [611] objcall 70 .............................. <p.shaderList[i]>
+  [613] setlocal 6 .............................. pShader = p.shaderList[i]
+  [615] getlocal 6 .............................. <pShader>
+  [617] getlocal 3 .............................. <pcolor>
+  [619] setobjprop 900 .......................... pShader.emissive = pcolor
+  [622] getlocal 6 .............................. <pShader>
+  [624] getlocal 3 .............................. <pcolor>
+  [626] setobjprop 899 .......................... pShader.specular = pcolor
+  [629] pushint8 1
+  [631] getlocal 5
+  [633] add
+  [634] setlocal 5
+  [636] endrepeat [593]
+  [638] ret
+end
+
+on mMapPointToTexture pRayCastData, tWidth, tHeight, tCoordList
+  [  0] getparam 0 .............................. <pRayCastData>
+  [  2] pushsymb 71 ............................. <#model>
+  [  4] pusharglist 2 ........................... <pRayCastData, #model>
+  [  6] objcall 105 ............................. <pRayCastData[#model]>
+  [  8] setlocal 0 .............................. tModel2 = pRayCastData[#model]
+  [ 10] getparam 0 .............................. <pRayCastData>
+  [ 12] pushsymb 996 ............................ <#faceID>
+  [ 15] pusharglist 2 ........................... <pRayCastData, #faceID>
+  [ 17] objcall 105 ............................. <pRayCastData[#faceID]>
+  [ 19] setlocal 1 .............................. tFace = pRayCastData[#faceID]
+  [ 21] getparam 0 .............................. <pRayCastData>
+  [ 23] pushsymb 997 ............................ <#uvCoord>
+  [ 26] pusharglist 2 ........................... <pRayCastData, #uvCoord>
+  [ 28] objcall 105 ............................. <pRayCastData[#uvCoord]>
+  [ 30] setlocal 2 .............................. tUVCoord = pRayCastData[#uvCoord]
+  [ 32] getlocal 0 .............................. <tModel2>
+  [ 34] getchainedprop 995 ...................... <tModel2.meshDeform>
+  [ 37] pushsymb 998 ............................ <#mesh>
+  [ 40] getparam 0 .............................. <pRayCastData>
+  [ 42] pushsymb 999 ............................ <#meshID>
+  [ 45] pusharglist 2 ........................... <pRayCastData, #meshID>
+  [ 47] objcall 105 ............................. <pRayCastData[#meshID]>
+  [ 49] pusharglist 3 ........................... <tModel2.meshDeform, #mesh, pRayCastData[#meshID]>
+  [ 51] objcall 102 ............................. <tModel2.meshDeform.mesh[pRayCastData[#meshID]]>
+  [ 53] pushsymb 884 ............................ <#face>
+  [ 56] getlocal 1 .............................. <tFace>
+  [ 58] pusharglist 3 ........................... <tModel2.meshDeform.mesh[pRayCastData[#meshID]], #face, tFace>
+  [ 60] objcall 70 .............................. <tModel2.meshDeform.mesh[pRayCastData[#meshID]].face[tFace]>
+  [ 62] setlocal 3 .............................. tFaceList = tModel2.meshDeform.mesh[pRayCastData[#meshID]].face[tFace]
+  [ 64] getparam 3 .............................. <tCoordList>
+  [ 66] getlocal 3 .............................. <tFaceList>
+  [ 68] pushint8 1 .............................. <1>
+  [ 70] pusharglist 2 ........................... <tFaceList, 1>
+  [ 72] objcall 105 ............................. <tFaceList[1]>
+  [ 74] pusharglist 2 ........................... <tCoordList, tFaceList[1]>
+  [ 76] objcall 105 ............................. <tCoordList[tFaceList[1]]>
+  [ 78] setlocal 4 .............................. tLocA = tCoordList[tFaceList[1]]
+  [ 80] getlocal 4 .............................. <tLocA>
+  [ 82] pushint8 1 .............................. <1>
+  [ 84] pusharglist 2 ........................... <tLocA, 1>
+  [ 86] objcall 105 ............................. <tLocA[1]>
+  [ 88] getparam 1 .............................. <tWidth>
+  [ 90] mul ..................................... <tLocA[1] * tWidth>
+  [ 91] pushint8 1 .............................. <1>
+  [ 93] getlocal 4 .............................. <tLocA>
+  [ 95] pushint8 2 .............................. <2>
+  [ 97] pusharglist 2 ........................... <tLocA, 2>
+  [ 99] objcall 105 ............................. <tLocA[2]>
+  [101] sub ..................................... <1 - tLocA[2]>
+  [102] getparam 2 .............................. <tHeight>
+  [104] mul ..................................... <(1 - tLocA[2]) * tHeight>
+  [105] pusharglist 2 ........................... <tLocA[1] * tWidth, (1 - tLocA[2]) * tHeight>
+  [107] extcall 302 ............................. <point(tLocA[1] * tWidth, (1 - tLocA[2]) * tHeight)>
+  [110] setlocal 4 .............................. tLocA = point(tLocA[1] * tWidth, (1 - tLocA[2]) * tHeight)
+  [112] getparam 3 .............................. <tCoordList>
+  [114] getlocal 3 .............................. <tFaceList>
+  [116] pushint8 2 .............................. <2>
+  [118] pusharglist 2 ........................... <tFaceList, 2>
+  [120] objcall 105 ............................. <tFaceList[2]>
+  [122] pusharglist 2 ........................... <tCoordList, tFaceList[2]>
+  [124] objcall 105 ............................. <tCoordList[tFaceList[2]]>
+  [126] setlocal 5 .............................. tLocB = tCoordList[tFaceList[2]]
+  [128] getlocal 5 .............................. <tLocB>
+  [130] pushint8 1 .............................. <1>
+  [132] pusharglist 2 ........................... <tLocB, 1>
+  [134] objcall 105 ............................. <tLocB[1]>
+  [136] getparam 1 .............................. <tWidth>
+  [138] mul ..................................... <tLocB[1] * tWidth>
+  [139] pushint8 1 .............................. <1>
+  [141] getlocal 5 .............................. <tLocB>
+  [143] pushint8 2 .............................. <2>
+  [145] pusharglist 2 ........................... <tLocB, 2>
+  [147] objcall 105 ............................. <tLocB[2]>
+  [149] sub ..................................... <1 - tLocB[2]>
+  [150] getparam 2 .............................. <tHeight>
+  [152] mul ..................................... <(1 - tLocB[2]) * tHeight>
+  [153] pusharglist 2 ........................... <tLocB[1] * tWidth, (1 - tLocB[2]) * tHeight>
+  [155] extcall 302 ............................. <point(tLocB[1] * tWidth, (1 - tLocB[2]) * tHeight)>
+  [158] setlocal 5 .............................. tLocB = point(tLocB[1] * tWidth, (1 - tLocB[2]) * tHeight)
+  [160] getparam 3 .............................. <tCoordList>
+  [162] getlocal 3 .............................. <tFaceList>
+  [164] pushint8 3 .............................. <3>
+  [166] pusharglist 2 ........................... <tFaceList, 3>
+  [168] objcall 105 ............................. <tFaceList[3]>
+  [170] pusharglist 2 ........................... <tCoordList, tFaceList[3]>
+  [172] objcall 105 ............................. <tCoordList[tFaceList[3]]>
+  [174] setlocal 6 .............................. tLocC = tCoordList[tFaceList[3]]
+  [176] getlocal 6 .............................. <tLocC>
+  [178] pushint8 1 .............................. <1>
+  [180] pusharglist 2 ........................... <tLocC, 1>
+  [182] objcall 105 ............................. <tLocC[1]>
+  [184] getparam 1 .............................. <tWidth>
+  [186] mul ..................................... <tLocC[1] * tWidth>
+  [187] pushint8 1 .............................. <1>
+  [189] getlocal 6 .............................. <tLocC>
+  [191] pushint8 2 .............................. <2>
+  [193] pusharglist 2 ........................... <tLocC, 2>
+  [195] objcall 105 ............................. <tLocC[2]>
+  [197] sub ..................................... <1 - tLocC[2]>
+  [198] getparam 2 .............................. <tHeight>
+  [200] mul ..................................... <(1 - tLocC[2]) * tHeight>
+  [201] pusharglist 2 ........................... <tLocC[1] * tWidth, (1 - tLocC[2]) * tHeight>
+  [203] extcall 302 ............................. <point(tLocC[1] * tWidth, (1 - tLocC[2]) * tHeight)>
+  [206] setlocal 6 .............................. tLocC = point(tLocC[1] * tWidth, (1 - tLocC[2]) * tHeight)
+  [208] getlocal 5 .............................. <tLocB>
+  [210] getlocal 4 .............................. <tLocA>
+  [212] sub ..................................... <tLocB - tLocA>
+  [213] getlocal 2 .............................. <tUVCoord>
+  [215] getobjprop 1000 ......................... <tUVCoord.u>
+  [218] mul ..................................... <(tLocB - tLocA) * tUVCoord.u>
+  [219] setlocal 7 .............................. tUVector = (tLocB - tLocA) * tUVCoord.u
+  [221] getlocal 6 .............................. <tLocC>
+  [223] getlocal 4 .............................. <tLocA>
+  [225] sub ..................................... <tLocC - tLocA>
+  [226] getlocal 2 .............................. <tUVCoord>
+  [228] getobjprop 1001 ......................... <tUVCoord.V>
+  [231] mul ..................................... <(tLocC - tLocA) * tUVCoord.V>
+  [232] setlocal 8 .............................. tVVector = (tLocC - tLocA) * tUVCoord.V
+  [234] getlocal 4 .............................. <tLocA>
+  [236] getlocal 7 .............................. <tUVector>
+  [238] add ..................................... <tLocA + tUVector>
+  [239] getlocal 8 .............................. <tVVector>
+  [241] add ..................................... <tLocA + tUVector + tVVector>
+  [242] pusharglistnoret 1 ...................... <tLocA + tUVector + tVVector>
+  [244] extcall 52 .............................. return tLocA + tUVector + tVVector
+  [246] ret
+end
+
+on clear me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 1814 ......................... <p.Cleared>
+  [  6] pushint8 1 .............................. <1>
+  [  8] eq ...................................... <p.Cleared = 1>
+  [  9] jmpifz [ 13] ............................ if p.Cleared = 1 then
+  [ 12] ret ..................................... exit
+  [ 13] getprop 563 ............................. <p>
+  [ 16] pushint8 1 .............................. <1>
+  [ 18] setobjprop 1814 ......................... p.Cleared = 1
+  [ 21] ret
+end

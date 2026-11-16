@@ -1,0 +1,139 @@
+property p
+global g
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 378 ............................ <#controller>
+  [ 12] getparam 1 .............................. <tParams>
+  [ 14] pushsymb 378 ............................ <#controller>
+  [ 17] pusharglist 2 ........................... <tParams, #controller>
+  [ 19] objcall 105 ............................. <tParams[#controller]>
+  [ 21] pusharglistnoret 3 ...................... <p, #controller, tParams[#controller]>
+  [ 23] objcall 103 ............................. p[#controller] = tParams[#controller]
+  [ 25] getprop 563 ............................. <p>
+  [ 28] pushsymb 377 ............................ <#tag>
+  [ 31] getparam 1 .............................. <tParams>
+  [ 33] pushsymb 377 ............................ <#tag>
+  [ 36] pusharglist 2 ........................... <tParams, #tag>
+  [ 38] objcall 105 ............................. <tParams[#tag]>
+  [ 40] pusharglistnoret 3 ...................... <p, #tag, tParams[#tag]>
+  [ 42] objcall 103 ............................. p[#tag] = tParams[#tag]
+  [ 44] getprop 563 ............................. <p>
+  [ 47] pushsymb 250 ............................ <#car>
+  [ 49] getparam 1 .............................. <tParams>
+  [ 51] pushsymb 250 ............................ <#car>
+  [ 53] pusharglist 2 ........................... <tParams, #car>
+  [ 55] objcall 105 ............................. <tParams[#car]>
+  [ 57] pusharglistnoret 3 ...................... <p, #car, tParams[#car]>
+  [ 59] objcall 103 ............................. p[#car] = tParams[#car]
+  [ 61] getprop 563 ............................. <p>
+  [ 64] pushsymb 3062 ........................... <#ScriptLimit>
+  [ 67] pushzero ................................ <0>
+  [ 68] pusharglistnoret 3 ...................... <p, #ScriptLimit, 0>
+  [ 70] objcall 103 ............................. p[#ScriptLimit] = 0
+  [ 72] getprop 563 ............................. <p>
+  [ 75] pushsymb 366 ............................ <#interface>
+  [ 78] pushcons 0 .............................. <"Interface">
+  [ 80] pusharglist 1 ........................... <"Interface">
+  [ 82] extcall 64 .............................. <member("Interface")>
+  [ 84] pusharglistnoret 3 ...................... <p, #interface, member("Interface")>
+  [ 86] objcall 103 ............................. p[#interface] = member("Interface")
+  [ 88] getprop 563 ............................. <p>
+  [ 91] pushsymb 2009 ........................... <#Speedo>
+  [ 94] getprop 563 ............................. <p>
+  [ 97] getchainedprop 366 ...................... <p.interface>
+  [100] pushcons 1 .............................. <"Speedometer">
+  [102] pusharglist 2 ........................... <p.interface, "Speedometer">
+  [104] objcall 71 .............................. <p.interface.model("Speedometer")>
+  [106] pusharglistnoret 3 ...................... <p, #Speedo, p.interface.model("Speedometer")>
+  [108] objcall 103 ............................. p[#Speedo] = p.interface.model("Speedometer")
+  [110] getprop 563 ............................. <p>
+  [113] pushsymb 3376 ........................... <#Pointer>
+  [116] getprop 563 ............................. <p>
+  [119] getchainedprop 366 ...................... <p.interface>
+  [122] pushcons 2 .............................. <"SpeedometerPointer">
+  [124] pusharglist 2 ........................... <p.interface, "SpeedometerPointer">
+  [126] objcall 71 .............................. <p.interface.model("SpeedometerPointer")>
+  [128] pusharglistnoret 3 ...................... <p, #Pointer, p.interface.model("SpeedometerPointer")>
+  [130] objcall 103 ............................. p[#Pointer] = p.interface.model("SpeedometerPointer")
+  [132] getprop 563 ............................. <p>
+  [135] pushsymb 3377 ........................... <#SpeedoOrigT>
+  [138] getprop 563 ............................. <p>
+  [141] getchainedprop 2009 ..................... <p.Speedo>
+  [144] getchainedprop 214 ...................... <p.Speedo.transform>
+  [146] pusharglist 1 ........................... <p.Speedo.transform>
+  [148] objcall 233 ............................. <p.Speedo.transform.duplicate()>
+  [150] pusharglistnoret 3 ...................... <p, #SpeedoOrigT, p.Speedo.transform.duplicate()>
+  [152] objcall 103 ............................. p[#SpeedoOrigT] = p.Speedo.transform.duplicate()
+  [154] getprop 563 ............................. <p>
+  [157] pushsymb 3378 ........................... <#PointerOrigT>
+  [160] getprop 563 ............................. <p>
+  [163] getchainedprop 3376 ..................... <p.Pointer>
+  [166] getchainedprop 214 ...................... <p.Pointer.transform>
+  [168] pusharglist 1 ........................... <p.Pointer.transform>
+  [170] objcall 233 ............................. <p.Pointer.transform.duplicate()>
+  [172] pusharglistnoret 3 ...................... <p, #PointerOrigT, p.Pointer.transform.duplicate()>
+  [174] objcall 103 ............................. p[#PointerOrigT] = p.Pointer.transform.duplicate()
+  [176] getprop 563 ............................. <p>
+  [179] pushsymb 45 ............................. <#me>
+  [181] getparam 0 .............................. <me>
+  [183] pusharglistnoret 3 ...................... <p, #me, me>
+  [185] objcall 103 ............................. p[#me] = me
+  [187] getparam 0 .............................. <me>
+  [189] pusharglistnoret 1 ...................... <me>
+  [191] extcall 52 .............................. return me
+  [193] ret
+end
+
+on enterFrame me
+  [  0] getglobal 395 ........................... <g>
+  [  3] pushsymb 137 ............................ <#cars>
+  [  5] getprop 563 ............................. <p>
+  [  8] getobjprop 377 .......................... <p.tag>
+  [ 11] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 13] objcall 102 ............................. <g.cars[p.tag]>
+  [ 15] pushsymb 1335 ........................... <#specifics>
+  [ 18] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [ 20] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [ 22] pushsymb 3033 ........................... <#speedMS>
+  [ 25] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #speedMS>
+  [ 27] objcall 105 ............................. <g.cars[p.tag][#specifics][#speedMS]>
+  [ 29] setlocal 0 .............................. pSpeedMS = g.cars[p.tag][#specifics][#speedMS]
+  [ 31] getlocal 0 .............................. <pSpeedMS>
+  [ 33] pusharglist 1 ........................... <pSpeedMS>
+  [ 35] extcall 973 ............................. <abs(pSpeedMS)>
+  [ 38] pushint16 3600 .......................... <3600>
+  [ 41] mul ..................................... <abs(pSpeedMS) * 3600>
+  [ 42] pushint16 1000 .......................... <1000>
+  [ 45] div ..................................... <abs(pSpeedMS) * 3600 / 1000>
+  [ 46] pusharglist 1 ........................... <abs(pSpeedMS) * 3600 / 1000>
+  [ 48] extcall 123 ............................. <integer(abs(pSpeedMS) * 3600 / 1000)>
+  [ 50] setlocal 1 .............................. pSpeedKH = integer(abs(pSpeedMS) * 3600 / 1000)
+  [ 52] getlocal 1 .............................. <pSpeedKH>
+  [ 54] pushzero ................................ <0>
+  [ 55] gteq .................................... <pSpeedKH >= 0>
+  [ 56] jmpifz [108] ............................ if pSpeedKH >= 0 then
+  [ 59] getprop 563 ............................. <p>
+  [ 62] getchainedprop 3378 ..................... <p.PointerOrigT>
+  [ 65] getchainedprop 1162 ..................... <p.PointerOrigT.rotation>
+  [ 68] getobjprop 1190 ......................... <p.PointerOrigT.rotation.z>
+  [ 71] setlocal 2 .............................. tOrigRotationZ = p.PointerOrigT.rotation.z
+  [ 73] pushfloat32 130.0 ....................... <130.0>
+  [ 78] getlocal 1 .............................. <pSpeedKH>
+  [ 80] pushfloat32 200.0 ....................... <200.0>
+  [ 85] div ..................................... <pSpeedKH / 200.0>
+  [ 86] mul ..................................... <130.0 * (pSpeedKH / 200.0)>
+  [ 87] setlocal 3 .............................. tRotation = 130.0 * (pSpeedKH / 200.0)
+  [ 89] getprop 563 ............................. <p>
+  [ 92] getchainedprop 3376 ..................... <p.Pointer>
+  [ 95] getchainedprop 214 ...................... <p.Pointer.transform>
+  [ 97] getchainedprop 1162 ..................... <p.Pointer.transform.rotation>
+  [100] getlocal 2 .............................. <tOrigRotationZ>
+  [102] getlocal 3 .............................. <tRotation>
+  [104] sub ..................................... <tOrigRotationZ - tRotation>
+  [105] setobjprop 1190 ......................... p.Pointer.transform.rotation.z = tOrigRotationZ - tRotation
+  [108] ret
+end

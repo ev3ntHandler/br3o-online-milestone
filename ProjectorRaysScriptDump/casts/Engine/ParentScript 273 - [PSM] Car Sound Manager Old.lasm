@@ -1,0 +1,1523 @@
+property p
+global g
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 64 ............................. <#member>
+  [ 11] getparam 1 .............................. <tParams>
+  [ 13] pushsymb 949 ............................ <#memberName>
+  [ 16] pusharglist 2 ........................... <tParams, #memberName>
+  [ 18] objcall 105 ............................. <tParams[#memberName]>
+  [ 20] pusharglist 1 ........................... <tParams[#memberName]>
+  [ 22] extcall 64 .............................. <member(tParams[#memberName])>
+  [ 24] pusharglistnoret 3 ...................... <p, #member, member(tParams[#memberName])>
+  [ 26] objcall 103 ............................. p[#member] = member(tParams[#memberName])
+  [ 28] getprop 563 ............................. <p>
+  [ 31] pushsymb 378 ............................ <#controller>
+  [ 34] getparam 1 .............................. <tParams>
+  [ 36] pushsymb 378 ............................ <#controller>
+  [ 39] pusharglist 2 ........................... <tParams, #controller>
+  [ 41] objcall 105 ............................. <tParams[#controller]>
+  [ 43] pusharglistnoret 3 ...................... <p, #controller, tParams[#controller]>
+  [ 45] objcall 103 ............................. p[#controller] = tParams[#controller]
+  [ 47] getprop 563 ............................. <p>
+  [ 50] pushsymb 377 ............................ <#tag>
+  [ 53] getparam 1 .............................. <tParams>
+  [ 55] pushsymb 377 ............................ <#tag>
+  [ 58] pusharglist 2 ........................... <tParams, #tag>
+  [ 60] objcall 105 ............................. <tParams[#tag]>
+  [ 62] pusharglistnoret 3 ...................... <p, #tag, tParams[#tag]>
+  [ 64] objcall 103 ............................. p[#tag] = tParams[#tag]
+  [ 66] getprop 563 ............................. <p>
+  [ 69] pushsymb 2067 ........................... <#CarName>
+  [ 72] pushcons 0 .............................. <"Car">
+  [ 74] pusharglistnoret 3 ...................... <p, #CarName, "Car">
+  [ 76] objcall 103 ............................. p[#CarName] = "Car"
+  [ 78] getprop 563 ............................. <p>
+  [ 81] pushsymb 3049 ........................... <#collModelName>
+  [ 84] getparam 1 .............................. <tParams>
+  [ 86] pushsymb 3049 ........................... <#collModelName>
+  [ 89] pusharglist 2 ........................... <tParams, #collModelName>
+  [ 91] objcall 105 ............................. <tParams[#collModelName]>
+  [ 93] pusharglistnoret 3 ...................... <p, #collModelName, tParams[#collModelName]>
+  [ 95] objcall 103 ............................. p[#collModelName] = tParams[#collModelName]
+  [ 97] pusharglist 0 ........................... <>
+  [ 99] extcall 40 .............................. <VOID>
+  [101] setparam 1 .............................. tParams = VOID
+  [103] getprop 563 ............................. <p>
+  [106] pushsymb 3312 ........................... <#EngineStarted>
+  [109] pushzero ................................ <0>
+  [110] pusharglistnoret 3 ...................... <p, #EngineStarted, 0>
+  [112] objcall 103 ............................. p[#EngineStarted] = 0
+  [114] getprop 563 ............................. <p>
+  [117] pushsymb 3313 ........................... <#SoundsCleared>
+  [120] pushzero ................................ <0>
+  [121] pusharglistnoret 3 ...................... <p, #SoundsCleared, 0>
+  [123] objcall 103 ............................. p[#SoundsCleared] = 0
+  [125] getprop 563 ............................. <p>
+  [128] pushsymb 3314 ........................... <#Stationair>
+  [131] pushzero ................................ <0>
+  [132] pusharglistnoret 3 ...................... <p, #Stationair, 0>
+  [134] objcall 103 ............................. p[#Stationair] = 0
+  [136] getprop 563 ............................. <p>
+  [139] pushsymb 3315 ........................... <#rollOut>
+  [142] pushzero ................................ <0>
+  [143] pusharglistnoret 3 ...................... <p, #rollOut, 0>
+  [145] objcall 103 ............................. p[#rollOut] = 0
+  [147] getprop 563 ............................. <p>
+  [150] pushsymb 3316 ........................... <#Forwards>
+  [153] pushzero ................................ <0>
+  [154] pusharglistnoret 3 ...................... <p, #Forwards, 0>
+  [156] objcall 103 ............................. p[#Forwards] = 0
+  [158] getprop 563 ............................. <p>
+  [161] pushsymb 3317 ........................... <#Backwards>
+  [164] pushzero ................................ <0>
+  [165] pusharglistnoret 3 ...................... <p, #Backwards, 0>
+  [167] objcall 103 ............................. p[#Backwards] = 0
+  [169] getprop 563 ............................. <p>
+  [172] pushsymb 3318 ........................... <#CrashedSound>
+  [175] pushzero ................................ <0>
+  [176] pusharglistnoret 3 ...................... <p, #CrashedSound, 0>
+  [178] objcall 103 ............................. p[#CrashedSound] = 0
+  [180] getprop 563 ............................. <p>
+  [183] pushsymb 3021 ........................... <#topSpeed>
+  [186] pushzero ................................ <0>
+  [187] pusharglistnoret 3 ...................... <p, #topSpeed, 0>
+  [189] objcall 103 ............................. p[#topSpeed] = 0
+  [191] getprop 563 ............................. <p>
+  [194] pushsymb 3319 ........................... <#MyNitro>
+  [197] pushzero ................................ <0>
+  [198] pusharglistnoret 3 ...................... <p, #MyNitro, 0>
+  [200] objcall 103 ............................. p[#MyNitro] = 0
+  [202] getprop 563 ............................. <p>
+  [205] pushsymb 1046 ........................... <#rateShift>
+  [208] pushzero ................................ <0>
+  [209] pusharglistnoret 3 ...................... <p, #rateShift, 0>
+  [211] objcall 103 ............................. p[#rateShift] = 0
+  [213] getprop 563 ............................. <p>
+  [216] pushsymb 1104 ........................... <#timer>
+  [219] pushzero ................................ <0>
+  [220] pusharglistnoret 3 ...................... <p, #timer, 0>
+  [222] objcall 103 ............................. p[#timer] = 0
+  [224] getprop 563 ............................. <p>
+  [227] pushsymb 3320 ........................... <#BasicChannel>
+  [230] pusharglist 0 ........................... <>
+  [232] extcall 40 .............................. <VOID>
+  [234] pusharglist 0 ........................... <>
+  [236] extcall 40 .............................. <VOID>
+  [238] pusharglist 2 ........................... <[VOID, VOID]>
+  [240] pushlist ................................ <[VOID, VOID]>
+  [241] pusharglistnoret 3 ...................... <p, #BasicChannel, [VOID, VOID]>
+  [243] objcall 103 ............................. p[#BasicChannel] = [VOID, VOID]
+  [245] getprop 563 ............................. <p>
+  [248] pushsymb 3321 ........................... <#MotorChannel>
+  [251] pusharglist 0 ........................... <>
+  [253] extcall 40 .............................. <VOID>
+  [255] pusharglist 0 ........................... <>
+  [257] extcall 40 .............................. <VOID>
+  [259] pusharglist 2 ........................... <[VOID, VOID]>
+  [261] pushlist ................................ <[VOID, VOID]>
+  [262] pusharglistnoret 3 ...................... <p, #MotorChannel, [VOID, VOID]>
+  [264] objcall 103 ............................. p[#MotorChannel] = [VOID, VOID]
+  [266] getprop 563 ............................. <p>
+  [269] pushsymb 3322 ........................... <#BrakeChannel>
+  [272] pusharglist 0 ........................... <>
+  [274] extcall 40 .............................. <VOID>
+  [276] pusharglist 0 ........................... <>
+  [278] extcall 40 .............................. <VOID>
+  [280] pusharglist 2 ........................... <[VOID, VOID]>
+  [282] pushlist ................................ <[VOID, VOID]>
+  [283] pusharglistnoret 3 ...................... <p, #BrakeChannel, [VOID, VOID]>
+  [285] objcall 103 ............................. p[#BrakeChannel] = [VOID, VOID]
+  [287] getprop 563 ............................. <p>
+  [290] pushsymb 3323 ........................... <#SlipChannel>
+  [293] pusharglist 0 ........................... <>
+  [295] extcall 40 .............................. <VOID>
+  [297] pusharglist 0 ........................... <>
+  [299] extcall 40 .............................. <VOID>
+  [301] pusharglist 2 ........................... <[VOID, VOID]>
+  [303] pushlist ................................ <[VOID, VOID]>
+  [304] pusharglistnoret 3 ...................... <p, #SlipChannel, [VOID, VOID]>
+  [306] objcall 103 ............................. p[#SlipChannel] = [VOID, VOID]
+  [308] getprop 563 ............................. <p>
+  [311] pushsymb 3324 ........................... <#ScrapeChannel>
+  [314] pusharglist 0 ........................... <>
+  [316] extcall 40 .............................. <VOID>
+  [318] pusharglist 0 ........................... <>
+  [320] extcall 40 .............................. <VOID>
+  [322] pusharglist 2 ........................... <[VOID, VOID]>
+  [324] pushlist ................................ <[VOID, VOID]>
+  [325] pusharglistnoret 3 ...................... <p, #ScrapeChannel, [VOID, VOID]>
+  [327] objcall 103 ............................. p[#ScrapeChannel] = [VOID, VOID]
+  [329] getprop 563 ............................. <p>
+  [332] pushsymb 45 ............................. <#me>
+  [334] getparam 0 .............................. <me>
+  [336] pusharglistnoret 3 ...................... <p, #me, me>
+  [338] objcall 103 ............................. p[#me] = me
+  [340] getprop 563 ............................. <p>
+  [343] pushsymb 3062 ........................... <#ScriptLimit>
+  [346] pushzero ................................ <0>
+  [347] pusharglistnoret 3 ...................... <p, #ScriptLimit, 0>
+  [349] objcall 103 ............................. p[#ScriptLimit] = 0
+  [351] getparam 0 .............................. <me>
+  [353] pusharglistnoret 1 ...................... <me>
+  [355] extcall 52 .............................. return me
+  [357] ret
+end
+
+on enterFrame me
+  [  0] getparam 0 .............................. <me>
+  [  2] pusharglistnoret 1 ...................... <me>
+  [  4] objcall 3308 ............................ me.GetData()
+  [  7] getglobal 395 ........................... <g>
+  [ 10] pushsymb 137 ............................ <#cars>
+  [ 12] getprop 563 ............................. <p>
+  [ 15] getobjprop 377 .......................... <p.tag>
+  [ 18] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 20] objcall 102 ............................. <g.cars[p.tag]>
+  [ 22] pushsymb 1335 ........................... <#specifics>
+  [ 25] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [ 27] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [ 29] pushsymb 2163 ........................... <#collisionDetails>
+  [ 32] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #collisionDetails>
+  [ 34] objcall 105 ............................. <g.cars[p.tag][#specifics][#collisionDetails]>
+  [ 36] setlocal 0 .............................. pCollisionDetails = g.cars[p.tag][#specifics][#collisionDetails]
+  [ 38] getprop 563 ............................. <p>
+  [ 41] getobjprop 3325 ......................... <p.Crashed>
+  [ 44] pushint8 4 .............................. <4>
+  [ 46] eq ...................................... <p.Crashed = 4>
+  [ 47] getprop 563 ............................. <p>
+  [ 50] getobjprop 3313 ......................... <p.SoundsCleared>
+  [ 53] pushzero ................................ <0>
+  [ 54] eq ...................................... <p.SoundsCleared = 0>
+  [ 55] and ..................................... <(p.Crashed = 4) and (p.SoundsCleared = 0)>
+  [ 56] jmpifz [ 67] ............................ if (p.Crashed = 4) and (p.SoundsCleared = 0) then
+  [ 59] getparam 0 .............................. <me>
+  [ 61] pusharglistnoret 1 ...................... <me>
+  [ 63] objcall 428 ............................. me.reset()
+  [ 66] ret ..................................... exit
+  [ 67] getprop 563 ............................. <p>
+  [ 70] getobjprop 3325 ......................... <p.Crashed>
+  [ 73] pushint8 4 .............................. <4>
+  [ 75] eq ...................................... <p.Crashed = 4>
+  [ 76] getprop 563 ............................. <p>
+  [ 79] getobjprop 3313 ......................... <p.SoundsCleared>
+  [ 82] pushint8 1 .............................. <1>
+  [ 84] eq ...................................... <p.SoundsCleared = 1>
+  [ 85] and ..................................... <(p.Crashed = 4) and (p.SoundsCleared = 1)>
+  [ 86] jmpifz [ 90] ............................ if (p.Crashed = 4) and (p.SoundsCleared = 1) then
+  [ 89] ret ..................................... exit
+  [ 90] getprop 563 ............................. <p>
+  [ 93] getobjprop 3022 ......................... <p.Started>
+  [ 96] pushint8 1 .............................. <1>
+  [ 98] eq ...................................... <p.Started = 1>
+  [ 99] getprop 563 ............................. <p>
+  [102] getobjprop 3312 ......................... <p.EngineStarted>
+  [105] pushzero ................................ <0>
+  [106] eq ...................................... <p.EngineStarted = 0>
+  [107] and ..................................... <(p.Started = 1) and (p.EngineStarted = 0)>
+  [108] jmpifz [208] ............................ if (p.Started = 1) and (p.EngineStarted = 0) then
+  [111] getprop 563 ............................. <p>
+  [114] pushsymb 3320 ........................... <#BasicChannel>
+  [117] pushint8 1 .............................. <1>
+  [119] getprop 563 ............................. <p>
+  [122] getobjprop 2067 ......................... <p.CarName>
+  [125] pushcons 1 .............................. <"Stationair">
+  [127] joinstr ................................. <p.CarName & "Stationair">
+  [128] pushsymb 1047 ........................... <#priority>
+  [131] pushsymb 1082 ........................... <#high>
+  [134] pushsymb 1042 ........................... <#loopCount>
+  [137] pushzero ................................ <0>
+  [138] pushsymb 1046 ........................... <#rateShift>
+  [141] getprop 563 ............................. <p>
+  [144] getobjprop 1046 ......................... <p.rateShift>
+  [147] pushsymb 1056 ........................... <#Override>
+  [150] pushint8 1 .............................. <1>
+  [152] pusharglist 8 ........................... <[#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1]>
+  [154] pushproplist ............................ <[#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1]>
+  [155] pusharglist 2 ........................... <p.CarName & "Stationair", [#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1]>
+  [157] extcall 289 ............................. <PlaySound(p.CarName & "Stationair", [#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1])>
+  [160] pusharglistnoret 4 ...................... <p, #BasicChannel, 1, PlaySound(p.CarName & "Stationair", [#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1])>
+  [162] objcall 99 .............................. p.BasicChannel[1] = PlaySound(p.CarName & "Stationair", [#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1])
+  [164] getprop 563 ............................. <p>
+  [167] pushsymb 3320 ........................... <#BasicChannel>
+  [170] pushint8 2 .............................. <2>
+  [172] getprop 563 ............................. <p>
+  [175] getobjprop 2067 ......................... <p.CarName>
+  [178] pushcons 1 .............................. <"Stationair">
+  [180] joinstr ................................. <p.CarName & "Stationair">
+  [181] pusharglistnoret 4 ...................... <p, #BasicChannel, 2, p.CarName & "Stationair">
+  [183] objcall 99 .............................. p.BasicChannel[2] = p.CarName & "Stationair"
+  [185] getprop 563 ............................. <p>
+  [188] pushzero ................................ <0>
+  [189] setobjprop 1046 ......................... p.rateShift = 0
+  [192] getprop 563 ............................. <p>
+  [195] pushint8 1 .............................. <1>
+  [197] setobjprop 3312 ......................... p.EngineStarted = 1
+  [200] getprop 563 ............................. <p>
+  [203] pushint8 1 .............................. <1>
+  [205] setobjprop 3314 ......................... p.Stationair = 1
+  [208] getlocal 0 .............................. <pCollisionDetails>
+  [210] pusharglist 0 ........................... <[]>
+  [212] pushlist ................................ <[]>
+  [213] nteq .................................... <pCollisionDetails <> []>
+  [214] jmpifz [403] ............................ if pCollisionDetails <> [] then / else
+  [217] getprop 563 ............................. <p>
+  [220] pushsymb 3324 ........................... <#ScrapeChannel>
+  [223] pushint8 1 .............................. <1>
+  [225] pusharglist 3 ........................... <p, #ScrapeChannel, 1>
+  [227] objcall 70 .............................. <p.ScrapeChannel[1]>
+  [229] pusharglist 0 ........................... <>
+  [231] extcall 40 .............................. <VOID>
+  [233] eq ...................................... <p.ScrapeChannel[1] = VOID>
+  [234] jmpifz [300] ............................ if p.ScrapeChannel[1] = VOID then / else
+  [237] getprop 563 ............................. <p>
+  [240] pushsymb 3324 ........................... <#ScrapeChannel>
+  [243] pushint8 1 .............................. <1>
+  [245] getprop 563 ............................. <p>
+  [248] getobjprop 2067 ......................... <p.CarName>
+  [251] pushcons 2 .............................. <"Scrape">
+  [253] joinstr ................................. <p.CarName & "Scrape">
+  [254] pushsymb 1047 ........................... <#priority>
+  [257] pushsymb 1081 ........................... <#medium>
+  [260] pushsymb 1042 ........................... <#loopCount>
+  [263] pushzero ................................ <0>
+  [264] pusharglist 4 ........................... <[#priority: #medium, #loopCount: 0]>
+  [266] pushproplist ............................ <[#priority: #medium, #loopCount: 0]>
+  [267] pusharglist 2 ........................... <p.CarName & "Scrape", [#priority: #medium, #loopCount: 0]>
+  [269] extcall 289 ............................. <PlaySound(p.CarName & "Scrape", [#priority: #medium, #loopCount: 0])>
+  [272] pusharglistnoret 4 ...................... <p, #ScrapeChannel, 1, PlaySound(p.CarName & "Scrape", [#priority: #medium, #loopCount: 0])>
+  [274] objcall 99 .............................. p.ScrapeChannel[1] = PlaySound(p.CarName & "Scrape", [#priority: #medium, #loopCount: 0])
+  [276] getprop 563 ............................. <p>
+  [279] pushsymb 3324 ........................... <#ScrapeChannel>
+  [282] pushint8 2 .............................. <2>
+  [284] getprop 563 ............................. <p>
+  [287] getobjprop 2067 ......................... <p.CarName>
+  [290] pushcons 2 .............................. <"Scrape">
+  [292] joinstr ................................. <p.CarName & "Scrape">
+  [293] pusharglistnoret 4 ...................... <p, #ScrapeChannel, 2, p.CarName & "Scrape">
+  [295] objcall 99 .............................. p.ScrapeChannel[2] = p.CarName & "Scrape"
+  [297] jmp [400]
+  [300] getprop 563 ............................. <p>
+  [303] getobjprop 3028 ......................... <p.falling>
+  [306] pushint8 1 .............................. <1>
+  [308] eq ...................................... <p.falling = 1>
+  [309] jmpifz [357] ............................ if p.falling = 1 then / else
+  [312] getprop 563 ............................. <p>
+  [315] pushsymb 3324 ........................... <#ScrapeChannel>
+  [318] pushint8 1 .............................. <1>
+  [320] pusharglist 3 ........................... <p, #ScrapeChannel, 1>
+  [322] objcall 70 .............................. <p.ScrapeChannel[1]>
+  [324] pusharglist 0 ........................... <>
+  [326] extcall 40 .............................. <VOID>
+  [328] nteq .................................... <p.ScrapeChannel[1] <> VOID>
+  [329] jmpifz [354] ............................ if p.ScrapeChannel[1] <> VOID then
+  [332] getprop 563 ............................. <p>
+  [335] pushsymb 3324 ........................... <#ScrapeChannel>
+  [338] pushint8 1 .............................. <1>
+  [340] pusharglist 3 ........................... <p, #ScrapeChannel, 1>
+  [342] objcall 102 ............................. <p.ScrapeChannel[1]>
+  [344] pushfloat32 0.0 ......................... <0.0>
+  [349] pusharglistnoret 2 ...................... <p.ScrapeChannel[1], 0.0>
+  [351] objcall 1034 ............................ p.ScrapeChannel[1].setVolume(0.0)
+  [354] jmp [400]
+  [357] getprop 563 ............................. <p>
+  [360] pushsymb 3324 ........................... <#ScrapeChannel>
+  [363] pushint8 1 .............................. <1>
+  [365] pusharglist 3 ........................... <p, #ScrapeChannel, 1>
+  [367] objcall 70 .............................. <p.ScrapeChannel[1]>
+  [369] pusharglist 0 ........................... <>
+  [371] extcall 40 .............................. <VOID>
+  [373] nteq .................................... <p.ScrapeChannel[1] <> VOID>
+  [374] jmpifz [400] ............................ if p.ScrapeChannel[1] <> VOID then
+  [377] getprop 563 ............................. <p>
+  [380] pushsymb 3324 ........................... <#ScrapeChannel>
+  [383] pushint8 1 .............................. <1>
+  [385] pusharglist 3 ........................... <p, #ScrapeChannel, 1>
+  [387] objcall 102 ............................. <p.ScrapeChannel[1]>
+  [389] getprop 563 ............................. <p>
+  [392] getobjprop 639 .......................... <p.Percentage>
+  [395] pusharglistnoret 2 ...................... <p.ScrapeChannel[1], p.Percentage>
+  [397] objcall 1034 ............................ p.ScrapeChannel[1].setVolume(p.Percentage)
+  [400] jmp [488]
+  [403] getprop 563 ............................. <p>
+  [406] pushsymb 3324 ........................... <#ScrapeChannel>
+  [409] pushint8 1 .............................. <1>
+  [411] pusharglist 3 ........................... <p, #ScrapeChannel, 1>
+  [413] objcall 70 .............................. <p.ScrapeChannel[1]>
+  [415] pusharglist 0 ........................... <>
+  [417] extcall 40 .............................. <VOID>
+  [419] nteq .................................... <p.ScrapeChannel[1] <> VOID>
+  [420] jmpifz [488] ............................ if p.ScrapeChannel[1] <> VOID then
+  [423] getprop 563 ............................. <p>
+  [426] pushsymb 3324 ........................... <#ScrapeChannel>
+  [429] pushint8 1 .............................. <1>
+  [431] pusharglist 3 ........................... <p, #ScrapeChannel, 1>
+  [433] objcall 70 .............................. <p.ScrapeChannel[1]>
+  [435] pusharglist 0 ........................... <>
+  [437] extcall 40 .............................. <VOID>
+  [439] nteq .................................... <p.ScrapeChannel[1] <> VOID>
+  [440] jmpifz [472] ............................ if p.ScrapeChannel[1] <> VOID then
+  [443] getprop 563 ............................. <p>
+  [446] pushsymb 3324 ........................... <#ScrapeChannel>
+  [449] pushint8 1 .............................. <1>
+  [451] getprop 563 ............................. <p>
+  [454] pushsymb 3324 ........................... <#ScrapeChannel>
+  [457] pushint8 1 .............................. <1>
+  [459] pusharglist 3 ........................... <p, #ScrapeChannel, 1>
+  [461] objcall 102 ............................. <p.ScrapeChannel[1]>
+  [463] pusharglist 1 ........................... <p.ScrapeChannel[1]>
+  [465] objcall 746 ............................. <p.ScrapeChannel[1].StopSound()>
+  [468] pusharglistnoret 4 ...................... <p, #ScrapeChannel, 1, p.ScrapeChannel[1].StopSound()>
+  [470] objcall 99 .............................. p.ScrapeChannel[1] = p.ScrapeChannel[1].StopSound()
+  [472] getprop 563 ............................. <p>
+  [475] pushsymb 3324 ........................... <#ScrapeChannel>
+  [478] pushint8 2 .............................. <2>
+  [480] pusharglist 0 ........................... <>
+  [482] extcall 40 .............................. <VOID>
+  [484] pusharglistnoret 4 ...................... <p, #ScrapeChannel, 2, VOID>
+  [486] objcall 99 .............................. p.ScrapeChannel[2] = VOID
+  [488] getprop 563 ............................. <p>
+  [491] getobjprop 2233 ......................... <p.slip>
+  [494] pushint8 1 .............................. <1>
+  [496] eq ...................................... <p.slip = 1>
+  [497] getprop 563 ............................. <p>
+  [500] getobjprop 2134 ......................... <p.brake>
+  [503] pushint8 1 .............................. <1>
+  [505] eq ...................................... <p.brake = 1>
+  [506] and ..................................... <(p.slip = 1) and (p.brake = 1)>
+  [507] jmpifz [696] ............................ if (p.slip = 1) and (p.brake = 1) then / else
+  [510] getprop 563 ............................. <p>
+  [513] pushsymb 3323 ........................... <#SlipChannel>
+  [516] pushint8 1 .............................. <1>
+  [518] pusharglist 3 ........................... <p, #SlipChannel, 1>
+  [520] objcall 70 .............................. <p.SlipChannel[1]>
+  [522] pusharglist 0 ........................... <>
+  [524] extcall 40 .............................. <VOID>
+  [526] eq ...................................... <p.SlipChannel[1] = VOID>
+  [527] jmpifz [593] ............................ if p.SlipChannel[1] = VOID then / else
+  [530] getprop 563 ............................. <p>
+  [533] pushsymb 3323 ........................... <#SlipChannel>
+  [536] pushint8 1 .............................. <1>
+  [538] getprop 563 ............................. <p>
+  [541] getobjprop 2067 ......................... <p.CarName>
+  [544] pushcons 3 .............................. <"Skid">
+  [546] joinstr ................................. <p.CarName & "Skid">
+  [547] pushsymb 1047 ........................... <#priority>
+  [550] pushsymb 1081 ........................... <#medium>
+  [553] pushsymb 1042 ........................... <#loopCount>
+  [556] pushzero ................................ <0>
+  [557] pusharglist 4 ........................... <[#priority: #medium, #loopCount: 0]>
+  [559] pushproplist ............................ <[#priority: #medium, #loopCount: 0]>
+  [560] pusharglist 2 ........................... <p.CarName & "Skid", [#priority: #medium, #loopCount: 0]>
+  [562] extcall 289 ............................. <PlaySound(p.CarName & "Skid", [#priority: #medium, #loopCount: 0])>
+  [565] pusharglistnoret 4 ...................... <p, #SlipChannel, 1, PlaySound(p.CarName & "Skid", [#priority: #medium, #loopCount: 0])>
+  [567] objcall 99 .............................. p.SlipChannel[1] = PlaySound(p.CarName & "Skid", [#priority: #medium, #loopCount: 0])
+  [569] getprop 563 ............................. <p>
+  [572] pushsymb 3323 ........................... <#SlipChannel>
+  [575] pushint8 2 .............................. <2>
+  [577] getprop 563 ............................. <p>
+  [580] getobjprop 2067 ......................... <p.CarName>
+  [583] pushcons 3 .............................. <"Skid">
+  [585] joinstr ................................. <p.CarName & "Skid">
+  [586] pusharglistnoret 4 ...................... <p, #SlipChannel, 2, p.CarName & "Skid">
+  [588] objcall 99 .............................. p.SlipChannel[2] = p.CarName & "Skid"
+  [590] jmp [693]
+  [593] getprop 563 ............................. <p>
+  [596] getobjprop 3028 ......................... <p.falling>
+  [599] pushint8 1 .............................. <1>
+  [601] eq ...................................... <p.falling = 1>
+  [602] jmpifz [650] ............................ if p.falling = 1 then / else
+  [605] getprop 563 ............................. <p>
+  [608] pushsymb 3323 ........................... <#SlipChannel>
+  [611] pushint8 1 .............................. <1>
+  [613] pusharglist 3 ........................... <p, #SlipChannel, 1>
+  [615] objcall 70 .............................. <p.SlipChannel[1]>
+  [617] pusharglist 0 ........................... <>
+  [619] extcall 40 .............................. <VOID>
+  [621] nteq .................................... <p.SlipChannel[1] <> VOID>
+  [622] jmpifz [647] ............................ if p.SlipChannel[1] <> VOID then
+  [625] getprop 563 ............................. <p>
+  [628] pushsymb 3323 ........................... <#SlipChannel>
+  [631] pushint8 1 .............................. <1>
+  [633] pusharglist 3 ........................... <p, #SlipChannel, 1>
+  [635] objcall 102 ............................. <p.SlipChannel[1]>
+  [637] pushfloat32 0.0 ......................... <0.0>
+  [642] pusharglistnoret 2 ...................... <p.SlipChannel[1], 0.0>
+  [644] objcall 1034 ............................ p.SlipChannel[1].setVolume(0.0)
+  [647] jmp [693]
+  [650] getprop 563 ............................. <p>
+  [653] pushsymb 3323 ........................... <#SlipChannel>
+  [656] pushint8 1 .............................. <1>
+  [658] pusharglist 3 ........................... <p, #SlipChannel, 1>
+  [660] objcall 70 .............................. <p.SlipChannel[1]>
+  [662] pusharglist 0 ........................... <>
+  [664] extcall 40 .............................. <VOID>
+  [666] nteq .................................... <p.SlipChannel[1] <> VOID>
+  [667] jmpifz [693] ............................ if p.SlipChannel[1] <> VOID then
+  [670] getprop 563 ............................. <p>
+  [673] pushsymb 3323 ........................... <#SlipChannel>
+  [676] pushint8 1 .............................. <1>
+  [678] pusharglist 3 ........................... <p, #SlipChannel, 1>
+  [680] objcall 102 ............................. <p.SlipChannel[1]>
+  [682] getprop 563 ............................. <p>
+  [685] getobjprop 639 .......................... <p.Percentage>
+  [688] pusharglistnoret 2 ...................... <p.SlipChannel[1], p.Percentage>
+  [690] objcall 1034 ............................ p.SlipChannel[1].setVolume(p.Percentage)
+  [693] jmp [781]
+  [696] getprop 563 ............................. <p>
+  [699] pushsymb 3323 ........................... <#SlipChannel>
+  [702] pushint8 1 .............................. <1>
+  [704] pusharglist 3 ........................... <p, #SlipChannel, 1>
+  [706] objcall 70 .............................. <p.SlipChannel[1]>
+  [708] pusharglist 0 ........................... <>
+  [710] extcall 40 .............................. <VOID>
+  [712] nteq .................................... <p.SlipChannel[1] <> VOID>
+  [713] jmpifz [781] ............................ if p.SlipChannel[1] <> VOID then
+  [716] getprop 563 ............................. <p>
+  [719] pushsymb 3323 ........................... <#SlipChannel>
+  [722] pushint8 1 .............................. <1>
+  [724] pusharglist 3 ........................... <p, #SlipChannel, 1>
+  [726] objcall 70 .............................. <p.SlipChannel[1]>
+  [728] pusharglist 0 ........................... <>
+  [730] extcall 40 .............................. <VOID>
+  [732] nteq .................................... <p.SlipChannel[1] <> VOID>
+  [733] jmpifz [765] ............................ if p.SlipChannel[1] <> VOID then
+  [736] getprop 563 ............................. <p>
+  [739] pushsymb 3323 ........................... <#SlipChannel>
+  [742] pushint8 1 .............................. <1>
+  [744] getprop 563 ............................. <p>
+  [747] pushsymb 3323 ........................... <#SlipChannel>
+  [750] pushint8 1 .............................. <1>
+  [752] pusharglist 3 ........................... <p, #SlipChannel, 1>
+  [754] objcall 102 ............................. <p.SlipChannel[1]>
+  [756] pusharglist 1 ........................... <p.SlipChannel[1]>
+  [758] objcall 746 ............................. <p.SlipChannel[1].StopSound()>
+  [761] pusharglistnoret 4 ...................... <p, #SlipChannel, 1, p.SlipChannel[1].StopSound()>
+  [763] objcall 99 .............................. p.SlipChannel[1] = p.SlipChannel[1].StopSound()
+  [765] getprop 563 ............................. <p>
+  [768] pushsymb 3323 ........................... <#SlipChannel>
+  [771] pushint8 2 .............................. <2>
+  [773] pusharglist 0 ........................... <>
+  [775] extcall 40 .............................. <VOID>
+  [777] pusharglistnoret 4 ...................... <p, #SlipChannel, 2, VOID>
+  [779] objcall 99 .............................. p.SlipChannel[2] = VOID
+  [781] getprop 563 ............................. <p>
+  [784] pushsymb 3321 ........................... <#MotorChannel>
+  [787] pushint8 1 .............................. <1>
+  [789] pusharglist 3 ........................... <p, #MotorChannel, 1>
+  [791] objcall 70 .............................. <p.MotorChannel[1]>
+  [793] pusharglist 0 ........................... <>
+  [795] extcall 40 .............................. <VOID>
+  [797] nteq .................................... <p.MotorChannel[1] <> VOID>
+  [798] getprop 563 ............................. <p>
+  [801] pushsymb 3321 ........................... <#MotorChannel>
+  [804] pushint8 2 .............................. <2>
+  [806] pusharglist 3 ........................... <p, #MotorChannel, 2>
+  [808] objcall 70 .............................. <p.MotorChannel[2]>
+  [810] getprop 563 ............................. <p>
+  [813] getobjprop 2067 ......................... <p.CarName>
+  [816] pushcons 4 .............................. <"TopSpeed">
+  [818] joinstr ................................. <p.CarName & "TopSpeed">
+  [819] eq ...................................... <p.MotorChannel[2] = (p.CarName & "TopSpeed")>
+  [820] and ..................................... <(p.MotorChannel[1] <> VOID) and (p.MotorChannel[2] = (p.CarName & "TopSpeed"))>
+  [821] jmpifz [897] ............................ if (p.MotorChannel[1] <> VOID) and (p.MotorChannel[2] = (p.CarName & "TopSpeed")) then
+  [824] getprop 563 ............................. <p>
+  [827] getobjprop 1292 ......................... <p.maxSpeed>
+  [830] setlocal 1 .............................. pMaxSpeed = p.maxSpeed
+  [832] getlocal 1 .............................. <pMaxSpeed>
+  [834] pushfloat32 3.0 ......................... <3.0>
+  [839] div ..................................... <pMaxSpeed / 3.0>
+  [840] setlocal 1 .............................. pMaxSpeed = pMaxSpeed / 3.0
+  [842] getprop 563 ............................. <p>
+  [845] getobjprop 2018 ......................... <p.Speed>
+  [848] pusharglist 1 ........................... <p.Speed>
+  [850] extcall 973 ............................. <abs(p.Speed)>
+  [853] getlocal 1 .............................. <pMaxSpeed>
+  [855] div ..................................... <abs(p.Speed) / pMaxSpeed>
+  [856] setlocal 2 .............................. pPercentage = abs(p.Speed) / pMaxSpeed
+  [858] getprop 563 ............................. <p>
+  [861] pushsymb 3321 ........................... <#MotorChannel>
+  [864] pushint8 1 .............................. <1>
+  [866] pusharglist 3 ........................... <p, #MotorChannel, 1>
+  [868] objcall 70 .............................. <p.MotorChannel[1]>
+  [870] pusharglist 0 ........................... <>
+  [872] extcall 40 .............................. <VOID>
+  [874] nteq .................................... <p.MotorChannel[1] <> VOID>
+  [875] jmpifz [897] ............................ if p.MotorChannel[1] <> VOID then
+  [878] getprop 563 ............................. <p>
+  [881] pushsymb 3321 ........................... <#MotorChannel>
+  [884] pushint8 1 .............................. <1>
+  [886] pusharglist 3 ........................... <p, #MotorChannel, 1>
+  [888] objcall 102 ............................. <p.MotorChannel[1]>
+  [890] getlocal 2 .............................. <pPercentage>
+  [892] pusharglistnoret 2 ...................... <p.MotorChannel[1], pPercentage>
+  [894] objcall 1034 ............................ p.MotorChannel[1].setVolume(pPercentage)
+  [897] getprop 563 ............................. <p>
+  [900] pushsymb 3320 ........................... <#BasicChannel>
+  [903] pushint8 1 .............................. <1>
+  [905] pusharglist 3 ........................... <p, #BasicChannel, 1>
+  [907] objcall 70 .............................. <p.BasicChannel[1]>
+  [909] pusharglist 0 ........................... <>
+  [911] extcall 40 .............................. <VOID>
+  [913] nteq .................................... <p.BasicChannel[1] <> VOID>
+  [914] jmpifz [1058] ........................... if p.BasicChannel[1] <> VOID then
+  [917] getprop 563 ............................. <p>
+  [920] getobjprop 1292 ......................... <p.maxSpeed>
+  [923] setlocal 1 .............................. pMaxSpeed = p.maxSpeed
+  [925] getprop 563 ............................. <p>
+  [928] getobjprop 2018 ......................... <p.Speed>
+  [931] pushzero ................................ <0>
+  [932] lt ...................................... <p.Speed < 0>
+  [933] jmpifz [946] ............................ if p.Speed < 0 then
+  [936] getlocal 1 .............................. <pMaxSpeed>
+  [938] pushfloat32 2.0 ......................... <2.0>
+  [943] div ..................................... <pMaxSpeed / 2.0>
+  [944] setlocal 1 .............................. pMaxSpeed = pMaxSpeed / 2.0
+  [946] getprop 563 ............................. <p>
+  [949] getobjprop 2018 ......................... <p.Speed>
+  [952] pusharglist 1 ........................... <p.Speed>
+  [954] extcall 973 ............................. <abs(p.Speed)>
+  [957] getlocal 1 .............................. <pMaxSpeed>
+  [959] div ..................................... <abs(p.Speed) / pMaxSpeed>
+  [960] setlocal 2 .............................. pPercentage = abs(p.Speed) / pMaxSpeed
+  [962] getprop 563 ............................. <p>
+  [965] pushsymb 3320 ........................... <#BasicChannel>
+  [968] pushint8 2 .............................. <2>
+  [970] pusharglist 3 ........................... <p, #BasicChannel, 2>
+  [972] objcall 70 .............................. <p.BasicChannel[2]>
+  [974] getprop 563 ............................. <p>
+  [977] getobjprop 2067 ......................... <p.CarName>
+  [980] pushcons 1 .............................. <"Stationair">
+  [982] joinstr ................................. <p.CarName & "Stationair">
+  [983] eq ...................................... <p.BasicChannel[2] = (p.CarName & "Stationair")>
+  [984] jmpifz [997] ............................ if p.BasicChannel[2] = (p.CarName & "Stationair") then
+  [987] pushfloat32 1.0 ......................... <1.0>
+  [992] getlocal 2 .............................. <pPercentage>
+  [994] sub ..................................... <1.0 - pPercentage>
+  [995] setlocal 3 .............................. pVolume = 1.0 - pPercentage
+  [997] getprop 563 ............................. <p>
+  [1000] pushsymb 3320 .......................... <#BasicChannel>
+  [1003] pushint8 2 ............................. <2>
+  [1005] pusharglist 3 .......................... <p, #BasicChannel, 2>
+  [1007] objcall 70 ............................. <p.BasicChannel[2]>
+  [1009] pushcons 5 ............................. <"NitroStart">
+  [1011] eq ..................................... <p.BasicChannel[2] = "NitroStart">
+  [1012] jmpifz [1019] .......................... if p.BasicChannel[2] = "NitroStart" then
+  [1015] getlocal 2 ............................. <pPercentage>
+  [1017] setlocal 3 ............................. pVolume = pPercentage
+  [1019] getprop 563 ............................ <p>
+  [1022] pushsymb 3320 .......................... <#BasicChannel>
+  [1025] pushint8 1 ............................. <1>
+  [1027] pusharglist 3 .......................... <p, #BasicChannel, 1>
+  [1029] objcall 70 ............................. <p.BasicChannel[1]>
+  [1031] pusharglist 0 .......................... <>
+  [1033] extcall 40 ............................. <VOID>
+  [1035] nteq ................................... <p.BasicChannel[1] <> VOID>
+  [1036] jmpifz [1058] .......................... if p.BasicChannel[1] <> VOID then
+  [1039] getprop 563 ............................ <p>
+  [1042] pushsymb 3320 .......................... <#BasicChannel>
+  [1045] pushint8 1 ............................. <1>
+  [1047] pusharglist 3 .......................... <p, #BasicChannel, 1>
+  [1049] objcall 102 ............................ <p.BasicChannel[1]>
+  [1051] getlocal 3 ............................. <pVolume>
+  [1053] pusharglistnoret 2 ..................... <p.BasicChannel[1], pVolume>
+  [1055] objcall 1034 ........................... p.BasicChannel[1].setVolume(pVolume)
+  [1058] getprop 563 ............................ <p>
+  [1061] getobjprop 3024 ........................ <p.nitroState>
+  [1064] pushint8 1 ............................. <1>
+  [1066] eq ..................................... <p.nitroState = 1>
+  [1067] getprop 563 ............................ <p>
+  [1070] getobjprop 3319 ........................ <p.MyNitro>
+  [1073] pushzero ............................... <0>
+  [1074] eq ..................................... <p.MyNitro = 0>
+  [1075] and .................................... <(p.nitroState = 1) and (p.MyNitro = 0)>
+  [1076] jmpifz [1324] .......................... if (p.nitroState = 1) and (p.MyNitro = 0) then / else
+  [1079] getprop 563 ............................ <p>
+  [1082] pushsymb 3321 .......................... <#MotorChannel>
+  [1085] pushint8 1 ............................. <1>
+  [1087] pusharglist 3 .......................... <p, #MotorChannel, 1>
+  [1089] objcall 70 ............................. <p.MotorChannel[1]>
+  [1091] pusharglist 0 .......................... <>
+  [1093] extcall 40 ............................. <VOID>
+  [1095] nteq ................................... <p.MotorChannel[1] <> VOID>
+  [1096] jmpifz [1128] .......................... if p.MotorChannel[1] <> VOID then
+  [1099] getprop 563 ............................ <p>
+  [1102] pushsymb 3321 .......................... <#MotorChannel>
+  [1105] pushint8 1 ............................. <1>
+  [1107] getprop 563 ............................ <p>
+  [1110] pushsymb 3321 .......................... <#MotorChannel>
+  [1113] pushint8 1 ............................. <1>
+  [1115] pusharglist 3 .......................... <p, #MotorChannel, 1>
+  [1117] objcall 102 ............................ <p.MotorChannel[1]>
+  [1119] pusharglist 1 .......................... <p.MotorChannel[1]>
+  [1121] objcall 746 ............................ <p.MotorChannel[1].StopSound()>
+  [1124] pusharglistnoret 4 ..................... <p, #MotorChannel, 1, p.MotorChannel[1].StopSound()>
+  [1126] objcall 99 ............................. p.MotorChannel[1] = p.MotorChannel[1].StopSound()
+  [1128] getprop 563 ............................ <p>
+  [1131] pushsymb 3321 .......................... <#MotorChannel>
+  [1134] pushint8 1 ............................. <1>
+  [1136] getprop 563 ............................ <p>
+  [1139] getobjprop 2067 ........................ <p.CarName>
+  [1142] pushcons 4 ............................. <"TopSpeed">
+  [1144] joinstr ................................ <p.CarName & "TopSpeed">
+  [1145] pushsymb 1047 .......................... <#priority>
+  [1148] pushsymb 1082 .......................... <#high>
+  [1151] pushsymb 1042 .......................... <#loopCount>
+  [1154] pushzero ............................... <0>
+  [1155] pushsymb 1046 .......................... <#rateShift>
+  [1158] pushint8 3 ............................. <3>
+  [1160] pushsymb 1056 .......................... <#Override>
+  [1163] pushint8 1 ............................. <1>
+  [1165] pusharglist 8 .......................... <[#priority: #high, #loopCount: 0, #rateShift: 3, #Override: 1]>
+  [1167] pushproplist ........................... <[#priority: #high, #loopCount: 0, #rateShift: 3, #Override: 1]>
+  [1168] pusharglist 2 .......................... <p.CarName & "TopSpeed", [#priority: #high, #loopCount: 0, #rateShift: 3, #Override: 1]>
+  [1170] extcall 289 ............................ <PlaySound(p.CarName & "TopSpeed", [#priority: #high, #loopCount: 0, #rateShift: 3, #Override: 1])>
+  [1173] pusharglistnoret 4 ..................... <p, #MotorChannel, 1, PlaySound(p.CarName & "TopSpeed", [#priority: #high, #loopCount: 0, #rateShift: 3, #Override: 1])>
+  [1175] objcall 99 ............................. p.MotorChannel[1] = PlaySound(p.CarName & "TopSpeed", [#priority: #high, #loopCount: 0, #rateShift: 3, #Override: 1])
+  [1177] getprop 563 ............................ <p>
+  [1180] pushsymb 3321 .......................... <#MotorChannel>
+  [1183] pushint8 2 ............................. <2>
+  [1185] getprop 563 ............................ <p>
+  [1188] getobjprop 2067 ........................ <p.CarName>
+  [1191] pushcons 4 ............................. <"TopSpeed">
+  [1193] joinstr ................................ <p.CarName & "TopSpeed">
+  [1194] pusharglistnoret 4 ..................... <p, #MotorChannel, 2, p.CarName & "TopSpeed">
+  [1196] objcall 99 ............................. p.MotorChannel[2] = p.CarName & "TopSpeed"
+  [1198] getprop 563 ............................ <p>
+  [1201] pushsymb 3320 .......................... <#BasicChannel>
+  [1204] pushint8 1 ............................. <1>
+  [1206] pusharglist 3 .......................... <p, #BasicChannel, 1>
+  [1208] objcall 70 ............................. <p.BasicChannel[1]>
+  [1210] pusharglist 0 .......................... <>
+  [1212] extcall 40 ............................. <VOID>
+  [1214] nteq ................................... <p.BasicChannel[1] <> VOID>
+  [1215] jmpifz [1247] .......................... if p.BasicChannel[1] <> VOID then
+  [1218] getprop 563 ............................ <p>
+  [1221] pushsymb 3320 .......................... <#BasicChannel>
+  [1224] pushint8 1 ............................. <1>
+  [1226] getprop 563 ............................ <p>
+  [1229] pushsymb 3320 .......................... <#BasicChannel>
+  [1232] pushint8 1 ............................. <1>
+  [1234] pusharglist 3 .......................... <p, #BasicChannel, 1>
+  [1236] objcall 102 ............................ <p.BasicChannel[1]>
+  [1238] pusharglist 1 .......................... <p.BasicChannel[1]>
+  [1240] objcall 746 ............................ <p.BasicChannel[1].StopSound()>
+  [1243] pusharglistnoret 4 ..................... <p, #BasicChannel, 1, p.BasicChannel[1].StopSound()>
+  [1245] objcall 99 ............................. p.BasicChannel[1] = p.BasicChannel[1].StopSound()
+  [1247] getprop 563 ............................ <p>
+  [1250] pushsymb 3320 .......................... <#BasicChannel>
+  [1253] pushint8 1 ............................. <1>
+  [1255] pushcons 5 ............................. <"NitroStart">
+  [1257] pushsymb 1047 .......................... <#priority>
+  [1260] pushsymb 1082 .......................... <#high>
+  [1263] pushsymb 1042 .......................... <#loopCount>
+  [1266] pushzero ............................... <0>
+  [1267] pushsymb 1043 .......................... <#loopStartTime>
+  [1270] pushint16 3021 ......................... <3021>
+  [1273] pushsymb 1046 .......................... <#rateShift>
+  [1276] getprop 563 ............................ <p>
+  [1279] getobjprop 1046 ........................ <p.rateShift>
+  [1282] pushsymb 1056 .......................... <#Override>
+  [1285] pushint8 1 ............................. <1>
+  [1287] pusharglist 10 ......................... <[#priority: #high, #loopCount: 0, #loopStartTime: 3021, #rateShift: p.rateShift, #Override: 1]>
+  [1289] pushproplist ........................... <[#priority: #high, #loopCount: 0, #loopStartTime: 3021, #rateShift: p.rateShift, #Override: 1]>
+  [1290] pusharglist 2 .......................... <"NitroStart", [#priority: #high, #loopCount: 0, #loopStartTime: 3021, #rateShift: p.rateShift, #Override: 1]>
+  [1292] extcall 289 ............................ <PlaySound("NitroStart", [#priority: #high, #loopCount: 0, #loopStartTime: 3021, #rateShift: p.rateShift, #Override: 1])>
+  [1295] pusharglistnoret 4 ..................... <p, #BasicChannel, 1, PlaySound("NitroStart", [#priority: #high, #loopCount: 0, #loopStartTime: 3021, #rateShift: p.rateShift, #Override: 1])>
+  [1297] objcall 99 ............................. p.BasicChannel[1] = PlaySound("NitroStart", [#priority: #high, #loopCount: 0, #loopStartTime: 3021, #rateShift: p.rateShift, #Override: 1])
+  [1299] getprop 563 ............................ <p>
+  [1302] pushsymb 3320 .......................... <#BasicChannel>
+  [1305] pushint8 2 ............................. <2>
+  [1307] pushcons 5 ............................. <"NitroStart">
+  [1309] pusharglistnoret 4 ..................... <p, #BasicChannel, 2, "NitroStart">
+  [1311] objcall 99 ............................. p.BasicChannel[2] = "NitroStart"
+  [1313] getprop 563 ............................ <p>
+  [1316] pushint8 1 ............................. <1>
+  [1318] setobjprop 3319 ........................ p.MyNitro = 1
+  [1321] jmp [1598]
+  [1324] getprop 563 ............................ <p>
+  [1327] getobjprop 3024 ........................ <p.nitroState>
+  [1330] pushzero ............................... <0>
+  [1331] eq ..................................... <p.nitroState = 0>
+  [1332] getprop 563 ............................ <p>
+  [1335] getobjprop 3319 ........................ <p.MyNitro>
+  [1338] pushint8 1 ............................. <1>
+  [1340] eq ..................................... <p.MyNitro = 1>
+  [1341] and .................................... <(p.nitroState = 0) and (p.MyNitro = 1)>
+  [1342] jmpifz [1598] .......................... if (p.nitroState = 0) and (p.MyNitro = 1) then
+  [1345] getprop 563 ............................ <p>
+  [1348] pushsymb 3321 .......................... <#MotorChannel>
+  [1351] pushint8 1 ............................. <1>
+  [1353] pusharglist 3 .......................... <p, #MotorChannel, 1>
+  [1355] objcall 70 ............................. <p.MotorChannel[1]>
+  [1357] pusharglist 0 .......................... <>
+  [1359] extcall 40 ............................. <VOID>
+  [1361] nteq ................................... <p.MotorChannel[1] <> VOID>
+  [1362] jmpifz [1394] .......................... if p.MotorChannel[1] <> VOID then
+  [1365] getprop 563 ............................ <p>
+  [1368] pushsymb 3321 .......................... <#MotorChannel>
+  [1371] pushint8 1 ............................. <1>
+  [1373] getprop 563 ............................ <p>
+  [1376] pushsymb 3321 .......................... <#MotorChannel>
+  [1379] pushint8 1 ............................. <1>
+  [1381] pusharglist 3 .......................... <p, #MotorChannel, 1>
+  [1383] objcall 102 ............................ <p.MotorChannel[1]>
+  [1385] pusharglist 1 .......................... <p.MotorChannel[1]>
+  [1387] objcall 746 ............................ <p.MotorChannel[1].StopSound()>
+  [1390] pusharglistnoret 4 ..................... <p, #MotorChannel, 1, p.MotorChannel[1].StopSound()>
+  [1392] objcall 99 ............................. p.MotorChannel[1] = p.MotorChannel[1].StopSound()
+  [1394] getprop 563 ............................ <p>
+  [1397] pushsymb 3321 .......................... <#MotorChannel>
+  [1400] pushint8 1 ............................. <1>
+  [1402] getprop 563 ............................ <p>
+  [1405] getobjprop 2067 ........................ <p.CarName>
+  [1408] pushcons 4 ............................. <"TopSpeed">
+  [1410] joinstr ................................ <p.CarName & "TopSpeed">
+  [1411] pushsymb 1047 .......................... <#priority>
+  [1414] pushsymb 1082 .......................... <#high>
+  [1417] pushsymb 1042 .......................... <#loopCount>
+  [1420] pushzero ............................... <0>
+  [1421] pushsymb 1046 .......................... <#rateShift>
+  [1424] getprop 563 ............................ <p>
+  [1427] getobjprop 1046 ........................ <p.rateShift>
+  [1430] pushsymb 1056 .......................... <#Override>
+  [1433] pushint8 1 ............................. <1>
+  [1435] pusharglist 8 .......................... <[#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1]>
+  [1437] pushproplist ........................... <[#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1]>
+  [1438] pusharglist 2 .......................... <p.CarName & "TopSpeed", [#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1]>
+  [1440] extcall 289 ............................ <PlaySound(p.CarName & "TopSpeed", [#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1])>
+  [1443] pusharglistnoret 4 ..................... <p, #MotorChannel, 1, PlaySound(p.CarName & "TopSpeed", [#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1])>
+  [1445] objcall 99 ............................. p.MotorChannel[1] = PlaySound(p.CarName & "TopSpeed", [#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1])
+  [1447] getprop 563 ............................ <p>
+  [1450] pushsymb 3321 .......................... <#MotorChannel>
+  [1453] pushint8 2 ............................. <2>
+  [1455] getprop 563 ............................ <p>
+  [1458] getobjprop 2067 ........................ <p.CarName>
+  [1461] pushcons 4 ............................. <"TopSpeed">
+  [1463] joinstr ................................ <p.CarName & "TopSpeed">
+  [1464] pusharglistnoret 4 ..................... <p, #MotorChannel, 2, p.CarName & "TopSpeed">
+  [1466] objcall 99 ............................. p.MotorChannel[2] = p.CarName & "TopSpeed"
+  [1468] getprop 563 ............................ <p>
+  [1471] pushsymb 3320 .......................... <#BasicChannel>
+  [1474] pushint8 1 ............................. <1>
+  [1476] pusharglist 3 .......................... <p, #BasicChannel, 1>
+  [1478] objcall 70 ............................. <p.BasicChannel[1]>
+  [1480] pusharglist 0 .......................... <>
+  [1482] extcall 40 ............................. <VOID>
+  [1484] nteq ................................... <p.BasicChannel[1] <> VOID>
+  [1485] jmpifz [1517] .......................... if p.BasicChannel[1] <> VOID then
+  [1488] getprop 563 ............................ <p>
+  [1491] pushsymb 3320 .......................... <#BasicChannel>
+  [1494] pushint8 1 ............................. <1>
+  [1496] getprop 563 ............................ <p>
+  [1499] pushsymb 3320 .......................... <#BasicChannel>
+  [1502] pushint8 1 ............................. <1>
+  [1504] pusharglist 3 .......................... <p, #BasicChannel, 1>
+  [1506] objcall 102 ............................ <p.BasicChannel[1]>
+  [1508] pusharglist 1 .......................... <p.BasicChannel[1]>
+  [1510] objcall 746 ............................ <p.BasicChannel[1].StopSound()>
+  [1513] pusharglistnoret 4 ..................... <p, #BasicChannel, 1, p.BasicChannel[1].StopSound()>
+  [1515] objcall 99 ............................. p.BasicChannel[1] = p.BasicChannel[1].StopSound()
+  [1517] getprop 563 ............................ <p>
+  [1520] pushsymb 3320 .......................... <#BasicChannel>
+  [1523] pushint8 1 ............................. <1>
+  [1525] getprop 563 ............................ <p>
+  [1528] getobjprop 2067 ........................ <p.CarName>
+  [1531] pushcons 1 ............................. <"Stationair">
+  [1533] joinstr ................................ <p.CarName & "Stationair">
+  [1534] pushsymb 1047 .......................... <#priority>
+  [1537] pushsymb 1082 .......................... <#high>
+  [1540] pushsymb 1042 .......................... <#loopCount>
+  [1543] pushzero ............................... <0>
+  [1544] pushsymb 1046 .......................... <#rateShift>
+  [1547] getprop 563 ............................ <p>
+  [1550] getobjprop 1046 ........................ <p.rateShift>
+  [1553] pushsymb 1056 .......................... <#Override>
+  [1556] pushint8 1 ............................. <1>
+  [1558] pusharglist 8 .......................... <[#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1]>
+  [1560] pushproplist ........................... <[#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1]>
+  [1561] pusharglist 2 .......................... <p.CarName & "Stationair", [#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1]>
+  [1563] extcall 289 ............................ <PlaySound(p.CarName & "Stationair", [#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1])>
+  [1566] pusharglistnoret 4 ..................... <p, #BasicChannel, 1, PlaySound(p.CarName & "Stationair", [#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1])>
+  [1568] objcall 99 ............................. p.BasicChannel[1] = PlaySound(p.CarName & "Stationair", [#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1])
+  [1570] getprop 563 ............................ <p>
+  [1573] pushsymb 3320 .......................... <#BasicChannel>
+  [1576] pushint8 2 ............................. <2>
+  [1578] getprop 563 ............................ <p>
+  [1581] getobjprop 2067 ........................ <p.CarName>
+  [1584] pushcons 1 ............................. <"Stationair">
+  [1586] joinstr ................................ <p.CarName & "Stationair">
+  [1587] pusharglistnoret 4 ..................... <p, #BasicChannel, 2, p.CarName & "Stationair">
+  [1589] objcall 99 ............................. p.BasicChannel[2] = p.CarName & "Stationair"
+  [1591] getprop 563 ............................ <p>
+  [1594] pushzero ............................... <0>
+  [1595] setobjprop 3319 ........................ p.MyNitro = 0
+  [1598] getprop 563 ............................ <p>
+  [1601] getobjprop 2132 ........................ <p.forward>
+  [1604] pushint8 1 ............................. <1>
+  [1606] eq ..................................... <p.forward = 1>
+  [1607] jmpifz [1614] .......................... if p.forward = 1 then
+  [1610] pusharglistnoret 0 ..................... <>
+  [1612] localcall 4 ............................ DriveForward()
+  [1614] getprop 563 ............................ <p>
+  [1617] getobjprop 2132 ........................ <p.forward>
+  [1620] pushzero ............................... <0>
+  [1621] eq ..................................... <p.forward = 0>
+  [1622] getprop 563 ............................ <p>
+  [1625] getobjprop 2133 ........................ <p.backward>
+  [1628] pushint8 1 ............................. <1>
+  [1630] eq ..................................... <p.backward = 1>
+  [1631] and .................................... <(p.forward = 0) and (p.backward = 1)>
+  [1632] jmpifz [1639] .......................... if (p.forward = 0) and (p.backward = 1) then
+  [1635] pusharglistnoret 0 ..................... <>
+  [1637] localcall 5 ............................ DriveBackward()
+  [1639] getprop 563 ............................ <p>
+  [1642] getobjprop 2132 ........................ <p.forward>
+  [1645] pushzero ............................... <0>
+  [1646] eq ..................................... <p.forward = 0>
+  [1647] getprop 563 ............................ <p>
+  [1650] getobjprop 2133 ........................ <p.backward>
+  [1653] pushzero ............................... <0>
+  [1654] eq ..................................... <p.backward = 0>
+  [1655] and .................................... <(p.forward = 0) and (p.backward = 0)>
+  [1656] jmpifz [1667] .......................... if (p.forward = 0) and (p.backward = 0) then
+  [1659] getprop 563 ............................ <p>
+  [1662] pushint8 1 ............................. <1>
+  [1664] setobjprop 3315 ........................ p.rollOut = 1
+  [1667] ret
+end
+
+on GetData me
+  [  0] getprop 563 ............................. <p>
+  [  3] pushsymb 2132 ........................... <#forward>
+  [  6] getglobal 395 ........................... <g>
+  [  9] pushsymb 137 ............................ <#cars>
+  [ 11] getprop 563 ............................. <p>
+  [ 14] getobjprop 377 .......................... <p.tag>
+  [ 17] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 19] objcall 102 ............................. <g.cars[p.tag]>
+  [ 21] pushsymb 929 ............................ <#Keys>
+  [ 24] pusharglist 2 ........................... <g.cars[p.tag], #Keys>
+  [ 26] objcall 105 ............................. <g.cars[p.tag][#Keys]>
+  [ 28] pushsymb 2132 ........................... <#forward>
+  [ 31] pusharglist 2 ........................... <g.cars[p.tag][#Keys], #forward>
+  [ 33] objcall 105 ............................. <g.cars[p.tag][#Keys][#forward]>
+  [ 35] pusharglistnoret 3 ...................... <p, #forward, g.cars[p.tag][#Keys][#forward]>
+  [ 37] objcall 103 ............................. p[#forward] = g.cars[p.tag][#Keys][#forward]
+  [ 39] getprop 563 ............................. <p>
+  [ 42] pushsymb 2133 ........................... <#backward>
+  [ 45] getglobal 395 ........................... <g>
+  [ 48] pushsymb 137 ............................ <#cars>
+  [ 50] getprop 563 ............................. <p>
+  [ 53] getobjprop 377 .......................... <p.tag>
+  [ 56] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 58] objcall 102 ............................. <g.cars[p.tag]>
+  [ 60] pushsymb 929 ............................ <#Keys>
+  [ 63] pusharglist 2 ........................... <g.cars[p.tag], #Keys>
+  [ 65] objcall 105 ............................. <g.cars[p.tag][#Keys]>
+  [ 67] pushsymb 2133 ........................... <#backward>
+  [ 70] pusharglist 2 ........................... <g.cars[p.tag][#Keys], #backward>
+  [ 72] objcall 105 ............................. <g.cars[p.tag][#Keys][#backward]>
+  [ 74] pusharglistnoret 3 ...................... <p, #backward, g.cars[p.tag][#Keys][#backward]>
+  [ 76] objcall 103 ............................. p[#backward] = g.cars[p.tag][#Keys][#backward]
+  [ 78] getprop 563 ............................. <p>
+  [ 81] pushsymb 2134 ........................... <#brake>
+  [ 84] getglobal 395 ........................... <g>
+  [ 87] pushsymb 137 ............................ <#cars>
+  [ 89] getprop 563 ............................. <p>
+  [ 92] getobjprop 377 .......................... <p.tag>
+  [ 95] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 97] objcall 102 ............................. <g.cars[p.tag]>
+  [ 99] pushsymb 929 ............................ <#Keys>
+  [102] pusharglist 2 ........................... <g.cars[p.tag], #Keys>
+  [104] objcall 105 ............................. <g.cars[p.tag][#Keys]>
+  [106] pushsymb 2134 ........................... <#brake>
+  [109] pusharglist 2 ........................... <g.cars[p.tag][#Keys], #brake>
+  [111] objcall 105 ............................. <g.cars[p.tag][#Keys][#brake]>
+  [113] pusharglistnoret 3 ...................... <p, #brake, g.cars[p.tag][#Keys][#brake]>
+  [115] objcall 103 ............................. p[#brake] = g.cars[p.tag][#Keys][#brake]
+  [117] getprop 563 ............................. <p>
+  [120] pushsymb 2233 ........................... <#slip>
+  [123] getglobal 395 ........................... <g>
+  [126] pushsymb 137 ............................ <#cars>
+  [128] getprop 563 ............................. <p>
+  [131] getobjprop 377 .......................... <p.tag>
+  [134] pusharglist 3 ........................... <g, #cars, p.tag>
+  [136] objcall 102 ............................. <g.cars[p.tag]>
+  [138] pushsymb 1335 ........................... <#specifics>
+  [141] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [143] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [145] pushsymb 2233 ........................... <#slip>
+  [148] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #slip>
+  [150] objcall 105 ............................. <g.cars[p.tag][#specifics][#slip]>
+  [152] pusharglistnoret 3 ...................... <p, #slip, g.cars[p.tag][#specifics][#slip]>
+  [154] objcall 103 ............................. p[#slip] = g.cars[p.tag][#specifics][#slip]
+  [156] getprop 563 ............................. <p>
+  [159] pushsymb 3022 ........................... <#Started>
+  [162] getglobal 395 ........................... <g>
+  [165] pushsymb 137 ............................ <#cars>
+  [167] getprop 563 ............................. <p>
+  [170] getobjprop 377 .......................... <p.tag>
+  [173] pusharglist 3 ........................... <g, #cars, p.tag>
+  [175] objcall 102 ............................. <g.cars[p.tag]>
+  [177] pushsymb 1335 ........................... <#specifics>
+  [180] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [182] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [184] pushsymb 3022 ........................... <#Started>
+  [187] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #Started>
+  [189] objcall 105 ............................. <g.cars[p.tag][#specifics][#Started]>
+  [191] pusharglistnoret 3 ...................... <p, #Started, g.cars[p.tag][#specifics][#Started]>
+  [193] objcall 103 ............................. p[#Started] = g.cars[p.tag][#specifics][#Started]
+  [195] getprop 563 ............................. <p>
+  [198] pushsymb 3028 ........................... <#falling>
+  [201] getglobal 395 ........................... <g>
+  [204] pushsymb 137 ............................ <#cars>
+  [206] getprop 563 ............................. <p>
+  [209] getobjprop 377 .......................... <p.tag>
+  [212] pusharglist 3 ........................... <g, #cars, p.tag>
+  [214] objcall 102 ............................. <g.cars[p.tag]>
+  [216] pushsymb 1335 ........................... <#specifics>
+  [219] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [221] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [223] pushsymb 3028 ........................... <#falling>
+  [226] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #falling>
+  [228] objcall 105 ............................. <g.cars[p.tag][#specifics][#falling]>
+  [230] pusharglistnoret 3 ...................... <p, #falling, g.cars[p.tag][#specifics][#falling]>
+  [232] objcall 103 ............................. p[#falling] = g.cars[p.tag][#specifics][#falling]
+  [234] getprop 563 ............................. <p>
+  [237] pushsymb 1292 ........................... <#maxSpeed>
+  [240] getglobal 395 ........................... <g>
+  [243] pushsymb 137 ............................ <#cars>
+  [245] getprop 563 ............................. <p>
+  [248] getobjprop 377 .......................... <p.tag>
+  [251] pusharglist 3 ........................... <g, #cars, p.tag>
+  [253] objcall 102 ............................. <g.cars[p.tag]>
+  [255] pushsymb 1335 ........................... <#specifics>
+  [258] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [260] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [262] pushsymb 1292 ........................... <#maxSpeed>
+  [265] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #maxSpeed>
+  [267] objcall 105 ............................. <g.cars[p.tag][#specifics][#maxSpeed]>
+  [269] pusharglistnoret 3 ...................... <p, #maxSpeed, g.cars[p.tag][#specifics][#maxSpeed]>
+  [271] objcall 103 ............................. p[#maxSpeed] = g.cars[p.tag][#specifics][#maxSpeed]
+  [273] getprop 563 ............................. <p>
+  [276] pushsymb 2018 ........................... <#Speed>
+  [279] getglobal 395 ........................... <g>
+  [282] pushsymb 137 ............................ <#cars>
+  [284] getprop 563 ............................. <p>
+  [287] getobjprop 377 .......................... <p.tag>
+  [290] pusharglist 3 ........................... <g, #cars, p.tag>
+  [292] objcall 102 ............................. <g.cars[p.tag]>
+  [294] pushsymb 1335 ........................... <#specifics>
+  [297] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [299] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [301] pushsymb 3033 ........................... <#speedMS>
+  [304] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #speedMS>
+  [306] objcall 105 ............................. <g.cars[p.tag][#specifics][#speedMS]>
+  [308] pusharglistnoret 3 ...................... <p, #Speed, g.cars[p.tag][#specifics][#speedMS]>
+  [310] objcall 103 ............................. p[#Speed] = g.cars[p.tag][#specifics][#speedMS]
+  [312] getprop 563 ............................. <p>
+  [315] pushsymb 3325 ........................... <#Crashed>
+  [318] getglobal 395 ........................... <g>
+  [321] pushsymb 137 ............................ <#cars>
+  [323] getprop 563 ............................. <p>
+  [326] getobjprop 377 .......................... <p.tag>
+  [329] pusharglist 3 ........................... <g, #cars, p.tag>
+  [331] objcall 102 ............................. <g.cars[p.tag]>
+  [333] pushsymb 1335 ........................... <#specifics>
+  [336] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [338] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [340] pushsymb 3027 ........................... <#CrashState>
+  [343] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #CrashState>
+  [345] objcall 105 ............................. <g.cars[p.tag][#specifics][#CrashState]>
+  [347] pusharglistnoret 3 ...................... <p, #Crashed, g.cars[p.tag][#specifics][#CrashState]>
+  [349] objcall 103 ............................. p[#Crashed] = g.cars[p.tag][#specifics][#CrashState]
+  [351] getprop 563 ............................. <p>
+  [354] pushsymb 3024 ........................... <#nitroState>
+  [357] getglobal 395 ........................... <g>
+  [360] pushsymb 137 ............................ <#cars>
+  [362] getprop 563 ............................. <p>
+  [365] getobjprop 377 .......................... <p.tag>
+  [368] pusharglist 3 ........................... <g, #cars, p.tag>
+  [370] objcall 102 ............................. <g.cars[p.tag]>
+  [372] pushsymb 1335 ........................... <#specifics>
+  [375] pusharglist 2 ........................... <g.cars[p.tag], #specifics>
+  [377] objcall 105 ............................. <g.cars[p.tag][#specifics]>
+  [379] pushsymb 3024 ........................... <#nitroState>
+  [382] pusharglist 2 ........................... <g.cars[p.tag][#specifics], #nitroState>
+  [384] objcall 105 ............................. <g.cars[p.tag][#specifics][#nitroState]>
+  [386] pusharglistnoret 3 ...................... <p, #nitroState, g.cars[p.tag][#specifics][#nitroState]>
+  [388] objcall 103 ............................. p[#nitroState] = g.cars[p.tag][#specifics][#nitroState]
+  [390] getprop 563 ............................. <p>
+  [393] pushsymb 639 ............................ <#Percentage>
+  [396] getprop 563 ............................. <p>
+  [399] getobjprop 2018 ......................... <p.Speed>
+  [402] pusharglist 1 ........................... <p.Speed>
+  [404] extcall 973 ............................. <abs(p.Speed)>
+  [407] getprop 563 ............................. <p>
+  [410] getobjprop 1292 ......................... <p.maxSpeed>
+  [413] div ..................................... <abs(p.Speed) / p.maxSpeed>
+  [414] pusharglistnoret 3 ...................... <p, #Percentage, abs(p.Speed) / p.maxSpeed>
+  [416] objcall 103 ............................. p[#Percentage] = abs(p.Speed) / p.maxSpeed
+  [418] ret
+end
+
+on StartCar me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 3314 ......................... <p.Stationair>
+  [  6] pushint8 1 .............................. <1>
+  [  8] eq ...................................... <p.Stationair = 1>
+  [  9] jmpifz [158] ............................ if p.Stationair = 1 then
+  [ 12] getprop 563 ............................. <p>
+  [ 15] pushsymb 3321 ........................... <#MotorChannel>
+  [ 18] pushint8 1 .............................. <1>
+  [ 20] pusharglist 3 ........................... <p, #MotorChannel, 1>
+  [ 22] objcall 70 .............................. <p.MotorChannel[1]>
+  [ 24] pusharglist 0 ........................... <>
+  [ 26] extcall 40 .............................. <VOID>
+  [ 28] nteq .................................... <p.MotorChannel[1] <> VOID>
+  [ 29] jmpifz [ 61] ............................ if p.MotorChannel[1] <> VOID then
+  [ 32] getprop 563 ............................. <p>
+  [ 35] pushsymb 3321 ........................... <#MotorChannel>
+  [ 38] pushint8 1 .............................. <1>
+  [ 40] getprop 563 ............................. <p>
+  [ 43] pushsymb 3321 ........................... <#MotorChannel>
+  [ 46] pushint8 1 .............................. <1>
+  [ 48] pusharglist 3 ........................... <p, #MotorChannel, 1>
+  [ 50] objcall 102 ............................. <p.MotorChannel[1]>
+  [ 52] pusharglist 1 ........................... <p.MotorChannel[1]>
+  [ 54] objcall 746 ............................. <p.MotorChannel[1].StopSound()>
+  [ 57] pusharglistnoret 4 ...................... <p, #MotorChannel, 1, p.MotorChannel[1].StopSound()>
+  [ 59] objcall 99 .............................. p.MotorChannel[1] = p.MotorChannel[1].StopSound()
+  [ 61] getprop 563 ............................. <p>
+  [ 64] pushsymb 3321 ........................... <#MotorChannel>
+  [ 67] pushint8 1 .............................. <1>
+  [ 69] getprop 563 ............................. <p>
+  [ 72] getobjprop 2067 ......................... <p.CarName>
+  [ 75] pushcons 4 .............................. <"TopSpeed">
+  [ 77] joinstr ................................. <p.CarName & "TopSpeed">
+  [ 78] pushsymb 1047 ........................... <#priority>
+  [ 81] pushsymb 1082 ........................... <#high>
+  [ 84] pushsymb 1042 ........................... <#loopCount>
+  [ 87] pushzero ................................ <0>
+  [ 88] pushsymb 1046 ........................... <#rateShift>
+  [ 91] getprop 563 ............................. <p>
+  [ 94] getobjprop 1046 ......................... <p.rateShift>
+  [ 97] pushsymb 1056 ........................... <#Override>
+  [100] pushint8 1 .............................. <1>
+  [102] pusharglist 8 ........................... <[#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1]>
+  [104] pushproplist ............................ <[#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1]>
+  [105] pusharglist 2 ........................... <p.CarName & "TopSpeed", [#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1]>
+  [107] extcall 289 ............................. <PlaySound(p.CarName & "TopSpeed", [#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1])>
+  [110] pusharglistnoret 4 ...................... <p, #MotorChannel, 1, PlaySound(p.CarName & "TopSpeed", [#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1])>
+  [112] objcall 99 .............................. p.MotorChannel[1] = PlaySound(p.CarName & "TopSpeed", [#priority: #high, #loopCount: 0, #rateShift: p.rateShift, #Override: 1])
+  [114] getprop 563 ............................. <p>
+  [117] pushsymb 3321 ........................... <#MotorChannel>
+  [120] pushint8 2 .............................. <2>
+  [122] getprop 563 ............................. <p>
+  [125] getobjprop 2067 ......................... <p.CarName>
+  [128] pushcons 4 .............................. <"TopSpeed">
+  [130] joinstr ................................. <p.CarName & "TopSpeed">
+  [131] pusharglistnoret 4 ...................... <p, #MotorChannel, 2, p.CarName & "TopSpeed">
+  [133] objcall 99 .............................. p.MotorChannel[2] = p.CarName & "TopSpeed"
+  [135] getprop 563 ............................. <p>
+  [138] pushsymb 1104 ........................... <#timer>
+  [141] gettoplevelprop 462 ..................... <_system>
+  [144] getobjprop 463 .......................... <_system.milliSeconds>
+  [147] pusharglistnoret 3 ...................... <p, #timer, _system.milliSeconds>
+  [149] objcall 103 ............................. p[#timer] = _system.milliSeconds
+  [151] getprop 563 ............................. <p>
+  [154] pushzero ................................ <0>
+  [155] setobjprop 3314 ......................... p.Stationair = 0
+  [158] ret
+end
+
+on DriveForward me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 3314 ......................... <p.Stationair>
+  [  6] pushint8 1 .............................. <1>
+  [  8] eq ...................................... <p.Stationair = 1>
+  [  9] jmpifz [ 16] ............................ if p.Stationair = 1 then
+  [ 12] pusharglistnoret 0 ...................... <>
+  [ 14] localcall 3 ............................. StartCar()
+  [ 16] getprop 563 ............................. <p>
+  [ 19] getobjprop 2018 ......................... <p.Speed>
+  [ 22] pushfloat32 0.0 ......................... <0.0>
+  [ 27] lt ...................................... <p.Speed < 0.0>
+  [ 28] jmpifz [ 97] ............................ if p.Speed < 0.0 then
+  [ 31] getprop 563 ............................. <p>
+  [ 34] pushsymb 3322 ........................... <#BrakeChannel>
+  [ 37] pushint8 2 .............................. <2>
+  [ 39] pusharglist 3 ........................... <p, #BrakeChannel, 2>
+  [ 41] objcall 70 .............................. <p.BrakeChannel[2]>
+  [ 43] pusharglist 0 ........................... <>
+  [ 45] extcall 40 .............................. <VOID>
+  [ 47] eq ...................................... <p.BrakeChannel[2] = VOID>
+  [ 48] getprop 563 ............................. <p>
+  [ 51] getobjprop 3028 ......................... <p.falling>
+  [ 54] pushzero ................................ <0>
+  [ 55] eq ...................................... <p.falling = 0>
+  [ 56] and ..................................... <(p.BrakeChannel[2] = VOID) and (p.falling = 0)>
+  [ 57] jmpifz [ 97] ............................ if (p.BrakeChannel[2] = VOID) and (p.falling = 0) then
+  [ 60] getprop 563 ............................. <p>
+  [ 63] getobjprop 2067 ......................... <p.CarName>
+  [ 66] pushcons 6 .............................. <"Brake">
+  [ 68] joinstr ................................. <p.CarName & "Brake">
+  [ 69] pushsymb 1047 ........................... <#priority>
+  [ 72] pushsymb 1081 ........................... <#medium>
+  [ 75] pusharglist 2 ........................... <[#priority: #medium]>
+  [ 77] pushproplist ............................ <[#priority: #medium]>
+  [ 78] pusharglistnoret 2 ...................... <p.CarName & "Brake", [#priority: #medium]>
+  [ 80] extcall 289 ............................. PlaySound(p.CarName & "Brake", [#priority: #medium])
+  [ 83] getprop 563 ............................. <p>
+  [ 86] pushsymb 3322 ........................... <#BrakeChannel>
+  [ 89] pushint8 2 .............................. <2>
+  [ 91] pushcons 6 .............................. <"Brake">
+  [ 93] pusharglistnoret 4 ...................... <p, #BrakeChannel, 2, "Brake">
+  [ 95] objcall 99 .............................. p.BrakeChannel[2] = "Brake"
+  [ 97] getprop 563 ............................. <p>
+  [100] getobjprop 2018 ......................... <p.Speed>
+  [103] pushzero ................................ <0>
+  [104] gt ...................................... <p.Speed > 0>
+  [105] jmpifz [124] ............................ if p.Speed > 0 then
+  [108] getprop 563 ............................. <p>
+  [111] pushsymb 3322 ........................... <#BrakeChannel>
+  [114] pushint8 2 .............................. <2>
+  [116] pusharglist 0 ........................... <>
+  [118] extcall 40 .............................. <VOID>
+  [120] pusharglistnoret 4 ...................... <p, #BrakeChannel, 2, VOID>
+  [122] objcall 99 .............................. p.BrakeChannel[2] = VOID
+  [124] getprop 563 ............................. <p>
+  [127] getobjprop 3315 ......................... <p.rollOut>
+  [130] pushint8 1 .............................. <1>
+  [132] eq ...................................... <p.rollOut = 1>
+  [133] getprop 563 ............................. <p>
+  [136] getobjprop 3317 ......................... <p.Backwards>
+  [139] pushint8 1 .............................. <1>
+  [141] eq ...................................... <p.Backwards = 1>
+  [142] or ...................................... <(p.rollOut = 1) or (p.Backwards = 1)>
+  [143] jmpifz [191] ............................ if (p.rollOut = 1) or (p.Backwards = 1) then
+  [146] getprop 563 ............................. <p>
+  [149] getobjprop 2067 ......................... <p.CarName>
+  [152] pushcons 7 .............................. <"GearShift">
+  [154] joinstr ................................. <p.CarName & "GearShift">
+  [155] pushsymb 1047 ........................... <#priority>
+  [158] pushsymb 1081 ........................... <#medium>
+  [161] pusharglist 2 ........................... <[#priority: #medium]>
+  [163] pushproplist ............................ <[#priority: #medium]>
+  [164] pusharglistnoret 2 ...................... <p.CarName & "GearShift", [#priority: #medium]>
+  [166] extcall 289 ............................. PlaySound(p.CarName & "GearShift", [#priority: #medium])
+  [169] getprop 563 ............................. <p>
+  [172] pushzero ................................ <0>
+  [173] setobjprop 3315 ......................... p.rollOut = 0
+  [176] getprop 563 ............................. <p>
+  [179] pushzero ................................ <0>
+  [180] setobjprop 3317 ......................... p.Backwards = 0
+  [183] getprop 563 ............................. <p>
+  [186] pushint8 1 .............................. <1>
+  [188] setobjprop 3316 ......................... p.Forwards = 1
+  [191] ret
+end
+
+on DriveBackward me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 3314 ......................... <p.Stationair>
+  [  6] pushint8 1 .............................. <1>
+  [  8] eq ...................................... <p.Stationair = 1>
+  [  9] jmpifz [ 16] ............................ if p.Stationair = 1 then
+  [ 12] pusharglistnoret 0 ...................... <>
+  [ 14] localcall 3 ............................. StartCar()
+  [ 16] getprop 563 ............................. <p>
+  [ 19] getobjprop 2018 ......................... <p.Speed>
+  [ 22] pushzero ................................ <0>
+  [ 23] gt ...................................... <p.Speed > 0>
+  [ 24] jmpifz [ 93] ............................ if p.Speed > 0 then
+  [ 27] getprop 563 ............................. <p>
+  [ 30] pushsymb 3322 ........................... <#BrakeChannel>
+  [ 33] pushint8 2 .............................. <2>
+  [ 35] pusharglist 3 ........................... <p, #BrakeChannel, 2>
+  [ 37] objcall 70 .............................. <p.BrakeChannel[2]>
+  [ 39] pusharglist 0 ........................... <>
+  [ 41] extcall 40 .............................. <VOID>
+  [ 43] eq ...................................... <p.BrakeChannel[2] = VOID>
+  [ 44] getprop 563 ............................. <p>
+  [ 47] getobjprop 3028 ......................... <p.falling>
+  [ 50] pushzero ................................ <0>
+  [ 51] eq ...................................... <p.falling = 0>
+  [ 52] and ..................................... <(p.BrakeChannel[2] = VOID) and (p.falling = 0)>
+  [ 53] jmpifz [ 93] ............................ if (p.BrakeChannel[2] = VOID) and (p.falling = 0) then
+  [ 56] getprop 563 ............................. <p>
+  [ 59] getobjprop 2067 ......................... <p.CarName>
+  [ 62] pushcons 6 .............................. <"Brake">
+  [ 64] joinstr ................................. <p.CarName & "Brake">
+  [ 65] pushsymb 1047 ........................... <#priority>
+  [ 68] pushsymb 1081 ........................... <#medium>
+  [ 71] pusharglist 2 ........................... <[#priority: #medium]>
+  [ 73] pushproplist ............................ <[#priority: #medium]>
+  [ 74] pusharglistnoret 2 ...................... <p.CarName & "Brake", [#priority: #medium]>
+  [ 76] extcall 289 ............................. PlaySound(p.CarName & "Brake", [#priority: #medium])
+  [ 79] getprop 563 ............................. <p>
+  [ 82] pushsymb 3322 ........................... <#BrakeChannel>
+  [ 85] pushint8 2 .............................. <2>
+  [ 87] pushcons 6 .............................. <"Brake">
+  [ 89] pusharglistnoret 4 ...................... <p, #BrakeChannel, 2, "Brake">
+  [ 91] objcall 99 .............................. p.BrakeChannel[2] = "Brake"
+  [ 93] getprop 563 ............................. <p>
+  [ 96] getobjprop 2018 ......................... <p.Speed>
+  [ 99] pushzero ................................ <0>
+  [100] lt ...................................... <p.Speed < 0>
+  [101] jmpifz [120] ............................ if p.Speed < 0 then
+  [104] getprop 563 ............................. <p>
+  [107] pushsymb 3322 ........................... <#BrakeChannel>
+  [110] pushint8 2 .............................. <2>
+  [112] pusharglist 0 ........................... <>
+  [114] extcall 40 .............................. <VOID>
+  [116] pusharglistnoret 4 ...................... <p, #BrakeChannel, 2, VOID>
+  [118] objcall 99 .............................. p.BrakeChannel[2] = VOID
+  [120] getprop 563 ............................. <p>
+  [123] getobjprop 3315 ......................... <p.rollOut>
+  [126] pushint8 1 .............................. <1>
+  [128] eq ...................................... <p.rollOut = 1>
+  [129] getprop 563 ............................. <p>
+  [132] getobjprop 3316 ......................... <p.Forwards>
+  [135] pushint8 1 .............................. <1>
+  [137] eq ...................................... <p.Forwards = 1>
+  [138] or ...................................... <(p.rollOut = 1) or (p.Forwards = 1)>
+  [139] jmpifz [187] ............................ if (p.rollOut = 1) or (p.Forwards = 1) then
+  [142] getprop 563 ............................. <p>
+  [145] getobjprop 2067 ......................... <p.CarName>
+  [148] pushcons 7 .............................. <"GearShift">
+  [150] joinstr ................................. <p.CarName & "GearShift">
+  [151] pushsymb 1047 ........................... <#priority>
+  [154] pushsymb 1081 ........................... <#medium>
+  [157] pusharglist 2 ........................... <[#priority: #medium]>
+  [159] pushproplist ............................ <[#priority: #medium]>
+  [160] pusharglistnoret 2 ...................... <p.CarName & "GearShift", [#priority: #medium]>
+  [162] extcall 289 ............................. PlaySound(p.CarName & "GearShift", [#priority: #medium])
+  [165] getprop 563 ............................. <p>
+  [168] pushzero ................................ <0>
+  [169] setobjprop 3315 ......................... p.rollOut = 0
+  [172] getprop 563 ............................. <p>
+  [175] pushzero ................................ <0>
+  [176] setobjprop 3316 ......................... p.Forwards = 0
+  [179] getprop 563 ............................. <p>
+  [182] pushint8 1 .............................. <1>
+  [184] setobjprop 3317 ......................... p.Backwards = 1
+  [187] ret
+end
+
+on reset me
+  [  0] getprop 563 ............................. <p>
+  [  3] pushzero ................................ <0>
+  [  4] setobjprop 1104 ......................... p.timer = 0
+  [  7] getprop 563 ............................. <p>
+  [ 10] pushzero ................................ <0>
+  [ 11] setobjprop 3312 ......................... p.EngineStarted = 0
+  [ 14] getprop 563 ............................. <p>
+  [ 17] pushzero ................................ <0>
+  [ 18] setobjprop 3314 ......................... p.Stationair = 0
+  [ 21] getprop 563 ............................. <p>
+  [ 24] pushzero ................................ <0>
+  [ 25] setobjprop 3315 ......................... p.rollOut = 0
+  [ 28] getprop 563 ............................. <p>
+  [ 31] pushzero ................................ <0>
+  [ 32] setobjprop 3316 ......................... p.Forwards = 0
+  [ 35] getprop 563 ............................. <p>
+  [ 38] pushzero ................................ <0>
+  [ 39] setobjprop 3317 ......................... p.Backwards = 0
+  [ 42] getprop 563 ............................. <p>
+  [ 45] pushzero ................................ <0>
+  [ 46] setobjprop 3318 ......................... p.CrashedSound = 0
+  [ 49] getprop 563 ............................. <p>
+  [ 52] pushzero ................................ <0>
+  [ 53] setobjprop 3021 ......................... p.topSpeed = 0
+  [ 56] getprop 563 ............................. <p>
+  [ 59] pushzero ................................ <0>
+  [ 60] setobjprop 1046 ......................... p.rateShift = 0
+  [ 63] getprop 563 ............................. <p>
+  [ 66] pushzero ................................ <0>
+  [ 67] setobjprop 1104 ......................... p.timer = 0
+  [ 70] getprop 563 ............................. <p>
+  [ 73] pushsymb 3320 ........................... <#BasicChannel>
+  [ 76] pushint8 1 .............................. <1>
+  [ 78] pusharglist 3 ........................... <p, #BasicChannel, 1>
+  [ 80] objcall 70 .............................. <p.BasicChannel[1]>
+  [ 82] pusharglist 0 ........................... <>
+  [ 84] extcall 40 .............................. <VOID>
+  [ 86] nteq .................................... <p.BasicChannel[1] <> VOID>
+  [ 87] jmpifz [119] ............................ if p.BasicChannel[1] <> VOID then
+  [ 90] getprop 563 ............................. <p>
+  [ 93] pushsymb 3320 ........................... <#BasicChannel>
+  [ 96] pushint8 1 .............................. <1>
+  [ 98] getprop 563 ............................. <p>
+  [101] pushsymb 3320 ........................... <#BasicChannel>
+  [104] pushint8 1 .............................. <1>
+  [106] pusharglist 3 ........................... <p, #BasicChannel, 1>
+  [108] objcall 102 ............................. <p.BasicChannel[1]>
+  [110] pusharglist 1 ........................... <p.BasicChannel[1]>
+  [112] objcall 746 ............................. <p.BasicChannel[1].StopSound()>
+  [115] pusharglistnoret 4 ...................... <p, #BasicChannel, 1, p.BasicChannel[1].StopSound()>
+  [117] objcall 99 .............................. p.BasicChannel[1] = p.BasicChannel[1].StopSound()
+  [119] getprop 563 ............................. <p>
+  [122] pushsymb 3321 ........................... <#MotorChannel>
+  [125] pushint8 1 .............................. <1>
+  [127] pusharglist 3 ........................... <p, #MotorChannel, 1>
+  [129] objcall 70 .............................. <p.MotorChannel[1]>
+  [131] pusharglist 0 ........................... <>
+  [133] extcall 40 .............................. <VOID>
+  [135] nteq .................................... <p.MotorChannel[1] <> VOID>
+  [136] jmpifz [168] ............................ if p.MotorChannel[1] <> VOID then
+  [139] getprop 563 ............................. <p>
+  [142] pushsymb 3321 ........................... <#MotorChannel>
+  [145] pushint8 1 .............................. <1>
+  [147] getprop 563 ............................. <p>
+  [150] pushsymb 3321 ........................... <#MotorChannel>
+  [153] pushint8 1 .............................. <1>
+  [155] pusharglist 3 ........................... <p, #MotorChannel, 1>
+  [157] objcall 102 ............................. <p.MotorChannel[1]>
+  [159] pusharglist 1 ........................... <p.MotorChannel[1]>
+  [161] objcall 746 ............................. <p.MotorChannel[1].StopSound()>
+  [164] pusharglistnoret 4 ...................... <p, #MotorChannel, 1, p.MotorChannel[1].StopSound()>
+  [166] objcall 99 .............................. p.MotorChannel[1] = p.MotorChannel[1].StopSound()
+  [168] getprop 563 ............................. <p>
+  [171] pushsymb 3322 ........................... <#BrakeChannel>
+  [174] pushint8 1 .............................. <1>
+  [176] pusharglist 3 ........................... <p, #BrakeChannel, 1>
+  [178] objcall 70 .............................. <p.BrakeChannel[1]>
+  [180] pusharglist 0 ........................... <>
+  [182] extcall 40 .............................. <VOID>
+  [184] nteq .................................... <p.BrakeChannel[1] <> VOID>
+  [185] jmpifz [217] ............................ if p.BrakeChannel[1] <> VOID then
+  [188] getprop 563 ............................. <p>
+  [191] pushsymb 3322 ........................... <#BrakeChannel>
+  [194] pushint8 1 .............................. <1>
+  [196] getprop 563 ............................. <p>
+  [199] pushsymb 3322 ........................... <#BrakeChannel>
+  [202] pushint8 1 .............................. <1>
+  [204] pusharglist 3 ........................... <p, #BrakeChannel, 1>
+  [206] objcall 102 ............................. <p.BrakeChannel[1]>
+  [208] pusharglist 1 ........................... <p.BrakeChannel[1]>
+  [210] objcall 746 ............................. <p.BrakeChannel[1].StopSound()>
+  [213] pusharglistnoret 4 ...................... <p, #BrakeChannel, 1, p.BrakeChannel[1].StopSound()>
+  [215] objcall 99 .............................. p.BrakeChannel[1] = p.BrakeChannel[1].StopSound()
+  [217] getprop 563 ............................. <p>
+  [220] pushsymb 3323 ........................... <#SlipChannel>
+  [223] pushint8 1 .............................. <1>
+  [225] pusharglist 3 ........................... <p, #SlipChannel, 1>
+  [227] objcall 70 .............................. <p.SlipChannel[1]>
+  [229] pusharglist 0 ........................... <>
+  [231] extcall 40 .............................. <VOID>
+  [233] nteq .................................... <p.SlipChannel[1] <> VOID>
+  [234] jmpifz [266] ............................ if p.SlipChannel[1] <> VOID then
+  [237] getprop 563 ............................. <p>
+  [240] pushsymb 3323 ........................... <#SlipChannel>
+  [243] pushint8 1 .............................. <1>
+  [245] getprop 563 ............................. <p>
+  [248] pushsymb 3323 ........................... <#SlipChannel>
+  [251] pushint8 1 .............................. <1>
+  [253] pusharglist 3 ........................... <p, #SlipChannel, 1>
+  [255] objcall 102 ............................. <p.SlipChannel[1]>
+  [257] pusharglist 1 ........................... <p.SlipChannel[1]>
+  [259] objcall 746 ............................. <p.SlipChannel[1].StopSound()>
+  [262] pusharglistnoret 4 ...................... <p, #SlipChannel, 1, p.SlipChannel[1].StopSound()>
+  [264] objcall 99 .............................. p.SlipChannel[1] = p.SlipChannel[1].StopSound()
+  [266] getprop 563 ............................. <p>
+  [269] pushsymb 3324 ........................... <#ScrapeChannel>
+  [272] pushint8 1 .............................. <1>
+  [274] pusharglist 3 ........................... <p, #ScrapeChannel, 1>
+  [276] objcall 70 .............................. <p.ScrapeChannel[1]>
+  [278] pusharglist 0 ........................... <>
+  [280] extcall 40 .............................. <VOID>
+  [282] nteq .................................... <p.ScrapeChannel[1] <> VOID>
+  [283] jmpifz [315] ............................ if p.ScrapeChannel[1] <> VOID then
+  [286] getprop 563 ............................. <p>
+  [289] pushsymb 3324 ........................... <#ScrapeChannel>
+  [292] pushint8 1 .............................. <1>
+  [294] getprop 563 ............................. <p>
+  [297] pushsymb 3324 ........................... <#ScrapeChannel>
+  [300] pushint8 1 .............................. <1>
+  [302] pusharglist 3 ........................... <p, #ScrapeChannel, 1>
+  [304] objcall 102 ............................. <p.ScrapeChannel[1]>
+  [306] pusharglist 1 ........................... <p.ScrapeChannel[1]>
+  [308] objcall 746 ............................. <p.ScrapeChannel[1].StopSound()>
+  [311] pusharglistnoret 4 ...................... <p, #ScrapeChannel, 1, p.ScrapeChannel[1].StopSound()>
+  [313] objcall 99 .............................. p.ScrapeChannel[1] = p.ScrapeChannel[1].StopSound()
+  [315] getprop 563 ............................. <p>
+  [318] pushint8 1 .............................. <1>
+  [320] setobjprop 3313 ......................... p.SoundsCleared = 1
+  [323] getprop 563 ............................. <p>
+  [326] pusharglist 0 ........................... <>
+  [328] extcall 40 .............................. <VOID>
+  [330] pusharglist 0 ........................... <>
+  [332] extcall 40 .............................. <VOID>
+  [334] pusharglist 2 ........................... <[VOID, VOID]>
+  [336] pushlist ................................ <[VOID, VOID]>
+  [337] setobjprop 3320 ......................... p.BasicChannel = [VOID, VOID]
+  [340] getprop 563 ............................. <p>
+  [343] pusharglist 0 ........................... <>
+  [345] extcall 40 .............................. <VOID>
+  [347] pusharglist 0 ........................... <>
+  [349] extcall 40 .............................. <VOID>
+  [351] pusharglist 2 ........................... <[VOID, VOID]>
+  [353] pushlist ................................ <[VOID, VOID]>
+  [354] setobjprop 3321 ......................... p.MotorChannel = [VOID, VOID]
+  [357] getprop 563 ............................. <p>
+  [360] pusharglist 0 ........................... <>
+  [362] extcall 40 .............................. <VOID>
+  [364] pusharglist 0 ........................... <>
+  [366] extcall 40 .............................. <VOID>
+  [368] pusharglist 2 ........................... <[VOID, VOID]>
+  [370] pushlist ................................ <[VOID, VOID]>
+  [371] setobjprop 3322 ......................... p.BrakeChannel = [VOID, VOID]
+  [374] getprop 563 ............................. <p>
+  [377] pusharglist 0 ........................... <>
+  [379] extcall 40 .............................. <VOID>
+  [381] pusharglist 0 ........................... <>
+  [383] extcall 40 .............................. <VOID>
+  [385] pusharglist 2 ........................... <[VOID, VOID]>
+  [387] pushlist ................................ <[VOID, VOID]>
+  [388] setobjprop 3323 ......................... p.SlipChannel = [VOID, VOID]
+  [391] getprop 563 ............................. <p>
+  [394] pusharglist 0 ........................... <>
+  [396] extcall 40 .............................. <VOID>
+  [398] pusharglist 0 ........................... <>
+  [400] extcall 40 .............................. <VOID>
+  [402] pusharglist 2 ........................... <[VOID, VOID]>
+  [404] pushlist ................................ <[VOID, VOID]>
+  [405] setobjprop 3324 ......................... p.ScrapeChannel = [VOID, VOID]
+  [408] gettoplevelprop 33 ...................... <_movie>
+  [410] getchainedprop 427 ...................... <_movie.timeoutList>
+  [413] pushcons 8 .............................. <"DrivingStationair">
+  [415] pusharglist 1 ........................... <"DrivingStationair">
+  [417] extcall 238 ............................. <timeout("DrivingStationair")>
+  [419] pusharglist 2 ........................... <_movie.timeoutList, timeout("DrivingStationair")>
+  [421] objcall 166 ............................. <_movie.timeoutList.getPos(timeout("DrivingStationair"))>
+  [423] pushzero ................................ <0>
+  [424] nteq .................................... <_movie.timeoutList.getPos(timeout("DrivingStationair")) <> 0>
+  [425] jmpifz [438] ............................ if _movie.timeoutList.getPos(timeout("DrivingStationair")) <> 0 then
+  [428] pushcons 8 .............................. <"DrivingStationair">
+  [430] pusharglist 1 ........................... <"DrivingStationair">
+  [432] extcall 238 ............................. <timeout("DrivingStationair")>
+  [434] pusharglistnoret 1 ...................... <timeout("DrivingStationair")>
+  [436] objcall 255 ............................. timeout("DrivingStationair").forget()
+  [438] gettoplevelprop 33 ...................... <_movie>
+  [440] getchainedprop 427 ...................... <_movie.timeoutList>
+  [443] pushcons 4 .............................. <"TopSpeed">
+  [445] pusharglist 1 ........................... <"TopSpeed">
+  [447] extcall 238 ............................. <timeout("TopSpeed")>
+  [449] pusharglist 2 ........................... <_movie.timeoutList, timeout("TopSpeed")>
+  [451] objcall 166 ............................. <_movie.timeoutList.getPos(timeout("TopSpeed"))>
+  [453] pushzero ................................ <0>
+  [454] nteq .................................... <_movie.timeoutList.getPos(timeout("TopSpeed")) <> 0>
+  [455] jmpifz [468] ............................ if _movie.timeoutList.getPos(timeout("TopSpeed")) <> 0 then
+  [458] pushcons 4 .............................. <"TopSpeed">
+  [460] pusharglist 1 ........................... <"TopSpeed">
+  [462] extcall 238 ............................. <timeout("TopSpeed")>
+  [464] pusharglistnoret 1 ...................... <timeout("TopSpeed")>
+  [466] objcall 255 ............................. timeout("TopSpeed").forget()
+  [468] ret
+end

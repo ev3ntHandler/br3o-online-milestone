@@ -1,0 +1,593 @@
+property p
+global gGame
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 377 ............................ <#tag>
+  [ 12] getparam 1 .............................. <tParams>
+  [ 14] pushsymb 377 ............................ <#tag>
+  [ 17] pusharglist 2 ........................... <tParams, #tag>
+  [ 19] objcall 105 ............................. <tParams[#tag]>
+  [ 21] pusharglistnoret 3 ...................... <p, #tag, tParams[#tag]>
+  [ 23] objcall 103 ............................. p[#tag] = tParams[#tag]
+  [ 25] getprop 563 ............................. <p>
+  [ 28] pushsymb 3062 ........................... <#ScriptLimit>
+  [ 31] pushzero ................................ <0>
+  [ 32] pusharglistnoret 3 ...................... <p, #ScriptLimit, 0>
+  [ 34] objcall 103 ............................. p[#ScriptLimit] = 0
+  [ 36] getprop 563 ............................. <p>
+  [ 39] pushsymb 2125 ........................... <#joystick>
+  [ 42] getparam 1 .............................. <tParams>
+  [ 44] pushsymb 2125 ........................... <#joystick>
+  [ 47] pusharglist 2 ........................... <tParams, #joystick>
+  [ 49] objcall 105 ............................. <tParams[#joystick]>
+  [ 51] pusharglistnoret 3 ...................... <p, #joystick, tParams[#joystick]>
+  [ 53] objcall 103 ............................. p[#joystick] = tParams[#joystick]
+  [ 55] pusharglistnoret 0 ...................... <>
+  [ 57] localcall 1 ............................. InitController()
+  [ 59] getparam 0 .............................. <me>
+  [ 61] pusharglistnoret 1 ...................... <me>
+  [ 63] extcall 52 .............................. return me
+  [ 65] ret
+end
+
+on InitController me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 2125 ......................... <p.joystick>
+  [  6] pushint8 1 .............................. <1>
+  [  8] eq ...................................... <p.joystick = 1>
+  [  9] jmpifz [254] ............................ if p.joystick = 1 then
+  [ 12] getglobal 43 ............................ <gGame>
+  [ 14] pushsymb 2125 ........................... <#joystick>
+  [ 17] pusharglist 2 ........................... <gGame, #joystick>
+  [ 19] extcall 542 ............................. <getaProp(gGame, #joystick)>
+  [ 22] pusharglist 0 ........................... <>
+  [ 24] extcall 40 .............................. <VOID>
+  [ 26] eq ...................................... <getaProp(gGame, #joystick) = VOID>
+  [ 27] jmpifz [ 50] ............................ if getaProp(gGame, #joystick) = VOID then
+  [ 30] getglobal 43 ............................ <gGame>
+  [ 32] pushsymb 2125 ........................... <#joystick>
+  [ 35] pushcons 0 .............................. <"joystick">
+  [ 37] pusharglist 1 ........................... <"joystick">
+  [ 39] extcall 2137 ............................ <xtra("joystick")>
+  [ 42] pusharglist 1 ........................... <xtra("joystick")>
+  [ 44] objcall 35 .............................. <xtra("joystick").new()>
+  [ 46] pusharglistnoret 3 ...................... <gGame, #joystick, xtra("joystick").new()>
+  [ 48] objcall 103 ............................. gGame[#joystick] = xtra("joystick").new()
+  [ 50] getprop 563 ............................. <p>
+  [ 53] pushsymb 2125 ........................... <#joystick>
+  [ 56] getglobal 43 ............................ <gGame>
+  [ 58] getobjprop 2125 ......................... <gGame.joystick>
+  [ 61] pusharglistnoret 3 ...................... <p, #joystick, gGame.joystick>
+  [ 63] objcall 103 ............................. p[#joystick] = gGame.joystick
+  [ 65] getprop 563 ............................. <p>
+  [ 68] getchainedprop 2125 ..................... <p.joystick>
+  [ 71] pusharglist 1 ........................... <p.joystick>
+  [ 73] objcall 2138 ............................ <p.joystick.numberOfJoy()>
+  [ 76] setlocal 0 .............................. pNumberOfJoy = p.joystick.numberOfJoy()
+  [ 78] getlocal 0 .............................. <pNumberOfJoy>
+  [ 80] pushzero ................................ <0>
+  [ 81] gt ...................................... <pNumberOfJoy > 0>
+  [ 82] jmpifz [196] ............................ if pNumberOfJoy > 0 then / else
+  [ 85] getprop 563 ............................. <p>
+  [ 88] getchainedprop 2125 ..................... <p.joystick>
+  [ 91] pushint8 1 .............................. <1>
+  [ 93] pusharglistnoret 2 ...................... <p.joystick, 1>
+  [ 95] objcall 2143 ............................ p.joystick.useJoy(1)
+  [ 98] getglobal 43 ............................ <gGame>
+  [100] pushsymb 137 ............................ <#cars>
+  [102] getprop 563 ............................. <p>
+  [105] getobjprop 377 .......................... <p.tag>
+  [108] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [110] objcall 102 ............................. <gGame.cars[p.tag]>
+  [112] pushsymb 929 ............................ <#Keys>
+  [115] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [117] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [119] pushsymb 2140 ........................... <#leftPerc>
+  [122] pushfloat32 0.0 ......................... <0.0>
+  [127] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #leftPerc, 0.0>
+  [129] objcall 103 ............................. gGame.cars[p.tag][#Keys][#leftPerc] = 0.0
+  [131] getglobal 43 ............................ <gGame>
+  [133] pushsymb 137 ............................ <#cars>
+  [135] getprop 563 ............................. <p>
+  [138] getobjprop 377 .......................... <p.tag>
+  [141] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [143] objcall 102 ............................. <gGame.cars[p.tag]>
+  [145] pushsymb 929 ............................ <#Keys>
+  [148] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [150] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [152] pushsymb 2141 ........................... <#rightPerc>
+  [155] pushfloat32 0.0 ......................... <0.0>
+  [160] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #rightPerc, 0.0>
+  [162] objcall 103 ............................. gGame.cars[p.tag][#Keys][#rightPerc] = 0.0
+  [164] getglobal 43 ............................ <gGame>
+  [166] pushsymb 137 ............................ <#cars>
+  [168] getprop 563 ............................. <p>
+  [171] getobjprop 377 .......................... <p.tag>
+  [174] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [176] objcall 102 ............................. <gGame.cars[p.tag]>
+  [178] pushsymb 929 ............................ <#Keys>
+  [181] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [183] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [185] pushsymb 1409 ........................... <#backwardCam>
+  [188] pushzero ................................ <0>
+  [189] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #backwardCam, 0>
+  [191] objcall 103 ............................. gGame.cars[p.tag][#Keys][#backwardCam] = 0
+  [193] jmp [254]
+  [196] getglobal 43 ............................ <gGame>
+  [198] pusharglist 0 ........................... <>
+  [200] extcall 40 .............................. <VOID>
+  [202] setobjprop 2125 ......................... gGame.joystick = VOID
+  [205] getglobal 43 ............................ <gGame>
+  [207] pushsymb 2125 ........................... <#joystick>
+  [210] pusharglistnoret 2 ...................... <gGame, #joystick>
+  [212] objcall 605 ............................. gGame.deleteProp(#joystick)
+  [215] getprop 563 ............................. <p>
+  [218] pusharglist 0 ........................... <>
+  [220] extcall 40 .............................. <VOID>
+  [222] setobjprop 2125 ......................... p.joystick = VOID
+  [225] getprop 563 ............................. <p>
+  [228] pushzero ................................ <0>
+  [229] setobjprop 2125 ......................... p.joystick = 0
+  [232] getglobal 43 ............................ <gGame>
+  [234] pushsymb 137 ............................ <#cars>
+  [236] getprop 563 ............................. <p>
+  [239] getobjprop 377 .......................... <p.tag>
+  [242] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [244] objcall 102 ............................. <gGame.cars[p.tag]>
+  [246] pushsymb 2125 ........................... <#joystick>
+  [249] pushzero ................................ <0>
+  [250] pusharglistnoret 3 ...................... <gGame.cars[p.tag], #joystick, 0>
+  [252] objcall 103 ............................. gGame.cars[p.tag][#joystick] = 0
+  [254] ret
+end
+
+on enterFrame me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getobjprop 391 .......................... <gGame.input>
+  [  5] pushint8 1 .............................. <1>
+  [  7] eq ...................................... <gGame.input = 1>
+  [  8] jmpifz [ 39] ............................ if gGame.input = 1 then
+  [ 11] getprop 563 ............................. <p>
+  [ 14] getobjprop 2125 ......................... <p.joystick>
+  [ 17] pushzero ................................ <0>
+  [ 18] eq ...................................... <p.joystick = 0>
+  [ 19] jmpifz [ 32] ............................ if p.joystick = 0 then / else
+  [ 22] getparam 0 .............................. <me>
+  [ 24] pusharglistnoret 1 ...................... <me>
+  [ 26] objcall 3259 ............................ me.KeyBoardInput()
+  [ 29] jmp [ 39]
+  [ 32] getparam 0 .............................. <me>
+  [ 34] pusharglistnoret 1 ...................... <me>
+  [ 36] objcall 3260 ............................ me.JoyStickInput()
+  [ 39] getglobal 43 ............................ <gGame>
+  [ 41] pushsymb 137 ............................ <#cars>
+  [ 43] getprop 563 ............................. <p>
+  [ 46] getobjprop 377 .......................... <p.tag>
+  [ 49] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 51] objcall 102 ............................. <gGame.cars[p.tag]>
+  [ 53] pushsymb 89 ............................. <#state>
+  [ 55] pusharglist 2 ........................... <gGame.cars[p.tag], #state>
+  [ 57] objcall 105 ............................. <gGame.cars[p.tag][#state]>
+  [ 59] pushcons 1 .............................. <"Done">
+  [ 61] eq ...................................... <gGame.cars[p.tag][#state] = "Done">
+  [ 62] jmpifz [ 72] ............................ if gGame.cars[p.tag][#state] = "Done" then
+  [ 65] getparam 0 .............................. <me>
+  [ 67] pusharglistnoret 1 ...................... <me>
+  [ 69] objcall 3261 ............................ me.ClearKeys()
+  [ 72] ret
+end
+
+on KeyBoardInput me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pushsymb 137 ............................ <#cars>
+  [  4] getprop 563 ............................. <p>
+  [  7] getobjprop 377 .......................... <p.tag>
+  [ 10] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 12] objcall 102 ............................. <gGame.cars[p.tag]>
+  [ 14] pushsymb 929 ............................ <#Keys>
+  [ 17] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [ 19] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [ 21] pushsymb 2132 ........................... <#forward>
+  [ 24] pushint8 126 ............................ <126>
+  [ 26] pusharglist 1 ........................... <126>
+  [ 28] extcall 582 ............................. <keyPressed(126)>
+  [ 31] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #forward, keyPressed(126)>
+  [ 33] objcall 103 ............................. gGame.cars[p.tag][#Keys][#forward] = keyPressed(126)
+  [ 35] getglobal 43 ............................ <gGame>
+  [ 37] pushsymb 137 ............................ <#cars>
+  [ 39] getprop 563 ............................. <p>
+  [ 42] getobjprop 377 .......................... <p.tag>
+  [ 45] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 47] objcall 102 ............................. <gGame.cars[p.tag]>
+  [ 49] pushsymb 929 ............................ <#Keys>
+  [ 52] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [ 54] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [ 56] pushsymb 2133 ........................... <#backward>
+  [ 59] pushint8 125 ............................ <125>
+  [ 61] pusharglist 1 ........................... <125>
+  [ 63] extcall 582 ............................. <keyPressed(125)>
+  [ 66] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #backward, keyPressed(125)>
+  [ 68] objcall 103 ............................. gGame.cars[p.tag][#Keys][#backward] = keyPressed(125)
+  [ 70] getglobal 43 ............................ <gGame>
+  [ 72] pushsymb 137 ............................ <#cars>
+  [ 74] getprop 563 ............................. <p>
+  [ 77] getobjprop 377 .......................... <p.tag>
+  [ 80] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 82] objcall 102 ............................. <gGame.cars[p.tag]>
+  [ 84] pushsymb 929 ............................ <#Keys>
+  [ 87] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [ 89] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [ 91] pushsymb 203 ............................ <#left>
+  [ 93] pushint8 123 ............................ <123>
+  [ 95] pusharglist 1 ........................... <123>
+  [ 97] extcall 582 ............................. <keyPressed(123)>
+  [100] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #left, keyPressed(123)>
+  [102] objcall 103 ............................. gGame.cars[p.tag][#Keys][#left] = keyPressed(123)
+  [104] getglobal 43 ............................ <gGame>
+  [106] pushsymb 137 ............................ <#cars>
+  [108] getprop 563 ............................. <p>
+  [111] getobjprop 377 .......................... <p.tag>
+  [114] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [116] objcall 102 ............................. <gGame.cars[p.tag]>
+  [118] pushsymb 929 ............................ <#Keys>
+  [121] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [123] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [125] pushsymb 220 ............................ <#right>
+  [127] pushint8 124 ............................ <124>
+  [129] pusharglist 1 ........................... <124>
+  [131] extcall 582 ............................. <keyPressed(124)>
+  [134] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #right, keyPressed(124)>
+  [136] objcall 103 ............................. gGame.cars[p.tag][#Keys][#right] = keyPressed(124)
+  [138] getglobal 43 ............................ <gGame>
+  [140] pushsymb 137 ............................ <#cars>
+  [142] getprop 563 ............................. <p>
+  [145] getobjprop 377 .......................... <p.tag>
+  [148] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [150] objcall 102 ............................. <gGame.cars[p.tag]>
+  [152] pushsymb 929 ............................ <#Keys>
+  [155] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [157] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [159] pushsymb 2134 ........................... <#brake>
+  [162] gettoplevelprop 574 ..................... <_key>
+  [165] getobjprop 578 .......................... <_key.shiftDown>
+  [168] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #brake, _key.shiftDown>
+  [170] objcall 103 ............................. gGame.cars[p.tag][#Keys][#brake] = _key.shiftDown
+  [172] gettoplevelprop 387 ..................... <_player>
+  [175] getobjprop 388 .......................... <_player.runMode>
+  [178] pushcons 2 .............................. <"Projector">
+  [180] eq ...................................... <_player.runMode = "Projector">
+  [181] gettoplevelprop 387 ..................... <_player>
+  [184] getobjprop 388 .......................... <_player.runMode>
+  [187] pushcons 3 .............................. <"Author">
+  [189] eq ...................................... <_player.runMode = "Author">
+  [190] or ...................................... <(_player.runMode = "Projector") or (_player.runMode = "Author")>
+  [191] jmpifz [276] ............................ if (_player.runMode = "Projector") or (_player.runMode = "Author") then
+  [194] getglobal 43 ............................ <gGame>
+  [196] pushsymb 137 ............................ <#cars>
+  [198] getprop 563 ............................. <p>
+  [201] getobjprop 377 .......................... <p.tag>
+  [204] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [206] objcall 102 ............................. <gGame.cars[p.tag]>
+  [208] pushsymb 1335 ........................... <#specifics>
+  [211] pusharglist 2 ........................... <gGame.cars[p.tag], #specifics>
+  [213] objcall 105 ............................. <gGame.cars[p.tag][#specifics]>
+  [215] pushsymb 3024 ........................... <#nitroState>
+  [218] pushcons 4 .............................. <"z">
+  [220] pusharglist 1 ........................... <"z">
+  [222] extcall 582 ............................. <keyPressed("z")>
+  [225] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#specifics], #nitroState, keyPressed("z")>
+  [227] objcall 103 ............................. gGame.cars[p.tag][#specifics][#nitroState] = keyPressed("z")
+  [229] pushint8 126 ............................ <126>
+  [231] pusharglist 1 ........................... <126>
+  [233] extcall 582 ............................. <keyPressed(126)>
+  [236] pushzero ................................ <0>
+  [237] eq ...................................... <keyPressed(126) = 0>
+  [238] jmpifz [276] ............................ if keyPressed(126) = 0 then
+  [241] getglobal 43 ............................ <gGame>
+  [243] pushsymb 137 ............................ <#cars>
+  [245] getprop 563 ............................. <p>
+  [248] getobjprop 377 .......................... <p.tag>
+  [251] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [253] objcall 102 ............................. <gGame.cars[p.tag]>
+  [255] pushsymb 929 ............................ <#Keys>
+  [258] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [260] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [262] pushsymb 2132 ........................... <#forward>
+  [265] pushcons 4 .............................. <"z">
+  [267] pusharglist 1 ........................... <"z">
+  [269] extcall 582 ............................. <keyPressed("z")>
+  [272] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #forward, keyPressed("z")>
+  [274] objcall 103 ............................. gGame.cars[p.tag][#Keys][#forward] = keyPressed("z")
+  [276] ret
+end
+
+on JoyStickInput me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pushsymb 137 ............................ <#cars>
+  [  4] getprop 563 ............................. <p>
+  [  7] getobjprop 377 .......................... <p.tag>
+  [ 10] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 12] objcall 102 ............................. <gGame.cars[p.tag]>
+  [ 14] pushsymb 929 ............................ <#Keys>
+  [ 17] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [ 19] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [ 21] pushsymb 2132 ........................... <#forward>
+  [ 24] getprop 563 ............................. <p>
+  [ 27] getchainedprop 2125 ..................... <p.joystick>
+  [ 30] pushint8 3 .............................. <3>
+  [ 32] pusharglist 2 ........................... <p.joystick, 3>
+  [ 34] objcall 953 ............................. <p.joystick.button(3)>
+  [ 37] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #forward, p.joystick.button(3)>
+  [ 39] objcall 103 ............................. gGame.cars[p.tag][#Keys][#forward] = p.joystick.button(3)
+  [ 41] getglobal 43 ............................ <gGame>
+  [ 43] pushsymb 137 ............................ <#cars>
+  [ 45] getprop 563 ............................. <p>
+  [ 48] getobjprop 377 .......................... <p.tag>
+  [ 51] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 53] objcall 102 ............................. <gGame.cars[p.tag]>
+  [ 55] pushsymb 929 ............................ <#Keys>
+  [ 58] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [ 60] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [ 62] pushsymb 2133 ........................... <#backward>
+  [ 65] getprop 563 ............................. <p>
+  [ 68] getchainedprop 2125 ..................... <p.joystick>
+  [ 71] pushint8 2 .............................. <2>
+  [ 73] pusharglist 2 ........................... <p.joystick, 2>
+  [ 75] objcall 953 ............................. <p.joystick.button(2)>
+  [ 78] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #backward, p.joystick.button(2)>
+  [ 80] objcall 103 ............................. gGame.cars[p.tag][#Keys][#backward] = p.joystick.button(2)
+  [ 82] getprop 563 ............................. <p>
+  [ 85] getchainedprop 2125 ..................... <p.joystick>
+  [ 88] pushint8 2 .............................. <2>
+  [ 90] pusharglist 2 ........................... <p.joystick, 2>
+  [ 92] objcall 953 ............................. <p.joystick.button(2)>
+  [ 95] pushzero ................................ <0>
+  [ 96] eq ...................................... <p.joystick.button(2) = 0>
+  [ 97] jmpifz [141] ............................ if p.joystick.button(2) = 0 then
+  [100] getglobal 43 ............................ <gGame>
+  [102] pushsymb 137 ............................ <#cars>
+  [104] getprop 563 ............................. <p>
+  [107] getobjprop 377 .......................... <p.tag>
+  [110] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [112] objcall 102 ............................. <gGame.cars[p.tag]>
+  [114] pushsymb 929 ............................ <#Keys>
+  [117] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [119] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [121] pushsymb 2133 ........................... <#backward>
+  [124] getprop 563 ............................. <p>
+  [127] getchainedprop 2125 ..................... <p.joystick>
+  [130] pushint8 4 .............................. <4>
+  [132] pusharglist 2 ........................... <p.joystick, 4>
+  [134] objcall 953 ............................. <p.joystick.button(4)>
+  [137] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #backward, p.joystick.button(4)>
+  [139] objcall 103 ............................. gGame.cars[p.tag][#Keys][#backward] = p.joystick.button(4)
+  [141] pushzero ................................ <0>
+  [142] setlocal 0 .............................. pLeft = 0
+  [144] getprop 563 ............................. <p>
+  [147] getchainedprop 2125 ..................... <p.joystick>
+  [150] pusharglist 1 ........................... <p.joystick>
+  [152] objcall 2144 ............................ <p.joystick.xPos()>
+  [155] pushint32 32768 ......................... <32768>
+  [160] pushint16 4096 .......................... <4096>
+  [163] sub ..................................... <32768 - 4096>
+  [164] lteq .................................... <p.joystick.xPos() <= (32768 - 4096)>
+  [165] jmpifz [172] ............................ if p.joystick.xPos() <= (32768 - 4096) then
+  [168] pushint8 1 .............................. <1>
+  [170] setlocal 0 .............................. pLeft = 1
+  [172] getglobal 43 ............................ <gGame>
+  [174] pushsymb 137 ............................ <#cars>
+  [176] getprop 563 ............................. <p>
+  [179] getobjprop 377 .......................... <p.tag>
+  [182] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [184] objcall 102 ............................. <gGame.cars[p.tag]>
+  [186] pushsymb 929 ............................ <#Keys>
+  [189] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [191] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [193] pushsymb 203 ............................ <#left>
+  [195] getlocal 0 .............................. <pLeft>
+  [197] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #left, pLeft>
+  [199] objcall 103 ............................. gGame.cars[p.tag][#Keys][#left] = pLeft
+  [201] getglobal 43 ............................ <gGame>
+  [203] pushsymb 137 ............................ <#cars>
+  [205] getprop 563 ............................. <p>
+  [208] getobjprop 377 .......................... <p.tag>
+  [211] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [213] objcall 102 ............................. <gGame.cars[p.tag]>
+  [215] pushsymb 929 ............................ <#Keys>
+  [218] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [220] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [222] pushsymb 2140 ........................... <#leftPerc>
+  [225] pushfloat32 32768.0 ..................... <32768.0>
+  [230] getprop 563 ............................. <p>
+  [233] getchainedprop 2125 ..................... <p.joystick>
+  [236] pusharglist 1 ........................... <p.joystick>
+  [238] objcall 2144 ............................ <p.joystick.xPos()>
+  [241] sub ..................................... <32768.0 - p.joystick.xPos()>
+  [242] pushfloat32 32768.0 ..................... <32768.0>
+  [247] div ..................................... <(32768.0 - p.joystick.xPos()) / 32768.0>
+  [248] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #leftPerc, (32768.0 - p.joystick.xPos()) / 32768.0>
+  [250] objcall 103 ............................. gGame.cars[p.tag][#Keys][#leftPerc] = (32768.0 - p.joystick.xPos()) / 32768.0
+  [252] pushzero ................................ <0>
+  [253] setlocal 1 .............................. pRight = 0
+  [255] getprop 563 ............................. <p>
+  [258] getchainedprop 2125 ..................... <p.joystick>
+  [261] pusharglist 1 ........................... <p.joystick>
+  [263] objcall 2144 ............................ <p.joystick.xPos()>
+  [266] pushint32 32768 ......................... <32768>
+  [271] pushint16 4096 .......................... <4096>
+  [274] add ..................................... <32768 + 4096>
+  [275] gteq .................................... <p.joystick.xPos() >= (32768 + 4096)>
+  [276] jmpifz [283] ............................ if p.joystick.xPos() >= (32768 + 4096) then
+  [279] pushint8 1 .............................. <1>
+  [281] setlocal 1 .............................. pRight = 1
+  [283] getglobal 43 ............................ <gGame>
+  [285] pushsymb 137 ............................ <#cars>
+  [287] getprop 563 ............................. <p>
+  [290] getobjprop 377 .......................... <p.tag>
+  [293] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [295] objcall 102 ............................. <gGame.cars[p.tag]>
+  [297] pushsymb 929 ............................ <#Keys>
+  [300] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [302] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [304] pushsymb 220 ............................ <#right>
+  [306] getlocal 1 .............................. <pRight>
+  [308] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #right, pRight>
+  [310] objcall 103 ............................. gGame.cars[p.tag][#Keys][#right] = pRight
+  [312] getglobal 43 ............................ <gGame>
+  [314] pushsymb 137 ............................ <#cars>
+  [316] getprop 563 ............................. <p>
+  [319] getobjprop 377 .......................... <p.tag>
+  [322] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [324] objcall 102 ............................. <gGame.cars[p.tag]>
+  [326] pushsymb 929 ............................ <#Keys>
+  [329] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [331] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [333] pushsymb 2141 ........................... <#rightPerc>
+  [336] getprop 563 ............................. <p>
+  [339] getchainedprop 2125 ..................... <p.joystick>
+  [342] pusharglist 1 ........................... <p.joystick>
+  [344] objcall 2144 ............................ <p.joystick.xPos()>
+  [347] pushfloat32 32768.0 ..................... <32768.0>
+  [352] sub ..................................... <p.joystick.xPos() - 32768.0>
+  [353] pushfloat32 32768.0 ..................... <32768.0>
+  [358] div ..................................... <(p.joystick.xPos() - 32768.0) / 32768.0>
+  [359] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #rightPerc, (p.joystick.xPos() - 32768.0) / 32768.0>
+  [361] objcall 103 ............................. gGame.cars[p.tag][#Keys][#rightPerc] = (p.joystick.xPos() - 32768.0) / 32768.0
+  [363] getglobal 43 ............................ <gGame>
+  [365] pushsymb 137 ............................ <#cars>
+  [367] getprop 563 ............................. <p>
+  [370] getobjprop 377 .......................... <p.tag>
+  [373] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [375] objcall 102 ............................. <gGame.cars[p.tag]>
+  [377] pushsymb 929 ............................ <#Keys>
+  [380] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [382] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [384] pushsymb 2134 ........................... <#brake>
+  [387] getprop 563 ............................. <p>
+  [390] getchainedprop 2125 ..................... <p.joystick>
+  [393] pushint8 8 .............................. <8>
+  [395] pusharglist 2 ........................... <p.joystick, 8>
+  [397] objcall 953 ............................. <p.joystick.button(8)>
+  [400] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #brake, p.joystick.button(8)>
+  [402] objcall 103 ............................. gGame.cars[p.tag][#Keys][#brake] = p.joystick.button(8)
+  [404] getglobal 43 ............................ <gGame>
+  [406] pushsymb 137 ............................ <#cars>
+  [408] getprop 563 ............................. <p>
+  [411] getobjprop 377 .......................... <p.tag>
+  [414] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [416] objcall 102 ............................. <gGame.cars[p.tag]>
+  [418] pushsymb 929 ............................ <#Keys>
+  [421] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [423] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [425] pushsymb 1409 ........................... <#backwardCam>
+  [428] getprop 563 ............................. <p>
+  [431] getchainedprop 2125 ..................... <p.joystick>
+  [434] pushint8 7 .............................. <7>
+  [436] pusharglist 2 ........................... <p.joystick, 7>
+  [438] objcall 953 ............................. <p.joystick.button(7)>
+  [441] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #backwardCam, p.joystick.button(7)>
+  [443] objcall 103 ............................. gGame.cars[p.tag][#Keys][#backwardCam] = p.joystick.button(7)
+  [445] ret
+end
+
+on ClearKeys me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pushsymb 137 ............................ <#cars>
+  [  4] getprop 563 ............................. <p>
+  [  7] getobjprop 377 .......................... <p.tag>
+  [ 10] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 12] objcall 102 ............................. <gGame.cars[p.tag]>
+  [ 14] pushsymb 929 ............................ <#Keys>
+  [ 17] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [ 19] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [ 21] pushsymb 2132 ........................... <#forward>
+  [ 24] pushzero ................................ <0>
+  [ 25] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #forward, 0>
+  [ 27] objcall 103 ............................. gGame.cars[p.tag][#Keys][#forward] = 0
+  [ 29] getglobal 43 ............................ <gGame>
+  [ 31] pushsymb 137 ............................ <#cars>
+  [ 33] getprop 563 ............................. <p>
+  [ 36] getobjprop 377 .......................... <p.tag>
+  [ 39] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 41] objcall 102 ............................. <gGame.cars[p.tag]>
+  [ 43] pushsymb 929 ............................ <#Keys>
+  [ 46] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [ 48] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [ 50] pushsymb 2133 ........................... <#backward>
+  [ 53] pushzero ................................ <0>
+  [ 54] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #backward, 0>
+  [ 56] objcall 103 ............................. gGame.cars[p.tag][#Keys][#backward] = 0
+  [ 58] getglobal 43 ............................ <gGame>
+  [ 60] pushsymb 137 ............................ <#cars>
+  [ 62] getprop 563 ............................. <p>
+  [ 65] getobjprop 377 .......................... <p.tag>
+  [ 68] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 70] objcall 102 ............................. <gGame.cars[p.tag]>
+  [ 72] pushsymb 929 ............................ <#Keys>
+  [ 75] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [ 77] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [ 79] pushsymb 203 ............................ <#left>
+  [ 81] pushzero ................................ <0>
+  [ 82] pushint8 1 .............................. <1>
+  [ 84] pusharglist 2 ........................... <0, 1>
+  [ 86] extcall 176 ............................. <random(0, 1)>
+  [ 88] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #left, random(0, 1)>
+  [ 90] objcall 103 ............................. gGame.cars[p.tag][#Keys][#left] = random(0, 1)
+  [ 92] getglobal 43 ............................ <gGame>
+  [ 94] pushsymb 137 ............................ <#cars>
+  [ 96] getprop 563 ............................. <p>
+  [ 99] getobjprop 377 .......................... <p.tag>
+  [102] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [104] objcall 102 ............................. <gGame.cars[p.tag]>
+  [106] pushsymb 929 ............................ <#Keys>
+  [109] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [111] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [113] pushsymb 220 ............................ <#right>
+  [115] pushzero ................................ <0>
+  [116] pushint8 1 .............................. <1>
+  [118] pusharglist 2 ........................... <0, 1>
+  [120] extcall 176 ............................. <random(0, 1)>
+  [122] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #right, random(0, 1)>
+  [124] objcall 103 ............................. gGame.cars[p.tag][#Keys][#right] = random(0, 1)
+  [126] getglobal 43 ............................ <gGame>
+  [128] pushsymb 137 ............................ <#cars>
+  [130] getprop 563 ............................. <p>
+  [133] getobjprop 377 .......................... <p.tag>
+  [136] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [138] objcall 102 ............................. <gGame.cars[p.tag]>
+  [140] pushsymb 929 ............................ <#Keys>
+  [143] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [145] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [147] pushsymb 2134 ........................... <#brake>
+  [150] pushint8 1 .............................. <1>
+  [152] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #brake, 1>
+  [154] objcall 103 ............................. gGame.cars[p.tag][#Keys][#brake] = 1
+  [156] getglobal 43 ............................ <gGame>
+  [158] pushsymb 137 ............................ <#cars>
+  [160] getprop 563 ............................. <p>
+  [163] getobjprop 377 .......................... <p.tag>
+  [166] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [168] objcall 102 ............................. <gGame.cars[p.tag]>
+  [170] pushsymb 929 ............................ <#Keys>
+  [173] pusharglist 2 ........................... <gGame.cars[p.tag], #Keys>
+  [175] objcall 105 ............................. <gGame.cars[p.tag][#Keys]>
+  [177] pushsymb 371 ............................ <#Nitro>
+  [180] pushzero ................................ <0>
+  [181] pusharglistnoret 3 ...................... <gGame.cars[p.tag][#Keys], #Nitro, 0>
+  [183] objcall 103 ............................. gGame.cars[p.tag][#Keys][#Nitro] = 0
+  [185] getglobal 43 ............................ <gGame>
+  [187] pushsymb 137 ............................ <#cars>
+  [189] getprop 563 ............................. <p>
+  [192] getobjprop 377 .......................... <p.tag>
+  [195] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [197] objcall 102 ............................. <gGame.cars[p.tag]>
+  [199] pushsymb 89 ............................. <#state>
+  [201] pushcons 5 .............................. <"Finished">
+  [203] pusharglistnoret 3 ...................... <gGame.cars[p.tag], #state, "Finished">
+  [205] objcall 103 ............................. gGame.cars[p.tag][#state] = "Finished"
+  [207] ret
+end

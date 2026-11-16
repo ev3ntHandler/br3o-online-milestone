@@ -1,0 +1,92 @@
+on ClearCast tCast
+  [  0] gettoplevelprop 33 ...................... <_movie>
+  [  2] getparam 0 .............................. <tCast>
+  [  4] pusharglist 2 ........................... <_movie, tCast>
+  [  6] objcall 58 .............................. <_movie.castLib(tCast)>
+  [  8] pusharglist 0 ........................... <>
+  [ 10] extcall 40 .............................. <VOID>
+  [ 12] eq ...................................... <_movie.castLib(tCast) = VOID>
+  [ 13] jmpifz [ 27] ............................ if _movie.castLib(tCast) = VOID then
+  [ 16] pushcons 0 .............................. <"ClearCast: no such cast exists. Cast called was: ">
+  [ 18] getparam 0 .............................. <tCast>
+  [ 20] joinstr ................................. <"ClearCast: no such cast exists. Cast called was: " & tCast>
+  [ 21] pusharglistnoret 1 ...................... <"ClearCast: no such cast exists. Cast called was: " & tCast>
+  [ 23] extcall 511 ............................. ShowError("ClearCast: no such cast exists. Cast called was: " & tCast)
+  [ 26] ret ..................................... exit
+  [ 27] gettoplevelprop 33 ...................... <_movie>
+  [ 29] getparam 0 .............................. <tCast>
+  [ 31] pusharglist 2 ........................... <_movie, tCast>
+  [ 33] objcall 58 .............................. <_movie.castLib(tCast)>
+  [ 35] pushsymb 64 ............................. <#member>
+  [ 37] pusharglist 2 ........................... <_movie.castLib(tCast), #member>
+  [ 39] objcall 129 ............................. <_movie.castLib(tCast).member.count>
+  [ 41] setlocal 0 .............................. pCount = _movie.castLib(tCast).member.count
+  [ 43] pushint8 1 .............................. <1>
+  [ 45] getlocal 0 .............................. <pCount>
+  [ 47] getparam 0 .............................. <tCast>
+  [ 49] pusharglistnoret 3 ...................... <1, pCount, tCast>
+  [ 51] extcall 1127 ............................ EraseMembers(1, pCount, tCast)
+  [ 54] ret
+end
+
+on ClearCasts tCastList
+  [  0] getparam 0 .............................. <tCastList>
+  [  2] getobjprop 122 .......................... <tCastList.ilk>
+  [  4] pushsymb 126 ............................ <#list>
+  [  6] nteq .................................... <tCastList.ilk <> #list>
+  [  7] jmpifz [ 21] ............................ if tCastList.ilk <> #list then
+  [ 10] pushcons 1 .............................. <"ClearCasts: parameter was not a linearList. List calles was: ">
+  [ 12] getparam 0 .............................. <tCastList>
+  [ 14] joinstr ................................. <"ClearCasts: parameter was not a linearList. List calles was: " & tCastList>
+  [ 15] pusharglistnoret 1 ...................... <"ClearCasts: parameter was not a linearList. List calles was: " & tCastList>
+  [ 17] extcall 511 ............................. ShowError("ClearCasts: parameter was not a linearList. List calles was: " & tCastList)
+  [ 20] ret ..................................... exit
+  [ 21] getparam 0 .............................. <tCastList>
+  [ 23] getobjprop 129 .......................... <tCastList.count>
+  [ 25] setlocal 0 .............................. pCount = tCastList.count
+  [ 27] pushint8 1 .............................. <1>
+  [ 29] setlocal 1
+  [ 31] getlocal 1
+  [ 33] getlocal 0 .............................. <pCount>
+  [ 35] lteq
+  [ 36] jmpifz [117] ............................ repeat with i = 1 to pCount
+  [ 39] getparam 0 .............................. <tCastList>
+  [ 41] getlocal 1 .............................. <i>
+  [ 43] pusharglist 2 ........................... <tCastList, i>
+  [ 45] objcall 105 ............................. <tCastList[i]>
+  [ 47] setlocal 2 .............................. tCast = tCastList[i]
+  [ 49] gettoplevelprop 33 ...................... <_movie>
+  [ 51] getlocal 2 .............................. <tCast>
+  [ 53] pusharglist 2 ........................... <_movie, tCast>
+  [ 55] objcall 58 .............................. <_movie.castLib(tCast)>
+  [ 57] pusharglist 0 ........................... <>
+  [ 59] extcall 40 .............................. <VOID>
+  [ 61] eq ...................................... <_movie.castLib(tCast) = VOID>
+  [ 62] jmpifz [ 81] ............................ if _movie.castLib(tCast) = VOID then
+  [ 65] pushcons 2 .............................. <"ClearCasts: no such cast exists. Cast called was: ">
+  [ 67] getlocal 2 .............................. <tCast>
+  [ 69] joinstr ................................. <"ClearCasts: no such cast exists. Cast called was: " & tCast>
+  [ 70] pusharglistnoret 1 ...................... <"ClearCasts: no such cast exists. Cast called was: " & tCast>
+  [ 72] extcall 511 ............................. ShowError("ClearCasts: no such cast exists. Cast called was: " & tCast)
+  [ 75] jmp [108] ............................... next repeat
+  [ 78] jmp [108] ............................... next repeat
+  [ 81] gettoplevelprop 33 ...................... <_movie>
+  [ 83] getlocal 2 .............................. <tCast>
+  [ 85] pusharglist 2 ........................... <_movie, tCast>
+  [ 87] objcall 58 .............................. <_movie.castLib(tCast)>
+  [ 89] pushsymb 64 ............................. <#member>
+  [ 91] pusharglist 2 ........................... <_movie.castLib(tCast), #member>
+  [ 93] objcall 129 ............................. <_movie.castLib(tCast).member.count>
+  [ 95] setlocal 3 .............................. pMemberCount = _movie.castLib(tCast).member.count
+  [ 97] pushint8 1 .............................. <1>
+  [ 99] getlocal 3 .............................. <pMemberCount>
+  [101] getlocal 2 .............................. <tCast>
+  [103] pusharglistnoret 3 ...................... <1, pMemberCount, tCast>
+  [105] extcall 1127 ............................ EraseMembers(1, pMemberCount, tCast)
+  [108] pushint8 1
+  [110] getlocal 1
+  [112] add
+  [113] setlocal 1
+  [115] endrepeat [ 31]
+  [117] ret
+end

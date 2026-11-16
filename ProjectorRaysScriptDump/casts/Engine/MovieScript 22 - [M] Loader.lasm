@@ -1,0 +1,901 @@
+global gSystem, gLoader, gData, gGame
+
+on load tFile, tDataList
+  [  0] getparam 0 .............................. <tFile>
+  [  2] pushcons 0 .............................. <EMPTY>
+  [  4] eq ...................................... <tFile = EMPTY>
+  [  5] getparam 0 .............................. <tFile>
+  [  7] pushcons 1 .............................. <"//">
+  [  9] containsstr ............................. <tFile contains "//">
+  [ 10] or ...................................... <(tFile = EMPTY) or (tFile contains "//")>
+  [ 11] jmpifz [ 23] ............................ if (tFile = EMPTY) or (tFile contains "//") then / else
+  [ 14] pusharglist 0 ........................... <>
+  [ 16] extcall 40 .............................. <VOID>
+  [ 18] setparam 0 .............................. tFile = VOID
+  [ 20] jmp [ 37]
+  [ 23] getglobal 50 ............................ <gSystem>
+  [ 25] getobjprop 34 ........................... <gSystem.path>
+  [ 27] getparam 0 .............................. <tFile>
+  [ 29] pusharglist 1 ........................... <tFile>
+  [ 31] extcall 594 ............................. <StringEvaluator(tFile)>
+  [ 34] joinstr ................................. <gSystem.path & StringEvaluator(tFile)>
+  [ 35] setparam 0 .............................. tFile = gSystem.path & StringEvaluator(tFile)
+  [ 37] getparam 0 .............................. <tFile>
+  [ 39] pusharglist 0 ........................... <>
+  [ 41] extcall 40 .............................. <VOID>
+  [ 43] eq ...................................... <tFile = VOID>
+  [ 44] jmpifz [ 67] ............................ if tFile = VOID then
+  [ 47] pushcons 2 .............................. <"Function: Load. Path: ">
+  [ 49] getparam 0 .............................. <tFile>
+  [ 51] joinstr ................................. <"Function: Load. Path: " & tFile>
+  [ 52] pushcons 3 .............................. <" DataList: ">
+  [ 54] joinstr ................................. <"Function: Load. Path: " & tFile & " DataList: ">
+  [ 55] getparam 1 .............................. <tDataList>
+  [ 57] joinstr ................................. <"Function: Load. Path: " & tFile & " DataList: " & tDataList>
+  [ 58] pushcons 4 .............................. <". No path available. Load aborted.">
+  [ 60] joinstr ................................. <"Function: Load. Path: " & tFile & " DataList: " & tDataList & ". No path available. Load aborted.">
+  [ 61] pusharglistnoret 1 ...................... <"Function: Load. Path: " & tFile & " DataList: " & tDataList & ". No path available. Load aborted.">
+  [ 63] extcall 511 ............................. ShowError("Function: Load. Path: " & tFile & " DataList: " & tDataList & ". No path available. Load aborted.")
+  [ 66] ret ..................................... exit
+  [ 67] getparam 1 .............................. <tDataList>
+  [ 69] pusharglist 1 ........................... <tDataList>
+  [ 71] extcall 503 ............................. <value(tDataList)>
+  [ 74] setparam 1 .............................. tDataList = value(tDataList)
+  [ 76] getparam 1 .............................. <tDataList>
+  [ 78] getobjprop 122 .......................... <tDataList.ilk>
+  [ 80] pushsymb 541 ............................ <#propList>
+  [ 83] nteq .................................... <tDataList.ilk <> #propList>
+  [ 84] jmpifz [ 92] ............................ if tDataList.ilk <> #propList then
+  [ 87] pusharglist 0 ........................... <[:]>
+  [ 89] pushproplist ............................ <[:]>
+  [ 90] setparam 1 .............................. tDataList = [:]
+  [ 92] getparam 0 .............................. <tFile>
+  [ 94] pushcons 5 .............................. <".txt">
+  [ 96] containsstr ............................. <tFile contains ".txt">
+  [ 97] getglobal 50 ............................ <gSystem>
+  [ 99] getobjprop 51 ........................... <gSystem.local>
+  [101] pushint8 1 .............................. <1>
+  [103] eq ...................................... <gSystem.local = 1>
+  [104] and ..................................... <(tFile contains ".txt") and (gSystem.local = 1)>
+  [105] jmpifz [158] ............................ if (tFile contains ".txt") and (gSystem.local = 1) then / else
+  [108] getparam 0 .............................. <tFile>
+  [110] getparam 1 .............................. <tDataList>
+  [112] pusharglist 1 ........................... <tDataList>
+  [114] objcall 233 ............................. <tDataList.duplicate()>
+  [116] pusharglist 2 ........................... <tFile, tDataList.duplicate()>
+  [118] localcall 1 ............................. <LoadTxt(tFile, tDataList.duplicate())>
+  [120] setlocal 0 .............................. tResult = LoadTxt(tFile, tDataList.duplicate())
+  [122] getparam 0 .............................. <tFile>
+  [124] getlocal 0 .............................. <tResult>
+  [126] joinpadstr .............................. <tFile && tResult>
+  [127] pusharglistnoret 1 ...................... <tFile && tResult>
+  [129] extcall 57 .............................. put tFile && tResult
+  [131] getparam 1 .............................. <tDataList>
+  [133] pushsymb 148 ............................ <#event>
+  [135] pusharglist 2 ........................... <tDataList, #event>
+  [137] objcall 105 ............................. <tDataList[#event]>
+  [139] getobjprop 122 .......................... <tDataList[#event].ilk>
+  [141] pushsymb 67 ............................. <#string>
+  [143] eq ...................................... <tDataList[#event].ilk = #string>
+  [144] jmpifz [155] ............................ if tDataList[#event].ilk = #string then
+  [147] getparam 1 .............................. <tDataList>
+  [149] getobjprop 148 .......................... <tDataList.event>
+  [151] pusharglistnoret 1 ...................... <tDataList.event>
+  [153] extcall 148 ............................. event(tDataList.event)
+  [155] jmp [180]
+  [158] getglobal 50 ............................ <gSystem>
+  [160] getobjprop 51 ........................... <gSystem.local>
+  [162] pushint8 1 .............................. <1>
+  [164] eq ...................................... <gSystem.local = 1>
+  [165] jmpifz [180] ............................ if gSystem.local = 1 then
+  [168] getparam 0 .............................. <tFile>
+  [170] getparam 1 .............................. <tDataList>
+  [172] pusharglist 1 ........................... <tDataList>
+  [174] objcall 233 ............................. <tDataList.duplicate()>
+  [176] pusharglistnoret 2 ...................... <tFile, tDataList.duplicate()>
+  [178] localcall 3 ............................. ImportFile(tFile, tDataList.duplicate())
+  [180] ret
+end
+
+on LoadTxt tFile, tDataList
+  [  0] getparam 0 .............................. <tFile>
+  [  2] pusharglist 1 ........................... <tFile>
+  [  4] extcall 389 ............................. <voidp(tFile)>
+  [  7] pushint8 1 .............................. <1>
+  [  9] eq ...................................... <voidp(tFile) = 1>
+  [ 10] jmpifz [ 30] ............................ if voidp(tFile) = 1 then
+  [ 13] pushcons 6 .............................. <"Function: LoadTxt. Parameters: ">
+  [ 15] getparam 0 .............................. <tFile>
+  [ 17] joinstr ................................. <"Function: LoadTxt. Parameters: " & tFile>
+  [ 18] getparam 1 .............................. <tDataList>
+  [ 20] joinpadstr .............................. <"Function: LoadTxt. Parameters: " & tFile && tDataList>
+  [ 21] pushcons 7 .............................. <" No path available. LoadTxt aborted.">
+  [ 23] joinstr ................................. <"Function: LoadTxt. Parameters: " & tFile && tDataList & " No path available. LoadTxt aborted.">
+  [ 24] pusharglistnoret 1 ...................... <"Function: LoadTxt. Parameters: " & tFile && tDataList & " No path available. LoadTxt aborted.">
+  [ 26] extcall 511 ............................. ShowError("Function: LoadTxt. Parameters: " & tFile && tDataList & " No path available. LoadTxt aborted.")
+  [ 29] ret ..................................... exit
+  [ 30] getparam 1 .............................. <tDataList>
+  [ 32] pusharglist 1 ........................... <tDataList>
+  [ 34] extcall 503 ............................. <value(tDataList)>
+  [ 37] setparam 1 .............................. tDataList = value(tDataList)
+  [ 39] getparam 1 .............................. <tDataList>
+  [ 41] getobjprop 122 .......................... <tDataList.ilk>
+  [ 43] pushsymb 541 ............................ <#propList>
+  [ 46] nteq .................................... <tDataList.ilk <> #propList>
+  [ 47] jmpifz [ 55] ............................ if tDataList.ilk <> #propList then
+  [ 50] pusharglist 0 ........................... <[:]>
+  [ 52] pushproplist ............................ <[:]>
+  [ 53] setparam 1 .............................. tDataList = [:]
+  [ 55] pushcons 8 .............................. <"Internal">
+  [ 57] setlocal 0 .............................. tCast = "Internal"
+  [ 59] getparam 1 .............................. <tDataList>
+  [ 61] pushsymb 596 ............................ <#cast>
+  [ 64] pusharglist 2 ........................... <tDataList, #cast>
+  [ 66] objcall 105 ............................. <tDataList[#cast]>
+  [ 68] pusharglist 1 ........................... <tDataList[#cast]>
+  [ 70] extcall 389 ............................. <voidp(tDataList[#cast])>
+  [ 73] pushzero ................................ <0>
+  [ 74] eq ...................................... <voidp(tDataList[#cast]) = 0>
+  [ 75] jmpifz [ 85] ............................ if voidp(tDataList[#cast]) = 0 then
+  [ 78] getparam 1 .............................. <tDataList>
+  [ 80] getobjprop 596 .......................... <tDataList.cast>
+  [ 83] setlocal 0 .............................. tCast = tDataList.cast
+  [ 85] pushcons 9 .............................. <"\\">
+  [ 87] pusharglistnoret 1 ...................... <"\\">
+  [ 89] extcall 82 .............................. SetItemDelimiter("\\")
+  [ 91] getparam 0 .............................. <tFile>
+  [ 93] pushsymb 83 ............................. <#item>
+  [ 95] getparam 0 .............................. <tFile>
+  [ 97] pushsymb 83 ............................. <#item>
+  [ 99] pusharglist 2 ........................... <tFile, #item>
+  [101] objcall 129 ............................. <tFile.item.count>
+  [103] pusharglist 3 ........................... <tFile, #item, tFile.item.count>
+  [105] objcall 70 .............................. <tFile.item[tFile.item.count]>
+  [107] setlocal 1 .............................. tFileName = tFile.item[tFile.item.count]
+  [109] getlocal 1 .............................. <tFileName>
+  [111] pushsymb 68 ............................. <#char>
+  [113] pushint8 1 .............................. <1>
+  [115] getlocal 1 .............................. <tFileName>
+  [117] getobjprop 69 ........................... <tFileName.length>
+  [119] pushint8 4 .............................. <4>
+  [121] sub ..................................... <tFileName.length - 4>
+  [122] pusharglist 4 ........................... <tFileName, #char, 1, tFileName.length - 4>
+  [124] objcall 70 .............................. <tFileName.char[1..tFileName.length - 4]>
+  [126] setlocal 2 .............................. tFutureName = tFileName.char[1..tFileName.length - 4]
+  [128] pusharglistnoret 0 ...................... <>
+  [130] extcall 85 .............................. ResetItemDelimiter()
+  [132] getlocal 2 .............................. <tFutureName>
+  [134] pusharglist 1 ........................... <tFutureName>
+  [136] extcall 64 .............................. <member(tFutureName)>
+  [138] pusharglist 0 ........................... <>
+  [140] extcall 40 .............................. <VOID>
+  [142] eq ...................................... <member(tFutureName) = VOID>
+  [143] jmpifz [232] ............................ if member(tFutureName) = VOID then / else
+  [146] pushcons 0 .............................. <EMPTY>
+  [148] pushsymb 598 ............................ <#type>
+  [151] pushsymb 80 ............................. <#text>
+  [153] pushsymb 596 ............................ <#cast>
+  [156] getlocal 0 .............................. <tCast>
+  [158] pusharglist 4 ........................... <[#type: #text, #cast: tCast]>
+  [160] pushproplist ............................ <[#type: #text, #cast: tCast]>
+  [161] pusharglist 2 ........................... <EMPTY, [#type: #text, #cast: tCast]>
+  [163] extcall 597 ............................. <createMember(EMPTY, [#type: #text, #cast: tCast])>
+  [166] setlocal 3 .............................. tmember = createMember(EMPTY, [#type: #text, #cast: tCast])
+  [168] getlocal 3 .............................. <tmember>
+  [170] getparam 0 .............................. <tFile>
+  [172] pusharglist 2 ........................... <tmember, tFile>
+  [174] objcall 599 ............................. <tmember.importFileInto(tFile)>
+  [177] setlocal 4 .............................. tImported = tmember.importFileInto(tFile)
+  [179] getlocal 4 .............................. <tImported>
+  [181] pushzero ................................ <0>
+  [182] nteq .................................... <tImported <> 0>
+  [183] jmpifz [201] ............................ if tImported <> 0 then / else
+  [186] getlocal 3 .............................. <tmember>
+  [188] getparam 1 .............................. <tDataList>
+  [190] pusharglist 1 ........................... <tDataList>
+  [192] objcall 233 ............................. <tDataList.duplicate()>
+  [194] pusharglistnoret 2 ...................... <tmember, tDataList.duplicate()>
+  [196] localcall 2 ............................. HandleTxt(tmember, tDataList.duplicate())
+  [198] jmp [229]
+  [201] pushcons 6 .............................. <"Function: LoadTxt. Parameters: ">
+  [203] getparam 0 .............................. <tFile>
+  [205] joinstr ................................. <"Function: LoadTxt. Parameters: " & tFile>
+  [206] getparam 1 .............................. <tDataList>
+  [208] joinpadstr .............................. <"Function: LoadTxt. Parameters: " & tFile && tDataList>
+  [209] pushcons 10 ............................. <" IMport failed, member was erased.">
+  [211] joinstr ................................. <"Function: LoadTxt. Parameters: " & tFile && tDataList & " IMport failed, member was erased.">
+  [212] pusharglistnoret 1 ...................... <"Function: LoadTxt. Parameters: " & tFile && tDataList & " IMport failed, member was erased.">
+  [214] extcall 511 ............................. ShowError("Function: LoadTxt. Parameters: " & tFile && tDataList & " IMport failed, member was erased.")
+  [217] getlocal 3 .............................. <tmember>
+  [219] pusharglistnoret 1 ...................... <tmember>
+  [221] extcall 600 ............................. EraseMember(tmember)
+  [224] pushzero ................................ <0>
+  [225] pusharglistnoret 1 ...................... <0>
+  [227] extcall 52 .............................. return 0
+  [229] jmp [237]
+  [232] pushzero ................................ <0>
+  [233] pusharglistnoret 1 ...................... <0>
+  [235] extcall 52 .............................. return 0
+  [237] pushint8 1 .............................. <1>
+  [239] pusharglistnoret 1 ...................... <1>
+  [241] extcall 52 .............................. return 1
+  [243] ret
+end
+
+on HandleTxt tmember, tDataList
+  [  0] getparam 1 .............................. <tDataList>
+  [  2] pusharglist 1 ........................... <tDataList>
+  [  4] objcall 233 ............................. <tDataList.duplicate()>
+  [  6] setparam 1 .............................. tDataList = tDataList.duplicate()
+  [  8] getparam 0 .............................. <tmember>
+  [ 10] getobjprop 235 .......................... <tmember.name>
+  [ 12] pushcons 11 ............................. <"LoadingArray">
+  [ 14] containsstr ............................. <tmember.name contains "LoadingArray">
+  [ 15] jmpifz [156] ............................ if tmember.name contains "LoadingArray" then
+  [ 18] pushint8 1 .............................. <1>
+  [ 20] setlocal 0
+  [ 22] getlocal 0
+  [ 24] getparam 0 .............................. <tmember>
+  [ 26] getchainedprop 80 ....................... <tmember.text>
+  [ 28] pushsymb 81 ............................. <#line>
+  [ 30] pusharglist 2 ........................... <tmember.text, #line>
+  [ 32] objcall 129 ............................. <tmember.text.line.count>
+  [ 34] lteq
+  [ 35] jmpifz [156] ............................ repeat with i = 1 to tmember.text.line.count
+  [ 38] pushcons 12 ............................. <TAB>
+  [ 40] pusharglistnoret 1 ...................... <TAB>
+  [ 42] extcall 82 .............................. SetItemDelimiter(TAB)
+  [ 44] getparam 0 .............................. <tmember>
+  [ 46] getchainedprop 80 ....................... <tmember.text>
+  [ 48] pushsymb 81 ............................. <#line>
+  [ 50] getlocal 0 .............................. <i>
+  [ 52] pusharglist 3 ........................... <tmember.text, #line, i>
+  [ 54] objcall 102 ............................. <tmember.text.line[i]>
+  [ 56] pushsymb 83 ............................. <#item>
+  [ 58] pushint8 1 .............................. <1>
+  [ 60] pusharglist 3 ........................... <tmember.text.line[i], #item, 1>
+  [ 62] objcall 70 .............................. <tmember.text.line[i].item[1]>
+  [ 64] setlocal 1 .............................. tPath = tmember.text.line[i].item[1]
+  [ 66] getparam 0 .............................. <tmember>
+  [ 68] getchainedprop 80 ....................... <tmember.text>
+  [ 70] pushsymb 81 ............................. <#line>
+  [ 72] getlocal 0 .............................. <i>
+  [ 74] pusharglist 3 ........................... <tmember.text, #line, i>
+  [ 76] objcall 102 ............................. <tmember.text.line[i]>
+  [ 78] pushsymb 83 ............................. <#item>
+  [ 80] pushint8 2 .............................. <2>
+  [ 82] pusharglist 3 ........................... <tmember.text.line[i], #item, 2>
+  [ 84] objcall 70 .............................. <tmember.text.line[i].item[2]>
+  [ 86] pusharglist 1 ........................... <tmember.text.line[i].item[2]>
+  [ 88] extcall 503 ............................. <value(tmember.text.line[i].item[2])>
+  [ 91] setlocal 2 .............................. tTextDataList = value(tmember.text.line[i].item[2])
+  [ 93] getlocal 2 .............................. <tTextDataList>
+  [ 95] getobjprop 122 .......................... <tTextDataList.ilk>
+  [ 97] pushsymb 541 ............................ <#propList>
+  [100] nteq .................................... <tTextDataList.ilk <> #propList>
+  [101] jmpifz [108] ............................ if tTextDataList.ilk <> #propList then
+  [104] getparam 1 .............................. <tDataList>
+  [106] setlocal 2 .............................. tTextDataList = tDataList
+  [108] getlocal 2 .............................. <tTextDataList>
+  [110] pushsymb 148 ............................ <#event>
+  [112] pusharglist 2 ........................... <tTextDataList, #event>
+  [114] objcall 105 ............................. <tTextDataList[#event]>
+  [116] pusharglist 1 ........................... <tTextDataList[#event]>
+  [118] extcall 389 ............................. <voidp(tTextDataList[#event])>
+  [121] pushzero ................................ <0>
+  [122] eq ...................................... <voidp(tTextDataList[#event]) = 0>
+  [123] jmpifz [135] ............................ if voidp(tTextDataList[#event]) = 0 then
+  [126] getlocal 2 .............................. <tTextDataList>
+  [128] pushsymb 148 ............................ <#event>
+  [130] pusharglistnoret 2 ...................... <tTextDataList, #event>
+  [132] objcall 605 ............................. tTextDataList.deleteProp(#event)
+  [135] getlocal 1 .............................. <tPath>
+  [137] getlocal 2 .............................. <tTextDataList>
+  [139] pusharglist 1 ........................... <tTextDataList>
+  [141] objcall 233 ............................. <tTextDataList.duplicate()>
+  [143] pusharglistnoret 2 ...................... <tPath, tTextDataList.duplicate()>
+  [145] localcall 0 ............................. load(tPath, tTextDataList.duplicate())
+  [147] pushint8 1
+  [149] getlocal 0
+  [151] add
+  [152] setlocal 0
+  [154] endrepeat [ 22]
+  [156] getparam 0 .............................. <tmember>
+  [158] getobjprop 235 .......................... <tmember.name>
+  [160] pushcons 13 ............................. <"Globals">
+  [162] containsstr ............................. <tmember.name contains "Globals">
+  [163] jmpifz [175] ............................ if tmember.name contains "Globals" then
+  [166] getparam 0 .............................. <tmember>
+  [168] getparam 1 .............................. <tDataList>
+  [170] pusharglistnoret 2 ...................... <tmember, tDataList>
+  [172] extcall 606 ............................. AddToGlobals(tmember, tDataList)
+  [175] getparam 0 .............................. <tmember>
+  [177] getobjprop 235 .......................... <tmember.name>
+  [179] pushcons 14 ............................. <"Events">
+  [181] containsstr ............................. <tmember.name contains "Events">
+  [182] jmpifz [204] ............................ if tmember.name contains "Events" then
+  [185] getparam 1 .............................. <tDataList>
+  [187] pushsymb 126 ............................ <#list>
+  [189] pushsymb 120 ............................ <#Events>
+  [191] pusharglistnoret 3 ...................... <tDataList, #list, #Events>
+  [193] objcall 103 ............................. tDataList[#list] = #Events
+  [195] getparam 0 .............................. <tmember>
+  [197] getparam 1 .............................. <tDataList>
+  [199] pusharglistnoret 2 ...................... <tmember, tDataList>
+  [201] extcall 607 ............................. AddToData(tmember, tDataList)
+  [204] getparam 0 .............................. <tmember>
+  [206] getobjprop 235 .......................... <tmember.name>
+  [208] pushcons 15 ............................. <"Data">
+  [210] containsstr ............................. <tmember.name contains "Data">
+  [211] jmpifz [233] ............................ if tmember.name contains "Data" then
+  [214] getparam 1 .............................. <tDataList>
+  [216] pushsymb 126 ............................ <#list>
+  [218] pushsymb 87 ............................. <#data>
+  [220] pusharglistnoret 3 ...................... <tDataList, #list, #data>
+  [222] objcall 103 ............................. tDataList[#list] = #data
+  [224] getparam 0 .............................. <tmember>
+  [226] getparam 1 .............................. <tDataList>
+  [228] pusharglistnoret 2 ...................... <tmember, tDataList>
+  [230] extcall 607 ............................. AddToData(tmember, tDataList)
+  [233] getparam 0 .............................. <tmember>
+  [235] getobjprop 235 .......................... <tmember.name>
+  [237] pushcons 16 ............................. <"Triggers">
+  [239] containsstr ............................. <tmember.name contains "Triggers">
+  [240] jmpifz [263] ............................ if tmember.name contains "Triggers" then
+  [243] getparam 1 .............................. <tDataList>
+  [245] pushsymb 126 ............................ <#list>
+  [247] pushsymb 447 ............................ <#Triggers>
+  [250] pusharglistnoret 3 ...................... <tDataList, #list, #Triggers>
+  [252] objcall 103 ............................. tDataList[#list] = #Triggers
+  [254] getparam 0 .............................. <tmember>
+  [256] getparam 1 .............................. <tDataList>
+  [258] pusharglistnoret 2 ...................... <tmember, tDataList>
+  [260] extcall 607 ............................. AddToData(tmember, tDataList)
+  [263] ret
+end
+
+on ImportFile tFile, tDataList
+  [  0] getparam 0 .............................. <tFile>
+  [  2] pusharglist 1 ........................... <tFile>
+  [  4] extcall 389 ............................. <voidp(tFile)>
+  [  7] pushint8 1 .............................. <1>
+  [  9] eq ...................................... <voidp(tFile) = 1>
+  [ 10] jmpifz [ 30] ............................ if voidp(tFile) = 1 then
+  [ 13] pushcons 17 ............................. <"Function: ImportFile. Parameters: ">
+  [ 15] getparam 0 .............................. <tFile>
+  [ 17] joinstr ................................. <"Function: ImportFile. Parameters: " & tFile>
+  [ 18] getparam 1 .............................. <tDataList>
+  [ 20] joinpadstr .............................. <"Function: ImportFile. Parameters: " & tFile && tDataList>
+  [ 21] pushcons 18 ............................. <" No path available. ImportFile aborted.">
+  [ 23] joinstr ................................. <"Function: ImportFile. Parameters: " & tFile && tDataList & " No path available. ImportFile aborted.">
+  [ 24] pusharglistnoret 1 ...................... <"Function: ImportFile. Parameters: " & tFile && tDataList & " No path available. ImportFile aborted.">
+  [ 26] extcall 511 ............................. ShowError("Function: ImportFile. Parameters: " & tFile && tDataList & " No path available. ImportFile aborted.")
+  [ 29] ret ..................................... exit
+  [ 30] getparam 1 .............................. <tDataList>
+  [ 32] pusharglist 1 ........................... <tDataList>
+  [ 34] extcall 503 ............................. <value(tDataList)>
+  [ 37] setparam 1 .............................. tDataList = value(tDataList)
+  [ 39] getparam 1 .............................. <tDataList>
+  [ 41] getobjprop 122 .......................... <tDataList.ilk>
+  [ 43] pushsymb 541 ............................ <#propList>
+  [ 46] nteq .................................... <tDataList.ilk <> #propList>
+  [ 47] jmpifz [ 55] ............................ if tDataList.ilk <> #propList then
+  [ 50] pusharglist 0 ........................... <[:]>
+  [ 52] pushproplist ............................ <[:]>
+  [ 53] setparam 1 .............................. tDataList = [:]
+  [ 55] pushcons 8 .............................. <"Internal">
+  [ 57] setlocal 0 .............................. tCast = "Internal"
+  [ 59] pushint8 1 .............................. <1>
+  [ 61] setlocal 1
+  [ 63] getlocal 1
+  [ 65] gettoplevelprop 33 ...................... <_movie>
+  [ 67] pushsymb 58 ............................. <#castLib>
+  [ 69] pusharglist 2 ........................... <_movie, #castLib>
+  [ 71] objcall 129 ............................. <_movie.castLib.count>
+  [ 73] lteq
+  [ 74] jmpifz [118] ............................ repeat with m = 1 to _movie.castLib.count
+  [ 77] getparam 0 .............................. <tFile>
+  [ 79] gettoplevelprop 33 ...................... <_movie>
+  [ 81] pushsymb 58 ............................. <#castLib>
+  [ 83] getlocal 1 .............................. <m>
+  [ 85] pusharglist 3 ........................... <_movie, #castLib, m>
+  [ 87] objcall 102 ............................. <_movie.castLib[m]>
+  [ 89] getobjprop 235 .......................... <_movie.castLib[m].name>
+  [ 91] containsstr ............................. <tFile contains _movie.castLib[m].name>
+  [ 92] jmpifz [109] ............................ if tFile contains _movie.castLib[m].name then
+  [ 95] gettoplevelprop 33 ...................... <_movie>
+  [ 97] pushsymb 58 ............................. <#castLib>
+  [ 99] getlocal 1 .............................. <m>
+  [101] pusharglist 3 ........................... <_movie, #castLib, m>
+  [103] objcall 102 ............................. <_movie.castLib[m]>
+  [105] getobjprop 235 .......................... <_movie.castLib[m].name>
+  [107] setlocal 0 .............................. tCast = _movie.castLib[m].name
+  [109] pushint8 1
+  [111] getlocal 1
+  [113] add
+  [114] setlocal 1
+  [116] endrepeat [ 63]
+  [118] getparam 1 .............................. <tDataList>
+  [120] pushsymb 596 ............................ <#cast>
+  [123] pusharglist 2 ........................... <tDataList, #cast>
+  [125] objcall 105 ............................. <tDataList[#cast]>
+  [127] pusharglist 1 ........................... <tDataList[#cast]>
+  [129] extcall 389 ............................. <voidp(tDataList[#cast])>
+  [132] pushzero ................................ <0>
+  [133] eq ...................................... <voidp(tDataList[#cast]) = 0>
+  [134] jmpifz [144] ............................ if voidp(tDataList[#cast]) = 0 then
+  [137] getparam 1 .............................. <tDataList>
+  [139] getobjprop 596 .......................... <tDataList.cast>
+  [142] setlocal 0 .............................. tCast = tDataList.cast
+  [144] pusharglistnoret 0 ...................... <>
+  [146] extcall 85 .............................. ResetItemDelimiter()
+  [148] getparam 0 .............................. <tFile>
+  [150] pushsymb 83 ............................. <#item>
+  [152] pusharglist 2 ........................... <tFile, #item>
+  [154] objcall 129 ............................. <tFile.item.count>
+  [156] pushint8 1 .............................. <1>
+  [158] gt ...................................... <tFile.item.count > 1>
+  [159] jmpifz [191] ............................ if tFile.item.count > 1 then
+  [162] getparam 0 .............................. <tFile>
+  [164] pushsymb 83 ............................. <#item>
+  [166] pushint8 1 .............................. <1>
+  [168] pusharglist 3 ........................... <tFile, #item, 1>
+  [170] objcall 70 .............................. <tFile.item[1]>
+  [172] setparam 0 .............................. tFile = tFile.item[1]
+  [174] getparam 0 .............................. <tFile>
+  [176] pushsymb 83 ............................. <#item>
+  [178] pushint8 2 .............................. <2>
+  [180] pusharglist 3 ........................... <tFile, #item, 2>
+  [182] objcall 70 .............................. <tFile.item[2]>
+  [184] pusharglist 1 ........................... <tFile.item[2]>
+  [186] extcall 503 ............................. <value(tFile.item[2])>
+  [189] setparam 1 .............................. tDataList = value(tFile.item[2])
+  [191] pushzero ................................ <0>
+  [192] setlocal 2 .............................. tSingleFile = 0
+  [194] pusharglist 0 ........................... <>
+  [196] extcall 40 .............................. <VOID>
+  [198] setlocal 3 .............................. tType = VOID
+  [200] pushcons 19 ............................. <".W3D">
+  [202] pushcons 20 ............................. <".bmp">
+  [204] pushcons 21 ............................. <".png">
+  [206] pushcons 22 ............................. <".tga">
+  [208] pushcons 23 ............................. <".wav">
+  [210] pushcons 24 ............................. <".swf">
+  [212] pushcons 5 .............................. <".txt">
+  [214] pushcons 25 ............................. <".jpg">
+  [216] pushcons 26 ............................. <".swa">
+  [218] pushcons 27 ............................. <".tif">
+  [220] pushcons 28 ............................. <".mp3">
+  [222] pusharglist 11 .......................... <[".W3D", ".bmp", ".png", ".tga", ".wav", ".swf", ".txt", ".jpg", ".swa", ".tif", ".mp3"]>
+  [224] pushlist ................................ <[".W3D", ".bmp", ".png", ".tga", ".wav", ".swf", ".txt", ".jpg", ".swa", ".tif", ".mp3"]>
+  [225] setlocal 4 .............................. tFiles = [".W3D", ".bmp", ".png", ".tga", ".wav", ".swf", ".txt", ".jpg", ".swa", ".tif", ".mp3"]
+  [227] pushsymb 610 ............................ <#shockwave3d>
+  [230] pushsymb 317 ............................ <#bitmap>
+  [233] pushsymb 317 ............................ <#bitmap>
+  [236] pushsymb 317 ............................ <#bitmap>
+  [239] pushsymb 611 ............................ <#sound>
+  [242] pushsymb 612 ............................ <#flash>
+  [245] pushsymb 80 ............................. <#text>
+  [247] pushsymb 317 ............................ <#bitmap>
+  [250] pushsymb 611 ............................ <#sound>
+  [253] pushsymb 317 ............................ <#bitmap>
+  [256] pushsymb 611 ............................ <#sound>
+  [259] pusharglist 11 .......................... <[#shockwave3d, #bitmap, #bitmap, #bitmap, #sound, #flash, #text, #bitmap, #sound, #bitmap, #sound]>
+  [261] pushlist ................................ <[#shockwave3d, #bitmap, #bitmap, #bitmap, #sound, #flash, #text, #bitmap, #sound, #bitmap, #sound]>
+  [262] setlocal 5 .............................. tTypes = [#shockwave3d, #bitmap, #bitmap, #bitmap, #sound, #flash, #text, #bitmap, #sound, #bitmap, #sound]
+  [264] getparam 0 .............................. <tFile>
+  [266] pushsymb 68 ............................. <#char>
+  [268] getparam 0 .............................. <tFile>
+  [270] getobjprop 69 ........................... <tFile.length>
+  [272] pushint8 3 .............................. <3>
+  [274] sub ..................................... <tFile.length - 3>
+  [275] getparam 0 .............................. <tFile>
+  [277] getobjprop 69 ........................... <tFile.length>
+  [279] pusharglist 4 ........................... <tFile, #char, tFile.length - 3, tFile.length>
+  [281] objcall 70 .............................. <tFile.char[tFile.length - 3..tFile.length]>
+  [283] setlocal 6 .............................. tTag = tFile.char[tFile.length - 3..tFile.length]
+  [285] getlocal 4 .............................. <tFiles>
+  [287] getlocal 6 .............................. <tTag>
+  [289] pusharglist 2 ........................... <tFiles, tTag>
+  [291] objcall 166 ............................. <tFiles.getPos(tTag)>
+  [293] pushzero ................................ <0>
+  [294] nteq .................................... <tFiles.getPos(tTag) <> 0>
+  [295] jmpifz [318] ............................ if tFiles.getPos(tTag) <> 0 then
+  [298] pushint8 1 .............................. <1>
+  [300] setlocal 2 .............................. tSingleFile = 1
+  [302] getlocal 5 .............................. <tTypes>
+  [304] getlocal 4 .............................. <tFiles>
+  [306] getlocal 6 .............................. <tTag>
+  [308] pusharglist 2 ........................... <tFiles, tTag>
+  [310] objcall 166 ............................. <tFiles.getPos(tTag)>
+  [312] pusharglist 2 ........................... <tTypes, tFiles.getPos(tTag)>
+  [314] objcall 105 ............................. <tTypes[tFiles.getPos(tTag)]>
+  [316] setlocal 3 .............................. tType = tTypes[tFiles.getPos(tTag)]
+  [318] getlocal 2 .............................. <tSingleFile>
+  [320] pushint8 1 .............................. <1>
+  [322] eq ...................................... <tSingleFile = 1>
+  [323] jmpifz [432] ............................ if tSingleFile = 1 then / else
+  [326] pushsymb 598 ............................ <#type>
+  [329] getlocal 3 .............................. <tType>
+  [331] pushsymb 596 ............................ <#cast>
+  [334] getlocal 0 .............................. <tCast>
+  [336] pusharglist 4 ........................... <[#type: tType, #cast: tCast]>
+  [338] pushproplist ............................ <[#type: tType, #cast: tCast]>
+  [339] pusharglist 1 ........................... <[#type: tType, #cast: tCast]>
+  [341] extcall 597 ............................. <createMember([#type: tType, #cast: tCast])>
+  [344] setlocal 7 .............................. tmember = createMember([#type: tType, #cast: tCast])
+  [346] getlocal 3 .............................. <tType>
+  [348] peek 0 .................................. case tType of
+  [350] pushsymb 317 ............................ <#bitmap>
+  [353] eq
+  [354] jmpifz [382] ............................ (case) #bitmap:
+  [357] getlocal 7 .............................. <tmember>
+  [359] getparam 0 .............................. <tFile>
+  [361] pushsymb 613 ............................ <#dither>
+  [364] pushzero ................................ <0>
+  [365] pushsymb 614 ............................ <#trimWhiteSpace>
+  [368] pushzero ................................ <0>
+  [369] pusharglist 4 ........................... <[#dither: 0, #trimWhiteSpace: 0]>
+  [371] pushproplist ............................ <[#dither: 0, #trimWhiteSpace: 0]>
+  [372] pusharglist 3 ........................... <tmember, tFile, [#dither: 0, #trimWhiteSpace: 0]>
+  [374] objcall 599 ............................. <tmember.importFileInto(tFile, [#dither: 0, #trimWhiteSpace: 0])>
+  [377] setlocal 8 .............................. tImported = tmember.importFileInto(tFile, [#dither: 0, #trimWhiteSpace: 0])
+  [379] jmp [427]
+  [382] peek 0
+  [384] pushsymb 80 ............................. <#text>
+  [386] eq
+  [387] jmpifz [416] ............................ (case) #text:
+  [390] getlocal 7 .............................. <tmember>
+  [392] getparam 0 .............................. <tFile>
+  [394] pusharglist 2 ........................... <tmember, tFile>
+  [396] objcall 599 ............................. <tmember.importFileInto(tFile)>
+  [399] setlocal 8 .............................. tImported = tmember.importFileInto(tFile)
+  [401] getlocal 7 .............................. <tmember>
+  [403] getparam 1 .............................. <tDataList>
+  [405] pusharglist 1 ........................... <tDataList>
+  [407] objcall 233 ............................. <tDataList.duplicate()>
+  [409] pusharglistnoret 2 ...................... <tmember, tDataList.duplicate()>
+  [411] localcall 2 ............................. HandleTxt(tmember, tDataList.duplicate())
+  [413] jmp [427] ............................... (case) otherwise:
+  [416] getlocal 7 .............................. <tmember>
+  [418] getparam 0 .............................. <tFile>
+  [420] pusharglist 2 ........................... <tmember, tFile>
+  [422] objcall 599 ............................. <tmember.importFileInto(tFile)>
+  [425] setlocal 8 .............................. tImported = tmember.importFileInto(tFile)
+  [427] pop 1 ................................... end case
+  [429] jmp [714]
+  [432] pushint8 1 .............................. <1>
+  [434] setlocal 9
+  [436] getlocal 9
+  [438] pushint8 101 ............................ <101>
+  [440] lteq
+  [441] jmpifz [714] ............................ repeat with j = 1 to 101
+  [444] getparam 0 .............................. <tFile>
+  [446] getlocal 9 .............................. <j>
+  [448] pusharglist 2 ........................... <tFile, j>
+  [450] extcall 615 ............................. <getNthFileNameInFolder(tFile, j)>
+  [453] setlocal 10 ............................. tNextFile = getNthFileNameInFolder(tFile, j)
+  [455] getlocal 10 ............................. <tNextFile>
+  [457] pushcons 0 .............................. <EMPTY>
+  [459] eq ...................................... <tNextFile = EMPTY>
+  [460] jmpifz [466] ............................ if tNextFile = EMPTY then
+  [463] jmp [714] ............................... exit repeat
+  [466] getlocal 10 ............................. <tNextFile>
+  [468] pushcons 29 ............................. <"svn">
+  [470] containsstr ............................. <tNextFile contains "svn">
+  [471] jmpifz [477] ............................ if tNextFile contains "svn" then
+  [474] jmp [704] ............................... next repeat
+  [477] getlocal 10 ............................. <tNextFile>
+  [479] pushsymb 68 ............................. <#char>
+  [481] getlocal 10 ............................. <tNextFile>
+  [483] getobjprop 69 ........................... <tNextFile.length>
+  [485] pushint8 3 .............................. <3>
+  [487] sub ..................................... <tNextFile.length - 3>
+  [488] getlocal 10 ............................. <tNextFile>
+  [490] getobjprop 69 ........................... <tNextFile.length>
+  [492] pusharglist 4 ........................... <tNextFile, #char, tNextFile.length - 3, tNextFile.length>
+  [494] objcall 70 .............................. <tNextFile.char[tNextFile.length - 3..tNextFile.length]>
+  [496] setlocal 6 .............................. tTag = tNextFile.char[tNextFile.length - 3..tNextFile.length]
+  [498] getlocal 4 .............................. <tFiles>
+  [500] getlocal 6 .............................. <tTag>
+  [502] pusharglist 2 ........................... <tFiles, tTag>
+  [504] objcall 166 ............................. <tFiles.getPos(tTag)>
+  [506] pushzero ................................ <0>
+  [507] nteq .................................... <tFiles.getPos(tTag) <> 0>
+  [508] jmpifz [531] ............................ if tFiles.getPos(tTag) <> 0 then
+  [511] pushint8 1 .............................. <1>
+  [513] setlocal 2 .............................. tSingleFile = 1
+  [515] getlocal 5 .............................. <tTypes>
+  [517] getlocal 4 .............................. <tFiles>
+  [519] getlocal 6 .............................. <tTag>
+  [521] pusharglist 2 ........................... <tFiles, tTag>
+  [523] objcall 166 ............................. <tFiles.getPos(tTag)>
+  [525] pusharglist 2 ........................... <tTypes, tFiles.getPos(tTag)>
+  [527] objcall 105 ............................. <tTypes[tFiles.getPos(tTag)]>
+  [529] setlocal 3 .............................. tType = tTypes[tFiles.getPos(tTag)]
+  [531] getlocal 3 .............................. <tType>
+  [533] pusharglist 1 ........................... <tType>
+  [535] extcall 389 ............................. <voidp(tType)>
+  [538] pushint8 1 .............................. <1>
+  [540] eq ...................................... <voidp(tType) = 1>
+  [541] jmpifz [554] ............................ if voidp(tType) = 1 then
+  [544] pushcons 30 ............................. <"tType was VOID. This means it could be a folder or you're trying to import a file that is (currently) not supported.">
+  [546] pusharglistnoret 1 ...................... <"tType was VOID. This means it could be a folder or you're trying to import a file that is (currently) not supported.">
+  [548] extcall 511 ............................. ShowError("tType was VOID. This means it could be a folder or you're trying to import a file that is (currently) not supported.")
+  [551] jmp [704] ............................... next repeat
+  [554] getlocal 10 ............................. <tNextFile>
+  [556] pushsymb 68 ............................. <#char>
+  [558] pushint8 1 .............................. <1>
+  [560] getlocal 10 ............................. <tNextFile>
+  [562] getobjprop 69 ........................... <tNextFile.length>
+  [564] pushint8 4 .............................. <4>
+  [566] sub ..................................... <tNextFile.length - 4>
+  [567] pusharglist 4 ........................... <tNextFile, #char, 1, tNextFile.length - 4>
+  [569] objcall 70 .............................. <tNextFile.char[1..tNextFile.length - 4]>
+  [571] setlocal 11 ............................. tFutureName = tNextFile.char[1..tNextFile.length - 4]
+  [573] getlocal 11 ............................. <tFutureName>
+  [575] pusharglist 1 ........................... <tFutureName>
+  [577] extcall 64 .............................. <member(tFutureName)>
+  [579] pusharglist 0 ........................... <>
+  [581] extcall 40 .............................. <VOID>
+  [583] nteq .................................... <member(tFutureName) <> VOID>
+  [584] jmpifz [590] ............................ if member(tFutureName) <> VOID then
+  [587] jmp [704] ............................... next repeat
+  [590] pushcons 0 .............................. <EMPTY>
+  [592] pushsymb 598 ............................ <#type>
+  [595] getlocal 3 .............................. <tType>
+  [597] pushsymb 596 ............................ <#cast>
+  [600] getlocal 0 .............................. <tCast>
+  [602] pusharglist 4 ........................... <[#type: tType, #cast: tCast]>
+  [604] pushproplist ............................ <[#type: tType, #cast: tCast]>
+  [605] pusharglist 2 ........................... <EMPTY, [#type: tType, #cast: tCast]>
+  [607] extcall 597 ............................. <createMember(EMPTY, [#type: tType, #cast: tCast])>
+  [610] setlocal 7 .............................. tmember = createMember(EMPTY, [#type: tType, #cast: tCast])
+  [612] getlocal 3 .............................. <tType>
+  [614] peek 0 .................................. case tType of
+  [616] pushsymb 317 ............................ <#bitmap>
+  [619] eq
+  [620] jmpifz [651] ............................ (case) #bitmap:
+  [623] getlocal 7 .............................. <tmember>
+  [625] getparam 0 .............................. <tFile>
+  [627] getlocal 10 ............................. <tNextFile>
+  [629] joinstr ................................. <tFile & tNextFile>
+  [630] pushsymb 613 ............................ <#dither>
+  [633] pushzero ................................ <0>
+  [634] pushsymb 614 ............................ <#trimWhiteSpace>
+  [637] pushzero ................................ <0>
+  [638] pusharglist 4 ........................... <[#dither: 0, #trimWhiteSpace: 0]>
+  [640] pushproplist ............................ <[#dither: 0, #trimWhiteSpace: 0]>
+  [641] pusharglist 3 ........................... <tmember, tFile & tNextFile, [#dither: 0, #trimWhiteSpace: 0]>
+  [643] objcall 599 ............................. <tmember.importFileInto(tFile & tNextFile, [#dither: 0, #trimWhiteSpace: 0])>
+  [646] setlocal 8 .............................. tImported = tmember.importFileInto(tFile & tNextFile, [#dither: 0, #trimWhiteSpace: 0])
+  [648] jmp [702]
+  [651] peek 0
+  [653] pushsymb 80 ............................. <#text>
+  [655] eq
+  [656] jmpifz [688] ............................ (case) #text:
+  [659] getlocal 7 .............................. <tmember>
+  [661] getparam 0 .............................. <tFile>
+  [663] getlocal 10 ............................. <tNextFile>
+  [665] joinstr ................................. <tFile & tNextFile>
+  [666] pusharglist 2 ........................... <tmember, tFile & tNextFile>
+  [668] objcall 599 ............................. <tmember.importFileInto(tFile & tNextFile)>
+  [671] setlocal 8 .............................. tImported = tmember.importFileInto(tFile & tNextFile)
+  [673] getlocal 7 .............................. <tmember>
+  [675] getparam 1 .............................. <tDataList>
+  [677] pusharglist 1 ........................... <tDataList>
+  [679] objcall 233 ............................. <tDataList.duplicate()>
+  [681] pusharglistnoret 2 ...................... <tmember, tDataList.duplicate()>
+  [683] localcall 2 ............................. HandleTxt(tmember, tDataList.duplicate())
+  [685] jmp [702] ............................... (case) otherwise:
+  [688] getlocal 7 .............................. <tmember>
+  [690] getparam 0 .............................. <tFile>
+  [692] getlocal 10 ............................. <tNextFile>
+  [694] joinstr ................................. <tFile & tNextFile>
+  [695] pusharglist 2 ........................... <tmember, tFile & tNextFile>
+  [697] objcall 599 ............................. <tmember.importFileInto(tFile & tNextFile)>
+  [700] setlocal 8 .............................. tImported = tmember.importFileInto(tFile & tNextFile)
+  [702] pop 1 ................................... end case
+  [704] pushint8 1
+  [706] getlocal 9
+  [708] add
+  [709] setlocal 9
+  [711] endrepeat [436]
+  [714] getlocal 8 .............................. <tImported>
+  [716] pushzero ................................ <0>
+  [717] eq ...................................... <tImported = 0>
+  [718] jmpifz [738] ............................ if tImported = 0 then
+  [721] getlocal 7 .............................. <tmember>
+  [723] pusharglist 0 ........................... <>
+  [725] extcall 40 .............................. <VOID>
+  [727] nteq .................................... <tmember <> VOID>
+  [728] jmpifz [738] ............................ if tmember <> VOID then
+  [731] getlocal 7 .............................. <tmember>
+  [733] pusharglistnoret 1 ...................... <tmember>
+  [735] extcall 600 ............................. EraseMember(tmember)
+  [738] ret
+end
+
+on GetFileName tString
+  [  0] getmovieprop 145 ........................ <the itemDelimiter>
+  [  2] setlocal 0 .............................. pOldDelimiter = the itemDelimiter
+  [  4] pushcons 31 ............................. <"/">
+  [  6] setmovieprop 145 ........................ the itemDelimiter = "/"
+  [  8] getparam 0 .............................. <tString>
+  [ 10] pushsymb 83 ............................. <#item>
+  [ 12] getparam 0 .............................. <tString>
+  [ 14] pushsymb 83 ............................. <#item>
+  [ 16] pusharglist 2 ........................... <tString, #item>
+  [ 18] objcall 129 ............................. <tString.item.count>
+  [ 20] pusharglist 3 ........................... <tString, #item, tString.item.count>
+  [ 22] objcall 70 .............................. <tString.item[tString.item.count]>
+  [ 24] setlocal 1 .............................. pFullFileName = tString.item[tString.item.count]
+  [ 26] pushcons 32 ............................. <".">
+  [ 28] setmovieprop 145 ........................ the itemDelimiter = "."
+  [ 30] getlocal 1 .............................. <pFullFileName>
+  [ 32] pushsymb 83 ............................. <#item>
+  [ 34] pushint8 1 .............................. <1>
+  [ 36] pusharglist 3 ........................... <pFullFileName, #item, 1>
+  [ 38] objcall 70 .............................. <pFullFileName.item[1]>
+  [ 40] setlocal 2 .............................. pFilename = pFullFileName.item[1]
+  [ 42] getlocal 0 .............................. <pOldDelimiter>
+  [ 44] setmovieprop 145 ........................ the itemDelimiter = pOldDelimiter
+  [ 46] getlocal 2 .............................. <pFilename>
+  [ 48] pusharglistnoret 1 ...................... <pFilename>
+  [ 50] extcall 52 .............................. return pFilename
+  [ 52] ret
+end
+
+on FilterForCasts tString
+  [  0] getparam 0 .............................. <tString>
+  [  2] pusharglist 1 ........................... <tString>
+  [  4] extcall 64 .............................. <member(tString)>
+  [  6] setlocal 0 .............................. pMember = member(tString)
+  [  8] getlocal 0 .............................. <pMember>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <pMember = VOID>
+  [ 15] jmpifz [ 27] ............................ if pMember = VOID then
+  [ 18] pusharglist 0 ........................... <>
+  [ 20] extcall 40 .............................. <VOID>
+  [ 22] pusharglistnoret 1 ...................... <VOID>
+  [ 24] extcall 52 .............................. return VOID
+  [ 26] ret ..................................... exit
+  [ 27] getlocal 0 .............................. <pMember>
+  [ 29] getobjprop 598 .......................... <pMember.type>
+  [ 32] pushsymb 80 ............................. <#text>
+  [ 34] nteq .................................... <pMember.type <> #text>
+  [ 35] jmpifz [ 47] ............................ if pMember.type <> #text then
+  [ 38] pusharglist 0 ........................... <>
+  [ 40] extcall 40 .............................. <VOID>
+  [ 42] pusharglistnoret 1 ...................... <VOID>
+  [ 44] extcall 52 .............................. return VOID
+  [ 46] ret ..................................... exit
+  [ 47] pusharglist 0 ........................... <[]>
+  [ 49] pushlist ................................ <[]>
+  [ 50] setlocal 1 .............................. PList = []
+  [ 52] getlocal 0 .............................. <pMember>
+  [ 54] pushsymb 81 ............................. <#line>
+  [ 56] pusharglist 2 ........................... <pMember, #line>
+  [ 58] objcall 129 ............................. <pMember.line.count>
+  [ 60] setlocal 2 .............................. pCount = pMember.line.count
+  [ 62] getmovieprop 145 ........................ <the itemDelimiter>
+  [ 64] setlocal 3 .............................. pOldDelimiter = the itemDelimiter
+  [ 66] pushcons 9 .............................. <"\\">
+  [ 68] setmovieprop 145 ........................ the itemDelimiter = "\\"
+  [ 70] pushint8 1 .............................. <1>
+  [ 72] setlocal 4
+  [ 74] getlocal 4
+  [ 76] getlocal 2 .............................. <pCount>
+  [ 78] lteq
+  [ 79] jmpifz [136] ............................ repeat with i = 1 to pCount
+  [ 82] getlocal 0 .............................. <pMember>
+  [ 84] pushsymb 81 ............................. <#line>
+  [ 86] getlocal 4 .............................. <i>
+  [ 88] pusharglist 3 ........................... <pMember, #line, i>
+  [ 90] objcall 70 .............................. <pMember.line[i]>
+  [ 92] setlocal 5 .............................. pLine = pMember.line[i]
+  [ 94] getlocal 5 .............................. <pLine>
+  [ 96] pushsymb 83 ............................. <#item>
+  [ 98] pushint8 3 .............................. <3>
+  [100] pusharglist 3 ........................... <pLine, #item, 3>
+  [102] objcall 70 .............................. <pLine.item[3]>
+  [104] setlocal 6 .............................. pCast = pLine.item[3]
+  [106] getlocal 1 .............................. <PList>
+  [108] getlocal 6 .............................. <pCast>
+  [110] pusharglist 2 ........................... <PList, pCast>
+  [112] objcall 166 ............................. <PList.getPos(pCast)>
+  [114] pushzero ................................ <0>
+  [115] eq ...................................... <PList.getPos(pCast) = 0>
+  [116] jmpifz [127] ............................ if PList.getPos(pCast) = 0 then
+  [119] getlocal 1 .............................. <PList>
+  [121] getlocal 6 .............................. <pCast>
+  [123] pusharglistnoret 2 ...................... <PList, pCast>
+  [125] objcall 42 .............................. PList.add(pCast)
+  [127] pushint8 1
+  [129] getlocal 4
+  [131] add
+  [132] setlocal 4
+  [134] endrepeat [ 74]
+  [136] getlocal 3 .............................. <pOldDelimiter>
+  [138] setmovieprop 145 ........................ the itemDelimiter = pOldDelimiter
+  [140] getlocal 1 .............................. <PList>
+  [142] pusharglistnoret 1 ...................... <PList>
+  [144] extcall 52 .............................. return PList
+  [146] ret
+end
+
+on OnlineLoad tTarget, tLocation
+  [  0] pushcons 33 ............................. <"OnlineLoad">
+  [  2] pusharglistnoret 1 ...................... <"OnlineLoad">
+  [  4] extcall 57 .............................. put "OnlineLoad"
+  [  6] gettoplevelprop 33 ...................... <_movie>
+  [  8] pushcons 8 .............................. <"Internal">
+  [ 10] pusharglist 2 ........................... <_movie, "Internal">
+  [ 12] objcall 58 .............................. <_movie.castLib("Internal")>
+  [ 14] pushsymb 64 ............................. <#member>
+  [ 16] pusharglist 2 ........................... <_movie.castLib("Internal"), #member>
+  [ 18] objcall 129 ............................. <_movie.castLib("Internal").member.count>
+  [ 20] setlocal 0 .............................. tCount = _movie.castLib("Internal").member.count
+  [ 22] pushint8 1 .............................. <1>
+  [ 24] setlocal 1
+  [ 26] getlocal 1
+  [ 28] getlocal 0 .............................. <tCount>
+  [ 30] lteq
+  [ 31] jmpifz [ 73] ............................ repeat with i = 1 to tCount
+  [ 34] getlocal 1 .............................. <i>
+  [ 36] pushcons 8 .............................. <"Internal">
+  [ 38] pusharglist 2 ........................... <i, "Internal">
+  [ 40] extcall 64 .............................. <member(i, "Internal")>
+  [ 42] setlocal 2 .............................. tmember = member(i, "Internal")
+  [ 44] getlocal 2 .............................. <tmember>
+  [ 46] getobjprop 598 .......................... <tmember.type>
+  [ 49] pushsymb 80 ............................. <#text>
+  [ 51] eq ...................................... <tmember.type = #text>
+  [ 52] jmpifz [ 64] ............................ if tmember.type = #text then
+  [ 55] getlocal 2 .............................. <tmember>
+  [ 57] pusharglist 0 ........................... <[:]>
+  [ 59] pushproplist ............................ <[:]>
+  [ 60] pusharglistnoret 2 ...................... <tmember, [:]>
+  [ 62] localcall 2 ............................. HandleTxt(tmember, [:])
+  [ 64] pushint8 1
+  [ 66] getlocal 1
+  [ 68] add
+  [ 69] setlocal 1
+  [ 71] endrepeat [ 26]
+  [ 73] gettoplevelprop 33 ...................... <_movie>
+  [ 75] pushcons 34 ............................. <"TrackData">
+  [ 77] pusharglist 2 ........................... <_movie, "TrackData">
+  [ 79] objcall 58 .............................. <_movie.castLib("TrackData")>
+  [ 81] pushsymb 64 ............................. <#member>
+  [ 83] pusharglist 2 ........................... <_movie.castLib("TrackData"), #member>
+  [ 85] objcall 129 ............................. <_movie.castLib("TrackData").member.count>
+  [ 87] setlocal 0 .............................. tCount = _movie.castLib("TrackData").member.count
+  [ 89] pushint8 1 .............................. <1>
+  [ 91] setlocal 1
+  [ 93] getlocal 1
+  [ 95] getlocal 0 .............................. <tCount>
+  [ 97] lteq
+  [ 98] jmpifz [140] ............................ repeat with i = 1 to tCount
+  [101] getlocal 1 .............................. <i>
+  [103] pushcons 34 ............................. <"TrackData">
+  [105] pusharglist 2 ........................... <i, "TrackData">
+  [107] extcall 64 .............................. <member(i, "TrackData")>
+  [109] setlocal 2 .............................. tmember = member(i, "TrackData")
+  [111] getlocal 2 .............................. <tmember>
+  [113] getobjprop 598 .......................... <tmember.type>
+  [116] pushsymb 80 ............................. <#text>
+  [118] eq ...................................... <tmember.type = #text>
+  [119] jmpifz [131] ............................ if tmember.type = #text then
+  [122] getlocal 2 .............................. <tmember>
+  [124] pusharglist 0 ........................... <[:]>
+  [126] pushproplist ............................ <[:]>
+  [127] pusharglistnoret 2 ...................... <tmember, [:]>
+  [129] localcall 2 ............................. HandleTxt(tmember, [:])
+  [131] pushint8 1
+  [133] getlocal 1
+  [135] add
+  [136] setlocal 1
+  [138] endrepeat [ 93]
+  [140] ret
+end

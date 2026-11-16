@@ -1,0 +1,338 @@
+global gSystem, gLoader, gData, gSound, gGame
+
+on EvalTriggers me
+  [  0] pusharglist 0 ........................... <[]>
+  [  2] pushlist ................................ <[]>
+  [  3] setlocal 0 .............................. tDelList = []
+  [  5] getglobal 86 ............................ <gData>
+  [  7] getobjprop 447 .......................... <gData.Triggers>
+  [ 10] peek 0
+  [ 12] pusharglist 1
+  [ 14] extcall 129
+  [ 16] pushint8 1
+  [ 18] peek 0
+  [ 20] peek 2
+  [ 22] lteq
+  [ 23] jmpifz [201] ............................ repeat with i in gData.Triggers
+  [ 26] peek 2
+  [ 28] peek 1
+  [ 30] pusharglist 2
+  [ 32] extcall 105
+  [ 34] setlocal 1
+  [ 36] getlocal 1 .............................. <i>
+  [ 38] getlocal 1 .............................. <i>
+  [ 40] getobjprop 546 .......................... <i.Counter>
+  [ 43] pushint8 1 .............................. <1>
+  [ 45] add ..................................... <i.Counter + 1>
+  [ 46] setobjprop 546 .......................... i.Counter = i.Counter + 1
+  [ 49] getlocal 1 .............................. <i>
+  [ 51] getobjprop 546 .......................... <i.Counter>
+  [ 54] getlocal 1 .............................. <i>
+  [ 56] getobjprop 910 .......................... <i.frameFreq>
+  [ 59] eq ...................................... <i.Counter = i.frameFreq>
+  [ 60] jmpifz [196] ............................ if i.Counter = i.frameFreq then
+  [ 63] getlocal 1 .............................. <i>
+  [ 65] pushzero ................................ <0>
+  [ 66] setobjprop 546 .......................... i.Counter = 0
+  [ 69] pushint8 1 .............................. <1>
+  [ 71] setlocal 2 .............................. tVal = 1
+  [ 73] getlocal 1 .............................. <i>
+  [ 75] getobjprop 911 .......................... <i.trigger>
+  [ 78] peek 0
+  [ 80] pusharglist 1
+  [ 82] extcall 129
+  [ 84] pushint8 1
+  [ 86] peek 0
+  [ 88] peek 2
+  [ 90] lteq
+  [ 91] jmpifz [137] ............................ repeat with j in i.trigger
+  [ 94] peek 2
+  [ 96] peek 1
+  [ 98] pusharglist 2
+  [100] extcall 105
+  [102] setlocal 3
+  [104] getlocal 3 .............................. <j>
+  [106] pusharglist 1 ........................... <j>
+  [108] extcall 594 ............................. <StringEvaluator(j)>
+  [111] setlocal 4 .............................. tString = StringEvaluator(j)
+  [113] getlocal 4 .............................. <tString>
+  [115] pusharglist 1 ........................... <tString>
+  [117] extcall 503 ............................. <value(tString)>
+  [120] setlocal 2 .............................. tVal = value(tString)
+  [122] getlocal 2 .............................. <tVal>
+  [124] pushzero ................................ <0>
+  [125] eq ...................................... <tVal = 0>
+  [126] jmpifz [132] ............................ if tVal = 0 then
+  [129] jmp [137] ............................... exit repeat
+  [132] pushint8 1
+  [134] add
+  [135] endrepeat [ 86]
+  [137] pop 3
+  [139] getlocal 2 .............................. <tVal>
+  [141] pushint8 1 .............................. <1>
+  [143] eq ...................................... <tVal = 1>
+  [144] jmpifz [196] ............................ if tVal = 1 then
+  [147] getlocal 1 .............................. <i>
+  [149] getobjprop 148 .......................... <i.event>
+  [151] pusharglistnoret 1 ...................... <i.event>
+  [153] extcall 148 ............................. event(i.event)
+  [155] getlocal 1 .............................. <i>
+  [157] getobjprop 912 .......................... <i.RunOnce>
+  [160] pushzero ................................ <0>
+  [161] gt ...................................... <i.RunOnce > 0>
+  [162] jmpifz [196] ............................ if i.RunOnce > 0 then
+  [165] getlocal 1 .............................. <i>
+  [167] getlocal 1 .............................. <i>
+  [169] getobjprop 912 .......................... <i.RunOnce>
+  [172] pushint8 1 .............................. <1>
+  [174] sub ..................................... <i.RunOnce - 1>
+  [175] setobjprop 912 .......................... i.RunOnce = i.RunOnce - 1
+  [178] getlocal 1 .............................. <i>
+  [180] getobjprop 912 .......................... <i.RunOnce>
+  [183] pushzero ................................ <0>
+  [184] eq ...................................... <i.RunOnce = 0>
+  [185] jmpifz [196] ............................ if i.RunOnce = 0 then
+  [188] getlocal 0 .............................. <tDelList>
+  [190] getlocal 1 .............................. <i>
+  [192] pusharglistnoret 2 ...................... <tDelList, i>
+  [194] objcall 42 .............................. tDelList.add(i)
+  [196] pushint8 1
+  [198] add
+  [199] endrepeat [ 18]
+  [201] pop 3
+  [203] getlocal 0 .............................. <tDelList>
+  [205] peek 0
+  [207] pusharglist 1
+  [209] extcall 129
+  [211] pushint8 1
+  [213] peek 0
+  [215] peek 2
+  [217] lteq
+  [218] jmpifz [247] ............................ repeat with i in tDelList
+  [221] peek 2
+  [223] peek 1
+  [225] pusharglist 2
+  [227] extcall 105
+  [229] setlocal 1
+  [231] getglobal 86 ............................ <gData>
+  [233] getchainedprop 447 ...................... <gData.Triggers>
+  [236] getlocal 1 .............................. <i>
+  [238] pusharglistnoret 2 ...................... <gData.Triggers, i>
+  [240] objcall 175 ............................. gData.Triggers.deleteOne(i)
+  [242] pushint8 1
+  [244] add
+  [245] endrepeat [213]
+  [247] pop 3
+  [249] ret
+end
+
+on AddTrigger tTriggers, tDataList
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setlocal 0 .............................. tList = [:]
+  [  5] pushcons 0 .............................. <";">
+  [  7] pusharglistnoret 1 ...................... <";">
+  [  9] extcall 82 .............................. SetItemDelimiter(";")
+  [ 11] pusharglist 0 ........................... <[]>
+  [ 13] pushlist ................................ <[]>
+  [ 14] setlocal 1 .............................. tTriggerList = []
+  [ 16] getparam 0 .............................. <tTriggers>
+  [ 18] pushsymb 83 ............................. <#item>
+  [ 20] pusharglist 2 ........................... <tTriggers, #item>
+  [ 22] objcall 129 ............................. <tTriggers.item.count>
+  [ 24] setlocal 2 .............................. tCount = tTriggers.item.count
+  [ 26] pushint8 1 .............................. <1>
+  [ 28] setlocal 3
+  [ 30] getlocal 3
+  [ 32] getlocal 2 .............................. <tCount>
+  [ 34] lteq
+  [ 35] jmpifz [ 63] ............................ repeat with j = 1 to tCount
+  [ 38] getlocal 1 .............................. <tTriggerList>
+  [ 40] getparam 0 .............................. <tTriggers>
+  [ 42] pushsymb 83 ............................. <#item>
+  [ 44] getlocal 3 .............................. <j>
+  [ 46] pusharglist 3 ........................... <tTriggers, #item, j>
+  [ 48] objcall 70 .............................. <tTriggers.item[j]>
+  [ 50] pusharglistnoret 2 ...................... <tTriggerList, tTriggers.item[j]>
+  [ 52] objcall 42 .............................. tTriggerList.add(tTriggers.item[j])
+  [ 54] pushint8 1
+  [ 56] getlocal 3
+  [ 58] add
+  [ 59] setlocal 3
+  [ 61] endrepeat [ 30]
+  [ 63] getlocal 0 .............................. <tList>
+  [ 65] pushsymb 911 ............................ <#trigger>
+  [ 68] getlocal 1 .............................. <tTriggerList>
+  [ 70] pusharglistnoret 3 ...................... <tList, #trigger, tTriggerList>
+  [ 72] objcall 103 ............................. tList[#trigger] = tTriggerList
+  [ 74] getlocal 0 .............................. <tList>
+  [ 76] pushsymb 148 ............................ <#event>
+  [ 78] pushcons 1 .............................. <"DefaultEvent">
+  [ 80] pusharglistnoret 3 ...................... <tList, #event, "DefaultEvent">
+  [ 82] objcall 103 ............................. tList[#event] = "DefaultEvent"
+  [ 84] getlocal 0 .............................. <tList>
+  [ 86] pushsymb 912 ............................ <#RunOnce>
+  [ 89] pushint8 1 .............................. <1>
+  [ 91] pusharglistnoret 3 ...................... <tList, #RunOnce, 1>
+  [ 93] objcall 103 ............................. tList[#RunOnce] = 1
+  [ 95] getlocal 0 .............................. <tList>
+  [ 97] pushsymb 910 ............................ <#frameFreq>
+  [100] pushint8 1 .............................. <1>
+  [102] pusharglistnoret 3 ...................... <tList, #frameFreq, 1>
+  [104] objcall 103 ............................. tList[#frameFreq] = 1
+  [106] getlocal 0 .............................. <tList>
+  [108] pushsymb 546 ............................ <#Counter>
+  [111] pushzero ................................ <0>
+  [112] pusharglistnoret 3 ...................... <tList, #Counter, 0>
+  [114] objcall 103 ............................. tList[#Counter] = 0
+  [116] getparam 1 .............................. <tDataList>
+  [118] getobjprop 122 .......................... <tDataList.ilk>
+  [120] pushsymb 541 ............................ <#propList>
+  [123] nteq .................................... <tDataList.ilk <> #propList>
+  [124] jmpifz [136] ............................ if tDataList.ilk <> #propList then
+  [127] getparam 1 .............................. <tDataList>
+  [129] pusharglist 1 ........................... <tDataList>
+  [131] extcall 503 ............................. <value(tDataList)>
+  [134] setparam 1 .............................. tDataList = value(tDataList)
+  [136] getparam 1 .............................. <tDataList>
+  [138] pushsymb 148 ............................ <#event>
+  [140] pusharglist 2 ........................... <tDataList, #event>
+  [142] objcall 105 ............................. <tDataList[#event]>
+  [144] pusharglist 1 ........................... <tDataList[#event]>
+  [146] extcall 389 ............................. <voidp(tDataList[#event])>
+  [149] pushzero ................................ <0>
+  [150] eq ...................................... <voidp(tDataList[#event]) = 0>
+  [151] jmpifz [162] ............................ if voidp(tDataList[#event]) = 0 then
+  [154] getlocal 0 .............................. <tList>
+  [156] getparam 1 .............................. <tDataList>
+  [158] getobjprop 148 .......................... <tDataList.event>
+  [160] setobjprop 148 .......................... tList.event = tDataList.event
+  [162] getparam 1 .............................. <tDataList>
+  [164] pushsymb 912 ............................ <#RunOnce>
+  [167] pusharglist 2 ........................... <tDataList, #RunOnce>
+  [169] objcall 105 ............................. <tDataList[#RunOnce]>
+  [171] pusharglist 1 ........................... <tDataList[#RunOnce]>
+  [173] extcall 389 ............................. <voidp(tDataList[#RunOnce])>
+  [176] pushzero ................................ <0>
+  [177] eq ...................................... <voidp(tDataList[#RunOnce]) = 0>
+  [178] jmpifz [191] ............................ if voidp(tDataList[#RunOnce]) = 0 then
+  [181] getlocal 0 .............................. <tList>
+  [183] getparam 1 .............................. <tDataList>
+  [185] getobjprop 912 .......................... <tDataList.RunOnce>
+  [188] setobjprop 912 .......................... tList.RunOnce = tDataList.RunOnce
+  [191] getparam 1 .............................. <tDataList>
+  [193] pushsymb 910 ............................ <#frameFreq>
+  [196] pusharglist 2 ........................... <tDataList, #frameFreq>
+  [198] objcall 105 ............................. <tDataList[#frameFreq]>
+  [200] pusharglist 1 ........................... <tDataList[#frameFreq]>
+  [202] extcall 389 ............................. <voidp(tDataList[#frameFreq])>
+  [205] pushzero ................................ <0>
+  [206] eq ...................................... <voidp(tDataList[#frameFreq]) = 0>
+  [207] jmpifz [220] ............................ if voidp(tDataList[#frameFreq]) = 0 then
+  [210] getlocal 0 .............................. <tList>
+  [212] getparam 1 .............................. <tDataList>
+  [214] getobjprop 910 .......................... <tDataList.frameFreq>
+  [217] setobjprop 910 .......................... tList.frameFreq = tDataList.frameFreq
+  [220] getglobal 86 ............................ <gData>
+  [222] getchainedprop 447 ...................... <gData.Triggers>
+  [225] getlocal 0 .............................. <tList>
+  [227] pusharglist 1 ........................... <tList>
+  [229] objcall 233 ............................. <tList.duplicate()>
+  [231] pusharglistnoret 2 ...................... <gData.Triggers, tList.duplicate()>
+  [233] objcall 42 .............................. gData.Triggers.add(tList.duplicate())
+  [235] ret
+end
+
+on Evaluate me, tTarget, tDataList
+  [  0] getparam 2 .............................. <tDataList>
+  [  2] getobjprop 122 .......................... <tDataList.ilk>
+  [  4] pushsymb 67 ............................. <#string>
+  [  6] eq ...................................... <tDataList.ilk = #string>
+  [  7] jmpifz [ 19] ............................ if tDataList.ilk = #string then
+  [ 10] getparam 2 .............................. <tDataList>
+  [ 12] pusharglist 1 ........................... <tDataList>
+  [ 14] extcall 503 ............................. <value(tDataList)>
+  [ 17] setparam 2 .............................. tDataList = value(tDataList)
+  [ 19] getparam 2 .............................. <tDataList>
+  [ 21] getobjprop 122 .......................... <tDataList.ilk>
+  [ 23] pushsymb 541 ............................ <#propList>
+  [ 26] nteq .................................... <tDataList.ilk <> #propList>
+  [ 27] jmpifz [ 35] ............................ if tDataList.ilk <> #propList then
+  [ 30] pushzero ................................ <0>
+  [ 31] pusharglistnoret 1 ...................... <0>
+  [ 33] extcall 52 .............................. return 0
+  [ 35] pushcons 0 .............................. <";">
+  [ 37] pusharglistnoret 1 ...................... <";">
+  [ 39] extcall 82 .............................. SetItemDelimiter(";")
+  [ 41] pushint8 1 .............................. <1>
+  [ 43] setlocal 0 .............................. tState = 1
+  [ 45] pushint8 1 .............................. <1>
+  [ 47] setlocal 1
+  [ 49] getlocal 1
+  [ 51] getparam 1 .............................. <tTarget>
+  [ 53] pushsymb 83 ............................. <#item>
+  [ 55] pusharglist 2 ........................... <tTarget, #item>
+  [ 57] objcall 129 ............................. <tTarget.item.count>
+  [ 59] lteq
+  [ 60] jmpifz [ 97] ............................ repeat with i = 1 to tTarget.item.count
+  [ 63] getparam 1 .............................. <tTarget>
+  [ 65] pushsymb 83 ............................. <#item>
+  [ 67] getlocal 1 .............................. <i>
+  [ 69] pusharglist 3 ........................... <tTarget, #item, i>
+  [ 71] objcall 70 .............................. <tTarget.item[i]>
+  [ 73] pusharglist 1 ........................... <tTarget.item[i]>
+  [ 75] extcall 503 ............................. <value(tTarget.item[i])>
+  [ 78] pushzero ................................ <0>
+  [ 79] eq ...................................... <value(tTarget.item[i]) = 0>
+  [ 80] jmpifz [ 88] ............................ if value(tTarget.item[i]) = 0 then
+  [ 83] pushzero ................................ <0>
+  [ 84] pusharglistnoret 1 ...................... <0>
+  [ 86] extcall 52 .............................. return 0
+  [ 88] pushint8 1
+  [ 90] getlocal 1
+  [ 92] add
+  [ 93] setlocal 1
+  [ 95] endrepeat [ 49]
+  [ 97] pusharglist 0 ........................... <>
+  [ 99] extcall 40 .............................. <VOID>
+  [101] setlocal 2 .............................. tEvent = VOID
+  [103] getparam 2 .............................. <tDataList>
+  [105] pushsymb 148 ............................ <#event>
+  [107] pusharglist 2 ........................... <tDataList, #event>
+  [109] objcall 105 ............................. <tDataList[#event]>
+  [111] getobjprop 122 .......................... <tDataList[#event].ilk>
+  [113] pushsymb 67 ............................. <#string>
+  [115] eq ...................................... <tDataList[#event].ilk = #string>
+  [116] jmpifz [125] ............................ if tDataList[#event].ilk = #string then
+  [119] getparam 2 .............................. <tDataList>
+  [121] getobjprop 148 .......................... <tDataList.event>
+  [123] setlocal 2 .............................. tEvent = tDataList.event
+  [125] getparam 2 .............................. <tDataList>
+  [127] pushsymb 786 ............................ <#handler>
+  [130] pusharglist 2 ........................... <tDataList, #handler>
+  [132] objcall 105 ............................. <tDataList[#handler]>
+  [134] getobjprop 122 .......................... <tDataList[#handler].ilk>
+  [136] pushsymb 67 ............................. <#string>
+  [138] eq ...................................... <tDataList[#handler].ilk = #string>
+  [139] jmpifz [158] ............................ if tDataList[#handler].ilk = #string then
+  [142] pushzero ................................ <0>
+  [143] getparam 2 .............................. <tDataList>
+  [145] getobjprop 786 .......................... <tDataList.handler>
+  [148] pusharglist 1 ........................... <tDataList.handler>
+  [150] extcall 88 .............................. <symbol(tDataList.handler)>
+  [152] pushzero ................................ <0>
+  [153] pusharglistnoret 3 ...................... <0, symbol(tDataList.handler), 0>
+  [155] extcall 362 ............................. sendSprite(0, symbol(tDataList.handler), 0)
+  [158] getlocal 2 .............................. <tEvent>
+  [160] pusharglist 0 ........................... <>
+  [162] extcall 40 .............................. <VOID>
+  [164] nteq .................................... <tEvent <> VOID>
+  [165] jmpifz [174] ............................ if tEvent <> VOID then
+  [168] getlocal 2 .............................. <tEvent>
+  [170] pusharglistnoret 1 ...................... <tEvent>
+  [172] extcall 148 ............................. event(tEvent)
+  [174] pushint8 1 .............................. <1>
+  [176] pusharglistnoret 1 ...................... <1>
+  [178] extcall 52 .............................. return 1
+  [180] ret
+end

@@ -1,0 +1,739 @@
+property p
+global gData, gGame
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 487 ............................ <#sprite>
+  [ 12] getparam 1 .............................. <tParams>
+  [ 14] pushsymb 564 ............................ <#SpriteNR>
+  [ 17] pusharglist 2 ........................... <tParams, #SpriteNR>
+  [ 19] objcall 105 ............................. <tParams[#SpriteNR]>
+  [ 21] pusharglist 1 ........................... <tParams[#SpriteNR]>
+  [ 23] extcall 487 ............................. <sprite(tParams[#SpriteNR])>
+  [ 26] pusharglistnoret 3 ...................... <p, #sprite, sprite(tParams[#SpriteNR])>
+  [ 28] objcall 103 ............................. p[#sprite] = sprite(tParams[#SpriteNR])
+  [ 30] getprop 563 ............................. <p>
+  [ 33] pushsymb 64 ............................. <#member>
+  [ 35] getparam 1 .............................. <tParams>
+  [ 37] pushsymb 949 ............................ <#memberName>
+  [ 40] pusharglist 2 ........................... <tParams, #memberName>
+  [ 42] objcall 105 ............................. <tParams[#memberName]>
+  [ 44] pusharglist 1 ........................... <tParams[#memberName]>
+  [ 46] extcall 64 .............................. <member(tParams[#memberName])>
+  [ 48] pusharglistnoret 3 ...................... <p, #member, member(tParams[#memberName])>
+  [ 50] objcall 103 ............................. p[#member] = member(tParams[#memberName])
+  [ 52] getprop 563 ............................. <p>
+  [ 55] pushsymb 953 ............................ <#button>
+  [ 58] pusharglist 0 ........................... <>
+  [ 60] extcall 40 .............................. <VOID>
+  [ 62] pusharglistnoret 3 ...................... <p, #button, VOID>
+  [ 64] objcall 103 ............................. p[#button] = VOID
+  [ 66] getprop 563 ............................. <p>
+  [ 69] pushsymb 954 ............................ <#PreviousButton>
+  [ 72] pusharglist 0 ........................... <>
+  [ 74] extcall 40 .............................. <VOID>
+  [ 76] pusharglistnoret 3 ...................... <p, #PreviousButton, VOID>
+  [ 78] objcall 103 ............................. p[#PreviousButton] = VOID
+  [ 80] getprop 563 ............................. <p>
+  [ 83] pushsymb 363 ............................ <#mouseDown>
+  [ 86] pushzero ................................ <0>
+  [ 87] pusharglistnoret 3 ...................... <p, #mouseDown, 0>
+  [ 89] objcall 103 ............................. p[#mouseDown] = 0
+  [ 91] getprop 563 ............................. <p>
+  [ 94] pushsymb 2560 ........................... <#rightMouseDown>
+  [ 97] pushzero ................................ <0>
+  [ 98] pusharglistnoret 3 ...................... <p, #rightMouseDown, 0>
+  [100] objcall 103 ............................. p[#rightMouseDown] = 0
+  [102] getprop 563 ............................. <p>
+  [105] pushsymb 579 ............................ <#EnterName>
+  [108] pushzero ................................ <0>
+  [109] pusharglistnoret 3 ...................... <p, #EnterName, 0>
+  [111] objcall 103 ............................. p[#EnterName] = 0
+  [113] getprop 563 ............................. <p>
+  [116] pushsymb 2578 ........................... <#StandardName>
+  [119] pushcons 0 .............................. <"PLAYER">
+  [121] pusharglistnoret 3 ...................... <p, #StandardName, "PLAYER">
+  [123] objcall 103 ............................. p[#StandardName] = "PLAYER"
+  [125] getprop 563 ............................. <p>
+  [128] pushsymb 2579 ........................... <#Bar>
+  [131] pushcons 1 .............................. <"|">
+  [133] pusharglistnoret 3 ...................... <p, #Bar, "|">
+  [135] objcall 103 ............................. p[#Bar] = "|"
+  [137] getprop 563 ............................. <p>
+  [140] pushsymb 2580 ........................... <#BarState>
+  [143] pushzero ................................ <0>
+  [144] pusharglistnoret 3 ...................... <p, #BarState, 0>
+  [146] objcall 103 ............................. p[#BarState] = 0
+  [148] getprop 563 ............................. <p>
+  [151] pushsymb 235 ............................ <#name>
+  [153] getprop 563 ............................. <p>
+  [156] getobjprop 2578 ......................... <p.StandardName>
+  [159] pusharglistnoret 3 ...................... <p, #name, p.StandardName>
+  [161] objcall 103 ............................. p[#name] = p.StandardName
+  [163] getprop 563 ............................. <p>
+  [166] pushsymb 2581 ........................... <#StoredName>
+  [169] getprop 563 ............................. <p>
+  [172] getobjprop 235 .......................... <p.name>
+  [174] pusharglistnoret 3 ...................... <p, #StoredName, p.name>
+  [176] objcall 103 ............................. p[#StoredName] = p.name
+  [178] getprop 563 ............................. <p>
+  [181] pushsymb 2582 ........................... <#AmountChars>
+  [184] pushint8 10 ............................. <10>
+  [186] pusharglistnoret 3 ...................... <p, #AmountChars, 10>
+  [188] objcall 103 ............................. p[#AmountChars] = 10
+  [190] getprop 563 ............................. <p>
+  [193] pushsymb 2583 ........................... <#AllowedChars>
+  [196] pushcons 2 .............................. <"abcdefghijklmnopqrstuvwxyz1234567890">
+  [198] pusharglistnoret 3 ...................... <p, #AllowedChars, "abcdefghijklmnopqrstuvwxyz1234567890">
+  [200] objcall 103 ............................. p[#AllowedChars] = "abcdefghijklmnopqrstuvwxyz1234567890"
+  [202] pushzero ................................ <0>
+  [203] pushcons 3 .............................. <"Main">
+  [205] pushsymb 80 ............................. <#text>
+  [207] getglobal 86 ............................ <gData>
+  [209] getchainedprop 87 ....................... <gData.data>
+  [211] getchainedprop 80 ....................... <gData.data.text>
+  [213] getobjprop 1756 ......................... <gData.data.text.PlayerName>
+  [216] pushsymb 218 ............................ <#texture>
+  [218] pushcons 4 .............................. <"PlayerName_Texture">
+  [220] pushsymb 219 ............................ <#align>
+  [222] pushsymb 1907 ........................... <#center>
+  [225] pushsymb 221 ............................ <#fontSize>
+  [227] pushint8 26 ............................. <26>
+  [229] pushsymb 222 ............................ <#lineSpacing>
+  [231] pushint8 18 ............................. <18>
+  [233] pushsymb 229 ............................ <#width>
+  [235] pushint16 512 ........................... <512>
+  [238] pushsymb 223 ............................ <#color>
+  [240] getglobal 86 ............................ <gData>
+  [242] getchainedprop 87 ....................... <gData.data>
+  [244] getchainedprop 224 ...................... <gData.data.TextColor>
+  [246] getobjprop 225 .......................... <gData.data.TextColor.White>
+  [248] pushsymb 642 ............................ <#filters>
+  [251] getglobal 86 ............................ <gData>
+  [253] getchainedprop 87 ....................... <gData.data>
+  [255] getchainedprop 643 ...................... <gData.data.ButtonFilters>
+  [258] getobjprop 1835 ......................... <gData.data.ButtonFilters.BR3Bevel>
+  [261] getglobal 86 ............................ <gData>
+  [263] getchainedprop 87 ....................... <gData.data>
+  [265] getchainedprop 643 ...................... <gData.data.ButtonFilters>
+  [268] getobjprop 644 .......................... <gData.data.ButtonFilters.BR3GlowWhite>
+  [271] pusharglist 2 ........................... <[gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]>
+  [273] pushlist ................................ <[gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]>
+  [274] pushsymb 226 ............................ <#nearFiltering>
+  [276] pushint8 1 .............................. <1>
+  [278] pusharglist 18 .......................... <[#text: gData.data.text.PlayerName, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite], #nearFiltering: 1]>
+  [280] pushproplist ............................ <[#text: gData.data.text.PlayerName, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite], #nearFiltering: 1]>
+  [281] pusharglistnoret 3 ...................... <0, "Main", [#text: gData.data.text.PlayerName, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite], #nearFiltering: 1]>
+  [283] extcall 217 ............................. CreateTextTexture(0, "Main", [#text: gData.data.text.PlayerName, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite], #nearFiltering: 1])
+  [285] getprop 563 ............................. <p>
+  [288] pushsymb 45 ............................. <#me>
+  [290] getparam 0 .............................. <me>
+  [292] pusharglistnoret 3 ...................... <p, #me, me>
+  [294] objcall 103 ............................. p[#me] = me
+  [296] getglobal 43 ............................ <gGame>
+  [298] pushsymb 579 ............................ <#EnterName>
+  [301] getparam 0 .............................. <me>
+  [303] pusharglistnoret 3 ...................... <gGame, #EnterName, me>
+  [305] objcall 103 ............................. gGame[#EnterName] = me
+  [307] getparam 0 .............................. <me>
+  [309] pusharglistnoret 1 ...................... <me>
+  [311] extcall 52 .............................. return me
+  [313] ret
+end
+
+on enterFrame me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 579 .......................... <p.EnterName>
+  [  6] pushzero ................................ <0>
+  [  7] eq ...................................... <p.EnterName = 0>
+  [  8] jmpifz [218] ............................ if p.EnterName = 0 then / else
+  [ 11] getprop 563 ............................. <p>
+  [ 14] getobjprop 363 .......................... <p.mouseDown>
+  [ 17] pushzero ................................ <0>
+  [ 18] eq ...................................... <p.mouseDown = 0>
+  [ 19] jmpifz [149] ............................ if p.mouseDown = 0 then
+  [ 22] pushcons 3 .............................. <"Main">
+  [ 24] pusharglist 1 ........................... <"Main">
+  [ 26] extcall 64 .............................. <member("Main")>
+  [ 28] pushcons 5 .............................. <"3D_Camera">
+  [ 30] pusharglist 2 ........................... <member("Main"), "3D_Camera">
+  [ 32] objcall 298 ............................. <member("Main").camera("3D_Camera")>
+  [ 35] gettoplevelprop 964 ..................... <_mouse>
+  [ 38] getobjprop 970 .......................... <_mouse.mouseLoc>
+  [ 41] pusharglist 2 ........................... <member("Main").camera("3D_Camera"), _mouse.mouseLoc>
+  [ 43] objcall 2574 ............................ <member("Main").camera("3D_Camera").modelUnderLoc(_mouse.mouseLoc)>
+  [ 46] setlocal 0 .............................. tmodel = member("Main").camera("3D_Camera").modelUnderLoc(_mouse.mouseLoc)
+  [ 48] getlocal 0 .............................. <tmodel>
+  [ 50] pusharglist 0 ........................... <>
+  [ 52] extcall 40 .............................. <VOID>
+  [ 54] nteq .................................... <tmodel <> VOID>
+  [ 55] jmpifz [ 89] ............................ if tmodel <> VOID then
+  [ 58] getlocal 0 .............................. <tmodel>
+  [ 60] getobjprop 235 .......................... <tmodel.name>
+  [ 62] pushcons 6 .............................. <"EnterNameText">
+  [ 64] eq ...................................... <tmodel.name = "EnterNameText">
+  [ 65] jmpifz [ 79] ............................ if tmodel.name = "EnterNameText" then / else
+  [ 68] getprop 563 ............................. <p>
+  [ 71] getlocal 0 .............................. <tmodel>
+  [ 73] setobjprop 953 .......................... p.button = tmodel
+  [ 76] jmp [ 89]
+  [ 79] getprop 563 ............................. <p>
+  [ 82] pusharglist 0 ........................... <>
+  [ 84] extcall 40 .............................. <VOID>
+  [ 86] setobjprop 953 .......................... p.button = VOID
+  [ 89] getprop 563 ............................. <p>
+  [ 92] getobjprop 953 .......................... <p.button>
+  [ 95] pusharglist 0 ........................... <>
+  [ 97] extcall 40 .............................. <VOID>
+  [ 99] eq ...................................... <p.button = VOID>
+  [100] getprop 563 ............................. <p>
+  [103] getobjprop 954 .......................... <p.PreviousButton>
+  [106] pusharglist 0 ........................... <>
+  [108] extcall 40 .............................. <VOID>
+  [110] nteq .................................... <p.PreviousButton <> VOID>
+  [111] and ..................................... <(p.button = VOID) and (p.PreviousButton <> VOID)>
+  [112] jmpifz [128] ............................ if (p.button = VOID) and (p.PreviousButton <> VOID) then
+  [115] getparam 0 .............................. <me>
+  [117] getprop 563 ............................. <p>
+  [120] getobjprop 954 .......................... <p.PreviousButton>
+  [123] pusharglistnoret 2 ...................... <me, p.PreviousButton>
+  [125] objcall 2547 ............................ me.ButtonLeave(p.PreviousButton)
+  [128] getprop 563 ............................. <p>
+  [131] getobjprop 953 .......................... <p.button>
+  [134] pusharglist 0 ........................... <>
+  [136] extcall 40 .............................. <VOID>
+  [138] nteq .................................... <p.button <> VOID>
+  [139] jmpifz [149] ............................ if p.button <> VOID then
+  [142] getparam 0 .............................. <me>
+  [144] pusharglistnoret 1 ...................... <me>
+  [146] objcall 2546 ............................ me.ButtonEnter()
+  [149] gettoplevelprop 964 ..................... <_mouse>
+  [152] getobjprop 363 .......................... <_mouse.mouseDown>
+  [155] getprop 563 ............................. <p>
+  [158] getobjprop 953 .......................... <p.button>
+  [161] pusharglist 0 ........................... <>
+  [163] extcall 40 .............................. <VOID>
+  [165] nteq .................................... <p.button <> VOID>
+  [166] and ..................................... <_mouse.mouseDown and (p.button <> VOID)>
+  [167] jmpifz [177] ............................ if _mouse.mouseDown and (p.button <> VOID) then
+  [170] getparam 0 .............................. <me>
+  [172] pusharglistnoret 1 ...................... <me>
+  [174] objcall 2548 ............................ me.ButtonDown()
+  [177] gettoplevelprop 964 ..................... <_mouse>
+  [180] getobjprop 365 .......................... <_mouse.mouseUp>
+  [183] getprop 563 ............................. <p>
+  [186] getobjprop 953 .......................... <p.button>
+  [189] pusharglist 0 ........................... <>
+  [191] extcall 40 .............................. <VOID>
+  [193] nteq .................................... <p.button <> VOID>
+  [194] and ..................................... <_mouse.mouseUp and (p.button <> VOID)>
+  [195] getprop 563 ............................. <p>
+  [198] getobjprop 363 .......................... <p.mouseDown>
+  [201] pushint8 1 .............................. <1>
+  [203] eq ...................................... <p.mouseDown = 1>
+  [204] and ..................................... <_mouse.mouseUp and (p.button <> VOID) and (p.mouseDown = 1)>
+  [205] jmpifz [215] ............................ if _mouse.mouseUp and (p.button <> VOID) and (p.mouseDown = 1) then
+  [208] getparam 0 .............................. <me>
+  [210] pusharglistnoret 1 ...................... <me>
+  [212] objcall 2549 ............................ me.ButtonUp()
+  [215] jmp [218]
+  [218] ret
+end
+
+on ButtonEnter me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 953 .......................... <p.button>
+  [  6] getprop 563 ............................. <p>
+  [  9] getobjprop 954 .......................... <p.PreviousButton>
+  [ 12] eq ...................................... <p.button = p.PreviousButton>
+  [ 13] jmpifz [ 23] ............................ if p.button = p.PreviousButton then / else
+  [ 16] pusharglistnoret 0 ...................... <>
+  [ 18] extcall 52 .............................. return 
+  [ 20] jmp [ 36]
+  [ 23] getparam 0 .............................. <me>
+  [ 25] getprop 563 ............................. <p>
+  [ 28] getobjprop 954 .......................... <p.PreviousButton>
+  [ 31] pusharglistnoret 2 ...................... <me, p.PreviousButton>
+  [ 33] objcall 2547 ............................ me.ButtonLeave(p.PreviousButton)
+  [ 36] gettoplevelprop 387 ..................... <_player>
+  [ 39] pushint16 280 ........................... <280>
+  [ 42] pusharglistnoret 2 ...................... <_player, 280>
+  [ 44] objcall 766 ............................. _player.cursor(280)
+  [ 47] getprop 563 ............................. <p>
+  [ 50] getprop 563 ............................. <p>
+  [ 53] getobjprop 953 .......................... <p.button>
+  [ 56] setobjprop 954 .......................... p.PreviousButton = p.button
+  [ 59] ret
+end
+
+on ButtonLeave me, tButton
+  [  0] gettoplevelprop 387 ..................... <_player>
+  [  3] pushint8 1 .............................. <1>
+  [  5] inv ..................................... <-1>
+  [  6] pusharglistnoret 2 ...................... <_player, -1>
+  [  8] objcall 766 ............................. _player.cursor(-1)
+  [ 11] getprop 563 ............................. <p>
+  [ 14] pusharglist 0 ........................... <>
+  [ 16] extcall 40 .............................. <VOID>
+  [ 18] setobjprop 954 .......................... p.PreviousButton = VOID
+  [ 21] ret
+end
+
+on ButtonDown me
+  [  0] pushcons 7 .............................. <"ButtonPressed_SFX">
+  [  2] pusharglistnoret 1 ...................... <"ButtonPressed_SFX">
+  [  4] extcall 289 ............................. PlaySound("ButtonPressed_SFX")
+  [  7] getprop 563 ............................. <p>
+  [ 10] pushint8 1 .............................. <1>
+  [ 12] setobjprop 579 .......................... p.EnterName = 1
+  [ 15] pushzero ................................ <0>
+  [ 16] pushcons 3 .............................. <"Main">
+  [ 18] pushsymb 80 ............................. <#text>
+  [ 20] getprop 563 ............................. <p>
+  [ 23] getobjprop 235 .......................... <p.name>
+  [ 25] pushsymb 218 ............................ <#texture>
+  [ 27] pushcons 4 .............................. <"PlayerName_Texture">
+  [ 29] pushsymb 219 ............................ <#align>
+  [ 31] pushsymb 1907 ........................... <#center>
+  [ 34] pushsymb 221 ............................ <#fontSize>
+  [ 36] pushint8 26 ............................. <26>
+  [ 38] pushsymb 222 ............................ <#lineSpacing>
+  [ 40] pushint8 18 ............................. <18>
+  [ 42] pushsymb 229 ............................ <#width>
+  [ 44] pushint16 512 ........................... <512>
+  [ 47] pushsymb 223 ............................ <#color>
+  [ 49] getglobal 86 ............................ <gData>
+  [ 51] getchainedprop 87 ....................... <gData.data>
+  [ 53] getchainedprop 224 ...................... <gData.data.TextColor>
+  [ 55] getobjprop 225 .......................... <gData.data.TextColor.White>
+  [ 57] pushsymb 642 ............................ <#filters>
+  [ 60] getglobal 86 ............................ <gData>
+  [ 62] getchainedprop 87 ....................... <gData.data>
+  [ 64] getchainedprop 643 ...................... <gData.data.ButtonFilters>
+  [ 67] getobjprop 1835 ......................... <gData.data.ButtonFilters.BR3Bevel>
+  [ 70] getglobal 86 ............................ <gData>
+  [ 72] getchainedprop 87 ....................... <gData.data>
+  [ 74] getchainedprop 643 ...................... <gData.data.ButtonFilters>
+  [ 77] getobjprop 644 .......................... <gData.data.ButtonFilters.BR3GlowWhite>
+  [ 80] pusharglist 2 ........................... <[gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]>
+  [ 82] pushlist ................................ <[gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]>
+  [ 83] pusharglist 16 .......................... <[#text: p.name, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]]>
+  [ 85] pushproplist ............................ <[#text: p.name, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]]>
+  [ 86] pusharglistnoret 3 ...................... <0, "Main", [#text: p.name, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]]>
+  [ 88] extcall 217 ............................. CreateTextTexture(0, "Main", [#text: p.name, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]])
+  [ 90] pushzero ................................ <0>
+  [ 91] pushcons 3 .............................. <"Main">
+  [ 93] pushsymb 80 ............................. <#text>
+  [ 95] getglobal 86 ............................ <gData>
+  [ 97] getchainedprop 87 ....................... <gData.data>
+  [ 99] getchainedprop 80 ....................... <gData.data.text>
+  [101] getobjprop 2584 ......................... <gData.data.text.PlayerNameInfo>
+  [104] pushsymb 218 ............................ <#texture>
+  [106] pushcons 8 .............................. <"Warning_Texture">
+  [108] pushsymb 221 ............................ <#fontSize>
+  [110] pushint8 15 ............................. <15>
+  [112] pushsymb 229 ............................ <#width>
+  [114] pushint16 512 ........................... <512>
+  [117] pushsymb 223 ............................ <#color>
+  [119] getglobal 86 ............................ <gData>
+  [121] getchainedprop 87 ....................... <gData.data>
+  [123] getchainedprop 224 ...................... <gData.data.TextColor>
+  [125] getobjprop 225 .......................... <gData.data.TextColor.White>
+  [127] pushsymb 642 ............................ <#filters>
+  [130] getglobal 86 ............................ <gData>
+  [132] getchainedprop 87 ....................... <gData.data>
+  [134] getchainedprop 643 ...................... <gData.data.ButtonFilters>
+  [137] getobjprop 1835 ......................... <gData.data.ButtonFilters.BR3Bevel>
+  [140] getglobal 86 ............................ <gData>
+  [142] getchainedprop 87 ....................... <gData.data>
+  [144] getchainedprop 643 ...................... <gData.data.ButtonFilters>
+  [147] getobjprop 644 .......................... <gData.data.ButtonFilters.BR3GlowWhite>
+  [150] pusharglist 2 ........................... <[gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]>
+  [152] pushlist ................................ <[gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]>
+  [153] pusharglist 12 .......................... <[#text: gData.data.text.PlayerNameInfo, #texture: "Warning_Texture", #fontSize: 15, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]]>
+  [155] pushproplist ............................ <[#text: gData.data.text.PlayerNameInfo, #texture: "Warning_Texture", #fontSize: 15, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]]>
+  [156] pusharglistnoret 3 ...................... <0, "Main", [#text: gData.data.text.PlayerNameInfo, #texture: "Warning_Texture", #fontSize: 15, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]]>
+  [158] extcall 217 ............................. CreateTextTexture(0, "Main", [#text: gData.data.text.PlayerNameInfo, #texture: "Warning_Texture", #fontSize: 15, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]])
+  [160] pushzero ................................ <0>
+  [161] pushcons 3 .............................. <"Main">
+  [163] pushsymb 71 ............................. <#model>
+  [165] pushcons 9 .............................. <"EnterNameWarning">
+  [167] pushsymb 207 ............................ <#parent>
+  [169] pushcons 10 ............................. <"EnterName">
+  [171] pushsymb 89 ............................. <#state>
+  [173] pushint8 1 .............................. <1>
+  [175] pusharglist 6 ........................... <[#model: "EnterNameWarning", #parent: "EnterName", #state: 1]>
+  [177] pushproplist ............................ <[#model: "EnterNameWarning", #parent: "EnterName", #state: 1]>
+  [178] pusharglistnoret 3 ...................... <0, "Main", [#model: "EnterNameWarning", #parent: "EnterName", #state: 1]>
+  [180] extcall 228 ............................. SETVISIBLE(0, "Main", [#model: "EnterNameWarning", #parent: "EnterName", #state: 1])
+  [182] pushzero ................................ <0>
+  [183] pushcons 3 .............................. <"Main">
+  [185] pushsymb 71 ............................. <#model>
+  [187] pushcons 11 ............................. <"BackButton">
+  [189] pushcons 12 ............................. <"NextButton">
+  [191] pusharglist 2 ........................... <["BackButton", "NextButton"]>
+  [193] pushlist ................................ <["BackButton", "NextButton"]>
+  [194] pushsymb 89 ............................. <#state>
+  [196] pushzero ................................ <0>
+  [197] pusharglist 4 ........................... <[#model: ["BackButton", "NextButton"], #state: 0]>
+  [199] pushproplist ............................ <[#model: ["BackButton", "NextButton"], #state: 0]>
+  [200] pusharglistnoret 3 ...................... <0, "Main", [#model: ["BackButton", "NextButton"], #state: 0]>
+  [202] extcall 228 ............................. SETVISIBLE(0, "Main", [#model: ["BackButton", "NextButton"], #state: 0])
+  [204] pusharglist 0 ........................... <>
+  [206] extcall 238 ............................. <timeout()>
+  [208] pushcons 13 ............................. <"UpdateVerticalBar">
+  [210] pushint16 500 ........................... <500>
+  [213] pushsymb 2575 ........................... <#UpdateVerticalBar>
+  [216] getprop 563 ............................. <p>
+  [219] getobjprop 45 ........................... <p.me>
+  [221] pusharglistnoret 5 ...................... <timeout(), "UpdateVerticalBar", 500, #UpdateVerticalBar, p.me>
+  [223] objcall 35 .............................. timeout().new("UpdateVerticalBar", 500, #UpdateVerticalBar, p.me)
+  [225] getprop 563 ............................. <p>
+  [228] pusharglist 0 ........................... <>
+  [230] extcall 40 .............................. <VOID>
+  [232] setobjprop 953 .......................... p.button = VOID
+  [235] getprop 563 ............................. <p>
+  [238] pushint8 1 .............................. <1>
+  [240] setobjprop 363 .......................... p.mouseDown = 1
+  [243] ret
+end
+
+on ButtonUp me
+  [  0] getprop 563 ............................. <p>
+  [  3] pushzero ................................ <0>
+  [  4] setobjprop 363 .......................... p.mouseDown = 0
+  [  7] ret
+end
+
+on keyDown me, tKey, tKeyCode
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 579 .......................... <p.EnterName>
+  [  6] pushzero ................................ <0>
+  [  7] eq ...................................... <p.EnterName = 0>
+  [  8] jmpifz [ 12] ............................ if p.EnterName = 0 then
+  [ 11] ret ..................................... exit
+  [ 12] getprop 563 ............................. <p>
+  [ 15] getobjprop 235 .......................... <p.name>
+  [ 17] setlocal 0 .............................. tString = p.name
+  [ 19] getprop 563 ............................. <p>
+  [ 22] getobjprop 579 .......................... <p.EnterName>
+  [ 25] pushint8 1 .............................. <1>
+  [ 27] eq ...................................... <p.EnterName = 1>
+  [ 28] jmpifz [163] ............................ if p.EnterName = 1 then
+  [ 31] getlocal 0 .............................. <tString>
+  [ 33] getprop 563 ............................. <p>
+  [ 36] getobjprop 2581 ......................... <p.StoredName>
+  [ 39] eq ...................................... <tString = p.StoredName>
+  [ 40] jmpifz [ 47] ............................ if tString = p.StoredName then
+  [ 43] pushcons 14 ............................. <EMPTY>
+  [ 45] setlocal 0 .............................. tString = EMPTY
+  [ 47] getparam 1 .............................. <tKey>
+  [ 49] peek 0 .................................. case tKey of
+  [ 51] pushcons 15 ............................. <BACKSPACE>
+  [ 53] eq
+  [ 54] jmpifz [ 81] ............................ (case) BACKSPACE:
+  [ 57] getlocal 0 .............................. <tString>
+  [ 59] getobjprop 69 ........................... <tString.length>
+  [ 61] pushzero ................................ <0>
+  [ 62] pushzero ................................ <0>
+  [ 63] pushzero ................................ <0>
+  [ 64] pushzero ................................ <0>
+  [ 65] pushzero ................................ <0>
+  [ 66] pushzero ................................ <0>
+  [ 67] pushzero ................................ <0>
+  [ 68] pushzero ................................ <0>
+  [ 69] deletechunk 5 ........................... delete char tString.length of tString
+  [ 71] getprop 563 ............................. <p>
+  [ 74] getlocal 0 .............................. <tString>
+  [ 76] setobjprop 235 .......................... p.name = tString
+  [ 78] jmp [161]
+  [ 81] peek 0
+  [ 83] pushcons 16 ............................. <ENTER>
+  [ 85] nteq
+  [ 86] jmpifz [ 97] ............................ (case) ENTER, ...
+  [ 89] peek 0
+  [ 91] pushcons 17 ............................. <RETURN>
+  [ 93] eq
+  [ 94] jmpifz [107] ............................ (case) ..., RETURN:
+  [ 97] getparam 0 .............................. <me>
+  [ 99] pusharglistnoret 1 ...................... <me>
+  [101] objcall 2576 ............................ me.checkNames()
+  [104] jmp [161] ............................... (case) otherwise:
+  [107] getprop 563 ............................. <p>
+  [110] getobjprop 2583 ......................... <p.AllowedChars>
+  [113] getparam 1 .............................. <tKey>
+  [115] containsstr ............................. <p.AllowedChars contains tKey>
+  [116] jmpifz [161] ............................ if p.AllowedChars contains tKey then
+  [119] getlocal 0 .............................. <tString>
+  [121] getobjprop 69 ........................... <tString.length>
+  [123] setlocal 1 .............................. tLength = tString.length
+  [125] getlocal 1 .............................. <tLength>
+  [127] getprop 563 ............................. <p>
+  [130] getobjprop 2582 ......................... <p.AmountChars>
+  [133] lt ...................................... <tLength < p.AmountChars>
+  [134] jmpifz [161] ............................ if tLength < p.AmountChars then
+  [137] pushzero ................................ <0>
+  [138] getparam 1 .............................. <tKey>
+  [140] pusharglist 2 ........................... <0, tKey>
+  [142] extcall 325 ............................. <convertToUpperCase(0, tKey)>
+  [145] setlocal 2 .............................. tChar = convertToUpperCase(0, tKey)
+  [147] getlocal 0 .............................. <tString>
+  [149] getlocal 2 .............................. <tChar>
+  [151] joinstr ................................. <tString & tChar>
+  [152] setlocal 0 .............................. tString = tString & tChar
+  [154] getprop 563 ............................. <p>
+  [157] getlocal 0 .............................. <tString>
+  [159] setobjprop 235 .......................... p.name = tString
+  [161] pop 1 ................................... end case
+  [163] pushzero ................................ <0>
+  [164] pushcons 3 .............................. <"Main">
+  [166] pushsymb 80 ............................. <#text>
+  [168] getprop 563 ............................. <p>
+  [171] getobjprop 235 .......................... <p.name>
+  [173] pushsymb 218 ............................ <#texture>
+  [175] pushcons 4 .............................. <"PlayerName_Texture">
+  [177] pushsymb 219 ............................ <#align>
+  [179] pushsymb 1907 ........................... <#center>
+  [182] pushsymb 221 ............................ <#fontSize>
+  [184] pushint8 26 ............................. <26>
+  [186] pushsymb 222 ............................ <#lineSpacing>
+  [188] pushint8 18 ............................. <18>
+  [190] pushsymb 229 ............................ <#width>
+  [192] pushint16 512 ........................... <512>
+  [195] pushsymb 223 ............................ <#color>
+  [197] getglobal 86 ............................ <gData>
+  [199] getchainedprop 87 ....................... <gData.data>
+  [201] getchainedprop 224 ...................... <gData.data.TextColor>
+  [203] getobjprop 225 .......................... <gData.data.TextColor.White>
+  [205] pushsymb 642 ............................ <#filters>
+  [208] getglobal 86 ............................ <gData>
+  [210] getchainedprop 87 ....................... <gData.data>
+  [212] getchainedprop 643 ...................... <gData.data.ButtonFilters>
+  [215] getobjprop 1835 ......................... <gData.data.ButtonFilters.BR3Bevel>
+  [218] getglobal 86 ............................ <gData>
+  [220] getchainedprop 87 ....................... <gData.data>
+  [222] getchainedprop 643 ...................... <gData.data.ButtonFilters>
+  [225] getobjprop 644 .......................... <gData.data.ButtonFilters.BR3GlowWhite>
+  [228] pusharglist 2 ........................... <[gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]>
+  [230] pushlist ................................ <[gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]>
+  [231] pusharglist 16 .......................... <[#text: p.name, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]]>
+  [233] pushproplist ............................ <[#text: p.name, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]]>
+  [234] pusharglistnoret 3 ...................... <0, "Main", [#text: p.name, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]]>
+  [236] extcall 217 ............................. CreateTextTexture(0, "Main", [#text: p.name, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]])
+  [238] ret
+end
+
+on UpdateVerticalBar me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 235 .......................... <p.name>
+  [  5] setlocal 0 .............................. tString = p.name
+  [  7] getprop 563 ............................. <p>
+  [ 10] getobjprop 2580 ......................... <p.BarState>
+  [ 13] pushzero ................................ <0>
+  [ 14] eq ...................................... <p.BarState = 0>
+  [ 15] jmpifz [ 40] ............................ if p.BarState = 0 then / else
+  [ 18] getlocal 0 .............................. <tString>
+  [ 20] getprop 563 ............................. <p>
+  [ 23] getobjprop 2579 ......................... <p.Bar>
+  [ 26] joinstr ................................. <tString & p.Bar>
+  [ 27] setlocal 0 .............................. tString = tString & p.Bar
+  [ 29] getprop 563 ............................. <p>
+  [ 32] pushint8 1 .............................. <1>
+  [ 34] setobjprop 2580 ......................... p.BarState = 1
+  [ 37] jmp [ 47]
+  [ 40] getprop 563 ............................. <p>
+  [ 43] pushzero ................................ <0>
+  [ 44] setobjprop 2580 ......................... p.BarState = 0
+  [ 47] pushzero ................................ <0>
+  [ 48] pushcons 3 .............................. <"Main">
+  [ 50] pushsymb 80 ............................. <#text>
+  [ 52] getlocal 0 .............................. <tString>
+  [ 54] pushsymb 218 ............................ <#texture>
+  [ 56] pushcons 4 .............................. <"PlayerName_Texture">
+  [ 58] pushsymb 219 ............................ <#align>
+  [ 60] pushsymb 1907 ........................... <#center>
+  [ 63] pushsymb 221 ............................ <#fontSize>
+  [ 65] pushint8 26 ............................. <26>
+  [ 67] pushsymb 222 ............................ <#lineSpacing>
+  [ 69] pushint8 18 ............................. <18>
+  [ 71] pushsymb 229 ............................ <#width>
+  [ 73] pushint16 512 ........................... <512>
+  [ 76] pushsymb 223 ............................ <#color>
+  [ 78] getglobal 86 ............................ <gData>
+  [ 80] getchainedprop 87 ....................... <gData.data>
+  [ 82] getchainedprop 224 ...................... <gData.data.TextColor>
+  [ 84] getobjprop 225 .......................... <gData.data.TextColor.White>
+  [ 86] pushsymb 642 ............................ <#filters>
+  [ 89] getglobal 86 ............................ <gData>
+  [ 91] getchainedprop 87 ....................... <gData.data>
+  [ 93] getchainedprop 643 ...................... <gData.data.ButtonFilters>
+  [ 96] getobjprop 1835 ......................... <gData.data.ButtonFilters.BR3Bevel>
+  [ 99] getglobal 86 ............................ <gData>
+  [101] getchainedprop 87 ....................... <gData.data>
+  [103] getchainedprop 643 ...................... <gData.data.ButtonFilters>
+  [106] getobjprop 644 .......................... <gData.data.ButtonFilters.BR3GlowWhite>
+  [109] pusharglist 2 ........................... <[gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]>
+  [111] pushlist ................................ <[gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]>
+  [112] pusharglist 16 .......................... <[#text: tString, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]]>
+  [114] pushproplist ............................ <[#text: tString, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]]>
+  [115] pusharglistnoret 3 ...................... <0, "Main", [#text: tString, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]]>
+  [117] extcall 217 ............................. CreateTextTexture(0, "Main", [#text: tString, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]])
+  [119] ret
+end
+
+on checkNames me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 235 .......................... <p.name>
+  [  5] setlocal 0 .............................. tString = p.name
+  [  7] getlocal 0 .............................. <tString>
+  [  9] pushcons 18 ............................. <"xCheatItx">
+  [ 11] eq ...................................... <tString = "xCheatItx">
+  [ 12] jmpifz [ 28] ............................ if tString = "xCheatItx" then / else
+  [ 15] pushcons 19 ............................. <"CheatIt">
+  [ 17] pusharglistnoret 1 ...................... <"CheatIt">
+  [ 19] extcall 148 ............................. event("CheatIt")
+  [ 21] pusharglistnoret 0 ...................... <>
+  [ 23] localcall 9 ............................. OtherStuff()
+  [ 25] jmp [ 95]
+  [ 28] getlocal 0 .............................. <tString>
+  [ 30] getobjprop 69 ........................... <tString.length>
+  [ 32] getprop 563 ............................. <p>
+  [ 35] getobjprop 2582 ......................... <p.AmountChars>
+  [ 38] gt ...................................... <tString.length > p.AmountChars>
+  [ 39] jmpifz [ 49] ............................ if tString.length > p.AmountChars then / else
+  [ 42] pushcons 20 ............................. <"Max. 10 characters">
+  [ 44] setlocal 0 .............................. tString = "Max. 10 characters"
+  [ 46] jmp [ 62]
+  [ 49] getlocal 0 .............................. <tString>
+  [ 51] getobjprop 69 ........................... <tString.length>
+  [ 53] pushzero ................................ <0>
+  [ 54] eq ...................................... <tString.length = 0>
+  [ 55] jmpifz [ 62] ............................ if tString.length = 0 then
+  [ 58] pushcons 21 ............................. <"Please enter a name">
+  [ 60] setlocal 0 .............................. tString = "Please enter a name"
+  [ 62] getlocal 0 .............................. <tString>
+  [ 64] pushcons 21 ............................. <"Please enter a name">
+  [ 66] eq ...................................... <tString = "Please enter a name">
+  [ 67] getlocal 0 .............................. <tString>
+  [ 69] pushcons 20 ............................. <"Max. 10 characters">
+  [ 71] eq ...................................... <tString = "Max. 10 characters">
+  [ 72] or ...................................... <(tString = "Please enter a name") or (tString = "Max. 10 characters")>
+  [ 73] jmpifz [ 84] ............................ if (tString = "Please enter a name") or (tString = "Max. 10 characters") then / else
+  [ 76] pusharglistnoret 0 ...................... <>
+  [ 78] extcall 429 ............................. nothing()
+  [ 81] jmp [ 95]
+  [ 84] getglobal 43 ............................ <gGame>
+  [ 86] getlocal 0 .............................. <tString>
+  [ 88] setobjprop 1756 ......................... gGame.PlayerName = tString
+  [ 91] pusharglistnoret 0 ...................... <>
+  [ 93] localcall 9 ............................. OtherStuff()
+  [ 95] pushcons 7 .............................. <"ButtonPressed_SFX">
+  [ 97] pusharglistnoret 1 ...................... <"ButtonPressed_SFX">
+  [ 99] extcall 289 ............................. PlaySound("ButtonPressed_SFX")
+  [102] getprop 563 ............................. <p>
+  [105] getlocal 0 .............................. <tString>
+  [107] setobjprop 235 .......................... p.name = tString
+  [109] pushzero ................................ <0>
+  [110] pushcons 3 .............................. <"Main">
+  [112] pushsymb 80 ............................. <#text>
+  [114] getprop 563 ............................. <p>
+  [117] getobjprop 235 .......................... <p.name>
+  [119] pushsymb 218 ............................ <#texture>
+  [121] pushcons 4 .............................. <"PlayerName_Texture">
+  [123] pushsymb 219 ............................ <#align>
+  [125] pushsymb 1907 ........................... <#center>
+  [128] pushsymb 221 ............................ <#fontSize>
+  [130] pushint8 26 ............................. <26>
+  [132] pushsymb 222 ............................ <#lineSpacing>
+  [134] pushint8 18 ............................. <18>
+  [136] pushsymb 229 ............................ <#width>
+  [138] pushint16 512 ........................... <512>
+  [141] pushsymb 223 ............................ <#color>
+  [143] getglobal 86 ............................ <gData>
+  [145] getchainedprop 87 ....................... <gData.data>
+  [147] getchainedprop 224 ...................... <gData.data.TextColor>
+  [149] getobjprop 225 .......................... <gData.data.TextColor.White>
+  [151] pushsymb 642 ............................ <#filters>
+  [154] getglobal 86 ............................ <gData>
+  [156] getchainedprop 87 ....................... <gData.data>
+  [158] getchainedprop 643 ...................... <gData.data.ButtonFilters>
+  [161] getobjprop 1835 ......................... <gData.data.ButtonFilters.BR3Bevel>
+  [164] getglobal 86 ............................ <gData>
+  [166] getchainedprop 87 ....................... <gData.data>
+  [168] getchainedprop 643 ...................... <gData.data.ButtonFilters>
+  [171] getobjprop 644 .......................... <gData.data.ButtonFilters.BR3GlowWhite>
+  [174] pusharglist 2 ........................... <[gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]>
+  [176] pushlist ................................ <[gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]>
+  [177] pusharglist 16 .......................... <[#text: p.name, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]]>
+  [179] pushproplist ............................ <[#text: p.name, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]]>
+  [180] pusharglistnoret 3 ...................... <0, "Main", [#text: p.name, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]]>
+  [182] extcall 217 ............................. CreateTextTexture(0, "Main", [#text: p.name, #texture: "PlayerName_Texture", #align: #center, #fontSize: 26, #lineSpacing: 18, #width: 512, #color: gData.data.TextColor.White, #filters: [gData.data.ButtonFilters.BR3Bevel, gData.data.ButtonFilters.BR3GlowWhite]])
+  [184] getprop 563 ............................. <p>
+  [187] getprop 563 ............................. <p>
+  [190] getobjprop 235 .......................... <p.name>
+  [192] setobjprop 2581 ......................... p.StoredName = p.name
+  [195] getglobal 43 ............................ <gGame>
+  [197] getobjprop 1440 ......................... <gGame.Cheat>
+  [200] pushzero ................................ <0>
+  [201] eq ...................................... <gGame.Cheat = 0>
+  [202] jmpifz [210] ............................ if gGame.Cheat = 0 then
+  [205] pusharglistnoret 0 ...................... <>
+  [207] extcall 1726 ............................ SetupDefaultData()
+  [210] pusharglistnoret 0 ...................... <>
+  [212] extcall 1724 ............................ SaveData()
+  [215] ret
+end
+
+on OtherStuff me
+  [  0] getprop 563 ............................. <p>
+  [  3] pushzero ................................ <0>
+  [  4] setobjprop 579 .......................... p.EnterName = 0
+  [  7] getprop 563 ............................. <p>
+  [ 10] pushzero ................................ <0>
+  [ 11] setobjprop 363 .......................... p.mouseDown = 0
+  [ 14] pushcons 13 ............................. <"UpdateVerticalBar">
+  [ 16] pusharglist 1 ........................... <"UpdateVerticalBar">
+  [ 18] extcall 238 ............................. <timeout("UpdateVerticalBar")>
+  [ 20] pusharglistnoret 1 ...................... <timeout("UpdateVerticalBar")>
+  [ 22] objcall 255 ............................. timeout("UpdateVerticalBar").forget()
+  [ 24] getglobal 43 ............................ <gGame>
+  [ 26] getobjprop 1747 ......................... <gGame.gameSaved>
+  [ 29] pushint8 1 .............................. <1>
+  [ 31] eq ...................................... <gGame.gameSaved = 1>
+  [ 32] jmpifz [ 44] ............................ if gGame.gameSaved = 1 then / else
+  [ 35] pushcons 22 ............................. <"ShowDominationWarning">
+  [ 37] pusharglistnoret 1 ...................... <"ShowDominationWarning">
+  [ 39] extcall 148 ............................. event("ShowDominationWarning")
+  [ 41] jmp [ 61]
+  [ 44] pushzero ................................ <0>
+  [ 45] pushcons 3 .............................. <"Main">
+  [ 47] pushsymb 71 ............................. <#model>
+  [ 49] pushcons 9 .............................. <"EnterNameWarning">
+  [ 51] pushsymb 89 ............................. <#state>
+  [ 53] pushzero ................................ <0>
+  [ 54] pusharglist 4 ........................... <[#model: "EnterNameWarning", #state: 0]>
+  [ 56] pushproplist ............................ <[#model: "EnterNameWarning", #state: 0]>
+  [ 57] pusharglistnoret 3 ...................... <0, "Main", [#model: "EnterNameWarning", #state: 0]>
+  [ 59] extcall 228 ............................. SETVISIBLE(0, "Main", [#model: "EnterNameWarning", #state: 0])
+  [ 61] pushzero ................................ <0>
+  [ 62] pushcons 3 .............................. <"Main">
+  [ 64] pushsymb 71 ............................. <#model>
+  [ 66] pushcons 11 ............................. <"BackButton">
+  [ 68] pushcons 12 ............................. <"NextButton">
+  [ 70] pusharglist 2 ........................... <["BackButton", "NextButton"]>
+  [ 72] pushlist ................................ <["BackButton", "NextButton"]>
+  [ 73] pushsymb 89 ............................. <#state>
+  [ 75] pushint8 1 .............................. <1>
+  [ 77] pusharglist 4 ........................... <[#model: ["BackButton", "NextButton"], #state: 1]>
+  [ 79] pushproplist ............................ <[#model: ["BackButton", "NextButton"], #state: 1]>
+  [ 80] pusharglistnoret 3 ...................... <0, "Main", [#model: ["BackButton", "NextButton"], #state: 1]>
+  [ 82] extcall 228 ............................. SETVISIBLE(0, "Main", [#model: ["BackButton", "NextButton"], #state: 1])
+  [ 84] ret
+end
+
+on delete me
+  [  0] ret
+end

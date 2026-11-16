@@ -1,0 +1,1097 @@
+property p
+global gGame, gData, gSystem
+
+on new me, tParams
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pushsymb 301 ............................ <#Bloom>
+  [  5] pusharglist 2 ........................... <gGame, #Bloom>
+  [  7] objcall 105 ............................. <gGame[#Bloom]>
+  [  9] pusharglist 1 ........................... <gGame[#Bloom]>
+  [ 11] extcall 389 ............................. <voidp(gGame[#Bloom])>
+  [ 14] pushint8 1 .............................. <1>
+  [ 16] eq ...................................... <voidp(gGame[#Bloom]) = 1>
+  [ 17] jmpifz [ 21] ............................ if voidp(gGame[#Bloom]) = 1 then
+  [ 20] ret ..................................... exit
+  [ 21] getglobal 43 ............................ <gGame>
+  [ 23] getobjprop 301 .......................... <gGame.Bloom>
+  [ 26] pushzero ................................ <0>
+  [ 27] eq ...................................... <gGame.Bloom = 0>
+  [ 28] jmpifz [ 32] ............................ if gGame.Bloom = 0 then
+  [ 31] ret ..................................... exit
+  [ 32] getglobal 86 ............................ <gData>
+  [ 34] pushsymb 87 ............................. <#data>
+  [ 36] pusharglist 2 ........................... <gData, #data>
+  [ 38] objcall 105 ............................. <gData[#data]>
+  [ 40] pushsymb 301 ............................ <#Bloom>
+  [ 43] pusharglist 2 ........................... <gData[#data], #Bloom>
+  [ 45] objcall 105 ............................. <gData[#data][#Bloom]>
+  [ 47] pusharglist 1 ........................... <gData[#data][#Bloom]>
+  [ 49] extcall 389 ............................. <voidp(gData[#data][#Bloom])>
+  [ 52] pushint8 1 .............................. <1>
+  [ 54] eq ...................................... <voidp(gData[#data][#Bloom]) = 1>
+  [ 55] jmpifz [ 59] ............................ if voidp(gData[#data][#Bloom]) = 1 then
+  [ 58] ret ..................................... exit
+  [ 59] getglobal 86 ............................ <gData>
+  [ 61] pushsymb 87 ............................. <#data>
+  [ 63] pusharglist 2 ........................... <gData, #data>
+  [ 65] objcall 105 ............................. <gData[#data]>
+  [ 67] pushsymb 301 ............................ <#Bloom>
+  [ 70] pusharglist 2 ........................... <gData[#data], #Bloom>
+  [ 72] objcall 105 ............................. <gData[#data][#Bloom]>
+  [ 74] pushsymb 817 ............................ <#default>
+  [ 77] pusharglist 2 ........................... <gData[#data][#Bloom], #default>
+  [ 79] objcall 105 ............................. <gData[#data][#Bloom][#default]>
+  [ 81] pusharglist 1 ........................... <gData[#data][#Bloom][#default]>
+  [ 83] extcall 389 ............................. <voidp(gData[#data][#Bloom][#default])>
+  [ 86] pushint8 1 .............................. <1>
+  [ 88] eq ...................................... <voidp(gData[#data][#Bloom][#default]) = 1>
+  [ 89] jmpifz [ 93] ............................ if voidp(gData[#data][#Bloom][#default]) = 1 then
+  [ 92] ret ..................................... exit
+  [ 93] pusharglist 0 ........................... <[:]>
+  [ 95] pushproplist ............................ <[:]>
+  [ 96] setprop 563 ............................. p = [:]
+  [ 99] getprop 563 ............................. <p>
+  [102] pushsymb 565 ............................ <#ScriptName>
+  [105] pushcons 0 .............................. <"Bloom">
+  [107] pusharglistnoret 3 ...................... <p, #ScriptName, "Bloom">
+  [109] objcall 103 ............................. p[#ScriptName] = "Bloom"
+  [111] pushcons 1 .............................. <EMPTY>
+  [113] setlocal 0 .............................. tMemberName = EMPTY
+  [115] getparam 1 .............................. <tParams>
+  [117] pushsymb 949 ............................ <#memberName>
+  [120] pusharglist 2 ........................... <tParams, #memberName>
+  [122] extcall 542 ............................. <getaProp(tParams, #memberName)>
+  [125] getobjprop 122 .......................... <getaProp(tParams, #memberName).ilk>
+  [127] pushsymb 67 ............................. <#string>
+  [129] eq ...................................... <getaProp(tParams, #memberName).ilk = #string>
+  [130] jmpifz [144] ............................ if getaProp(tParams, #memberName).ilk = #string then
+  [133] getparam 1 .............................. <tParams>
+  [135] pushsymb 949 ............................ <#memberName>
+  [138] pusharglist 2 ........................... <tParams, #memberName>
+  [140] objcall 105 ............................. <tParams[#memberName]>
+  [142] setlocal 0 .............................. tMemberName = tParams[#memberName]
+  [144] getprop 563 ............................. <p>
+  [147] pushsymb 64 ............................. <#member>
+  [149] getlocal 0 .............................. <tMemberName>
+  [151] pusharglist 1 ........................... <tMemberName>
+  [153] extcall 64 .............................. <member(tMemberName)>
+  [155] pusharglistnoret 3 ...................... <p, #member, member(tMemberName)>
+  [157] objcall 103 ............................. p[#member] = member(tMemberName)
+  [159] getprop 563 ............................. <p>
+  [162] getobjprop 64 ........................... <p.member>
+  [164] pusharglist 0 ........................... <>
+  [166] extcall 40 .............................. <VOID>
+  [168] eq ...................................... <p.member = VOID>
+  [169] jmpifz [173] ............................ if p.member = VOID then
+  [172] ret ..................................... exit
+  [173] getprop 563 ............................. <p>
+  [176] pushsymb 487 ............................ <#sprite>
+  [179] pushint8 1 .............................. <1>
+  [181] pusharglist 1 ........................... <1>
+  [183] extcall 487 ............................. <sprite(1)>
+  [186] pusharglistnoret 3 ...................... <p, #sprite, sprite(1)>
+  [188] objcall 103 ............................. p[#sprite] = sprite(1)
+  [190] getprop 563 ............................. <p>
+  [193] pushsymb 1561 ........................... <#SourceCamera>
+  [196] getprop 563 ............................. <p>
+  [199] getchainedprop 64 ....................... <p.member>
+  [201] pushcons 2 .............................. <"StageGrabber_Camera">
+  [203] pusharglist 2 ........................... <p.member, "StageGrabber_Camera">
+  [205] objcall 298 ............................. <p.member.camera("StageGrabber_Camera")>
+  [208] pusharglistnoret 3 ...................... <p, #SourceCamera, p.member.camera("StageGrabber_Camera")>
+  [210] objcall 103 ............................. p[#SourceCamera] = p.member.camera("StageGrabber_Camera")
+  [212] getprop 563 ............................. <p>
+  [215] getobjprop 1561 ......................... <p.SourceCamera>
+  [218] pusharglist 0 ........................... <>
+  [220] extcall 40 .............................. <VOID>
+  [222] eq ...................................... <p.SourceCamera = VOID>
+  [223] jmpifz [244] ............................ if p.SourceCamera = VOID then
+  [226] getprop 563 ............................. <p>
+  [229] getprop 563 ............................. <p>
+  [232] getchainedprop 64 ....................... <p.member>
+  [234] pushcons 2 .............................. <"StageGrabber_Camera">
+  [236] pusharglist 2 ........................... <p.member, "StageGrabber_Camera">
+  [238] objcall 1157 ............................ <p.member.newCamera("StageGrabber_Camera")>
+  [241] setobjprop 1561 ......................... p.SourceCamera = p.member.newCamera("StageGrabber_Camera")
+  [244] pushcons 3 .............................. <"DefaultView">
+  [246] setlocal 1 .............................. tTargetCameraName = "DefaultView"
+  [248] getparam 1 .............................. <tParams>
+  [250] pushsymb 1562 ........................... <#targetCameraName>
+  [253] pusharglist 2 ........................... <tParams, #targetCameraName>
+  [255] extcall 542 ............................. <getaProp(tParams, #targetCameraName)>
+  [258] getobjprop 122 .......................... <getaProp(tParams, #targetCameraName).ilk>
+  [260] pushsymb 67 ............................. <#string>
+  [262] eq ...................................... <getaProp(tParams, #targetCameraName).ilk = #string>
+  [263] jmpifz [277] ............................ if getaProp(tParams, #targetCameraName).ilk = #string then
+  [266] getparam 1 .............................. <tParams>
+  [268] pushsymb 1562 ........................... <#targetCameraName>
+  [271] pusharglist 2 ........................... <tParams, #targetCameraName>
+  [273] objcall 105 ............................. <tParams[#targetCameraName]>
+  [275] setlocal 1 .............................. tTargetCameraName = tParams[#targetCameraName]
+  [277] getprop 563 ............................. <p>
+  [280] pushsymb 1563 ........................... <#TargetCamera>
+  [283] getprop 563 ............................. <p>
+  [286] getchainedprop 64 ....................... <p.member>
+  [288] getlocal 1 .............................. <tTargetCameraName>
+  [290] pusharglist 2 ........................... <p.member, tTargetCameraName>
+  [292] objcall 298 ............................. <p.member.camera(tTargetCameraName)>
+  [295] pusharglistnoret 3 ...................... <p, #TargetCamera, p.member.camera(tTargetCameraName)>
+  [297] objcall 103 ............................. p[#TargetCamera] = p.member.camera(tTargetCameraName)
+  [299] getprop 563 ............................. <p>
+  [302] getobjprop 1563 ......................... <p.TargetCamera>
+  [305] pusharglist 0 ........................... <>
+  [307] extcall 40 .............................. <VOID>
+  [309] eq ...................................... <p.TargetCamera = VOID>
+  [310] jmpifz [314] ............................ if p.TargetCamera = VOID then
+  [313] ret ..................................... exit
+  [314] pushfloat32 0.125 ....................... <0.125>
+  [319] setlocal 2 .............................. tSize = 0.125
+  [321] getparam 1 .............................. <tParams>
+  [323] pushsymb 201 ............................ <#size>
+  [325] pusharglist 2 ........................... <tParams, #size>
+  [327] extcall 542 ............................. <getaProp(tParams, #size)>
+  [330] getobjprop 122 .......................... <getaProp(tParams, #size).ilk>
+  [332] pushsymb 544 ............................ <#float>
+  [335] eq ...................................... <getaProp(tParams, #size).ilk = #float>
+  [336] jmpifz [349] ............................ if getaProp(tParams, #size).ilk = #float then
+  [339] getparam 1 .............................. <tParams>
+  [341] pushsymb 201 ............................ <#size>
+  [343] pusharglist 2 ........................... <tParams, #size>
+  [345] objcall 105 ............................. <tParams[#size]>
+  [347] setlocal 2 .............................. tSize = tParams[#size]
+  [349] getprop 563 ............................. <p>
+  [352] pushsymb 201 ............................ <#size>
+  [354] getlocal 2 .............................. <tSize>
+  [356] getglobal 43 ............................ <gGame>
+  [358] getobjprop 412 .......................... <gGame.ResRatio>
+  [361] mul ..................................... <tSize * gGame.ResRatio>
+  [362] pusharglistnoret 3 ...................... <p, #size, tSize * gGame.ResRatio>
+  [364] objcall 103 ............................. p[#size] = tSize * gGame.ResRatio
+  [366] getglobal 43 ............................ <gGame>
+  [368] pushsymb 409 ............................ <#resolution>
+  [371] pushint8 1 .............................. <1>
+  [373] pusharglist 3 ........................... <gGame, #resolution, 1>
+  [375] objcall 70 .............................. <gGame.resolution[1]>
+  [377] getprop 563 ............................. <p>
+  [380] getobjprop 201 .......................... <p.size>
+  [382] mul ..................................... <gGame.resolution[1] * p.size>
+  [383] pusharglist 1 ........................... <gGame.resolution[1] * p.size>
+  [385] extcall 123 ............................. <integer(gGame.resolution[1] * p.size)>
+  [387] setlocal 3 .............................. tWidth = integer(gGame.resolution[1] * p.size)
+  [389] getglobal 43 ............................ <gGame>
+  [391] pushsymb 409 ............................ <#resolution>
+  [394] pushint8 2 .............................. <2>
+  [396] pusharglist 3 ........................... <gGame, #resolution, 2>
+  [398] objcall 70 .............................. <gGame.resolution[2]>
+  [400] getprop 563 ............................. <p>
+  [403] getobjprop 201 .......................... <p.size>
+  [405] mul ..................................... <gGame.resolution[2] * p.size>
+  [406] pusharglist 1 ........................... <gGame.resolution[2] * p.size>
+  [408] extcall 123 ............................. <integer(gGame.resolution[2] * p.size)>
+  [410] setlocal 4 .............................. tHeight = integer(gGame.resolution[2] * p.size)
+  [412] getprop 563 ............................. <p>
+  [415] pushsymb 320 ............................ <#rect>
+  [418] pushzero ................................ <0>
+  [419] pushzero ................................ <0>
+  [420] getlocal 3 .............................. <tWidth>
+  [422] getlocal 4 .............................. <tHeight>
+  [424] pusharglist 4 ........................... <0, 0, tWidth, tHeight>
+  [426] extcall 320 ............................. <rect(0, 0, tWidth, tHeight)>
+  [429] pusharglistnoret 3 ...................... <p, #rect, rect(0, 0, tWidth, tHeight)>
+  [431] objcall 103 ............................. p[#rect] = rect(0, 0, tWidth, tHeight)
+  [433] getprop 563 ............................. <p>
+  [436] pushsymb 1564 ........................... <#LensTexture>
+  [439] getprop 563 ............................. <p>
+  [442] getchainedprop 64 ....................... <p.member>
+  [444] pushcons 4 .............................. <"LensDirt">
+  [446] pushsymb 1565 ........................... <#fromCastMember>
+  [449] pushcons 4 .............................. <"LensDirt">
+  [451] pusharglist 1 ........................... <"LensDirt">
+  [453] extcall 64 .............................. <member("LensDirt")>
+  [455] pusharglist 4 ........................... <p.member, "LensDirt", #fromCastMember, member("LensDirt")>
+  [457] objcall 903 ............................. <p.member.newTexture("LensDirt", #fromCastMember, member("LensDirt"))>
+  [460] pusharglistnoret 3 ...................... <p, #LensTexture, p.member.newTexture("LensDirt", #fromCastMember, member("LensDirt"))>
+  [462] objcall 103 ............................. p[#LensTexture] = p.member.newTexture("LensDirt", #fromCastMember, member("LensDirt"))
+  [464] getprop 563 ............................. <p>
+  [467] getchainedprop 1564 ..................... <p.LensTexture>
+  [470] pushsymb 867 ............................ <#lowFiltered>
+  [473] setobjprop 331 .......................... p.LensTexture.quality = #lowFiltered
+  [476] getprop 563 ............................. <p>
+  [479] getchainedprop 1564 ..................... <p.LensTexture>
+  [482] pushsymb 865 ............................ <#rgba8888>
+  [485] setobjprop 348 .......................... p.LensTexture.renderFormat = #rgba8888
+  [488] pushcons 5 .............................. <"LensDirt_Material">
+  [490] setlocal 5 .............................. tShaderName = "LensDirt_Material"
+  [492] getprop 563 ............................. <p>
+  [495] pushsymb 1566 ........................... <#LensShader>
+  [498] getprop 563 ............................. <p>
+  [501] getchainedprop 64 ....................... <p.member>
+  [503] getlocal 5 .............................. <tShaderName>
+  [505] pushsymb 531 ............................ <#standard>
+  [508] pusharglist 3 ........................... <p.member, tShaderName, #standard>
+  [510] objcall 896 ............................. <p.member.newShader(tShaderName, #standard)>
+  [513] pusharglistnoret 3 ...................... <p, #LensShader, p.member.newShader(tShaderName, #standard)>
+  [515] objcall 103 ............................. p[#LensShader] = p.member.newShader(tShaderName, #standard)
+  [517] getprop 563 ............................. <p>
+  [520] getchainedprop 1566 ..................... <p.LensShader>
+  [523] getprop 563 ............................. <p>
+  [526] getobjprop 1564 ......................... <p.LensTexture>
+  [529] setobjprop 218 .......................... p.LensShader.texture = p.LensTexture
+  [531] getprop 563 ............................. <p>
+  [534] getchainedprop 64 ....................... <p.member>
+  [536] getobjprop 235 .......................... <p.member.name>
+  [538] pushsymb 1274 ........................... <#materialName>
+  [541] getlocal 5 .............................. <tShaderName>
+  [543] pushsymb 1275 ........................... <#blendMode>
+  [546] pushsymb 42 ............................. <#add>
+  [548] pusharglist 4 ........................... <[#materialName: tShaderName, #blendMode: #add]>
+  [550] pushproplist ............................ <[#materialName: tShaderName, #blendMode: #add]>
+  [551] pusharglistnoret 2 ...................... <p.member.name, [#materialName: tShaderName, #blendMode: #add]>
+  [553] extcall 741 ............................. BlendShader(p.member.name, [#materialName: tShaderName, #blendMode: #add])
+  [556] getprop 563 ............................. <p>
+  [559] getchainedprop 1563 ..................... <p.TargetCamera>
+  [562] getprop 563 ............................. <p>
+  [565] getobjprop 1564 ......................... <p.LensTexture>
+  [568] pushzero ................................ <0>
+  [569] pushzero ................................ <0>
+  [570] pusharglist 2 ........................... <0, 0>
+  [572] extcall 302 ............................. <point(0, 0)>
+  [575] pushzero ................................ <0>
+  [576] pusharglistnoret 4 ...................... <p.TargetCamera, p.LensTexture, point(0, 0), 0>
+  [578] objcall 303 ............................. p.TargetCamera.addOverlay(p.LensTexture, point(0, 0), 0)
+  [581] pusharglist 0 ........................... <[]>
+  [583] pushlist ................................ <[]>
+  [584] setlocal 6 .............................. tModelList = []
+  [586] pusharglist 0 ........................... <[]>
+  [588] pushlist ................................ <[]>
+  [589] setlocal 7 .............................. tSortedNameList = []
+  [591] getlocal 7 .............................. <tSortedNameList>
+  [593] pusharglistnoret 1 ...................... <tSortedNameList>
+  [595] objcall 304 ............................. tSortedNameList.sort()
+  [598] pushint8 1 .............................. <1>
+  [600] setlocal 8
+  [602] getlocal 8
+  [604] getprop 563 ............................. <p>
+  [607] getchainedprop 64 ....................... <p.member>
+  [609] pushsymb 71 ............................. <#model>
+  [611] pusharglist 2 ........................... <p.member, #model>
+  [613] objcall 129 ............................. <p.member.model.count>
+  [615] lteq
+  [616] jmpifz [669] ............................ repeat with i = 1 to p.member.model.count
+  [619] getprop 563 ............................. <p>
+  [622] getchainedprop 64 ....................... <p.member>
+  [624] getlocal 8 .............................. <i>
+  [626] pusharglist 2 ........................... <p.member, i>
+  [628] objcall 71 .............................. <p.member.model(i)>
+  [630] setlocal 9 .............................. tmodel = p.member.model(i)
+  [632] getlocal 9 .............................. <tmodel>
+  [634] getobjprop 235 .......................... <tmodel.name>
+  [636] pushcons 6 .............................. <"Overlay-">
+  [638] containsstr ............................. <tmodel.name contains "Overlay-">
+  [639] jmpifz [660] ............................ if tmodel.name contains "Overlay-" then
+  [642] getlocal 7 .............................. <tSortedNameList>
+  [644] getlocal 9 .............................. <tmodel>
+  [646] getobjprop 235 .......................... <tmodel.name>
+  [648] pusharglistnoret 2 ...................... <tSortedNameList, tmodel.name>
+  [650] objcall 42 .............................. tSortedNameList.add(tmodel.name)
+  [652] getlocal 6 .............................. <tModelList>
+  [654] getlocal 9 .............................. <tmodel>
+  [656] pusharglistnoret 2 ...................... <tModelList, tmodel>
+  [658] objcall 42 .............................. tModelList.add(tmodel)
+  [660] pushint8 1
+  [662] getlocal 8
+  [664] add
+  [665] setlocal 8
+  [667] endrepeat [602]
+  [669] getlocal 7 .............................. <tSortedNameList>
+  [671] getlocal 7 .............................. <tSortedNameList>
+  [673] getobjprop 129 .......................... <tSortedNameList.count>
+  [675] pusharglist 2 ........................... <tSortedNameList, tSortedNameList.count>
+  [677] objcall 105 ............................. <tSortedNameList[tSortedNameList.count]>
+  [679] setlocal 10 ............................. tName = tSortedNameList[tSortedNameList.count]
+  [681] getlocal 6 .............................. <tModelList>
+  [683] peek 0
+  [685] pusharglist 1
+  [687] extcall 129
+  [689] pushint8 1
+  [691] peek 0
+  [693] peek 2
+  [695] lteq
+  [696] jmpifz [728] ............................ repeat with j in tModelList
+  [699] peek 2
+  [701] peek 1
+  [703] pusharglist 2
+  [705] extcall 105
+  [707] setlocal 11
+  [709] getlocal 11 ............................. <j>
+  [711] getobjprop 235 .......................... <j.name>
+  [713] getlocal 10 ............................. <tName>
+  [715] eq ...................................... <j.name = tName>
+  [716] jmpifz [723] ............................ if j.name = tName then
+  [719] getlocal 11 ............................. <j>
+  [721] setlocal 12 ............................. tOverlayModel = j
+  [723] pushint8 1
+  [725] add
+  [726] endrepeat [691]
+  [728] pop 3
+  [730] getlocal 12 ............................. <tOverlayModel>
+  [732] getprop 563 ............................. <p>
+  [735] getobjprop 1566 ......................... <p.LensShader>
+  [738] setobjprop 305 .......................... tOverlayModel.shaderList = p.LensShader
+  [741] getprop 563 ............................. <p>
+  [744] pushsymb 1567 ........................... <#template>
+  [747] pushsymb 817 ............................ <#default>
+  [750] pusharglistnoret 3 ...................... <p, #template, #default>
+  [752] objcall 103 ............................. p[#template] = #default
+  [754] getprop 563 ............................. <p>
+  [757] pushsymb 1568 ........................... <#BloomData>
+  [760] getglobal 86 ............................ <gData>
+  [762] getchainedprop 87 ....................... <gData.data>
+  [764] pushsymb 301 ............................ <#Bloom>
+  [767] getprop 563 ............................. <p>
+  [770] getobjprop 1567 ......................... <p.template>
+  [773] pusharglist 3 ........................... <gData.data, #Bloom, p.template>
+  [775] objcall 70 .............................. <gData.data.Bloom[p.template]>
+  [777] pusharglistnoret 3 ...................... <p, #BloomData, gData.data.Bloom[p.template]>
+  [779] objcall 103 ............................. p[#BloomData] = gData.data.Bloom[p.template]
+  [781] getparam 1 .............................. <tParams>
+  [783] pushsymb 1567 ........................... <#template>
+  [786] pusharglist 2 ........................... <tParams, #template>
+  [788] objcall 105 ............................. <tParams[#template]>
+  [790] pusharglist 1 ........................... <tParams[#template]>
+  [792] extcall 389 ............................. <voidp(tParams[#template])>
+  [795] pushzero ................................ <0>
+  [796] eq ...................................... <voidp(tParams[#template]) = 0>
+  [797] jmpifz [815] ............................ if voidp(tParams[#template]) = 0 then
+  [800] getprop 563 ............................. <p>
+  [803] getparam 1 .............................. <tParams>
+  [805] pushsymb 1567 ........................... <#template>
+  [808] pusharglist 2 ........................... <tParams, #template>
+  [810] objcall 105 ............................. <tParams[#template]>
+  [812] setobjprop 1567 ......................... p.template = tParams[#template]
+  [815] getglobal 86 ............................ <gData>
+  [817] pushsymb 87 ............................. <#data>
+  [819] pusharglist 2 ........................... <gData, #data>
+  [821] objcall 105 ............................. <gData[#data]>
+  [823] pushsymb 301 ............................ <#Bloom>
+  [826] pusharglist 2 ........................... <gData[#data], #Bloom>
+  [828] objcall 105 ............................. <gData[#data][#Bloom]>
+  [830] getprop 563 ............................. <p>
+  [833] getobjprop 1567 ......................... <p.template>
+  [836] pusharglist 2 ........................... <gData[#data][#Bloom], p.template>
+  [838] objcall 105 ............................. <gData[#data][#Bloom][p.template]>
+  [840] pusharglist 1 ........................... <gData[#data][#Bloom][p.template]>
+  [842] extcall 389 ............................. <voidp(gData[#data][#Bloom][p.template])>
+  [845] pushzero ................................ <0>
+  [846] eq ...................................... <voidp(gData[#data][#Bloom][p.template]) = 0>
+  [847] jmpifz [877] ............................ if voidp(gData[#data][#Bloom][p.template]) = 0 then
+  [850] getprop 563 ............................. <p>
+  [853] pushsymb 1568 ........................... <#BloomData>
+  [856] getglobal 86 ............................ <gData>
+  [858] getchainedprop 87 ....................... <gData.data>
+  [860] pushsymb 301 ............................ <#Bloom>
+  [863] getprop 563 ............................. <p>
+  [866] getobjprop 1567 ......................... <p.template>
+  [869] pusharglist 3 ........................... <gData.data, #Bloom, p.template>
+  [871] objcall 70 .............................. <gData.data.Bloom[p.template]>
+  [873] pusharglistnoret 3 ...................... <p, #BloomData, gData.data.Bloom[p.template]>
+  [875] objcall 103 ............................. p[#BloomData] = gData.data.Bloom[p.template]
+  [877] getprop 563 ............................. <p>
+  [880] pushsymb 1569 ........................... <#RT>
+  [883] getprop 563 ............................. <p>
+  [886] getchainedprop 64 ....................... <p.member>
+  [888] pushcons 7 .............................. <"Render_Texture">
+  [890] pushsymb 1570 ........................... <#renderTexture>
+  [893] getlocal 3 .............................. <tWidth>
+  [895] getlocal 4 .............................. <tHeight>
+  [897] pusharglist 5 ........................... <p.member, "Render_Texture", #renderTexture, tWidth, tHeight>
+  [899] objcall 903 ............................. <p.member.newTexture("Render_Texture", #renderTexture, tWidth, tHeight)>
+  [902] pusharglistnoret 3 ...................... <p, #RT, p.member.newTexture("Render_Texture", #renderTexture, tWidth, tHeight)>
+  [904] objcall 103 ............................. p[#RT] = p.member.newTexture("Render_Texture", #renderTexture, tWidth, tHeight)
+  [906] getprop 563 ............................. <p>
+  [909] getchainedprop 1569 ..................... <p.RT>
+  [912] pushsymb 865 ............................ <#rgba8888>
+  [915] setobjprop 348 .......................... p.RT.renderFormat = #rgba8888
+  [918] getprop 563 ............................. <p>
+  [921] getchainedprop 1569 ..................... <p.RT>
+  [924] pushsymb 867 ............................ <#lowFiltered>
+  [927] setobjprop 331 .......................... p.RT.quality = #lowFiltered
+  [930] getprop 563 ............................. <p>
+  [933] getchainedprop 1569 ..................... <p.RT>
+  [936] pushint8 1 .............................. <1>
+  [938] setobjprop 1571 ......................... p.RT.updateRTImageOnRender = 1
+  [941] getprop 563 ............................. <p>
+  [944] pushsymb 319 ............................ <#image>
+  [947] getlocal 3 .............................. <tWidth>
+  [949] getlocal 4 .............................. <tHeight>
+  [951] pushint8 32 ............................. <32>
+  [953] pushzero ................................ <0>
+  [954] pusharglist 4 ........................... <tWidth, tHeight, 32, 0>
+  [956] extcall 319 ............................. <image(tWidth, tHeight, 32, 0)>
+  [959] pusharglistnoret 3 ...................... <p, #image, image(tWidth, tHeight, 32, 0)>
+  [961] objcall 103 ............................. p[#image] = image(tWidth, tHeight, 32, 0)
+  [963] getprop 563 ............................. <p>
+  [966] pushsymb 1572 ........................... <#BlackImage>
+  [969] getlocal 3 .............................. <tWidth>
+  [971] getlocal 4 .............................. <tHeight>
+  [973] pushint8 32 ............................. <32>
+  [975] pushzero ................................ <0>
+  [976] pusharglist 4 ........................... <tWidth, tHeight, 32, 0>
+  [978] extcall 319 ............................. <image(tWidth, tHeight, 32, 0)>
+  [981] pusharglistnoret 3 ...................... <p, #BlackImage, image(tWidth, tHeight, 32, 0)>
+  [983] objcall 103 ............................. p[#BlackImage] = image(tWidth, tHeight, 32, 0)
+  [985] getprop 563 ............................. <p>
+  [988] getchainedprop 1572 ..................... <p.BlackImage>
+  [991] getprop 563 ............................. <p>
+  [994] getchainedprop 1572 ..................... <p.BlackImage>
+  [997] getobjprop 320 .......................... <p.BlackImage.rect>
+  [1000] pushzero ............................... <0>
+  [1001] pushzero ............................... <0>
+  [1002] pushzero ............................... <0>
+  [1003] pusharglist 3 .......................... <0, 0, 0>
+  [1005] extcall 282 ............................ <rgb(0, 0, 0)>
+  [1008] pusharglistnoret 3 ..................... <p.BlackImage, p.BlackImage.rect, rgb(0, 0, 0)>
+  [1010] objcall 345 ............................ p.BlackImage.fill(p.BlackImage.rect, rgb(0, 0, 0))
+  [1013] pushcons 0 ............................. <"Bloom">
+  [1015] getprop 563 ............................ <p>
+  [1018] getobjprop 1567 ........................ <p.template>
+  [1021] pusharglist 1 .......................... <p.template>
+  [1023] extcall 67 ............................. <string(p.template)>
+  [1025] joinstr ................................ <"Bloom" & string(p.template)>
+  [1026] pushcons 8 ............................. <"_Texture">
+  [1028] joinstr ................................ <"Bloom" & string(p.template) & "_Texture">
+  [1029] setlocal 13 ............................ tTextureName = "Bloom" & string(p.template) & "_Texture"
+  [1031] getprop 563 ............................ <p>
+  [1034] pushsymb 218 ........................... <#texture>
+  [1036] getprop 563 ............................ <p>
+  [1039] getchainedprop 64 ...................... <p.member>
+  [1041] getlocal 13 ............................ <tTextureName>
+  [1043] pushsymb 902 ........................... <#fromImageObject>
+  [1046] getprop 563 ............................ <p>
+  [1049] getobjprop 1572 ........................ <p.BlackImage>
+  [1052] pusharglist 4 .......................... <p.member, tTextureName, #fromImageObject, p.BlackImage>
+  [1054] objcall 903 ............................ <p.member.newTexture(tTextureName, #fromImageObject, p.BlackImage)>
+  [1057] pusharglistnoret 3 ..................... <p, #texture, p.member.newTexture(tTextureName, #fromImageObject, p.BlackImage)>
+  [1059] objcall 103 ............................ p[#texture] = p.member.newTexture(tTextureName, #fromImageObject, p.BlackImage)
+  [1061] getprop 563 ............................ <p>
+  [1064] getchainedprop 218 ..................... <p.texture>
+  [1066] pushsymb 867 ........................... <#lowFiltered>
+  [1069] setobjprop 331 ......................... p.texture.quality = #lowFiltered
+  [1072] getprop 563 ............................ <p>
+  [1075] getchainedprop 218 ..................... <p.texture>
+  [1077] pushsymb 865 ........................... <#rgba8888>
+  [1080] setobjprop 348 ......................... p.texture.renderFormat = #rgba8888
+  [1083] pushcons 0 ............................. <"Bloom">
+  [1085] getprop 563 ............................ <p>
+  [1088] getobjprop 1567 ........................ <p.template>
+  [1091] pusharglist 1 .......................... <p.template>
+  [1093] extcall 67 ............................. <string(p.template)>
+  [1095] joinstr ................................ <"Bloom" & string(p.template)>
+  [1096] pushcons 9 ............................. <"_Material">
+  [1098] joinstr ................................ <"Bloom" & string(p.template) & "_Material">
+  [1099] setlocal 5 ............................. tShaderName = "Bloom" & string(p.template) & "_Material"
+  [1101] getprop 563 ............................ <p>
+  [1104] pushsymb 208 ........................... <#shader>
+  [1106] getprop 563 ............................ <p>
+  [1109] getchainedprop 64 ...................... <p.member>
+  [1111] getlocal 5 ............................. <tShaderName>
+  [1113] pushsymb 531 ........................... <#standard>
+  [1116] pusharglist 3 .......................... <p.member, tShaderName, #standard>
+  [1118] objcall 896 ............................ <p.member.newShader(tShaderName, #standard)>
+  [1121] pusharglistnoret 3 ..................... <p, #shader, p.member.newShader(tShaderName, #standard)>
+  [1123] objcall 103 ............................ p[#shader] = p.member.newShader(tShaderName, #standard)
+  [1125] getprop 563 ............................ <p>
+  [1128] getchainedprop 208 ..................... <p.shader>
+  [1130] getprop 563 ............................ <p>
+  [1133] getobjprop 218 ......................... <p.texture>
+  [1135] setobjprop 218 ......................... p.shader.texture = p.texture
+  [1137] getprop 563 ............................ <p>
+  [1140] getchainedprop 64 ...................... <p.member>
+  [1142] getobjprop 235 ......................... <p.member.name>
+  [1144] pushsymb 1274 .......................... <#materialName>
+  [1147] getlocal 5 ............................. <tShaderName>
+  [1149] pushsymb 1275 .......................... <#blendMode>
+  [1152] pushsymb 42 ............................ <#add>
+  [1154] pusharglist 4 .......................... <[#materialName: tShaderName, #blendMode: #add]>
+  [1156] pushproplist ........................... <[#materialName: tShaderName, #blendMode: #add]>
+  [1157] pusharglistnoret 2 ..................... <p.member.name, [#materialName: tShaderName, #blendMode: #add]>
+  [1159] extcall 741 ............................ BlendShader(p.member.name, [#materialName: tShaderName, #blendMode: #add])
+  [1162] getprop 563 ............................ <p>
+  [1165] getchainedprop 1563 .................... <p.TargetCamera>
+  [1168] getprop 563 ............................ <p>
+  [1171] getobjprop 218 ......................... <p.texture>
+  [1173] pushzero ............................... <0>
+  [1174] pushzero ............................... <0>
+  [1175] pusharglist 2 .......................... <0, 0>
+  [1177] extcall 302 ............................ <point(0, 0)>
+  [1180] pushzero ............................... <0>
+  [1181] pusharglistnoret 4 ..................... <p.TargetCamera, p.texture, point(0, 0), 0>
+  [1183] objcall 303 ............................ p.TargetCamera.addOverlay(p.texture, point(0, 0), 0)
+  [1186] pusharglist 0 .......................... <[]>
+  [1188] pushlist ............................... <[]>
+  [1189] setlocal 6 ............................. tModelList = []
+  [1191] pusharglist 0 .......................... <[]>
+  [1193] pushlist ............................... <[]>
+  [1194] setlocal 7 ............................. tSortedNameList = []
+  [1196] getlocal 7 ............................. <tSortedNameList>
+  [1198] pusharglistnoret 1 ..................... <tSortedNameList>
+  [1200] objcall 304 ............................ tSortedNameList.sort()
+  [1203] pushint8 1 ............................. <1>
+  [1205] setlocal 8
+  [1207] getlocal 8
+  [1209] getprop 563 ............................ <p>
+  [1212] getchainedprop 64 ...................... <p.member>
+  [1214] pushsymb 71 ............................ <#model>
+  [1216] pusharglist 2 .......................... <p.member, #model>
+  [1218] objcall 129 ............................ <p.member.model.count>
+  [1220] lteq
+  [1221] jmpifz [1274] .......................... repeat with i = 1 to p.member.model.count
+  [1224] getprop 563 ............................ <p>
+  [1227] getchainedprop 64 ...................... <p.member>
+  [1229] getlocal 8 ............................. <i>
+  [1231] pusharglist 2 .......................... <p.member, i>
+  [1233] objcall 71 ............................. <p.member.model(i)>
+  [1235] setlocal 9 ............................. tmodel = p.member.model(i)
+  [1237] getlocal 9 ............................. <tmodel>
+  [1239] getobjprop 235 ......................... <tmodel.name>
+  [1241] pushcons 6 ............................. <"Overlay-">
+  [1243] containsstr ............................ <tmodel.name contains "Overlay-">
+  [1244] jmpifz [1265] .......................... if tmodel.name contains "Overlay-" then
+  [1247] getlocal 7 ............................. <tSortedNameList>
+  [1249] getlocal 9 ............................. <tmodel>
+  [1251] getobjprop 235 ......................... <tmodel.name>
+  [1253] pusharglistnoret 2 ..................... <tSortedNameList, tmodel.name>
+  [1255] objcall 42 ............................. tSortedNameList.add(tmodel.name)
+  [1257] getlocal 6 ............................. <tModelList>
+  [1259] getlocal 9 ............................. <tmodel>
+  [1261] pusharglistnoret 2 ..................... <tModelList, tmodel>
+  [1263] objcall 42 ............................. tModelList.add(tmodel)
+  [1265] pushint8 1
+  [1267] getlocal 8
+  [1269] add
+  [1270] setlocal 8
+  [1272] endrepeat [1207]
+  [1274] getlocal 7 ............................. <tSortedNameList>
+  [1276] getlocal 7 ............................. <tSortedNameList>
+  [1278] getobjprop 129 ......................... <tSortedNameList.count>
+  [1280] pusharglist 2 .......................... <tSortedNameList, tSortedNameList.count>
+  [1282] objcall 105 ............................ <tSortedNameList[tSortedNameList.count]>
+  [1284] setlocal 10 ............................ tName = tSortedNameList[tSortedNameList.count]
+  [1286] getlocal 6 ............................. <tModelList>
+  [1288] peek 0
+  [1290] pusharglist 1
+  [1292] extcall 129
+  [1294] pushint8 1
+  [1296] peek 0
+  [1298] peek 2
+  [1300] lteq
+  [1301] jmpifz [1333] .......................... repeat with j in tModelList
+  [1304] peek 2
+  [1306] peek 1
+  [1308] pusharglist 2
+  [1310] extcall 105
+  [1312] setlocal 11
+  [1314] getlocal 11 ............................ <j>
+  [1316] getobjprop 235 ......................... <j.name>
+  [1318] getlocal 10 ............................ <tName>
+  [1320] eq ..................................... <j.name = tName>
+  [1321] jmpifz [1328] .......................... if j.name = tName then
+  [1324] getlocal 11 ............................ <j>
+  [1326] setlocal 12 ............................ tOverlayModel = j
+  [1328] pushint8 1
+  [1330] add
+  [1331] endrepeat [1296]
+  [1333] pop 3
+  [1335] getlocal 12 ............................ <tOverlayModel>
+  [1337] getprop 563 ............................ <p>
+  [1340] getobjprop 208 ......................... <p.shader>
+  [1342] setobjprop 305 ......................... tOverlayModel.shaderList = p.shader
+  [1345] getprop 563 ............................ <p>
+  [1348] getchainedprop 1563 .................... <p.TargetCamera>
+  [1351] pushsymb 306 ........................... <#overlay>
+  [1354] pusharglist 2 .......................... <p.TargetCamera, #overlay>
+  [1356] objcall 129 ............................ <p.TargetCamera.overlay.count>
+  [1358] setlocal 14 ............................ tOverlay = p.TargetCamera.overlay.count
+  [1360] getprop 563 ............................ <p>
+  [1363] pushsymb 306 ........................... <#overlay>
+  [1366] getlocal 14 ............................ <tOverlay>
+  [1368] pusharglistnoret 3 ..................... <p, #overlay, tOverlay>
+  [1370] objcall 103 ............................ p[#overlay] = tOverlay
+  [1372] getprop 563 ............................ <p>
+  [1375] getchainedprop 1561 .................... <p.SourceCamera>
+  [1378] getchainedprop 871 ..................... <p.SourceCamera.colorBuffer>
+  [1381] pushzero ............................... <0>
+  [1382] setobjprop 872 ......................... p.SourceCamera.colorBuffer.clearAtRender = 0
+  [1385] getprop 563 ............................ <p>
+  [1388] getchainedprop 1561 .................... <p.SourceCamera>
+  [1391] getprop 563 ............................ <p>
+  [1394] getchainedprop 1563 .................... <p.TargetCamera>
+  [1397] getobjprop 214 ......................... <p.TargetCamera.transform>
+  [1399] setobjprop 214 ......................... p.SourceCamera.transform = p.TargetCamera.transform
+  [1401] getprop 563 ............................ <p>
+  [1404] getchainedprop 1561 .................... <p.SourceCamera>
+  [1407] getprop 563 ............................ <p>
+  [1410] getchainedprop 1563 .................... <p.TargetCamera>
+  [1413] getobjprop 299 ......................... <p.TargetCamera.fieldOfView>
+  [1416] setobjprop 299 ......................... p.SourceCamera.fieldOfView = p.TargetCamera.fieldOfView
+  [1419] getprop 563 ............................ <p>
+  [1422] getchainedprop 1561 .................... <p.SourceCamera>
+  [1425] getprop 563 ............................ <p>
+  [1428] getchainedprop 1563 .................... <p.TargetCamera>
+  [1431] getobjprop 1573 ........................ <p.TargetCamera.yon>
+  [1434] setobjprop 1573 ........................ p.SourceCamera.yon = p.TargetCamera.yon
+  [1437] getprop 563 ............................ <p>
+  [1440] pushsymb 1574 .......................... <#update>
+  [1443] pushint8 1 ............................. <1>
+  [1445] pusharglistnoret 3 ..................... <p, #update, 1>
+  [1447] objcall 103 ............................ p[#update] = 1
+  [1449] pushcons 10 ............................ <"Skyboxes">
+  [1451] pusharglist 1 .......................... <"Skyboxes">
+  [1453] extcall 64 ............................. <member("Skyboxes")>
+  [1455] setlocal 15 ............................ tSkyBoxMember = member("Skyboxes")
+  [1457] getlocal 15 ............................ <tSkyBoxMember>
+  [1459] pusharglist 0 .......................... <>
+  [1461] extcall 40 ............................. <VOID>
+  [1463] nteq ................................... <tSkyBoxMember <> VOID>
+  [1464] jmpifz [1531] .......................... if tSkyBoxMember <> VOID then
+  [1467] getlocal 15 ............................ <tSkyBoxMember>
+  [1469] pushcons 11 ............................ <"Skybox1_Camera">
+  [1471] pusharglist 2 .......................... <tSkyBoxMember, "Skybox1_Camera">
+  [1473] objcall 298 ............................ <tSkyBoxMember.camera("Skybox1_Camera")>
+  [1476] getprop 563 ............................ <p>
+  [1479] getchainedprop 487 ..................... <p.sprite>
+  [1482] pushint8 1 ............................. <1>
+  [1484] pusharglist 2 .......................... <p.sprite, 1>
+  [1486] objcall 298 ............................ <p.sprite.camera(1)>
+  [1489] eq ..................................... <tSkyBoxMember.camera("Skybox1_Camera") = p.sprite.camera(1)>
+  [1490] jmpifz [1531] .......................... if tSkyBoxMember.camera("Skybox1_Camera") = p.sprite.camera(1) then
+  [1493] getprop 563 ............................ <p>
+  [1496] getchainedprop 64 ...................... <p.member>
+  [1498] pushcons 2 ............................. <"StageGrabber_Camera">
+  [1500] pusharglistnoret 2 ..................... <p.member, "StageGrabber_Camera">
+  [1502] objcall 1428 ........................... p.member.deleteCamera("StageGrabber_Camera")
+  [1505] getprop 563 ............................ <p>
+  [1508] getprop 563 ............................ <p>
+  [1511] getchainedprop 487 ..................... <p.sprite>
+  [1514] pushint8 1 ............................. <1>
+  [1516] pusharglist 2 .......................... <p.sprite, 1>
+  [1518] objcall 298 ............................ <p.sprite.camera(1)>
+  [1521] setobjprop 1561 ........................ p.SourceCamera = p.sprite.camera(1)
+  [1524] getprop 563 ............................ <p>
+  [1527] pushzero ............................... <0>
+  [1528] setobjprop 1574 ........................ p.update = 0
+  [1531] getprop 563 ............................ <p>
+  [1534] pushsymb 546 ........................... <#Counter>
+  [1537] pushzero ............................... <0>
+  [1538] pusharglistnoret 3 ..................... <p, #Counter, 0>
+  [1540] objcall 103 ............................ p[#Counter] = 0
+  [1542] getprop 563 ............................ <p>
+  [1545] pushsymb 45 ............................ <#me>
+  [1547] getparam 0 ............................. <me>
+  [1549] pusharglistnoret 3 ..................... <p, #me, me>
+  [1551] objcall 103 ............................ p[#me] = me
+  [1553] gettoplevelprop 33 ..................... <_movie>
+  [1555] pushint8 60 ............................ <60>
+  [1557] pusharglistnoret 2 ..................... <_movie, 60>
+  [1559] objcall 755 ............................ _movie.puppetTempo(60)
+  [1562] getparam 0 ............................. <me>
+  [1564] pusharglistnoret 1 ..................... <me>
+  [1566] extcall 52 ............................. return me
+  [1568] ret
+end
+
+on enterFrame me
+  [  0] pusharglist 0 ........................... <[]>
+  [  2] pushlist ................................ <[]>
+  [  3] setlocal 0 .............................. tList = []
+  [  5] getprop 563 ............................. <p>
+  [  8] getchainedprop 487 ...................... <p.sprite>
+  [ 11] pusharglist 1 ........................... <p.sprite>
+  [ 13] objcall 1424 ............................ <p.sprite.cameraCount()>
+  [ 16] setlocal 1 .............................. tCount = p.sprite.cameraCount()
+  [ 18] pushint8 3 .............................. <3>
+  [ 20] setlocal 2
+  [ 22] getlocal 2
+  [ 24] getlocal 1 .............................. <tCount>
+  [ 26] lteq
+  [ 27] jmpifz [ 71] ............................ repeat with i = 3 to tCount
+  [ 30] getprop 563 ............................. <p>
+  [ 33] getchainedprop 487 ...................... <p.sprite>
+  [ 36] getlocal 2 .............................. <i>
+  [ 38] pusharglist 2 ........................... <p.sprite, i>
+  [ 40] objcall 298 ............................. <p.sprite.camera(i)>
+  [ 43] setlocal 3 .............................. tCamera = p.sprite.camera(i)
+  [ 45] getlocal 0 .............................. <tList>
+  [ 47] getlocal 3 .............................. <tCamera>
+  [ 49] getobjprop 1429 ......................... <tCamera.rootNode>
+  [ 52] pusharglistnoret 2 ...................... <tList, tCamera.rootNode>
+  [ 54] objcall 42 .............................. tList.add(tCamera.rootNode)
+  [ 56] getlocal 3 .............................. <tCamera>
+  [ 58] pushzero ................................ <0>
+  [ 59] setobjprop 1429 ......................... tCamera.rootNode = 0
+  [ 62] pushint8 1
+  [ 64] getlocal 2
+  [ 66] add
+  [ 67] setlocal 2
+  [ 69] endrepeat [ 22]
+  [ 71] pusharglist 0 ........................... <[]>
+  [ 73] pushlist ................................ <[]>
+  [ 74] setlocal 4 .............................. tScaleList = []
+  [ 76] pushint8 1 .............................. <1>
+  [ 78] setlocal 2
+  [ 80] getlocal 2
+  [ 82] getprop 563 ............................. <p>
+  [ 85] getchainedprop 1563 ..................... <p.TargetCamera>
+  [ 88] pushsymb 306 ............................ <#overlay>
+  [ 91] pusharglist 2 ........................... <p.TargetCamera, #overlay>
+  [ 93] objcall 129 ............................. <p.TargetCamera.overlay.count>
+  [ 95] lteq
+  [ 96] jmpifz [155] ............................ repeat with i = 1 to p.TargetCamera.overlay.count
+  [ 99] getlocal 4 .............................. <tScaleList>
+  [101] getprop 563 ............................. <p>
+  [104] getchainedprop 1563 ..................... <p.TargetCamera>
+  [107] pushsymb 306 ............................ <#overlay>
+  [110] getlocal 2 .............................. <i>
+  [112] pusharglist 3 ........................... <p.TargetCamera, #overlay, i>
+  [114] objcall 102 ............................. <p.TargetCamera.overlay[i]>
+  [116] getobjprop 307 .......................... <p.TargetCamera.overlay[i].scale>
+  [119] pusharglistnoret 2 ...................... <tScaleList, p.TargetCamera.overlay[i].scale>
+  [121] objcall 42 .............................. tScaleList.add(p.TargetCamera.overlay[i].scale)
+  [123] getprop 563 ............................. <p>
+  [126] getchainedprop 1563 ..................... <p.TargetCamera>
+  [129] pushsymb 306 ............................ <#overlay>
+  [132] getlocal 2 .............................. <i>
+  [134] pusharglist 3 ........................... <p.TargetCamera, #overlay, i>
+  [136] objcall 102 ............................. <p.TargetCamera.overlay[i]>
+  [138] pushfloat32 0.0 ......................... <0.0>
+  [143] setobjprop 307 .......................... p.TargetCamera.overlay[i].scale = 0.0
+  [146] pushint8 1
+  [148] getlocal 2
+  [150] add
+  [151] setlocal 2
+  [153] endrepeat [ 80]
+  [155] getprop 563 ............................. <p>
+  [158] getobjprop 1574 ......................... <p.update>
+  [161] jmpifz [216] ............................ if p.update then
+  [164] getprop 563 ............................. <p>
+  [167] getchainedprop 1561 ..................... <p.SourceCamera>
+  [170] getprop 563 ............................. <p>
+  [173] getchainedprop 1563 ..................... <p.TargetCamera>
+  [176] getobjprop 214 .......................... <p.TargetCamera.transform>
+  [178] setobjprop 214 .......................... p.SourceCamera.transform = p.TargetCamera.transform
+  [180] getprop 563 ............................. <p>
+  [183] getchainedprop 1561 ..................... <p.SourceCamera>
+  [186] getprop 563 ............................. <p>
+  [189] getchainedprop 1563 ..................... <p.TargetCamera>
+  [192] getobjprop 299 .......................... <p.TargetCamera.fieldOfView>
+  [195] setobjprop 299 .......................... p.SourceCamera.fieldOfView = p.TargetCamera.fieldOfView
+  [198] getprop 563 ............................. <p>
+  [201] getchainedprop 1561 ..................... <p.SourceCamera>
+  [204] getprop 563 ............................. <p>
+  [207] getchainedprop 1563 ..................... <p.TargetCamera>
+  [210] getobjprop 1573 ......................... <p.TargetCamera.yon>
+  [213] setobjprop 1573 ......................... p.SourceCamera.yon = p.TargetCamera.yon
+  [216] getprop 563 ............................. <p>
+  [219] getchainedprop 487 ...................... <p.sprite>
+  [222] getprop 563 ............................. <p>
+  [225] getobjprop 1561 ......................... <p.SourceCamera>
+  [228] getprop 563 ............................. <p>
+  [231] getobjprop 1569 ......................... <p.RT>
+  [234] pusharglistnoret 3 ...................... <p.sprite, p.SourceCamera, p.RT>
+  [236] objcall 1579 ............................ p.sprite.renderToTexture(p.SourceCamera, p.RT)
+  [239] pushint8 3 .............................. <3>
+  [241] setlocal 2
+  [243] getlocal 2
+  [245] getlocal 1 .............................. <tCount>
+  [247] lteq
+  [248] jmpifz [291] ............................ repeat with i = 3 to tCount
+  [251] getprop 563 ............................. <p>
+  [254] getchainedprop 487 ...................... <p.sprite>
+  [257] getlocal 2 .............................. <i>
+  [259] pusharglist 2 ........................... <p.sprite, i>
+  [261] objcall 298 ............................. <p.sprite.camera(i)>
+  [264] setlocal 3 .............................. tCamera = p.sprite.camera(i)
+  [266] getlocal 3 .............................. <tCamera>
+  [268] getlocal 0 .............................. <tList>
+  [270] getlocal 2 .............................. <i>
+  [272] pushint8 2 .............................. <2>
+  [274] sub ..................................... <i - 2>
+  [275] pusharglist 2 ........................... <tList, i - 2>
+  [277] objcall 105 ............................. <tList[i - 2]>
+  [279] setobjprop 1429 ......................... tCamera.rootNode = tList[i - 2]
+  [282] pushint8 1
+  [284] getlocal 2
+  [286] add
+  [287] setlocal 2
+  [289] endrepeat [243]
+  [291] pushint8 1 .............................. <1>
+  [293] setlocal 2
+  [295] getlocal 2
+  [297] getprop 563 ............................. <p>
+  [300] getchainedprop 1563 ..................... <p.TargetCamera>
+  [303] pushsymb 306 ............................ <#overlay>
+  [306] pusharglist 2 ........................... <p.TargetCamera, #overlay>
+  [308] objcall 129 ............................. <p.TargetCamera.overlay.count>
+  [310] lteq
+  [311] jmpifz [349] ............................ repeat with i = 1 to p.TargetCamera.overlay.count
+  [314] getprop 563 ............................. <p>
+  [317] getchainedprop 1563 ..................... <p.TargetCamera>
+  [320] pushsymb 306 ............................ <#overlay>
+  [323] getlocal 2 .............................. <i>
+  [325] pusharglist 3 ........................... <p.TargetCamera, #overlay, i>
+  [327] objcall 102 ............................. <p.TargetCamera.overlay[i]>
+  [329] getlocal 4 .............................. <tScaleList>
+  [331] getlocal 2 .............................. <i>
+  [333] pusharglist 2 ........................... <tScaleList, i>
+  [335] objcall 105 ............................. <tScaleList[i]>
+  [337] setobjprop 307 .......................... p.TargetCamera.overlay[i].scale = tScaleList[i]
+  [340] pushint8 1
+  [342] getlocal 2
+  [344] add
+  [345] setlocal 2
+  [347] endrepeat [295]
+  [349] getprop 563 ............................. <p>
+  [352] getchainedprop 1563 ..................... <p.TargetCamera>
+  [355] pushsymb 306 ............................ <#overlay>
+  [358] getprop 563 ............................. <p>
+  [361] getobjprop 306 .......................... <p.overlay>
+  [364] pusharglist 3 ........................... <p.TargetCamera, #overlay, p.overlay>
+  [366] objcall 102 ............................. <p.TargetCamera.overlay[p.overlay]>
+  [368] pushfloat32 1.0 ......................... <1.0>
+  [373] getprop 563 ............................. <p>
+  [376] getobjprop 201 .......................... <p.size>
+  [378] div ..................................... <1.0 / p.size>
+  [379] setobjprop 307 .......................... p.TargetCamera.overlay[p.overlay].scale = 1.0 / p.size
+  [382] getprop 563 ............................. <p>
+  [385] getchainedprop 1563 ..................... <p.TargetCamera>
+  [388] pushzero ................................ <0>
+  [389] pushzero ................................ <0>
+  [390] getglobal 43 ............................ <gGame>
+  [392] pushsymb 409 ............................ <#resolution>
+  [395] pushint8 1 .............................. <1>
+  [397] pusharglist 3 ........................... <gGame, #resolution, 1>
+  [399] objcall 70 .............................. <gGame.resolution[1]>
+  [401] getglobal 43 ............................ <gGame>
+  [403] pushsymb 409 ............................ <#resolution>
+  [406] pushint8 2 .............................. <2>
+  [408] pusharglist 3 ........................... <gGame, #resolution, 2>
+  [410] objcall 70 .............................. <gGame.resolution[2]>
+  [412] pusharglist 4 ........................... <0, 0, gGame.resolution[1], gGame.resolution[2]>
+  [414] extcall 320 ............................. <rect(0, 0, gGame.resolution[1], gGame.resolution[2])>
+  [417] setobjprop 320 .......................... p.TargetCamera.rect = rect(0, 0, gGame.resolution[1], gGame.resolution[2])
+  [420] getprop 563 ............................. <p>
+  [423] getobjprop 319 .......................... <p.image>
+  [426] setlocal 5 .............................. tSourceImage = p.image
+  [428] getprop 563 ............................. <p>
+  [431] getchainedprop 1569 ..................... <p.RT>
+  [434] getobjprop 319 .......................... <p.RT.image>
+  [437] setlocal 6 .............................. tTargetImage = p.RT.image
+  [439] getprop 563 ............................. <p>
+  [442] getobjprop 1572 ......................... <p.BlackImage>
+  [445] setlocal 7 .............................. tBlack = p.BlackImage
+  [447] getlocal 5 .............................. <tSourceImage>
+  [449] getlocal 6 .............................. <tTargetImage>
+  [451] getlocal 5 .............................. <tSourceImage>
+  [453] getobjprop 320 .......................... <tSourceImage.rect>
+  [456] getlocal 6 .............................. <tTargetImage>
+  [458] getobjprop 320 .......................... <tTargetImage.rect>
+  [461] pusharglistnoret 4 ...................... <tSourceImage, tTargetImage, tSourceImage.rect, tTargetImage.rect>
+  [463] objcall 321 ............................. tSourceImage.copyPixels(tTargetImage, tSourceImage.rect, tTargetImage.rect)
+  [466] getprop 563 ............................. <p>
+  [469] getchainedprop 1568 ..................... <p.BloomData>
+  [472] getobjprop 1580 ......................... <p.BloomData.colorFilter>
+  [475] setlocal 8 .............................. tAdjustColorData = p.BloomData.colorFilter
+  [477] getprop 563 ............................. <p>
+  [480] getchainedprop 1568 ..................... <p.BloomData>
+  [483] getobjprop 1581 ......................... <p.BloomData.blur>
+  [486] setlocal 9 .............................. tBlurData = p.BloomData.blur
+  [488] pushsymb 1582 ........................... <#AdjustColorFilter>
+  [491] getlocal 8 .............................. <tAdjustColorData>
+  [493] pusharglist 2 ........................... <#AdjustColorFilter, tAdjustColorData>
+  [495] extcall 327 ............................. <filter(#AdjustColorFilter, tAdjustColorData)>
+  [498] setlocal 10 ............................. tAdjustFilter = filter(#AdjustColorFilter, tAdjustColorData)
+  [500] pushsymb 1583 ........................... <#BlurFilter>
+  [503] getlocal 9 .............................. <tBlurData>
+  [505] pusharglist 2 ........................... <#BlurFilter, tBlurData>
+  [507] extcall 327 ............................. <filter(#BlurFilter, tBlurData)>
+  [510] setlocal 11 ............................. tBlurFilter = filter(#BlurFilter, tBlurData)
+  [512] getlocal 5 .............................. <tSourceImage>
+  [514] getlocal 10 ............................. <tAdjustFilter>
+  [516] pusharglistnoret 2 ...................... <tSourceImage, tAdjustFilter>
+  [518] objcall 333 ............................. tSourceImage.applyFilter(tAdjustFilter)
+  [521] getlocal 5 .............................. <tSourceImage>
+  [523] getlocal 11 ............................. <tBlurFilter>
+  [525] pusharglistnoret 2 ...................... <tSourceImage, tBlurFilter>
+  [527] objcall 333 ............................. tSourceImage.applyFilter(tBlurFilter)
+  [530] getlocal 5 .............................. <tSourceImage>
+  [532] getlocal 7 .............................. <tBlack>
+  [534] getlocal 5 .............................. <tSourceImage>
+  [536] getobjprop 320 .......................... <tSourceImage.rect>
+  [539] getlocal 7 .............................. <tBlack>
+  [541] getobjprop 320 .......................... <tBlack.rect>
+  [544] pushsymb 367 ............................ <#blend>
+  [547] pushint8 100 ............................ <100>
+  [549] getprop 563 ............................. <p>
+  [552] getchainedprop 1568 ..................... <p.BloomData>
+  [555] getobjprop 1584 ......................... <p.BloomData.intensity>
+  [558] sub ..................................... <100 - p.BloomData.intensity>
+  [559] pusharglist 2 ........................... <[#blend: 100 - p.BloomData.intensity]>
+  [561] pushproplist ............................ <[#blend: 100 - p.BloomData.intensity]>
+  [562] pusharglistnoret 5 ...................... <tSourceImage, tBlack, tSourceImage.rect, tBlack.rect, [#blend: 100 - p.BloomData.intensity]>
+  [564] objcall 321 ............................. tSourceImage.copyPixels(tBlack, tSourceImage.rect, tBlack.rect, [#blend: 100 - p.BloomData.intensity])
+  [567] getprop 563 ............................. <p>
+  [570] getchainedprop 218 ...................... <p.texture>
+  [572] getlocal 5 .............................. <tSourceImage>
+  [574] setobjprop 319 .......................... p.texture.image = tSourceImage
+  [577] pushcons 12 ............................. <"BloomImage">
+  [579] pusharglist 1 ........................... <"BloomImage">
+  [581] extcall 64 .............................. <member("BloomImage")>
+  [583] getlocal 5 .............................. <tSourceImage>
+  [585] setobjprop 319 .......................... member("BloomImage").image = tSourceImage
+  [588] ret
+end
+
+on delete me, tTag
+  [  0] getparam 1 .............................. <tTag>
+  [  2] pusharglist 0 ........................... <>
+  [  4] extcall 40 .............................. <VOID>
+  [  6] eq ...................................... <tTag = VOID>
+  [  7] jmpifz [131] ............................ if tTag = VOID then
+  [ 10] getprop 563 ............................. <p>
+  [ 13] getchainedprop 1563 ..................... <p.TargetCamera>
+  [ 16] pushsymb 306 ............................ <#overlay>
+  [ 19] pusharglist 2 ........................... <p.TargetCamera, #overlay>
+  [ 21] objcall 129 ............................. <p.TargetCamera.overlay.count>
+  [ 23] setlocal 0
+  [ 25] getlocal 0
+  [ 27] pushint8 1 .............................. <1>
+  [ 29] gteq
+  [ 30] jmpifz [131] ............................ repeat with i = p.TargetCamera.overlay.count down to 1
+  [ 33] getprop 563 ............................. <p>
+  [ 36] getchainedprop 1563 ..................... <p.TargetCamera>
+  [ 39] pushsymb 306 ............................ <#overlay>
+  [ 42] getlocal 0 .............................. <i>
+  [ 44] pusharglist 3 ........................... <p.TargetCamera, #overlay, i>
+  [ 46] objcall 102 ............................. <p.TargetCamera.overlay[i]>
+  [ 48] getobjprop 1593 ......................... <p.TargetCamera.overlay[i].source>
+  [ 51] getprop 563 ............................. <p>
+  [ 54] getobjprop 218 .......................... <p.texture>
+  [ 56] eq ...................................... <p.TargetCamera.overlay[i].source = p.texture>
+  [ 57] jmpifz [ 76] ............................ if p.TargetCamera.overlay[i].source = p.texture then
+  [ 60] getprop 563 ............................. <p>
+  [ 63] getchainedprop 1563 ..................... <p.TargetCamera>
+  [ 66] getlocal 0 .............................. <i>
+  [ 68] pusharglistnoret 2 ...................... <p.TargetCamera, i>
+  [ 70] objcall 1594 ............................ p.TargetCamera.removeOverlay(i)
+  [ 73] jmp [122] ............................... next repeat
+  [ 76] getprop 563 ............................. <p>
+  [ 79] getchainedprop 1563 ..................... <p.TargetCamera>
+  [ 82] pushsymb 306 ............................ <#overlay>
+  [ 85] getlocal 0 .............................. <i>
+  [ 87] pusharglist 3 ........................... <p.TargetCamera, #overlay, i>
+  [ 89] objcall 102 ............................. <p.TargetCamera.overlay[i]>
+  [ 91] getobjprop 1593 ......................... <p.TargetCamera.overlay[i].source>
+  [ 94] getprop 563 ............................. <p>
+  [ 97] getchainedprop 64 ....................... <p.member>
+  [ 99] pushcons 13 ............................. <"DefaultTexture">
+  [101] pusharglist 2 ........................... <p.member, "DefaultTexture">
+  [103] objcall 218 ............................. <p.member.texture("DefaultTexture")>
+  [105] eq ...................................... <p.TargetCamera.overlay[i].source = p.member.texture("DefaultTexture")>
+  [106] jmpifz [122] ............................ if p.TargetCamera.overlay[i].source = p.member.texture("DefaultTexture") then
+  [109] getprop 563 ............................. <p>
+  [112] getchainedprop 1563 ..................... <p.TargetCamera>
+  [115] getlocal 0 .............................. <i>
+  [117] pusharglistnoret 2 ...................... <p.TargetCamera, i>
+  [119] objcall 1594 ............................ p.TargetCamera.removeOverlay(i)
+  [122] pushint8 -1
+  [124] getlocal 0
+  [126] add
+  [127] setlocal 0
+  [129] endrepeat [ 25]
+  [131] getprop 563 ............................. <p>
+  [134] pusharglist 0 ........................... <>
+  [136] extcall 40 .............................. <VOID>
+  [138] setobjprop 319 .......................... p.image = VOID
+  [141] getprop 563 ............................. <p>
+  [144] pusharglist 0 ........................... <>
+  [146] extcall 40 .............................. <VOID>
+  [148] setobjprop 1572 ......................... p.BlackImage = VOID
+  [151] getprop 563 ............................. <p>
+  [154] getchainedprop 64 ....................... <p.member>
+  [156] getprop 563 ............................. <p>
+  [159] getchainedprop 218 ...................... <p.texture>
+  [161] getobjprop 235 .......................... <p.texture.name>
+  [163] pusharglistnoret 2 ...................... <p.member, p.texture.name>
+  [165] objcall 682 ............................. p.member.deleteTexture(p.texture.name)
+  [168] getprop 563 ............................. <p>
+  [171] getchainedprop 64 ....................... <p.member>
+  [173] getprop 563 ............................. <p>
+  [176] getchainedprop 1569 ..................... <p.RT>
+  [179] getobjprop 235 .......................... <p.RT.name>
+  [181] pusharglistnoret 2 ...................... <p.member, p.RT.name>
+  [183] objcall 682 ............................. p.member.deleteTexture(p.RT.name)
+  [186] getglobal 43 ............................ <gGame>
+  [188] getchainedprop 1278 ..................... <gGame.AddShaders>
+  [191] getprop 563 ............................. <p>
+  [194] getobjprop 208 .......................... <p.shader>
+  [196] pusharglistnoret 2 ...................... <gGame.AddShaders, p.shader>
+  [198] objcall 175 ............................. gGame.AddShaders.deleteOne(p.shader)
+  [200] getprop 563 ............................. <p>
+  [203] getchainedprop 64 ....................... <p.member>
+  [205] getprop 563 ............................. <p>
+  [208] getchainedprop 208 ...................... <p.shader>
+  [210] getobjprop 235 .......................... <p.shader.name>
+  [212] pusharglistnoret 2 ...................... <p.member, p.shader.name>
+  [214] objcall 1241 ............................ p.member.deleteShader(p.shader.name)
+  [217] pushzero ................................ <0>
+  [218] pushcons 1 .............................. <EMPTY>
+  [220] pushsymb 36 ............................. <#script>
+  [222] pushcons 14 ............................. <"[PS] Motion Blur">
+  [224] pusharglist 2 ........................... <[#script: "[PS] Motion Blur"]>
+  [226] pushproplist ............................ <[#script: "[PS] Motion Blur"]>
+  [227] pusharglist 3 ........................... <0, EMPTY, [#script: "[PS] Motion Blur"]>
+  [229] extcall 1595 ............................ <GetScript(0, EMPTY, [#script: "[PS] Motion Blur"])>
+  [232] setlocal 1 .............................. tScript = GetScript(0, EMPTY, [#script: "[PS] Motion Blur"])
+  [234] getlocal 1 .............................. <tScript>
+  [236] pusharglist 0 ........................... <>
+  [238] extcall 40 .............................. <VOID>
+  [240] eq ...................................... <tScript = VOID>
+  [241] jmpifz [278] ............................ if tScript = VOID then
+  [244] pushzero ................................ <0>
+  [245] pushcons 1 .............................. <EMPTY>
+  [247] pushsymb 36 ............................. <#script>
+  [249] pushcons 15 ............................. <"[PS] StageGrabber">
+  [251] pusharglist 2 ........................... <[#script: "[PS] StageGrabber"]>
+  [253] pushproplist ............................ <[#script: "[PS] StageGrabber"]>
+  [254] pusharglist 3 ........................... <0, EMPTY, [#script: "[PS] StageGrabber"]>
+  [256] extcall 1595 ............................ <GetScript(0, EMPTY, [#script: "[PS] StageGrabber"])>
+  [259] setlocal 1 .............................. tScript = GetScript(0, EMPTY, [#script: "[PS] StageGrabber"])
+  [261] getlocal 1 .............................. <tScript>
+  [263] pusharglist 0 ........................... <>
+  [265] extcall 40 .............................. <VOID>
+  [267] nteq .................................... <tScript <> VOID>
+  [268] jmpifz [278] ............................ if tScript <> VOID then
+  [271] getlocal 1 .............................. <tScript>
+  [273] pusharglistnoret 1 ...................... <tScript>
+  [275] objcall 562 ............................. delete tScript
+  [278] getglobal 50 ............................ <gSystem>
+  [280] getchainedprop 300 ...................... <gSystem.scriptList>
+  [283] getparam 0 .............................. <me>
+  [285] pusharglist 2 ........................... <gSystem.scriptList, me>
+  [287] objcall 166 ............................. <gSystem.scriptList.getPos(me)>
+  [289] pushzero ................................ <0>
+  [290] nteq .................................... <gSystem.scriptList.getPos(me) <> 0>
+  [291] jmpifz [308] ............................ if gSystem.scriptList.getPos(me) <> 0 then / else
+  [294] getglobal 50 ............................ <gSystem>
+  [296] getchainedprop 300 ...................... <gSystem.scriptList>
+  [299] getparam 0 .............................. <me>
+  [301] pusharglistnoret 2 ...................... <gSystem.scriptList, me>
+  [303] objcall 175 ............................. gSystem.scriptList.deleteOne(me)
+  [305] jmp [319]
+  [308] getglobal 43 ............................ <gGame>
+  [310] getchainedprop 300 ...................... <gGame.scriptList>
+  [313] getparam 0 .............................. <me>
+  [315] pusharglistnoret 2 ...................... <gGame.scriptList, me>
+  [317] objcall 175 ............................. gGame.scriptList.deleteOne(me)
+  [319] ret
+end

@@ -1,0 +1,792 @@
+property p
+global gSystem, gGame, gData
+
+on new me, t, tPod
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 64 ............................. <#member>
+  [ 11] getparam 1 .............................. <t>
+  [ 13] getchainedprop 376 ...................... <t.general>
+  [ 16] getobjprop 64 ........................... <t.general.member>
+  [ 18] pusharglistnoret 3 ...................... <p, #member, t.general.member>
+  [ 20] objcall 103 ............................. p[#member] = t.general.member
+  [ 22] getprop 563 ............................. <p>
+  [ 25] pushsymb 1049 ........................... <#sender>
+  [ 28] getparam 1 .............................. <t>
+  [ 30] getchainedprop 376 ...................... <t.general>
+  [ 33] getobjprop 377 .......................... <t.general.tag>
+  [ 36] pusharglistnoret 3 ...................... <p, #sender, t.general.tag>
+  [ 38] objcall 103 ............................. p[#sender] = t.general.tag
+  [ 40] getprop 563 ............................. <p>
+  [ 43] pushsymb 71 ............................. <#model>
+  [ 45] getparam 1 .............................. <t>
+  [ 47] getchainedprop 250 ...................... <t.car>
+  [ 49] getobjprop 71 ........................... <t.car.model>
+  [ 51] pusharglistnoret 3 ...................... <p, #model, t.car.model>
+  [ 53] objcall 103 ............................. p[#model] = t.car.model
+  [ 55] getprop 563 ............................. <p>
+  [ 58] pushsymb 87 ............................. <#data>
+  [ 60] getglobal 86 ............................ <gData>
+  [ 62] getchainedprop 87 ....................... <gData.data>
+  [ 64] getchainedprop 2427 ..................... <gData.data.SecondaryWeapons>
+  [ 67] getobjprop 2203 ......................... <gData.data.SecondaryWeapons.MainGun>
+  [ 70] pusharglistnoret 3 ...................... <p, #data, gData.data.SecondaryWeapons.MainGun>
+  [ 72] objcall 103 ............................. p[#data] = gData.data.SecondaryWeapons.MainGun
+  [ 74] getprop 563 ............................. <p>
+  [ 77] pushsymb 45 ............................. <#me>
+  [ 79] getparam 0 .............................. <me>
+  [ 81] pusharglistnoret 3 ...................... <p, #me, me>
+  [ 83] objcall 103 ............................. p[#me] = me
+  [ 85] getprop 563 ............................. <p>
+  [ 88] pushsymb 2465 ........................... <#ShellName>
+  [ 91] getprop 563 ............................. <p>
+  [ 94] getobjprop 1049 ......................... <p.sender>
+  [ 97] pusharglist 1 ........................... <p.sender>
+  [ 99] extcall 67 .............................. <string(p.sender)>
+  [101] pushcons 0 .............................. <"Shell">
+  [103] joinstr ................................. <string(p.sender) & "Shell">
+  [104] gettoplevelprop 462 ..................... <_system>
+  [107] getobjprop 463 .......................... <_system.milliSeconds>
+  [110] joinstr ................................. <string(p.sender) & "Shell" & _system.milliSeconds>
+  [111] pusharglistnoret 3 ...................... <p, #ShellName, string(p.sender) & "Shell" & _system.milliSeconds>
+  [113] objcall 103 ............................. p[#ShellName] = string(p.sender) & "Shell" & _system.milliSeconds
+  [115] getprop 563 ............................. <p>
+  [118] pushsymb 2466 ........................... <#Shell>
+  [121] getprop 563 ............................. <p>
+  [124] getchainedprop 64 ....................... <p.member>
+  [126] getprop 563 ............................. <p>
+  [129] getobjprop 2465 ......................... <p.ShellName>
+  [132] getprop 563 ............................. <p>
+  [135] getchainedprop 64 ....................... <p.member>
+  [137] pushcons 0 .............................. <"Shell">
+  [139] pusharglist 2 ........................... <p.member, "Shell">
+  [141] objcall 72 .............................. <p.member.modelResource("Shell")>
+  [143] pusharglist 3 ........................... <p.member, p.ShellName, p.member.modelResource("Shell")>
+  [145] objcall 892 ............................. <p.member.newModel(p.ShellName, p.member.modelResource("Shell"))>
+  [148] pusharglistnoret 3 ...................... <p, #Shell, p.member.newModel(p.ShellName, p.member.modelResource("Shell"))>
+  [150] objcall 103 ............................. p[#Shell] = p.member.newModel(p.ShellName, p.member.modelResource("Shell"))
+  [152] getprop 563 ............................. <p>
+  [155] getchainedprop 2466 ..................... <p.Shell>
+  [158] getprop 563 ............................. <p>
+  [161] getchainedprop 64 ....................... <p.member>
+  [163] pushcons 1 .............................. <"Weapons_Material">
+  [165] pusharglist 2 ........................... <p.member, "Weapons_Material">
+  [167] objcall 208 ............................. <p.member.shader("Weapons_Material")>
+  [169] setobjprop 208 .......................... p.Shell.shader = p.member.shader("Weapons_Material")
+  [171] getparam 1 .............................. <t>
+  [173] getchainedprop 250 ...................... <t.car>
+  [175] getchainedprop 1667 ..................... <t.car.Effects>
+  [178] pushsymb 1909 ........................... <#secondary>
+  [181] pushint8 1 .............................. <1>
+  [183] pusharglist 3 ........................... <t.car.Effects, #secondary, 1>
+  [185] objcall 102 ............................. <t.car.Effects.secondary[1]>
+  [187] pusharglist 1 ........................... <t.car.Effects.secondary[1]>
+  [189] objcall 1109 ............................ <t.car.Effects.secondary[1].getWorldTransform()>
+  [192] pusharglist 1 ........................... <t.car.Effects.secondary[1].getWorldTransform()>
+  [194] objcall 233 ............................. <t.car.Effects.secondary[1].getWorldTransform().duplicate()>
+  [196] setlocal 0 .............................. tTransform = t.car.Effects.secondary[1].getWorldTransform().duplicate()
+  [198] getprop 563 ............................. <p>
+  [201] getchainedprop 2466 ..................... <p.Shell>
+  [204] getlocal 0 .............................. <tTransform>
+  [206] setobjprop 214 .......................... p.Shell.transform = tTransform
+  [208] getprop 563 ............................. <p>
+  [211] pushsymb 2440 ........................... <#VList>
+  [214] getprop 563 ............................. <p>
+  [217] getchainedprop 2466 ..................... <p.Shell>
+  [220] getchainedprop 214 ...................... <p.Shell.transform>
+  [222] getobjprop 1191 ......................... <p.Shell.transform.zAxis>
+  [225] getprop 563 ............................. <p>
+  [228] getchainedprop 2466 ..................... <p.Shell>
+  [231] getchainedprop 214 ...................... <p.Shell.transform>
+  [233] getobjprop 1191 ......................... <p.Shell.transform.zAxis>
+  [236] inv ..................................... <-p.Shell.transform.zAxis>
+  [237] pusharglist 2 ........................... <[p.Shell.transform.zAxis, -p.Shell.transform.zAxis]>
+  [239] pushlist ................................ <[p.Shell.transform.zAxis, -p.Shell.transform.zAxis]>
+  [240] pusharglistnoret 3 ...................... <p, #VList, [p.Shell.transform.zAxis, -p.Shell.transform.zAxis]>
+  [242] objcall 103 ............................. p[#VList] = [p.Shell.transform.zAxis, -p.Shell.transform.zAxis]
+  [244] getprop 563 ............................. <p>
+  [247] pushsymb 2441 ........................... <#faces>
+  [250] pushzero ................................ <0>
+  [251] pusharglistnoret 3 ...................... <p, #faces, 0>
+  [253] objcall 103 ............................. p[#faces] = 0
+  [255] getprop 563 ............................. <p>
+  [258] pushsymb 2442 ........................... <#FList>
+  [261] pusharglist 0 ........................... <[]>
+  [263] pushlist ................................ <[]>
+  [264] pusharglistnoret 3 ...................... <p, #FList, []>
+  [266] objcall 103 ............................. p[#FList] = []
+  [268] getprop 563 ............................. <p>
+  [271] pushsymb 117 ............................ <#tList>
+  [273] pusharglist 0 ........................... <[]>
+  [275] pushlist ................................ <[]>
+  [276] pusharglistnoret 3 ...................... <p, #tList, []>
+  [278] objcall 103 ............................. p[#tList] = []
+  [280] getprop 563 ............................. <p>
+  [283] pushsymb 2443 ........................... <#TrailResource>
+  [286] getprop 563 ............................. <p>
+  [289] getchainedprop 64 ....................... <p.member>
+  [291] getprop 563 ............................. <p>
+  [294] getobjprop 2465 ......................... <p.ShellName>
+  [297] pushcons 2 .............................. <"Trail">
+  [299] joinstr ................................. <p.ShellName & "Trail">
+  [300] pushzero ................................ <0>
+  [301] getprop 563 ............................. <p>
+  [304] pushsymb 2440 ........................... <#VList>
+  [307] pusharglist 2 ........................... <p, #VList>
+  [309] objcall 129 ............................. <p.VList.count>
+  [311] pushzero ................................ <0>
+  [312] pushzero ................................ <0>
+  [313] getprop 563 ............................. <p>
+  [316] pushsymb 117 ............................ <#tList>
+  [318] pusharglist 2 ........................... <p, #tList>
+  [320] objcall 129 ............................. <p.tList.count>
+  [322] pusharglist 7 ........................... <p.member, p.ShellName & "Trail", 0, p.VList.count, 0, 0, p.tList.count>
+  [324] objcall 882 ............................. <p.member.newMesh(p.ShellName & "Trail", 0, p.VList.count, 0, 0, p.tList.count)>
+  [327] pusharglistnoret 3 ...................... <p, #TrailResource, p.member.newMesh(p.ShellName & "Trail", 0, p.VList.count, 0, 0, p.tList.count)>
+  [329] objcall 103 ............................. p[#TrailResource] = p.member.newMesh(p.ShellName & "Trail", 0, p.VList.count, 0, 0, p.tList.count)
+  [331] getprop 563 ............................. <p>
+  [334] pushsymb 2444 ........................... <#Trail>
+  [337] getprop 563 ............................. <p>
+  [340] getchainedprop 64 ....................... <p.member>
+  [342] getprop 563 ............................. <p>
+  [345] getobjprop 2465 ......................... <p.ShellName>
+  [348] pushcons 2 .............................. <"Trail">
+  [350] joinstr ................................. <p.ShellName & "Trail">
+  [351] getprop 563 ............................. <p>
+  [354] getobjprop 2443 ......................... <p.TrailResource>
+  [357] pusharglist 3 ........................... <p.member, p.ShellName & "Trail", p.TrailResource>
+  [359] objcall 892 ............................. <p.member.newModel(p.ShellName & "Trail", p.TrailResource)>
+  [362] pusharglistnoret 3 ...................... <p, #Trail, p.member.newModel(p.ShellName & "Trail", p.TrailResource)>
+  [364] objcall 103 ............................. p[#Trail] = p.member.newModel(p.ShellName & "Trail", p.TrailResource)
+  [366] getprop 563 ............................. <p>
+  [369] pushsymb 208 ............................ <#shader>
+  [371] pushzero ................................ <0>
+  [372] getprop 563 ............................. <p>
+  [375] getchainedprop 64 ....................... <p.member>
+  [377] getobjprop 235 .......................... <p.member.name>
+  [379] pushsymb 208 ............................ <#shader>
+  [381] getprop 563 ............................. <p>
+  [384] getobjprop 2465 ......................... <p.ShellName>
+  [387] pushcons 3 .............................. <"Trail_Material">
+  [389] joinstr ................................. <p.ShellName & "Trail_Material">
+  [390] pushsymb 218 ............................ <#texture>
+  [392] pushcons 4 .............................. <"RocketTrail_Texture">
+  [394] pushsymb 367 ............................ <#blend>
+  [397] pushfloat32 100.0 ....................... <100.0>
+  [402] pusharglist 6 ........................... <[#shader: p.ShellName & "Trail_Material", #texture: "RocketTrail_Texture", #blend: 100.0]>
+  [404] pushproplist ............................ <[#shader: p.ShellName & "Trail_Material", #texture: "RocketTrail_Texture", #blend: 100.0]>
+  [405] pusharglist 3 ........................... <0, p.member.name, [#shader: p.ShellName & "Trail_Material", #texture: "RocketTrail_Texture", #blend: 100.0]>
+  [407] extcall 1240 ............................ <CreateShader(0, p.member.name, [#shader: p.ShellName & "Trail_Material", #texture: "RocketTrail_Texture", #blend: 100.0])>
+  [410] pusharglistnoret 3 ...................... <p, #shader, CreateShader(0, p.member.name, [#shader: p.ShellName & "Trail_Material", #texture: "RocketTrail_Texture", #blend: 100.0])>
+  [412] objcall 103 ............................. p[#shader] = CreateShader(0, p.member.name, [#shader: p.ShellName & "Trail_Material", #texture: "RocketTrail_Texture", #blend: 100.0])
+  [414] getprop 563 ............................. <p>
+  [417] getchainedprop 64 ....................... <p.member>
+  [419] pushcons 5 .............................. <"RocketTrail2_Texture">
+  [421] pusharglist 2 ........................... <p.member, "RocketTrail2_Texture">
+  [423] objcall 218 ............................. <p.member.texture("RocketTrail2_Texture")>
+  [425] setlocal 1 .............................. tTexture = p.member.texture("RocketTrail2_Texture")
+  [427] getlocal 1 .............................. <tTexture>
+  [429] pusharglist 0 ........................... <>
+  [431] extcall 40 .............................. <VOID>
+  [433] eq ...................................... <tTexture = VOID>
+  [434] jmpifz [458] ............................ if tTexture = VOID then
+  [437] getprop 563 ............................. <p>
+  [440] getchainedprop 64 ....................... <p.member>
+  [442] getobjprop 235 .......................... <p.member.name>
+  [444] pushsymb 59 ............................. <#fileName>
+  [446] pushcons 5 .............................. <"RocketTrail2_Texture">
+  [448] pusharglist 2 ........................... <[#fileName: "RocketTrail2_Texture"]>
+  [450] pushproplist ............................ <[#fileName: "RocketTrail2_Texture"]>
+  [451] pusharglist 2 ........................... <p.member.name, [#fileName: "RocketTrail2_Texture"]>
+  [453] extcall 681 ............................. <createTexture(p.member.name, [#fileName: "RocketTrail2_Texture"])>
+  [456] setlocal 1 .............................. tTexture = createTexture(p.member.name, [#fileName: "RocketTrail2_Texture"])
+  [458] getprop 563 ............................. <p>
+  [461] getchainedprop 208 ...................... <p.shader>
+  [463] pushsymb 1244 ........................... <#textureList>
+  [466] pushint8 2 .............................. <2>
+  [468] getlocal 1 .............................. <tTexture>
+  [470] pusharglistnoret 4 ...................... <p.shader, #textureList, 2, tTexture>
+  [472] objcall 99 .............................. p.shader.textureList[2] = tTexture
+  [474] getprop 563 ............................. <p>
+  [477] getchainedprop 208 ...................... <p.shader>
+  [479] pushsymb 1256 ........................... <#textureModeList>
+  [482] pushint8 2 .............................. <2>
+  [484] pushsymb 1249 ........................... <#wrapPlanar>
+  [487] pusharglistnoret 4 ...................... <p.shader, #textureModeList, 2, #wrapPlanar>
+  [489] objcall 99 .............................. p.shader.textureModeList[2] = #wrapPlanar
+  [491] getprop 563 ............................. <p>
+  [494] getchainedprop 208 ...................... <p.shader>
+  [496] pushsymb 1267 ........................... <#wrapTransformList>
+  [499] pushint8 2 .............................. <2>
+  [501] pusharglist 3 ........................... <p.shader, #wrapTransformList, 2>
+  [503] objcall 102 ............................. <p.shader.wrapTransformList[2]>
+  [505] getprop 563 ............................. <p>
+  [508] getchainedprop 2466 ..................... <p.Shell>
+  [511] getchainedprop 214 ...................... <p.Shell.transform>
+  [513] getobjprop 1162 ......................... <p.Shell.transform.rotation>
+  [516] setobjprop 1162 ......................... p.shader.wrapTransformList[2].rotation = p.Shell.transform.rotation
+  [519] getprop 563 ............................. <p>
+  [522] getchainedprop 2444 ..................... <p.Trail>
+  [525] getprop 563 ............................. <p>
+  [528] getobjprop 208 .......................... <p.shader>
+  [530] setobjprop 208 .......................... p.Trail.shader = p.shader
+  [532] getprop 563 ............................. <p>
+  [535] getchainedprop 2444 ..................... <p.Trail>
+  [538] getchainedprop 214 ...................... <p.Trail.transform>
+  [540] getprop 563 ............................. <p>
+  [543] getchainedprop 2466 ..................... <p.Shell>
+  [546] getchainedprop 214 ...................... <p.Shell.transform>
+  [548] getobjprop 215 .......................... <p.Shell.transform.position>
+  [550] setobjprop 215 .......................... p.Trail.transform.position = p.Shell.transform.position
+  [552] getprop 563 ............................. <p>
+  [555] getchainedprop 2444 ..................... <p.Trail>
+  [558] pushsymb 1236 ........................... <#both>
+  [561] setobjprop 1233 ......................... p.Trail.visibility = #both
+  [564] getprop 563 ............................. <p>
+  [567] pushsymb 372 ............................ <#alive>
+  [570] pushint8 1 .............................. <1>
+  [572] pusharglistnoret 3 ...................... <p, #alive, 1>
+  [574] objcall 103 ............................. p[#alive] = 1
+  [576] getprop 563 ............................. <p>
+  [579] pushsymb 2018 ........................... <#Speed>
+  [582] pushfloat32 7.5 ......................... <7.5>
+  [587] pusharglistnoret 3 ...................... <p, #Speed, 7.5>
+  [589] objcall 103 ............................. p[#Speed] = 7.5
+  [591] getprop 563 ............................. <p>
+  [594] pushsymb 1162 ........................... <#rotation>
+  [597] pushint8 25 ............................. <25>
+  [599] pusharglistnoret 3 ...................... <p, #rotation, 25>
+  [601] objcall 103 ............................. p[#rotation] = 25
+  [603] getprop 563 ............................. <p>
+  [606] pushsymb 1054 ........................... <#distance>
+  [609] pushzero ................................ <0>
+  [610] pusharglistnoret 3 ...................... <p, #distance, 0>
+  [612] objcall 103 ............................. p[#distance] = 0
+  [614] pushcons 6 .............................. <"MainGun">
+  [616] pushint8 1 .............................. <1>
+  [618] pushint8 2 .............................. <2>
+  [620] pusharglist 2 ........................... <1, 2>
+  [622] extcall 176 ............................. <random(1, 2)>
+  [624] joinstr ................................. <"MainGun" & random(1, 2)>
+  [625] pushcons 7 .............................. <"_SFX">
+  [627] joinstr ................................. <"MainGun" & random(1, 2) & "_SFX">
+  [628] setlocal 2 .............................. tSound = "MainGun" & random(1, 2) & "_SFX"
+  [630] getlocal 2 .............................. <tSound>
+  [632] pushsymb 1047 ........................... <#priority>
+  [635] pushsymb 1048 ........................... <#low>
+  [638] pushsymb 1050 ........................... <#surround>
+  [641] pushint8 1 .............................. <1>
+  [643] pushsymb 1051 ........................... <#member3DName>
+  [646] getglobal 43 ............................ <gGame>
+  [648] getchainedprop 64 ....................... <gGame.member>
+  [650] getobjprop 235 .......................... <gGame.member.name>
+  [652] pushsymb 1049 ........................... <#sender>
+  [655] getparam 1 .............................. <t>
+  [657] getchainedprop 250 ...................... <t.car>
+  [659] getchainedprop 2068 ..................... <t.car.Proxy>
+  [662] getobjprop 235 .......................... <t.car.Proxy.name>
+  [664] pushsymb 1052 ........................... <#targetName>
+  [667] getparam 1 .............................. <t>
+  [669] getchainedprop 250 ...................... <t.car>
+  [671] getchainedprop 2068 ..................... <t.car.Proxy>
+  [674] getobjprop 235 .......................... <t.car.Proxy.name>
+  [676] pushsymb 1053 ........................... <#referenceName>
+  [679] pushcons 8 .............................. <"Player1_Camera">
+  [681] pushsymb 1054 ........................... <#distance>
+  [684] pushint8 20 ............................. <20>
+  [686] pushint16 200 ........................... <200>
+  [689] pusharglist 2 ........................... <[20, 200]>
+  [691] pushlist ................................ <[20, 200]>
+  [692] pushsymb 1055 ........................... <#static>
+  [695] pushzero ................................ <0>
+  [696] pushsymb 1056 ........................... <#Override>
+  [699] pushint8 1 .............................. <1>
+  [701] pusharglist 18 .......................... <[#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: t.car.Proxy.name, #targetName: t.car.Proxy.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 0, #Override: 1]>
+  [703] pushproplist ............................ <[#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: t.car.Proxy.name, #targetName: t.car.Proxy.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 0, #Override: 1]>
+  [704] pusharglistnoret 2 ...................... <tSound, [#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: t.car.Proxy.name, #targetName: t.car.Proxy.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 0, #Override: 1]>
+  [706] extcall 289 ............................. PlaySound(tSound, [#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: t.car.Proxy.name, #targetName: t.car.Proxy.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 0, #Override: 1])
+  [709] getprop 563 ............................. <p>
+  [712] pushsymb 238 ............................ <#timeout>
+  [714] pushint8 4 .............................. <4>
+  [716] getglobal 43 ............................ <gGame>
+  [718] getobjprop 453 .......................... <gGame.tempo>
+  [721] mul ..................................... <4 * gGame.tempo>
+  [722] pusharglistnoret 3 ...................... <p, #timeout, 4 * gGame.tempo>
+  [724] objcall 103 ............................. p[#timeout] = 4 * gGame.tempo
+  [726] getparam 0 .............................. <me>
+  [728] pusharglistnoret 1 ...................... <me>
+  [730] extcall 52 .............................. return me
+  [732] ret
+end
+
+on enterFrame me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getobjprop 392 .......................... <gGame.pause>
+  [  5] pushint8 1 .............................. <1>
+  [  7] eq ...................................... <gGame.pause = 1>
+  [  8] jmpifz [ 12] ............................ if gGame.pause = 1 then
+  [ 11] ret ..................................... exit
+  [ 12] getprop 563 ............................. <p>
+  [ 15] getobjprop 372 .......................... <p.alive>
+  [ 18] pushint8 1 .............................. <1>
+  [ 20] eq ...................................... <p.alive = 1>
+  [ 21] jmpifz [845] ............................ if p.alive = 1 then / else
+  [ 24] getprop 563 ............................. <p>
+  [ 27] getchainedprop 2466 ..................... <p.Shell>
+  [ 30] pushzero ................................ <0>
+  [ 31] getprop 563 ............................. <p>
+  [ 34] getobjprop 2018 ......................... <p.Speed>
+  [ 37] getglobal 43 ............................ <gGame>
+  [ 39] getobjprop 454 .......................... <gGame.TimeMP>
+  [ 42] mul ..................................... <p.Speed * gGame.TimeMP>
+  [ 43] pushzero ................................ <0>
+  [ 44] pushsymb 1370 ........................... <#self>
+  [ 47] pusharglistnoret 5 ...................... <p.Shell, 0, p.Speed * gGame.TimeMP, 0, #self>
+  [ 49] objcall 1371 ............................ p.Shell.translate(0, p.Speed * gGame.TimeMP, 0, #self)
+  [ 52] getprop 563 ............................. <p>
+  [ 55] getchainedprop 2466 ..................... <p.Shell>
+  [ 58] pushzero ................................ <0>
+  [ 59] getprop 563 ............................. <p>
+  [ 62] getobjprop 1162 ......................... <p.rotation>
+  [ 65] getglobal 43 ............................ <gGame>
+  [ 67] getobjprop 454 .......................... <gGame.TimeMP>
+  [ 70] mul ..................................... <p.rotation * gGame.TimeMP>
+  [ 71] pushzero ................................ <0>
+  [ 72] pushsymb 1370 ........................... <#self>
+  [ 75] pusharglistnoret 5 ...................... <p.Shell, 0, p.rotation * gGame.TimeMP, 0, #self>
+  [ 77] objcall 1471 ............................ p.Shell.rotate(0, p.rotation * gGame.TimeMP, 0, #self)
+  [ 80] getprop 563 ............................. <p>
+  [ 83] getprop 563 ............................. <p>
+  [ 86] getobjprop 1054 ......................... <p.distance>
+  [ 89] getprop 563 ............................. <p>
+  [ 92] getobjprop 2018 ......................... <p.Speed>
+  [ 95] getglobal 43 ............................ <gGame>
+  [ 97] getobjprop 454 .......................... <gGame.TimeMP>
+  [100] mul ..................................... <p.Speed * gGame.TimeMP>
+  [101] add ..................................... <p.distance + (p.Speed * gGame.TimeMP)>
+  [102] setobjprop 1054 ......................... p.distance = p.distance + (p.Speed * gGame.TimeMP)
+  [105] getprop 563 ............................. <p>
+  [108] getchainedprop 2466 ..................... <p.Shell>
+  [111] pusharglist 1 ........................... <p.Shell>
+  [113] objcall 1109 ............................ <p.Shell.getWorldTransform()>
+  [116] setlocal 0 .............................. tTransform = p.Shell.getWorldTransform()
+  [118] getglobal 43 ............................ <gGame>
+  [120] getchainedprop 1389 ..................... <gGame.Physics>
+  [123] getlocal 0 .............................. <tTransform>
+  [125] getobjprop 215 .......................... <tTransform.position>
+  [127] getlocal 0 .............................. <tTransform>
+  [129] getobjprop 1187 ......................... <tTransform.yAxis>
+  [132] pusharglist 3 ........................... <gGame.Physics, tTransform.position, tTransform.yAxis>
+  [134] objcall 2095 ............................ <gGame.Physics.rayCastClosest(tTransform.position, tTransform.yAxis)>
+  [137] setlocal 1 .............................. tDetails = gGame.Physics.rayCastClosest(tTransform.position, tTransform.yAxis)
+  [139] getlocal 1 .............................. <tDetails>
+  [141] getobjprop 129 .......................... <tDetails.count>
+  [143] pushzero ................................ <0>
+  [144] gt ...................................... <tDetails.count > 0>
+  [145] jmpifz [404] ............................ if tDetails.count > 0 then
+  [148] getlocal 1 .............................. <tDetails>
+  [150] pushint8 4 .............................. <4>
+  [152] pusharglist 2 ........................... <tDetails, 4>
+  [154] objcall 105 ............................. <tDetails[4]>
+  [156] pushfloat32 0.75 ........................ <0.75>
+  [161] getprop 563 ............................. <p>
+  [164] getobjprop 2018 ......................... <p.Speed>
+  [167] getglobal 43 ............................ <gGame>
+  [169] getobjprop 454 .......................... <gGame.TimeMP>
+  [172] mul ..................................... <p.Speed * gGame.TimeMP>
+  [173] add ..................................... <0.75 + (p.Speed * gGame.TimeMP)>
+  [174] lt ...................................... <tDetails[4] < (0.75 + (p.Speed * gGame.TimeMP))>
+  [175] jmpifz [404] ............................ if tDetails[4] < (0.75 + (p.Speed * gGame.TimeMP)) then
+  [178] getlocal 1 .............................. <tDetails>
+  [180] pushint8 1 .............................. <1>
+  [182] pusharglist 2 ........................... <tDetails, 1>
+  [184] objcall 105 ............................. <tDetails[1]>
+  [186] getobjprop 235 .......................... <tDetails[1].name>
+  [188] setlocal 2 .............................. tName = tDetails[1].name
+  [190] getprop 563 ............................. <p>
+  [193] getchainedprop 64 ....................... <p.member>
+  [195] getlocal 2 .............................. <tName>
+  [197] pusharglist 2 ........................... <p.member, tName>
+  [199] objcall 71 .............................. <p.member.model(tName)>
+  [201] setlocal 3 .............................. tmodel = p.member.model(tName)
+  [203] pushcons 9 .............................. <"[PS] Rocket Explosion">
+  [205] pusharglist 1 ........................... <"[PS] Rocket Explosion">
+  [207] extcall 36 .............................. <script("[PS] Rocket Explosion")>
+  [209] getprop 563 ............................. <p>
+  [212] getobjprop 64 ........................... <p.member>
+  [214] getlocal 1 .............................. <tDetails>
+  [216] pushint8 2 .............................. <2>
+  [218] pusharglist 2 ........................... <tDetails, 2>
+  [220] objcall 105 ............................. <tDetails[2]>
+  [222] getglobal 43 ............................ <gGame>
+  [224] getchainedprop 64 ....................... <gGame.member>
+  [226] pushcons 10 ............................. <"PLayer1_camera">
+  [228] pusharglist 2 ........................... <gGame.member, "PLayer1_camera">
+  [230] objcall 298 ............................. <gGame.member.camera("PLayer1_camera")>
+  [233] pusharglist 0 ........................... <>
+  [235] extcall 40 .............................. <VOID>
+  [237] pushint16 1500 .......................... <1500>
+  [240] pusharglist 6 ........................... <script("[PS] Rocket Explosion"), p.member, tDetails[2], gGame.member.camera("PLayer1_camera"), VOID, 1500>
+  [242] extcall 35 .............................. <new(script("[PS] Rocket Explosion"), p.member, tDetails[2], gGame.member.camera("PLayer1_camera"), VOID, 1500)>
+  [244] setlocal 4 .............................. tExploScript = new(script("[PS] Rocket Explosion"), p.member, tDetails[2], gGame.member.camera("PLayer1_camera"), VOID, 1500)
+  [246] getlocal 4 .............................. <tExploScript>
+  [248] pusharglist 0 ........................... <>
+  [250] extcall 40 .............................. <VOID>
+  [252] nteq .................................... <tExploScript <> VOID>
+  [253] jmpifz [267] ............................ if tExploScript <> VOID then
+  [256] getglobal 43 ............................ <gGame>
+  [258] getchainedprop 300 ...................... <gGame.scriptList>
+  [261] getlocal 4 .............................. <tExploScript>
+  [263] pusharglistnoret 2 ...................... <gGame.scriptList, tExploScript>
+  [265] objcall 42 .............................. gGame.scriptList.add(tExploScript)
+  [267] pushcons 11 ............................. <"MainGunExplosion_SFX">
+  [269] pushsymb 1047 ........................... <#priority>
+  [272] pushsymb 1081 ........................... <#medium>
+  [275] pushsymb 1050 ........................... <#surround>
+  [278] pushint8 1 .............................. <1>
+  [280] pushsymb 1051 ........................... <#member3DName>
+  [283] getprop 563 ............................. <p>
+  [286] getchainedprop 64 ....................... <p.member>
+  [288] getobjprop 235 .......................... <p.member.name>
+  [290] pushsymb 1049 ........................... <#sender>
+  [293] getprop 563 ............................. <p>
+  [296] getchainedprop 2466 ..................... <p.Shell>
+  [299] getobjprop 235 .......................... <p.Shell.name>
+  [301] pushsymb 1052 ........................... <#targetName>
+  [304] getprop 563 ............................. <p>
+  [307] getchainedprop 2466 ..................... <p.Shell>
+  [310] getobjprop 235 .......................... <p.Shell.name>
+  [312] pushsymb 1053 ........................... <#referenceName>
+  [315] pushcons 8 .............................. <"Player1_Camera">
+  [317] pushsymb 1054 ........................... <#distance>
+  [320] pushint8 80 ............................. <80>
+  [322] pushint16 300 ........................... <300>
+  [325] pusharglist 2 ........................... <[80, 300]>
+  [327] pushlist ................................ <[80, 300]>
+  [328] pushsymb 1055 ........................... <#static>
+  [331] pushint8 1 .............................. <1>
+  [333] pushsymb 1056 ........................... <#Override>
+  [336] pushint8 1 .............................. <1>
+  [338] pusharglist 18 .......................... <[#priority: #medium, #surround: 1, #member3DName: p.member.name, #sender: p.Shell.name, #targetName: p.Shell.name, #referenceName: "Player1_Camera", #distance: [80, 300], #static: 1, #Override: 1]>
+  [340] pushproplist ............................ <[#priority: #medium, #surround: 1, #member3DName: p.member.name, #sender: p.Shell.name, #targetName: p.Shell.name, #referenceName: "Player1_Camera", #distance: [80, 300], #static: 1, #Override: 1]>
+  [341] pusharglistnoret 2 ...................... <"MainGunExplosion_SFX", [#priority: #medium, #surround: 1, #member3DName: p.member.name, #sender: p.Shell.name, #targetName: p.Shell.name, #referenceName: "Player1_Camera", #distance: [80, 300], #static: 1, #Override: 1]>
+  [343] extcall 289 ............................. PlaySound("MainGunExplosion_SFX", [#priority: #medium, #surround: 1, #member3DName: p.member.name, #sender: p.Shell.name, #targetName: p.Shell.name, #referenceName: "Player1_Camera", #distance: [80, 300], #static: 1, #Override: 1])
+  [346] pushzero ................................ <0>
+  [347] getprop 563 ............................. <p>
+  [350] getchainedprop 2466 ..................... <p.Shell>
+  [353] getobjprop 1161 ......................... <p.Shell.worldPosition>
+  [356] getprop 563 ............................. <p>
+  [359] getchainedprop 87 ....................... <p.data>
+  [361] getobjprop 1545 ......................... <p.data.areaDamage>
+  [364] getprop 563 ............................. <p>
+  [367] getobjprop 1049 ......................... <p.sender>
+  [370] getprop 563 ............................. <p>
+  [373] getchainedprop 64 ....................... <p.member>
+  [375] getlocal 1 .............................. <tDetails>
+  [377] pushint8 1 .............................. <1>
+  [379] pusharglist 2 ........................... <tDetails, 1>
+  [381] objcall 105 ............................. <tDetails[1]>
+  [383] getobjprop 235 .......................... <tDetails[1].name>
+  [385] pusharglist 2 ........................... <p.member, tDetails[1].name>
+  [387] objcall 71 .............................. <p.member.model(tDetails[1].name)>
+  [389] getobjprop 207 .......................... <p.member.model(tDetails[1].name).parent>
+  [391] pusharglistnoret 5 ...................... <0, p.Shell.worldPosition, p.data.areaDamage, p.sender, p.member.model(tDetails[1].name).parent>
+  [393] extcall 1545 ............................ areaDamage(0, p.Shell.worldPosition, p.data.areaDamage, p.sender, p.member.model(tDetails[1].name).parent)
+  [396] getparam 0 .............................. <me>
+  [398] pusharglistnoret 1 ...................... <me>
+  [400] objcall 2464 ............................ me.DeleteShell()
+  [403] ret ..................................... exit
+  [404] getprop 563 ............................. <p>
+  [407] getchainedprop 64 ....................... <p.member>
+  [409] getprop 563 ............................. <p>
+  [412] getchainedprop 2444 ..................... <p.Trail>
+  [415] getchainedprop 73 ....................... <p.Trail.resource>
+  [417] getobjprop 235 .......................... <p.Trail.resource.name>
+  [419] pusharglistnoret 2 ...................... <p.member, p.Trail.resource.name>
+  [421] objcall 2168 ............................ p.member.deleteModelResource(p.Trail.resource.name)
+  [424] getprop 563 ............................. <p>
+  [427] getchainedprop 2440 ..................... <p.VList>
+  [430] getlocal 0 .............................. <tTransform>
+  [432] getobjprop 1191 ......................... <tTransform.zAxis>
+  [435] pushcons 12 ............................. <0.40000000000000002>
+  [437] mul ..................................... <tTransform.zAxis * 0.40000000000000002>
+  [438] getlocal 0 .............................. <tTransform>
+  [440] getobjprop 1187 ......................... <tTransform.yAxis>
+  [443] getprop 563 ............................. <p>
+  [446] getobjprop 1054 ......................... <p.distance>
+  [449] mul ..................................... <tTransform.yAxis * p.distance>
+  [450] add ..................................... <(tTransform.zAxis * 0.40000000000000002) + (tTransform.yAxis * p.distance)>
+  [451] getlocal 0 .............................. <tTransform>
+  [453] getobjprop 1180 ......................... <tTransform.xAxis>
+  [456] pushcons 13 ............................. <0.20000000000000001>
+  [458] mul ..................................... <tTransform.xAxis * 0.20000000000000001>
+  [459] add ..................................... <(tTransform.zAxis * 0.40000000000000002) + (tTransform.yAxis * p.distance) + (tTransform.xAxis * 0.20000000000000001)>
+  [460] pusharglistnoret 2 ...................... <p.VList, (tTransform.zAxis * 0.40000000000000002) + (tTransform.yAxis * p.distance) + (tTransform.xAxis * 0.20000000000000001)>
+  [462] objcall 42 .............................. p.VList.add((tTransform.zAxis * 0.40000000000000002) + (tTransform.yAxis * p.distance) + (tTransform.xAxis * 0.20000000000000001))
+  [464] getprop 563 ............................. <p>
+  [467] getchainedprop 2440 ..................... <p.VList>
+  [470] getlocal 0 .............................. <tTransform>
+  [472] getobjprop 1191 ......................... <tTransform.zAxis>
+  [475] inv ..................................... <-tTransform.zAxis>
+  [476] pushcons 12 ............................. <0.40000000000000002>
+  [478] mul ..................................... <-tTransform.zAxis * 0.40000000000000002>
+  [479] getlocal 0 .............................. <tTransform>
+  [481] getobjprop 1187 ......................... <tTransform.yAxis>
+  [484] getprop 563 ............................. <p>
+  [487] getobjprop 1054 ......................... <p.distance>
+  [490] mul ..................................... <tTransform.yAxis * p.distance>
+  [491] add ..................................... <(-tTransform.zAxis * 0.40000000000000002) + (tTransform.yAxis * p.distance)>
+  [492] getlocal 0 .............................. <tTransform>
+  [494] getobjprop 1180 ......................... <tTransform.xAxis>
+  [497] inv ..................................... <-tTransform.xAxis>
+  [498] pushcons 13 ............................. <0.20000000000000001>
+  [500] mul ..................................... <-tTransform.xAxis * 0.20000000000000001>
+  [501] add ..................................... <(-tTransform.zAxis * 0.40000000000000002) + (tTransform.yAxis * p.distance) + (-tTransform.xAxis * 0.20000000000000001)>
+  [502] pusharglistnoret 2 ...................... <p.VList, (-tTransform.zAxis * 0.40000000000000002) + (tTransform.yAxis * p.distance) + (-tTransform.xAxis * 0.20000000000000001)>
+  [504] objcall 42 .............................. p.VList.add((-tTransform.zAxis * 0.40000000000000002) + (tTransform.yAxis * p.distance) + (-tTransform.xAxis * 0.20000000000000001))
+  [506] getprop 563 ............................. <p>
+  [509] getchainedprop 117 ...................... <p.tList>
+  [511] pushzero ................................ <0>
+  [512] getprop 563 ............................. <p>
+  [515] getobjprop 1054 ......................... <p.distance>
+  [518] pushcons 13 ............................. <0.20000000000000001>
+  [520] mul ..................................... <p.distance * 0.20000000000000001>
+  [521] pusharglist 2 ........................... <[0, p.distance * 0.20000000000000001]>
+  [523] pushlist ................................ <[0, p.distance * 0.20000000000000001]>
+  [524] pusharglistnoret 2 ...................... <p.tList, [0, p.distance * 0.20000000000000001]>
+  [526] objcall 42 .............................. p.tList.add([0, p.distance * 0.20000000000000001])
+  [528] getprop 563 ............................. <p>
+  [531] getchainedprop 117 ...................... <p.tList>
+  [533] pushint8 1 .............................. <1>
+  [535] getprop 563 ............................. <p>
+  [538] getobjprop 1054 ......................... <p.distance>
+  [541] pushcons 13 ............................. <0.20000000000000001>
+  [543] mul ..................................... <p.distance * 0.20000000000000001>
+  [544] pusharglist 2 ........................... <[1, p.distance * 0.20000000000000001]>
+  [546] pushlist ................................ <[1, p.distance * 0.20000000000000001]>
+  [547] pusharglistnoret 2 ...................... <p.tList, [1, p.distance * 0.20000000000000001]>
+  [549] objcall 42 .............................. p.tList.add([1, p.distance * 0.20000000000000001])
+  [551] getprop 563 ............................. <p>
+  [554] getobjprop 2441 ......................... <p.faces>
+  [557] setlocal 5 .............................. tCount = p.faces
+  [559] getprop 563 ............................. <p>
+  [562] getprop 563 ............................. <p>
+  [565] getobjprop 2441 ......................... <p.faces>
+  [568] pushint8 2 .............................. <2>
+  [570] add ..................................... <p.faces + 2>
+  [571] setobjprop 2441 ......................... p.faces = p.faces + 2
+  [574] getprop 563 ............................. <p>
+  [577] getchainedprop 2442 ..................... <p.FList>
+  [580] pushint8 1 .............................. <1>
+  [582] getlocal 5 .............................. <tCount>
+  [584] add ..................................... <1 + tCount>
+  [585] pushint8 3 .............................. <3>
+  [587] getlocal 5 .............................. <tCount>
+  [589] add ..................................... <3 + tCount>
+  [590] pushint8 4 .............................. <4>
+  [592] getlocal 5 .............................. <tCount>
+  [594] add ..................................... <4 + tCount>
+  [595] pusharglist 3 ........................... <[1 + tCount, 3 + tCount, 4 + tCount]>
+  [597] pushlist ................................ <[1 + tCount, 3 + tCount, 4 + tCount]>
+  [598] pusharglistnoret 2 ...................... <p.FList, [1 + tCount, 3 + tCount, 4 + tCount]>
+  [600] objcall 42 .............................. p.FList.add([1 + tCount, 3 + tCount, 4 + tCount])
+  [602] getprop 563 ............................. <p>
+  [605] getchainedprop 2442 ..................... <p.FList>
+  [608] pushint8 1 .............................. <1>
+  [610] getlocal 5 .............................. <tCount>
+  [612] add ..................................... <1 + tCount>
+  [613] pushint8 4 .............................. <4>
+  [615] getlocal 5 .............................. <tCount>
+  [617] add ..................................... <4 + tCount>
+  [618] pushint8 2 .............................. <2>
+  [620] getlocal 5 .............................. <tCount>
+  [622] add ..................................... <2 + tCount>
+  [623] pusharglist 3 ........................... <[1 + tCount, 4 + tCount, 2 + tCount]>
+  [625] pushlist ................................ <[1 + tCount, 4 + tCount, 2 + tCount]>
+  [626] pusharglistnoret 2 ...................... <p.FList, [1 + tCount, 4 + tCount, 2 + tCount]>
+  [628] objcall 42 .............................. p.FList.add([1 + tCount, 4 + tCount, 2 + tCount])
+  [630] getprop 563 ............................. <p>
+  [633] getprop 563 ............................. <p>
+  [636] getchainedprop 64 ....................... <p.member>
+  [638] getprop 563 ............................. <p>
+  [641] getchainedprop 2466 ..................... <p.Shell>
+  [644] getobjprop 235 .......................... <p.Shell.name>
+  [646] pushcons 2 .............................. <"Trail">
+  [648] joinstr ................................. <p.Shell.name & "Trail">
+  [649] getglobal 50 ............................ <gSystem>
+  [651] getobjprop 432 .......................... <gSystem.frame>
+  [654] joinstr ................................. <p.Shell.name & "Trail" & gSystem.frame>
+  [655] getprop 563 ............................. <p>
+  [658] getobjprop 2441 ......................... <p.faces>
+  [661] getprop 563 ............................. <p>
+  [664] pushsymb 2440 ........................... <#VList>
+  [667] pusharglist 2 ........................... <p, #VList>
+  [669] objcall 129 ............................. <p.VList.count>
+  [671] pushzero ................................ <0>
+  [672] pushzero ................................ <0>
+  [673] getprop 563 ............................. <p>
+  [676] pushsymb 117 ............................ <#tList>
+  [678] pusharglist 2 ........................... <p, #tList>
+  [680] objcall 129 ............................. <p.tList.count>
+  [682] pusharglist 7 ........................... <p.member, p.Shell.name & "Trail" & gSystem.frame, p.faces, p.VList.count, 0, 0, p.tList.count>
+  [684] objcall 882 ............................. <p.member.newMesh(p.Shell.name & "Trail" & gSystem.frame, p.faces, p.VList.count, 0, 0, p.tList.count)>
+  [687] setobjprop 2443 ......................... p.TrailResource = p.member.newMesh(p.Shell.name & "Trail" & gSystem.frame, p.faces, p.VList.count, 0, 0, p.tList.count)
+  [690] getprop 563 ............................. <p>
+  [693] getchainedprop 2443 ..................... <p.TrailResource>
+  [696] getprop 563 ............................. <p>
+  [699] getobjprop 2440 ......................... <p.VList>
+  [702] setobjprop 883 .......................... p.TrailResource.vertexList = p.VList
+  [705] getprop 563 ............................. <p>
+  [708] getchainedprop 2443 ..................... <p.TrailResource>
+  [711] getprop 563 ............................. <p>
+  [714] getobjprop 117 .......................... <p.tList>
+  [716] setobjprop 886 .......................... p.TrailResource.textureCoordinateList = p.tList
+  [719] pushint8 1 .............................. <1>
+  [721] setlocal 6
+  [723] getlocal 6
+  [725] getprop 563 ............................. <p>
+  [728] getobjprop 2441 ......................... <p.faces>
+  [731] lteq
+  [732] jmpifz [804] ............................ repeat with i = 1 to p.faces
+  [735] getprop 563 ............................. <p>
+  [738] getchainedprop 2443 ..................... <p.TrailResource>
+  [741] pushsymb 884 ............................ <#face>
+  [744] getlocal 6 .............................. <i>
+  [746] pusharglist 3 ........................... <p.TrailResource, #face, i>
+  [748] objcall 102 ............................. <p.TrailResource.face[i]>
+  [750] getprop 563 ............................. <p>
+  [753] pushsymb 2442 ........................... <#FList>
+  [756] getlocal 6 .............................. <i>
+  [758] pusharglist 3 ........................... <p, #FList, i>
+  [760] objcall 70 .............................. <p.FList[i]>
+  [762] setobjprop 885 .......................... p.TrailResource.face[i].vertices = p.FList[i]
+  [765] getprop 563 ............................. <p>
+  [768] getchainedprop 2443 ..................... <p.TrailResource>
+  [771] pushsymb 884 ............................ <#face>
+  [774] getlocal 6 .............................. <i>
+  [776] pusharglist 3 ........................... <p.TrailResource, #face, i>
+  [778] objcall 102 ............................. <p.TrailResource.face[i]>
+  [780] getprop 563 ............................. <p>
+  [783] pushsymb 2442 ........................... <#FList>
+  [786] getlocal 6 .............................. <i>
+  [788] pusharglist 3 ........................... <p, #FList, i>
+  [790] objcall 70 .............................. <p.FList[i]>
+  [792] setobjprop 887 .......................... p.TrailResource.face[i].texCoords = p.FList[i]
+  [795] pushint8 1
+  [797] getlocal 6
+  [799] add
+  [800] setlocal 6
+  [802] endrepeat [723]
+  [804] getprop 563 ............................. <p>
+  [807] getchainedprop 2443 ..................... <p.TrailResource>
+  [810] pusharglistnoret 1 ...................... <p.TrailResource>
+  [812] objcall 891 ............................. p.TrailResource.build()
+  [815] getprop 563 ............................. <p>
+  [818] getchainedprop 2444 ..................... <p.Trail>
+  [821] getprop 563 ............................. <p>
+  [824] getobjprop 2443 ......................... <p.TrailResource>
+  [827] setobjprop 73 ........................... p.Trail.resource = p.TrailResource
+  [829] getprop 563 ............................. <p>
+  [832] getchainedprop 2444 ..................... <p.Trail>
+  [835] getprop 563 ............................. <p>
+  [838] getobjprop 208 .......................... <p.shader>
+  [840] setobjprop 208 .......................... p.Trail.shader = p.shader
+  [842] jmp [896]
+  [845] getprop 563 ............................. <p>
+  [848] getchainedprop 208 ...................... <p.shader>
+  [850] getobjprop 367 .......................... <p.shader.blend>
+  [853] setlocal 7 .............................. tBlend = p.shader.blend
+  [855] getlocal 7 .............................. <tBlend>
+  [857] pushint8 5 .............................. <5>
+  [859] sub ..................................... <tBlend - 5>
+  [860] setlocal 7 .............................. tBlend = tBlend - 5
+  [862] pushzero ................................ <0>
+  [863] getlocal 7 .............................. <tBlend>
+  [865] pusharglist 2 ........................... <0, tBlend>
+  [867] extcall 370 ............................. <max(0, tBlend)>
+  [870] setlocal 7 .............................. tBlend = max(0, tBlend)
+  [872] getprop 563 ............................. <p>
+  [875] getchainedprop 208 ...................... <p.shader>
+  [877] getlocal 7 .............................. <tBlend>
+  [879] setobjprop 367 .......................... p.shader.blend = tBlend
+  [882] getlocal 7 .............................. <tBlend>
+  [884] pushzero ................................ <0>
+  [885] eq ...................................... <tBlend = 0>
+  [886] jmpifz [896] ............................ if tBlend = 0 then
+  [889] getparam 0 .............................. <me>
+  [891] pusharglistnoret 1 ...................... <me>
+  [893] objcall 562 ............................. delete me
+  [896] getprop 563 ............................. <p>
+  [899] getprop 563 ............................. <p>
+  [902] getobjprop 238 .......................... <p.timeout>
+  [904] pushfloat32 1.0 ......................... <1.0>
+  [909] getglobal 43 ............................ <gGame>
+  [911] getobjprop 454 .......................... <gGame.TimeMP>
+  [914] mul ..................................... <1.0 * gGame.TimeMP>
+  [915] sub ..................................... <p.timeout - (1.0 * gGame.TimeMP)>
+  [916] setobjprop 238 .......................... p.timeout = p.timeout - (1.0 * gGame.TimeMP)
+  [918] getprop 563 ............................. <p>
+  [921] getobjprop 238 .......................... <p.timeout>
+  [923] pushzero ................................ <0>
+  [924] lteq .................................... <p.timeout <= 0>
+  [925] jmpifz [935] ............................ if p.timeout <= 0 then
+  [928] getparam 0 .............................. <me>
+  [930] pusharglistnoret 1 ...................... <me>
+  [932] objcall 562 ............................. delete me
+  [935] ret
+end
+
+on DeleteShell me
+  [  0] getprop 563 ............................. <p>
+  [  3] getchainedprop 64 ....................... <p.member>
+  [  5] getprop 563 ............................. <p>
+  [  8] getchainedprop 2466 ..................... <p.Shell>
+  [ 11] getobjprop 235 .......................... <p.Shell.name>
+  [ 13] pusharglistnoret 2 ...................... <p.member, p.Shell.name>
+  [ 15] objcall 1221 ............................ p.member.deleteModel(p.Shell.name)
+  [ 18] getprop 563 ............................. <p>
+  [ 21] pushzero ................................ <0>
+  [ 22] setobjprop 372 .......................... p.alive = 0
+  [ 25] ret
+end
+
+on delete me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 372 .......................... <p.alive>
+  [  6] pushint8 1 .............................. <1>
+  [  8] eq ...................................... <p.alive = 1>
+  [  9] jmpifz [ 19] ............................ if p.alive = 1 then
+  [ 12] getparam 0 .............................. <me>
+  [ 14] pusharglistnoret 1 ...................... <me>
+  [ 16] objcall 2464 ............................ me.DeleteShell()
+  [ 19] getprop 563 ............................. <p>
+  [ 22] getchainedprop 64 ....................... <p.member>
+  [ 24] getprop 563 ............................. <p>
+  [ 27] getchainedprop 208 ...................... <p.shader>
+  [ 29] getobjprop 235 .......................... <p.shader.name>
+  [ 31] pusharglistnoret 2 ...................... <p.member, p.shader.name>
+  [ 33] objcall 1241 ............................ p.member.deleteShader(p.shader.name)
+  [ 36] getprop 563 ............................. <p>
+  [ 39] getchainedprop 64 ....................... <p.member>
+  [ 41] getprop 563 ............................. <p>
+  [ 44] getchainedprop 2444 ..................... <p.Trail>
+  [ 47] getobjprop 235 .......................... <p.Trail.name>
+  [ 49] pusharglistnoret 2 ...................... <p.member, p.Trail.name>
+  [ 51] objcall 1221 ............................ p.member.deleteModel(p.Trail.name)
+  [ 54] getprop 563 ............................. <p>
+  [ 57] getchainedprop 64 ....................... <p.member>
+  [ 59] getprop 563 ............................. <p>
+  [ 62] getchainedprop 2443 ..................... <p.TrailResource>
+  [ 65] getobjprop 235 .......................... <p.TrailResource.name>
+  [ 67] pusharglistnoret 2 ...................... <p.member, p.TrailResource.name>
+  [ 69] objcall 2168 ............................ p.member.deleteModelResource(p.TrailResource.name)
+  [ 72] getglobal 43 ............................ <gGame>
+  [ 74] getchainedprop 300 ...................... <gGame.scriptList>
+  [ 77] getprop 563 ............................. <p>
+  [ 80] getobjprop 45 ........................... <p.me>
+  [ 82] pusharglistnoret 2 ...................... <gGame.scriptList, p.me>
+  [ 84] objcall 175 ............................. gGame.scriptList.deleteOne(p.me)
+  [ 86] ret
+end

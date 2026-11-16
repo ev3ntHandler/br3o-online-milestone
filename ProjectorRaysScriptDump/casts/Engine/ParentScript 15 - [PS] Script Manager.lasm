@@ -1,0 +1,147 @@
+property p
+global gSystem, gGame
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 487 ............................ <#sprite>
+  [ 12] getparam 1 .............................. <tParams>
+  [ 14] pushsymb 564 ............................ <#SpriteNR>
+  [ 17] pusharglist 2 ........................... <tParams, #SpriteNR>
+  [ 19] objcall 105 ............................. <tParams[#SpriteNR]>
+  [ 21] pusharglist 1 ........................... <tParams[#SpriteNR]>
+  [ 23] extcall 487 ............................. <sprite(tParams[#SpriteNR])>
+  [ 26] pusharglistnoret 3 ...................... <p, #sprite, sprite(tParams[#SpriteNR])>
+  [ 28] objcall 103 ............................. p[#sprite] = sprite(tParams[#SpriteNR])
+  [ 30] getprop 563 ............................. <p>
+  [ 33] pushsymb 64 ............................. <#member>
+  [ 35] getprop 563 ............................. <p>
+  [ 38] getchainedprop 487 ...................... <p.sprite>
+  [ 41] getobjprop 64 ........................... <p.sprite.member>
+  [ 43] pusharglistnoret 3 ...................... <p, #member, p.sprite.member>
+  [ 45] objcall 103 ............................. p[#member] = p.sprite.member
+  [ 47] getprop 563 ............................. <p>
+  [ 50] pushsymb 565 ............................ <#ScriptName>
+  [ 53] pushcons 0 .............................. <"Script Manager">
+  [ 55] pusharglistnoret 3 ...................... <p, #ScriptName, "Script Manager">
+  [ 57] objcall 103 ............................. p[#ScriptName] = "Script Manager"
+  [ 59] getprop 563 ............................. <p>
+  [ 62] pushsymb 45 ............................. <#me>
+  [ 64] getparam 0 .............................. <me>
+  [ 66] pusharglistnoret 3 ...................... <p, #me, me>
+  [ 68] objcall 103 ............................. p[#me] = me
+  [ 70] getparam 0 .............................. <me>
+  [ 72] pusharglistnoret 1 ...................... <me>
+  [ 74] extcall 52 .............................. return me
+  [ 76] ret
+end
+
+on enterFrame me
+  [  0] pushsymb 559 ............................ <#enterFrame>
+  [  3] getglobal 50 ............................ <gSystem>
+  [  5] getobjprop 300 .......................... <gSystem.scriptList>
+  [  8] pusharglistnoret 2 ...................... <#enterFrame, gSystem.scriptList>
+  [ 10] extcall 567 ............................. call(#enterFrame, gSystem.scriptList)
+  [ 13] getglobal 43 ............................ <gGame>
+  [ 15] getobjprop 392 .......................... <gGame.pause>
+  [ 18] pushint8 1 .............................. <1>
+  [ 20] eq ...................................... <gGame.pause = 1>
+  [ 21] jmpifz [ 63] ............................ if gGame.pause = 1 then
+  [ 24] getglobal 50 ............................ <gSystem>
+  [ 26] pushsymb 568 ............................ <#InterPolatorList>
+  [ 29] pusharglist 2 ........................... <gSystem, #InterPolatorList>
+  [ 31] objcall 105 ............................. <gSystem[#InterPolatorList]>
+  [ 33] pusharglist 1 ........................... <gSystem[#InterPolatorList]>
+  [ 35] extcall 389 ............................. <voidp(gSystem[#InterPolatorList])>
+  [ 38] pushzero ................................ <0>
+  [ 39] eq ...................................... <voidp(gSystem[#InterPolatorList]) = 0>
+  [ 40] jmpifz [ 63] ............................ if voidp(gSystem[#InterPolatorList]) = 0 then
+  [ 43] getglobal 50 ............................ <gSystem>
+  [ 45] pushsymb 568 ............................ <#InterPolatorList>
+  [ 48] pusharglist 2 ........................... <gSystem, #InterPolatorList>
+  [ 50] objcall 129 ............................. <gSystem.InterPolatorList.count>
+  [ 52] pushzero ................................ <0>
+  [ 53] gt ...................................... <gSystem.InterPolatorList.count > 0>
+  [ 54] jmpifz [ 62] ............................ if gSystem.InterPolatorList.count > 0 then
+  [ 57] pusharglistnoret 0 ...................... <>
+  [ 59] extcall 569 ............................. Interpolator()
+  [ 62] ret ..................................... exit
+  [ 63] pushsymb 559 ............................ <#enterFrame>
+  [ 66] getglobal 43 ............................ <gGame>
+  [ 68] getobjprop 300 .......................... <gGame.scriptList>
+  [ 71] pusharglistnoret 2 ...................... <#enterFrame, gGame.scriptList>
+  [ 73] extcall 567 ............................. call(#enterFrame, gGame.scriptList)
+  [ 76] pusharglistnoret 0 ...................... <>
+  [ 78] extcall 570 ............................. RunHandlerList()
+  [ 81] pusharglistnoret 0 ...................... <>
+  [ 83] extcall 571 ............................. EvalTriggers()
+  [ 86] pusharglistnoret 0 ...................... <>
+  [ 88] extcall 572 ............................. UpdateTimers()
+  [ 91] ret
+end
+
+on keyUp me
+  [  0] gettoplevelprop 574 ..................... <_key>
+  [  3] getobjprop 575 .......................... <_key.key>
+  [  6] pusharglistnoret 1 ...................... <_key.key>
+  [  8] extcall 573 ............................. KeyHandler(_key.key)
+  [ 11] gettoplevelprop 574 ..................... <_key>
+  [ 14] getobjprop 576 .......................... <_key.keyCode>
+  [ 17] pusharglistnoret 1 ...................... <_key.keyCode>
+  [ 19] extcall 573 ............................. KeyHandler(_key.keyCode)
+  [ 22] gettoplevelprop 574 ..................... <_key>
+  [ 25] getobjprop 577 .......................... <_key.commandDown>
+  [ 28] gettoplevelprop 574 ..................... <_key>
+  [ 31] getobjprop 578 .......................... <_key.shiftDown>
+  [ 34] and ..................................... <_key.commandDown and _key.shiftDown>
+  [ 35] gettoplevelprop 574 ..................... <_key>
+  [ 38] getobjprop 575 .......................... <_key.key>
+  [ 41] pushcons 1 .............................. <"a">
+  [ 43] eq ...................................... <_key.key = "a">
+  [ 44] and ..................................... <_key.commandDown and _key.shiftDown and (_key.key = "a")>
+  [ 45] jmpifz [ 60] ............................ if _key.commandDown and _key.shiftDown and (_key.key = "a") then
+  [ 48] pushzero ................................ <0>
+  [ 49] getprop 563 ............................. <p>
+  [ 52] getobjprop 564 .......................... <p.SpriteNR>
+  [ 55] pusharglistnoret 2 ...................... <0, p.SpriteNR>
+  [ 57] extcall 441 ............................. Emo(0, p.SpriteNR)
+  [ 60] ret
+end
+
+on keyDown me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pushsymb 579 ............................ <#EnterName>
+  [  5] pusharglist 2 ........................... <gGame, #EnterName>
+  [  7] objcall 105 ............................. <gGame[#EnterName]>
+  [  9] pusharglist 1 ........................... <gGame[#EnterName]>
+  [ 11] extcall 389 ............................. <voidp(gGame[#EnterName])>
+  [ 14] pushzero ................................ <0>
+  [ 15] eq ...................................... <voidp(gGame[#EnterName]) = 0>
+  [ 16] jmpifz [ 41] ............................ if voidp(gGame[#EnterName]) = 0 then
+  [ 19] getglobal 43 ............................ <gGame>
+  [ 21] getchainedprop 579 ...................... <gGame.EnterName>
+  [ 24] gettoplevelprop 574 ..................... <_key>
+  [ 27] getobjprop 575 .......................... <_key.key>
+  [ 30] gettoplevelprop 574 ..................... <_key>
+  [ 33] getobjprop 576 .......................... <_key.keyCode>
+  [ 36] pusharglistnoret 3 ...................... <gGame.EnterName, _key.key, _key.keyCode>
+  [ 38] objcall 561 ............................. gGame.EnterName.keyDown(_key.key, _key.keyCode)
+  [ 41] ret
+end
+
+on mouseUp me
+  [  0] ret
+end
+
+on delete me
+  [  0] getprop 563 ............................. <p>
+  [  3] getchainedprop 487 ...................... <p.sprite>
+  [  6] getchainedprop 580 ...................... <p.sprite.scriptInstanceList>
+  [  9] getprop 563 ............................. <p>
+  [ 12] getobjprop 45 ........................... <p.me>
+  [ 14] pusharglistnoret 2 ...................... <p.sprite.scriptInstanceList, p.me>
+  [ 16] objcall 175 ............................. p.sprite.scriptInstanceList.deleteOne(p.me)
+  [ 18] ret
+end

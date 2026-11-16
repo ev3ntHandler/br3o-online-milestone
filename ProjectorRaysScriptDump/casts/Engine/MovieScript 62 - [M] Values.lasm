@@ -1,0 +1,547 @@
+global gSystem, gData, gGame
+
+on AddValue me, tArray, tDataList
+  [  0] getparam 2 .............................. <tDataList>
+  [  2] pusharglist 1 ........................... <tDataList>
+  [  4] extcall 503 ............................. <value(tDataList)>
+  [  7] setparam 2 .............................. tDataList = value(tDataList)
+  [  9] getparam 2 .............................. <tDataList>
+  [ 11] getobjprop 122 .......................... <tDataList.ilk>
+  [ 13] pushsymb 541 ............................ <#propList>
+  [ 16] nteq .................................... <tDataList.ilk <> #propList>
+  [ 17] jmpifz [ 44] ............................ if tDataList.ilk <> #propList then
+  [ 20] pushcons 0 .............................. <"Function: AddValue. Target: ">
+  [ 22] getparam 1 .............................. <tArray>
+  [ 24] joinstr ................................. <"Function: AddValue. Target: " & tArray>
+  [ 25] pushcons 1 .............................. <" Parameters: ">
+  [ 27] joinstr ................................. <"Function: AddValue. Target: " & tArray & " Parameters: ">
+  [ 28] getparam 2 .............................. <tDataList>
+  [ 30] joinstr ................................. <"Function: AddValue. Target: " & tArray & " Parameters: " & tDataList>
+  [ 31] pushcons 2 .............................. <" Datalist was not a #PropList after value().">
+  [ 33] joinstr ................................. <"Function: AddValue. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().">
+  [ 34] pusharglistnoret 1 ...................... <"Function: AddValue. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().">
+  [ 36] extcall 511 ............................. ShowError("Function: AddValue. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().")
+  [ 39] pushzero ................................ <0>
+  [ 40] pusharglistnoret 1 ...................... <0>
+  [ 42] extcall 52 .............................. return 0
+  [ 44] getglobal 43 ............................ <gGame>
+  [ 46] setlocal 0 .............................. tList = gGame
+  [ 48] getparam 1 .............................. <tArray>
+  [ 50] pusharglist 1 ........................... <tArray>
+  [ 52] extcall 389 ............................. <voidp(tArray)>
+  [ 55] pushzero ................................ <0>
+  [ 56] eq ...................................... <voidp(tArray) = 0>
+  [ 57] jmpifz [ 69] ............................ if voidp(tArray) = 0 then
+  [ 60] getparam 1 .............................. <tArray>
+  [ 62] pusharglist 1 ........................... <tArray>
+  [ 64] extcall 503 ............................. <value(tArray)>
+  [ 67] setlocal 0 .............................. tList = value(tArray)
+  [ 69] getlocal 0 .............................. <tList>
+  [ 71] getobjprop 122 .......................... <tList.ilk>
+  [ 73] pushsymb 541 ............................ <#propList>
+  [ 76] nteq .................................... <tList.ilk <> #propList>
+  [ 77] jmpifz [ 84] ............................ if tList.ilk <> #propList then
+  [ 80] getglobal 43 ............................ <gGame>
+  [ 82] setlocal 0 .............................. tList = gGame
+  [ 84] getparam 2 .............................. <tDataList>
+  [ 86] getobjprop 503 .......................... <tDataList.value>
+  [ 89] pusharglist 1 ........................... <tDataList.value>
+  [ 91] extcall 503 ............................. <value(tDataList.value)>
+  [ 94] setlocal 1 .............................. tValue = value(tDataList.value)
+  [ 96] getlocal 1 .............................. <tValue>
+  [ 98] getobjprop 122 .......................... <tValue.ilk>
+  [100] pushsymb 40 ............................. <#void>
+  [102] eq ...................................... <tValue.ilk = #void>
+  [103] jmpifz [113] ............................ if tValue.ilk = #void then
+  [106] getparam 2 .............................. <tDataList>
+  [108] getobjprop 503 .......................... <tDataList.value>
+  [111] setlocal 1 .............................. tValue = tDataList.value
+  [113] getparam 2 .............................. <tDataList>
+  [115] getobjprop 235 .......................... <tDataList.name>
+  [117] pusharglist 1 ........................... <tDataList.name>
+  [119] extcall 88 .............................. <symbol(tDataList.name)>
+  [121] setlocal 2 .............................. tSymbol = symbol(tDataList.name)
+  [123] getlocal 0 .............................. <tList>
+  [125] getlocal 2 .............................. <tSymbol>
+  [127] getlocal 1 .............................. <tValue>
+  [129] pusharglistnoret 3 ...................... <tList, tSymbol, tValue>
+  [131] objcall 103 ............................. tList[tSymbol] = tValue
+  [133] getlocal 2 .............................. <tSymbol>
+  [135] pusharglistnoret 1 ...................... <tSymbol>
+  [137] extcall 52 .............................. return tSymbol
+  [139] ret
+end
+
+on SetValue me, tArray, tDataList
+  [  0] getparam 2 .............................. <tDataList>
+  [  2] pusharglist 1 ........................... <tDataList>
+  [  4] extcall 503 ............................. <value(tDataList)>
+  [  7] setparam 2 .............................. tDataList = value(tDataList)
+  [  9] getparam 2 .............................. <tDataList>
+  [ 11] getobjprop 122 .......................... <tDataList.ilk>
+  [ 13] pushsymb 541 ............................ <#propList>
+  [ 16] nteq .................................... <tDataList.ilk <> #propList>
+  [ 17] jmpifz [ 44] ............................ if tDataList.ilk <> #propList then
+  [ 20] pushcons 3 .............................. <"Function: SetValue. Target: ">
+  [ 22] getparam 1 .............................. <tArray>
+  [ 24] joinstr ................................. <"Function: SetValue. Target: " & tArray>
+  [ 25] pushcons 1 .............................. <" Parameters: ">
+  [ 27] joinstr ................................. <"Function: SetValue. Target: " & tArray & " Parameters: ">
+  [ 28] getparam 2 .............................. <tDataList>
+  [ 30] joinstr ................................. <"Function: SetValue. Target: " & tArray & " Parameters: " & tDataList>
+  [ 31] pushcons 2 .............................. <" Datalist was not a #PropList after value().">
+  [ 33] joinstr ................................. <"Function: SetValue. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().">
+  [ 34] pusharglistnoret 1 ...................... <"Function: SetValue. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().">
+  [ 36] extcall 511 ............................. ShowError("Function: SetValue. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().")
+  [ 39] pushzero ................................ <0>
+  [ 40] pusharglistnoret 1 ...................... <0>
+  [ 42] extcall 52 .............................. return 0
+  [ 44] getparam 2 .............................. <tDataList>
+  [ 46] pushint8 1 .............................. <1>
+  [ 48] pusharglist 2 ........................... <tDataList, 1>
+  [ 50] objcall 130 ............................. <tDataList.getPropAt(1)>
+  [ 52] setlocal 0 .............................. tProp = tDataList.getPropAt(1)
+  [ 54] getparam 2 .............................. <tDataList>
+  [ 56] pushint8 1 .............................. <1>
+  [ 58] pusharglist 2 ........................... <tDataList, 1>
+  [ 60] objcall 105 ............................. <tDataList[1]>
+  [ 62] setlocal 1 .............................. tValue = tDataList[1]
+  [ 64] getglobal 43 ............................ <gGame>
+  [ 66] setlocal 2 .............................. tList = gGame
+  [ 68] getparam 1 .............................. <tArray>
+  [ 70] pusharglist 1 ........................... <tArray>
+  [ 72] extcall 389 ............................. <voidp(tArray)>
+  [ 75] pushzero ................................ <0>
+  [ 76] eq ...................................... <voidp(tArray) = 0>
+  [ 77] jmpifz [ 89] ............................ if voidp(tArray) = 0 then
+  [ 80] getparam 1 .............................. <tArray>
+  [ 82] pusharglist 1 ........................... <tArray>
+  [ 84] extcall 503 ............................. <value(tArray)>
+  [ 87] setlocal 2 .............................. tList = value(tArray)
+  [ 89] getlocal 2 .............................. <tList>
+  [ 91] getobjprop 122 .......................... <tList.ilk>
+  [ 93] pushsymb 541 ............................ <#propList>
+  [ 96] nteq .................................... <tList.ilk <> #propList>
+  [ 97] jmpifz [104] ............................ if tList.ilk <> #propList then
+  [100] getglobal 43 ............................ <gGame>
+  [102] setlocal 2 .............................. tList = gGame
+  [104] getlocal 2 .............................. <tList>
+  [106] getlocal 0 .............................. <tProp>
+  [108] pusharglist 2 ........................... <tList, tProp>
+  [110] objcall 105 ............................. <tList[tProp]>
+  [112] pusharglist 1 ........................... <tList[tProp]>
+  [114] extcall 389 ............................. <voidp(tList[tProp])>
+  [117] pushzero ................................ <0>
+  [118] eq ...................................... <voidp(tList[tProp]) = 0>
+  [119] jmpifz [132] ............................ if voidp(tList[tProp]) = 0 then
+  [122] getlocal 2 .............................. <tList>
+  [124] getlocal 0 .............................. <tProp>
+  [126] getlocal 1 .............................. <tValue>
+  [128] pusharglistnoret 3 ...................... <tList, tProp, tValue>
+  [130] objcall 103 ............................. tList[tProp] = tValue
+  [132] pushint8 1 .............................. <1>
+  [134] pusharglistnoret 1 ...................... <1>
+  [136] extcall 52 .............................. return 1
+  [138] ret
+end
+
+on RemoveValue me, tArray, tDataList
+  [  0] getparam 2 .............................. <tDataList>
+  [  2] pusharglist 1 ........................... <tDataList>
+  [  4] extcall 503 ............................. <value(tDataList)>
+  [  7] setparam 2 .............................. tDataList = value(tDataList)
+  [  9] getparam 2 .............................. <tDataList>
+  [ 11] getobjprop 122 .......................... <tDataList.ilk>
+  [ 13] pushsymb 541 ............................ <#propList>
+  [ 16] nteq .................................... <tDataList.ilk <> #propList>
+  [ 17] jmpifz [ 44] ............................ if tDataList.ilk <> #propList then
+  [ 20] pushcons 4 .............................. <"Function: RemoveValue. Target: ">
+  [ 22] getparam 1 .............................. <tArray>
+  [ 24] joinstr ................................. <"Function: RemoveValue. Target: " & tArray>
+  [ 25] pushcons 1 .............................. <" Parameters: ">
+  [ 27] joinstr ................................. <"Function: RemoveValue. Target: " & tArray & " Parameters: ">
+  [ 28] getparam 2 .............................. <tDataList>
+  [ 30] joinstr ................................. <"Function: RemoveValue. Target: " & tArray & " Parameters: " & tDataList>
+  [ 31] pushcons 2 .............................. <" Datalist was not a #PropList after value().">
+  [ 33] joinstr ................................. <"Function: RemoveValue. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().">
+  [ 34] pusharglistnoret 1 ...................... <"Function: RemoveValue. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().">
+  [ 36] extcall 511 ............................. ShowError("Function: RemoveValue. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().")
+  [ 39] pushzero ................................ <0>
+  [ 40] pusharglistnoret 1 ...................... <0>
+  [ 42] extcall 52 .............................. return 0
+  [ 44] getglobal 43 ............................ <gGame>
+  [ 46] setlocal 0 .............................. tList = gGame
+  [ 48] getparam 1 .............................. <tArray>
+  [ 50] pusharglist 1 ........................... <tArray>
+  [ 52] extcall 389 ............................. <voidp(tArray)>
+  [ 55] pushzero ................................ <0>
+  [ 56] eq ...................................... <voidp(tArray) = 0>
+  [ 57] jmpifz [ 69] ............................ if voidp(tArray) = 0 then
+  [ 60] getparam 1 .............................. <tArray>
+  [ 62] pusharglist 1 ........................... <tArray>
+  [ 64] extcall 503 ............................. <value(tArray)>
+  [ 67] setlocal 0 .............................. tList = value(tArray)
+  [ 69] getlocal 0 .............................. <tList>
+  [ 71] getobjprop 122 .......................... <tList.ilk>
+  [ 73] pushsymb 541 ............................ <#propList>
+  [ 76] nteq .................................... <tList.ilk <> #propList>
+  [ 77] jmpifz [ 84] ............................ if tList.ilk <> #propList then
+  [ 80] getglobal 43 ............................ <gGame>
+  [ 82] setlocal 0 .............................. tList = gGame
+  [ 84] pusharglist 0 ........................... <>
+  [ 86] extcall 40 .............................. <VOID>
+  [ 88] setlocal 1 .............................. tName = VOID
+  [ 90] getparam 2 .............................. <tDataList>
+  [ 92] pushsymb 235 ............................ <#name>
+  [ 94] pusharglist 2 ........................... <tDataList, #name>
+  [ 96] objcall 105 ............................. <tDataList[#name]>
+  [ 98] getobjprop 122 .......................... <tDataList[#name].ilk>
+  [100] pushsymb 67 ............................. <#string>
+  [102] eq ...................................... <tDataList[#name].ilk = #string>
+  [103] jmpifz [112] ............................ if tDataList[#name].ilk = #string then
+  [106] getparam 2 .............................. <tDataList>
+  [108] getobjprop 235 .......................... <tDataList.name>
+  [110] setlocal 1 .............................. tName = tDataList.name
+  [112] getlocal 1 .............................. <tName>
+  [114] pusharglist 0 ........................... <>
+  [116] extcall 40 .............................. <VOID>
+  [118] eq ...................................... <tName = VOID>
+  [119] jmpifz [127] ............................ if tName = VOID then
+  [122] pushzero ................................ <0>
+  [123] pusharglistnoret 1 ...................... <0>
+  [125] extcall 52 .............................. return 0
+  [127] getlocal 0 .............................. <tList>
+  [129] getlocal 1 .............................. <tName>
+  [131] pusharglist 1 ........................... <tName>
+  [133] extcall 88 .............................. <symbol(tName)>
+  [135] pusharglist 2 ........................... <tList, symbol(tName)>
+  [137] objcall 105 ............................. <tList[symbol(tName)]>
+  [139] pusharglist 1 ........................... <tList[symbol(tName)]>
+  [141] extcall 389 ............................. <voidp(tList[symbol(tName)])>
+  [144] pushzero ................................ <0>
+  [145] eq ...................................... <voidp(tList[symbol(tName)]) = 0>
+  [146] jmpifz [165] ............................ if voidp(tList[symbol(tName)]) = 0 then / else
+  [149] getlocal 0 .............................. <tList>
+  [151] getlocal 1 .............................. <tName>
+  [153] pusharglist 1 ........................... <tName>
+  [155] extcall 88 .............................. <symbol(tName)>
+  [157] pusharglistnoret 2 ...................... <tList, symbol(tName)>
+  [159] objcall 605 ............................. tList.deleteProp(symbol(tName))
+  [162] jmp [170]
+  [165] pushzero ................................ <0>
+  [166] pusharglistnoret 1 ...................... <0>
+  [168] extcall 52 .............................. return 0
+  [170] pushint8 1 .............................. <1>
+  [172] pusharglistnoret 1 ...................... <1>
+  [174] extcall 52 .............................. return 1
+  [176] ret
+end
+
+on AddToList me, tArray, tDataList
+  [  0] getparam 2 .............................. <tDataList>
+  [  2] pusharglist 1 ........................... <tDataList>
+  [  4] extcall 503 ............................. <value(tDataList)>
+  [  7] setparam 2 .............................. tDataList = value(tDataList)
+  [  9] getparam 2 .............................. <tDataList>
+  [ 11] getobjprop 122 .......................... <tDataList.ilk>
+  [ 13] pushsymb 541 ............................ <#propList>
+  [ 16] nteq .................................... <tDataList.ilk <> #propList>
+  [ 17] jmpifz [ 44] ............................ if tDataList.ilk <> #propList then
+  [ 20] pushcons 5 .............................. <"Function: AddToList. Target: ">
+  [ 22] getparam 1 .............................. <tArray>
+  [ 24] joinstr ................................. <"Function: AddToList. Target: " & tArray>
+  [ 25] pushcons 1 .............................. <" Parameters: ">
+  [ 27] joinstr ................................. <"Function: AddToList. Target: " & tArray & " Parameters: ">
+  [ 28] getparam 2 .............................. <tDataList>
+  [ 30] joinstr ................................. <"Function: AddToList. Target: " & tArray & " Parameters: " & tDataList>
+  [ 31] pushcons 2 .............................. <" Datalist was not a #PropList after value().">
+  [ 33] joinstr ................................. <"Function: AddToList. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().">
+  [ 34] pusharglistnoret 1 ...................... <"Function: AddToList. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().">
+  [ 36] extcall 511 ............................. ShowError("Function: AddToList. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().")
+  [ 39] pushzero ................................ <0>
+  [ 40] pusharglistnoret 1 ...................... <0>
+  [ 42] extcall 52 .............................. return 0
+  [ 44] getparam 1 .............................. <tArray>
+  [ 46] pusharglist 1 ........................... <tArray>
+  [ 48] extcall 503 ............................. <value(tArray)>
+  [ 51] setparam 1 .............................. tArray = value(tArray)
+  [ 53] getparam 1 .............................. <tArray>
+  [ 55] getobjprop 122 .......................... <tArray.ilk>
+  [ 57] pushsymb 541 ............................ <#propList>
+  [ 60] eq ...................................... <tArray.ilk = #propList>
+  [ 61] jmpifz [118] ............................ if tArray.ilk = #propList then / else
+  [ 64] getparam 2 .............................. <tDataList>
+  [ 66] pushsymb 503 ............................ <#value>
+  [ 69] pusharglist 2 ........................... <tDataList, #value>
+  [ 71] objcall 105 ............................. <tDataList[#value]>
+  [ 73] setlocal 0 .............................. tValue = tDataList[#value]
+  [ 75] getparam 2 .............................. <tDataList>
+  [ 77] pushsymb 235 ............................ <#name>
+  [ 79] pusharglist 2 ........................... <tDataList, #name>
+  [ 81] objcall 105 ............................. <tDataList[#name]>
+  [ 83] getobjprop 122 .......................... <tDataList[#name].ilk>
+  [ 85] pushsymb 67 ............................. <#string>
+  [ 87] eq ...................................... <tDataList[#name].ilk = #string>
+  [ 88] jmpifz [110] ............................ if tDataList[#name].ilk = #string then / else
+  [ 91] getparam 1 .............................. <tArray>
+  [ 93] getparam 2 .............................. <tDataList>
+  [ 95] getobjprop 235 .......................... <tDataList.name>
+  [ 97] pusharglist 1 ........................... <tDataList.name>
+  [ 99] extcall 88 .............................. <symbol(tDataList.name)>
+  [101] getlocal 0 .............................. <tValue>
+  [103] pusharglistnoret 3 ...................... <tArray, symbol(tDataList.name), tValue>
+  [105] objcall 103 ............................. tArray[symbol(tDataList.name)] = tValue
+  [107] jmp [115]
+  [110] pushzero ................................ <0>
+  [111] pusharglistnoret 1 ...................... <0>
+  [113] extcall 52 .............................. return 0
+  [115] jmp [155]
+  [118] getparam 2 .............................. <tDataList>
+  [120] pushsymb 503 ............................ <#value>
+  [123] pusharglist 2 ........................... <tDataList, #value>
+  [125] objcall 105 ............................. <tDataList[#value]>
+  [127] setlocal 0 .............................. tValue = tDataList[#value]
+  [129] getlocal 0 .............................. <tValue>
+  [131] pusharglist 0 ........................... <>
+  [133] extcall 40 .............................. <VOID>
+  [135] nteq .................................... <tValue <> VOID>
+  [136] jmpifz [150] ............................ if tValue <> VOID then / else
+  [139] getparam 1 .............................. <tArray>
+  [141] getlocal 0 .............................. <tValue>
+  [143] pusharglistnoret 2 ...................... <tArray, tValue>
+  [145] objcall 42 .............................. tArray.add(tValue)
+  [147] jmp [155]
+  [150] pushzero ................................ <0>
+  [151] pusharglistnoret 1 ...................... <0>
+  [153] extcall 52 .............................. return 0
+  [155] pushint8 1 .............................. <1>
+  [157] pusharglistnoret 1 ...................... <1>
+  [159] extcall 52 .............................. return 1
+  [161] ret
+end
+
+on RemoveFromList me, tArray, tDataList
+  [  0] getparam 2 .............................. <tDataList>
+  [  2] pusharglist 1 ........................... <tDataList>
+  [  4] extcall 503 ............................. <value(tDataList)>
+  [  7] setparam 2 .............................. tDataList = value(tDataList)
+  [  9] getparam 2 .............................. <tDataList>
+  [ 11] getobjprop 122 .......................... <tDataList.ilk>
+  [ 13] pushsymb 541 ............................ <#propList>
+  [ 16] nteq .................................... <tDataList.ilk <> #propList>
+  [ 17] jmpifz [ 44] ............................ if tDataList.ilk <> #propList then
+  [ 20] pushcons 5 .............................. <"Function: AddToList. Target: ">
+  [ 22] getparam 1 .............................. <tArray>
+  [ 24] joinstr ................................. <"Function: AddToList. Target: " & tArray>
+  [ 25] pushcons 1 .............................. <" Parameters: ">
+  [ 27] joinstr ................................. <"Function: AddToList. Target: " & tArray & " Parameters: ">
+  [ 28] getparam 2 .............................. <tDataList>
+  [ 30] joinstr ................................. <"Function: AddToList. Target: " & tArray & " Parameters: " & tDataList>
+  [ 31] pushcons 2 .............................. <" Datalist was not a #PropList after value().">
+  [ 33] joinstr ................................. <"Function: AddToList. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().">
+  [ 34] pusharglistnoret 1 ...................... <"Function: AddToList. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().">
+  [ 36] extcall 511 ............................. ShowError("Function: AddToList. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().")
+  [ 39] pushzero ................................ <0>
+  [ 40] pusharglistnoret 1 ...................... <0>
+  [ 42] extcall 52 .............................. return 0
+  [ 44] getparam 1 .............................. <tArray>
+  [ 46] pusharglist 1 ........................... <tArray>
+  [ 48] extcall 503 ............................. <value(tArray)>
+  [ 51] setparam 1 .............................. tArray = value(tArray)
+  [ 53] getparam 1 .............................. <tArray>
+  [ 55] getobjprop 122 .......................... <tArray.ilk>
+  [ 57] pushsymb 541 ............................ <#propList>
+  [ 60] eq ...................................... <tArray.ilk = #propList>
+  [ 61] jmpifz [ 98] ............................ if tArray.ilk = #propList then / else
+  [ 64] getparam 2 .............................. <tDataList>
+  [ 66] pushsymb 235 ............................ <#name>
+  [ 68] pusharglist 2 ........................... <tDataList, #name>
+  [ 70] objcall 105 ............................. <tDataList[#name]>
+  [ 72] getobjprop 122 .......................... <tDataList[#name].ilk>
+  [ 74] pushsymb 67 ............................. <#string>
+  [ 76] eq ...................................... <tDataList[#name].ilk = #string>
+  [ 77] jmpifz [ 95] ............................ if tDataList[#name].ilk = #string then
+  [ 80] getparam 1 .............................. <tArray>
+  [ 82] getparam 2 .............................. <tDataList>
+  [ 84] getobjprop 235 .......................... <tDataList.name>
+  [ 86] pusharglist 1 ........................... <tDataList.name>
+  [ 88] extcall 88 .............................. <symbol(tDataList.name)>
+  [ 90] pusharglistnoret 2 ...................... <tArray, symbol(tDataList.name)>
+  [ 92] objcall 605 ............................. tArray.deleteProp(symbol(tDataList.name))
+  [ 95] jmp [127]
+  [ 98] getparam 2 .............................. <tDataList>
+  [100] pushsymb 503 ............................ <#value>
+  [103] pusharglist 2 ........................... <tDataList, #value>
+  [105] objcall 105 ............................. <tDataList[#value]>
+  [107] setlocal 0 .............................. tValue = tDataList[#value]
+  [109] getlocal 0 .............................. <tValue>
+  [111] pusharglist 0 ........................... <>
+  [113] extcall 40 .............................. <VOID>
+  [115] nteq .................................... <tValue <> VOID>
+  [116] jmpifz [127] ............................ if tValue <> VOID then
+  [119] getparam 1 .............................. <tArray>
+  [121] getlocal 0 .............................. <tValue>
+  [123] pusharglistnoret 2 ...................... <tArray, tValue>
+  [125] objcall 175 ............................. tArray.deleteOne(tValue)
+  [127] pushint8 1 .............................. <1>
+  [129] pusharglistnoret 1 ...................... <1>
+  [131] extcall 52 .............................. return 1
+  [133] ret
+end
+
+on MiniCalculator me, tArray, tDataList
+  [  0] getparam 2 .............................. <tDataList>
+  [  2] pusharglist 1 ........................... <tDataList>
+  [  4] extcall 503 ............................. <value(tDataList)>
+  [  7] setparam 2 .............................. tDataList = value(tDataList)
+  [  9] getparam 2 .............................. <tDataList>
+  [ 11] getobjprop 122 .......................... <tDataList.ilk>
+  [ 13] pushsymb 541 ............................ <#propList>
+  [ 16] nteq .................................... <tDataList.ilk <> #propList>
+  [ 17] jmpifz [ 44] ............................ if tDataList.ilk <> #propList then
+  [ 20] pushcons 6 .............................. <"Function: MiniCalculator. Target: ">
+  [ 22] getparam 1 .............................. <tArray>
+  [ 24] joinstr ................................. <"Function: MiniCalculator. Target: " & tArray>
+  [ 25] pushcons 1 .............................. <" Parameters: ">
+  [ 27] joinstr ................................. <"Function: MiniCalculator. Target: " & tArray & " Parameters: ">
+  [ 28] getparam 2 .............................. <tDataList>
+  [ 30] joinstr ................................. <"Function: MiniCalculator. Target: " & tArray & " Parameters: " & tDataList>
+  [ 31] pushcons 2 .............................. <" Datalist was not a #PropList after value().">
+  [ 33] joinstr ................................. <"Function: MiniCalculator. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().">
+  [ 34] pusharglistnoret 1 ...................... <"Function: MiniCalculator. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().">
+  [ 36] extcall 511 ............................. ShowError("Function: MiniCalculator. Target: " & tArray & " Parameters: " & tDataList & " Datalist was not a #PropList after value().")
+  [ 39] pushzero ................................ <0>
+  [ 40] pusharglistnoret 1 ...................... <0>
+  [ 42] extcall 52 .............................. return 0
+  [ 44] getparam 1 .............................. <tArray>
+  [ 46] pusharglist 1 ........................... <tArray>
+  [ 48] extcall 503 ............................. <value(tArray)>
+  [ 51] setparam 1 .............................. tArray = value(tArray)
+  [ 53] pusharglist 0 ........................... <>
+  [ 55] extcall 40 .............................. <VOID>
+  [ 57] setlocal 0 .............................. tValue = VOID
+  [ 59] getparam 1 .............................. <tArray>
+  [ 61] getobjprop 122 .......................... <tArray.ilk>
+  [ 63] pushsymb 541 ............................ <#propList>
+  [ 66] eq ...................................... <tArray.ilk = #propList>
+  [ 67] jmpifz [ 86] ............................ if tArray.ilk = #propList then / else
+  [ 70] getparam 1 .............................. <tArray>
+  [ 72] getparam 2 .............................. <tDataList>
+  [ 74] getobjprop 503 .......................... <tDataList.value>
+  [ 77] pusharglist 2 ........................... <tArray, tDataList.value>
+  [ 79] objcall 105 ............................. <tArray[tDataList.value]>
+  [ 81] setlocal 0 .............................. tValue = tArray[tDataList.value]
+  [ 83] jmp [ 99]
+  [ 86] getglobal 43 ............................ <gGame>
+  [ 88] getparam 2 .............................. <tDataList>
+  [ 90] getobjprop 503 .......................... <tDataList.value>
+  [ 93] pusharglist 2 ........................... <gGame, tDataList.value>
+  [ 95] objcall 105 ............................. <gGame[tDataList.value]>
+  [ 97] setlocal 0 .............................. tValue = gGame[tDataList.value]
+  [ 99] getparam 2 .............................. <tDataList>
+  [101] pushsymb 42 ............................. <#add>
+  [103] pusharglist 2 ........................... <tDataList, #add>
+  [105] objcall 105 ............................. <tDataList[#add]>
+  [107] getobjprop 122 .......................... <tDataList[#add].ilk>
+  [109] pushsymb 544 ............................ <#float>
+  [112] eq ...................................... <tDataList[#add].ilk = #float>
+  [113] getparam 2 .............................. <tDataList>
+  [115] pushsymb 42 ............................. <#add>
+  [117] pusharglist 2 ........................... <tDataList, #add>
+  [119] objcall 105 ............................. <tDataList[#add]>
+  [121] getobjprop 122 .......................... <tDataList[#add].ilk>
+  [123] pushsymb 123 ............................ <#integer>
+  [125] eq ...................................... <tDataList[#add].ilk = #integer>
+  [126] or ...................................... <(tDataList[#add].ilk = #float) or (tDataList[#add].ilk = #integer)>
+  [127] jmpifz [139] ............................ if (tDataList[#add].ilk = #float) or (tDataList[#add].ilk = #integer) then
+  [130] getlocal 0 .............................. <tValue>
+  [132] getparam 2 .............................. <tDataList>
+  [134] getobjprop 42 ........................... <tDataList.add>
+  [136] add ..................................... <tValue + tDataList.add>
+  [137] setlocal 0 .............................. tValue = tValue + tDataList.add
+  [139] getparam 2 .............................. <tDataList>
+  [141] pushsymb 918 ............................ <#substract>
+  [144] pusharglist 2 ........................... <tDataList, #substract>
+  [146] objcall 105 ............................. <tDataList[#substract]>
+  [148] getobjprop 122 .......................... <tDataList[#substract].ilk>
+  [150] pushsymb 544 ............................ <#float>
+  [153] eq ...................................... <tDataList[#substract].ilk = #float>
+  [154] getparam 2 .............................. <tDataList>
+  [156] pushsymb 918 ............................ <#substract>
+  [159] pusharglist 2 ........................... <tDataList, #substract>
+  [161] objcall 105 ............................. <tDataList[#substract]>
+  [163] getobjprop 122 .......................... <tDataList[#substract].ilk>
+  [165] pushsymb 123 ............................ <#integer>
+  [167] eq ...................................... <tDataList[#substract].ilk = #integer>
+  [168] or ...................................... <(tDataList[#substract].ilk = #float) or (tDataList[#substract].ilk = #integer)>
+  [169] jmpifz [182] ............................ if (tDataList[#substract].ilk = #float) or (tDataList[#substract].ilk = #integer) then
+  [172] getlocal 0 .............................. <tValue>
+  [174] getparam 2 .............................. <tDataList>
+  [176] getobjprop 918 .......................... <tDataList.substract>
+  [179] sub ..................................... <tValue - tDataList.substract>
+  [180] setlocal 0 .............................. tValue = tValue - tDataList.substract
+  [182] getparam 2 .............................. <tDataList>
+  [184] pushsymb 919 ............................ <#multiply>
+  [187] pusharglist 2 ........................... <tDataList, #multiply>
+  [189] objcall 105 ............................. <tDataList[#multiply]>
+  [191] getobjprop 122 .......................... <tDataList[#multiply].ilk>
+  [193] pushsymb 544 ............................ <#float>
+  [196] eq ...................................... <tDataList[#multiply].ilk = #float>
+  [197] getparam 2 .............................. <tDataList>
+  [199] pushsymb 919 ............................ <#multiply>
+  [202] pusharglist 2 ........................... <tDataList, #multiply>
+  [204] objcall 105 ............................. <tDataList[#multiply]>
+  [206] getobjprop 122 .......................... <tDataList[#multiply].ilk>
+  [208] pushsymb 123 ............................ <#integer>
+  [210] eq ...................................... <tDataList[#multiply].ilk = #integer>
+  [211] or ...................................... <(tDataList[#multiply].ilk = #float) or (tDataList[#multiply].ilk = #integer)>
+  [212] jmpifz [225] ............................ if (tDataList[#multiply].ilk = #float) or (tDataList[#multiply].ilk = #integer) then
+  [215] getlocal 0 .............................. <tValue>
+  [217] getparam 2 .............................. <tDataList>
+  [219] getobjprop 919 .......................... <tDataList.multiply>
+  [222] mul ..................................... <tValue * tDataList.multiply>
+  [223] setlocal 0 .............................. tValue = tValue * tDataList.multiply
+  [225] getparam 2 .............................. <tDataList>
+  [227] pushsymb 920 ............................ <#divide>
+  [230] pusharglist 2 ........................... <tDataList, #divide>
+  [232] objcall 105 ............................. <tDataList[#divide]>
+  [234] getobjprop 122 .......................... <tDataList[#divide].ilk>
+  [236] pushsymb 544 ............................ <#float>
+  [239] eq ...................................... <tDataList[#divide].ilk = #float>
+  [240] getparam 2 .............................. <tDataList>
+  [242] pushsymb 920 ............................ <#divide>
+  [245] pusharglist 2 ........................... <tDataList, #divide>
+  [247] objcall 105 ............................. <tDataList[#divide]>
+  [249] getobjprop 122 .......................... <tDataList[#divide].ilk>
+  [251] pushsymb 123 ............................ <#integer>
+  [253] eq ...................................... <tDataList[#divide].ilk = #integer>
+  [254] or ...................................... <(tDataList[#divide].ilk = #float) or (tDataList[#divide].ilk = #integer)>
+  [255] jmpifz [268] ............................ if (tDataList[#divide].ilk = #float) or (tDataList[#divide].ilk = #integer) then
+  [258] getlocal 0 .............................. <tValue>
+  [260] getparam 2 .............................. <tDataList>
+  [262] getobjprop 920 .......................... <tDataList.divide>
+  [265] div ..................................... <tValue / tDataList.divide>
+  [266] setlocal 0 .............................. tValue = tValue / tDataList.divide
+  [268] getparam 1 .............................. <tArray>
+  [270] getobjprop 122 .......................... <tArray.ilk>
+  [272] pushsymb 541 ............................ <#propList>
+  [275] eq ...................................... <tArray.ilk = #propList>
+  [276] jmpifz [295] ............................ if tArray.ilk = #propList then / else
+  [279] getparam 1 .............................. <tArray>
+  [281] getparam 2 .............................. <tDataList>
+  [283] getobjprop 503 .......................... <tDataList.value>
+  [286] getlocal 0 .............................. <tValue>
+  [288] pusharglistnoret 3 ...................... <tArray, tDataList.value, tValue>
+  [290] objcall 103 ............................. tArray[tDataList.value] = tValue
+  [292] jmp [308]
+  [295] getglobal 43 ............................ <gGame>
+  [297] getparam 2 .............................. <tDataList>
+  [299] getobjprop 503 .......................... <tDataList.value>
+  [302] getlocal 0 .............................. <tValue>
+  [304] pusharglistnoret 3 ...................... <gGame, tDataList.value, tValue>
+  [306] objcall 103 ............................. gGame[tDataList.value] = tValue
+  [308] pushint8 1 .............................. <1>
+  [310] pusharglistnoret 1 ...................... <1>
+  [312] extcall 52 .............................. return 1
+  [314] ret
+end

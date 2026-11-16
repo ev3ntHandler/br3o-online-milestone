@@ -1,0 +1,177 @@
+global gGame, gSound
+
+on PauseGame tKey
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getobjprop 391 .......................... <gGame.input>
+  [  5] pushzero ................................ <0>
+  [  6] eq ...................................... <gGame.input = 0>
+  [  7] jmpifz [ 11] ............................ if gGame.input = 0 then
+  [ 10] ret ..................................... exit
+  [ 11] getglobal 43 ............................ <gGame>
+  [ 13] getobjprop 392 .......................... <gGame.pause>
+  [ 16] pushzero ................................ <0>
+  [ 17] eq ...................................... <gGame.pause = 0>
+  [ 18] jmpifz [107] ............................ if gGame.pause = 0 then
+  [ 21] getglobal 43 ............................ <gGame>
+  [ 23] pushsymb 927 ............................ <#PauseTime>
+  [ 26] gettoplevelprop 462 ..................... <_system>
+  [ 29] getobjprop 463 .......................... <_system.milliSeconds>
+  [ 32] pusharglistnoret 3 ...................... <gGame, #PauseTime, _system.milliSeconds>
+  [ 34] objcall 103 ............................. gGame[#PauseTime] = _system.milliSeconds
+  [ 36] getglobal 43 ............................ <gGame>
+  [ 38] gettoplevelprop 33 ...................... <_movie>
+  [ 40] getchainedprop 427 ...................... <_movie.timeoutList>
+  [ 43] pusharglist 1 ........................... <_movie.timeoutList>
+  [ 45] objcall 233 ............................. <_movie.timeoutList.duplicate()>
+  [ 47] setobjprop 427 .......................... gGame.timeoutList = _movie.timeoutList.duplicate()
+  [ 50] gettoplevelprop 33 ...................... <_movie>
+  [ 52] pusharglist 0 ........................... <[]>
+  [ 54] pushlist ................................ <[]>
+  [ 55] setobjprop 427 .......................... _movie.timeoutList = []
+  [ 58] pushint8 1 .............................. <1>
+  [ 60] pusharglistnoret 1 ...................... <1>
+  [ 62] localcall 1 ............................. PauseParticles(1)
+  [ 64] pushcons 0 .............................. <"PauseGame">
+  [ 66] pusharglistnoret 1 ...................... <"PauseGame">
+  [ 68] extcall 148 ............................. event("PauseGame")
+  [ 70] getglobal 291 ........................... <gSound>
+  [ 73] pushsymb 292 ............................ <#OldMute>
+  [ 76] getglobal 291 ........................... <gSound>
+  [ 79] getobjprop 293 .......................... <gSound.mute>
+  [ 82] pusharglistnoret 3 ...................... <gSound, #OldMute, gSound.mute>
+  [ 84] objcall 103 ............................. gSound[#OldMute] = gSound.mute
+  [ 86] getglobal 291 ........................... <gSound>
+  [ 89] pushint8 1 .............................. <1>
+  [ 91] setobjprop 293 .......................... gSound.mute = 1
+  [ 94] pusharglistnoret 0 ...................... <>
+  [ 96] extcall 1014 ............................ MuteSound()
+  [ 99] getglobal 43 ............................ <gGame>
+  [101] pushint8 1 .............................. <1>
+  [103] setobjprop 392 .......................... gGame.pause = 1
+  [106] ret ..................................... exit
+  [107] getglobal 43 ............................ <gGame>
+  [109] getobjprop 392 .......................... <gGame.pause>
+  [112] pushint8 1 .............................. <1>
+  [114] eq ...................................... <gGame.pause = 1>
+  [115] jmpifz [196] ............................ if gGame.pause = 1 then
+  [118] getglobal 43 ............................ <gGame>
+  [120] pushsymb 927 ............................ <#PauseTime>
+  [123] gettoplevelprop 462 ..................... <_system>
+  [126] getobjprop 463 .......................... <_system.milliSeconds>
+  [129] getglobal 43 ............................ <gGame>
+  [131] getobjprop 927 .......................... <gGame.PauseTime>
+  [134] sub ..................................... <_system.milliSeconds - gGame.PauseTime>
+  [135] pusharglistnoret 3 ...................... <gGame, #PauseTime, _system.milliSeconds - gGame.PauseTime>
+  [137] objcall 103 ............................. gGame[#PauseTime] = _system.milliSeconds - gGame.PauseTime
+  [139] gettoplevelprop 33 ...................... <_movie>
+  [141] getglobal 43 ............................ <gGame>
+  [143] getchainedprop 427 ...................... <gGame.timeoutList>
+  [146] pusharglist 1 ........................... <gGame.timeoutList>
+  [148] objcall 233 ............................. <gGame.timeoutList.duplicate()>
+  [150] setobjprop 427 .......................... _movie.timeoutList = gGame.timeoutList.duplicate()
+  [153] getglobal 43 ............................ <gGame>
+  [155] pusharglist 0 ........................... <[]>
+  [157] pushlist ................................ <[]>
+  [158] setobjprop 427 .......................... gGame.timeoutList = []
+  [161] pushzero ................................ <0>
+  [162] pusharglistnoret 1 ...................... <0>
+  [164] localcall 1 ............................. PauseParticles(0)
+  [166] pushcons 1 .............................. <"UnPauseGame">
+  [168] pusharglistnoret 1 ...................... <"UnPauseGame">
+  [170] extcall 148 ............................. event("UnPauseGame")
+  [172] getglobal 291 ........................... <gSound>
+  [175] getglobal 291 ........................... <gSound>
+  [178] getobjprop 292 .......................... <gSound.OldMute>
+  [181] setobjprop 293 .......................... gSound.mute = gSound.OldMute
+  [184] pusharglistnoret 0 ...................... <>
+  [186] extcall 1014 ............................ MuteSound()
+  [189] getglobal 43 ............................ <gGame>
+  [191] pushzero ................................ <0>
+  [192] setobjprop 392 .......................... gGame.pause = 0
+  [195] ret ..................................... exit
+  [196] ret
+end
+
+on PauseParticles tState
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getchainedprop 64 ....................... <gGame.member>
+  [  4] pushsymb 72 ............................. <#modelResource>
+  [  6] pusharglist 2 ........................... <gGame.member, #modelResource>
+  [  8] objcall 129 ............................. <gGame.member.modelResource.count>
+  [ 10] setlocal 0 .............................. pCount = gGame.member.modelResource.count
+  [ 12] pushint8 1 .............................. <1>
+  [ 14] setlocal 1
+  [ 16] getlocal 1
+  [ 18] getlocal 0 .............................. <pCount>
+  [ 20] lteq
+  [ 21] jmpifz [ 66] ............................ repeat with i = 1 to pCount
+  [ 24] getglobal 43 ............................ <gGame>
+  [ 26] getchainedprop 64 ....................... <gGame.member>
+  [ 28] pushsymb 72 ............................. <#modelResource>
+  [ 30] getlocal 1 .............................. <i>
+  [ 32] pusharglist 3 ........................... <gGame.member, #modelResource, i>
+  [ 34] objcall 70 .............................. <gGame.member.modelResource[i]>
+  [ 36] setlocal 2 .............................. pResource = gGame.member.modelResource[i]
+  [ 38] getlocal 2 .............................. <pResource>
+  [ 40] getobjprop 598 .......................... <pResource.type>
+  [ 43] pushsymb 1286 ........................... <#particle>
+  [ 46] eq ...................................... <pResource.type = #particle>
+  [ 47] jmpifz [ 57] ............................ if pResource.type = #particle then
+  [ 50] getlocal 2 .............................. <pResource>
+  [ 52] getparam 0 .............................. <tState>
+  [ 54] setobjprop 1310 ......................... pResource.paused = tState
+  [ 57] pushint8 1
+  [ 59] getlocal 1
+  [ 61] add
+  [ 62] setlocal 1
+  [ 64] endrepeat [ 16]
+  [ 66] ret
+end
+
+on UltraPause me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pushint8 1 .............................. <1>
+  [  4] setobjprop 392 .......................... gGame.pause = 1
+  [  7] pushint8 1 .............................. <1>
+  [  9] pusharglistnoret 1 ...................... <1>
+  [ 11] localcall 1 ............................. PauseParticles(1)
+  [ 13] getglobal 43 ............................ <gGame>
+  [ 15] gettoplevelprop 33 ...................... <_movie>
+  [ 17] getchainedprop 427 ...................... <_movie.timeoutList>
+  [ 20] pusharglist 1 ........................... <_movie.timeoutList>
+  [ 22] objcall 233 ............................. <_movie.timeoutList.duplicate()>
+  [ 24] setobjprop 427 .......................... gGame.timeoutList = _movie.timeoutList.duplicate()
+  [ 27] gettoplevelprop 33 ...................... <_movie>
+  [ 29] pusharglist 0 ........................... <[]>
+  [ 31] pushlist ................................ <[]>
+  [ 32] setobjprop 427 .......................... _movie.timeoutList = []
+  [ 35] pushcons 2 .............................. <EMPTY>
+  [ 37] pushsymb 1066 ........................... <#exception>
+  [ 40] getglobal 43 ............................ <gGame>
+  [ 42] getobjprop 1931 ......................... <gGame.CurrentWorld>
+  [ 45] pushcons 3 .............................. <"Music">
+  [ 47] joinstr ................................. <gGame.CurrentWorld & "Music">
+  [ 48] pusharglist 2 ........................... <[#exception: gGame.CurrentWorld & "Music"]>
+  [ 50] pushproplist ............................ <[#exception: gGame.CurrentWorld & "Music"]>
+  [ 51] pusharglistnoret 2 ...................... <EMPTY, [#exception: gGame.CurrentWorld & "Music"]>
+  [ 53] extcall 360 ............................. StopAllSound(EMPTY, [#exception: gGame.CurrentWorld & "Music"])
+  [ 56] ret
+end
+
+on MuteGame me
+  [  0] getglobal 291 ........................... <gSound>
+  [  3] getobjprop 293 .......................... <gSound.mute>
+  [  6] pushint8 1 .............................. <1>
+  [  8] eq ...................................... <gSound.mute = 1>
+  [  9] jmpifz [ 22] ............................ if gSound.mute = 1 then / else
+  [ 12] getglobal 291 ........................... <gSound>
+  [ 15] pushzero ................................ <0>
+  [ 16] setobjprop 293 .......................... gSound.mute = 0
+  [ 19] jmp [ 30]
+  [ 22] getglobal 291 ........................... <gSound>
+  [ 25] pushint8 1 .............................. <1>
+  [ 27] setobjprop 293 .......................... gSound.mute = 1
+  [ 30] pusharglistnoret 0 ...................... <>
+  [ 32] extcall 1014 ............................ MuteSound()
+  [ 35] ret
+end

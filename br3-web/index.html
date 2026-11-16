@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BR3 web port – Burnin' Rubber 3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<style>
+  html, body { margin: 0; height: 100%; background: #111; overflow: hidden; font: 13px/1.4 system-ui, sans-serif; color: #eee; }
+  canvas { display: block; }
+  body.fc #raceTop, body.fc #standings, body.fc #healthwrap, body.fc #gauges, body.fc #speedBox, body.fc #status, body.fc #popup { display: none; }
+  #raceTop { position: fixed; top: 10px; left: 50%; transform: translateX(-50%); text-align: center; pointer-events: none; }
+  #raceTop .banner { background: linear-gradient(90deg, transparent, rgba(0,0,0,.82) 12%, rgba(0,0,0,.82) 88%, transparent); padding: 2px 46px; margin: 2px 0; transform: skewX(-18deg); }
+  #raceTop .banner > span { display: inline-block; transform: skewX(18deg); }
+  #raceTop .lbl { color: #9aa0a6; font-size: 11px; letter-spacing: 2px; margin-right: 10px; }
+  #raceCash { color: #fff; font-weight: 800; font-size: 26px; letter-spacing: 3px; text-shadow: 0 2px 4px #000; }
+  #raceTime { color: #fff; font-weight: 700; font-size: 19px; letter-spacing: 3px; text-shadow: 0 2px 4px #000; }
+  #standings { position: fixed; top: 10px; right: 10px; pointer-events: none; }
+  #standings .srow { display: flex; justify-content: space-between; gap: 16px; min-width: 160px; padding: 2px 12px; margin: 2px 0; transform: skewX(-18deg); background: linear-gradient(90deg, rgba(0,0,0,.85), rgba(0,0,0,.45)); }
+  #standings .srow > span { transform: skewX(18deg); }
+  #standings .srow.me { background: linear-gradient(90deg, #d22, rgba(200,30,30,.55)); }
+  #standings .nm { color: #fff; font-weight: 700; letter-spacing: 1px; }
+  #standings .pos { color: #fff; font-weight: 800; }
+  #healthwrap { position: fixed; left: 16px; top: 44px; width: 180px; height: 9px; background: rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.15); transform: skewX(-18deg); pointer-events: none; }
+  #healthbar { height: 100%; width: 100%; background: linear-gradient(90deg, #e8322b, #f4c520 55%, #6de06a); transition: width .15s; }
+  #gauges { position: fixed; left: 16px; bottom: 16px; pointer-events: none; }
+  .gauge { position: absolute; }
+  .gauge.primary { left: 0; bottom: 0; width: 96px; height: 96px; }
+  .gauge.secondary { left: 78px; bottom: 62px; width: 74px; height: 74px; }
+  .gauge .lbl { position: absolute; bottom: 8px; white-space: nowrap; color: #9aa0a6; font-size: 10px; letter-spacing: 1px; background: linear-gradient(90deg, rgba(0,0,0,.78), rgba(0,0,0,.4) 60%, transparent); z-index: 0; }
+  .gauge.primary .lbl { left: 48px; padding: 3px 40px 3px 54px; }
+  .gauge.secondary .lbl { left: 37px; padding: 3px 34px 3px 43px; }
+  .gauge .lbl b { display: block; color: #fff; font-size: 14px; letter-spacing: 1px; }
+  .gauge svg { width: 100%; height: 100%; transform: rotate(-90deg); position: absolute; inset: 0; z-index: 1; }
+  .gauge circle { fill: rgba(0,0,0,.62); stroke-width: 7; }
+  .gauge .bg { stroke: #2b2b2b; }
+  .gauge .fg { stroke-linecap: butt; stroke-dasharray: 163.36; transition: stroke-dashoffset .15s; }
+  .gauge.primary .fg { stroke: #e8322b; }
+  .gauge.secondary .fg { stroke: #f4c520; }
+  .gauge .num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; text-shadow: 0 2px 4px #000; z-index: 2; }
+  .gauge.primary .num { font-size: 30px; }
+  .gauge.secondary .num { font-size: 23px; }
+  #speedBox { position: fixed; right: 16px; bottom: 14px; text-align: right; pointer-events: none; background: linear-gradient(90deg, transparent, rgba(0,0,0,.82) 30%); padding: 4px 18px; transform: skewX(-18deg); }
+  #speedBox > div { transform: skewX(18deg); }
+  #speed { color: #fff; font-weight: 800; font-size: 46px; letter-spacing: 4px; text-shadow: 0 2px 6px #000; font-family: 'Courier New', monospace; }
+  #speedBox .unit { color: #9aa0a6; font-size: 11px; letter-spacing: 2px; }
+  #status { position: fixed; left: 10px; top: 10px; color: #9ad; white-space: pre-wrap; background: rgba(0,0,0,.4); padding: 4px 8px; border-radius: 4px; pointer-events: none; max-width: 300px; }
+  #popup { position: fixed; left: 50%; top: 18%; transform: translateX(-50%); font-size: 34px; font-weight: 800; color: #ffd34d; text-shadow: 0 2px 8px #000, 0 0 24px rgba(255,180,0,.6); opacity: 0; transition: opacity .3s; pointer-events: none; letter-spacing: 2px; }
+  #countdown { position: fixed; left: 50%; top: 30%; width: 220px; height: 220px; margin-left: -110px; opacity: 0; pointer-events: none; background-repeat: no-repeat; image-rendering: pixelated; display: flex; align-items: center; justify-content: center; font-size: 120px; font-weight: 900; color: #ffd34d; text-shadow: 0 4px 16px #000; }
+  /* emote wheel */
+  #emoteWheel { position: fixed; left: 50%; top: 50%; width: 300px; height: 300px; margin: -150px 0 0 -150px; display: none; z-index: 35; pointer-events: none; }
+  #emoteWheel.open { display: block; }
+  #emoteWheel::before { content: ''; position: absolute; inset: 40px; border-radius: 50%; background: radial-gradient(circle, rgba(10,12,16,.75), rgba(10,12,16,.35) 70%, transparent); border: 1px solid rgba(255,211,77,.35); }
+  #emoteWheel .ew { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; border: 2px solid rgba(255,255,255,.2); background: rgba(20,24,32,.85); font-size: 30px; line-height: 1; display: flex; align-items: center; justify-content: center; transform: rotate(var(--a)) translate(0,-118px) rotate(calc(var(--a) * -1)); transition: transform .12s, border-color .12s, background .12s; pointer-events: auto; cursor: pointer; }
+  #emoteWheel .ew.sel { border-color: #ffd34d; background: rgba(255,211,77,.25); transform: rotate(var(--a)) translate(0,-126px) rotate(calc(var(--a) * -1)) scale(1.18); }
+  #emoteWheel .ew-hint { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); color: #9aa0a6; font-size: 10px; letter-spacing: 1px; text-align: center; width: 90px; }
+  #freecam { position: fixed; right: 12px; top: 50%; transform: translateY(-50%); width: 232px; background: rgba(10,12,16,.88); border: 1px solid #2c3140; border-radius: 8px; padding: 12px 14px; display: none; z-index: 30; max-height: 84vh; overflow: auto; }
+  #freecam.open { display: block; }
+  #freecam h3 { margin: 0 0 8px; font-size: 12px; color: #ffd34d; letter-spacing: 2px; }
+  #freecam .frow { margin: 8px 0; }
+  #freecam .frow label { display: flex; justify-content: space-between; font-size: 11px; color: #9aa0a6; letter-spacing: 1px; }
+  #freecam .frow label b { color: #fff; }
+  #freecam input[type=range] { width: 100%; accent-color: #ffd34d; }
+  #freecam .chk { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #9aa0a6; letter-spacing: 1px; margin: 8px 0; }
+  #freecam .chk input { accent-color: #ffd34d; }
+  #freecam button { width: 100%; margin-top: 6px; }
+  #freecam .hint { font-size: 10px; color: #6b7280; margin-top: 8px; }
+  #error { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,.85); padding: 30px; white-space: pre-wrap; color: #ff9b8f; font-size: 15px; z-index: 50; }
+  .overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(8,10,14,.82); z-index: 40; }
+  .overlay.open { display: flex; }
+  .panel { background: #171a21; border: 1px solid #2c3140; border-radius: 10px; padding: 20px 24px; width: min(760px, 94vw); max-height: 88vh; overflow: auto; box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+  .panel h1 { margin: 0 0 4px; font-size: 22px; color: #ffd34d; letter-spacing: 1px; }
+  .panel h2 { margin: 16px 0 6px; font-size: 13px; color: #9ad; text-transform: uppercase; letter-spacing: 1px; }
+  .panel .sub { color: #8b93a7; margin-bottom: 12px; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 6px 0; }
+  .row label { width: 90px; color: #8b93a7; }
+  select, input[type=text] { background: #0e1116; color: #eee; border: 1px solid #2c3140; border-radius: 6px; padding: 6px 8px; min-width: 200px; }
+  button { background: #ffd34d; color: #171a21; border: 0; border-radius: 6px; padding: 8px 14px; font-weight: 700; cursor: pointer; }
+  button.ghost { background: #232836; color: #cfd6e6; }
+  button:disabled { opacity: .4; cursor: default; }
+  .shop, #roomList, #playerList { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 6px; }
+  .item { display: flex; justify-content: space-between; align-items: center; gap: 8px; background: #0e1116; border: 1px solid #232836; border-radius: 6px; padding: 6px 8px; }
+  .item .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .item button { padding: 4px 8px; font-size: 12px; }
+  .cash { color: #7dff6a; font-weight: 700; }
+  #results .big { font-size: 30px; color: #ffd34d; font-weight: 800; }
+  #previewCanvas { width: 100%; height: 240px; background: radial-gradient(circle at 50% 30%, #2a3140, #10131a); border-radius: 8px; border: 1px solid #232836; }
+  .panel::-webkit-scrollbar, #freecam::-webkit-scrollbar { width: 8px; }
+  .panel::-webkit-scrollbar-track, #freecam::-webkit-scrollbar-track { background: #0e1116; }
+  .panel::-webkit-scrollbar-thumb, #freecam::-webkit-scrollbar-thumb { background: #3a4152; border-radius: 4px; }
+  .panel::-webkit-scrollbar-thumb:hover, #freecam::-webkit-scrollbar-thumb:hover { background: #ffd34d; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "@dimforge/rapier3d-compat": "https://cdn.jsdelivr.net/npm/@dimforge/rapier3d-compat@0.12.0/rapier.es.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="raceTop">
+  <div class="banner"><span><span class="lbl">SCORE</span><span id="raceCash">$000,000</span></span></div>
+  <div class="banner"><span><span class="lbl">TIME</span><span id="raceTime">0:00:00</span></span></div>
+</div>
+<div id="standings"></div>
+<div id="healthwrap"><div id="healthbar"></div></div>
+<div id="gauges">
+  <div class="gauge secondary"><div class="lbl">SECONDARY<b id="nameS">NONE</b></div><svg viewBox="0 0 60 60"><circle class="bg" cx="30" cy="30" r="26"/><circle class="fg" id="ringS" cx="30" cy="30" r="26"/></svg><div class="num" id="ammoS">–</div></div>
+  <div class="gauge primary"><div class="lbl">PRIMARY<b id="nameP">NONE</b></div><svg viewBox="0 0 60 60"><circle class="bg" cx="30" cy="30" r="26"/><circle class="fg" id="ringP" cx="30" cy="30" r="26"/></svg><div class="num" id="ammoP">–</div></div>
+</div>
+<div id="speedBox"><div><span id="speed">000</span><span class="unit">MPH</span></div></div>
+<div id="status">Starting…</div>
+<div id="popup"></div>
+<div id="countdown"></div>
+<div id="emoteWheel"></div>
+
+<div id="freecam">
+  <h3>CINEMATIC FREE-CAM</h3>
+  <div class="frow"><label>TIME SCALE <b id="fcTimeV">0.00</b></label><input type="range" id="fcTime" min="0" max="2" step="0.05" value="0"></div>
+  <div class="frow"><label>FOV <b id="fcFovV">55</b></label><input type="range" id="fcFov" min="20" max="120" step="1" value="55"></div>
+  <div class="frow"><label>ROLL / TILT <b id="fcRollV">0</b></label><input type="range" id="fcRoll" min="-45" max="45" step="1" value="0"></div>
+  <div class="frow"><label>MOVE SPEED <b id="fcSpeedV">40</b></label><input type="range" id="fcSpeed" min="5" max="200" step="1" value="40"></div>
+  <div class="frow"><label>DEPTH OF FIELD <b id="fcDofV">0</b></label><input type="range" id="fcDof" min="0" max="100" step="1" value="0"></div>
+  <div class="frow"><label>MOTION BLUR <b id="fcMotionV">0</b></label><input type="range" id="fcMotion" min="0" max="95" step="1" value="0"></div>
+  <div class="frow"><label>FOG DISTANCE <b id="fcFogV">600</b></label><input type="range" id="fcFog" min="100" max="2000" step="10" value="600"></div>
+  <div class="chk"><input type="checkbox" id="fcWire"><label for="fcWire">WIREFRAME</label></div>
+  <button id="fcReset" class="ghost">RESET CAMERA</button>
+  <div class="hint">WASD/QE move · drag look · wheel FOV · Shift boost. Time frozen by default. DOF focuses on the player car.</div>
+</div>
+
+<div id="error"></div>
+
+<div id="menu" class="overlay">
+  <div class="panel">
+    <h1>BURNIN' RUBBER 3</h1>
+    <div class="sub">Web port · <span class="cash" id="menuCash">$0</span></div>
+    <h2>Loadout</h2>
+    <div class="row"><label>Track</label><select id="selTrack"></select></div>
+    <div class="row"><label>Car</label><select id="selCar"></select></div>
+    <div class="row"><label>Primary</label><select id="selPrimary"></select></div>
+    <div class="row"><label>Secondary</label><select id="selSecondary"></select></div>
+    <h2>Shop</h2>
+    <div class="shop" id="shop"></div>
+    <div class="row" style="margin-top:16px">
+      <button id="btnStart">Start Race</button>
+      <button id="btnFree" class="ghost">Free Roam</button>
+      <button id="btnOnline" class="ghost">Online</button>
+    </div>
+  </div>
+</div>
+
+<div id="online" class="overlay">
+  <div class="panel">
+    <h1>ONLINE</h1>
+    <div class="sub">Same-browser tabs sync automatically. For separate browsers/machines run <code>node tools/server.js</code> and open with <code>?ws=ws://localhost:8080</code>.</div>
+    <div class="row"><label>Your name</label><input type="text" id="netName" value="Player"></div>
+    <h2>Rooms</h2>
+    <div id="roomList"></div>
+    <h2>Create room</h2>
+    <div class="row"><label>Room name</label><input type="text" id="roomName" value="My Room"></div>
+    <div class="row"><label>Track</label><select id="roomTrack"></select></div>
+    <div class="row" style="margin-top:12px">
+      <button id="btnCreate">Create Room</button>
+      <button id="btnBackOnline" class="ghost">Back</button>
+    </div>
+  </div>
+</div>
+
+<div id="lobby" class="overlay">
+  <div class="panel">
+    <h1 id="lobbyTitle">Room</h1>
+    <div class="sub">Track: <span id="lobbyTrack"></span></div>
+    <canvas id="previewCanvas" width="660" height="240"></canvas>
+    <h2>Players</h2>
+    <div id="playerList"></div>
+    <div class="row" style="margin-top:16px">
+      <button id="btnBegin">Begin Race</button>
+      <button id="btnLeave" class="ghost">Leave</button>
+    </div>
+  </div>
+</div>
+
+<div id="results" class="overlay">
+  <div class="panel">
+    <h1>RACE COMPLETE</h1>
+    <div class="big" id="resTime">0.00s</div>
+    <div class="sub" id="resDetail"></div>
+    <div class="row" style="margin-top:16px">
+      <button id="btnRetry">Retry</button>
+      <button id="btnGarage" class="ghost">Garage</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

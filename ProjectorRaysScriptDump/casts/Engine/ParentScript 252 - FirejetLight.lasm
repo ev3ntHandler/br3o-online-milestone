@@ -1,0 +1,561 @@
+property pID, pWorld, pGroup, pParticles, pBlastShader, pSmokeShader, pParticleResource, pcamera, pJetting, pPosition, pCounter, pMe, pExtraName
+global g
+
+on start me
+  [  0] pushint8 1 .............................. <1>
+  [  2] setprop 3177 ............................ pJetting = 1
+  [  5] pushzero ................................ <0>
+  [  6] setprop 518 ............................. pCounter = 0
+  [  9] ret
+end
+
+on stop me
+  [  0] pushzero ................................ <0>
+  [  1] setprop 3177 ............................ pJetting = 0
+  [  4] ret
+end
+
+on getGroup me
+  [  0] getprop 2845 ............................ <pGroup>
+  [  3] pusharglistnoret 1 ...................... <pGroup>
+  [  5] extcall 52 .............................. return pGroup
+  [  7] ret
+end
+
+on new me, theWorld, theLocation, theCameraToPointAt, tmodel
+  [  0] getparam 1 .............................. <theWorld>
+  [  2] setprop 3178 ............................ pWorld = theWorld
+  [  5] getparam 3 .............................. <theCameraToPointAt>
+  [  7] setprop 2778 ............................ pcamera = theCameraToPointAt
+  [ 10] pushint8 1 .............................. <1>
+  [ 12] setprop 3177 ............................ pJetting = 1
+  [ 15] getprop 3178 ............................ <pWorld>
+  [ 18] getparam 4 .............................. <tmodel>
+  [ 20] pusharglist 2 ........................... <pWorld, tmodel>
+  [ 22] objcall 71 .............................. <pWorld.model(tmodel)>
+  [ 24] setprop 3151 ............................ pPosition = pWorld.model(tmodel)
+  [ 27] getparam 4 .............................. <tmodel>
+  [ 29] setprop 3193 ............................ pExtraName = tmodel
+  [ 32] getparam 0 .............................. <me>
+  [ 34] getchainedprop 36 ....................... <me.script>
+  [ 36] getparam 0 .............................. <me>
+  [ 38] getchainedprop 36 ....................... <me.script>
+  [ 40] getobjprop 1672 ......................... <me.script.pID>
+  [ 43] pushint8 1 .............................. <1>
+  [ 45] add ..................................... <me.script.pID + 1>
+  [ 46] setobjprop 1672 ......................... me.script.pID = me.script.pID + 1
+  [ 49] getprop 3178 ............................ <pWorld>
+  [ 52] pushcons 0 .............................. <"firejetlight.">
+  [ 54] getparam 0 .............................. <me>
+  [ 56] getchainedprop 36 ....................... <me.script>
+  [ 58] getobjprop 1672 ......................... <me.script.pID>
+  [ 61] joinstr ................................. <"firejetlight." & me.script.pID>
+  [ 62] getprop 3193 ............................ <pExtraName>
+  [ 65] joinstr ................................. <"firejetlight." & me.script.pID & pExtraName>
+  [ 66] pushcons 1 .............................. <".grp">
+  [ 68] joinstr ................................. <"firejetlight." & me.script.pID & pExtraName & ".grp">
+  [ 69] pusharglist 2 ........................... <pWorld, "firejetlight." & me.script.pID & pExtraName & ".grp">
+  [ 71] objcall 877 ............................. <pWorld.newGroup("firejetlight." & me.script.pID & pExtraName & ".grp")>
+  [ 74] setprop 2845 ............................ pGroup = pWorld.newGroup("firejetlight." & me.script.pID & pExtraName & ".grp")
+  [ 77] getprop 2845 ............................ <pGroup>
+  [ 80] getchainedprop 214 ...................... <pGroup.transform>
+  [ 82] getparam 2 .............................. <theLocation>
+  [ 84] setobjprop 215 .......................... pGroup.transform.position = theLocation
+  [ 86] getprop 3178 ............................ <pWorld>
+  [ 89] pushcons 2 .............................. <"firejet.res">
+  [ 91] pusharglist 2 ........................... <pWorld, "firejet.res">
+  [ 93] objcall 72 .............................. <pWorld.modelResource("firejet.res")>
+  [ 95] setprop 3179 ............................ pParticleResource = pWorld.modelResource("firejet.res")
+  [ 98] getprop 3179 ............................ <pParticleResource>
+  [101] pusharglist 1 ........................... <pParticleResource>
+  [103] extcall 389 ............................. <voidp(pParticleResource)>
+  [106] jmpifz [142] ............................ if voidp(pParticleResource) then
+  [109] getprop 3178 ............................ <pWorld>
+  [112] pushcons 2 .............................. <"firejet.res">
+  [114] pushsymb 3180 ........................... <#plane>
+  [117] pushsymb 1234 ........................... <#front>
+  [120] pusharglist 4 ........................... <pWorld, "firejet.res", #plane, #front>
+  [122] objcall 1287 ............................ <pWorld.newModelResource("firejet.res", #plane, #front)>
+  [125] setprop 3179 ............................ pParticleResource = pWorld.newModelResource("firejet.res", #plane, #front)
+  [128] getprop 3179 ............................ <pParticleResource>
+  [131] pushint8 4 .............................. <4>
+  [133] setobjprop 229 .......................... pParticleResource.width = 4
+  [135] getprop 3179 ............................ <pParticleResource>
+  [138] pushint8 4 .............................. <4>
+  [140] setobjprop 69 ........................... pParticleResource.length = 4
+  [142] getparam 0 .............................. <me>
+  [144] pushcons 3 .............................. <"blast">
+  [146] pushsymb 42 ............................. <#add>
+  [148] pusharglist 3 ........................... <me, "blast", #add>
+  [150] objcall 1662 ............................ <me.getShader("blast", #add)>
+  [153] setprop 3181 ............................ pBlastShader = me.getShader("blast", #add)
+  [156] pusharglist 0 ........................... <[]>
+  [158] pushlist ................................ <[]>
+  [159] setprop 3183 ............................ pParticles = []
+  [162] getparam 0 .............................. <me>
+  [164] setprop 3184 ............................ pMe = me
+  [167] getparam 0 .............................. <me>
+  [169] pusharglistnoret 1 ...................... <me>
+  [171] extcall 52 .............................. return me
+  [173] ret
+end
+
+on getShader me, theType, theBlendMode
+  [  0] getprop 3178 ............................ <pWorld>
+  [  3] pushcons 4 .............................. <"firejet.">
+  [  5] getparam 1 .............................. <theType>
+  [  7] joinstr ................................. <"firejet." & theType>
+  [  8] pushcons 5 .............................. <".shd">
+  [ 10] joinstr ................................. <"firejet." & theType & ".shd">
+  [ 11] pusharglist 2 ........................... <pWorld, "firejet." & theType & ".shd">
+  [ 13] objcall 208 ............................. <pWorld.shader("firejet." & theType & ".shd")>
+  [ 15] setlocal 0 .............................. shd = pWorld.shader("firejet." & theType & ".shd")
+  [ 17] getlocal 0 .............................. <shd>
+  [ 19] pusharglist 1 ........................... <shd>
+  [ 21] extcall 389 ............................. <voidp(shd)>
+  [ 24] not ..................................... <not voidp(shd)>
+  [ 25] jmpifz [ 34] ............................ if not voidp(shd) then
+  [ 28] getlocal 0 .............................. <shd>
+  [ 30] pusharglistnoret 1 ...................... <shd>
+  [ 32] extcall 52 .............................. return shd
+  [ 34] getprop 3178 ............................ <pWorld>
+  [ 37] pushcons 4 .............................. <"firejet.">
+  [ 39] getparam 1 .............................. <theType>
+  [ 41] joinstr ................................. <"firejet." & theType>
+  [ 42] pushcons 6 .............................. <".tex">
+  [ 44] joinstr ................................. <"firejet." & theType & ".tex">
+  [ 45] pusharglist 2 ........................... <pWorld, "firejet." & theType & ".tex">
+  [ 47] objcall 218 ............................. <pWorld.texture("firejet." & theType & ".tex")>
+  [ 49] setlocal 1 .............................. tex = pWorld.texture("firejet." & theType & ".tex")
+  [ 51] getlocal 1 .............................. <tex>
+  [ 53] pusharglist 1 ........................... <tex>
+  [ 55] extcall 389 ............................. <voidp(tex)>
+  [ 58] jmpifz [110] ............................ if voidp(tex) then
+  [ 61] pushcons 4 .............................. <"firejet.">
+  [ 63] getparam 1 .............................. <theType>
+  [ 65] joinstr ................................. <"firejet." & theType>
+  [ 66] pusharglist 1 ........................... <"firejet." & theType>
+  [ 68] extcall 64 .............................. <member("firejet." & theType)>
+  [ 70] getchainedprop 319 ...................... <member("firejet." & theType).image>
+  [ 73] pusharglist 1 ........................... <member("firejet." & theType).image>
+  [ 75] objcall 233 ............................. <member("firejet." & theType).image.duplicate()>
+  [ 77] setlocal 2 .............................. i = member("firejet." & theType).image.duplicate()
+  [ 79] getprop 3178 ............................ <pWorld>
+  [ 82] pushcons 4 .............................. <"firejet.">
+  [ 84] getparam 1 .............................. <theType>
+  [ 86] joinstr ................................. <"firejet." & theType>
+  [ 87] pushcons 6 .............................. <".tex">
+  [ 89] joinstr ................................. <"firejet." & theType & ".tex">
+  [ 90] pushsymb 902 ............................ <#fromImageObject>
+  [ 93] getlocal 2 .............................. <i>
+  [ 95] pusharglist 4 ........................... <pWorld, "firejet." & theType & ".tex", #fromImageObject, i>
+  [ 97] objcall 903 ............................. <pWorld.newTexture("firejet." & theType & ".tex", #fromImageObject, i)>
+  [100] setlocal 1 .............................. tex = pWorld.newTexture("firejet." & theType & ".tex", #fromImageObject, i)
+  [102] getlocal 1 .............................. <tex>
+  [104] pushsymb 865 ............................ <#rgba8888>
+  [107] setobjprop 348 .......................... tex.renderFormat = #rgba8888
+  [110] getprop 3178 ............................ <pWorld>
+  [113] pushcons 4 .............................. <"firejet.">
+  [115] getparam 1 .............................. <theType>
+  [117] joinstr ................................. <"firejet." & theType>
+  [118] pushcons 5 .............................. <".shd">
+  [120] joinstr ................................. <"firejet." & theType & ".shd">
+  [121] pushsymb 531 ............................ <#standard>
+  [124] pusharglist 3 ........................... <pWorld, "firejet." & theType & ".shd", #standard>
+  [126] objcall 896 ............................. <pWorld.newShader("firejet." & theType & ".shd", #standard)>
+  [129] setlocal 0 .............................. shd = pWorld.newShader("firejet." & theType & ".shd", #standard)
+  [131] getlocal 0 .............................. <shd>
+  [133] pushint8 1 .............................. <1>
+  [135] setobjprop 1243 ......................... shd.transparent = 1
+  [138] getlocal 0 .............................. <shd>
+  [140] pushfloat32 0.0 ......................... <0.0>
+  [145] setobjprop 367 .......................... shd.blend = 0.0
+  [148] getlocal 0 .............................. <shd>
+  [150] getlocal 1 .............................. <tex>
+  [152] setobjprop 218 .......................... shd.texture = tex
+  [154] getlocal 0 .............................. <shd>
+  [156] pushsymb 904 ............................ <#blendFunctionList>
+  [159] pushint8 1 .............................. <1>
+  [161] pushsymb 367 ............................ <#blend>
+  [164] pusharglistnoret 4 ...................... <shd, #blendFunctionList, 1, #blend>
+  [166] objcall 99 .............................. shd.blendFunctionList[1] = #blend
+  [168] getlocal 0 .............................. <shd>
+  [170] pushsymb 1258 ........................... <#blendConstantList>
+  [173] pushint8 1 .............................. <1>
+  [175] pushfloat32 0.0 ......................... <0.0>
+  [180] pusharglistnoret 4 ...................... <shd, #blendConstantList, 1, 0.0>
+  [182] objcall 99 .............................. shd.blendConstantList[1] = 0.0
+  [184] gettoplevelprop 33 ...................... <_movie>
+  [186] getobjprop 1276 ......................... <_movie.active3dRenderer>
+  [189] pushsymb 1277 ........................... <#openGL>
+  [192] eq ...................................... <_movie.active3dRenderer = #openGL>
+  [193] jmpifz [241] ............................ if _movie.active3dRenderer = #openGL then / else
+  [196] getlocal 0 .............................. <shd>
+  [198] pushsymb 1244 ........................... <#textureList>
+  [201] pushint8 2 .............................. <2>
+  [203] getlocal 1 .............................. <tex>
+  [205] pusharglistnoret 4 ...................... <shd, #textureList, 2, tex>
+  [207] objcall 99 .............................. shd.textureList[2] = tex
+  [209] getlocal 0 .............................. <shd>
+  [211] pushsymb 904 ............................ <#blendFunctionList>
+  [214] pushint8 2 .............................. <2>
+  [216] getparam 2 .............................. <theBlendMode>
+  [218] pusharglistnoret 4 ...................... <shd, #blendFunctionList, 2, theBlendMode>
+  [220] objcall 99 .............................. shd.blendFunctionList[2] = theBlendMode
+  [222] getlocal 0 .............................. <shd>
+  [224] pushsymb 1258 ........................... <#blendConstantList>
+  [227] pushint8 2 .............................. <2>
+  [229] pushfloat32 0.0 ......................... <0.0>
+  [234] pusharglistnoret 4 ...................... <shd, #blendConstantList, 2, 0.0>
+  [236] objcall 99 .............................. shd.blendConstantList[2] = 0.0
+  [238] jmp [326]
+  [241] getlocal 0 .............................. <shd>
+  [243] pushsymb 1244 ........................... <#textureList>
+  [246] pushint8 2 .............................. <2>
+  [248] getlocal 1 .............................. <tex>
+  [250] pusharglistnoret 4 ...................... <shd, #textureList, 2, tex>
+  [252] objcall 99 .............................. shd.textureList[2] = tex
+  [254] getlocal 0 .............................. <shd>
+  [256] pushsymb 1244 ........................... <#textureList>
+  [259] pushint8 3 .............................. <3>
+  [261] getlocal 1 .............................. <tex>
+  [263] pusharglistnoret 4 ...................... <shd, #textureList, 3, tex>
+  [265] objcall 99 .............................. shd.textureList[3] = tex
+  [267] getlocal 0 .............................. <shd>
+  [269] pushsymb 904 ............................ <#blendFunctionList>
+  [272] pushint8 2 .............................. <2>
+  [274] pushsymb 367 ............................ <#blend>
+  [277] pusharglistnoret 4 ...................... <shd, #blendFunctionList, 2, #blend>
+  [279] objcall 99 .............................. shd.blendFunctionList[2] = #blend
+  [281] getlocal 0 .............................. <shd>
+  [283] pushsymb 1258 ........................... <#blendConstantList>
+  [286] pushint8 2 .............................. <2>
+  [288] pushfloat32 0.0 ......................... <0.0>
+  [293] pusharglistnoret 4 ...................... <shd, #blendConstantList, 2, 0.0>
+  [295] objcall 99 .............................. shd.blendConstantList[2] = 0.0
+  [297] getlocal 0 .............................. <shd>
+  [299] pushsymb 904 ............................ <#blendFunctionList>
+  [302] pushint8 3 .............................. <3>
+  [304] getparam 2 .............................. <theBlendMode>
+  [306] pusharglistnoret 4 ...................... <shd, #blendFunctionList, 3, theBlendMode>
+  [308] objcall 99 .............................. shd.blendFunctionList[3] = theBlendMode
+  [310] getlocal 0 .............................. <shd>
+  [312] pushsymb 1258 ........................... <#blendConstantList>
+  [315] pushint8 3 .............................. <3>
+  [317] pushfloat32 0.0 ......................... <0.0>
+  [322] pusharglistnoret 4 ...................... <shd, #blendConstantList, 3, 0.0>
+  [324] objcall 99 .............................. shd.blendConstantList[3] = 0.0
+  [326] getlocal 0 .............................. <shd>
+  [328] pushzero ................................ <0>
+  [329] pushzero ................................ <0>
+  [330] pushzero ................................ <0>
+  [331] pusharglist 3 ........................... <0, 0, 0>
+  [333] extcall 282 ............................. <rgb(0, 0, 0)>
+  [336] setobjprop 900 .......................... shd.emissive = rgb(0, 0, 0)
+  [339] getlocal 0 .............................. <shd>
+  [341] pushzero ................................ <0>
+  [342] pushzero ................................ <0>
+  [343] pushzero ................................ <0>
+  [344] pusharglist 3 ........................... <0, 0, 0>
+  [346] extcall 282 ............................. <rgb(0, 0, 0)>
+  [349] setobjprop 897 .......................... shd.ambient = rgb(0, 0, 0)
+  [352] getlocal 0 .............................. <shd>
+  [354] pushzero ................................ <0>
+  [355] pushzero ................................ <0>
+  [356] pushzero ................................ <0>
+  [357] pusharglist 3 ........................... <0, 0, 0>
+  [359] extcall 282 ............................. <rgb(0, 0, 0)>
+  [362] setobjprop 898 .......................... shd.diffuse = rgb(0, 0, 0)
+  [365] getlocal 0 .............................. <shd>
+  [367] pushzero ................................ <0>
+  [368] pushzero ................................ <0>
+  [369] pushzero ................................ <0>
+  [370] pusharglist 3 ........................... <0, 0, 0>
+  [372] extcall 282 ............................. <rgb(0, 0, 0)>
+  [375] setobjprop 899 .......................... shd.specular = rgb(0, 0, 0)
+  [378] getlocal 0 .............................. <shd>
+  [380] pushfloat32 0.0 ......................... <0.0>
+  [385] setobjprop 901 .......................... shd.shininess = 0.0
+  [388] getlocal 0 .............................. <shd>
+  [390] pusharglistnoret 1 ...................... <shd>
+  [392] extcall 52 .............................. return shd
+  [394] ret
+end
+
+on name me
+  [  0] pushcons 7 .............................. <"particle">
+  [  2] pusharglistnoret 1 ...................... <"particle">
+  [  4] extcall 52 .............................. return "particle"
+  [  6] ret
+end
+
+on deleteSystem me
+  [  0] pusharglistnoret 0 ...................... <>
+  [  2] localcall 1 ............................. stop()
+  [  4] getprop 3183 ............................ <pParticles>
+  [  7] getobjprop 129 .......................... <pParticles.count>
+  [  9] setlocal 0 .............................. pCount = pParticles.count
+  [ 11] pushint8 1 .............................. <1>
+  [ 13] setlocal 1
+  [ 15] getlocal 1
+  [ 17] getlocal 0 .............................. <pCount>
+  [ 19] lteq
+  [ 20] jmpifz [ 57] ............................ repeat with i = 1 to pCount
+  [ 23] getprop 3183 ............................ <pParticles>
+  [ 26] getlocal 1 .............................. <i>
+  [ 28] pusharglist 2 ........................... <pParticles, i>
+  [ 30] objcall 105 ............................. <pParticles[i]>
+  [ 32] setlocal 2 .............................. p = pParticles[i]
+  [ 34] getprop 3178 ............................ <pWorld>
+  [ 37] getlocal 2 .............................. <p>
+  [ 39] getchainedprop 71 ....................... <p.model>
+  [ 41] getobjprop 235 .......................... <p.model.name>
+  [ 43] pusharglistnoret 2 ...................... <pWorld, p.model.name>
+  [ 45] objcall 1221 ............................ pWorld.deleteModel(p.model.name)
+  [ 48] pushint8 1
+  [ 50] getlocal 1
+  [ 52] add
+  [ 53] setlocal 1
+  [ 55] endrepeat [ 15]
+  [ 57] gettoplevelprop 33 ...................... <_movie>
+  [ 59] getchainedprop 41 ....................... <_movie.actorList>
+  [ 61] getprop 3184 ............................ <pMe>
+  [ 64] pusharglistnoret 2 ...................... <_movie.actorList, pMe>
+  [ 66] objcall 175 ............................. _movie.actorList.deleteOne(pMe)
+  [ 68] ret
+end
+
+on AddParticle me, shaderToUse, velocitybump
+  [  0] getparam 2 .............................. <velocitybump>
+  [  2] pusharglist 1 ........................... <velocitybump>
+  [  4] extcall 389 ............................. <voidp(velocitybump)>
+  [  7] jmpifz [ 19] ............................ if voidp(velocitybump) then
+  [ 10] pushzero ................................ <0>
+  [ 11] pushzero ................................ <0>
+  [ 12] pushzero ................................ <0>
+  [ 13] pusharglist 3 ........................... <0, 0, 0>
+  [ 15] extcall 212 ............................. <vector(0, 0, 0)>
+  [ 17] setparam 2 .............................. velocitybump = vector(0, 0, 0)
+  [ 19] getprop 1672 ............................ <pID>
+  [ 22] pushint8 1 .............................. <1>
+  [ 24] add ..................................... <pID + 1>
+  [ 25] setprop 1672 ............................ pID = pID + 1
+  [ 28] getprop 3178 ............................ <pWorld>
+  [ 31] pushcons 8 .............................. <"firejetlight.particle.">
+  [ 33] getprop 3193 ............................ <pExtraName>
+  [ 36] joinstr ................................. <"firejetlight.particle." & pExtraName>
+  [ 37] getprop 1672 ............................ <pID>
+  [ 40] joinstr ................................. <"firejetlight.particle." & pExtraName & pID>
+  [ 41] getprop 3179 ............................ <pParticleResource>
+  [ 44] pusharglist 3 ........................... <pWorld, "firejetlight.particle." & pExtraName & pID, pParticleResource>
+  [ 46] objcall 892 ............................. <pWorld.newModel("firejetlight.particle." & pExtraName & pID, pParticleResource)>
+  [ 49] setlocal 0 .............................. m = pWorld.newModel("firejetlight.particle." & pExtraName & pID, pParticleResource)
+  [ 51] getlocal 0 .............................. <m>
+  [ 53] getprop 2845 ............................ <pGroup>
+  [ 56] setobjprop 207 .......................... m.parent = pGroup
+  [ 58] getlocal 0 .............................. <m>
+  [ 60] getparam 1 .............................. <shaderToUse>
+  [ 62] setobjprop 208 .......................... m.shader = shaderToUse
+  [ 64] pusharglist 0 ........................... <>
+  [ 66] extcall 1392 ............................ <randomVector()>
+  [ 69] pushcons 9 .............................. <1.64999999999999991>
+  [ 71] mul ..................................... <randomVector() * 1.64999999999999991>
+  [ 72] setlocal 1 .............................. V = randomVector() * 1.64999999999999991
+  [ 74] getprop 3151 ............................ <pPosition>
+  [ 77] pusharglist 1 ........................... <pPosition>
+  [ 79] objcall 1109 ............................ <pPosition.getWorldTransform()>
+  [ 82] getobjprop 215 .......................... <pPosition.getWorldTransform().position>
+  [ 84] setlocal 2 .............................. p = pPosition.getWorldTransform().position
+  [ 86] pushint8 19 ............................. <19>
+  [ 88] pusharglist 1 ........................... <19>
+  [ 90] extcall 176 ............................. <random(19)>
+  [ 92] pushint8 9 .............................. <9>
+  [ 94] sub ..................................... <random(19) - 9>
+  [ 95] setlocal 3 .............................. s = random(19) - 9
+  [ 97] getparam 1 .............................. <shaderToUse>
+  [ 99] getobjprop 235 .......................... <shaderToUse.name>
+  [101] pushcons 10 ............................. <"firejetlight.smoke.shd">
+  [103] eq ...................................... <shaderToUse.name = "firejetlight.smoke.shd">
+  [104] jmpifz [114] ............................ if shaderToUse.name = "firejetlight.smoke.shd" then
+  [107] getlocal 1 .............................. <V>
+  [109] getparam 2 .............................. <velocitybump>
+  [111] add ..................................... <V + velocitybump>
+  [112] setlocal 1 .............................. V = V + velocitybump
+  [114] getlocal 0 .............................. <m>
+  [116] getchainedprop 214 ...................... <m.transform>
+  [118] pushfloat32 0.0 ......................... <0.0>
+  [123] pushfloat32 0.0 ......................... <0.0>
+  [128] pushint8 1 .............................. <1>
+  [130] pushint16 360 ........................... <360>
+  [133] pusharglist 2 ........................... <1, 360>
+  [135] extcall 176 ............................. <random(1, 360)>
+  [137] pusharglist 3 ........................... <0.0, 0.0, random(1, 360)>
+  [139] extcall 212 ............................. <vector(0.0, 0.0, random(1, 360))>
+  [141] setobjprop 1162 ......................... m.transform.rotation = vector(0.0, 0.0, random(1, 360))
+  [144] getprop 3183 ............................ <pParticles>
+  [147] pushsymb 71 ............................. <#model>
+  [149] getlocal 0 .............................. <m>
+  [151] pushsymb 215 ............................ <#position>
+  [153] getlocal 2 .............................. <p>
+  [155] pushsymb 1697 ........................... <#velocity>
+  [158] getlocal 1 .............................. <V>
+  [160] pushsymb 1698 ........................... <#life>
+  [163] pushzero ................................ <0>
+  [164] pushsymb 1700 ........................... <#spin>
+  [167] getlocal 3 .............................. <s>
+  [169] pusharglist 10 .......................... <[#model: m, #position: p, #velocity: V, #life: 0, #spin: s]>
+  [171] pushproplist ............................ <[#model: m, #position: p, #velocity: V, #life: 0, #spin: s]>
+  [172] pusharglistnoret 2 ...................... <pParticles, [#model: m, #position: p, #velocity: V, #life: 0, #spin: s]>
+  [174] objcall 42 .............................. pParticles.add([#model: m, #position: p, #velocity: V, #life: 0, #spin: s])
+  [176] ret
+end
+
+on stepFrame me
+  [  0] getprop 518 ............................. <pCounter>
+  [  3] getglobal 395 ........................... <g>
+  [  6] getobjprop 454 .......................... <g.TimeMP>
+  [  9] add ..................................... <pCounter + g.TimeMP>
+  [ 10] setprop 518 ............................. pCounter = pCounter + g.TimeMP
+  [ 13] getprop 518 ............................. <pCounter>
+  [ 16] pushfloat32 2.0 ......................... <2.0>
+  [ 21] gteq .................................... <pCounter >= 2.0>
+  [ 22] jmpifz [ 45] ............................ if pCounter >= 2.0 then
+  [ 25] getprop 3177 ............................ <pJetting>
+  [ 28] jmpifz [ 41] ............................ if pJetting then
+  [ 31] getparam 0 .............................. <me>
+  [ 33] getprop 3181 ............................ <pBlastShader>
+  [ 36] pusharglistnoret 2 ...................... <me, pBlastShader>
+  [ 38] objcall 1664 ............................ me.AddParticle(pBlastShader)
+  [ 41] pushzero ................................ <0>
+  [ 42] setprop 518 ............................. pCounter = 0
+  [ 45] getprop 3183 ............................ <pParticles>
+  [ 48] getobjprop 129 .......................... <pParticles.count>
+  [ 50] setlocal 0 .............................. looper = pParticles.count
+  [ 52] getlocal 0 .............................. <looper>
+  [ 54] pushzero ................................ <0>
+  [ 55] gt ...................................... <looper > 0>
+  [ 56] jmpifz [ 77] ............................ repeat while looper > 0
+  [ 59] getparam 0 .............................. <me>
+  [ 61] getlocal 0 .............................. <looper>
+  [ 63] pusharglistnoret 2 ...................... <me, looper>
+  [ 65] objcall 1665 ............................ me.doParticle(looper)
+  [ 68] getlocal 0 .............................. <looper>
+  [ 70] pushint8 1 .............................. <1>
+  [ 72] sub ..................................... <looper - 1>
+  [ 73] setlocal 0 .............................. looper = looper - 1
+  [ 75] endrepeat [ 52]
+  [ 77] ret
+end
+
+on doParticle me, looper
+  [  0] getprop 3183 ............................ <pParticles>
+  [  3] getparam 1 .............................. <looper>
+  [  5] pusharglist 2 ........................... <pParticles, looper>
+  [  7] objcall 105 ............................. <pParticles[looper]>
+  [  9] setlocal 0 .............................. p = pParticles[looper]
+  [ 11] getlocal 0 .............................. <p>
+  [ 13] getlocal 0 .............................. <p>
+  [ 15] getobjprop 1698 ......................... <p.life>
+  [ 18] pushfloat32 1.0 ......................... <1.0>
+  [ 23] getglobal 395 ........................... <g>
+  [ 26] getobjprop 454 .......................... <g.TimeMP>
+  [ 29] mul ..................................... <1.0 * g.TimeMP>
+  [ 30] add ..................................... <p.life + (1.0 * g.TimeMP)>
+  [ 31] setobjprop 1698 ......................... p.life = p.life + (1.0 * g.TimeMP)
+  [ 34] getlocal 0 .............................. <p>
+  [ 36] getobjprop 1698 ......................... <p.life>
+  [ 39] pushint8 19 ............................. <19>
+  [ 41] gt ...................................... <p.life > 19>
+  [ 42] jmpifz [ 73] ............................ if p.life > 19 then
+  [ 45] getprop 3178 ............................ <pWorld>
+  [ 48] getlocal 0 .............................. <p>
+  [ 50] getchainedprop 71 ....................... <p.model>
+  [ 52] getobjprop 235 .......................... <p.model.name>
+  [ 54] pusharglistnoret 2 ...................... <pWorld, p.model.name>
+  [ 56] objcall 1221 ............................ pWorld.deleteModel(p.model.name)
+  [ 59] getprop 3183 ............................ <pParticles>
+  [ 62] getparam 1 .............................. <looper>
+  [ 64] pusharglistnoret 2 ...................... <pParticles, looper>
+  [ 66] objcall 661 ............................. pParticles.deleteAt(looper)
+  [ 69] pusharglistnoret 0 ...................... <>
+  [ 71] extcall 52 .............................. return 
+  [ 73] pushfloat32 1.0 ......................... <1.0>
+  [ 78] getlocal 0 .............................. <p>
+  [ 80] getobjprop 1698 ......................... <p.life>
+  [ 83] pushfloat32 19.0 ........................ <19.0>
+  [ 88] div ..................................... <p.life / 19.0>
+  [ 89] sub ..................................... <1.0 - (p.life / 19.0)>
+  [ 90] setlocal 1 .............................. s = 1.0 - (p.life / 19.0)
+  [ 92] getlocal 1 .............................. <s>
+  [ 94] pushcons 11 ............................. <0.10000000000000001>
+  [ 96] lt ...................................... <s < 0.10000000000000001>
+  [ 97] jmpifz [104] ............................ if s < 0.10000000000000001 then
+  [100] pushcons 11 ............................. <0.10000000000000001>
+  [102] setlocal 1 .............................. s = 0.10000000000000001
+  [104] getlocal 0 .............................. <p>
+  [106] getchainedprop 71 ....................... <p.model>
+  [108] getchainedprop 214 ...................... <p.model.transform>
+  [110] getlocal 1 .............................. <s>
+  [112] getlocal 1 .............................. <s>
+  [114] getlocal 1 .............................. <s>
+  [116] pusharglist 3 ........................... <s, s, s>
+  [118] extcall 212 ............................. <vector(s, s, s)>
+  [120] setobjprop 307 .......................... p.model.transform.scale = vector(s, s, s)
+  [123] getlocal 0 .............................. <p>
+  [125] getlocal 0 .............................. <p>
+  [127] getobjprop 1697 ......................... <p.velocity>
+  [130] pushcons 12 ............................. <0.40000000000000002>
+  [132] mul ..................................... <p.velocity * 0.40000000000000002>
+  [133] pushzero ................................ <0>
+  [134] pushzero ................................ <0>
+  [135] pushcons 13 ............................. <0.05>
+  [137] pusharglist 3 ........................... <0, 0, 0.05>
+  [139] extcall 212 ............................. <vector(0, 0, 0.05)>
+  [141] add ..................................... <(p.velocity * 0.40000000000000002) + vector(0, 0, 0.05)>
+  [142] setobjprop 1697 ......................... p.velocity = (p.velocity * 0.40000000000000002) + vector(0, 0, 0.05)
+  [145] getlocal 0 .............................. <p>
+  [147] getlocal 0 .............................. <p>
+  [149] getobjprop 1697 ......................... <p.velocity>
+  [152] getglobal 395 ........................... <g>
+  [155] getobjprop 454 .......................... <g.TimeMP>
+  [158] mul ..................................... <p.velocity * g.TimeMP>
+  [159] setobjprop 1697 ......................... p.velocity = p.velocity * g.TimeMP
+  [162] getlocal 0 .............................. <p>
+  [164] getlocal 0 .............................. <p>
+  [166] getobjprop 215 .......................... <p.position>
+  [168] getlocal 0 .............................. <p>
+  [170] getobjprop 1697 ......................... <p.velocity>
+  [173] add ..................................... <p.position + p.velocity>
+  [174] setobjprop 215 .......................... p.position = p.position + p.velocity
+  [176] getlocal 0 .............................. <p>
+  [178] getchainedprop 71 ....................... <p.model>
+  [180] getchainedprop 214 ...................... <p.model.transform>
+  [182] getlocal 0 .............................. <p>
+  [184] getobjprop 215 .......................... <p.position>
+  [186] setobjprop 215 .......................... p.model.transform.position = p.position
+  [188] getlocal 0 .............................. <p>
+  [190] getchainedprop 71 ....................... <p.model>
+  [192] getprop 2778 ............................ <pcamera>
+  [195] getchainedprop 214 ...................... <pcamera.transform>
+  [197] getobjprop 215 .......................... <pcamera.transform.position>
+  [199] pusharglistnoret 2 ...................... <p.model, pcamera.transform.position>
+  [201] objcall 1340 ............................ p.model.pointAt(pcamera.transform.position)
+  [204] getlocal 0 .............................. <p>
+  [206] getobjprop 1698 ......................... <p.life>
+  [209] getlocal 0 .............................. <p>
+  [211] getobjprop 1700 ......................... <p.spin>
+  [214] mul ..................................... <p.life * p.spin>
+  [215] getglobal 395 ........................... <g>
+  [218] getobjprop 454 .......................... <g.TimeMP>
+  [221] mul ..................................... <p.life * p.spin * g.TimeMP>
+  [222] setlocal 2 .............................. pPp = p.life * p.spin * g.TimeMP
+  [224] getlocal 0 .............................. <p>
+  [226] getchainedprop 71 ....................... <p.model>
+  [228] pushzero ................................ <0>
+  [229] pushzero ................................ <0>
+  [230] getlocal 2 .............................. <pPp>
+  [232] pushsymb 1370 ........................... <#self>
+  [235] pusharglistnoret 5 ...................... <p.model, 0, 0, pPp, #self>
+  [237] objcall 1471 ............................ p.model.rotate(0, 0, pPp, #self)
+  [240] ret
+end

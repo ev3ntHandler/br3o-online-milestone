@@ -1,0 +1,1271 @@
+global gGame
+
+on KeyHandler tKey
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pushsymb 929 ............................ <#Keys>
+  [  5] pusharglist 2 ........................... <gGame, #Keys>
+  [  7] extcall 542 ............................. <getaProp(gGame, #Keys)>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <getaProp(gGame, #Keys) = VOID>
+  [ 15] jmpifz [ 19] ............................ if getaProp(gGame, #Keys) = VOID then
+  [ 18] ret ..................................... exit
+  [ 19] getglobal 43 ............................ <gGame>
+  [ 21] getobjprop 929 .......................... <gGame.Keys>
+  [ 24] pushsymb 930 ............................ <#KeyEvent>
+  [ 27] pusharglist 2 ........................... <gGame.Keys, #KeyEvent>
+  [ 29] extcall 542 ............................. <getaProp(gGame.Keys, #KeyEvent)>
+  [ 32] pusharglist 0 ........................... <>
+  [ 34] extcall 40 .............................. <VOID>
+  [ 36] nteq .................................... <getaProp(gGame.Keys, #KeyEvent) <> VOID>
+  [ 37] jmpifz [220] ............................ if getaProp(gGame.Keys, #KeyEvent) <> VOID then
+  [ 40] getglobal 43 ............................ <gGame>
+  [ 42] getchainedprop 929 ...................... <gGame.Keys>
+  [ 45] pushsymb 930 ............................ <#KeyEvent>
+  [ 48] pusharglist 2 ........................... <gGame.Keys, #KeyEvent>
+  [ 50] objcall 129 ............................. <gGame.Keys.KeyEvent.count>
+  [ 52] setlocal 0 .............................. pCount = gGame.Keys.KeyEvent.count
+  [ 54] pushint8 1 .............................. <1>
+  [ 56] setlocal 1
+  [ 58] getlocal 1
+  [ 60] getlocal 0 .............................. <pCount>
+  [ 62] lteq
+  [ 63] jmpifz [220] ............................ repeat with i = 1 to pCount
+  [ 66] getglobal 43 ............................ <gGame>
+  [ 68] getchainedprop 929 ...................... <gGame.Keys>
+  [ 71] pushsymb 930 ............................ <#KeyEvent>
+  [ 74] getlocal 1 .............................. <i>
+  [ 76] pusharglist 3 ........................... <gGame.Keys, #KeyEvent, i>
+  [ 78] objcall 102 ............................. <gGame.Keys.KeyEvent[i]>
+  [ 80] pushint8 1 .............................. <1>
+  [ 82] pusharglist 2 ........................... <gGame.Keys.KeyEvent[i], 1>
+  [ 84] objcall 105 ............................. <gGame.Keys.KeyEvent[i][1]>
+  [ 86] setlocal 2 .............................. pCheckKey = gGame.Keys.KeyEvent[i][1]
+  [ 88] getglobal 43 ............................ <gGame>
+  [ 90] getchainedprop 929 ...................... <gGame.Keys>
+  [ 93] pushsymb 930 ............................ <#KeyEvent>
+  [ 96] getlocal 1 .............................. <i>
+  [ 98] pusharglist 3 ........................... <gGame.Keys, #KeyEvent, i>
+  [100] objcall 102 ............................. <gGame.Keys.KeyEvent[i]>
+  [102] pushint8 2 .............................. <2>
+  [104] pusharglist 2 ........................... <gGame.Keys.KeyEvent[i], 2>
+  [106] objcall 105 ............................. <gGame.Keys.KeyEvent[i][2]>
+  [108] setlocal 3 .............................. pevent = gGame.Keys.KeyEvent[i][2]
+  [110] getglobal 43 ............................ <gGame>
+  [112] getchainedprop 929 ...................... <gGame.Keys>
+  [115] pushsymb 930 ............................ <#KeyEvent>
+  [118] getlocal 1 .............................. <i>
+  [120] pusharglist 3 ........................... <gGame.Keys, #KeyEvent, i>
+  [122] objcall 102 ............................. <gGame.Keys.KeyEvent[i]>
+  [124] pushint8 3 .............................. <3>
+  [126] pusharglist 2 ........................... <gGame.Keys.KeyEvent[i], 3>
+  [128] objcall 105 ............................. <gGame.Keys.KeyEvent[i][3]>
+  [130] setlocal 4 .............................. pSoundName = gGame.Keys.KeyEvent[i][3]
+  [132] getglobal 43 ............................ <gGame>
+  [134] getchainedprop 929 ...................... <gGame.Keys>
+  [137] pushsymb 930 ............................ <#KeyEvent>
+  [140] getlocal 1 .............................. <i>
+  [142] pusharglist 3 ........................... <gGame.Keys, #KeyEvent, i>
+  [144] objcall 102 ............................. <gGame.Keys.KeyEvent[i]>
+  [146] pushint8 4 .............................. <4>
+  [148] pusharglist 2 ........................... <gGame.Keys.KeyEvent[i], 4>
+  [150] objcall 105 ............................. <gGame.Keys.KeyEvent[i][4]>
+  [152] setlocal 5 .............................. pOnce = gGame.Keys.KeyEvent[i][4]
+  [154] getlocal 2 .............................. <pCheckKey>
+  [156] getparam 0 .............................. <tKey>
+  [158] eq ...................................... <pCheckKey = tKey>
+  [159] jmpifz [211] ............................ if pCheckKey = tKey then
+  [162] getlocal 5 .............................. <pOnce>
+  [164] pushint8 1 .............................. <1>
+  [166] eq ...................................... <pOnce = 1>
+  [167] jmpifz [185] ............................ if pOnce = 1 then
+  [170] getglobal 43 ............................ <gGame>
+  [172] getchainedprop 929 ...................... <gGame.Keys>
+  [175] getchainedprop 930 ...................... <gGame.Keys.KeyEvent>
+  [178] getlocal 1 .............................. <i>
+  [180] pusharglistnoret 2 ...................... <gGame.Keys.KeyEvent, i>
+  [182] objcall 661 ............................. gGame.Keys.KeyEvent.deleteAt(i)
+  [185] getlocal 3 .............................. <pevent>
+  [187] pusharglistnoret 1 ...................... <pevent>
+  [189] extcall 148 ............................. event(pevent)
+  [191] getlocal 4 .............................. <pSoundName>
+  [193] pusharglist 0 ........................... <>
+  [195] extcall 40 .............................. <VOID>
+  [197] nteq .................................... <pSoundName <> VOID>
+  [198] jmpifz [208] ............................ if pSoundName <> VOID then
+  [201] getlocal 4 .............................. <pSoundName>
+  [203] pusharglistnoret 1 ...................... <pSoundName>
+  [205] extcall 289 ............................. PlaySound(pSoundName)
+  [208] jmp [220] ............................... exit repeat
+  [211] pushint8 1
+  [213] getlocal 1
+  [215] add
+  [216] setlocal 1
+  [218] endrepeat [ 58]
+  [220] getglobal 43 ............................ <gGame>
+  [222] getobjprop 929 .......................... <gGame.Keys>
+  [225] pushsymb 573 ............................ <#KeyHandler>
+  [228] pusharglist 2 ........................... <gGame.Keys, #KeyHandler>
+  [230] extcall 542 ............................. <getaProp(gGame.Keys, #KeyHandler)>
+  [233] pusharglist 0 ........................... <>
+  [235] extcall 40 .............................. <VOID>
+  [237] nteq .................................... <getaProp(gGame.Keys, #KeyHandler) <> VOID>
+  [238] jmpifz [435] ............................ if getaProp(gGame.Keys, #KeyHandler) <> VOID then
+  [241] getglobal 43 ............................ <gGame>
+  [243] getchainedprop 929 ...................... <gGame.Keys>
+  [246] pushsymb 573 ............................ <#KeyHandler>
+  [249] pusharglist 2 ........................... <gGame.Keys, #KeyHandler>
+  [251] objcall 129 ............................. <gGame.Keys.KeyHandler.count>
+  [253] setlocal 0 .............................. pCount = gGame.Keys.KeyHandler.count
+  [255] pushint8 1 .............................. <1>
+  [257] setlocal 1
+  [259] getlocal 1
+  [261] getlocal 0 .............................. <pCount>
+  [263] lteq
+  [264] jmpifz [435] ............................ repeat with i = 1 to pCount
+  [267] getglobal 43 ............................ <gGame>
+  [269] getchainedprop 929 ...................... <gGame.Keys>
+  [272] pushsymb 573 ............................ <#KeyHandler>
+  [275] getlocal 1 .............................. <i>
+  [277] pusharglist 3 ........................... <gGame.Keys, #KeyHandler, i>
+  [279] objcall 102 ............................. <gGame.Keys.KeyHandler[i]>
+  [281] pushint8 1 .............................. <1>
+  [283] pusharglist 2 ........................... <gGame.Keys.KeyHandler[i], 1>
+  [285] objcall 105 ............................. <gGame.Keys.KeyHandler[i][1]>
+  [287] setlocal 2 .............................. pCheckKey = gGame.Keys.KeyHandler[i][1]
+  [289] getglobal 43 ............................ <gGame>
+  [291] getchainedprop 929 ...................... <gGame.Keys>
+  [294] pushsymb 573 ............................ <#KeyHandler>
+  [297] getlocal 1 .............................. <i>
+  [299] pusharglist 3 ........................... <gGame.Keys, #KeyHandler, i>
+  [301] objcall 102 ............................. <gGame.Keys.KeyHandler[i]>
+  [303] pushint8 2 .............................. <2>
+  [305] pusharglist 2 ........................... <gGame.Keys.KeyHandler[i], 2>
+  [307] objcall 105 ............................. <gGame.Keys.KeyHandler[i][2]>
+  [309] setlocal 6 .............................. pHandler = gGame.Keys.KeyHandler[i][2]
+  [311] getglobal 43 ............................ <gGame>
+  [313] getchainedprop 929 ...................... <gGame.Keys>
+  [316] pushsymb 573 ............................ <#KeyHandler>
+  [319] getlocal 1 .............................. <i>
+  [321] pusharglist 3 ........................... <gGame.Keys, #KeyHandler, i>
+  [323] objcall 102 ............................. <gGame.Keys.KeyHandler[i]>
+  [325] pushint8 3 .............................. <3>
+  [327] pusharglist 2 ........................... <gGame.Keys.KeyHandler[i], 3>
+  [329] objcall 105 ............................. <gGame.Keys.KeyHandler[i][3]>
+  [331] setlocal 4 .............................. pSoundName = gGame.Keys.KeyHandler[i][3]
+  [333] getglobal 43 ............................ <gGame>
+  [335] getchainedprop 929 ...................... <gGame.Keys>
+  [338] pushsymb 573 ............................ <#KeyHandler>
+  [341] getlocal 1 .............................. <i>
+  [343] pusharglist 3 ........................... <gGame.Keys, #KeyHandler, i>
+  [345] objcall 102 ............................. <gGame.Keys.KeyHandler[i]>
+  [347] pushint8 4 .............................. <4>
+  [349] pusharglist 2 ........................... <gGame.Keys.KeyHandler[i], 4>
+  [351] objcall 105 ............................. <gGame.Keys.KeyHandler[i][4]>
+  [353] setlocal 5 .............................. pOnce = gGame.Keys.KeyHandler[i][4]
+  [355] getlocal 2 .............................. <pCheckKey>
+  [357] getparam 0 .............................. <tKey>
+  [359] eq ...................................... <pCheckKey = tKey>
+  [360] jmpifz [426] ............................ if pCheckKey = tKey then
+  [363] getlocal 5 .............................. <pOnce>
+  [365] pushint8 1 .............................. <1>
+  [367] eq ...................................... <pOnce = 1>
+  [368] jmpifz [386] ............................ if pOnce = 1 then
+  [371] getglobal 43 ............................ <gGame>
+  [373] getchainedprop 929 ...................... <gGame.Keys>
+  [376] getchainedprop 573 ...................... <gGame.Keys.KeyHandler>
+  [379] getlocal 1 .............................. <i>
+  [381] pusharglistnoret 2 ...................... <gGame.Keys.KeyHandler, i>
+  [383] objcall 661 ............................. gGame.Keys.KeyHandler.deleteAt(i)
+  [386] getlocal 6 .............................. <pHandler>
+  [388] pushcons 0 .............................. <"(">
+  [390] joinstr ................................. <pHandler & "(">
+  [391] getparam 0 .............................. <tKey>
+  [393] pusharglist 1 ........................... <tKey>
+  [395] extcall 67 .............................. <string(tKey)>
+  [397] joinstr ................................. <pHandler & "(" & string(tKey)>
+  [398] pushcons 1 .............................. <")">
+  [400] joinstr ................................. <pHandler & "(" & string(tKey) & ")">
+  [401] pusharglistnoret 1 ...................... <pHandler & "(" & string(tKey) & ")">
+  [403] extcall 535 ............................. do(pHandler & "(" & string(tKey) & ")")
+  [406] getlocal 4 .............................. <pSoundName>
+  [408] pusharglist 0 ........................... <>
+  [410] extcall 40 .............................. <VOID>
+  [412] nteq .................................... <pSoundName <> VOID>
+  [413] jmpifz [423] ............................ if pSoundName <> VOID then
+  [416] getlocal 4 .............................. <pSoundName>
+  [418] pusharglistnoret 1 ...................... <pSoundName>
+  [420] extcall 289 ............................. PlaySound(pSoundName)
+  [423] jmp [435] ............................... exit repeat
+  [426] pushint8 1
+  [428] getlocal 1
+  [430] add
+  [431] setlocal 1
+  [433] endrepeat [259]
+  [435] getglobal 43 ............................ <gGame>
+  [437] getobjprop 929 .......................... <gGame.Keys>
+  [440] pushsymb 931 ............................ <#KeyGoTo>
+  [443] pusharglist 2 ........................... <gGame.Keys, #KeyGoTo>
+  [445] extcall 542 ............................. <getaProp(gGame.Keys, #KeyGoTo)>
+  [448] pusharglist 0 ........................... <>
+  [450] extcall 40 .............................. <VOID>
+  [452] nteq .................................... <getaProp(gGame.Keys, #KeyGoTo) <> VOID>
+  [453] jmpifz [639] ............................ if getaProp(gGame.Keys, #KeyGoTo) <> VOID then
+  [456] getglobal 43 ............................ <gGame>
+  [458] getchainedprop 929 ...................... <gGame.Keys>
+  [461] pushsymb 931 ............................ <#KeyGoTo>
+  [464] pusharglist 2 ........................... <gGame.Keys, #KeyGoTo>
+  [466] objcall 129 ............................. <gGame.Keys.KeyGoTo.count>
+  [468] setlocal 0 .............................. pCount = gGame.Keys.KeyGoTo.count
+  [470] pushint8 1 .............................. <1>
+  [472] setlocal 1
+  [474] getlocal 1
+  [476] getlocal 0 .............................. <pCount>
+  [478] lteq
+  [479] jmpifz [639] ............................ repeat with i = 1 to pCount
+  [482] getglobal 43 ............................ <gGame>
+  [484] getchainedprop 929 ...................... <gGame.Keys>
+  [487] pushsymb 931 ............................ <#KeyGoTo>
+  [490] getlocal 1 .............................. <i>
+  [492] pusharglist 3 ........................... <gGame.Keys, #KeyGoTo, i>
+  [494] objcall 102 ............................. <gGame.Keys.KeyGoTo[i]>
+  [496] pushint8 1 .............................. <1>
+  [498] pusharglist 2 ........................... <gGame.Keys.KeyGoTo[i], 1>
+  [500] objcall 105 ............................. <gGame.Keys.KeyGoTo[i][1]>
+  [502] setlocal 2 .............................. pCheckKey = gGame.Keys.KeyGoTo[i][1]
+  [504] getglobal 43 ............................ <gGame>
+  [506] getchainedprop 929 ...................... <gGame.Keys>
+  [509] pushsymb 931 ............................ <#KeyGoTo>
+  [512] getlocal 1 .............................. <i>
+  [514] pusharglist 3 ........................... <gGame.Keys, #KeyGoTo, i>
+  [516] objcall 102 ............................. <gGame.Keys.KeyGoTo[i]>
+  [518] pushint8 2 .............................. <2>
+  [520] pusharglist 2 ........................... <gGame.Keys.KeyGoTo[i], 2>
+  [522] objcall 105 ............................. <gGame.Keys.KeyGoTo[i][2]>
+  [524] setlocal 7 .............................. pFrame = gGame.Keys.KeyGoTo[i][2]
+  [526] getglobal 43 ............................ <gGame>
+  [528] getchainedprop 929 ...................... <gGame.Keys>
+  [531] pushsymb 931 ............................ <#KeyGoTo>
+  [534] getlocal 1 .............................. <i>
+  [536] pusharglist 3 ........................... <gGame.Keys, #KeyGoTo, i>
+  [538] objcall 102 ............................. <gGame.Keys.KeyGoTo[i]>
+  [540] pushint8 3 .............................. <3>
+  [542] pusharglist 2 ........................... <gGame.Keys.KeyGoTo[i], 3>
+  [544] objcall 105 ............................. <gGame.Keys.KeyGoTo[i][3]>
+  [546] setlocal 4 .............................. pSoundName = gGame.Keys.KeyGoTo[i][3]
+  [548] getglobal 43 ............................ <gGame>
+  [550] getchainedprop 929 ...................... <gGame.Keys>
+  [553] pushsymb 931 ............................ <#KeyGoTo>
+  [556] getlocal 1 .............................. <i>
+  [558] pusharglist 3 ........................... <gGame.Keys, #KeyGoTo, i>
+  [560] objcall 102 ............................. <gGame.Keys.KeyGoTo[i]>
+  [562] pushint8 4 .............................. <4>
+  [564] pusharglist 2 ........................... <gGame.Keys.KeyGoTo[i], 4>
+  [566] objcall 105 ............................. <gGame.Keys.KeyGoTo[i][4]>
+  [568] setlocal 5 .............................. pOnce = gGame.Keys.KeyGoTo[i][4]
+  [570] getlocal 2 .............................. <pCheckKey>
+  [572] getparam 0 .............................. <tKey>
+  [574] eq ...................................... <pCheckKey = tKey>
+  [575] jmpifz [630] ............................ if pCheckKey = tKey then
+  [578] getlocal 5 .............................. <pOnce>
+  [580] pushint8 1 .............................. <1>
+  [582] eq ...................................... <pOnce = 1>
+  [583] jmpifz [601] ............................ if pOnce = 1 then
+  [586] getglobal 43 ............................ <gGame>
+  [588] getchainedprop 929 ...................... <gGame.Keys>
+  [591] getchainedprop 931 ...................... <gGame.Keys.KeyGoTo>
+  [594] getlocal 1 .............................. <i>
+  [596] pusharglistnoret 2 ...................... <gGame.Keys.KeyGoTo, i>
+  [598] objcall 661 ............................. gGame.Keys.KeyGoTo.deleteAt(i)
+  [601] gettoplevelprop 33 ...................... <_movie>
+  [603] getlocal 7 .............................. <pFrame>
+  [605] pusharglistnoret 2 ...................... <_movie, pFrame>
+  [607] objcall 539 ............................. _movie.go(pFrame)
+  [610] getlocal 4 .............................. <pSoundName>
+  [612] pusharglist 0 ........................... <>
+  [614] extcall 40 .............................. <VOID>
+  [616] nteq .................................... <pSoundName <> VOID>
+  [617] jmpifz [627] ............................ if pSoundName <> VOID then
+  [620] getlocal 4 .............................. <pSoundName>
+  [622] pusharglistnoret 1 ...................... <pSoundName>
+  [624] extcall 289 ............................. PlaySound(pSoundName)
+  [627] jmp [639] ............................... exit repeat
+  [630] pushint8 1
+  [632] getlocal 1
+  [634] add
+  [635] setlocal 1
+  [637] endrepeat [474]
+  [639] getglobal 43 ............................ <gGame>
+  [641] getobjprop 929 .......................... <gGame.Keys>
+  [644] pushsymb 932 ............................ <#KeyMarker>
+  [647] pusharglist 2 ........................... <gGame.Keys, #KeyMarker>
+  [649] extcall 542 ............................. <getaProp(gGame.Keys, #KeyMarker)>
+  [652] pusharglist 0 ........................... <>
+  [654] extcall 40 .............................. <VOID>
+  [656] nteq .................................... <getaProp(gGame.Keys, #KeyMarker) <> VOID>
+  [657] jmpifz [843] ............................ if getaProp(gGame.Keys, #KeyMarker) <> VOID then
+  [660] getglobal 43 ............................ <gGame>
+  [662] getchainedprop 929 ...................... <gGame.Keys>
+  [665] pushsymb 932 ............................ <#KeyMarker>
+  [668] pusharglist 2 ........................... <gGame.Keys, #KeyMarker>
+  [670] objcall 129 ............................. <gGame.Keys.KeyMarker.count>
+  [672] setlocal 0 .............................. pCount = gGame.Keys.KeyMarker.count
+  [674] pushint8 1 .............................. <1>
+  [676] setlocal 1
+  [678] getlocal 1
+  [680] getlocal 0 .............................. <pCount>
+  [682] lteq
+  [683] jmpifz [843] ............................ repeat with i = 1 to pCount
+  [686] getglobal 43 ............................ <gGame>
+  [688] getchainedprop 929 ...................... <gGame.Keys>
+  [691] pushsymb 932 ............................ <#KeyMarker>
+  [694] getlocal 1 .............................. <i>
+  [696] pusharglist 3 ........................... <gGame.Keys, #KeyMarker, i>
+  [698] objcall 102 ............................. <gGame.Keys.KeyMarker[i]>
+  [700] pushint8 1 .............................. <1>
+  [702] pusharglist 2 ........................... <gGame.Keys.KeyMarker[i], 1>
+  [704] objcall 105 ............................. <gGame.Keys.KeyMarker[i][1]>
+  [706] setlocal 2 .............................. pCheckKey = gGame.Keys.KeyMarker[i][1]
+  [708] getglobal 43 ............................ <gGame>
+  [710] getchainedprop 929 ...................... <gGame.Keys>
+  [713] pushsymb 932 ............................ <#KeyMarker>
+  [716] getlocal 1 .............................. <i>
+  [718] pusharglist 3 ........................... <gGame.Keys, #KeyMarker, i>
+  [720] objcall 102 ............................. <gGame.Keys.KeyMarker[i]>
+  [722] pushint8 2 .............................. <2>
+  [724] pusharglist 2 ........................... <gGame.Keys.KeyMarker[i], 2>
+  [726] objcall 105 ............................. <gGame.Keys.KeyMarker[i][2]>
+  [728] setlocal 8 .............................. pmarker = gGame.Keys.KeyMarker[i][2]
+  [730] getglobal 43 ............................ <gGame>
+  [732] getchainedprop 929 ...................... <gGame.Keys>
+  [735] pushsymb 932 ............................ <#KeyMarker>
+  [738] getlocal 1 .............................. <i>
+  [740] pusharglist 3 ........................... <gGame.Keys, #KeyMarker, i>
+  [742] objcall 102 ............................. <gGame.Keys.KeyMarker[i]>
+  [744] pushint8 3 .............................. <3>
+  [746] pusharglist 2 ........................... <gGame.Keys.KeyMarker[i], 3>
+  [748] objcall 105 ............................. <gGame.Keys.KeyMarker[i][3]>
+  [750] setlocal 4 .............................. pSoundName = gGame.Keys.KeyMarker[i][3]
+  [752] getglobal 43 ............................ <gGame>
+  [754] getchainedprop 929 ...................... <gGame.Keys>
+  [757] pushsymb 932 ............................ <#KeyMarker>
+  [760] getlocal 1 .............................. <i>
+  [762] pusharglist 3 ........................... <gGame.Keys, #KeyMarker, i>
+  [764] objcall 102 ............................. <gGame.Keys.KeyMarker[i]>
+  [766] pushint8 4 .............................. <4>
+  [768] pusharglist 2 ........................... <gGame.Keys.KeyMarker[i], 4>
+  [770] objcall 105 ............................. <gGame.Keys.KeyMarker[i][4]>
+  [772] setlocal 5 .............................. pOnce = gGame.Keys.KeyMarker[i][4]
+  [774] getlocal 2 .............................. <pCheckKey>
+  [776] getparam 0 .............................. <tKey>
+  [778] eq ...................................... <pCheckKey = tKey>
+  [779] jmpifz [834] ............................ if pCheckKey = tKey then
+  [782] getlocal 5 .............................. <pOnce>
+  [784] pushint8 1 .............................. <1>
+  [786] eq ...................................... <pOnce = 1>
+  [787] jmpifz [805] ............................ if pOnce = 1 then
+  [790] getglobal 43 ............................ <gGame>
+  [792] getchainedprop 929 ...................... <gGame.Keys>
+  [795] getchainedprop 932 ...................... <gGame.Keys.KeyMarker>
+  [798] getlocal 1 .............................. <i>
+  [800] pusharglistnoret 2 ...................... <gGame.Keys.KeyMarker, i>
+  [802] objcall 661 ............................. gGame.Keys.KeyMarker.deleteAt(i)
+  [805] gettoplevelprop 33 ...................... <_movie>
+  [807] getlocal 8 .............................. <pmarker>
+  [809] pusharglistnoret 2 ...................... <_movie, pmarker>
+  [811] objcall 539 ............................. _movie.go(pmarker)
+  [814] getlocal 4 .............................. <pSoundName>
+  [816] pusharglist 0 ........................... <>
+  [818] extcall 40 .............................. <VOID>
+  [820] nteq .................................... <pSoundName <> VOID>
+  [821] jmpifz [831] ............................ if pSoundName <> VOID then
+  [824] getlocal 4 .............................. <pSoundName>
+  [826] pusharglistnoret 1 ...................... <pSoundName>
+  [828] extcall 289 ............................. PlaySound(pSoundName)
+  [831] jmp [843] ............................... exit repeat
+  [834] pushint8 1
+  [836] getlocal 1
+  [838] add
+  [839] setlocal 1
+  [841] endrepeat [678]
+  [843] ret
+end
+
+on BindKey tTarget, tDataList
+  [  0] pushcons 2 .............................. <"Function: LinkKey">
+  [  2] pushcons 3 .............................. <"Target">
+  [  4] joinpadstr .............................. <"Function: LinkKey" && "Target">
+  [  5] getparam 0 .............................. <tTarget>
+  [  7] joinpadstr .............................. <"Function: LinkKey" && "Target" && tTarget>
+  [  8] pushcons 4 .............................. <"DataList">
+  [ 10] joinpadstr .............................. <"Function: LinkKey" && "Target" && tTarget && "DataList">
+  [ 11] getparam 1 .............................. <tDataList>
+  [ 13] joinpadstr .............................. <"Function: LinkKey" && "Target" && tTarget && "DataList" && tDataList>
+  [ 14] pusharglistnoret 1 ...................... <"Function: LinkKey" && "Target" && tTarget && "DataList" && tDataList>
+  [ 16] extcall 511 ............................. ShowError("Function: LinkKey" && "Target" && tTarget && "DataList" && tDataList)
+  [ 19] getparam 1 .............................. <tDataList>
+  [ 21] setlocal 0 .............................. pDataList = tDataList
+  [ 23] getlocal 0 .............................. <pDataList>
+  [ 25] getobjprop 122 .......................... <pDataList.ilk>
+  [ 27] pushsymb 67 ............................. <#string>
+  [ 29] eq ...................................... <pDataList.ilk = #string>
+  [ 30] jmpifz [ 42] ............................ if pDataList.ilk = #string then
+  [ 33] getlocal 0 .............................. <pDataList>
+  [ 35] pusharglist 1 ........................... <pDataList>
+  [ 37] extcall 503 ............................. <value(pDataList)>
+  [ 40] setlocal 0 .............................. pDataList = value(pDataList)
+  [ 42] getlocal 0 .............................. <pDataList>
+  [ 44] pusharglist 0 ........................... <>
+  [ 46] extcall 40 .............................. <VOID>
+  [ 48] eq ...................................... <pDataList = VOID>
+  [ 49] getlocal 0 .............................. <pDataList>
+  [ 51] getobjprop 122 .......................... <pDataList.ilk>
+  [ 53] pushsymb 541 ............................ <#propList>
+  [ 56] nteq .................................... <pDataList.ilk <> #propList>
+  [ 57] or ...................................... <(pDataList = VOID) or (pDataList.ilk <> #propList)>
+  [ 58] jmpifz [ 81] ............................ if (pDataList = VOID) or (pDataList.ilk <> #propList) then
+  [ 61] pushcons 5 .............................. <"Function: LinkKey. Target: ">
+  [ 63] getparam 0 .............................. <tTarget>
+  [ 65] joinstr ................................. <"Function: LinkKey. Target: " & tTarget>
+  [ 66] pushcons 6 .............................. <" Parameters: ">
+  [ 68] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: ">
+  [ 69] getparam 1 .............................. <tDataList>
+  [ 71] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 72] pushcons 7 .............................. <" Datalist obsolete (VOID or not #proplist).">
+  [ 74] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [ 75] pusharglistnoret 1 ...................... <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [ 77] extcall 511 ............................. ShowError("Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).")
+  [ 80] ret ..................................... exit
+  [ 81] pusharglist 0 ........................... <>
+  [ 83] extcall 40 .............................. <VOID>
+  [ 85] setlocal 1 .............................. pKey = VOID
+  [ 87] getlocal 0 .............................. <pDataList>
+  [ 89] pushsymb 575 ............................ <#key>
+  [ 92] pusharglist 2 ........................... <pDataList, #key>
+  [ 94] extcall 542 ............................. <getaProp(pDataList, #key)>
+  [ 97] getobjprop 122 .......................... <getaProp(pDataList, #key).ilk>
+  [ 99] pushsymb 67 ............................. <#string>
+  [101] eq ...................................... <getaProp(pDataList, #key).ilk = #string>
+  [102] jmpifz [116] ............................ if getaProp(pDataList, #key).ilk = #string then
+  [105] getlocal 0 .............................. <pDataList>
+  [107] pushsymb 575 ............................ <#key>
+  [110] pusharglist 2 ........................... <pDataList, #key>
+  [112] objcall 105 ............................. <pDataList[#key]>
+  [114] setlocal 1 .............................. pKey = pDataList[#key]
+  [116] getlocal 0 .............................. <pDataList>
+  [118] pushsymb 575 ............................ <#key>
+  [121] pusharglist 2 ........................... <pDataList, #key>
+  [123] extcall 542 ............................. <getaProp(pDataList, #key)>
+  [126] getobjprop 122 .......................... <getaProp(pDataList, #key).ilk>
+  [128] pushsymb 123 ............................ <#integer>
+  [130] eq ...................................... <getaProp(pDataList, #key).ilk = #integer>
+  [131] jmpifz [145] ............................ if getaProp(pDataList, #key).ilk = #integer then
+  [134] getlocal 0 .............................. <pDataList>
+  [136] pushsymb 575 ............................ <#key>
+  [139] pusharglist 2 ........................... <pDataList, #key>
+  [141] objcall 105 ............................. <pDataList[#key]>
+  [143] setlocal 1 .............................. pKey = pDataList[#key]
+  [145] getlocal 1 .............................. <pKey>
+  [147] pusharglist 0 ........................... <>
+  [149] extcall 40 .............................. <VOID>
+  [151] eq ...................................... <pKey = VOID>
+  [152] jmpifz [175] ............................ if pKey = VOID then
+  [155] pushcons 5 .............................. <"Function: LinkKey. Target: ">
+  [157] getparam 0 .............................. <tTarget>
+  [159] joinstr ................................. <"Function: LinkKey. Target: " & tTarget>
+  [160] pushcons 6 .............................. <" Parameters: ">
+  [162] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: ">
+  [163] getparam 1 .............................. <tDataList>
+  [165] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList>
+  [166] pushcons 8 .............................. <" No key.">
+  [168] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " No key.">
+  [169] pusharglistnoret 1 ...................... <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " No key.">
+  [171] extcall 511 ............................. ShowError("Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " No key.")
+  [174] ret ..................................... exit
+  [175] pusharglist 0 ........................... <>
+  [177] extcall 40 .............................. <VOID>
+  [179] setlocal 2 .............................. pCase = VOID
+  [181] getlocal 0 .............................. <pDataList>
+  [183] pushsymb 148 ............................ <#event>
+  [185] pusharglist 2 ........................... <pDataList, #event>
+  [187] extcall 542 ............................. <getaProp(pDataList, #event)>
+  [190] pusharglist 0 ........................... <>
+  [192] extcall 40 .............................. <VOID>
+  [194] nteq .................................... <getaProp(pDataList, #event) <> VOID>
+  [195] jmpifz [202] ............................ if getaProp(pDataList, #event) <> VOID then
+  [198] pushsymb 148 ............................ <#event>
+  [200] setlocal 2 .............................. pCase = #event
+  [202] getlocal 0 .............................. <pDataList>
+  [204] pushsymb 786 ............................ <#handler>
+  [207] pusharglist 2 ........................... <pDataList, #handler>
+  [209] extcall 542 ............................. <getaProp(pDataList, #handler)>
+  [212] pusharglist 0 ........................... <>
+  [214] extcall 40 .............................. <VOID>
+  [216] nteq .................................... <getaProp(pDataList, #handler) <> VOID>
+  [217] jmpifz [225] ............................ if getaProp(pDataList, #handler) <> VOID then
+  [220] pushsymb 786 ............................ <#handler>
+  [223] setlocal 2 .............................. pCase = #handler
+  [225] getlocal 0 .............................. <pDataList>
+  [227] pushsymb 769 ............................ <#goto>
+  [230] pusharglist 2 ........................... <pDataList, #goto>
+  [232] extcall 542 ............................. <getaProp(pDataList, #goto)>
+  [235] pusharglist 0 ........................... <>
+  [237] extcall 40 .............................. <VOID>
+  [239] nteq .................................... <getaProp(pDataList, #goto) <> VOID>
+  [240] jmpifz [248] ............................ if getaProp(pDataList, #goto) <> VOID then
+  [243] pushsymb 769 ............................ <#goto>
+  [246] setlocal 2 .............................. pCase = #goto
+  [248] getlocal 0 .............................. <pDataList>
+  [250] pushsymb 538 ............................ <#marker>
+  [253] pusharglist 2 ........................... <pDataList, #marker>
+  [255] extcall 542 ............................. <getaProp(pDataList, #marker)>
+  [258] pusharglist 0 ........................... <>
+  [260] extcall 40 .............................. <VOID>
+  [262] nteq .................................... <getaProp(pDataList, #marker) <> VOID>
+  [263] jmpifz [271] ............................ if getaProp(pDataList, #marker) <> VOID then
+  [266] pushsymb 538 ............................ <#marker>
+  [269] setlocal 2 .............................. pCase = #marker
+  [271] getlocal 2 .............................. <pCase>
+  [273] pusharglist 0 ........................... <>
+  [275] extcall 40 .............................. <VOID>
+  [277] eq ...................................... <pCase = VOID>
+  [278] jmpifz [301] ............................ if pCase = VOID then
+  [281] pushcons 5 .............................. <"Function: LinkKey. Target: ">
+  [283] getparam 0 .............................. <tTarget>
+  [285] joinstr ................................. <"Function: LinkKey. Target: " & tTarget>
+  [286] pushcons 6 .............................. <" Parameters: ">
+  [288] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: ">
+  [289] getparam 1 .............................. <tDataList>
+  [291] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList>
+  [292] pushcons 9 .............................. <" No info to store the key.">
+  [294] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " No info to store the key.">
+  [295] pusharglistnoret 1 ...................... <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " No info to store the key.">
+  [297] extcall 511 ............................. ShowError("Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " No info to store the key.")
+  [300] ret ..................................... exit
+  [301] pusharglist 0 ........................... <>
+  [303] extcall 40 .............................. <VOID>
+  [305] setlocal 3 .............................. pSoundName = VOID
+  [307] getlocal 0 .............................. <pDataList>
+  [309] pushsymb 939 ............................ <#soundName>
+  [312] pusharglist 2 ........................... <pDataList, #soundName>
+  [314] extcall 542 ............................. <getaProp(pDataList, #soundName)>
+  [317] getobjprop 122 .......................... <getaProp(pDataList, #soundName).ilk>
+  [319] pushsymb 67 ............................. <#string>
+  [321] eq ...................................... <getaProp(pDataList, #soundName).ilk = #string>
+  [322] jmpifz [336] ............................ if getaProp(pDataList, #soundName).ilk = #string then
+  [325] getlocal 0 .............................. <pDataList>
+  [327] pushsymb 939 ............................ <#soundName>
+  [330] pusharglist 2 ........................... <pDataList, #soundName>
+  [332] objcall 105 ............................. <pDataList[#soundName]>
+  [334] setlocal 3 .............................. pSoundName = pDataList[#soundName]
+  [336] pushint8 1 .............................. <1>
+  [338] setlocal 4 .............................. pOnce = 1
+  [340] getlocal 0 .............................. <pDataList>
+  [342] pushsymb 940 ............................ <#once>
+  [345] pusharglist 2 ........................... <pDataList, #once>
+  [347] extcall 542 ............................. <getaProp(pDataList, #once)>
+  [350] getobjprop 122 .......................... <getaProp(pDataList, #once).ilk>
+  [352] pushsymb 123 ............................ <#integer>
+  [354] eq ...................................... <getaProp(pDataList, #once).ilk = #integer>
+  [355] jmpifz [369] ............................ if getaProp(pDataList, #once).ilk = #integer then
+  [358] getlocal 0 .............................. <pDataList>
+  [360] pushsymb 940 ............................ <#once>
+  [363] pusharglist 2 ........................... <pDataList, #once>
+  [365] objcall 105 ............................. <pDataList[#once]>
+  [367] setlocal 4 .............................. pOnce = pDataList[#once]
+  [369] getglobal 43 ............................ <gGame>
+  [371] pushsymb 929 ............................ <#Keys>
+  [374] pusharglist 2 ........................... <gGame, #Keys>
+  [376] extcall 542 ............................. <getaProp(gGame, #Keys)>
+  [379] pusharglist 0 ........................... <>
+  [381] extcall 40 .............................. <VOID>
+  [383] eq ...................................... <getaProp(gGame, #Keys) = VOID>
+  [384] jmpifz [399] ............................ if getaProp(gGame, #Keys) = VOID then
+  [387] getglobal 43 ............................ <gGame>
+  [389] pushsymb 929 ............................ <#Keys>
+  [392] pusharglist 0 ........................... <[:]>
+  [394] pushproplist ............................ <[:]>
+  [395] pusharglistnoret 3 ...................... <gGame, #Keys, [:]>
+  [397] objcall 103 ............................. gGame[#Keys] = [:]
+  [399] getlocal 2 .............................. <pCase>
+  [401] pushsymb 148 ............................ <#event>
+  [403] eq ...................................... <pCase = #event>
+  [404] jmpifz [604] ............................ if pCase = #event then
+  [407] getglobal 43 ............................ <gGame>
+  [409] getobjprop 929 .......................... <gGame.Keys>
+  [412] pushsymb 930 ............................ <#KeyEvent>
+  [415] pusharglist 2 ........................... <gGame.Keys, #KeyEvent>
+  [417] extcall 542 ............................. <getaProp(gGame.Keys, #KeyEvent)>
+  [420] pusharglist 0 ........................... <>
+  [422] extcall 40 .............................. <VOID>
+  [424] eq ...................................... <getaProp(gGame.Keys, #KeyEvent) = VOID>
+  [425] jmpifz [443] ............................ if getaProp(gGame.Keys, #KeyEvent) = VOID then
+  [428] getglobal 43 ............................ <gGame>
+  [430] pushsymb 929 ............................ <#Keys>
+  [433] pushsymb 930 ............................ <#KeyEvent>
+  [436] pusharglist 0 ........................... <[]>
+  [438] pushlist ................................ <[]>
+  [439] pusharglistnoret 4 ...................... <gGame, #Keys, #KeyEvent, []>
+  [441] objcall 99 .............................. gGame.Keys[#KeyEvent] = []
+  [443] pushcons 10 ............................. <EMPTY>
+  [445] setlocal 5 .............................. pevent = EMPTY
+  [447] getlocal 0 .............................. <pDataList>
+  [449] pushsymb 148 ............................ <#event>
+  [451] pusharglist 2 ........................... <pDataList, #event>
+  [453] extcall 542 ............................. <getaProp(pDataList, #event)>
+  [456] getobjprop 122 .......................... <getaProp(pDataList, #event).ilk>
+  [458] pushsymb 67 ............................. <#string>
+  [460] eq ...................................... <getaProp(pDataList, #event).ilk = #string>
+  [461] jmpifz [474] ............................ if getaProp(pDataList, #event).ilk = #string then
+  [464] getlocal 0 .............................. <pDataList>
+  [466] pushsymb 148 ............................ <#event>
+  [468] pusharglist 2 ........................... <pDataList, #event>
+  [470] objcall 105 ............................. <pDataList[#event]>
+  [472] setlocal 5 .............................. pevent = pDataList[#event]
+  [474] getlocal 1 .............................. <pKey>
+  [476] getlocal 5 .............................. <pevent>
+  [478] getlocal 3 .............................. <pSoundName>
+  [480] getlocal 4 .............................. <pOnce>
+  [482] pusharglist 4 ........................... <[pKey, pevent, pSoundName, pOnce]>
+  [484] pushlist ................................ <[pKey, pevent, pSoundName, pOnce]>
+  [485] setlocal 6 .............................. pEntry = [pKey, pevent, pSoundName, pOnce]
+  [487] pushzero ................................ <0>
+  [488] setlocal 7 .............................. pError = 0
+  [490] getglobal 43 ............................ <gGame>
+  [492] getchainedprop 929 ...................... <gGame.Keys>
+  [495] pushsymb 930 ............................ <#KeyEvent>
+  [498] pusharglist 2 ........................... <gGame.Keys, #KeyEvent>
+  [500] objcall 129 ............................. <gGame.Keys.KeyEvent.count>
+  [502] setlocal 8 .............................. pCount = gGame.Keys.KeyEvent.count
+  [504] pushint8 1 .............................. <1>
+  [506] setlocal 9
+  [508] getlocal 9
+  [510] getlocal 8 .............................. <pCount>
+  [512] lteq
+  [513] jmpifz [562] ............................ repeat with i = 1 to pCount
+  [516] getglobal 43 ............................ <gGame>
+  [518] getchainedprop 929 ...................... <gGame.Keys>
+  [521] pushsymb 930 ............................ <#KeyEvent>
+  [524] getlocal 9 .............................. <i>
+  [526] pusharglist 3 ........................... <gGame.Keys, #KeyEvent, i>
+  [528] objcall 102 ............................. <gGame.Keys.KeyEvent[i]>
+  [530] pushint8 1 .............................. <1>
+  [532] pusharglist 2 ........................... <gGame.Keys.KeyEvent[i], 1>
+  [534] objcall 105 ............................. <gGame.Keys.KeyEvent[i][1]>
+  [536] setlocal 10 ............................. pkeyCheck = gGame.Keys.KeyEvent[i][1]
+  [538] getlocal 1 .............................. <pKey>
+  [540] getlocal 10 ............................. <pkeyCheck>
+  [542] eq ...................................... <pKey = pkeyCheck>
+  [543] jmpifz [553] ............................ if pKey = pkeyCheck then
+  [546] pushint8 1 .............................. <1>
+  [548] setlocal 7 .............................. pError = 1
+  [550] jmp [562] ............................... exit repeat
+  [553] pushint8 1
+  [555] getlocal 9
+  [557] add
+  [558] setlocal 9
+  [560] endrepeat [508]
+  [562] getlocal 7 .............................. <pError>
+  [564] pushint8 1 .............................. <1>
+  [566] eq ...................................... <pError = 1>
+  [567] jmpifz [590] ............................ if pError = 1 then
+  [570] pushcons 5 .............................. <"Function: LinkKey. Target: ">
+  [572] getparam 0 .............................. <tTarget>
+  [574] joinstr ................................. <"Function: LinkKey. Target: " & tTarget>
+  [575] pushcons 6 .............................. <" Parameters: ">
+  [577] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: ">
+  [578] getparam 1 .............................. <tDataList>
+  [580] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList>
+  [581] pushcons 11 ............................. <" Key already present.">
+  [583] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Key already present.">
+  [584] pusharglistnoret 1 ...................... <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Key already present.">
+  [586] extcall 511 ............................. ShowError("Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Key already present.")
+  [589] ret ..................................... exit
+  [590] getglobal 43 ............................ <gGame>
+  [592] getchainedprop 929 ...................... <gGame.Keys>
+  [595] getchainedprop 930 ...................... <gGame.Keys.KeyEvent>
+  [598] getlocal 6 .............................. <pEntry>
+  [600] pusharglistnoret 2 ...................... <gGame.Keys.KeyEvent, pEntry>
+  [602] objcall 42 .............................. gGame.Keys.KeyEvent.add(pEntry)
+  [604] getlocal 2 .............................. <pCase>
+  [606] pushsymb 786 ............................ <#handler>
+  [609] eq ...................................... <pCase = #handler>
+  [610] jmpifz [814] ............................ if pCase = #handler then
+  [613] getglobal 43 ............................ <gGame>
+  [615] getobjprop 929 .......................... <gGame.Keys>
+  [618] pushsymb 573 ............................ <#KeyHandler>
+  [621] pusharglist 2 ........................... <gGame.Keys, #KeyHandler>
+  [623] extcall 542 ............................. <getaProp(gGame.Keys, #KeyHandler)>
+  [626] pusharglist 0 ........................... <>
+  [628] extcall 40 .............................. <VOID>
+  [630] eq ...................................... <getaProp(gGame.Keys, #KeyHandler) = VOID>
+  [631] jmpifz [649] ............................ if getaProp(gGame.Keys, #KeyHandler) = VOID then
+  [634] getglobal 43 ............................ <gGame>
+  [636] pushsymb 929 ............................ <#Keys>
+  [639] pushsymb 573 ............................ <#KeyHandler>
+  [642] pusharglist 0 ........................... <[]>
+  [644] pushlist ................................ <[]>
+  [645] pusharglistnoret 4 ...................... <gGame, #Keys, #KeyHandler, []>
+  [647] objcall 99 .............................. gGame.Keys[#KeyHandler] = []
+  [649] pusharglist 0 ........................... <>
+  [651] extcall 40 .............................. <VOID>
+  [653] setlocal 11 ............................. pHandler = VOID
+  [655] getlocal 0 .............................. <pDataList>
+  [657] pushsymb 786 ............................ <#handler>
+  [660] pusharglist 2 ........................... <pDataList, #handler>
+  [662] extcall 542 ............................. <getaProp(pDataList, #handler)>
+  [665] getobjprop 122 .......................... <getaProp(pDataList, #handler).ilk>
+  [667] pushsymb 67 ............................. <#string>
+  [669] eq ...................................... <getaProp(pDataList, #handler).ilk = #string>
+  [670] jmpifz [684] ............................ if getaProp(pDataList, #handler).ilk = #string then
+  [673] getlocal 0 .............................. <pDataList>
+  [675] pushsymb 786 ............................ <#handler>
+  [678] pusharglist 2 ........................... <pDataList, #handler>
+  [680] objcall 105 ............................. <pDataList[#handler]>
+  [682] setlocal 11 ............................. pHandler = pDataList[#handler]
+  [684] getlocal 1 .............................. <pKey>
+  [686] getlocal 11 ............................. <pHandler>
+  [688] getlocal 3 .............................. <pSoundName>
+  [690] getlocal 4 .............................. <pOnce>
+  [692] pusharglist 4 ........................... <[pKey, pHandler, pSoundName, pOnce]>
+  [694] pushlist ................................ <[pKey, pHandler, pSoundName, pOnce]>
+  [695] setlocal 6 .............................. pEntry = [pKey, pHandler, pSoundName, pOnce]
+  [697] pushzero ................................ <0>
+  [698] setlocal 7 .............................. pError = 0
+  [700] getglobal 43 ............................ <gGame>
+  [702] getchainedprop 929 ...................... <gGame.Keys>
+  [705] pushsymb 573 ............................ <#KeyHandler>
+  [708] pusharglist 2 ........................... <gGame.Keys, #KeyHandler>
+  [710] objcall 129 ............................. <gGame.Keys.KeyHandler.count>
+  [712] setlocal 8 .............................. pCount = gGame.Keys.KeyHandler.count
+  [714] pushint8 1 .............................. <1>
+  [716] setlocal 9
+  [718] getlocal 9
+  [720] getlocal 8 .............................. <pCount>
+  [722] lteq
+  [723] jmpifz [772] ............................ repeat with i = 1 to pCount
+  [726] getglobal 43 ............................ <gGame>
+  [728] getchainedprop 929 ...................... <gGame.Keys>
+  [731] pushsymb 573 ............................ <#KeyHandler>
+  [734] getlocal 9 .............................. <i>
+  [736] pusharglist 3 ........................... <gGame.Keys, #KeyHandler, i>
+  [738] objcall 102 ............................. <gGame.Keys.KeyHandler[i]>
+  [740] pushint8 1 .............................. <1>
+  [742] pusharglist 2 ........................... <gGame.Keys.KeyHandler[i], 1>
+  [744] objcall 105 ............................. <gGame.Keys.KeyHandler[i][1]>
+  [746] setlocal 10 ............................. pkeyCheck = gGame.Keys.KeyHandler[i][1]
+  [748] getlocal 1 .............................. <pKey>
+  [750] getlocal 10 ............................. <pkeyCheck>
+  [752] eq ...................................... <pKey = pkeyCheck>
+  [753] jmpifz [763] ............................ if pKey = pkeyCheck then
+  [756] pushint8 1 .............................. <1>
+  [758] setlocal 7 .............................. pError = 1
+  [760] jmp [772] ............................... exit repeat
+  [763] pushint8 1
+  [765] getlocal 9
+  [767] add
+  [768] setlocal 9
+  [770] endrepeat [718]
+  [772] getlocal 7 .............................. <pError>
+  [774] pushint8 1 .............................. <1>
+  [776] eq ...................................... <pError = 1>
+  [777] jmpifz [800] ............................ if pError = 1 then
+  [780] pushcons 5 .............................. <"Function: LinkKey. Target: ">
+  [782] getparam 0 .............................. <tTarget>
+  [784] joinstr ................................. <"Function: LinkKey. Target: " & tTarget>
+  [785] pushcons 6 .............................. <" Parameters: ">
+  [787] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: ">
+  [788] getparam 1 .............................. <tDataList>
+  [790] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList>
+  [791] pushcons 11 ............................. <" Key already present.">
+  [793] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Key already present.">
+  [794] pusharglistnoret 1 ...................... <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Key already present.">
+  [796] extcall 511 ............................. ShowError("Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Key already present.")
+  [799] ret ..................................... exit
+  [800] getglobal 43 ............................ <gGame>
+  [802] getchainedprop 929 ...................... <gGame.Keys>
+  [805] getchainedprop 573 ...................... <gGame.Keys.KeyHandler>
+  [808] getlocal 6 .............................. <pEntry>
+  [810] pusharglistnoret 2 ...................... <gGame.Keys.KeyHandler, pEntry>
+  [812] objcall 42 .............................. gGame.Keys.KeyHandler.add(pEntry)
+  [814] getlocal 2 .............................. <pCase>
+  [816] pushsymb 769 ............................ <#goto>
+  [819] eq ...................................... <pCase = #goto>
+  [820] jmpifz [1024] ........................... if pCase = #goto then
+  [823] getglobal 43 ............................ <gGame>
+  [825] getobjprop 929 .......................... <gGame.Keys>
+  [828] pushsymb 931 ............................ <#KeyGoTo>
+  [831] pusharglist 2 ........................... <gGame.Keys, #KeyGoTo>
+  [833] extcall 542 ............................. <getaProp(gGame.Keys, #KeyGoTo)>
+  [836] pusharglist 0 ........................... <>
+  [838] extcall 40 .............................. <VOID>
+  [840] eq ...................................... <getaProp(gGame.Keys, #KeyGoTo) = VOID>
+  [841] jmpifz [859] ............................ if getaProp(gGame.Keys, #KeyGoTo) = VOID then
+  [844] getglobal 43 ............................ <gGame>
+  [846] pushsymb 929 ............................ <#Keys>
+  [849] pushsymb 931 ............................ <#KeyGoTo>
+  [852] pusharglist 0 ........................... <[]>
+  [854] pushlist ................................ <[]>
+  [855] pusharglistnoret 4 ...................... <gGame, #Keys, #KeyGoTo, []>
+  [857] objcall 99 .............................. gGame.Keys[#KeyGoTo] = []
+  [859] pusharglist 0 ........................... <>
+  [861] extcall 40 .............................. <VOID>
+  [863] setlocal 12 ............................. pGoTo = VOID
+  [865] getlocal 0 .............................. <pDataList>
+  [867] pushsymb 769 ............................ <#goto>
+  [870] pusharglist 2 ........................... <pDataList, #goto>
+  [872] extcall 542 ............................. <getaProp(pDataList, #goto)>
+  [875] getobjprop 122 .......................... <getaProp(pDataList, #goto).ilk>
+  [877] pushsymb 67 ............................. <#string>
+  [879] eq ...................................... <getaProp(pDataList, #goto).ilk = #string>
+  [880] jmpifz [894] ............................ if getaProp(pDataList, #goto).ilk = #string then
+  [883] getlocal 0 .............................. <pDataList>
+  [885] pushsymb 769 ............................ <#goto>
+  [888] pusharglist 2 ........................... <pDataList, #goto>
+  [890] objcall 105 ............................. <pDataList[#goto]>
+  [892] setlocal 12 ............................. pGoTo = pDataList[#goto]
+  [894] getlocal 1 .............................. <pKey>
+  [896] getlocal 12 ............................. <pGoTo>
+  [898] getlocal 3 .............................. <pSoundName>
+  [900] getlocal 4 .............................. <pOnce>
+  [902] pusharglist 4 ........................... <[pKey, pGoTo, pSoundName, pOnce]>
+  [904] pushlist ................................ <[pKey, pGoTo, pSoundName, pOnce]>
+  [905] setlocal 6 .............................. pEntry = [pKey, pGoTo, pSoundName, pOnce]
+  [907] pushzero ................................ <0>
+  [908] setlocal 7 .............................. pError = 0
+  [910] getglobal 43 ............................ <gGame>
+  [912] getchainedprop 929 ...................... <gGame.Keys>
+  [915] pushsymb 931 ............................ <#KeyGoTo>
+  [918] pusharglist 2 ........................... <gGame.Keys, #KeyGoTo>
+  [920] objcall 129 ............................. <gGame.Keys.KeyGoTo.count>
+  [922] setlocal 8 .............................. pCount = gGame.Keys.KeyGoTo.count
+  [924] pushint8 1 .............................. <1>
+  [926] setlocal 9
+  [928] getlocal 9
+  [930] getlocal 8 .............................. <pCount>
+  [932] lteq
+  [933] jmpifz [982] ............................ repeat with i = 1 to pCount
+  [936] getglobal 43 ............................ <gGame>
+  [938] getchainedprop 929 ...................... <gGame.Keys>
+  [941] pushsymb 931 ............................ <#KeyGoTo>
+  [944] getlocal 9 .............................. <i>
+  [946] pusharglist 3 ........................... <gGame.Keys, #KeyGoTo, i>
+  [948] objcall 102 ............................. <gGame.Keys.KeyGoTo[i]>
+  [950] pushint8 1 .............................. <1>
+  [952] pusharglist 2 ........................... <gGame.Keys.KeyGoTo[i], 1>
+  [954] objcall 105 ............................. <gGame.Keys.KeyGoTo[i][1]>
+  [956] setlocal 10 ............................. pkeyCheck = gGame.Keys.KeyGoTo[i][1]
+  [958] getlocal 1 .............................. <pKey>
+  [960] getlocal 10 ............................. <pkeyCheck>
+  [962] eq ...................................... <pKey = pkeyCheck>
+  [963] jmpifz [973] ............................ if pKey = pkeyCheck then
+  [966] pushint8 1 .............................. <1>
+  [968] setlocal 7 .............................. pError = 1
+  [970] jmp [982] ............................... exit repeat
+  [973] pushint8 1
+  [975] getlocal 9
+  [977] add
+  [978] setlocal 9
+  [980] endrepeat [928]
+  [982] getlocal 7 .............................. <pError>
+  [984] pushint8 1 .............................. <1>
+  [986] eq ...................................... <pError = 1>
+  [987] jmpifz [1010] ........................... if pError = 1 then
+  [990] pushcons 5 .............................. <"Function: LinkKey. Target: ">
+  [992] getparam 0 .............................. <tTarget>
+  [994] joinstr ................................. <"Function: LinkKey. Target: " & tTarget>
+  [995] pushcons 6 .............................. <" Parameters: ">
+  [997] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: ">
+  [998] getparam 1 .............................. <tDataList>
+  [1000] joinstr ................................ <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList>
+  [1001] pushcons 11 ............................ <" Key already present.">
+  [1003] joinstr ................................ <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Key already present.">
+  [1004] pusharglistnoret 1 ..................... <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Key already present.">
+  [1006] extcall 511 ............................ ShowError("Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Key already present.")
+  [1009] ret .................................... exit
+  [1010] getglobal 43 ........................... <gGame>
+  [1012] getchainedprop 929 ..................... <gGame.Keys>
+  [1015] getchainedprop 931 ..................... <gGame.Keys.KeyGoTo>
+  [1018] getlocal 6 ............................. <pEntry>
+  [1020] pusharglistnoret 2 ..................... <gGame.Keys.KeyGoTo, pEntry>
+  [1022] objcall 42 ............................. gGame.Keys.KeyGoTo.add(pEntry)
+  [1024] getlocal 2 ............................. <pCase>
+  [1026] pushsymb 538 ........................... <#marker>
+  [1029] eq ..................................... <pCase = #marker>
+  [1030] jmpifz [1234] .......................... if pCase = #marker then
+  [1033] getglobal 43 ........................... <gGame>
+  [1035] getobjprop 929 ......................... <gGame.Keys>
+  [1038] pushsymb 932 ........................... <#KeyMarker>
+  [1041] pusharglist 2 .......................... <gGame.Keys, #KeyMarker>
+  [1043] extcall 542 ............................ <getaProp(gGame.Keys, #KeyMarker)>
+  [1046] pusharglist 0 .......................... <>
+  [1048] extcall 40 ............................. <VOID>
+  [1050] eq ..................................... <getaProp(gGame.Keys, #KeyMarker) = VOID>
+  [1051] jmpifz [1069] .......................... if getaProp(gGame.Keys, #KeyMarker) = VOID then
+  [1054] getglobal 43 ........................... <gGame>
+  [1056] pushsymb 929 ........................... <#Keys>
+  [1059] pushsymb 932 ........................... <#KeyMarker>
+  [1062] pusharglist 0 .......................... <[]>
+  [1064] pushlist ............................... <[]>
+  [1065] pusharglistnoret 4 ..................... <gGame, #Keys, #KeyMarker, []>
+  [1067] objcall 99 ............................. gGame.Keys[#KeyMarker] = []
+  [1069] pusharglist 0 .......................... <>
+  [1071] extcall 40 ............................. <VOID>
+  [1073] setlocal 12 ............................ pGoTo = VOID
+  [1075] getlocal 0 ............................. <pDataList>
+  [1077] pushsymb 538 ........................... <#marker>
+  [1080] pusharglist 2 .......................... <pDataList, #marker>
+  [1082] extcall 542 ............................ <getaProp(pDataList, #marker)>
+  [1085] getobjprop 122 ......................... <getaProp(pDataList, #marker).ilk>
+  [1087] pushsymb 67 ............................ <#string>
+  [1089] eq ..................................... <getaProp(pDataList, #marker).ilk = #string>
+  [1090] jmpifz [1104] .......................... if getaProp(pDataList, #marker).ilk = #string then
+  [1093] getlocal 0 ............................. <pDataList>
+  [1095] pushsymb 538 ........................... <#marker>
+  [1098] pusharglist 2 .......................... <pDataList, #marker>
+  [1100] objcall 105 ............................ <pDataList[#marker]>
+  [1102] setlocal 12 ............................ pGoTo = pDataList[#marker]
+  [1104] getlocal 1 ............................. <pKey>
+  [1106] getlocal 12 ............................ <pGoTo>
+  [1108] getlocal 3 ............................. <pSoundName>
+  [1110] getlocal 4 ............................. <pOnce>
+  [1112] pusharglist 4 .......................... <[pKey, pGoTo, pSoundName, pOnce]>
+  [1114] pushlist ............................... <[pKey, pGoTo, pSoundName, pOnce]>
+  [1115] setlocal 6 ............................. pEntry = [pKey, pGoTo, pSoundName, pOnce]
+  [1117] pushzero ............................... <0>
+  [1118] setlocal 7 ............................. pError = 0
+  [1120] getglobal 43 ........................... <gGame>
+  [1122] getchainedprop 929 ..................... <gGame.Keys>
+  [1125] pushsymb 932 ........................... <#KeyMarker>
+  [1128] pusharglist 2 .......................... <gGame.Keys, #KeyMarker>
+  [1130] objcall 129 ............................ <gGame.Keys.KeyMarker.count>
+  [1132] setlocal 8 ............................. pCount = gGame.Keys.KeyMarker.count
+  [1134] pushint8 1 ............................. <1>
+  [1136] setlocal 9
+  [1138] getlocal 9
+  [1140] getlocal 8 ............................. <pCount>
+  [1142] lteq
+  [1143] jmpifz [1192] .......................... repeat with i = 1 to pCount
+  [1146] getglobal 43 ........................... <gGame>
+  [1148] getchainedprop 929 ..................... <gGame.Keys>
+  [1151] pushsymb 932 ........................... <#KeyMarker>
+  [1154] getlocal 9 ............................. <i>
+  [1156] pusharglist 3 .......................... <gGame.Keys, #KeyMarker, i>
+  [1158] objcall 102 ............................ <gGame.Keys.KeyMarker[i]>
+  [1160] pushint8 1 ............................. <1>
+  [1162] pusharglist 2 .......................... <gGame.Keys.KeyMarker[i], 1>
+  [1164] objcall 105 ............................ <gGame.Keys.KeyMarker[i][1]>
+  [1166] setlocal 10 ............................ pkeyCheck = gGame.Keys.KeyMarker[i][1]
+  [1168] getlocal 1 ............................. <pKey>
+  [1170] getlocal 10 ............................ <pkeyCheck>
+  [1172] eq ..................................... <pKey = pkeyCheck>
+  [1173] jmpifz [1183] .......................... if pKey = pkeyCheck then
+  [1176] pushint8 1 ............................. <1>
+  [1178] setlocal 7 ............................. pError = 1
+  [1180] jmp [1192] ............................. exit repeat
+  [1183] pushint8 1
+  [1185] getlocal 9
+  [1187] add
+  [1188] setlocal 9
+  [1190] endrepeat [1138]
+  [1192] getlocal 7 ............................. <pError>
+  [1194] pushint8 1 ............................. <1>
+  [1196] eq ..................................... <pError = 1>
+  [1197] jmpifz [1220] .......................... if pError = 1 then
+  [1200] pushcons 5 ............................. <"Function: LinkKey. Target: ">
+  [1202] getparam 0 ............................. <tTarget>
+  [1204] joinstr ................................ <"Function: LinkKey. Target: " & tTarget>
+  [1205] pushcons 6 ............................. <" Parameters: ">
+  [1207] joinstr ................................ <"Function: LinkKey. Target: " & tTarget & " Parameters: ">
+  [1208] getparam 1 ............................. <tDataList>
+  [1210] joinstr ................................ <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList>
+  [1211] pushcons 11 ............................ <" Key already present.">
+  [1213] joinstr ................................ <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Key already present.">
+  [1214] pusharglistnoret 1 ..................... <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Key already present.">
+  [1216] extcall 511 ............................ ShowError("Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Key already present.")
+  [1219] ret .................................... exit
+  [1220] getglobal 43 ........................... <gGame>
+  [1222] getchainedprop 929 ..................... <gGame.Keys>
+  [1225] getchainedprop 932 ..................... <gGame.Keys.KeyMarker>
+  [1228] getlocal 6 ............................. <pEntry>
+  [1230] pusharglistnoret 2 ..................... <gGame.Keys.KeyMarker, pEntry>
+  [1232] objcall 42 ............................. gGame.Keys.KeyMarker.add(pEntry)
+  [1234] ret
+end
+
+on UnBindKey tTarget, tDataList
+  [  0] pushcons 12 ............................. <"Function: UnlinkKey">
+  [  2] pushcons 3 .............................. <"Target">
+  [  4] joinpadstr .............................. <"Function: UnlinkKey" && "Target">
+  [  5] getparam 0 .............................. <tTarget>
+  [  7] joinpadstr .............................. <"Function: UnlinkKey" && "Target" && tTarget>
+  [  8] pushcons 4 .............................. <"DataList">
+  [ 10] joinpadstr .............................. <"Function: UnlinkKey" && "Target" && tTarget && "DataList">
+  [ 11] getparam 1 .............................. <tDataList>
+  [ 13] joinpadstr .............................. <"Function: UnlinkKey" && "Target" && tTarget && "DataList" && tDataList>
+  [ 14] pusharglistnoret 1 ...................... <"Function: UnlinkKey" && "Target" && tTarget && "DataList" && tDataList>
+  [ 16] extcall 511 ............................. ShowError("Function: UnlinkKey" && "Target" && tTarget && "DataList" && tDataList)
+  [ 19] getparam 1 .............................. <tDataList>
+  [ 21] setlocal 0 .............................. pDataList = tDataList
+  [ 23] getlocal 0 .............................. <pDataList>
+  [ 25] getobjprop 122 .......................... <pDataList.ilk>
+  [ 27] pushsymb 67 ............................. <#string>
+  [ 29] eq ...................................... <pDataList.ilk = #string>
+  [ 30] jmpifz [ 42] ............................ if pDataList.ilk = #string then
+  [ 33] getlocal 0 .............................. <pDataList>
+  [ 35] pusharglist 1 ........................... <pDataList>
+  [ 37] extcall 503 ............................. <value(pDataList)>
+  [ 40] setlocal 0 .............................. pDataList = value(pDataList)
+  [ 42] getlocal 0 .............................. <pDataList>
+  [ 44] pusharglist 0 ........................... <>
+  [ 46] extcall 40 .............................. <VOID>
+  [ 48] eq ...................................... <pDataList = VOID>
+  [ 49] getlocal 0 .............................. <pDataList>
+  [ 51] getobjprop 122 .......................... <pDataList.ilk>
+  [ 53] pushsymb 541 ............................ <#propList>
+  [ 56] nteq .................................... <pDataList.ilk <> #propList>
+  [ 57] or ...................................... <(pDataList = VOID) or (pDataList.ilk <> #propList)>
+  [ 58] jmpifz [ 81] ............................ if (pDataList = VOID) or (pDataList.ilk <> #propList) then
+  [ 61] pushcons 13 ............................. <"Function: UnlinkKey. Target: ">
+  [ 63] getparam 0 .............................. <tTarget>
+  [ 65] joinstr ................................. <"Function: UnlinkKey. Target: " & tTarget>
+  [ 66] pushcons 6 .............................. <" Parameters: ">
+  [ 68] joinstr ................................. <"Function: UnlinkKey. Target: " & tTarget & " Parameters: ">
+  [ 69] getparam 1 .............................. <tDataList>
+  [ 71] joinstr ................................. <"Function: UnlinkKey. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 72] pushcons 7 .............................. <" Datalist obsolete (VOID or not #proplist).">
+  [ 74] joinstr ................................. <"Function: UnlinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [ 75] pusharglistnoret 1 ...................... <"Function: UnlinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [ 77] extcall 511 ............................. ShowError("Function: UnlinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).")
+  [ 80] ret ..................................... exit
+  [ 81] pusharglist 0 ........................... <>
+  [ 83] extcall 40 .............................. <VOID>
+  [ 85] setlocal 1 .............................. pKey = VOID
+  [ 87] getlocal 0 .............................. <pDataList>
+  [ 89] pushsymb 575 ............................ <#key>
+  [ 92] pusharglist 2 ........................... <pDataList, #key>
+  [ 94] extcall 542 ............................. <getaProp(pDataList, #key)>
+  [ 97] getobjprop 122 .......................... <getaProp(pDataList, #key).ilk>
+  [ 99] pushsymb 67 ............................. <#string>
+  [101] eq ...................................... <getaProp(pDataList, #key).ilk = #string>
+  [102] getlocal 0 .............................. <pDataList>
+  [104] pushsymb 575 ............................ <#key>
+  [107] pusharglist 2 ........................... <pDataList, #key>
+  [109] extcall 542 ............................. <getaProp(pDataList, #key)>
+  [112] getobjprop 122 .......................... <getaProp(pDataList, #key).ilk>
+  [114] pushsymb 123 ............................ <#integer>
+  [116] eq ...................................... <getaProp(pDataList, #key).ilk = #integer>
+  [117] or ...................................... <(getaProp(pDataList, #key).ilk = #string) or (getaProp(pDataList, #key).ilk = #integer)>
+  [118] jmpifz [132] ............................ if (getaProp(pDataList, #key).ilk = #string) or (getaProp(pDataList, #key).ilk = #integer) then
+  [121] getlocal 0 .............................. <pDataList>
+  [123] pushsymb 575 ............................ <#key>
+  [126] pusharglist 2 ........................... <pDataList, #key>
+  [128] objcall 105 ............................. <pDataList[#key]>
+  [130] setlocal 1 .............................. pKey = pDataList[#key]
+  [132] getlocal 1 .............................. <pKey>
+  [134] pusharglist 0 ........................... <>
+  [136] extcall 40 .............................. <VOID>
+  [138] eq ...................................... <pKey = VOID>
+  [139] jmpifz [162] ............................ if pKey = VOID then
+  [142] pushcons 13 ............................. <"Function: UnlinkKey. Target: ">
+  [144] getparam 0 .............................. <tTarget>
+  [146] joinstr ................................. <"Function: UnlinkKey. Target: " & tTarget>
+  [147] pushcons 6 .............................. <" Parameters: ">
+  [149] joinstr ................................. <"Function: UnlinkKey. Target: " & tTarget & " Parameters: ">
+  [150] getparam 1 .............................. <tDataList>
+  [152] joinstr ................................. <"Function: UnlinkKey. Target: " & tTarget & " Parameters: " & tDataList>
+  [153] pushcons 8 .............................. <" No key.">
+  [155] joinstr ................................. <"Function: UnlinkKey. Target: " & tTarget & " Parameters: " & tDataList & " No key.">
+  [156] pusharglistnoret 1 ...................... <"Function: UnlinkKey. Target: " & tTarget & " Parameters: " & tDataList & " No key.">
+  [158] extcall 511 ............................. ShowError("Function: UnlinkKey. Target: " & tTarget & " Parameters: " & tDataList & " No key.")
+  [161] ret ..................................... exit
+  [162] getglobal 43 ............................ <gGame>
+  [164] getobjprop 929 .......................... <gGame.Keys>
+  [167] pushsymb 930 ............................ <#KeyEvent>
+  [170] pusharglist 2 ........................... <gGame.Keys, #KeyEvent>
+  [172] extcall 542 ............................. <getaProp(gGame.Keys, #KeyEvent)>
+  [175] pusharglist 0 ........................... <>
+  [177] extcall 40 .............................. <VOID>
+  [179] nteq .................................... <getaProp(gGame.Keys, #KeyEvent) <> VOID>
+  [180] jmpifz [266] ............................ if getaProp(gGame.Keys, #KeyEvent) <> VOID then
+  [183] getglobal 43 ............................ <gGame>
+  [185] getchainedprop 929 ...................... <gGame.Keys>
+  [188] pushsymb 930 ............................ <#KeyEvent>
+  [191] pusharglist 2 ........................... <gGame.Keys, #KeyEvent>
+  [193] objcall 129 ............................. <gGame.Keys.KeyEvent.count>
+  [195] setlocal 2 .............................. pCount = gGame.Keys.KeyEvent.count
+  [197] pushint8 1 .............................. <1>
+  [199] setlocal 3
+  [201] getlocal 3
+  [203] getlocal 2 .............................. <pCount>
+  [205] lteq
+  [206] jmpifz [266] ............................ repeat with i = 1 to pCount
+  [209] getglobal 43 ............................ <gGame>
+  [211] getchainedprop 929 ...................... <gGame.Keys>
+  [214] pushsymb 930 ............................ <#KeyEvent>
+  [217] getlocal 3 .............................. <i>
+  [219] pusharglist 3 ........................... <gGame.Keys, #KeyEvent, i>
+  [221] objcall 102 ............................. <gGame.Keys.KeyEvent[i]>
+  [223] pushint8 1 .............................. <1>
+  [225] pusharglist 2 ........................... <gGame.Keys.KeyEvent[i], 1>
+  [227] objcall 105 ............................. <gGame.Keys.KeyEvent[i][1]>
+  [229] setlocal 4 .............................. pCheckKey = gGame.Keys.KeyEvent[i][1]
+  [231] getlocal 4 .............................. <pCheckKey>
+  [233] getlocal 1 .............................. <pKey>
+  [235] eq ...................................... <pCheckKey = pKey>
+  [236] jmpifz [257] ............................ if pCheckKey = pKey then
+  [239] getglobal 43 ............................ <gGame>
+  [241] getchainedprop 929 ...................... <gGame.Keys>
+  [244] getchainedprop 930 ...................... <gGame.Keys.KeyEvent>
+  [247] getlocal 3 .............................. <i>
+  [249] pusharglistnoret 2 ...................... <gGame.Keys.KeyEvent, i>
+  [251] objcall 661 ............................. gGame.Keys.KeyEvent.deleteAt(i)
+  [254] jmp [266] ............................... exit repeat
+  [257] pushint8 1
+  [259] getlocal 3
+  [261] add
+  [262] setlocal 3
+  [264] endrepeat [201]
+  [266] getglobal 43 ............................ <gGame>
+  [268] getobjprop 929 .......................... <gGame.Keys>
+  [271] pushsymb 573 ............................ <#KeyHandler>
+  [274] pusharglist 2 ........................... <gGame.Keys, #KeyHandler>
+  [276] extcall 542 ............................. <getaProp(gGame.Keys, #KeyHandler)>
+  [279] pusharglist 0 ........................... <>
+  [281] extcall 40 .............................. <VOID>
+  [283] nteq .................................... <getaProp(gGame.Keys, #KeyHandler) <> VOID>
+  [284] jmpifz [370] ............................ if getaProp(gGame.Keys, #KeyHandler) <> VOID then
+  [287] getglobal 43 ............................ <gGame>
+  [289] getchainedprop 929 ...................... <gGame.Keys>
+  [292] pushsymb 573 ............................ <#KeyHandler>
+  [295] pusharglist 2 ........................... <gGame.Keys, #KeyHandler>
+  [297] objcall 129 ............................. <gGame.Keys.KeyHandler.count>
+  [299] setlocal 2 .............................. pCount = gGame.Keys.KeyHandler.count
+  [301] pushint8 1 .............................. <1>
+  [303] setlocal 3
+  [305] getlocal 3
+  [307] getlocal 2 .............................. <pCount>
+  [309] lteq
+  [310] jmpifz [370] ............................ repeat with i = 1 to pCount
+  [313] getglobal 43 ............................ <gGame>
+  [315] getchainedprop 929 ...................... <gGame.Keys>
+  [318] pushsymb 573 ............................ <#KeyHandler>
+  [321] getlocal 3 .............................. <i>
+  [323] pusharglist 3 ........................... <gGame.Keys, #KeyHandler, i>
+  [325] objcall 102 ............................. <gGame.Keys.KeyHandler[i]>
+  [327] pushint8 1 .............................. <1>
+  [329] pusharglist 2 ........................... <gGame.Keys.KeyHandler[i], 1>
+  [331] objcall 105 ............................. <gGame.Keys.KeyHandler[i][1]>
+  [333] setlocal 4 .............................. pCheckKey = gGame.Keys.KeyHandler[i][1]
+  [335] getlocal 4 .............................. <pCheckKey>
+  [337] getlocal 1 .............................. <pKey>
+  [339] eq ...................................... <pCheckKey = pKey>
+  [340] jmpifz [361] ............................ if pCheckKey = pKey then
+  [343] getglobal 43 ............................ <gGame>
+  [345] getchainedprop 929 ...................... <gGame.Keys>
+  [348] getchainedprop 573 ...................... <gGame.Keys.KeyHandler>
+  [351] getlocal 3 .............................. <i>
+  [353] pusharglistnoret 2 ...................... <gGame.Keys.KeyHandler, i>
+  [355] objcall 661 ............................. gGame.Keys.KeyHandler.deleteAt(i)
+  [358] jmp [370] ............................... exit repeat
+  [361] pushint8 1
+  [363] getlocal 3
+  [365] add
+  [366] setlocal 3
+  [368] endrepeat [305]
+  [370] getglobal 43 ............................ <gGame>
+  [372] getobjprop 929 .......................... <gGame.Keys>
+  [375] pushsymb 931 ............................ <#KeyGoTo>
+  [378] pusharglist 2 ........................... <gGame.Keys, #KeyGoTo>
+  [380] extcall 542 ............................. <getaProp(gGame.Keys, #KeyGoTo)>
+  [383] pusharglist 0 ........................... <>
+  [385] extcall 40 .............................. <VOID>
+  [387] nteq .................................... <getaProp(gGame.Keys, #KeyGoTo) <> VOID>
+  [388] jmpifz [474] ............................ if getaProp(gGame.Keys, #KeyGoTo) <> VOID then
+  [391] getglobal 43 ............................ <gGame>
+  [393] getchainedprop 929 ...................... <gGame.Keys>
+  [396] pushsymb 931 ............................ <#KeyGoTo>
+  [399] pusharglist 2 ........................... <gGame.Keys, #KeyGoTo>
+  [401] objcall 129 ............................. <gGame.Keys.KeyGoTo.count>
+  [403] setlocal 2 .............................. pCount = gGame.Keys.KeyGoTo.count
+  [405] pushint8 1 .............................. <1>
+  [407] setlocal 3
+  [409] getlocal 3
+  [411] getlocal 2 .............................. <pCount>
+  [413] lteq
+  [414] jmpifz [474] ............................ repeat with i = 1 to pCount
+  [417] getglobal 43 ............................ <gGame>
+  [419] getchainedprop 929 ...................... <gGame.Keys>
+  [422] pushsymb 931 ............................ <#KeyGoTo>
+  [425] getlocal 3 .............................. <i>
+  [427] pusharglist 3 ........................... <gGame.Keys, #KeyGoTo, i>
+  [429] objcall 102 ............................. <gGame.Keys.KeyGoTo[i]>
+  [431] pushint8 1 .............................. <1>
+  [433] pusharglist 2 ........................... <gGame.Keys.KeyGoTo[i], 1>
+  [435] objcall 105 ............................. <gGame.Keys.KeyGoTo[i][1]>
+  [437] setlocal 4 .............................. pCheckKey = gGame.Keys.KeyGoTo[i][1]
+  [439] getlocal 4 .............................. <pCheckKey>
+  [441] getlocal 1 .............................. <pKey>
+  [443] eq ...................................... <pCheckKey = pKey>
+  [444] jmpifz [465] ............................ if pCheckKey = pKey then
+  [447] getglobal 43 ............................ <gGame>
+  [449] getchainedprop 929 ...................... <gGame.Keys>
+  [452] getchainedprop 931 ...................... <gGame.Keys.KeyGoTo>
+  [455] getlocal 3 .............................. <i>
+  [457] pusharglistnoret 2 ...................... <gGame.Keys.KeyGoTo, i>
+  [459] objcall 661 ............................. gGame.Keys.KeyGoTo.deleteAt(i)
+  [462] jmp [474] ............................... exit repeat
+  [465] pushint8 1
+  [467] getlocal 3
+  [469] add
+  [470] setlocal 3
+  [472] endrepeat [409]
+  [474] getglobal 43 ............................ <gGame>
+  [476] getobjprop 929 .......................... <gGame.Keys>
+  [479] pushsymb 932 ............................ <#KeyMarker>
+  [482] pusharglist 2 ........................... <gGame.Keys, #KeyMarker>
+  [484] extcall 542 ............................. <getaProp(gGame.Keys, #KeyMarker)>
+  [487] pusharglist 0 ........................... <>
+  [489] extcall 40 .............................. <VOID>
+  [491] nteq .................................... <getaProp(gGame.Keys, #KeyMarker) <> VOID>
+  [492] jmpifz [578] ............................ if getaProp(gGame.Keys, #KeyMarker) <> VOID then
+  [495] getglobal 43 ............................ <gGame>
+  [497] getchainedprop 929 ...................... <gGame.Keys>
+  [500] pushsymb 932 ............................ <#KeyMarker>
+  [503] pusharglist 2 ........................... <gGame.Keys, #KeyMarker>
+  [505] objcall 129 ............................. <gGame.Keys.KeyMarker.count>
+  [507] setlocal 2 .............................. pCount = gGame.Keys.KeyMarker.count
+  [509] pushint8 1 .............................. <1>
+  [511] setlocal 3
+  [513] getlocal 3
+  [515] getlocal 2 .............................. <pCount>
+  [517] lteq
+  [518] jmpifz [578] ............................ repeat with i = 1 to pCount
+  [521] getglobal 43 ............................ <gGame>
+  [523] getchainedprop 929 ...................... <gGame.Keys>
+  [526] pushsymb 932 ............................ <#KeyMarker>
+  [529] getlocal 3 .............................. <i>
+  [531] pusharglist 3 ........................... <gGame.Keys, #KeyMarker, i>
+  [533] objcall 102 ............................. <gGame.Keys.KeyMarker[i]>
+  [535] pushint8 1 .............................. <1>
+  [537] pusharglist 2 ........................... <gGame.Keys.KeyMarker[i], 1>
+  [539] objcall 105 ............................. <gGame.Keys.KeyMarker[i][1]>
+  [541] setlocal 4 .............................. pCheckKey = gGame.Keys.KeyMarker[i][1]
+  [543] getlocal 4 .............................. <pCheckKey>
+  [545] getlocal 1 .............................. <pKey>
+  [547] eq ...................................... <pCheckKey = pKey>
+  [548] jmpifz [569] ............................ if pCheckKey = pKey then
+  [551] getglobal 43 ............................ <gGame>
+  [553] getchainedprop 929 ...................... <gGame.Keys>
+  [556] getchainedprop 932 ...................... <gGame.Keys.KeyMarker>
+  [559] getlocal 3 .............................. <i>
+  [561] pusharglistnoret 2 ...................... <gGame.Keys.KeyMarker, i>
+  [563] objcall 661 ............................. gGame.Keys.KeyMarker.deleteAt(i)
+  [566] jmp [578] ............................... exit repeat
+  [569] pushint8 1
+  [571] getlocal 3
+  [573] add
+  [574] setlocal 3
+  [576] endrepeat [513]
+  [578] ret
+end

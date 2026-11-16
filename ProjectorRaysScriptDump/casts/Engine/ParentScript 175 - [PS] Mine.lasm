@@ -1,0 +1,372 @@
+property p
+global gSystem, gGame, gData
+
+on new me, t, tPod
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 64 ............................. <#member>
+  [ 11] getparam 1 .............................. <t>
+  [ 13] getchainedprop 376 ...................... <t.general>
+  [ 16] getobjprop 64 ........................... <t.general.member>
+  [ 18] pusharglistnoret 3 ...................... <p, #member, t.general.member>
+  [ 20] objcall 103 ............................. p[#member] = t.general.member
+  [ 22] getprop 563 ............................. <p>
+  [ 25] pushsymb 1049 ........................... <#sender>
+  [ 28] getparam 1 .............................. <t>
+  [ 30] getchainedprop 376 ...................... <t.general>
+  [ 33] getobjprop 377 .......................... <t.general.tag>
+  [ 36] pusharglistnoret 3 ...................... <p, #sender, t.general.tag>
+  [ 38] objcall 103 ............................. p[#sender] = t.general.tag
+  [ 40] getprop 563 ............................. <p>
+  [ 43] pushsymb 71 ............................. <#model>
+  [ 45] getparam 1 .............................. <t>
+  [ 47] getchainedprop 250 ...................... <t.car>
+  [ 49] getobjprop 71 ........................... <t.car.model>
+  [ 51] pusharglistnoret 3 ...................... <p, #model, t.car.model>
+  [ 53] objcall 103 ............................. p[#model] = t.car.model
+  [ 55] getprop 563 ............................. <p>
+  [ 58] pushsymb 87 ............................. <#data>
+  [ 60] getglobal 86 ............................ <gData>
+  [ 62] getchainedprop 87 ....................... <gData.data>
+  [ 64] getchainedprop 2427 ..................... <gData.data.SecondaryWeapons>
+  [ 67] getobjprop 2430 ......................... <gData.data.SecondaryWeapons.mineDeployer>
+  [ 70] pusharglistnoret 3 ...................... <p, #data, gData.data.SecondaryWeapons.mineDeployer>
+  [ 72] objcall 103 ............................. p[#data] = gData.data.SecondaryWeapons.mineDeployer
+  [ 74] getprop 563 ............................. <p>
+  [ 77] pushsymb 45 ............................. <#me>
+  [ 79] getparam 0 .............................. <me>
+  [ 81] pusharglistnoret 3 ...................... <p, #me, me>
+  [ 83] objcall 103 ............................. p[#me] = me
+  [ 85] getglobal 43 ............................ <gGame>
+  [ 87] getchainedprop 1389 ..................... <gGame.Physics>
+  [ 90] getparam 1 .............................. <t>
+  [ 92] getchainedprop 250 ...................... <t.car>
+  [ 94] getchainedprop 1667 ..................... <t.car.Effects>
+  [ 97] pushsymb 1909 ........................... <#secondary>
+  [100] pushint8 1 .............................. <1>
+  [102] pusharglist 3 ........................... <t.car.Effects, #secondary, 1>
+  [104] objcall 102 ............................. <t.car.Effects.secondary[1]>
+  [106] getobjprop 1161 ......................... <t.car.Effects.secondary[1].worldPosition>
+  [109] getparam 1 .............................. <t>
+  [111] getchainedprop 250 ...................... <t.car>
+  [113] getchainedprop 214 ...................... <t.car.transform>
+  [115] getobjprop 1191 ......................... <t.car.transform.zAxis>
+  [118] inv ..................................... <-t.car.transform.zAxis>
+  [119] pusharglist 3 ........................... <gGame.Physics, t.car.Effects.secondary[1].worldPosition, -t.car.transform.zAxis>
+  [121] objcall 2095 ............................ <gGame.Physics.rayCastClosest(t.car.Effects.secondary[1].worldPosition, -t.car.transform.zAxis)>
+  [124] setlocal 0 .............................. tDetails = gGame.Physics.rayCastClosest(t.car.Effects.secondary[1].worldPosition, -t.car.transform.zAxis)
+  [126] getlocal 0 .............................. <tDetails>
+  [128] getobjprop 129 .......................... <tDetails.count>
+  [130] pushzero ................................ <0>
+  [131] gt ...................................... <tDetails.count > 0>
+  [132] jmpifz [493] ............................ if tDetails.count > 0 then / else
+  [135] getprop 563 ............................. <p>
+  [138] pushsymb 2451 ........................... <#MineName>
+  [141] getprop 563 ............................. <p>
+  [144] getobjprop 1049 ......................... <p.sender>
+  [147] pusharglist 1 ........................... <p.sender>
+  [149] extcall 67 .............................. <string(p.sender)>
+  [151] pushcons 0 .............................. <"Mine">
+  [153] joinstr ................................. <string(p.sender) & "Mine">
+  [154] gettoplevelprop 462 ..................... <_system>
+  [157] getobjprop 463 .......................... <_system.milliSeconds>
+  [160] joinstr ................................. <string(p.sender) & "Mine" & _system.milliSeconds>
+  [161] pusharglistnoret 3 ...................... <p, #MineName, string(p.sender) & "Mine" & _system.milliSeconds>
+  [163] objcall 103 ............................. p[#MineName] = string(p.sender) & "Mine" & _system.milliSeconds
+  [165] getprop 563 ............................. <p>
+  [168] pushsymb 2452 ........................... <#Mine>
+  [171] getprop 563 ............................. <p>
+  [174] getchainedprop 64 ....................... <p.member>
+  [176] getprop 563 ............................. <p>
+  [179] getobjprop 2451 ......................... <p.MineName>
+  [182] getprop 563 ............................. <p>
+  [185] getchainedprop 64 ....................... <p.member>
+  [187] pushcons 0 .............................. <"Mine">
+  [189] pusharglist 2 ........................... <p.member, "Mine">
+  [191] objcall 72 .............................. <p.member.modelResource("Mine")>
+  [193] pusharglist 3 ........................... <p.member, p.MineName, p.member.modelResource("Mine")>
+  [195] objcall 892 ............................. <p.member.newModel(p.MineName, p.member.modelResource("Mine"))>
+  [198] pusharglistnoret 3 ...................... <p, #Mine, p.member.newModel(p.MineName, p.member.modelResource("Mine"))>
+  [200] objcall 103 ............................. p[#Mine] = p.member.newModel(p.MineName, p.member.modelResource("Mine"))
+  [202] getprop 563 ............................. <p>
+  [205] getchainedprop 2452 ..................... <p.Mine>
+  [208] getprop 563 ............................. <p>
+  [211] getchainedprop 64 ....................... <p.member>
+  [213] pushcons 1 .............................. <"Weapons_Material">
+  [215] pusharglist 2 ........................... <p.member, "Weapons_Material">
+  [217] objcall 208 ............................. <p.member.shader("Weapons_Material")>
+  [219] setobjprop 208 .......................... p.Mine.shader = p.member.shader("Weapons_Material")
+  [221] getprop 563 ............................. <p>
+  [224] getchainedprop 2452 ..................... <p.Mine>
+  [227] pushfloat32 0.0 ......................... <0.0>
+  [232] pushfloat32 0.0 ......................... <0.0>
+  [237] pushfloat32 1.0 ......................... <1.0>
+  [242] pusharglist 3 ........................... <0.0, 0.0, 1.0>
+  [244] extcall 212 ............................. <vector(0.0, 0.0, 1.0)>
+  [246] pushfloat32 0.0 ......................... <0.0>
+  [251] pushfloat32 1.0 ......................... <1.0>
+  [256] pushfloat32 0.0 ......................... <0.0>
+  [261] pusharglist 3 ........................... <0.0, 1.0, 0.0>
+  [263] extcall 212 ............................. <vector(0.0, 1.0, 0.0)>
+  [265] pusharglist 2 ........................... <[vector(0.0, 0.0, 1.0), vector(0.0, 1.0, 0.0)]>
+  [267] pushlist ................................ <[vector(0.0, 0.0, 1.0), vector(0.0, 1.0, 0.0)]>
+  [268] setobjprop 1172 ......................... p.Mine.pointAtOrientation = [vector(0.0, 0.0, 1.0), vector(0.0, 1.0, 0.0)]
+  [271] getprop 563 ............................. <p>
+  [274] getchainedprop 2452 ..................... <p.Mine>
+  [277] getchainedprop 214 ...................... <p.Mine.transform>
+  [279] getlocal 0 .............................. <tDetails>
+  [281] pushint8 2 .............................. <2>
+  [283] pusharglist 2 ........................... <tDetails, 2>
+  [285] objcall 105 ............................. <tDetails[2]>
+  [287] setobjprop 215 .......................... p.Mine.transform.position = tDetails[2]
+  [289] getprop 563 ............................. <p>
+  [292] getchainedprop 2452 ..................... <p.Mine>
+  [295] getlocal 0 .............................. <tDetails>
+  [297] pushint8 3 .............................. <3>
+  [299] pusharglist 2 ........................... <tDetails, 3>
+  [301] objcall 105 ............................. <tDetails[3]>
+  [303] pushint32 100000 ........................ <100000>
+  [308] mul ..................................... <tDetails[3] * 100000>
+  [309] pusharglistnoret 2 ...................... <p.Mine, tDetails[3] * 100000>
+  [311] objcall 1340 ............................ p.Mine.pointAt(tDetails[3] * 100000)
+  [314] getprop 563 ............................. <p>
+  [317] pushsymb 207 ............................ <#parent>
+  [319] getprop 563 ............................. <p>
+  [322] getchainedprop 64 ....................... <p.member>
+  [324] getlocal 0 .............................. <tDetails>
+  [326] pushint8 1 .............................. <1>
+  [328] pusharglist 2 ........................... <tDetails, 1>
+  [330] objcall 105 ............................. <tDetails[1]>
+  [332] getobjprop 235 .......................... <tDetails[1].name>
+  [334] pusharglist 2 ........................... <p.member, tDetails[1].name>
+  [336] objcall 71 .............................. <p.member.model(tDetails[1].name)>
+  [338] getobjprop 207 .......................... <p.member.model(tDetails[1].name).parent>
+  [340] pusharglistnoret 3 ...................... <p, #parent, p.member.model(tDetails[1].name).parent>
+  [342] objcall 103 ............................. p[#parent] = p.member.model(tDetails[1].name).parent
+  [344] getprop 563 ............................. <p>
+  [347] getchainedprop 2452 ..................... <p.Mine>
+  [350] getprop 563 ............................. <p>
+  [353] getchainedprop 207 ...................... <p.parent>
+  [355] pusharglist 1 ........................... <p.parent>
+  [357] objcall 1109 ............................ <p.parent.getWorldTransform()>
+  [360] pusharglist 1 ........................... <p.parent.getWorldTransform()>
+  [362] objcall 1452 ............................ <p.parent.getWorldTransform().inverse()>
+  [365] getprop 563 ............................. <p>
+  [368] getchainedprop 2452 ..................... <p.Mine>
+  [371] getobjprop 214 .......................... <p.Mine.transform>
+  [373] mul ..................................... <p.parent.getWorldTransform().inverse() * p.Mine.transform>
+  [374] setobjprop 214 .......................... p.Mine.transform = p.parent.getWorldTransform().inverse() * p.Mine.transform
+  [376] getprop 563 ............................. <p>
+  [379] getchainedprop 2452 ..................... <p.Mine>
+  [382] getprop 563 ............................. <p>
+  [385] getobjprop 207 .......................... <p.parent>
+  [387] setobjprop 207 .......................... p.Mine.parent = p.parent
+  [389] pushcons 2 .............................. <"Mine1_SFX">
+  [391] pushsymb 1047 ........................... <#priority>
+  [394] pushsymb 1048 ........................... <#low>
+  [397] pushsymb 1050 ........................... <#surround>
+  [400] pushint8 1 .............................. <1>
+  [402] pushsymb 1051 ........................... <#member3DName>
+  [405] getglobal 43 ............................ <gGame>
+  [407] getchainedprop 64 ....................... <gGame.member>
+  [409] getobjprop 235 .......................... <gGame.member.name>
+  [411] pushsymb 1049 ........................... <#sender>
+  [414] getprop 563 ............................. <p>
+  [417] getchainedprop 2452 ..................... <p.Mine>
+  [420] getobjprop 235 .......................... <p.Mine.name>
+  [422] pushsymb 1052 ........................... <#targetName>
+  [425] getprop 563 ............................. <p>
+  [428] getchainedprop 2452 ..................... <p.Mine>
+  [431] getobjprop 235 .......................... <p.Mine.name>
+  [433] pushsymb 1053 ........................... <#referenceName>
+  [436] pushcons 3 .............................. <"Player1_Camera">
+  [438] pushsymb 1054 ........................... <#distance>
+  [441] pushint8 20 ............................. <20>
+  [443] pushint16 200 ........................... <200>
+  [446] pusharglist 2 ........................... <[20, 200]>
+  [448] pushlist ................................ <[20, 200]>
+  [449] pushsymb 1055 ........................... <#static>
+  [452] pushint8 1 .............................. <1>
+  [454] pushsymb 1056 ........................... <#Override>
+  [457] pushint8 1 .............................. <1>
+  [459] pusharglist 18 .......................... <[#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: p.Mine.name, #targetName: p.Mine.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1, #Override: 1]>
+  [461] pushproplist ............................ <[#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: p.Mine.name, #targetName: p.Mine.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1, #Override: 1]>
+  [462] pusharglistnoret 2 ...................... <"Mine1_SFX", [#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: p.Mine.name, #targetName: p.Mine.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1, #Override: 1]>
+  [464] extcall 289 ............................. PlaySound("Mine1_SFX", [#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: p.Mine.name, #targetName: p.Mine.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1, #Override: 1])
+  [467] getprop 563 ............................. <p>
+  [470] pushsymb 238 ............................ <#timeout>
+  [472] pushint8 25 ............................. <25>
+  [474] getglobal 43 ............................ <gGame>
+  [476] getobjprop 453 .......................... <gGame.tempo>
+  [479] mul ..................................... <25 * gGame.tempo>
+  [480] pusharglistnoret 3 ...................... <p, #timeout, 25 * gGame.tempo>
+  [482] objcall 103 ............................. p[#timeout] = 25 * gGame.tempo
+  [484] getparam 0 .............................. <me>
+  [486] pusharglistnoret 1 ...................... <me>
+  [488] extcall 52 .............................. return me
+  [490] jmp [501]
+  [493] pusharglist 0 ........................... <>
+  [495] extcall 40 .............................. <VOID>
+  [497] pusharglistnoret 1 ...................... <VOID>
+  [499] extcall 52 .............................. return VOID
+  [501] ret
+end
+
+on enterFrame me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getobjprop 137 .......................... <gGame.cars>
+  [  4] peek 0
+  [  6] pusharglist 1
+  [  8] extcall 129
+  [ 10] pushint8 1
+  [ 12] peek 0
+  [ 14] peek 2
+  [ 16] lteq
+  [ 17] jmpifz [279] ............................ repeat with i in gGame.cars
+  [ 20] peek 2
+  [ 22] peek 1
+  [ 24] pusharglist 2
+  [ 26] extcall 105
+  [ 28] setlocal 0
+  [ 30] getlocal 0 .............................. <i>
+  [ 32] getchainedprop 376 ...................... <i.general>
+  [ 35] getobjprop 377 .......................... <i.general.tag>
+  [ 38] getprop 563 ............................. <p>
+  [ 41] getobjprop 1049 ......................... <p.sender>
+  [ 44] eq ...................................... <i.general.tag = p.sender>
+  [ 45] jmpifz [ 51] ............................ if i.general.tag = p.sender then
+  [ 48] jmp [273] ............................... next repeat
+  [ 51] getlocal 0 .............................. <i>
+  [ 53] getchainedprop 250 ...................... <i.car>
+  [ 55] getchainedprop 214 ...................... <i.car.transform>
+  [ 57] getobjprop 215 .......................... <i.car.transform.position>
+  [ 59] getprop 563 ............................. <p>
+  [ 62] getchainedprop 2452 ..................... <p.Mine>
+  [ 65] getobjprop 1161 ......................... <p.Mine.worldPosition>
+  [ 68] pusharglist 2 ........................... <i.car.transform.position, p.Mine.worldPosition>
+  [ 70] objcall 1117 ............................ <i.car.transform.position.distanceTo(p.Mine.worldPosition)>
+  [ 73] getprop 563 ............................. <p>
+  [ 76] getchainedprop 87 ....................... <p.data>
+  [ 78] getobjprop 814 .......................... <p.data.range>
+  [ 81] lteq .................................... <i.car.transform.position.distanceTo(p.Mine.worldPosition) <= p.data.range>
+  [ 82] jmpifz [273] ............................ if i.car.transform.position.distanceTo(p.Mine.worldPosition) <= p.data.range then
+  [ 85] pushzero ................................ <0>
+  [ 86] getprop 563 ............................. <p>
+  [ 89] getchainedprop 2452 ..................... <p.Mine>
+  [ 92] getobjprop 1161 ......................... <p.Mine.worldPosition>
+  [ 95] getprop 563 ............................. <p>
+  [ 98] getchainedprop 87 ....................... <p.data>
+  [100] getobjprop 1545 ......................... <p.data.areaDamage>
+  [103] getprop 563 ............................. <p>
+  [106] getobjprop 1049 ......................... <p.sender>
+  [109] getprop 563 ............................. <p>
+  [112] getobjprop 207 .......................... <p.parent>
+  [114] pusharglistnoret 5 ...................... <0, p.Mine.worldPosition, p.data.areaDamage, p.sender, p.parent>
+  [116] extcall 1545 ............................ areaDamage(0, p.Mine.worldPosition, p.data.areaDamage, p.sender, p.parent)
+  [119] pushcons 4 .............................. <"[PS] Rocket Explosion">
+  [121] pusharglist 1 ........................... <"[PS] Rocket Explosion">
+  [123] extcall 36 .............................. <script("[PS] Rocket Explosion")>
+  [125] getprop 563 ............................. <p>
+  [128] getobjprop 64 ........................... <p.member>
+  [130] getprop 563 ............................. <p>
+  [133] getchainedprop 2452 ..................... <p.Mine>
+  [136] getobjprop 1161 ......................... <p.Mine.worldPosition>
+  [139] getglobal 43 ............................ <gGame>
+  [141] getchainedprop 64 ....................... <gGame.member>
+  [143] pushcons 5 .............................. <"PLayer1_camera">
+  [145] pusharglist 2 ........................... <gGame.member, "PLayer1_camera">
+  [147] objcall 298 ............................. <gGame.member.camera("PLayer1_camera")>
+  [150] pusharglist 0 ........................... <>
+  [152] extcall 40 .............................. <VOID>
+  [154] pushint16 500 ........................... <500>
+  [157] pusharglist 6 ........................... <script("[PS] Rocket Explosion"), p.member, p.Mine.worldPosition, gGame.member.camera("PLayer1_camera"), VOID, 500>
+  [159] extcall 35 .............................. <new(script("[PS] Rocket Explosion"), p.member, p.Mine.worldPosition, gGame.member.camera("PLayer1_camera"), VOID, 500)>
+  [161] setlocal 1 .............................. tExploScript = new(script("[PS] Rocket Explosion"), p.member, p.Mine.worldPosition, gGame.member.camera("PLayer1_camera"), VOID, 500)
+  [163] getlocal 1 .............................. <tExploScript>
+  [165] pusharglist 0 ........................... <>
+  [167] extcall 40 .............................. <VOID>
+  [169] nteq .................................... <tExploScript <> VOID>
+  [170] jmpifz [184] ............................ if tExploScript <> VOID then
+  [173] getglobal 43 ............................ <gGame>
+  [175] getchainedprop 300 ...................... <gGame.scriptList>
+  [178] getlocal 1 .............................. <tExploScript>
+  [180] pusharglistnoret 2 ...................... <gGame.scriptList, tExploScript>
+  [182] objcall 42 .............................. gGame.scriptList.add(tExploScript)
+  [184] pushcons 6 .............................. <"MineGrenadeExplosion_SFX">
+  [186] pushsymb 1047 ........................... <#priority>
+  [189] pushsymb 1081 ........................... <#medium>
+  [192] pushsymb 1050 ........................... <#surround>
+  [195] pushint8 1 .............................. <1>
+  [197] pushsymb 1051 ........................... <#member3DName>
+  [200] getprop 563 ............................. <p>
+  [203] getchainedprop 64 ....................... <p.member>
+  [205] getobjprop 235 .......................... <p.member.name>
+  [207] pushsymb 1049 ........................... <#sender>
+  [210] getprop 563 ............................. <p>
+  [213] getchainedprop 2452 ..................... <p.Mine>
+  [216] getobjprop 235 .......................... <p.Mine.name>
+  [218] pushsymb 1052 ........................... <#targetName>
+  [221] getprop 563 ............................. <p>
+  [224] getchainedprop 2452 ..................... <p.Mine>
+  [227] getobjprop 235 .......................... <p.Mine.name>
+  [229] pushsymb 1053 ........................... <#referenceName>
+  [232] pushcons 3 .............................. <"Player1_Camera">
+  [234] pushsymb 1054 ........................... <#distance>
+  [237] pushint8 20 ............................. <20>
+  [239] pushint16 200 ........................... <200>
+  [242] pusharglist 2 ........................... <[20, 200]>
+  [244] pushlist ................................ <[20, 200]>
+  [245] pushsymb 1055 ........................... <#static>
+  [248] pushint8 1 .............................. <1>
+  [250] pushsymb 1056 ........................... <#Override>
+  [253] pushint8 1 .............................. <1>
+  [255] pusharglist 18 .......................... <[#priority: #medium, #surround: 1, #member3DName: p.member.name, #sender: p.Mine.name, #targetName: p.Mine.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1, #Override: 1]>
+  [257] pushproplist ............................ <[#priority: #medium, #surround: 1, #member3DName: p.member.name, #sender: p.Mine.name, #targetName: p.Mine.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1, #Override: 1]>
+  [258] pusharglistnoret 2 ...................... <"MineGrenadeExplosion_SFX", [#priority: #medium, #surround: 1, #member3DName: p.member.name, #sender: p.Mine.name, #targetName: p.Mine.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1, #Override: 1]>
+  [260] extcall 289 ............................. PlaySound("MineGrenadeExplosion_SFX", [#priority: #medium, #surround: 1, #member3DName: p.member.name, #sender: p.Mine.name, #targetName: p.Mine.name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1, #Override: 1])
+  [263] getparam 0 .............................. <me>
+  [265] pusharglistnoret 1 ...................... <me>
+  [267] objcall 562 ............................. delete me
+  [270] jmp [279] ............................... exit repeat
+  [273] pushint8 1
+  [275] add
+  [276] endrepeat [ 12]
+  [279] pop 3
+  [281] getprop 563 ............................. <p>
+  [284] getprop 563 ............................. <p>
+  [287] getobjprop 238 .......................... <p.timeout>
+  [289] pushfloat32 1.0 ......................... <1.0>
+  [294] getglobal 43 ............................ <gGame>
+  [296] getobjprop 454 .......................... <gGame.TimeMP>
+  [299] mul ..................................... <1.0 * gGame.TimeMP>
+  [300] sub ..................................... <p.timeout - (1.0 * gGame.TimeMP)>
+  [301] setobjprop 238 .......................... p.timeout = p.timeout - (1.0 * gGame.TimeMP)
+  [303] getprop 563 ............................. <p>
+  [306] getobjprop 238 .......................... <p.timeout>
+  [308] pushzero ................................ <0>
+  [309] lteq .................................... <p.timeout <= 0>
+  [310] jmpifz [320] ............................ if p.timeout <= 0 then
+  [313] getparam 0 .............................. <me>
+  [315] pusharglistnoret 1 ...................... <me>
+  [317] objcall 562 ............................. delete me
+  [320] ret
+end
+
+on delete me
+  [  0] getprop 563 ............................. <p>
+  [  3] getchainedprop 64 ....................... <p.member>
+  [  5] getprop 563 ............................. <p>
+  [  8] getchainedprop 2452 ..................... <p.Mine>
+  [ 11] getobjprop 235 .......................... <p.Mine.name>
+  [ 13] pusharglistnoret 2 ...................... <p.member, p.Mine.name>
+  [ 15] objcall 1221 ............................ p.member.deleteModel(p.Mine.name)
+  [ 18] getglobal 43 ............................ <gGame>
+  [ 20] getchainedprop 300 ...................... <gGame.scriptList>
+  [ 23] getprop 563 ............................. <p>
+  [ 26] getobjprop 45 ........................... <p.me>
+  [ 28] pusharglistnoret 2 ...................... <gGame.scriptList, p.me>
+  [ 30] objcall 175 ............................. gGame.scriptList.deleteOne(p.me)
+  [ 32] ret
+end

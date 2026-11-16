@@ -1,0 +1,270 @@
+global gSystem, gData, gGame
+
+on createlight me, tTarget, tDataList
+  [  0] ret
+end
+
+on SetLight me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 64 .............................. <member(tTarget)>
+  [  6] setlocal 0 .............................. tmember = member(tTarget)
+  [  8] getlocal 0 .............................. <tmember>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <tmember = VOID>
+  [ 15] jmpifz [ 23] ............................ if tmember = VOID then
+  [ 18] pushzero ................................ <0>
+  [ 19] pusharglistnoret 1 ...................... <0>
+  [ 21] extcall 52 .............................. return 0
+  [ 23] getparam 2 .............................. <tDataList>
+  [ 25] getobjprop 122 .......................... <tDataList.ilk>
+  [ 27] pushsymb 67 ............................. <#string>
+  [ 29] eq ...................................... <tDataList.ilk = #string>
+  [ 30] jmpifz [ 42] ............................ if tDataList.ilk = #string then
+  [ 33] getparam 2 .............................. <tDataList>
+  [ 35] pusharglist 1 ........................... <tDataList>
+  [ 37] extcall 503 ............................. <value(tDataList)>
+  [ 40] setparam 2 .............................. tDataList = value(tDataList)
+  [ 42] getparam 2 .............................. <tDataList>
+  [ 44] getobjprop 122 .......................... <tDataList.ilk>
+  [ 46] pushsymb 541 ............................ <#propList>
+  [ 49] nteq .................................... <tDataList.ilk <> #propList>
+  [ 50] jmpifz [ 58] ............................ if tDataList.ilk <> #propList then
+  [ 53] pushzero ................................ <0>
+  [ 54] pusharglistnoret 1 ...................... <0>
+  [ 56] extcall 52 .............................. return 0
+  [ 58] pusharglist 0 ........................... <>
+  [ 60] extcall 40 .............................. <VOID>
+  [ 62] setlocal 1 .............................. tName = VOID
+  [ 64] getparam 2 .............................. <tDataList>
+  [ 66] pushsymb 235 ............................ <#name>
+  [ 68] pusharglist 2 ........................... <tDataList, #name>
+  [ 70] objcall 105 ............................. <tDataList[#name]>
+  [ 72] getobjprop 122 .......................... <tDataList[#name].ilk>
+  [ 74] pushsymb 67 ............................. <#string>
+  [ 76] eq ...................................... <tDataList[#name].ilk = #string>
+  [ 77] jmpifz [ 86] ............................ if tDataList[#name].ilk = #string then
+  [ 80] getparam 2 .............................. <tDataList>
+  [ 82] getobjprop 235 .......................... <tDataList.name>
+  [ 84] setlocal 1 .............................. tName = tDataList.name
+  [ 86] getlocal 1 .............................. <tName>
+  [ 88] pusharglist 0 ........................... <>
+  [ 90] extcall 40 .............................. <VOID>
+  [ 92] eq ...................................... <tName = VOID>
+  [ 93] jmpifz [101] ............................ if tName = VOID then
+  [ 96] pushzero ................................ <0>
+  [ 97] pusharglistnoret 1 ...................... <0>
+  [ 99] extcall 52 .............................. return 0
+  [101] getlocal 0 .............................. <tmember>
+  [103] getlocal 1 .............................. <tName>
+  [105] pusharglist 2 ........................... <tmember, tName>
+  [107] objcall 1154 ............................ <tmember.light(tName)>
+  [110] setlocal 2 .............................. tLight = tmember.light(tName)
+  [112] getlocal 2 .............................. <tLight>
+  [114] pusharglist 0 ........................... <>
+  [116] extcall 40 .............................. <VOID>
+  [118] eq ...................................... <tLight = VOID>
+  [119] jmpifz [127] ............................ if tLight = VOID then
+  [122] pushzero ................................ <0>
+  [123] pusharglistnoret 1 ...................... <0>
+  [125] extcall 52 .............................. return 0
+  [127] getlocal 2 .............................. <tLight>
+  [129] getobjprop 598 .......................... <tLight.type>
+  [132] setlocal 3 .............................. tType = tLight.type
+  [134] getparam 2 .............................. <tDataList>
+  [136] pushsymb 598 ............................ <#type>
+  [139] pusharglist 2 ........................... <tDataList, #type>
+  [141] objcall 105 ............................. <tDataList[#type]>
+  [143] getobjprop 122 .......................... <tDataList[#type].ilk>
+  [145] pushsymb 88 ............................. <#symbol>
+  [147] eq ...................................... <tDataList[#type].ilk = #symbol>
+  [148] jmpifz [194] ............................ if tDataList[#type].ilk = #symbol then
+  [151] pushsymb 897 ............................ <#ambient>
+  [154] pushsymb 302 ............................ <#point>
+  [157] pushsymb 1321 ........................... <#spot>
+  [160] pushsymb 1322 ........................... <#directional>
+  [163] pusharglist 4 ........................... <[#ambient, #point, #spot, #directional]>
+  [165] pushlist ................................ <[#ambient, #point, #spot, #directional]>
+  [166] setlocal 4 .............................. tList = [#ambient, #point, #spot, #directional]
+  [168] getlocal 4 .............................. <tList>
+  [170] getparam 2 .............................. <tDataList>
+  [172] getobjprop 598 .......................... <tDataList.type>
+  [175] pusharglist 2 ........................... <tList, tDataList.type>
+  [177] objcall 166 ............................. <tList.getPos(tDataList.type)>
+  [179] pushzero ................................ <0>
+  [180] nteq .................................... <tList.getPos(tDataList.type) <> 0>
+  [181] jmpifz [194] ............................ if tList.getPos(tDataList.type) <> 0 then
+  [184] getlocal 2 .............................. <tLight>
+  [186] getparam 2 .............................. <tDataList>
+  [188] getobjprop 598 .......................... <tDataList.type>
+  [191] setobjprop 598 .......................... tLight.type = tDataList.type
+  [194] getlocal 2 .............................. <tLight>
+  [196] getobjprop 598 .......................... <tLight.type>
+  [199] pushsymb 897 ............................ <#ambient>
+  [202] eq ...................................... <tLight.type = #ambient>
+  [203] jmpifz [230] ............................ if tLight.type = #ambient then
+  [206] getparam 2 .............................. <tDataList>
+  [208] pushsymb 223 ............................ <#color>
+  [210] pusharglist 2 ........................... <tDataList, #color>
+  [212] objcall 105 ............................. <tDataList[#color]>
+  [214] getobjprop 122 .......................... <tDataList[#color].ilk>
+  [216] pushsymb 223 ............................ <#color>
+  [218] eq ...................................... <tDataList[#color].ilk = #color>
+  [219] jmpifz [230] ............................ if tDataList[#color].ilk = #color then
+  [222] getlocal 2 .............................. <tLight>
+  [224] getparam 2 .............................. <tDataList>
+  [226] getobjprop 223 .......................... <tDataList.color>
+  [228] setobjprop 223 .......................... tLight.color = tDataList.color
+  [230] getlocal 2 .............................. <tLight>
+  [232] getobjprop 598 .......................... <tLight.type>
+  [235] pushsymb 1322 ........................... <#directional>
+  [238] eq ...................................... <tLight.type = #directional>
+  [239] jmpifz [293] ............................ if tLight.type = #directional then
+  [242] getparam 2 .............................. <tDataList>
+  [244] pushsymb 223 ............................ <#color>
+  [246] pusharglist 2 ........................... <tDataList, #color>
+  [248] objcall 105 ............................. <tDataList[#color]>
+  [250] getobjprop 122 .......................... <tDataList[#color].ilk>
+  [252] pushsymb 223 ............................ <#color>
+  [254] eq ...................................... <tDataList[#color].ilk = #color>
+  [255] jmpifz [266] ............................ if tDataList[#color].ilk = #color then
+  [258] getlocal 2 .............................. <tLight>
+  [260] getparam 2 .............................. <tDataList>
+  [262] getobjprop 223 .......................... <tDataList.color>
+  [264] setobjprop 223 .......................... tLight.color = tDataList.color
+  [266] getparam 2 .............................. <tDataList>
+  [268] pushsymb 899 ............................ <#specular>
+  [271] pusharglist 2 ........................... <tDataList, #specular>
+  [273] objcall 105 ............................. <tDataList[#specular]>
+  [275] getobjprop 122 .......................... <tDataList[#specular].ilk>
+  [277] pushsymb 123 ............................ <#integer>
+  [279] eq ...................................... <tDataList[#specular].ilk = #integer>
+  [280] jmpifz [293] ............................ if tDataList[#specular].ilk = #integer then
+  [283] getlocal 2 .............................. <tLight>
+  [285] getparam 2 .............................. <tDataList>
+  [287] getobjprop 899 .......................... <tDataList.specular>
+  [290] setobjprop 899 .......................... tLight.specular = tDataList.specular
+  [293] getlocal 2 .............................. <tLight>
+  [295] getobjprop 598 .......................... <tLight.type>
+  [298] pushsymb 302 ............................ <#point>
+  [301] eq ...................................... <tLight.type = #point>
+  [302] jmpifz [383] ............................ if tLight.type = #point then
+  [305] getparam 2 .............................. <tDataList>
+  [307] pushsymb 223 ............................ <#color>
+  [309] pusharglist 2 ........................... <tDataList, #color>
+  [311] objcall 105 ............................. <tDataList[#color]>
+  [313] getobjprop 122 .......................... <tDataList[#color].ilk>
+  [315] pushsymb 223 ............................ <#color>
+  [317] eq ...................................... <tDataList[#color].ilk = #color>
+  [318] jmpifz [329] ............................ if tDataList[#color].ilk = #color then
+  [321] getlocal 2 .............................. <tLight>
+  [323] getparam 2 .............................. <tDataList>
+  [325] getobjprop 223 .......................... <tDataList.color>
+  [327] setobjprop 223 .......................... tLight.color = tDataList.color
+  [329] getparam 2 .............................. <tDataList>
+  [331] pushsymb 899 ............................ <#specular>
+  [334] pusharglist 2 ........................... <tDataList, #specular>
+  [336] objcall 105 ............................. <tDataList[#specular]>
+  [338] getobjprop 122 .......................... <tDataList[#specular].ilk>
+  [340] pushsymb 123 ............................ <#integer>
+  [342] eq ...................................... <tDataList[#specular].ilk = #integer>
+  [343] jmpifz [356] ............................ if tDataList[#specular].ilk = #integer then
+  [346] getlocal 2 .............................. <tLight>
+  [348] getparam 2 .............................. <tDataList>
+  [350] getobjprop 899 .......................... <tDataList.specular>
+  [353] setobjprop 899 .......................... tLight.specular = tDataList.specular
+  [356] getparam 2 .............................. <tDataList>
+  [358] pushsymb 1323 ........................... <#attenuation>
+  [361] pusharglist 2 ........................... <tDataList, #attenuation>
+  [363] objcall 105 ............................. <tDataList[#attenuation]>
+  [365] getobjprop 122 .......................... <tDataList[#attenuation].ilk>
+  [367] pushsymb 212 ............................ <#vector>
+  [369] eq ...................................... <tDataList[#attenuation].ilk = #vector>
+  [370] jmpifz [383] ............................ if tDataList[#attenuation].ilk = #vector then
+  [373] getlocal 2 .............................. <tLight>
+  [375] getparam 2 .............................. <tDataList>
+  [377] getobjprop 1323 ......................... <tDataList.attenuation>
+  [380] setobjprop 1323 ......................... tLight.attenuation = tDataList.attenuation
+  [383] getlocal 2 .............................. <tLight>
+  [385] getobjprop 598 .......................... <tLight.type>
+  [388] pushsymb 1321 ........................... <#spot>
+  [391] eq ...................................... <tLight.type = #spot>
+  [392] jmpifz [543] ............................ if tLight.type = #spot then
+  [395] getparam 2 .............................. <tDataList>
+  [397] pushsymb 223 ............................ <#color>
+  [399] pusharglist 2 ........................... <tDataList, #color>
+  [401] objcall 105 ............................. <tDataList[#color]>
+  [403] getobjprop 122 .......................... <tDataList[#color].ilk>
+  [405] pushsymb 223 ............................ <#color>
+  [407] eq ...................................... <tDataList[#color].ilk = #color>
+  [408] jmpifz [419] ............................ if tDataList[#color].ilk = #color then
+  [411] getlocal 2 .............................. <tLight>
+  [413] getparam 2 .............................. <tDataList>
+  [415] getobjprop 223 .......................... <tDataList.color>
+  [417] setobjprop 223 .......................... tLight.color = tDataList.color
+  [419] getparam 2 .............................. <tDataList>
+  [421] pushsymb 899 ............................ <#specular>
+  [424] pusharglist 2 ........................... <tDataList, #specular>
+  [426] objcall 105 ............................. <tDataList[#specular]>
+  [428] getobjprop 122 .......................... <tDataList[#specular].ilk>
+  [430] pushsymb 123 ............................ <#integer>
+  [432] eq ...................................... <tDataList[#specular].ilk = #integer>
+  [433] jmpifz [446] ............................ if tDataList[#specular].ilk = #integer then
+  [436] getlocal 2 .............................. <tLight>
+  [438] getparam 2 .............................. <tDataList>
+  [440] getobjprop 899 .......................... <tDataList.specular>
+  [443] setobjprop 899 .......................... tLight.specular = tDataList.specular
+  [446] getparam 2 .............................. <tDataList>
+  [448] pushsymb 1323 ........................... <#attenuation>
+  [451] pusharglist 2 ........................... <tDataList, #attenuation>
+  [453] objcall 105 ............................. <tDataList[#attenuation]>
+  [455] getobjprop 122 .......................... <tDataList[#attenuation].ilk>
+  [457] pushsymb 212 ............................ <#vector>
+  [459] eq ...................................... <tDataList[#attenuation].ilk = #vector>
+  [460] jmpifz [473] ............................ if tDataList[#attenuation].ilk = #vector then
+  [463] getlocal 2 .............................. <tLight>
+  [465] getparam 2 .............................. <tDataList>
+  [467] getobjprop 1323 ......................... <tDataList.attenuation>
+  [470] setobjprop 1323 ......................... tLight.attenuation = tDataList.attenuation
+  [473] getparam 2 .............................. <tDataList>
+  [475] pushsymb 1324 ........................... <#spotAngle>
+  [478] pusharglist 2 ........................... <tDataList, #spotAngle>
+  [480] objcall 105 ............................. <tDataList[#spotAngle]>
+  [482] getobjprop 122 .......................... <tDataList[#spotAngle].ilk>
+  [484] pushsymb 123 ............................ <#integer>
+  [486] eq ...................................... <tDataList[#spotAngle].ilk = #integer>
+  [487] getparam 2 .............................. <tDataList>
+  [489] pushsymb 1324 ........................... <#spotAngle>
+  [492] pusharglist 2 ........................... <tDataList, #spotAngle>
+  [494] objcall 105 ............................. <tDataList[#spotAngle]>
+  [496] getobjprop 122 .......................... <tDataList[#spotAngle].ilk>
+  [498] pushsymb 544 ............................ <#float>
+  [501] eq ...................................... <tDataList[#spotAngle].ilk = #float>
+  [502] or ...................................... <(tDataList[#spotAngle].ilk = #integer) or (tDataList[#spotAngle].ilk = #float)>
+  [503] jmpifz [516] ............................ if (tDataList[#spotAngle].ilk = #integer) or (tDataList[#spotAngle].ilk = #float) then
+  [506] getlocal 2 .............................. <tLight>
+  [508] getparam 2 .............................. <tDataList>
+  [510] getobjprop 1324 ......................... <tDataList.spotAngle>
+  [513] setobjprop 1324 ......................... tLight.spotAngle = tDataList.spotAngle
+  [516] getparam 2 .............................. <tDataList>
+  [518] pushsymb 1325 ........................... <#spotDecay>
+  [521] pusharglist 2 ........................... <tDataList, #spotDecay>
+  [523] objcall 105 ............................. <tDataList[#spotDecay]>
+  [525] getobjprop 122 .......................... <tDataList[#spotDecay].ilk>
+  [527] pushsymb 123 ............................ <#integer>
+  [529] eq ...................................... <tDataList[#spotDecay].ilk = #integer>
+  [530] jmpifz [543] ............................ if tDataList[#spotDecay].ilk = #integer then
+  [533] getlocal 2 .............................. <tLight>
+  [535] getparam 2 .............................. <tDataList>
+  [537] getobjprop 1325 ......................... <tDataList.spotDecay>
+  [540] setobjprop 1325 ......................... tLight.spotDecay = tDataList.spotDecay
+  [543] pushint8 1 .............................. <1>
+  [545] pusharglistnoret 1 ...................... <1>
+  [547] extcall 52 .............................. return 1
+  [549] ret
+end
+
+on deleteLight me, tTarget, tDataList
+  [  0] ret
+end

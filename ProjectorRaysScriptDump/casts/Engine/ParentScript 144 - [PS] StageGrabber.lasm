@@ -1,0 +1,656 @@
+property p
+global gGame, gData, gSystem
+
+on new me, tDataList
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 565 ............................ <#ScriptName>
+  [ 12] pushcons 0 .............................. <"StageGrabber">
+  [ 14] pusharglistnoret 3 ...................... <p, #ScriptName, "StageGrabber">
+  [ 16] objcall 103 ............................. p[#ScriptName] = "StageGrabber"
+  [ 18] getparam 1 .............................. <tDataList>
+  [ 20] pushsymb 64 ............................. <#member>
+  [ 22] pusharglist 2 ........................... <tDataList, #member>
+  [ 24] objcall 105 ............................. <tDataList[#member]>
+  [ 26] getobjprop 122 .......................... <tDataList[#member].ilk>
+  [ 28] pushsymb 67 ............................. <#string>
+  [ 30] eq ...................................... <tDataList[#member].ilk = #string>
+  [ 31] jmpifz [ 54] ............................ if tDataList[#member].ilk = #string then / else
+  [ 34] getprop 563 ............................. <p>
+  [ 37] pushsymb 64 ............................. <#member>
+  [ 39] getparam 1 .............................. <tDataList>
+  [ 41] getobjprop 64 ........................... <tDataList.member>
+  [ 43] pusharglist 1 ........................... <tDataList.member>
+  [ 45] extcall 64 .............................. <member(tDataList.member)>
+  [ 47] pusharglistnoret 3 ...................... <p, #member, member(tDataList.member)>
+  [ 49] objcall 103 ............................. p[#member] = member(tDataList.member)
+  [ 51] jmp [ 67]
+  [ 54] getprop 563 ............................. <p>
+  [ 57] pushsymb 64 ............................. <#member>
+  [ 59] pusharglist 0 ........................... <>
+  [ 61] extcall 40 .............................. <VOID>
+  [ 63] pusharglistnoret 3 ...................... <p, #member, VOID>
+  [ 65] objcall 103 ............................. p[#member] = VOID
+  [ 67] getprop 563 ............................. <p>
+  [ 70] getobjprop 64 ........................... <p.member>
+  [ 72] pusharglist 0 ........................... <>
+  [ 74] extcall 40 .............................. <VOID>
+  [ 76] eq ...................................... <p.member = VOID>
+  [ 77] jmpifz [ 81] ............................ if p.member = VOID then
+  [ 80] ret ..................................... exit
+  [ 81] getprop 563 ............................. <p>
+  [ 84] pushsymb 298 ............................ <#camera>
+  [ 87] getprop 563 ............................. <p>
+  [ 90] getchainedprop 64 ....................... <p.member>
+  [ 92] pushcons 1 .............................. <"StageGrabber_Camera">
+  [ 94] pusharglist 2 ........................... <p.member, "StageGrabber_Camera">
+  [ 96] objcall 298 ............................. <p.member.camera("StageGrabber_Camera")>
+  [ 99] pusharglistnoret 3 ...................... <p, #camera, p.member.camera("StageGrabber_Camera")>
+  [101] objcall 103 ............................. p[#camera] = p.member.camera("StageGrabber_Camera")
+  [103] getprop 563 ............................. <p>
+  [106] getobjprop 298 .......................... <p.camera>
+  [109] pusharglist 0 ........................... <>
+  [111] extcall 40 .............................. <VOID>
+  [113] eq ...................................... <p.camera = VOID>
+  [114] jmpifz [135] ............................ if p.camera = VOID then
+  [117] getprop 563 ............................. <p>
+  [120] getprop 563 ............................. <p>
+  [123] getchainedprop 64 ....................... <p.member>
+  [125] pushcons 1 .............................. <"StageGrabber_Camera">
+  [127] pusharglist 2 ........................... <p.member, "StageGrabber_Camera">
+  [129] objcall 1157 ............................ <p.member.newCamera("StageGrabber_Camera")>
+  [132] setobjprop 298 .......................... p.camera = p.member.newCamera("StageGrabber_Camera")
+  [135] getparam 1 .............................. <tDataList>
+  [137] pushsymb 298 ............................ <#camera>
+  [140] pusharglist 2 ........................... <tDataList, #camera>
+  [142] objcall 105 ............................. <tDataList[#camera]>
+  [144] getobjprop 122 .......................... <tDataList[#camera].ilk>
+  [146] pushsymb 67 ............................. <#string>
+  [148] eq ...................................... <tDataList[#camera].ilk = #string>
+  [149] jmpifz [180] ............................ if tDataList[#camera].ilk = #string then / else
+  [152] getprop 563 ............................. <p>
+  [155] pushsymb 1563 ........................... <#TargetCamera>
+  [158] getprop 563 ............................. <p>
+  [161] getchainedprop 64 ....................... <p.member>
+  [163] getparam 1 .............................. <tDataList>
+  [165] getobjprop 298 .......................... <tDataList.camera>
+  [168] pusharglist 2 ........................... <p.member, tDataList.camera>
+  [170] objcall 298 ............................. <p.member.camera(tDataList.camera)>
+  [173] pusharglistnoret 3 ...................... <p, #TargetCamera, p.member.camera(tDataList.camera)>
+  [175] objcall 103 ............................. p[#TargetCamera] = p.member.camera(tDataList.camera)
+  [177] jmp [202]
+  [180] getprop 563 ............................. <p>
+  [183] pushsymb 1563 ........................... <#TargetCamera>
+  [186] getprop 563 ............................. <p>
+  [189] getchainedprop 64 ....................... <p.member>
+  [191] pushcons 2 .............................. <"Player1_Camera">
+  [193] pusharglist 2 ........................... <p.member, "Player1_Camera">
+  [195] objcall 298 ............................. <p.member.camera("Player1_Camera")>
+  [198] pusharglistnoret 3 ...................... <p, #TargetCamera, p.member.camera("Player1_Camera")>
+  [200] objcall 103 ............................. p[#TargetCamera] = p.member.camera("Player1_Camera")
+  [202] getprop 563 ............................. <p>
+  [205] pushsymb 201 ............................ <#size>
+  [207] pushfloat32 1.0 ......................... <1.0>
+  [212] pusharglistnoret 3 ...................... <p, #size, 1.0>
+  [214] objcall 103 ............................. p[#size] = 1.0
+  [216] getglobal 43 ............................ <gGame>
+  [218] pushsymb 405 ............................ <#MotionBlurQuality>
+  [221] pusharglist 2 ........................... <gGame, #MotionBlurQuality>
+  [223] objcall 105 ............................. <gGame[#MotionBlurQuality]>
+  [225] pusharglist 1 ........................... <gGame[#MotionBlurQuality]>
+  [227] extcall 389 ............................. <voidp(gGame[#MotionBlurQuality])>
+  [230] not ..................................... <not voidp(gGame[#MotionBlurQuality])>
+  [231] jmpifz [256] ............................ if not voidp(gGame[#MotionBlurQuality]) then
+  [234] getglobal 43 ............................ <gGame>
+  [236] getobjprop 405 .......................... <gGame.MotionBlurQuality>
+  [239] pushsymb 1048 ........................... <#low>
+  [242] eq ...................................... <gGame.MotionBlurQuality = #low>
+  [243] jmpifz [256] ............................ if gGame.MotionBlurQuality = #low then
+  [246] getprop 563 ............................. <p>
+  [249] pushfloat32 0.5 ......................... <0.5>
+  [254] setobjprop 201 .......................... p.size = 0.5
+  [256] getparam 1 .............................. <tDataList>
+  [258] pushsymb 201 ............................ <#size>
+  [260] pusharglist 2 ........................... <tDataList, #size>
+  [262] extcall 542 ............................. <getaProp(tDataList, #size)>
+  [265] getobjprop 122 .......................... <getaProp(tDataList, #size).ilk>
+  [267] pushsymb 544 ............................ <#float>
+  [270] eq ...................................... <getaProp(tDataList, #size).ilk = #float>
+  [271] jmpifz [287] ............................ if getaProp(tDataList, #size).ilk = #float then
+  [274] getprop 563 ............................. <p>
+  [277] getparam 1 .............................. <tDataList>
+  [279] pushsymb 201 ............................ <#size>
+  [281] pusharglist 2 ........................... <tDataList, #size>
+  [283] objcall 105 ............................. <tDataList[#size]>
+  [285] setobjprop 201 .......................... p.size = tDataList[#size]
+  [287] getprop 563 ............................. <p>
+  [290] pushsymb 487 ............................ <#sprite>
+  [293] getglobal 43 ............................ <gGame>
+  [295] getobjprop 487 .......................... <gGame.sprite>
+  [298] pusharglist 1 ........................... <gGame.sprite>
+  [300] extcall 487 ............................. <sprite(gGame.sprite)>
+  [303] pusharglistnoret 3 ...................... <p, #sprite, sprite(gGame.sprite)>
+  [305] objcall 103 ............................. p[#sprite] = sprite(gGame.sprite)
+  [307] pushint8 32 ............................. <32>
+  [309] pushint8 64 ............................. <64>
+  [311] pushint16 128 ........................... <128>
+  [314] pushint16 256 ........................... <256>
+  [317] pushint16 512 ........................... <512>
+  [320] pushint16 1024 .......................... <1024>
+  [323] pushint16 2048 .......................... <2048>
+  [326] pusharglist 7 ........................... <[32, 64, 128, 256, 512, 1024, 2048]>
+  [328] pushlist ................................ <[32, 64, 128, 256, 512, 1024, 2048]>
+  [329] setlocal 0 .............................. tSourceList = [32, 64, 128, 256, 512, 1024, 2048]
+  [331] getlocal 0 .............................. <tSourceList>
+  [333] pusharglistnoret 1 ...................... <tSourceList>
+  [335] objcall 304 ............................. tSourceList.sort()
+  [338] getlocal 0 .............................. <tSourceList>
+  [340] pusharglist 1 ........................... <tSourceList>
+  [342] objcall 233 ............................. <tSourceList.duplicate()>
+  [344] setlocal 1 .............................. tWidth = tSourceList.duplicate()
+  [346] getlocal 1 .............................. <tWidth>
+  [348] getglobal 43 ............................ <gGame>
+  [350] pushsymb 409 ............................ <#resolution>
+  [353] pushint8 1 .............................. <1>
+  [355] pusharglist 3 ........................... <gGame, #resolution, 1>
+  [357] objcall 70 .............................. <gGame.resolution[1]>
+  [359] getprop 563 ............................. <p>
+  [362] getobjprop 201 .......................... <p.size>
+  [364] mul ..................................... <gGame.resolution[1] * p.size>
+  [365] pusharglist 1 ........................... <gGame.resolution[1] * p.size>
+  [367] extcall 123 ............................. <integer(gGame.resolution[1] * p.size)>
+  [369] pusharglistnoret 2 ...................... <tWidth, integer(gGame.resolution[1] * p.size)>
+  [371] objcall 42 .............................. tWidth.add(integer(gGame.resolution[1] * p.size))
+  [373] getlocal 1 .............................. <tWidth>
+  [375] getobjprop 129 .......................... <tWidth.count>
+  [377] getlocal 1 .............................. <tWidth>
+  [379] getglobal 43 ............................ <gGame>
+  [381] pushsymb 409 ............................ <#resolution>
+  [384] pushint8 1 .............................. <1>
+  [386] pusharglist 3 ........................... <gGame, #resolution, 1>
+  [388] objcall 70 .............................. <gGame.resolution[1]>
+  [390] getprop 563 ............................. <p>
+  [393] getobjprop 201 .......................... <p.size>
+  [395] mul ..................................... <gGame.resolution[1] * p.size>
+  [396] pusharglist 1 ........................... <gGame.resolution[1] * p.size>
+  [398] extcall 123 ............................. <integer(gGame.resolution[1] * p.size)>
+  [400] pusharglist 2 ........................... <tWidth, integer(gGame.resolution[1] * p.size)>
+  [402] objcall 166 ............................. <tWidth.getPos(integer(gGame.resolution[1] * p.size))>
+  [404] pushint8 1 .............................. <1>
+  [406] add ..................................... <tWidth.getPos(integer(gGame.resolution[1] * p.size)) + 1>
+  [407] pusharglist 2 ........................... <tWidth.count, tWidth.getPos(integer(gGame.resolution[1] * p.size)) + 1>
+  [409] extcall 356 ............................. <min(tWidth.count, tWidth.getPos(integer(gGame.resolution[1] * p.size)) + 1)>
+  [412] setlocal 2 .............................. tPos = min(tWidth.count, tWidth.getPos(integer(gGame.resolution[1] * p.size)) + 1)
+  [414] getlocal 1 .............................. <tWidth>
+  [416] getlocal 2 .............................. <tPos>
+  [418] pusharglist 2 ........................... <tWidth, tPos>
+  [420] objcall 105 ............................. <tWidth[tPos]>
+  [422] setlocal 1 .............................. tWidth = tWidth[tPos]
+  [424] getlocal 0 .............................. <tSourceList>
+  [426] pusharglist 1 ........................... <tSourceList>
+  [428] objcall 233 ............................. <tSourceList.duplicate()>
+  [430] setlocal 3 .............................. tHeight = tSourceList.duplicate()
+  [432] getlocal 3 .............................. <tHeight>
+  [434] getglobal 43 ............................ <gGame>
+  [436] pushsymb 409 ............................ <#resolution>
+  [439] pushint8 2 .............................. <2>
+  [441] pusharglist 3 ........................... <gGame, #resolution, 2>
+  [443] objcall 70 .............................. <gGame.resolution[2]>
+  [445] getprop 563 ............................. <p>
+  [448] getobjprop 201 .......................... <p.size>
+  [450] mul ..................................... <gGame.resolution[2] * p.size>
+  [451] pusharglist 1 ........................... <gGame.resolution[2] * p.size>
+  [453] extcall 123 ............................. <integer(gGame.resolution[2] * p.size)>
+  [455] pusharglistnoret 2 ...................... <tHeight, integer(gGame.resolution[2] * p.size)>
+  [457] objcall 42 .............................. tHeight.add(integer(gGame.resolution[2] * p.size))
+  [459] getlocal 3 .............................. <tHeight>
+  [461] getobjprop 129 .......................... <tHeight.count>
+  [463] getlocal 3 .............................. <tHeight>
+  [465] getglobal 43 ............................ <gGame>
+  [467] pushsymb 409 ............................ <#resolution>
+  [470] pushint8 2 .............................. <2>
+  [472] pusharglist 3 ........................... <gGame, #resolution, 2>
+  [474] objcall 70 .............................. <gGame.resolution[2]>
+  [476] getprop 563 ............................. <p>
+  [479] getobjprop 201 .......................... <p.size>
+  [481] mul ..................................... <gGame.resolution[2] * p.size>
+  [482] pusharglist 1 ........................... <gGame.resolution[2] * p.size>
+  [484] extcall 123 ............................. <integer(gGame.resolution[2] * p.size)>
+  [486] pusharglist 2 ........................... <tHeight, integer(gGame.resolution[2] * p.size)>
+  [488] objcall 166 ............................. <tHeight.getPos(integer(gGame.resolution[2] * p.size))>
+  [490] pushint8 1 .............................. <1>
+  [492] add ..................................... <tHeight.getPos(integer(gGame.resolution[2] * p.size)) + 1>
+  [493] pusharglist 2 ........................... <tHeight.count, tHeight.getPos(integer(gGame.resolution[2] * p.size)) + 1>
+  [495] extcall 356 ............................. <min(tHeight.count, tHeight.getPos(integer(gGame.resolution[2] * p.size)) + 1)>
+  [498] setlocal 2 .............................. tPos = min(tHeight.count, tHeight.getPos(integer(gGame.resolution[2] * p.size)) + 1)
+  [500] getlocal 3 .............................. <tHeight>
+  [502] getlocal 2 .............................. <tPos>
+  [504] pusharglist 2 ........................... <tHeight, tPos>
+  [506] objcall 105 ............................. <tHeight[tPos]>
+  [508] setlocal 3 .............................. tHeight = tHeight[tPos]
+  [510] getlocal 1 .............................. <tWidth>
+  [512] getlocal 3 .............................. <tHeight>
+  [514] eq ...................................... <tWidth = tHeight>
+  [515] jmpifz [531] ............................ if tWidth = tHeight then
+  [518] pushcons 3 .............................. <"AANGEPASTE WIDTH!">
+  [520] pusharglistnoret 1 ...................... <"AANGEPASTE WIDTH!">
+  [522] extcall 57 .............................. put "AANGEPASTE WIDTH!"
+  [524] getlocal 1 .............................. <tWidth>
+  [526] pushint8 2 .............................. <2>
+  [528] mul ..................................... <tWidth * 2>
+  [529] setlocal 1 .............................. tWidth = tWidth * 2
+  [531] getglobal 43 ............................ <gGame>
+  [533] pushsymb 409 ............................ <#resolution>
+  [536] pushint8 1 .............................. <1>
+  [538] pusharglist 3 ........................... <gGame, #resolution, 1>
+  [540] objcall 70 .............................. <gGame.resolution[1]>
+  [542] getprop 563 ............................. <p>
+  [545] getobjprop 201 .......................... <p.size>
+  [547] mul ..................................... <gGame.resolution[1] * p.size>
+  [548] pusharglist 1 ........................... <gGame.resolution[1] * p.size>
+  [550] extcall 123 ............................. <integer(gGame.resolution[1] * p.size)>
+  [552] setlocal 1 .............................. tWidth = integer(gGame.resolution[1] * p.size)
+  [554] getglobal 43 ............................ <gGame>
+  [556] pushsymb 409 ............................ <#resolution>
+  [559] pushint8 2 .............................. <2>
+  [561] pusharglist 3 ........................... <gGame, #resolution, 2>
+  [563] objcall 70 .............................. <gGame.resolution[2]>
+  [565] getprop 563 ............................. <p>
+  [568] getobjprop 201 .......................... <p.size>
+  [570] mul ..................................... <gGame.resolution[2] * p.size>
+  [571] pusharglist 1 ........................... <gGame.resolution[2] * p.size>
+  [573] extcall 123 ............................. <integer(gGame.resolution[2] * p.size)>
+  [575] setlocal 3 .............................. tHeight = integer(gGame.resolution[2] * p.size)
+  [577] getprop 563 ............................. <p>
+  [580] pushsymb 218 ............................ <#texture>
+  [582] getprop 563 ............................. <p>
+  [585] getchainedprop 64 ....................... <p.member>
+  [587] pushcons 4 .............................. <"StageGrabber_Texture">
+  [589] pushsymb 1570 ........................... <#renderTexture>
+  [592] getlocal 1 .............................. <tWidth>
+  [594] getlocal 3 .............................. <tHeight>
+  [596] pusharglist 5 ........................... <p.member, "StageGrabber_Texture", #renderTexture, tWidth, tHeight>
+  [598] objcall 903 ............................. <p.member.newTexture("StageGrabber_Texture", #renderTexture, tWidth, tHeight)>
+  [601] pusharglistnoret 3 ...................... <p, #texture, p.member.newTexture("StageGrabber_Texture", #renderTexture, tWidth, tHeight)>
+  [603] objcall 103 ............................. p[#texture] = p.member.newTexture("StageGrabber_Texture", #renderTexture, tWidth, tHeight)
+  [605] getprop 563 ............................. <p>
+  [608] getchainedprop 218 ...................... <p.texture>
+  [610] pushsymb 867 ............................ <#lowFiltered>
+  [613] setobjprop 331 .......................... p.texture.quality = #lowFiltered
+  [616] getprop 563 ............................. <p>
+  [619] getchainedprop 218 ...................... <p.texture>
+  [621] pushsymb 865 ............................ <#rgba8888>
+  [624] setobjprop 348 .......................... p.texture.renderFormat = #rgba8888
+  [627] getglobal 43 ............................ <gGame>
+  [629] pushsymb 409 ............................ <#resolution>
+  [632] pushint8 1 .............................. <1>
+  [634] pusharglist 3 ........................... <gGame, #resolution, 1>
+  [636] objcall 70 .............................. <gGame.resolution[1]>
+  [638] getglobal 43 ............................ <gGame>
+  [640] getobjprop 464 .......................... <gGame.BloomSize>
+  [643] pushint8 1 .............................. <1>
+  [645] mul ..................................... <gGame.BloomSize * 1>
+  [646] mul ..................................... <gGame.resolution[1] * (gGame.BloomSize * 1)>
+  [647] pusharglist 1 ........................... <gGame.resolution[1] * (gGame.BloomSize * 1)>
+  [649] extcall 123 ............................. <integer(gGame.resolution[1] * (gGame.BloomSize * 1))>
+  [651] setlocal 1 .............................. tWidth = integer(gGame.resolution[1] * (gGame.BloomSize * 1))
+  [653] getglobal 43 ............................ <gGame>
+  [655] pushsymb 409 ............................ <#resolution>
+  [658] pushint8 2 .............................. <2>
+  [660] pusharglist 3 ........................... <gGame, #resolution, 2>
+  [662] objcall 70 .............................. <gGame.resolution[2]>
+  [664] getglobal 43 ............................ <gGame>
+  [666] getobjprop 464 .......................... <gGame.BloomSize>
+  [669] pushint8 1 .............................. <1>
+  [671] mul ..................................... <gGame.BloomSize * 1>
+  [672] mul ..................................... <gGame.resolution[2] * (gGame.BloomSize * 1)>
+  [673] pusharglist 1 ........................... <gGame.resolution[2] * (gGame.BloomSize * 1)>
+  [675] extcall 123 ............................. <integer(gGame.resolution[2] * (gGame.BloomSize * 1))>
+  [677] setlocal 3 .............................. tHeight = integer(gGame.resolution[2] * (gGame.BloomSize * 1))
+  [679] getprop 563 ............................. <p>
+  [682] pushsymb 1621 ........................... <#BloomTexture>
+  [685] getprop 563 ............................. <p>
+  [688] getchainedprop 64 ....................... <p.member>
+  [690] pushcons 5 .............................. <"StageGrabberBloom_Texture">
+  [692] pushsymb 1570 ........................... <#renderTexture>
+  [695] getlocal 1 .............................. <tWidth>
+  [697] getlocal 3 .............................. <tHeight>
+  [699] pusharglist 5 ........................... <p.member, "StageGrabberBloom_Texture", #renderTexture, tWidth, tHeight>
+  [701] objcall 903 ............................. <p.member.newTexture("StageGrabberBloom_Texture", #renderTexture, tWidth, tHeight)>
+  [704] pusharglistnoret 3 ...................... <p, #BloomTexture, p.member.newTexture("StageGrabberBloom_Texture", #renderTexture, tWidth, tHeight)>
+  [706] objcall 103 ............................. p[#BloomTexture] = p.member.newTexture("StageGrabberBloom_Texture", #renderTexture, tWidth, tHeight)
+  [708] getprop 563 ............................. <p>
+  [711] getchainedprop 1621 ..................... <p.BloomTexture>
+  [714] pushsymb 867 ............................ <#lowFiltered>
+  [717] setobjprop 331 .......................... p.BloomTexture.quality = #lowFiltered
+  [720] getprop 563 ............................. <p>
+  [723] getchainedprop 1621 ..................... <p.BloomTexture>
+  [726] pushsymb 865 ............................ <#rgba8888>
+  [729] setobjprop 348 .......................... p.BloomTexture.renderFormat = #rgba8888
+  [732] getprop 563 ............................. <p>
+  [735] getchainedprop 218 ...................... <p.texture>
+  [737] pushint8 1 .............................. <1>
+  [739] setobjprop 1571 ......................... p.texture.updateRTImageOnRender = 1
+  [742] getprop 563 ............................. <p>
+  [745] getchainedprop 298 ...................... <p.camera>
+  [748] getchainedprop 871 ...................... <p.camera.colorBuffer>
+  [751] pushzero ................................ <0>
+  [752] setobjprop 872 .......................... p.camera.colorBuffer.clearAtRender = 0
+  [755] getprop 563 ............................. <p>
+  [758] getchainedprop 298 ...................... <p.camera>
+  [761] getprop 563 ............................. <p>
+  [764] getchainedprop 1563 ..................... <p.TargetCamera>
+  [767] getobjprop 214 .......................... <p.TargetCamera.transform>
+  [769] setobjprop 214 .......................... p.camera.transform = p.TargetCamera.transform
+  [771] getprop 563 ............................. <p>
+  [774] getchainedprop 298 ...................... <p.camera>
+  [777] getprop 563 ............................. <p>
+  [780] getchainedprop 1563 ..................... <p.TargetCamera>
+  [783] getobjprop 299 .......................... <p.TargetCamera.fieldOfView>
+  [786] setobjprop 299 .......................... p.camera.fieldOfView = p.TargetCamera.fieldOfView
+  [789] getprop 563 ............................. <p>
+  [792] getchainedprop 298 ...................... <p.camera>
+  [795] getprop 563 ............................. <p>
+  [798] getchainedprop 1563 ..................... <p.TargetCamera>
+  [801] getobjprop 1573 ......................... <p.TargetCamera.yon>
+  [804] setobjprop 1573 ......................... p.camera.yon = p.TargetCamera.yon
+  [807] getprop 563 ............................. <p>
+  [810] pushsymb 1574 ........................... <#update>
+  [813] pushint8 1 .............................. <1>
+  [815] pusharglistnoret 3 ...................... <p, #update, 1>
+  [817] objcall 103 ............................. p[#update] = 1
+  [819] pushcons 6 .............................. <"Skyboxes">
+  [821] pusharglist 1 ........................... <"Skyboxes">
+  [823] extcall 64 .............................. <member("Skyboxes")>
+  [825] setlocal 4 .............................. tSkyBoxMember = member("Skyboxes")
+  [827] getlocal 4 .............................. <tSkyBoxMember>
+  [829] pusharglist 0 ........................... <>
+  [831] extcall 40 .............................. <VOID>
+  [833] nteq .................................... <tSkyBoxMember <> VOID>
+  [834] jmpifz [922] ............................ if tSkyBoxMember <> VOID then
+  [837] getlocal 4 .............................. <tSkyBoxMember>
+  [839] pushcons 7 .............................. <"Skybox1_Camera">
+  [841] pusharglist 2 ........................... <tSkyBoxMember, "Skybox1_Camera">
+  [843] objcall 298 ............................. <tSkyBoxMember.camera("Skybox1_Camera")>
+  [846] setlocal 5 .............................. tSkyboxCamera = tSkyBoxMember.camera("Skybox1_Camera")
+  [848] getlocal 5 .............................. <tSkyboxCamera>
+  [850] pusharglist 0 ........................... <>
+  [852] extcall 40 .............................. <VOID>
+  [854] nteq .................................... <tSkyboxCamera <> VOID>
+  [855] jmpifz [922] ............................ if tSkyboxCamera <> VOID then
+  [858] getlocal 4 .............................. <tSkyBoxMember>
+  [860] pushcons 7 .............................. <"Skybox1_Camera">
+  [862] pusharglist 2 ........................... <tSkyBoxMember, "Skybox1_Camera">
+  [864] objcall 298 ............................. <tSkyBoxMember.camera("Skybox1_Camera")>
+  [867] getprop 563 ............................. <p>
+  [870] getchainedprop 487 ...................... <p.sprite>
+  [873] pushint8 1 .............................. <1>
+  [875] pusharglist 2 ........................... <p.sprite, 1>
+  [877] objcall 298 ............................. <p.sprite.camera(1)>
+  [880] eq ...................................... <tSkyBoxMember.camera("Skybox1_Camera") = p.sprite.camera(1)>
+  [881] jmpifz [922] ............................ if tSkyBoxMember.camera("Skybox1_Camera") = p.sprite.camera(1) then
+  [884] getprop 563 ............................. <p>
+  [887] getchainedprop 64 ....................... <p.member>
+  [889] pushcons 1 .............................. <"StageGrabber_Camera">
+  [891] pusharglistnoret 2 ...................... <p.member, "StageGrabber_Camera">
+  [893] objcall 1428 ............................ p.member.deleteCamera("StageGrabber_Camera")
+  [896] getprop 563 ............................. <p>
+  [899] getprop 563 ............................. <p>
+  [902] getchainedprop 487 ...................... <p.sprite>
+  [905] pushint8 1 .............................. <1>
+  [907] pusharglist 2 ........................... <p.sprite, 1>
+  [909] objcall 298 ............................. <p.sprite.camera(1)>
+  [912] setobjprop 298 .......................... p.camera = p.sprite.camera(1)
+  [915] getprop 563 ............................. <p>
+  [918] pushzero ................................ <0>
+  [919] setobjprop 1574 ......................... p.update = 0
+  [922] getglobal 43 ............................ <gGame>
+  [924] pushsymb 1622 ........................... <#StageTexture>
+  [927] getprop 563 ............................. <p>
+  [930] getobjprop 218 .......................... <p.texture>
+  [932] pusharglistnoret 3 ...................... <gGame, #StageTexture, p.texture>
+  [934] objcall 103 ............................. gGame[#StageTexture] = p.texture
+  [936] getglobal 43 ............................ <gGame>
+  [938] pushsymb 1621 ........................... <#BloomTexture>
+  [941] getprop 563 ............................. <p>
+  [944] getobjprop 1621 ......................... <p.BloomTexture>
+  [947] pusharglistnoret 3 ...................... <gGame, #BloomTexture, p.BloomTexture>
+  [949] objcall 103 ............................. gGame[#BloomTexture] = p.BloomTexture
+  [951] getparam 0 .............................. <me>
+  [953] pusharglistnoret 1 ...................... <me>
+  [955] extcall 52 .............................. return me
+  [957] ret
+end
+
+on enterFrame me
+  [  0] pusharglist 0 ........................... <[]>
+  [  2] pushlist ................................ <[]>
+  [  3] setlocal 0 .............................. tList = []
+  [  5] getprop 563 ............................. <p>
+  [  8] getchainedprop 487 ...................... <p.sprite>
+  [ 11] pusharglist 1 ........................... <p.sprite>
+  [ 13] objcall 1424 ............................ <p.sprite.cameraCount()>
+  [ 16] setlocal 1 .............................. tCount = p.sprite.cameraCount()
+  [ 18] pushint8 3 .............................. <3>
+  [ 20] setlocal 2
+  [ 22] getlocal 2
+  [ 24] getlocal 1 .............................. <tCount>
+  [ 26] lteq
+  [ 27] jmpifz [ 71] ............................ repeat with i = 3 to tCount
+  [ 30] getprop 563 ............................. <p>
+  [ 33] getchainedprop 487 ...................... <p.sprite>
+  [ 36] getlocal 2 .............................. <i>
+  [ 38] pusharglist 2 ........................... <p.sprite, i>
+  [ 40] objcall 298 ............................. <p.sprite.camera(i)>
+  [ 43] setlocal 3 .............................. tCamera = p.sprite.camera(i)
+  [ 45] getlocal 0 .............................. <tList>
+  [ 47] getlocal 3 .............................. <tCamera>
+  [ 49] getobjprop 1429 ......................... <tCamera.rootNode>
+  [ 52] pusharglistnoret 2 ...................... <tList, tCamera.rootNode>
+  [ 54] objcall 42 .............................. tList.add(tCamera.rootNode)
+  [ 56] getlocal 3 .............................. <tCamera>
+  [ 58] pushzero ................................ <0>
+  [ 59] setobjprop 1429 ......................... tCamera.rootNode = 0
+  [ 62] pushint8 1
+  [ 64] getlocal 2
+  [ 66] add
+  [ 67] setlocal 2
+  [ 69] endrepeat [ 22]
+  [ 71] pusharglist 0 ........................... <[]>
+  [ 73] pushlist ................................ <[]>
+  [ 74] setlocal 4 .............................. tScaleList = []
+  [ 76] pushint8 1 .............................. <1>
+  [ 78] setlocal 2
+  [ 80] getlocal 2
+  [ 82] getprop 563 ............................. <p>
+  [ 85] getchainedprop 1563 ..................... <p.TargetCamera>
+  [ 88] pushsymb 306 ............................ <#overlay>
+  [ 91] pusharglist 2 ........................... <p.TargetCamera, #overlay>
+  [ 93] objcall 129 ............................. <p.TargetCamera.overlay.count>
+  [ 95] lteq
+  [ 96] jmpifz [155] ............................ repeat with i = 1 to p.TargetCamera.overlay.count
+  [ 99] getlocal 4 .............................. <tScaleList>
+  [101] getprop 563 ............................. <p>
+  [104] getchainedprop 1563 ..................... <p.TargetCamera>
+  [107] pushsymb 306 ............................ <#overlay>
+  [110] getlocal 2 .............................. <i>
+  [112] pusharglist 3 ........................... <p.TargetCamera, #overlay, i>
+  [114] objcall 102 ............................. <p.TargetCamera.overlay[i]>
+  [116] getobjprop 307 .......................... <p.TargetCamera.overlay[i].scale>
+  [119] pusharglistnoret 2 ...................... <tScaleList, p.TargetCamera.overlay[i].scale>
+  [121] objcall 42 .............................. tScaleList.add(p.TargetCamera.overlay[i].scale)
+  [123] getprop 563 ............................. <p>
+  [126] getchainedprop 1563 ..................... <p.TargetCamera>
+  [129] pushsymb 306 ............................ <#overlay>
+  [132] getlocal 2 .............................. <i>
+  [134] pusharglist 3 ........................... <p.TargetCamera, #overlay, i>
+  [136] objcall 102 ............................. <p.TargetCamera.overlay[i]>
+  [138] pushfloat32 0.0 ......................... <0.0>
+  [143] setobjprop 307 .......................... p.TargetCamera.overlay[i].scale = 0.0
+  [146] pushint8 1
+  [148] getlocal 2
+  [150] add
+  [151] setlocal 2
+  [153] endrepeat [ 80]
+  [155] getprop 563 ............................. <p>
+  [158] getobjprop 1574 ......................... <p.update>
+  [161] jmpifz [216] ............................ if p.update then
+  [164] getprop 563 ............................. <p>
+  [167] getchainedprop 298 ...................... <p.camera>
+  [170] getprop 563 ............................. <p>
+  [173] getchainedprop 1563 ..................... <p.TargetCamera>
+  [176] getobjprop 214 .......................... <p.TargetCamera.transform>
+  [178] setobjprop 214 .......................... p.camera.transform = p.TargetCamera.transform
+  [180] getprop 563 ............................. <p>
+  [183] getchainedprop 298 ...................... <p.camera>
+  [186] getprop 563 ............................. <p>
+  [189] getchainedprop 1563 ..................... <p.TargetCamera>
+  [192] getobjprop 299 .......................... <p.TargetCamera.fieldOfView>
+  [195] setobjprop 299 .......................... p.camera.fieldOfView = p.TargetCamera.fieldOfView
+  [198] getprop 563 ............................. <p>
+  [201] getchainedprop 298 ...................... <p.camera>
+  [204] getprop 563 ............................. <p>
+  [207] getchainedprop 1563 ..................... <p.TargetCamera>
+  [210] getobjprop 1573 ......................... <p.TargetCamera.yon>
+  [213] setobjprop 1573 ......................... p.camera.yon = p.TargetCamera.yon
+  [216] getprop 563 ............................. <p>
+  [219] getchainedprop 487 ...................... <p.sprite>
+  [222] getprop 563 ............................. <p>
+  [225] getobjprop 298 .......................... <p.camera>
+  [228] getprop 563 ............................. <p>
+  [231] getobjprop 218 .......................... <p.texture>
+  [233] pusharglistnoret 3 ...................... <p.sprite, p.camera, p.texture>
+  [235] objcall 1579 ............................ p.sprite.renderToTexture(p.camera, p.texture)
+  [238] getprop 563 ............................. <p>
+  [241] getchainedprop 487 ...................... <p.sprite>
+  [244] getprop 563 ............................. <p>
+  [247] getobjprop 298 .......................... <p.camera>
+  [250] getprop 563 ............................. <p>
+  [253] getobjprop 1621 ......................... <p.BloomTexture>
+  [256] pusharglistnoret 3 ...................... <p.sprite, p.camera, p.BloomTexture>
+  [258] objcall 1579 ............................ p.sprite.renderToTexture(p.camera, p.BloomTexture)
+  [261] pushint8 3 .............................. <3>
+  [263] setlocal 2
+  [265] getlocal 2
+  [267] getlocal 1 .............................. <tCount>
+  [269] lteq
+  [270] jmpifz [313] ............................ repeat with i = 3 to tCount
+  [273] getprop 563 ............................. <p>
+  [276] getchainedprop 487 ...................... <p.sprite>
+  [279] getlocal 2 .............................. <i>
+  [281] pusharglist 2 ........................... <p.sprite, i>
+  [283] objcall 298 ............................. <p.sprite.camera(i)>
+  [286] setlocal 3 .............................. tCamera = p.sprite.camera(i)
+  [288] getlocal 3 .............................. <tCamera>
+  [290] getlocal 0 .............................. <tList>
+  [292] getlocal 2 .............................. <i>
+  [294] pushint8 2 .............................. <2>
+  [296] sub ..................................... <i - 2>
+  [297] pusharglist 2 ........................... <tList, i - 2>
+  [299] objcall 105 ............................. <tList[i - 2]>
+  [301] setobjprop 1429 ......................... tCamera.rootNode = tList[i - 2]
+  [304] pushint8 1
+  [306] getlocal 2
+  [308] add
+  [309] setlocal 2
+  [311] endrepeat [265]
+  [313] pushint8 1 .............................. <1>
+  [315] setlocal 2
+  [317] getlocal 2
+  [319] getprop 563 ............................. <p>
+  [322] getchainedprop 1563 ..................... <p.TargetCamera>
+  [325] pushsymb 306 ............................ <#overlay>
+  [328] pusharglist 2 ........................... <p.TargetCamera, #overlay>
+  [330] objcall 129 ............................. <p.TargetCamera.overlay.count>
+  [332] lteq
+  [333] jmpifz [371] ............................ repeat with i = 1 to p.TargetCamera.overlay.count
+  [336] getprop 563 ............................. <p>
+  [339] getchainedprop 1563 ..................... <p.TargetCamera>
+  [342] pushsymb 306 ............................ <#overlay>
+  [345] getlocal 2 .............................. <i>
+  [347] pusharglist 3 ........................... <p.TargetCamera, #overlay, i>
+  [349] objcall 102 ............................. <p.TargetCamera.overlay[i]>
+  [351] getlocal 4 .............................. <tScaleList>
+  [353] getlocal 2 .............................. <i>
+  [355] pusharglist 2 ........................... <tScaleList, i>
+  [357] objcall 105 ............................. <tScaleList[i]>
+  [359] setobjprop 307 .......................... p.TargetCamera.overlay[i].scale = tScaleList[i]
+  [362] pushint8 1
+  [364] getlocal 2
+  [366] add
+  [367] setlocal 2
+  [369] endrepeat [317]
+  [371] ret
+end
+
+on delete me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pushsymb 1622 ........................... <#StageTexture>
+  [  5] pusharglistnoret 2 ...................... <gGame, #StageTexture>
+  [  7] objcall 605 ............................. gGame.deleteProp(#StageTexture)
+  [ 10] getglobal 43 ............................ <gGame>
+  [ 12] pushsymb 1621 ........................... <#BloomTexture>
+  [ 15] pusharglistnoret 2 ...................... <gGame, #BloomTexture>
+  [ 17] objcall 605 ............................. gGame.deleteProp(#BloomTexture)
+  [ 20] getprop 563 ............................. <p>
+  [ 23] getobjprop 298 .......................... <p.camera>
+  [ 26] pusharglist 0 ........................... <>
+  [ 28] extcall 40 .............................. <VOID>
+  [ 30] nteq .................................... <p.camera <> VOID>
+  [ 31] jmpifz [ 52] ............................ if p.camera <> VOID then
+  [ 34] getprop 563 ............................. <p>
+  [ 37] getchainedprop 64 ....................... <p.member>
+  [ 39] getprop 563 ............................. <p>
+  [ 42] getchainedprop 298 ...................... <p.camera>
+  [ 45] getobjprop 235 .......................... <p.camera.name>
+  [ 47] pusharglistnoret 2 ...................... <p.member, p.camera.name>
+  [ 49] objcall 1428 ............................ p.member.deleteCamera(p.camera.name)
+  [ 52] getprop 563 ............................. <p>
+  [ 55] getobjprop 218 .......................... <p.texture>
+  [ 57] pusharglist 0 ........................... <>
+  [ 59] extcall 40 .............................. <VOID>
+  [ 61] nteq .................................... <p.texture <> VOID>
+  [ 62] jmpifz [ 82] ............................ if p.texture <> VOID then
+  [ 65] getprop 563 ............................. <p>
+  [ 68] getchainedprop 64 ....................... <p.member>
+  [ 70] getprop 563 ............................. <p>
+  [ 73] getchainedprop 218 ...................... <p.texture>
+  [ 75] getobjprop 235 .......................... <p.texture.name>
+  [ 77] pusharglistnoret 2 ...................... <p.member, p.texture.name>
+  [ 79] objcall 682 ............................. p.member.deleteTexture(p.texture.name)
+  [ 82] getprop 563 ............................. <p>
+  [ 85] getobjprop 1621 ......................... <p.BloomTexture>
+  [ 88] pusharglist 0 ........................... <>
+  [ 90] extcall 40 .............................. <VOID>
+  [ 92] nteq .................................... <p.BloomTexture <> VOID>
+  [ 93] jmpifz [114] ............................ if p.BloomTexture <> VOID then
+  [ 96] getprop 563 ............................. <p>
+  [ 99] getchainedprop 64 ....................... <p.member>
+  [101] getprop 563 ............................. <p>
+  [104] getchainedprop 1621 ..................... <p.BloomTexture>
+  [107] getobjprop 235 .......................... <p.BloomTexture.name>
+  [109] pusharglistnoret 2 ...................... <p.member, p.BloomTexture.name>
+  [111] objcall 682 ............................. p.member.deleteTexture(p.BloomTexture.name)
+  [114] getglobal 50 ............................ <gSystem>
+  [116] getchainedprop 300 ...................... <gSystem.scriptList>
+  [119] getparam 0 .............................. <me>
+  [121] pusharglist 2 ........................... <gSystem.scriptList, me>
+  [123] objcall 166 ............................. <gSystem.scriptList.getPos(me)>
+  [125] pushzero ................................ <0>
+  [126] nteq .................................... <gSystem.scriptList.getPos(me) <> 0>
+  [127] jmpifz [144] ............................ if gSystem.scriptList.getPos(me) <> 0 then / else
+  [130] getglobal 50 ............................ <gSystem>
+  [132] getchainedprop 300 ...................... <gSystem.scriptList>
+  [135] getparam 0 .............................. <me>
+  [137] pusharglistnoret 2 ...................... <gSystem.scriptList, me>
+  [139] objcall 175 ............................. gSystem.scriptList.deleteOne(me)
+  [141] jmp [155]
+  [144] getglobal 43 ............................ <gGame>
+  [146] getchainedprop 300 ...................... <gGame.scriptList>
+  [149] getparam 0 .............................. <me>
+  [151] pusharglistnoret 2 ...................... <gGame.scriptList, me>
+  [153] objcall 175 ............................. gGame.scriptList.deleteOne(me)
+  [155] ret
+end

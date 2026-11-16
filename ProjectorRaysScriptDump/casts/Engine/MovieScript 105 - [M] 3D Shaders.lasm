@@ -1,0 +1,1584 @@
+global gGame
+
+on CreateShader me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 64 .............................. <member(tTarget)>
+  [  6] setlocal 0 .............................. tmember = member(tTarget)
+  [  8] getlocal 0 .............................. <tmember>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <tmember = VOID>
+  [ 15] jmpifz [ 23] ............................ if tmember = VOID then
+  [ 18] pushzero ................................ <0>
+  [ 19] pusharglistnoret 1 ...................... <0>
+  [ 21] extcall 52 .............................. return 0
+  [ 23] getparam 2 .............................. <tDataList>
+  [ 25] getobjprop 122 .......................... <tDataList.ilk>
+  [ 27] pushsymb 67 ............................. <#string>
+  [ 29] eq ...................................... <tDataList.ilk = #string>
+  [ 30] jmpifz [ 42] ............................ if tDataList.ilk = #string then
+  [ 33] getparam 2 .............................. <tDataList>
+  [ 35] pusharglist 1 ........................... <tDataList>
+  [ 37] extcall 503 ............................. <value(tDataList)>
+  [ 40] setparam 2 .............................. tDataList = value(tDataList)
+  [ 42] getparam 2 .............................. <tDataList>
+  [ 44] getobjprop 122 .......................... <tDataList.ilk>
+  [ 46] pushsymb 541 ............................ <#propList>
+  [ 49] nteq .................................... <tDataList.ilk <> #propList>
+  [ 50] jmpifz [ 58] ............................ if tDataList.ilk <> #propList then
+  [ 53] pushzero ................................ <0>
+  [ 54] pusharglistnoret 1 ...................... <0>
+  [ 56] extcall 52 .............................. return 0
+  [ 58] pushcons 0 .............................. <"DefaultShader">
+  [ 60] getlocal 0 .............................. <tmember>
+  [ 62] pushsymb 208 ............................ <#shader>
+  [ 64] pusharglist 2 ........................... <tmember, #shader>
+  [ 66] objcall 129 ............................. <tmember.shader.count>
+  [ 68] joinstr ................................. <"DefaultShader" & tmember.shader.count>
+  [ 69] pushcons 1 .............................. <"_Material">
+  [ 71] joinstr ................................. <"DefaultShader" & tmember.shader.count & "_Material">
+  [ 72] setlocal 1 .............................. tShaderName = "DefaultShader" & tmember.shader.count & "_Material"
+  [ 74] getparam 2 .............................. <tDataList>
+  [ 76] pushsymb 208 ............................ <#shader>
+  [ 78] pusharglist 2 ........................... <tDataList, #shader>
+  [ 80] objcall 105 ............................. <tDataList[#shader]>
+  [ 82] getobjprop 122 .......................... <tDataList[#shader].ilk>
+  [ 84] pushsymb 67 ............................. <#string>
+  [ 86] eq ...................................... <tDataList[#shader].ilk = #string>
+  [ 87] jmpifz [ 96] ............................ if tDataList[#shader].ilk = #string then
+  [ 90] getparam 2 .............................. <tDataList>
+  [ 92] getobjprop 208 .......................... <tDataList.shader>
+  [ 94] setlocal 1 .............................. tShaderName = tDataList.shader
+  [ 96] pushsymb 531 ............................ <#standard>
+  [ 99] setlocal 2 .............................. tType = #standard
+  [101] getlocal 0 .............................. <tmember>
+  [103] getlocal 1 .............................. <tShaderName>
+  [105] getlocal 2 .............................. <tType>
+  [107] pusharglist 3 ........................... <tmember, tShaderName, tType>
+  [109] objcall 896 ............................. <tmember.newShader(tShaderName, tType)>
+  [112] setlocal 3 .............................. tShader = tmember.newShader(tShaderName, tType)
+  [114] getlocal 3 .............................. <tShader>
+  [116] pushzero ................................ <0>
+  [117] pushzero ................................ <0>
+  [118] pushzero ................................ <0>
+  [119] pusharglist 3 ........................... <0, 0, 0>
+  [121] extcall 282 ............................. <rgb(0, 0, 0)>
+  [124] setobjprop 897 .......................... tShader.ambient = rgb(0, 0, 0)
+  [127] getlocal 3 .............................. <tShader>
+  [129] pushint16 255 ........................... <255>
+  [132] pushint16 255 ........................... <255>
+  [135] pushint16 255 ........................... <255>
+  [138] pusharglist 3 ........................... <255, 255, 255>
+  [140] extcall 282 ............................. <rgb(255, 255, 255)>
+  [143] setobjprop 898 .......................... tShader.diffuse = rgb(255, 255, 255)
+  [146] getlocal 3 .............................. <tShader>
+  [148] pushint16 255 ........................... <255>
+  [151] pushint16 255 ........................... <255>
+  [154] pushint16 255 ........................... <255>
+  [157] pusharglist 3 ........................... <255, 255, 255>
+  [159] extcall 282 ............................. <rgb(255, 255, 255)>
+  [162] setobjprop 900 .......................... tShader.emissive = rgb(255, 255, 255)
+  [165] getlocal 3 .............................. <tShader>
+  [167] pushint16 255 ........................... <255>
+  [170] pushint16 255 ........................... <255>
+  [173] pushint16 255 ........................... <255>
+  [176] pusharglist 3 ........................... <255, 255, 255>
+  [178] extcall 282 ............................. <rgb(255, 255, 255)>
+  [181] setobjprop 899 .......................... tShader.specular = rgb(255, 255, 255)
+  [184] getlocal 3 .............................. <tShader>
+  [186] pushfloat32 0.0 ......................... <0.0>
+  [191] setobjprop 901 .......................... tShader.shininess = 0.0
+  [194] getlocal 3 .............................. <tShader>
+  [196] pushfloat32 100.0 ....................... <100.0>
+  [201] setobjprop 367 .......................... tShader.blend = 100.0
+  [204] getlocal 3 .............................. <tShader>
+  [206] pushint8 1 .............................. <1>
+  [208] setobjprop 1243 ......................... tShader.transparent = 1
+  [211] getlocal 3 .............................. <tShader>
+  [213] pushsymb 1244 ........................... <#textureList>
+  [216] pushint8 1 .............................. <1>
+  [218] getlocal 0 .............................. <tmember>
+  [220] pushcons 2 .............................. <"DefaultTexture">
+  [222] pusharglist 2 ........................... <tmember, "DefaultTexture">
+  [224] objcall 218 ............................. <tmember.texture("DefaultTexture")>
+  [226] pusharglistnoret 4 ...................... <tShader, #textureList, 1, tmember.texture("DefaultTexture")>
+  [228] objcall 99 .............................. tShader.textureList[1] = tmember.texture("DefaultTexture")
+  [230] getparam 2 .............................. <tDataList>
+  [232] pushsymb 897 ............................ <#ambient>
+  [235] pusharglist 2 ........................... <tDataList, #ambient>
+  [237] objcall 105 ............................. <tDataList[#ambient]>
+  [239] getobjprop 122 .......................... <tDataList[#ambient].ilk>
+  [241] pushsymb 223 ............................ <#color>
+  [243] eq ...................................... <tDataList[#ambient].ilk = #color>
+  [244] jmpifz [257] ............................ if tDataList[#ambient].ilk = #color then
+  [247] getlocal 3 .............................. <tShader>
+  [249] getparam 2 .............................. <tDataList>
+  [251] getobjprop 897 .......................... <tDataList.ambient>
+  [254] setobjprop 897 .......................... tShader.ambient = tDataList.ambient
+  [257] getparam 2 .............................. <tDataList>
+  [259] pushsymb 898 ............................ <#diffuse>
+  [262] pusharglist 2 ........................... <tDataList, #diffuse>
+  [264] objcall 105 ............................. <tDataList[#diffuse]>
+  [266] getobjprop 122 .......................... <tDataList[#diffuse].ilk>
+  [268] pushsymb 223 ............................ <#color>
+  [270] eq ...................................... <tDataList[#diffuse].ilk = #color>
+  [271] jmpifz [284] ............................ if tDataList[#diffuse].ilk = #color then
+  [274] getlocal 3 .............................. <tShader>
+  [276] getparam 2 .............................. <tDataList>
+  [278] getobjprop 898 .......................... <tDataList.diffuse>
+  [281] setobjprop 898 .......................... tShader.diffuse = tDataList.diffuse
+  [284] getparam 2 .............................. <tDataList>
+  [286] pushsymb 900 ............................ <#emissive>
+  [289] pusharglist 2 ........................... <tDataList, #emissive>
+  [291] objcall 105 ............................. <tDataList[#emissive]>
+  [293] getobjprop 122 .......................... <tDataList[#emissive].ilk>
+  [295] pushsymb 223 ............................ <#color>
+  [297] eq ...................................... <tDataList[#emissive].ilk = #color>
+  [298] jmpifz [311] ............................ if tDataList[#emissive].ilk = #color then
+  [301] getlocal 3 .............................. <tShader>
+  [303] getparam 2 .............................. <tDataList>
+  [305] getobjprop 900 .......................... <tDataList.emissive>
+  [308] setobjprop 900 .......................... tShader.emissive = tDataList.emissive
+  [311] getparam 2 .............................. <tDataList>
+  [313] pushsymb 899 ............................ <#specular>
+  [316] pusharglist 2 ........................... <tDataList, #specular>
+  [318] objcall 105 ............................. <tDataList[#specular]>
+  [320] getobjprop 122 .......................... <tDataList[#specular].ilk>
+  [322] pushsymb 223 ............................ <#color>
+  [324] eq ...................................... <tDataList[#specular].ilk = #color>
+  [325] jmpifz [338] ............................ if tDataList[#specular].ilk = #color then
+  [328] getlocal 3 .............................. <tShader>
+  [330] getparam 2 .............................. <tDataList>
+  [332] getobjprop 899 .......................... <tDataList.specular>
+  [335] setobjprop 899 .......................... tShader.specular = tDataList.specular
+  [338] getparam 2 .............................. <tDataList>
+  [340] pushsymb 901 ............................ <#shininess>
+  [343] pusharglist 2 ........................... <tDataList, #shininess>
+  [345] objcall 105 ............................. <tDataList[#shininess]>
+  [347] getobjprop 122 .......................... <tDataList[#shininess].ilk>
+  [349] pushsymb 544 ............................ <#float>
+  [352] eq ...................................... <tDataList[#shininess].ilk = #float>
+  [353] jmpifz [366] ............................ if tDataList[#shininess].ilk = #float then
+  [356] getlocal 3 .............................. <tShader>
+  [358] getparam 2 .............................. <tDataList>
+  [360] getobjprop 901 .......................... <tDataList.shininess>
+  [363] setobjprop 901 .......................... tShader.shininess = tDataList.shininess
+  [366] getparam 2 .............................. <tDataList>
+  [368] pushsymb 367 ............................ <#blend>
+  [371] pusharglist 2 ........................... <tDataList, #blend>
+  [373] objcall 105 ............................. <tDataList[#blend]>
+  [375] getobjprop 122 .......................... <tDataList[#blend].ilk>
+  [377] pushsymb 544 ............................ <#float>
+  [380] eq ...................................... <tDataList[#blend].ilk = #float>
+  [381] jmpifz [394] ............................ if tDataList[#blend].ilk = #float then
+  [384] getlocal 3 .............................. <tShader>
+  [386] getparam 2 .............................. <tDataList>
+  [388] getobjprop 367 .......................... <tDataList.blend>
+  [391] setobjprop 367 .......................... tShader.blend = tDataList.blend
+  [394] getparam 2 .............................. <tDataList>
+  [396] pushsymb 1243 ........................... <#transparent>
+  [399] pusharglist 2 ........................... <tDataList, #transparent>
+  [401] objcall 105 ............................. <tDataList[#transparent]>
+  [403] getobjprop 122 .......................... <tDataList[#transparent].ilk>
+  [405] pushsymb 123 ............................ <#integer>
+  [407] eq ...................................... <tDataList[#transparent].ilk = #integer>
+  [408] jmpifz [421] ............................ if tDataList[#transparent].ilk = #integer then
+  [411] getlocal 3 .............................. <tShader>
+  [413] getparam 2 .............................. <tDataList>
+  [415] getobjprop 1243 ......................... <tDataList.transparent>
+  [418] setobjprop 1243 ......................... tShader.transparent = tDataList.transparent
+  [421] getparam 2 .............................. <tDataList>
+  [423] pushsymb 218 ............................ <#texture>
+  [425] pusharglist 2 ........................... <tDataList, #texture>
+  [427] objcall 105 ............................. <tDataList[#texture]>
+  [429] getobjprop 122 .......................... <tDataList[#texture].ilk>
+  [431] pushsymb 67 ............................. <#string>
+  [433] eq ...................................... <tDataList[#texture].ilk = #string>
+  [434] jmpifz [498] ............................ if tDataList[#texture].ilk = #string then
+  [437] getlocal 0 .............................. <tmember>
+  [439] getparam 2 .............................. <tDataList>
+  [441] getobjprop 218 .......................... <tDataList.texture>
+  [443] pusharglist 2 ........................... <tmember, tDataList.texture>
+  [445] objcall 218 ............................. <tmember.texture(tDataList.texture)>
+  [447] setlocal 4 .............................. tTexture = tmember.texture(tDataList.texture)
+  [449] getlocal 4 .............................. <tTexture>
+  [451] pusharglist 0 ........................... <>
+  [453] extcall 40 .............................. <VOID>
+  [455] eq ...................................... <tTexture = VOID>
+  [456] jmpifz [485] ............................ if tTexture = VOID then
+  [459] getlocal 0 .............................. <tmember>
+  [461] getobjprop 235 .......................... <tmember.name>
+  [463] pushsymb 59 ............................. <#fileName>
+  [465] getparam 2 .............................. <tDataList>
+  [467] getobjprop 218 .......................... <tDataList.texture>
+  [469] pushsymb 866 ............................ <#filtering>
+  [472] pushsymb 867 ............................ <#lowFiltered>
+  [475] pusharglist 4 ........................... <[#fileName: tDataList.texture, #filtering: #lowFiltered]>
+  [477] pushproplist ............................ <[#fileName: tDataList.texture, #filtering: #lowFiltered]>
+  [478] pusharglist 2 ........................... <tmember.name, [#fileName: tDataList.texture, #filtering: #lowFiltered]>
+  [480] extcall 681 ............................. <createTexture(tmember.name, [#fileName: tDataList.texture, #filtering: #lowFiltered])>
+  [483] setlocal 4 .............................. tTexture = createTexture(tmember.name, [#fileName: tDataList.texture, #filtering: #lowFiltered])
+  [485] getlocal 3 .............................. <tShader>
+  [487] pushsymb 1244 ........................... <#textureList>
+  [490] pushint8 1 .............................. <1>
+  [492] getlocal 4 .............................. <tTexture>
+  [494] pusharglistnoret 4 ...................... <tShader, #textureList, 1, tTexture>
+  [496] objcall 99 .............................. tShader.textureList[1] = tTexture
+  [498] getparam 2 .............................. <tDataList>
+  [500] pushsymb 218 ............................ <#texture>
+  [502] pusharglist 2 ........................... <tDataList, #texture>
+  [504] objcall 105 ............................. <tDataList[#texture]>
+  [506] getobjprop 122 .......................... <tDataList[#texture].ilk>
+  [508] pushsymb 40 ............................. <#void>
+  [510] eq ...................................... <tDataList[#texture].ilk = #void>
+  [511] jmpifz [529] ............................ if tDataList[#texture].ilk = #void then
+  [514] getlocal 3 .............................. <tShader>
+  [516] pushsymb 1244 ........................... <#textureList>
+  [519] pushint8 1 .............................. <1>
+  [521] pusharglist 0 ........................... <>
+  [523] extcall 40 .............................. <VOID>
+  [525] pusharglistnoret 4 ...................... <tShader, #textureList, 1, VOID>
+  [527] objcall 99 .............................. tShader.textureList[1] = VOID
+  [529] getlocal 3 .............................. <tShader>
+  [531] pusharglistnoret 1 ...................... <tShader>
+  [533] extcall 52 .............................. return tShader
+  [535] ret
+end
+
+on SetShader me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 64 .............................. <member(tTarget)>
+  [  6] setlocal 0 .............................. tmember = member(tTarget)
+  [  8] getlocal 0 .............................. <tmember>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <tmember = VOID>
+  [ 15] jmpifz [ 23] ............................ if tmember = VOID then
+  [ 18] pushzero ................................ <0>
+  [ 19] pusharglistnoret 1 ...................... <0>
+  [ 21] extcall 52 .............................. return 0
+  [ 23] getparam 2 .............................. <tDataList>
+  [ 25] getobjprop 122 .......................... <tDataList.ilk>
+  [ 27] pushsymb 67 ............................. <#string>
+  [ 29] eq ...................................... <tDataList.ilk = #string>
+  [ 30] jmpifz [ 42] ............................ if tDataList.ilk = #string then
+  [ 33] getparam 2 .............................. <tDataList>
+  [ 35] pusharglist 1 ........................... <tDataList>
+  [ 37] extcall 503 ............................. <value(tDataList)>
+  [ 40] setparam 2 .............................. tDataList = value(tDataList)
+  [ 42] getparam 2 .............................. <tDataList>
+  [ 44] getobjprop 122 .......................... <tDataList.ilk>
+  [ 46] pushsymb 541 ............................ <#propList>
+  [ 49] nteq .................................... <tDataList.ilk <> #propList>
+  [ 50] jmpifz [ 58] ............................ if tDataList.ilk <> #propList then
+  [ 53] pushzero ................................ <0>
+  [ 54] pusharglistnoret 1 ...................... <0>
+  [ 56] extcall 52 .............................. return 0
+  [ 58] pusharglist 0 ........................... <>
+  [ 60] extcall 40 .............................. <VOID>
+  [ 62] setlocal 1 .............................. tShader = VOID
+  [ 64] getparam 2 .............................. <tDataList>
+  [ 66] pushsymb 208 ............................ <#shader>
+  [ 68] pusharglist 2 ........................... <tDataList, #shader>
+  [ 70] objcall 105 ............................. <tDataList[#shader]>
+  [ 72] getobjprop 122 .......................... <tDataList[#shader].ilk>
+  [ 74] pushsymb 67 ............................. <#string>
+  [ 76] eq ...................................... <tDataList[#shader].ilk = #string>
+  [ 77] jmpifz [ 92] ............................ if tDataList[#shader].ilk = #string then
+  [ 80] getlocal 0 .............................. <tmember>
+  [ 82] getparam 2 .............................. <tDataList>
+  [ 84] getobjprop 208 .......................... <tDataList.shader>
+  [ 86] pusharglist 2 ........................... <tmember, tDataList.shader>
+  [ 88] objcall 208 ............................. <tmember.shader(tDataList.shader)>
+  [ 90] setlocal 1 .............................. tShader = tmember.shader(tDataList.shader)
+  [ 92] getlocal 1 .............................. <tShader>
+  [ 94] pusharglist 0 ........................... <>
+  [ 96] extcall 40 .............................. <VOID>
+  [ 98] eq ...................................... <tShader = VOID>
+  [ 99] jmpifz [107] ............................ if tShader = VOID then
+  [102] pushzero ................................ <0>
+  [103] pusharglistnoret 1 ...................... <0>
+  [105] extcall 52 .............................. return 0
+  [107] getparam 2 .............................. <tDataList>
+  [109] pushsymb 897 ............................ <#ambient>
+  [112] pusharglist 2 ........................... <tDataList, #ambient>
+  [114] objcall 105 ............................. <tDataList[#ambient]>
+  [116] getobjprop 122 .......................... <tDataList[#ambient].ilk>
+  [118] pushsymb 223 ............................ <#color>
+  [120] eq ...................................... <tDataList[#ambient].ilk = #color>
+  [121] jmpifz [134] ............................ if tDataList[#ambient].ilk = #color then
+  [124] getlocal 1 .............................. <tShader>
+  [126] getparam 2 .............................. <tDataList>
+  [128] getobjprop 897 .......................... <tDataList.ambient>
+  [131] setobjprop 897 .......................... tShader.ambient = tDataList.ambient
+  [134] getparam 2 .............................. <tDataList>
+  [136] pushsymb 898 ............................ <#diffuse>
+  [139] pusharglist 2 ........................... <tDataList, #diffuse>
+  [141] objcall 105 ............................. <tDataList[#diffuse]>
+  [143] getobjprop 122 .......................... <tDataList[#diffuse].ilk>
+  [145] pushsymb 223 ............................ <#color>
+  [147] eq ...................................... <tDataList[#diffuse].ilk = #color>
+  [148] jmpifz [161] ............................ if tDataList[#diffuse].ilk = #color then
+  [151] getlocal 1 .............................. <tShader>
+  [153] getparam 2 .............................. <tDataList>
+  [155] getobjprop 898 .......................... <tDataList.diffuse>
+  [158] setobjprop 898 .......................... tShader.diffuse = tDataList.diffuse
+  [161] getparam 2 .............................. <tDataList>
+  [163] pushsymb 900 ............................ <#emissive>
+  [166] pusharglist 2 ........................... <tDataList, #emissive>
+  [168] objcall 105 ............................. <tDataList[#emissive]>
+  [170] getobjprop 122 .......................... <tDataList[#emissive].ilk>
+  [172] pushsymb 223 ............................ <#color>
+  [174] eq ...................................... <tDataList[#emissive].ilk = #color>
+  [175] jmpifz [188] ............................ if tDataList[#emissive].ilk = #color then
+  [178] getlocal 1 .............................. <tShader>
+  [180] getparam 2 .............................. <tDataList>
+  [182] getobjprop 900 .......................... <tDataList.emissive>
+  [185] setobjprop 900 .......................... tShader.emissive = tDataList.emissive
+  [188] getparam 2 .............................. <tDataList>
+  [190] pushsymb 899 ............................ <#specular>
+  [193] pusharglist 2 ........................... <tDataList, #specular>
+  [195] objcall 105 ............................. <tDataList[#specular]>
+  [197] getobjprop 122 .......................... <tDataList[#specular].ilk>
+  [199] pushsymb 223 ............................ <#color>
+  [201] eq ...................................... <tDataList[#specular].ilk = #color>
+  [202] jmpifz [215] ............................ if tDataList[#specular].ilk = #color then
+  [205] getlocal 1 .............................. <tShader>
+  [207] getparam 2 .............................. <tDataList>
+  [209] getobjprop 899 .......................... <tDataList.specular>
+  [212] setobjprop 899 .......................... tShader.specular = tDataList.specular
+  [215] getparam 2 .............................. <tDataList>
+  [217] pushsymb 901 ............................ <#shininess>
+  [220] pusharglist 2 ........................... <tDataList, #shininess>
+  [222] objcall 105 ............................. <tDataList[#shininess]>
+  [224] getobjprop 122 .......................... <tDataList[#shininess].ilk>
+  [226] pushsymb 123 ............................ <#integer>
+  [228] eq ...................................... <tDataList[#shininess].ilk = #integer>
+  [229] getparam 2 .............................. <tDataList>
+  [231] pushsymb 901 ............................ <#shininess>
+  [234] pusharglist 2 ........................... <tDataList, #shininess>
+  [236] objcall 105 ............................. <tDataList[#shininess]>
+  [238] getobjprop 122 .......................... <tDataList[#shininess].ilk>
+  [240] pushsymb 544 ............................ <#float>
+  [243] eq ...................................... <tDataList[#shininess].ilk = #float>
+  [244] or ...................................... <(tDataList[#shininess].ilk = #integer) or (tDataList[#shininess].ilk = #float)>
+  [245] jmpifz [258] ............................ if (tDataList[#shininess].ilk = #integer) or (tDataList[#shininess].ilk = #float) then
+  [248] getlocal 1 .............................. <tShader>
+  [250] getparam 2 .............................. <tDataList>
+  [252] getobjprop 901 .......................... <tDataList.shininess>
+  [255] setobjprop 901 .......................... tShader.shininess = tDataList.shininess
+  [258] getparam 2 .............................. <tDataList>
+  [260] pushsymb 1246 ........................... <#useDiffuseWithTexture>
+  [263] pusharglist 2 ........................... <tDataList, #useDiffuseWithTexture>
+  [265] objcall 105 ............................. <tDataList[#useDiffuseWithTexture]>
+  [267] getobjprop 122 .......................... <tDataList[#useDiffuseWithTexture].ilk>
+  [269] pushsymb 123 ............................ <#integer>
+  [271] eq ...................................... <tDataList[#useDiffuseWithTexture].ilk = #integer>
+  [272] jmpifz [285] ............................ if tDataList[#useDiffuseWithTexture].ilk = #integer then
+  [275] getlocal 1 .............................. <tShader>
+  [277] getparam 2 .............................. <tDataList>
+  [279] getobjprop 1246 ......................... <tDataList.useDiffuseWithTexture>
+  [282] setobjprop 1246 ......................... tShader.useDiffuseWithTexture = tDataList.useDiffuseWithTexture
+  [285] getparam 2 .............................. <tDataList>
+  [287] pushsymb 367 ............................ <#blend>
+  [290] pusharglist 2 ........................... <tDataList, #blend>
+  [292] objcall 105 ............................. <tDataList[#blend]>
+  [294] getobjprop 122 .......................... <tDataList[#blend].ilk>
+  [296] pushsymb 544 ............................ <#float>
+  [299] eq ...................................... <tDataList[#blend].ilk = #float>
+  [300] getparam 2 .............................. <tDataList>
+  [302] pushsymb 367 ............................ <#blend>
+  [305] pusharglist 2 ........................... <tDataList, #blend>
+  [307] objcall 105 ............................. <tDataList[#blend]>
+  [309] getobjprop 122 .......................... <tDataList[#blend].ilk>
+  [311] pushsymb 123 ............................ <#integer>
+  [313] eq ...................................... <tDataList[#blend].ilk = #integer>
+  [314] or ...................................... <(tDataList[#blend].ilk = #float) or (tDataList[#blend].ilk = #integer)>
+  [315] jmpifz [328] ............................ if (tDataList[#blend].ilk = #float) or (tDataList[#blend].ilk = #integer) then
+  [318] getlocal 1 .............................. <tShader>
+  [320] getparam 2 .............................. <tDataList>
+  [322] getobjprop 367 .......................... <tDataList.blend>
+  [325] setobjprop 367 .......................... tShader.blend = tDataList.blend
+  [328] getparam 2 .............................. <tDataList>
+  [330] pushsymb 1243 ........................... <#transparent>
+  [333] pusharglist 2 ........................... <tDataList, #transparent>
+  [335] objcall 105 ............................. <tDataList[#transparent]>
+  [337] getobjprop 122 .......................... <tDataList[#transparent].ilk>
+  [339] pushsymb 123 ............................ <#integer>
+  [341] eq ...................................... <tDataList[#transparent].ilk = #integer>
+  [342] jmpifz [355] ............................ if tDataList[#transparent].ilk = #integer then
+  [345] getlocal 1 .............................. <tShader>
+  [347] getparam 2 .............................. <tDataList>
+  [349] getobjprop 1243 ......................... <tDataList.transparent>
+  [352] setobjprop 1243 ......................... tShader.transparent = tDataList.transparent
+  [355] getparam 2 .............................. <tDataList>
+  [357] pushsymb 888 ............................ <#flat>
+  [360] pusharglist 2 ........................... <tDataList, #flat>
+  [362] objcall 105 ............................. <tDataList[#flat]>
+  [364] getobjprop 122 .......................... <tDataList[#flat].ilk>
+  [366] pushsymb 123 ............................ <#integer>
+  [368] eq ...................................... <tDataList[#flat].ilk = #integer>
+  [369] jmpifz [382] ............................ if tDataList[#flat].ilk = #integer then
+  [372] getlocal 1 .............................. <tShader>
+  [374] getparam 2 .............................. <tDataList>
+  [376] getobjprop 888 .......................... <tDataList.flat>
+  [379] setobjprop 888 .......................... tShader.flat = tDataList.flat
+  [382] pushsymb 302 ............................ <#point>
+  [385] pushsymb 1247 ........................... <#wire>
+  [388] pushsymb 345 ............................ <#fill>
+  [391] pusharglist 3 ........................... <[#point, #wire, #fill]>
+  [393] pushlist ................................ <[#point, #wire, #fill]>
+  [394] setlocal 2 .............................. tRenderStyles = [#point, #wire, #fill]
+  [396] getparam 2 .............................. <tDataList>
+  [398] pushsymb 1248 ........................... <#renderStyle>
+  [401] pusharglist 2 ........................... <tDataList, #renderStyle>
+  [403] objcall 105 ............................. <tDataList[#renderStyle]>
+  [405] getobjprop 122 .......................... <tDataList[#renderStyle].ilk>
+  [407] pushsymb 88 ............................. <#symbol>
+  [409] eq ...................................... <tDataList[#renderStyle].ilk = #symbol>
+  [410] jmpifz [439] ............................ if tDataList[#renderStyle].ilk = #symbol then
+  [413] getlocal 2 .............................. <tRenderStyles>
+  [415] getparam 2 .............................. <tDataList>
+  [417] getobjprop 1248 ......................... <tDataList.renderStyle>
+  [420] pusharglist 2 ........................... <tRenderStyles, tDataList.renderStyle>
+  [422] objcall 166 ............................. <tRenderStyles.getPos(tDataList.renderStyle)>
+  [424] pushzero ................................ <0>
+  [425] nteq .................................... <tRenderStyles.getPos(tDataList.renderStyle) <> 0>
+  [426] jmpifz [439] ............................ if tRenderStyles.getPos(tDataList.renderStyle) <> 0 then
+  [429] getlocal 1 .............................. <tShader>
+  [431] getparam 2 .............................. <tDataList>
+  [433] getobjprop 1248 ......................... <tDataList.renderStyle>
+  [436] setobjprop 1248 ......................... tShader.renderStyle = tDataList.renderStyle
+  [439] pushsymb 54 ............................. <#none>
+  [441] pushsymb 1249 ........................... <#wrapPlanar>
+  [444] pushsymb 1250 ........................... <#wrapCylindrical>
+  [447] pushsymb 1251 ........................... <#wrapSpherical>
+  [450] pushsymb 1252 ........................... <#reflection>
+  [453] pushsymb 1253 ........................... <#diffuseLight>
+  [456] pushsymb 1254 ........................... <#specularLight>
+  [459] pusharglist 7 ........................... <[#none, #wrapPlanar, #wrapCylindrical, #wrapSpherical, #reflection, #diffuseLight, #specularLight]>
+  [461] pushlist ................................ <[#none, #wrapPlanar, #wrapCylindrical, #wrapSpherical, #reflection, #diffuseLight, #specularLight]>
+  [462] setlocal 3 .............................. tTextureModes = [#none, #wrapPlanar, #wrapCylindrical, #wrapSpherical, #reflection, #diffuseLight, #specularLight]
+  [464] pushsymb 919 ............................ <#multiply>
+  [467] pushsymb 905 ............................ <#replace>
+  [470] pushsymb 42 ............................. <#add>
+  [472] pushsymb 367 ............................ <#blend>
+  [475] pusharglist 4 ........................... <[#multiply, #replace, #add, #blend]>
+  [477] pushlist ................................ <[#multiply, #replace, #add, #blend]>
+  [478] setlocal 4 .............................. tBlendFunctions = [#multiply, #replace, #add, #blend]
+  [480] pushsymb 957 ............................ <#alpha>
+  [483] pushsymb 1255 ........................... <#constant>
+  [486] pusharglist 2 ........................... <[#alpha, #constant]>
+  [488] pushlist ................................ <[#alpha, #constant]>
+  [489] setlocal 5 .............................. tBlendSources = [#alpha, #constant]
+  [491] pushint8 1 .............................. <1>
+  [493] setlocal 6
+  [495] getlocal 6
+  [497] pushint8 8 .............................. <8>
+  [499] lteq
+  [500] jmpifz [1068] ........................... repeat with i = 1 to 8
+  [503] getparam 2 .............................. <tDataList>
+  [505] pushcons 3 .............................. <"Texture">
+  [507] getlocal 6 .............................. <i>
+  [509] joinstr ................................. <"Texture" & i>
+  [510] pusharglist 1 ........................... <"Texture" & i>
+  [512] extcall 88 .............................. <symbol("Texture" & i)>
+  [514] pusharglist 2 ........................... <tDataList, symbol("Texture" & i)>
+  [516] objcall 105 ............................. <tDataList[symbol("Texture" & i)]>
+  [518] getobjprop 122 .......................... <tDataList[symbol("Texture" & i)].ilk>
+  [520] pushsymb 67 ............................. <#string>
+  [522] eq ...................................... <tDataList[symbol("Texture" & i)].ilk = #string>
+  [523] jmpifz [558] ............................ if tDataList[symbol("Texture" & i)].ilk = #string then
+  [526] getlocal 1 .............................. <tShader>
+  [528] pushsymb 1244 ........................... <#textureList>
+  [531] getlocal 6 .............................. <i>
+  [533] getlocal 0 .............................. <tmember>
+  [535] getparam 2 .............................. <tDataList>
+  [537] pushcons 3 .............................. <"Texture">
+  [539] getlocal 6 .............................. <i>
+  [541] joinstr ................................. <"Texture" & i>
+  [542] pusharglist 1 ........................... <"Texture" & i>
+  [544] extcall 88 .............................. <symbol("Texture" & i)>
+  [546] pusharglist 2 ........................... <tDataList, symbol("Texture" & i)>
+  [548] objcall 105 ............................. <tDataList[symbol("Texture" & i)]>
+  [550] pusharglist 2 ........................... <tmember, tDataList[symbol("Texture" & i)]>
+  [552] objcall 218 ............................. <tmember.texture(tDataList[symbol("Texture" & i)])>
+  [554] pusharglistnoret 4 ...................... <tShader, #textureList, i, tmember.texture(tDataList[symbol("Texture" & i)])>
+  [556] objcall 99 .............................. tShader.textureList[i] = tmember.texture(tDataList[symbol("Texture" & i)])
+  [558] getparam 2 .............................. <tDataList>
+  [560] pushcons 4 .............................. <"TextureMode">
+  [562] getlocal 6 .............................. <i>
+  [564] joinstr ................................. <"TextureMode" & i>
+  [565] pusharglist 1 ........................... <"TextureMode" & i>
+  [567] extcall 88 .............................. <symbol("TextureMode" & i)>
+  [569] pusharglist 2 ........................... <tDataList, symbol("TextureMode" & i)>
+  [571] objcall 105 ............................. <tDataList[symbol("TextureMode" & i)]>
+  [573] getobjprop 122 .......................... <tDataList[symbol("TextureMode" & i)].ilk>
+  [575] pushsymb 88 ............................. <#symbol>
+  [577] eq ...................................... <tDataList[symbol("TextureMode" & i)].ilk = #symbol>
+  [578] jmpifz [633] ............................ if tDataList[symbol("TextureMode" & i)].ilk = #symbol then
+  [581] getlocal 3 .............................. <tTextureModes>
+  [583] getparam 2 .............................. <tDataList>
+  [585] pushcons 4 .............................. <"TextureMode">
+  [587] getlocal 6 .............................. <i>
+  [589] joinstr ................................. <"TextureMode" & i>
+  [590] pusharglist 1 ........................... <"TextureMode" & i>
+  [592] extcall 88 .............................. <symbol("TextureMode" & i)>
+  [594] pusharglist 2 ........................... <tDataList, symbol("TextureMode" & i)>
+  [596] objcall 105 ............................. <tDataList[symbol("TextureMode" & i)]>
+  [598] pusharglist 2 ........................... <tTextureModes, tDataList[symbol("TextureMode" & i)]>
+  [600] objcall 166 ............................. <tTextureModes.getPos(tDataList[symbol("TextureMode" & i)])>
+  [602] pushzero ................................ <0>
+  [603] nteq .................................... <tTextureModes.getPos(tDataList[symbol("TextureMode" & i)]) <> 0>
+  [604] jmpifz [633] ............................ if tTextureModes.getPos(tDataList[symbol("TextureMode" & i)]) <> 0 then
+  [607] getlocal 1 .............................. <tShader>
+  [609] pushsymb 1256 ........................... <#textureModeList>
+  [612] getlocal 6 .............................. <i>
+  [614] getparam 2 .............................. <tDataList>
+  [616] pushcons 4 .............................. <"TextureMode">
+  [618] getlocal 6 .............................. <i>
+  [620] joinstr ................................. <"TextureMode" & i>
+  [621] pusharglist 1 ........................... <"TextureMode" & i>
+  [623] extcall 88 .............................. <symbol("TextureMode" & i)>
+  [625] pusharglist 2 ........................... <tDataList, symbol("TextureMode" & i)>
+  [627] objcall 105 ............................. <tDataList[symbol("TextureMode" & i)]>
+  [629] pusharglistnoret 4 ...................... <tShader, #textureModeList, i, tDataList[symbol("TextureMode" & i)]>
+  [631] objcall 99 .............................. tShader.textureModeList[i] = tDataList[symbol("TextureMode" & i)]
+  [633] getparam 2 .............................. <tDataList>
+  [635] pushcons 5 .............................. <"BlendFunction">
+  [637] getlocal 6 .............................. <i>
+  [639] joinstr ................................. <"BlendFunction" & i>
+  [640] pusharglist 1 ........................... <"BlendFunction" & i>
+  [642] extcall 88 .............................. <symbol("BlendFunction" & i)>
+  [644] pusharglist 2 ........................... <tDataList, symbol("BlendFunction" & i)>
+  [646] objcall 105 ............................. <tDataList[symbol("BlendFunction" & i)]>
+  [648] getobjprop 122 .......................... <tDataList[symbol("BlendFunction" & i)].ilk>
+  [650] pushsymb 88 ............................. <#symbol>
+  [652] eq ...................................... <tDataList[symbol("BlendFunction" & i)].ilk = #symbol>
+  [653] jmpifz [708] ............................ if tDataList[symbol("BlendFunction" & i)].ilk = #symbol then
+  [656] getlocal 4 .............................. <tBlendFunctions>
+  [658] getparam 2 .............................. <tDataList>
+  [660] pushcons 5 .............................. <"BlendFunction">
+  [662] getlocal 6 .............................. <i>
+  [664] joinstr ................................. <"BlendFunction" & i>
+  [665] pusharglist 1 ........................... <"BlendFunction" & i>
+  [667] extcall 88 .............................. <symbol("BlendFunction" & i)>
+  [669] pusharglist 2 ........................... <tDataList, symbol("BlendFunction" & i)>
+  [671] objcall 105 ............................. <tDataList[symbol("BlendFunction" & i)]>
+  [673] pusharglist 2 ........................... <tBlendFunctions, tDataList[symbol("BlendFunction" & i)]>
+  [675] objcall 166 ............................. <tBlendFunctions.getPos(tDataList[symbol("BlendFunction" & i)])>
+  [677] pushzero ................................ <0>
+  [678] nteq .................................... <tBlendFunctions.getPos(tDataList[symbol("BlendFunction" & i)]) <> 0>
+  [679] jmpifz [708] ............................ if tBlendFunctions.getPos(tDataList[symbol("BlendFunction" & i)]) <> 0 then
+  [682] getlocal 1 .............................. <tShader>
+  [684] pushsymb 904 ............................ <#blendFunctionList>
+  [687] getlocal 6 .............................. <i>
+  [689] getparam 2 .............................. <tDataList>
+  [691] pushcons 5 .............................. <"BlendFunction">
+  [693] getlocal 6 .............................. <i>
+  [695] joinstr ................................. <"BlendFunction" & i>
+  [696] pusharglist 1 ........................... <"BlendFunction" & i>
+  [698] extcall 88 .............................. <symbol("BlendFunction" & i)>
+  [700] pusharglist 2 ........................... <tDataList, symbol("BlendFunction" & i)>
+  [702] objcall 105 ............................. <tDataList[symbol("BlendFunction" & i)]>
+  [704] pusharglistnoret 4 ...................... <tShader, #blendFunctionList, i, tDataList[symbol("BlendFunction" & i)]>
+  [706] objcall 99 .............................. tShader.blendFunctionList[i] = tDataList[symbol("BlendFunction" & i)]
+  [708] getparam 2 .............................. <tDataList>
+  [710] pushcons 6 .............................. <"BlendSource">
+  [712] getlocal 6 .............................. <i>
+  [714] joinstr ................................. <"BlendSource" & i>
+  [715] pusharglist 1 ........................... <"BlendSource" & i>
+  [717] extcall 88 .............................. <symbol("BlendSource" & i)>
+  [719] pusharglist 2 ........................... <tDataList, symbol("BlendSource" & i)>
+  [721] objcall 105 ............................. <tDataList[symbol("BlendSource" & i)]>
+  [723] getobjprop 122 .......................... <tDataList[symbol("BlendSource" & i)].ilk>
+  [725] pushsymb 88 ............................. <#symbol>
+  [727] eq ...................................... <tDataList[symbol("BlendSource" & i)].ilk = #symbol>
+  [728] jmpifz [783] ............................ if tDataList[symbol("BlendSource" & i)].ilk = #symbol then
+  [731] getlocal 5 .............................. <tBlendSources>
+  [733] getparam 2 .............................. <tDataList>
+  [735] pushcons 6 .............................. <"BlendSource">
+  [737] getlocal 6 .............................. <i>
+  [739] joinstr ................................. <"BlendSource" & i>
+  [740] pusharglist 1 ........................... <"BlendSource" & i>
+  [742] extcall 88 .............................. <symbol("BlendSource" & i)>
+  [744] pusharglist 2 ........................... <tDataList, symbol("BlendSource" & i)>
+  [746] objcall 105 ............................. <tDataList[symbol("BlendSource" & i)]>
+  [748] pusharglist 2 ........................... <tBlendSources, tDataList[symbol("BlendSource" & i)]>
+  [750] objcall 166 ............................. <tBlendSources.getPos(tDataList[symbol("BlendSource" & i)])>
+  [752] pushzero ................................ <0>
+  [753] nteq .................................... <tBlendSources.getPos(tDataList[symbol("BlendSource" & i)]) <> 0>
+  [754] jmpifz [783] ............................ if tBlendSources.getPos(tDataList[symbol("BlendSource" & i)]) <> 0 then
+  [757] getlocal 1 .............................. <tShader>
+  [759] pushsymb 1257 ........................... <#blendSourceList>
+  [762] getlocal 6 .............................. <i>
+  [764] getparam 2 .............................. <tDataList>
+  [766] pushcons 6 .............................. <"BlendSource">
+  [768] getlocal 6 .............................. <i>
+  [770] joinstr ................................. <"BlendSource" & i>
+  [771] pusharglist 1 ........................... <"BlendSource" & i>
+  [773] extcall 88 .............................. <symbol("BlendSource" & i)>
+  [775] pusharglist 2 ........................... <tDataList, symbol("BlendSource" & i)>
+  [777] objcall 105 ............................. <tDataList[symbol("BlendSource" & i)]>
+  [779] pusharglistnoret 4 ...................... <tShader, #blendSourceList, i, tDataList[symbol("BlendSource" & i)]>
+  [781] objcall 99 .............................. tShader.blendSourceList[i] = tDataList[symbol("BlendSource" & i)]
+  [783] getparam 2 .............................. <tDataList>
+  [785] pushcons 7 .............................. <"blendConstant">
+  [787] getlocal 6 .............................. <i>
+  [789] joinstr ................................. <"blendConstant" & i>
+  [790] pusharglist 1 ........................... <"blendConstant" & i>
+  [792] extcall 88 .............................. <symbol("blendConstant" & i)>
+  [794] pusharglist 2 ........................... <tDataList, symbol("blendConstant" & i)>
+  [796] objcall 105 ............................. <tDataList[symbol("blendConstant" & i)]>
+  [798] getobjprop 122 .......................... <tDataList[symbol("blendConstant" & i)].ilk>
+  [800] pushsymb 544 ............................ <#float>
+  [803] eq ...................................... <tDataList[symbol("blendConstant" & i)].ilk = #float>
+  [804] getparam 2 .............................. <tDataList>
+  [806] pushcons 7 .............................. <"blendConstant">
+  [808] getlocal 6 .............................. <i>
+  [810] joinstr ................................. <"blendConstant" & i>
+  [811] pusharglist 1 ........................... <"blendConstant" & i>
+  [813] extcall 88 .............................. <symbol("blendConstant" & i)>
+  [815] pusharglist 2 ........................... <tDataList, symbol("blendConstant" & i)>
+  [817] objcall 105 ............................. <tDataList[symbol("blendConstant" & i)]>
+  [819] getobjprop 122 .......................... <tDataList[symbol("blendConstant" & i)].ilk>
+  [821] pushsymb 123 ............................ <#integer>
+  [823] eq ...................................... <tDataList[symbol("blendConstant" & i)].ilk = #integer>
+  [824] or ...................................... <(tDataList[symbol("blendConstant" & i)].ilk = #float) or (tDataList[symbol("blendConstant" & i)].ilk = #integer)>
+  [825] jmpifz [854] ............................ if (tDataList[symbol("blendConstant" & i)].ilk = #float) or (tDataList[symbol("blendConstant" & i)].ilk = #integer) then
+  [828] getlocal 1 .............................. <tShader>
+  [830] pushsymb 1258 ........................... <#blendConstantList>
+  [833] getlocal 6 .............................. <i>
+  [835] getparam 2 .............................. <tDataList>
+  [837] pushcons 7 .............................. <"blendConstant">
+  [839] getlocal 6 .............................. <i>
+  [841] joinstr ................................. <"blendConstant" & i>
+  [842] pusharglist 1 ........................... <"blendConstant" & i>
+  [844] extcall 88 .............................. <symbol("blendConstant" & i)>
+  [846] pusharglist 2 ........................... <tDataList, symbol("blendConstant" & i)>
+  [848] objcall 105 ............................. <tDataList[symbol("blendConstant" & i)]>
+  [850] pusharglistnoret 4 ...................... <tShader, #blendConstantList, i, tDataList[symbol("blendConstant" & i)]>
+  [852] objcall 99 .............................. tShader.blendConstantList[i] = tDataList[symbol("blendConstant" & i)]
+  [854] getparam 2 .............................. <tDataList>
+  [856] pushcons 8 .............................. <"TextureRepeat">
+  [858] getlocal 6 .............................. <i>
+  [860] joinstr ................................. <"TextureRepeat" & i>
+  [861] pusharglist 1 ........................... <"TextureRepeat" & i>
+  [863] extcall 88 .............................. <symbol("TextureRepeat" & i)>
+  [865] pusharglist 2 ........................... <tDataList, symbol("TextureRepeat" & i)>
+  [867] objcall 105 ............................. <tDataList[symbol("TextureRepeat" & i)]>
+  [869] getobjprop 122 .......................... <tDataList[symbol("TextureRepeat" & i)].ilk>
+  [871] pushsymb 123 ............................ <#integer>
+  [873] eq ...................................... <tDataList[symbol("TextureRepeat" & i)].ilk = #integer>
+  [874] jmpifz [903] ............................ if tDataList[symbol("TextureRepeat" & i)].ilk = #integer then
+  [877] getlocal 1 .............................. <tShader>
+  [879] pushsymb 1259 ........................... <#textureRepeat>
+  [882] getlocal 6 .............................. <i>
+  [884] getparam 2 .............................. <tDataList>
+  [886] pushcons 8 .............................. <"TextureRepeat">
+  [888] getlocal 6 .............................. <i>
+  [890] joinstr ................................. <"TextureRepeat" & i>
+  [891] pusharglist 1 ........................... <"TextureRepeat" & i>
+  [893] extcall 88 .............................. <symbol("TextureRepeat" & i)>
+  [895] pusharglist 2 ........................... <tDataList, symbol("TextureRepeat" & i)>
+  [897] objcall 105 ............................. <tDataList[symbol("TextureRepeat" & i)]>
+  [899] pusharglistnoret 4 ...................... <tShader, #textureRepeat, i, tDataList[symbol("TextureRepeat" & i)]>
+  [901] objcall 99 .............................. tShader.textureRepeat[i] = tDataList[symbol("TextureRepeat" & i)]
+  [903] getparam 2 .............................. <tDataList>
+  [905] pushcons 9 .............................. <"TexturePosition">
+  [907] getlocal 6 .............................. <i>
+  [909] joinstr ................................. <"TexturePosition" & i>
+  [910] pusharglist 1 ........................... <"TexturePosition" & i>
+  [912] extcall 88 .............................. <symbol("TexturePosition" & i)>
+  [914] pusharglist 2 ........................... <tDataList, symbol("TexturePosition" & i)>
+  [916] objcall 105 ............................. <tDataList[symbol("TexturePosition" & i)]>
+  [918] getobjprop 122 .......................... <tDataList[symbol("TexturePosition" & i)].ilk>
+  [920] pushsymb 212 ............................ <#vector>
+  [922] eq ...................................... <tDataList[symbol("TexturePosition" & i)].ilk = #vector>
+  [923] jmpifz [954] ............................ if tDataList[symbol("TexturePosition" & i)].ilk = #vector then
+  [926] getlocal 1 .............................. <tShader>
+  [928] pushsymb 1260 ........................... <#textureTransformList>
+  [931] getlocal 6 .............................. <i>
+  [933] pusharglist 3 ........................... <tShader, #textureTransformList, i>
+  [935] objcall 102 ............................. <tShader.textureTransformList[i]>
+  [937] getparam 2 .............................. <tDataList>
+  [939] pushcons 9 .............................. <"TexturePosition">
+  [941] getlocal 6 .............................. <i>
+  [943] joinstr ................................. <"TexturePosition" & i>
+  [944] pusharglist 1 ........................... <"TexturePosition" & i>
+  [946] extcall 88 .............................. <symbol("TexturePosition" & i)>
+  [948] pusharglist 2 ........................... <tDataList, symbol("TexturePosition" & i)>
+  [950] objcall 105 ............................. <tDataList[symbol("TexturePosition" & i)]>
+  [952] setobjprop 215 .......................... tShader.textureTransformList[i].position = tDataList[symbol("TexturePosition" & i)]
+  [954] getparam 2 .............................. <tDataList>
+  [956] pushcons 10 ............................. <"TextureRotation">
+  [958] getlocal 6 .............................. <i>
+  [960] joinstr ................................. <"TextureRotation" & i>
+  [961] pusharglist 1 ........................... <"TextureRotation" & i>
+  [963] extcall 88 .............................. <symbol("TextureRotation" & i)>
+  [965] pusharglist 2 ........................... <tDataList, symbol("TextureRotation" & i)>
+  [967] objcall 105 ............................. <tDataList[symbol("TextureRotation" & i)]>
+  [969] getobjprop 122 .......................... <tDataList[symbol("TextureRotation" & i)].ilk>
+  [971] pushsymb 212 ............................ <#vector>
+  [973] eq ...................................... <tDataList[symbol("TextureRotation" & i)].ilk = #vector>
+  [974] jmpifz [1006] ........................... if tDataList[symbol("TextureRotation" & i)].ilk = #vector then
+  [977] getlocal 1 .............................. <tShader>
+  [979] pushsymb 1260 ........................... <#textureTransformList>
+  [982] getlocal 6 .............................. <i>
+  [984] pusharglist 3 ........................... <tShader, #textureTransformList, i>
+  [986] objcall 102 ............................. <tShader.textureTransformList[i]>
+  [988] getparam 2 .............................. <tDataList>
+  [990] pushcons 10 ............................. <"TextureRotation">
+  [992] getlocal 6 .............................. <i>
+  [994] joinstr ................................. <"TextureRotation" & i>
+  [995] pusharglist 1 ........................... <"TextureRotation" & i>
+  [997] extcall 88 .............................. <symbol("TextureRotation" & i)>
+  [999] pusharglist 2 ........................... <tDataList, symbol("TextureRotation" & i)>
+  [1001] objcall 105 ............................ <tDataList[symbol("TextureRotation" & i)]>
+  [1003] setobjprop 1162 ........................ tShader.textureTransformList[i].rotation = tDataList[symbol("TextureRotation" & i)]
+  [1006] getparam 2 ............................. <tDataList>
+  [1008] pushcons 11 ............................ <"TextureScale">
+  [1010] getlocal 6 ............................. <i>
+  [1012] joinstr ................................ <"TextureScale" & i>
+  [1013] pusharglist 1 .......................... <"TextureScale" & i>
+  [1015] extcall 88 ............................. <symbol("TextureScale" & i)>
+  [1017] pusharglist 2 .......................... <tDataList, symbol("TextureScale" & i)>
+  [1019] objcall 105 ............................ <tDataList[symbol("TextureScale" & i)]>
+  [1021] getobjprop 122 ......................... <tDataList[symbol("TextureScale" & i)].ilk>
+  [1023] pushsymb 212 ........................... <#vector>
+  [1025] eq ..................................... <tDataList[symbol("TextureScale" & i)].ilk = #vector>
+  [1026] jmpifz [1058] .......................... if tDataList[symbol("TextureScale" & i)].ilk = #vector then
+  [1029] getlocal 1 ............................. <tShader>
+  [1031] pushsymb 1260 .......................... <#textureTransformList>
+  [1034] getlocal 6 ............................. <i>
+  [1036] pusharglist 3 .......................... <tShader, #textureTransformList, i>
+  [1038] objcall 102 ............................ <tShader.textureTransformList[i]>
+  [1040] getparam 2 ............................. <tDataList>
+  [1042] pushcons 11 ............................ <"TextureScale">
+  [1044] getlocal 6 ............................. <i>
+  [1046] joinstr ................................ <"TextureScale" & i>
+  [1047] pusharglist 1 .......................... <"TextureScale" & i>
+  [1049] extcall 88 ............................. <symbol("TextureScale" & i)>
+  [1051] pusharglist 2 .......................... <tDataList, symbol("TextureScale" & i)>
+  [1053] objcall 105 ............................ <tDataList[symbol("TextureScale" & i)]>
+  [1055] setobjprop 307 ......................... tShader.textureTransformList[i].scale = tDataList[symbol("TextureScale" & i)]
+  [1058] pushint8 1
+  [1060] getlocal 6
+  [1062] add
+  [1063] setlocal 6
+  [1065] endrepeat [495]
+  [1068] ret
+end
+
+on deleteShader me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 64 .............................. <member(tTarget)>
+  [  6] setlocal 0 .............................. tmember = member(tTarget)
+  [  8] getlocal 0 .............................. <tmember>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <tmember = VOID>
+  [ 15] jmpifz [ 23] ............................ if tmember = VOID then
+  [ 18] pushzero ................................ <0>
+  [ 19] pusharglistnoret 1 ...................... <0>
+  [ 21] extcall 52 .............................. return 0
+  [ 23] getparam 2 .............................. <tDataList>
+  [ 25] getobjprop 122 .......................... <tDataList.ilk>
+  [ 27] pushsymb 67 ............................. <#string>
+  [ 29] eq ...................................... <tDataList.ilk = #string>
+  [ 30] jmpifz [ 42] ............................ if tDataList.ilk = #string then
+  [ 33] getparam 2 .............................. <tDataList>
+  [ 35] pusharglist 1 ........................... <tDataList>
+  [ 37] extcall 503 ............................. <value(tDataList)>
+  [ 40] setparam 2 .............................. tDataList = value(tDataList)
+  [ 42] getparam 2 .............................. <tDataList>
+  [ 44] getobjprop 122 .......................... <tDataList.ilk>
+  [ 46] pushsymb 541 ............................ <#propList>
+  [ 49] nteq .................................... <tDataList.ilk <> #propList>
+  [ 50] jmpifz [ 58] ............................ if tDataList.ilk <> #propList then
+  [ 53] pushzero ................................ <0>
+  [ 54] pusharglistnoret 1 ...................... <0>
+  [ 56] extcall 52 .............................. return 0
+  [ 58] pusharglist 0 ........................... <[]>
+  [ 60] pushlist ................................ <[]>
+  [ 61] setlocal 1 .............................. tTargetList = []
+  [ 63] getparam 2 .............................. <tDataList>
+  [ 65] pushsymb 208 ............................ <#shader>
+  [ 67] pusharglist 2 ........................... <tDataList, #shader>
+  [ 69] objcall 105 ............................. <tDataList[#shader]>
+  [ 71] getobjprop 122 .......................... <tDataList[#shader].ilk>
+  [ 73] pushsymb 40 ............................. <#void>
+  [ 75] eq ...................................... <tDataList[#shader].ilk = #void>
+  [ 76] jmpifz [ 89] ............................ if tDataList[#shader].ilk = #void then
+  [ 79] getparam 2 .............................. <tDataList>
+  [ 81] pushsymb 208 ............................ <#shader>
+  [ 83] pushcons 12 ............................. <"*.*">
+  [ 85] pusharglistnoret 3 ...................... <tDataList, #shader, "*.*">
+  [ 87] objcall 103 ............................. tDataList[#shader] = "*.*"
+  [ 89] getparam 2 .............................. <tDataList>
+  [ 91] pushsymb 208 ............................ <#shader>
+  [ 93] pusharglist 2 ........................... <tDataList, #shader>
+  [ 95] objcall 105 ............................. <tDataList[#shader]>
+  [ 97] getobjprop 122 .......................... <tDataList[#shader].ilk>
+  [ 99] pushsymb 126 ............................ <#list>
+  [101] eq ...................................... <tDataList[#shader].ilk = #list>
+  [102] jmpifz [114] ............................ if tDataList[#shader].ilk = #list then / else
+  [105] getparam 2 .............................. <tDataList>
+  [107] getobjprop 208 .......................... <tDataList.shader>
+  [109] setlocal 1 .............................. tTargetList = tDataList.shader
+  [111] jmp [216]
+  [114] getparam 2 .............................. <tDataList>
+  [116] pushsymb 208 ............................ <#shader>
+  [118] pusharglist 2 ........................... <tDataList, #shader>
+  [120] objcall 105 ............................. <tDataList[#shader]>
+  [122] getobjprop 122 .......................... <tDataList[#shader].ilk>
+  [124] pushsymb 67 ............................. <#string>
+  [126] eq ...................................... <tDataList[#shader].ilk = #string>
+  [127] jmpifz [216] ............................ if tDataList[#shader].ilk = #string then
+  [130] getparam 2 .............................. <tDataList>
+  [132] getchainedprop 208 ...................... <tDataList.shader>
+  [134] pushsymb 68 ............................. <#char>
+  [136] pushint8 1 .............................. <1>
+  [138] pusharglist 3 ........................... <tDataList.shader, #char, 1>
+  [140] objcall 70 .............................. <tDataList.shader.char[1]>
+  [142] pushcons 13 ............................. <"*">
+  [144] eq ...................................... <tDataList.shader.char[1] = "*">
+  [145] jmpifz [206] ............................ if tDataList.shader.char[1] = "*" then / else
+  [148] getparam 2 .............................. <tDataList>
+  [150] getobjprop 208 .......................... <tDataList.shader>
+  [152] setlocal 2 .............................. tString = tDataList.shader
+  [154] getlocal 2 .............................. <tString>
+  [156] pushcons 12 ............................. <"*.*">
+  [158] nteq .................................... <tString <> "*.*">
+  [159] jmpifz [179] ............................ if tString <> "*.*" then
+  [162] pushint8 2 .............................. <2>
+  [164] pushchunkvarref 5 ....................... <tString>
+  [166] pushsymb 68 ............................. <#char>
+  [168] pushint8 1 .............................. <1>
+  [170] pusharglist 3 ........................... <tString, #char, 1>
+  [172] objcall 102 ............................. <tString.char[1]>
+  [174] pusharglistnoret 1 ...................... <tString.char[1]>
+  [176] objcall 562 ............................. delete tString.char[1]
+  [179] pushzero ................................ <0>
+  [180] getlocal 0 .............................. <tmember>
+  [182] getobjprop 235 .......................... <tmember.name>
+  [184] pushsymb 598 ............................ <#type>
+  [187] pushsymb 208 ............................ <#shader>
+  [189] pushsymb 67 ............................. <#string>
+  [191] getlocal 2 .............................. <tString>
+  [193] pusharglist 4 ........................... <[#type: #shader, #string: tString]>
+  [195] pushproplist ............................ <[#type: #shader, #string: tString]>
+  [196] pusharglist 3 ........................... <0, tmember.name, [#type: #shader, #string: tString]>
+  [198] extcall 1265 ............................ <GetStringList(0, tmember.name, [#type: #shader, #string: tString])>
+  [201] setlocal 1 .............................. tTargetList = GetStringList(0, tmember.name, [#type: #shader, #string: tString])
+  [203] jmp [216]
+  [206] getlocal 1 .............................. <tTargetList>
+  [208] getparam 2 .............................. <tDataList>
+  [210] getobjprop 208 .......................... <tDataList.shader>
+  [212] pusharglistnoret 2 ...................... <tTargetList, tDataList.shader>
+  [214] objcall 42 .............................. tTargetList.add(tDataList.shader)
+  [216] getlocal 1 .............................. <tTargetList>
+  [218] getobjprop 129 .......................... <tTargetList.count>
+  [220] pushzero ................................ <0>
+  [221] eq ...................................... <tTargetList.count = 0>
+  [222] jmpifz [233] ............................ if tTargetList.count = 0 then
+  [225] pusharglist 0 ........................... <>
+  [227] extcall 40 .............................. <VOID>
+  [229] pusharglistnoret 1 ...................... <VOID>
+  [231] extcall 52 .............................. return VOID
+  [233] getlocal 1 .............................. <tTargetList>
+  [235] peek 0
+  [237] pusharglist 1
+  [239] extcall 129
+  [241] pushint8 1
+  [243] peek 0
+  [245] peek 2
+  [247] lteq
+  [248] jmpifz [291] ............................ repeat with i in tTargetList
+  [251] peek 2
+  [253] peek 1
+  [255] pusharglist 2
+  [257] extcall 105
+  [259] setlocal 3
+  [261] getlocal 0 .............................. <tmember>
+  [263] getlocal 3 .............................. <i>
+  [265] pusharglist 2 ........................... <tmember, i>
+  [267] objcall 208 ............................. <tmember.shader(i)>
+  [269] pusharglist 0 ........................... <>
+  [271] extcall 40 .............................. <VOID>
+  [273] nteq .................................... <tmember.shader(i) <> VOID>
+  [274] jmpifz [286] ............................ if tmember.shader(i) <> VOID then
+  [277] getlocal 0 .............................. <tmember>
+  [279] getlocal 3 .............................. <i>
+  [281] pusharglistnoret 2 ...................... <tmember, i>
+  [283] objcall 1241 ............................ tmember.deleteShader(i)
+  [286] pushint8 1
+  [288] add
+  [289] endrepeat [243]
+  [291] pop 3
+  [293] pushint8 1 .............................. <1>
+  [295] pusharglistnoret 1 ...................... <1>
+  [297] extcall 52 .............................. return 1
+  [299] ret
+end
+
+on DuplicateShader me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 64 .............................. <member(tTarget)>
+  [  6] setlocal 0 .............................. tmember = member(tTarget)
+  [  8] getlocal 0 .............................. <tmember>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <tmember = VOID>
+  [ 15] jmpifz [ 25] ............................ if tmember = VOID then
+  [ 18] pusharglist 0 ........................... <[]>
+  [ 20] pushlist ................................ <[]>
+  [ 21] pusharglistnoret 1 ...................... <[]>
+  [ 23] extcall 52 .............................. return []
+  [ 25] getparam 2 .............................. <tDataList>
+  [ 27] getobjprop 122 .......................... <tDataList.ilk>
+  [ 29] pushsymb 67 ............................. <#string>
+  [ 31] eq ...................................... <tDataList.ilk = #string>
+  [ 32] jmpifz [ 44] ............................ if tDataList.ilk = #string then
+  [ 35] getparam 2 .............................. <tDataList>
+  [ 37] pusharglist 1 ........................... <tDataList>
+  [ 39] extcall 503 ............................. <value(tDataList)>
+  [ 42] setparam 2 .............................. tDataList = value(tDataList)
+  [ 44] getparam 2 .............................. <tDataList>
+  [ 46] getobjprop 122 .......................... <tDataList.ilk>
+  [ 48] pushsymb 541 ............................ <#propList>
+  [ 51] nteq .................................... <tDataList.ilk <> #propList>
+  [ 52] jmpifz [ 62] ............................ if tDataList.ilk <> #propList then
+  [ 55] pusharglist 0 ........................... <[]>
+  [ 57] pushlist ................................ <[]>
+  [ 58] pusharglistnoret 1 ...................... <[]>
+  [ 60] extcall 52 .............................. return []
+  [ 62] getlocal 0 .............................. <tmember>
+  [ 64] setlocal 1 .............................. tSourceMember = tmember
+  [ 66] getparam 2 .............................. <tDataList>
+  [ 68] pushsymb 1212 ........................... <#sourceMember>
+  [ 71] pusharglist 2 ........................... <tDataList, #sourceMember>
+  [ 73] objcall 105 ............................. <tDataList[#sourceMember]>
+  [ 75] getobjprop 122 .......................... <tDataList[#sourceMember].ilk>
+  [ 77] pushsymb 67 ............................. <#string>
+  [ 79] eq ...................................... <tDataList[#sourceMember].ilk = #string>
+  [ 80] jmpifz [ 94] ............................ if tDataList[#sourceMember].ilk = #string then
+  [ 83] getparam 2 .............................. <tDataList>
+  [ 85] getobjprop 1212 ......................... <tDataList.sourceMember>
+  [ 88] pusharglist 1 ........................... <tDataList.sourceMember>
+  [ 90] extcall 64 .............................. <member(tDataList.sourceMember)>
+  [ 92] setlocal 1 .............................. tSourceMember = member(tDataList.sourceMember)
+  [ 94] pusharglist 0 ........................... <[]>
+  [ 96] pushlist ................................ <[]>
+  [ 97] setlocal 2 .............................. tTargetList = []
+  [ 99] getparam 2 .............................. <tDataList>
+  [101] pushsymb 208 ............................ <#shader>
+  [103] pusharglist 2 ........................... <tDataList, #shader>
+  [105] objcall 105 ............................. <tDataList[#shader]>
+  [107] getobjprop 122 .......................... <tDataList[#shader].ilk>
+  [109] pushsymb 40 ............................. <#void>
+  [111] eq ...................................... <tDataList[#shader].ilk = #void>
+  [112] jmpifz [125] ............................ if tDataList[#shader].ilk = #void then
+  [115] getparam 2 .............................. <tDataList>
+  [117] pushsymb 208 ............................ <#shader>
+  [119] pushcons 12 ............................. <"*.*">
+  [121] pusharglistnoret 3 ...................... <tDataList, #shader, "*.*">
+  [123] objcall 103 ............................. tDataList[#shader] = "*.*"
+  [125] getparam 2 .............................. <tDataList>
+  [127] pushsymb 208 ............................ <#shader>
+  [129] pusharglist 2 ........................... <tDataList, #shader>
+  [131] objcall 105 ............................. <tDataList[#shader]>
+  [133] getobjprop 122 .......................... <tDataList[#shader].ilk>
+  [135] pushsymb 126 ............................ <#list>
+  [137] eq ...................................... <tDataList[#shader].ilk = #list>
+  [138] jmpifz [150] ............................ if tDataList[#shader].ilk = #list then / else
+  [141] getparam 2 .............................. <tDataList>
+  [143] getobjprop 208 .......................... <tDataList.shader>
+  [145] setlocal 2 .............................. tTargetList = tDataList.shader
+  [147] jmp [252]
+  [150] getparam 2 .............................. <tDataList>
+  [152] pushsymb 208 ............................ <#shader>
+  [154] pusharglist 2 ........................... <tDataList, #shader>
+  [156] objcall 105 ............................. <tDataList[#shader]>
+  [158] getobjprop 122 .......................... <tDataList[#shader].ilk>
+  [160] pushsymb 67 ............................. <#string>
+  [162] eq ...................................... <tDataList[#shader].ilk = #string>
+  [163] jmpifz [252] ............................ if tDataList[#shader].ilk = #string then
+  [166] getparam 2 .............................. <tDataList>
+  [168] getchainedprop 208 ...................... <tDataList.shader>
+  [170] pushsymb 68 ............................. <#char>
+  [172] pushint8 1 .............................. <1>
+  [174] pusharglist 3 ........................... <tDataList.shader, #char, 1>
+  [176] objcall 70 .............................. <tDataList.shader.char[1]>
+  [178] pushcons 13 ............................. <"*">
+  [180] eq ...................................... <tDataList.shader.char[1] = "*">
+  [181] jmpifz [242] ............................ if tDataList.shader.char[1] = "*" then / else
+  [184] getparam 2 .............................. <tDataList>
+  [186] getobjprop 208 .......................... <tDataList.shader>
+  [188] setlocal 3 .............................. tString = tDataList.shader
+  [190] getlocal 3 .............................. <tString>
+  [192] pushcons 12 ............................. <"*.*">
+  [194] nteq .................................... <tString <> "*.*">
+  [195] jmpifz [215] ............................ if tString <> "*.*" then
+  [198] pushint8 3 .............................. <3>
+  [200] pushchunkvarref 5 ....................... <tString>
+  [202] pushsymb 68 ............................. <#char>
+  [204] pushint8 1 .............................. <1>
+  [206] pusharglist 3 ........................... <tString, #char, 1>
+  [208] objcall 102 ............................. <tString.char[1]>
+  [210] pusharglistnoret 1 ...................... <tString.char[1]>
+  [212] objcall 562 ............................. delete tString.char[1]
+  [215] pushzero ................................ <0>
+  [216] getlocal 1 .............................. <tSourceMember>
+  [218] getobjprop 235 .......................... <tSourceMember.name>
+  [220] pushsymb 598 ............................ <#type>
+  [223] pushsymb 208 ............................ <#shader>
+  [225] pushsymb 67 ............................. <#string>
+  [227] getlocal 3 .............................. <tString>
+  [229] pusharglist 4 ........................... <[#type: #shader, #string: tString]>
+  [231] pushproplist ............................ <[#type: #shader, #string: tString]>
+  [232] pusharglist 3 ........................... <0, tSourceMember.name, [#type: #shader, #string: tString]>
+  [234] extcall 1265 ............................ <GetStringList(0, tSourceMember.name, [#type: #shader, #string: tString])>
+  [237] setlocal 2 .............................. tTargetList = GetStringList(0, tSourceMember.name, [#type: #shader, #string: tString])
+  [239] jmp [252]
+  [242] getlocal 2 .............................. <tTargetList>
+  [244] getparam 2 .............................. <tDataList>
+  [246] getobjprop 208 .......................... <tDataList.shader>
+  [248] pusharglistnoret 2 ...................... <tTargetList, tDataList.shader>
+  [250] objcall 42 .............................. tTargetList.add(tDataList.shader)
+  [252] getlocal 2 .............................. <tTargetList>
+  [254] getobjprop 129 .......................... <tTargetList.count>
+  [256] pushzero ................................ <0>
+  [257] eq ...................................... <tTargetList.count = 0>
+  [258] jmpifz [268] ............................ if tTargetList.count = 0 then
+  [261] pusharglist 0 ........................... <[]>
+  [263] pushlist ................................ <[]>
+  [264] pusharglistnoret 1 ...................... <[]>
+  [266] extcall 52 .............................. return []
+  [268] pusharglist 0 ........................... <[]>
+  [270] pushlist ................................ <[]>
+  [271] setlocal 4 .............................. tShaderList = []
+  [273] pusharglist 0 ........................... <>
+  [275] extcall 40 .............................. <VOID>
+  [277] setlocal 5 .............................. tShaderTag = VOID
+  [279] getparam 2 .............................. <tDataList>
+  [281] pushsymb 1214 ........................... <#shaderTag>
+  [284] pusharglist 2 ........................... <tDataList, #shaderTag>
+  [286] objcall 105 ............................. <tDataList[#shaderTag]>
+  [288] getobjprop 122 .......................... <tDataList[#shaderTag].ilk>
+  [290] pushsymb 67 ............................. <#string>
+  [292] eq ...................................... <tDataList[#shaderTag].ilk = #string>
+  [293] jmpifz [303] ............................ if tDataList[#shaderTag].ilk = #string then
+  [296] getparam 2 .............................. <tDataList>
+  [298] getobjprop 1214 ......................... <tDataList.shaderTag>
+  [301] setlocal 5 .............................. tShaderTag = tDataList.shaderTag
+  [303] pusharglist 0 ........................... <>
+  [305] extcall 40 .............................. <VOID>
+  [307] setlocal 6 .............................. tTextureTag = VOID
+  [309] getparam 2 .............................. <tDataList>
+  [311] pushsymb 1215 ........................... <#textureTag>
+  [314] pusharglist 2 ........................... <tDataList, #textureTag>
+  [316] objcall 105 ............................. <tDataList[#textureTag]>
+  [318] getobjprop 122 .......................... <tDataList[#textureTag].ilk>
+  [320] pushsymb 67 ............................. <#string>
+  [322] eq ...................................... <tDataList[#textureTag].ilk = #string>
+  [323] jmpifz [333] ............................ if tDataList[#textureTag].ilk = #string then
+  [326] getparam 2 .............................. <tDataList>
+  [328] getobjprop 1215 ......................... <tDataList.textureTag>
+  [331] setlocal 6 .............................. tTextureTag = tDataList.textureTag
+  [333] getlocal 2 .............................. <tTargetList>
+  [335] peek 0
+  [337] pusharglist 1
+  [339] extcall 129
+  [341] pushint8 1
+  [343] peek 0
+  [345] peek 2
+  [347] lteq
+  [348] jmpifz [788] ............................ repeat with i in tTargetList
+  [351] peek 2
+  [353] peek 1
+  [355] pusharglist 2
+  [357] extcall 105
+  [359] setlocal 7
+  [361] getlocal 1 .............................. <tSourceMember>
+  [363] getlocal 7 .............................. <i>
+  [365] pusharglist 2 ........................... <tSourceMember, i>
+  [367] objcall 208 ............................. <tSourceMember.shader(i)>
+  [369] setlocal 8 .............................. tOrigShader = tSourceMember.shader(i)
+  [371] getlocal 0 .............................. <tmember>
+  [373] getlocal 5 .............................. <tShaderTag>
+  [375] getlocal 8 .............................. <tOrigShader>
+  [377] getobjprop 235 .......................... <tOrigShader.name>
+  [379] joinstr ................................. <tShaderTag & tOrigShader.name>
+  [380] getlocal 8 .............................. <tOrigShader>
+  [382] getobjprop 598 .......................... <tOrigShader.type>
+  [385] pusharglist 3 ........................... <tmember, tShaderTag & tOrigShader.name, tOrigShader.type>
+  [387] objcall 896 ............................. <tmember.newShader(tShaderTag & tOrigShader.name, tOrigShader.type)>
+  [390] setlocal 9 .............................. tDupShader = tmember.newShader(tShaderTag & tOrigShader.name, tOrigShader.type)
+  [392] getlocal 9 .............................. <tDupShader>
+  [394] getlocal 8 .............................. <tOrigShader>
+  [396] getobjprop 897 .......................... <tOrigShader.ambient>
+  [399] setobjprop 897 .......................... tDupShader.ambient = tOrigShader.ambient
+  [402] getlocal 9 .............................. <tDupShader>
+  [404] getlocal 8 .............................. <tOrigShader>
+  [406] getobjprop 898 .......................... <tOrigShader.diffuse>
+  [409] setobjprop 898 .......................... tDupShader.diffuse = tOrigShader.diffuse
+  [412] getlocal 9 .............................. <tDupShader>
+  [414] getlocal 8 .............................. <tOrigShader>
+  [416] getobjprop 900 .......................... <tOrigShader.emissive>
+  [419] setobjprop 900 .......................... tDupShader.emissive = tOrigShader.emissive
+  [422] getlocal 9 .............................. <tDupShader>
+  [424] getlocal 8 .............................. <tOrigShader>
+  [426] getobjprop 899 .......................... <tOrigShader.specular>
+  [429] setobjprop 899 .......................... tDupShader.specular = tOrigShader.specular
+  [432] getlocal 9 .............................. <tDupShader>
+  [434] getlocal 8 .............................. <tOrigShader>
+  [436] getobjprop 901 .......................... <tOrigShader.shininess>
+  [439] setobjprop 901 .......................... tDupShader.shininess = tOrigShader.shininess
+  [442] getlocal 9 .............................. <tDupShader>
+  [444] getlocal 8 .............................. <tOrigShader>
+  [446] getobjprop 367 .......................... <tOrigShader.blend>
+  [449] setobjprop 367 .......................... tDupShader.blend = tOrigShader.blend
+  [452] getlocal 9 .............................. <tDupShader>
+  [454] getlocal 8 .............................. <tOrigShader>
+  [456] getobjprop 1243 ......................... <tOrigShader.transparent>
+  [459] setobjprop 1243 ......................... tDupShader.transparent = tOrigShader.transparent
+  [462] getlocal 9 .............................. <tDupShader>
+  [464] getlocal 8 .............................. <tOrigShader>
+  [466] getobjprop 888 .......................... <tOrigShader.flat>
+  [469] setobjprop 888 .......................... tDupShader.flat = tOrigShader.flat
+  [472] getlocal 9 .............................. <tDupShader>
+  [474] getlocal 8 .............................. <tOrigShader>
+  [476] getobjprop 1248 ......................... <tOrigShader.renderStyle>
+  [479] setobjprop 1248 ......................... tDupShader.renderStyle = tOrigShader.renderStyle
+  [482] getlocal 9 .............................. <tDupShader>
+  [484] getlocal 8 .............................. <tOrigShader>
+  [486] getobjprop 1246 ......................... <tOrigShader.useDiffuseWithTexture>
+  [489] setobjprop 1246 ......................... tDupShader.useDiffuseWithTexture = tOrigShader.useDiffuseWithTexture
+  [492] pushint8 1 .............................. <1>
+  [494] setlocal 10
+  [496] getlocal 10
+  [498] pushint8 8 .............................. <8>
+  [500] lteq
+  [501] jmpifz [774] ............................ repeat with ii = 1 to 8
+  [504] getlocal 8 .............................. <tOrigShader>
+  [506] pushsymb 1244 ........................... <#textureList>
+  [509] getlocal 10 ............................. <ii>
+  [511] pusharglist 3 ........................... <tOrigShader, #textureList, ii>
+  [513] objcall 70 .............................. <tOrigShader.textureList[ii]>
+  [515] pusharglist 0 ........................... <>
+  [517] extcall 40 .............................. <VOID>
+  [519] eq ...................................... <tOrigShader.textureList[ii] = VOID>
+  [520] jmpifz [526] ............................ if tOrigShader.textureList[ii] = VOID then
+  [523] jmp [764] ............................... next repeat
+  [526] getlocal 8 .............................. <tOrigShader>
+  [528] pushsymb 1244 ........................... <#textureList>
+  [531] getlocal 10 ............................. <ii>
+  [533] pusharglist 3 ........................... <tOrigShader, #textureList, ii>
+  [535] objcall 70 .............................. <tOrigShader.textureList[ii]>
+  [537] setlocal 11 ............................. tTexture = tOrigShader.textureList[ii]
+  [539] getlocal 0 .............................. <tmember>
+  [541] getlocal 6 .............................. <tTextureTag>
+  [543] getlocal 11 ............................. <tTexture>
+  [545] getobjprop 235 .......................... <tTexture.name>
+  [547] joinstr ................................. <tTextureTag & tTexture.name>
+  [548] pusharglist 2 ........................... <tmember, tTextureTag & tTexture.name>
+  [550] objcall 218 ............................. <tmember.texture(tTextureTag & tTexture.name)>
+  [552] setlocal 12 ............................. tNewTexture = tmember.texture(tTextureTag & tTexture.name)
+  [554] getlocal 12 ............................. <tNewTexture>
+  [556] pusharglist 0 ........................... <>
+  [558] extcall 40 .............................. <VOID>
+  [560] eq ...................................... <tNewTexture = VOID>
+  [561] jmpifz [597] ............................ if tNewTexture = VOID then
+  [564] pushzero ................................ <0>
+  [565] getlocal 0 .............................. <tmember>
+  [567] getobjprop 235 .......................... <tmember.name>
+  [569] pushsymb 218 ............................ <#texture>
+  [571] getlocal 11 ............................. <tTexture>
+  [573] getobjprop 235 .......................... <tTexture.name>
+  [575] pushsymb 1212 ........................... <#sourceMember>
+  [578] getlocal 1 .............................. <tSourceMember>
+  [580] getobjprop 235 .......................... <tSourceMember.name>
+  [582] pushsymb 1213 ........................... <#NameTag>
+  [585] getlocal 6 .............................. <tTextureTag>
+  [587] pusharglist 6 ........................... <[#texture: tTexture.name, #sourceMember: tSourceMember.name, #NameTag: tTextureTag]>
+  [589] pushproplist ............................ <[#texture: tTexture.name, #sourceMember: tSourceMember.name, #NameTag: tTextureTag]>
+  [590] pusharglist 3 ........................... <0, tmember.name, [#texture: tTexture.name, #sourceMember: tSourceMember.name, #NameTag: tTextureTag]>
+  [592] extcall 1266 ............................ <DuplicateTexture(0, tmember.name, [#texture: tTexture.name, #sourceMember: tSourceMember.name, #NameTag: tTextureTag])>
+  [595] setlocal 12 ............................. tNewTexture = DuplicateTexture(0, tmember.name, [#texture: tTexture.name, #sourceMember: tSourceMember.name, #NameTag: tTextureTag])
+  [597] getlocal 9 .............................. <tDupShader>
+  [599] pushsymb 1244 ........................... <#textureList>
+  [602] getlocal 10 ............................. <ii>
+  [604] getlocal 12 ............................. <tNewTexture>
+  [606] pusharglistnoret 4 ...................... <tDupShader, #textureList, ii, tNewTexture>
+  [608] objcall 99 .............................. tDupShader.textureList[ii] = tNewTexture
+  [610] getlocal 9 .............................. <tDupShader>
+  [612] pushsymb 1256 ........................... <#textureModeList>
+  [615] getlocal 10 ............................. <ii>
+  [617] getlocal 8 .............................. <tOrigShader>
+  [619] pushsymb 1256 ........................... <#textureModeList>
+  [622] getlocal 10 ............................. <ii>
+  [624] pusharglist 3 ........................... <tOrigShader, #textureModeList, ii>
+  [626] objcall 70 .............................. <tOrigShader.textureModeList[ii]>
+  [628] pusharglistnoret 4 ...................... <tDupShader, #textureModeList, ii, tOrigShader.textureModeList[ii]>
+  [630] objcall 99 .............................. tDupShader.textureModeList[ii] = tOrigShader.textureModeList[ii]
+  [632] getlocal 9 .............................. <tDupShader>
+  [634] pushsymb 1267 ........................... <#wrapTransformList>
+  [637] getlocal 10 ............................. <ii>
+  [639] getlocal 8 .............................. <tOrigShader>
+  [641] pushsymb 1267 ........................... <#wrapTransformList>
+  [644] getlocal 10 ............................. <ii>
+  [646] pusharglist 3 ........................... <tOrigShader, #wrapTransformList, ii>
+  [648] objcall 70 .............................. <tOrigShader.wrapTransformList[ii]>
+  [650] pusharglistnoret 4 ...................... <tDupShader, #wrapTransformList, ii, tOrigShader.wrapTransformList[ii]>
+  [652] objcall 99 .............................. tDupShader.wrapTransformList[ii] = tOrigShader.wrapTransformList[ii]
+  [654] getlocal 9 .............................. <tDupShader>
+  [656] pushsymb 1260 ........................... <#textureTransformList>
+  [659] getlocal 10 ............................. <ii>
+  [661] getlocal 8 .............................. <tOrigShader>
+  [663] pushsymb 1260 ........................... <#textureTransformList>
+  [666] getlocal 10 ............................. <ii>
+  [668] pusharglist 3 ........................... <tOrigShader, #textureTransformList, ii>
+  [670] objcall 70 .............................. <tOrigShader.textureTransformList[ii]>
+  [672] pusharglistnoret 4 ...................... <tDupShader, #textureTransformList, ii, tOrigShader.textureTransformList[ii]>
+  [674] objcall 99 .............................. tDupShader.textureTransformList[ii] = tOrigShader.textureTransformList[ii]
+  [676] getlocal 9 .............................. <tDupShader>
+  [678] pushsymb 904 ............................ <#blendFunctionList>
+  [681] getlocal 10 ............................. <ii>
+  [683] getlocal 8 .............................. <tOrigShader>
+  [685] pushsymb 904 ............................ <#blendFunctionList>
+  [688] getlocal 10 ............................. <ii>
+  [690] pusharglist 3 ........................... <tOrigShader, #blendFunctionList, ii>
+  [692] objcall 70 .............................. <tOrigShader.blendFunctionList[ii]>
+  [694] pusharglistnoret 4 ...................... <tDupShader, #blendFunctionList, ii, tOrigShader.blendFunctionList[ii]>
+  [696] objcall 99 .............................. tDupShader.blendFunctionList[ii] = tOrigShader.blendFunctionList[ii]
+  [698] getlocal 9 .............................. <tDupShader>
+  [700] pushsymb 1257 ........................... <#blendSourceList>
+  [703] getlocal 10 ............................. <ii>
+  [705] getlocal 8 .............................. <tOrigShader>
+  [707] pushsymb 1257 ........................... <#blendSourceList>
+  [710] getlocal 10 ............................. <ii>
+  [712] pusharglist 3 ........................... <tOrigShader, #blendSourceList, ii>
+  [714] objcall 70 .............................. <tOrigShader.blendSourceList[ii]>
+  [716] pusharglistnoret 4 ...................... <tDupShader, #blendSourceList, ii, tOrigShader.blendSourceList[ii]>
+  [718] objcall 99 .............................. tDupShader.blendSourceList[ii] = tOrigShader.blendSourceList[ii]
+  [720] getlocal 9 .............................. <tDupShader>
+  [722] pushsymb 1258 ........................... <#blendConstantList>
+  [725] getlocal 10 ............................. <ii>
+  [727] getlocal 8 .............................. <tOrigShader>
+  [729] pushsymb 1258 ........................... <#blendConstantList>
+  [732] getlocal 10 ............................. <ii>
+  [734] pusharglist 3 ........................... <tOrigShader, #blendConstantList, ii>
+  [736] objcall 70 .............................. <tOrigShader.blendConstantList[ii]>
+  [738] pusharglistnoret 4 ...................... <tDupShader, #blendConstantList, ii, tOrigShader.blendConstantList[ii]>
+  [740] objcall 99 .............................. tDupShader.blendConstantList[ii] = tOrigShader.blendConstantList[ii]
+  [742] getlocal 9 .............................. <tDupShader>
+  [744] pushsymb 1268 ........................... <#textureRepeatList>
+  [747] getlocal 10 ............................. <ii>
+  [749] getlocal 8 .............................. <tOrigShader>
+  [751] pushsymb 1268 ........................... <#textureRepeatList>
+  [754] getlocal 10 ............................. <ii>
+  [756] pusharglist 3 ........................... <tOrigShader, #textureRepeatList, ii>
+  [758] objcall 70 .............................. <tOrigShader.textureRepeatList[ii]>
+  [760] pusharglistnoret 4 ...................... <tDupShader, #textureRepeatList, ii, tOrigShader.textureRepeatList[ii]>
+  [762] objcall 99 .............................. tDupShader.textureRepeatList[ii] = tOrigShader.textureRepeatList[ii]
+  [764] pushint8 1
+  [766] getlocal 10
+  [768] add
+  [769] setlocal 10
+  [771] endrepeat [496]
+  [774] getlocal 4 .............................. <tShaderList>
+  [776] getlocal 9 .............................. <tDupShader>
+  [778] pusharglistnoret 2 ...................... <tShaderList, tDupShader>
+  [780] objcall 42 .............................. tShaderList.add(tDupShader)
+  [782] pushint8 1
+  [784] add
+  [785] endrepeat [343]
+  [788] pop 3
+  [790] getlocal 4 .............................. <tShaderList>
+  [792] getobjprop 129 .......................... <tShaderList.count>
+  [794] pushint8 1 .............................. <1>
+  [796] eq ...................................... <tShaderList.count = 1>
+  [797] jmpifz [815] ............................ if tShaderList.count = 1 then / else
+  [800] getlocal 4 .............................. <tShaderList>
+  [802] pushint8 1 .............................. <1>
+  [804] pusharglist 2 ........................... <tShaderList, 1>
+  [806] objcall 105 ............................. <tShaderList[1]>
+  [808] pusharglistnoret 1 ...................... <tShaderList[1]>
+  [810] extcall 52 .............................. return tShaderList[1]
+  [812] jmp [821]
+  [815] getlocal 4 .............................. <tShaderList>
+  [817] pusharglistnoret 1 ...................... <tShaderList>
+  [819] extcall 52 .............................. return tShaderList
+  [821] ret
+end
+
+on BlendShader tTarget, tDataList
+  [  0] pusharglist 0 ........................... <>
+  [  2] extcall 1272 ............................ <getRendererServices()>
+  [  5] pushzero ................................ <0>
+  [  6] setobjprop 1273 ......................... getRendererServices().MultiTexturing = 0
+  [  9] getparam 0 .............................. <tTarget>
+  [ 11] pusharglist 0 ........................... <>
+  [ 13] extcall 40 .............................. <VOID>
+  [ 15] eq ...................................... <tTarget = VOID>
+  [ 16] jmpifz [ 20] ............................ if tTarget = VOID then
+  [ 19] ret ..................................... exit
+  [ 20] getparam 0 .............................. <tTarget>
+  [ 22] pusharglist 1 ........................... <tTarget>
+  [ 24] extcall 64 .............................. <member(tTarget)>
+  [ 26] setlocal 0 .............................. tmember = member(tTarget)
+  [ 28] getlocal 0 .............................. <tmember>
+  [ 30] pusharglist 0 ........................... <>
+  [ 32] extcall 40 .............................. <VOID>
+  [ 34] eq ...................................... <tmember = VOID>
+  [ 35] jmpifz [ 39] ............................ if tmember = VOID then
+  [ 38] ret ..................................... exit
+  [ 39] getlocal 0 .............................. <tmember>
+  [ 41] getobjprop 598 .......................... <tmember.type>
+  [ 44] pushsymb 610 ............................ <#shockwave3d>
+  [ 47] nteq .................................... <tmember.type <> #shockwave3d>
+  [ 48] jmpifz [ 52] ............................ if tmember.type <> #shockwave3d then
+  [ 51] ret ..................................... exit
+  [ 52] getparam 1 .............................. <tDataList>
+  [ 54] getobjprop 122 .......................... <tDataList.ilk>
+  [ 56] pushsymb 67 ............................. <#string>
+  [ 58] eq ...................................... <tDataList.ilk = #string>
+  [ 59] jmpifz [ 71] ............................ if tDataList.ilk = #string then
+  [ 62] getparam 1 .............................. <tDataList>
+  [ 64] pusharglist 1 ........................... <tDataList>
+  [ 66] extcall 503 ............................. <value(tDataList)>
+  [ 69] setparam 1 .............................. tDataList = value(tDataList)
+  [ 71] pusharglist 0 ........................... <>
+  [ 73] extcall 40 .............................. <VOID>
+  [ 75] setlocal 1 .............................. tShaderName = VOID
+  [ 77] getparam 1 .............................. <tDataList>
+  [ 79] pushsymb 1274 ........................... <#materialName>
+  [ 82] pusharglist 2 ........................... <tDataList, #materialName>
+  [ 84] extcall 542 ............................. <getaProp(tDataList, #materialName)>
+  [ 87] getobjprop 122 .......................... <getaProp(tDataList, #materialName).ilk>
+  [ 89] pushsymb 67 ............................. <#string>
+  [ 91] eq ...................................... <getaProp(tDataList, #materialName).ilk = #string>
+  [ 92] jmpifz [106] ............................ if getaProp(tDataList, #materialName).ilk = #string then
+  [ 95] getparam 1 .............................. <tDataList>
+  [ 97] pushsymb 1274 ........................... <#materialName>
+  [100] pusharglist 2 ........................... <tDataList, #materialName>
+  [102] objcall 105 ............................. <tDataList[#materialName]>
+  [104] setlocal 1 .............................. tShaderName = tDataList[#materialName]
+  [106] getlocal 1 .............................. <tShaderName>
+  [108] pusharglist 0 ........................... <>
+  [110] extcall 40 .............................. <VOID>
+  [112] eq ...................................... <tShaderName = VOID>
+  [113] jmpifz [117] ............................ if tShaderName = VOID then
+  [116] ret ..................................... exit
+  [117] getlocal 0 .............................. <tmember>
+  [119] getlocal 1 .............................. <tShaderName>
+  [121] pusharglist 2 ........................... <tmember, tShaderName>
+  [123] objcall 208 ............................. <tmember.shader(tShaderName)>
+  [125] setlocal 2 .............................. tShader = tmember.shader(tShaderName)
+  [127] getlocal 2 .............................. <tShader>
+  [129] pusharglist 0 ........................... <>
+  [131] extcall 40 .............................. <VOID>
+  [133] eq ...................................... <tShader = VOID>
+  [134] jmpifz [138] ............................ if tShader = VOID then
+  [137] ret ..................................... exit
+  [138] pushsymb 42 ............................. <#add>
+  [140] setlocal 3 .............................. tBlendMode = #add
+  [142] getparam 1 .............................. <tDataList>
+  [144] pushsymb 1275 ........................... <#blendMode>
+  [147] pusharglist 2 ........................... <tDataList, #blendMode>
+  [149] extcall 542 ............................. <getaProp(tDataList, #blendMode)>
+  [152] getobjprop 122 .......................... <getaProp(tDataList, #blendMode).ilk>
+  [154] pushsymb 88 ............................. <#symbol>
+  [156] eq ...................................... <getaProp(tDataList, #blendMode).ilk = #symbol>
+  [157] jmpifz [171] ............................ if getaProp(tDataList, #blendMode).ilk = #symbol then
+  [160] getparam 1 .............................. <tDataList>
+  [162] pushsymb 1275 ........................... <#blendMode>
+  [165] pusharglist 2 ........................... <tDataList, #blendMode>
+  [167] objcall 105 ............................. <tDataList[#blendMode]>
+  [169] setlocal 3 .............................. tBlendMode = tDataList[#blendMode]
+  [171] getlocal 2 .............................. <tShader>
+  [173] pushint8 1 .............................. <1>
+  [175] setobjprop 1243 ......................... tShader.transparent = 1
+  [178] getlocal 2 .............................. <tShader>
+  [180] pushfloat32 0.0 ......................... <0.0>
+  [185] setobjprop 367 .......................... tShader.blend = 0.0
+  [188] getlocal 2 .............................. <tShader>
+  [190] pushsymb 904 ............................ <#blendFunctionList>
+  [193] pushint8 1 .............................. <1>
+  [195] pushsymb 367 ............................ <#blend>
+  [198] pusharglistnoret 4 ...................... <tShader, #blendFunctionList, 1, #blend>
+  [200] objcall 99 .............................. tShader.blendFunctionList[1] = #blend
+  [202] getlocal 2 .............................. <tShader>
+  [204] pushsymb 1258 ........................... <#blendConstantList>
+  [207] pushint8 1 .............................. <1>
+  [209] pushfloat32 0.0 ......................... <0.0>
+  [214] pusharglistnoret 4 ...................... <tShader, #blendConstantList, 1, 0.0>
+  [216] objcall 99 .............................. tShader.blendConstantList[1] = 0.0
+  [218] gettoplevelprop 33 ...................... <_movie>
+  [220] getobjprop 1276 ......................... <_movie.active3dRenderer>
+  [223] pushsymb 1277 ........................... <#openGL>
+  [226] eq ...................................... <_movie.active3dRenderer = #openGL>
+  [227] jmpifz [284] ............................ if _movie.active3dRenderer = #openGL then / else
+  [230] getlocal 2 .............................. <tShader>
+  [232] pushsymb 1244 ........................... <#textureList>
+  [235] pushint8 2 .............................. <2>
+  [237] getlocal 2 .............................. <tShader>
+  [239] pushsymb 1244 ........................... <#textureList>
+  [242] pushint8 1 .............................. <1>
+  [244] pusharglist 3 ........................... <tShader, #textureList, 1>
+  [246] objcall 70 .............................. <tShader.textureList[1]>
+  [248] pusharglistnoret 4 ...................... <tShader, #textureList, 2, tShader.textureList[1]>
+  [250] objcall 99 .............................. tShader.textureList[2] = tShader.textureList[1]
+  [252] getlocal 2 .............................. <tShader>
+  [254] pushsymb 904 ............................ <#blendFunctionList>
+  [257] pushint8 2 .............................. <2>
+  [259] getlocal 3 .............................. <tBlendMode>
+  [261] pusharglistnoret 4 ...................... <tShader, #blendFunctionList, 2, tBlendMode>
+  [263] objcall 99 .............................. tShader.blendFunctionList[2] = tBlendMode
+  [265] getlocal 2 .............................. <tShader>
+  [267] pushsymb 1258 ........................... <#blendConstantList>
+  [270] pushint8 2 .............................. <2>
+  [272] pushfloat32 0.0 ......................... <0.0>
+  [277] pusharglistnoret 4 ...................... <tShader, #blendConstantList, 2, 0.0>
+  [279] objcall 99 .............................. tShader.blendConstantList[2] = 0.0
+  [281] jmp [387]
+  [284] getlocal 2 .............................. <tShader>
+  [286] pushsymb 1244 ........................... <#textureList>
+  [289] pushint8 2 .............................. <2>
+  [291] getlocal 2 .............................. <tShader>
+  [293] pushsymb 1244 ........................... <#textureList>
+  [296] pushint8 1 .............................. <1>
+  [298] pusharglist 3 ........................... <tShader, #textureList, 1>
+  [300] objcall 70 .............................. <tShader.textureList[1]>
+  [302] pusharglistnoret 4 ...................... <tShader, #textureList, 2, tShader.textureList[1]>
+  [304] objcall 99 .............................. tShader.textureList[2] = tShader.textureList[1]
+  [306] getlocal 2 .............................. <tShader>
+  [308] pushsymb 1244 ........................... <#textureList>
+  [311] pushint8 3 .............................. <3>
+  [313] getlocal 2 .............................. <tShader>
+  [315] pushsymb 1244 ........................... <#textureList>
+  [318] pushint8 1 .............................. <1>
+  [320] pusharglist 3 ........................... <tShader, #textureList, 1>
+  [322] objcall 70 .............................. <tShader.textureList[1]>
+  [324] pusharglistnoret 4 ...................... <tShader, #textureList, 3, tShader.textureList[1]>
+  [326] objcall 99 .............................. tShader.textureList[3] = tShader.textureList[1]
+  [328] getlocal 2 .............................. <tShader>
+  [330] pushsymb 904 ............................ <#blendFunctionList>
+  [333] pushint8 2 .............................. <2>
+  [335] pushsymb 367 ............................ <#blend>
+  [338] pusharglistnoret 4 ...................... <tShader, #blendFunctionList, 2, #blend>
+  [340] objcall 99 .............................. tShader.blendFunctionList[2] = #blend
+  [342] getlocal 2 .............................. <tShader>
+  [344] pushsymb 1258 ........................... <#blendConstantList>
+  [347] pushint8 2 .............................. <2>
+  [349] pushfloat32 0.0 ......................... <0.0>
+  [354] pusharglistnoret 4 ...................... <tShader, #blendConstantList, 2, 0.0>
+  [356] objcall 99 .............................. tShader.blendConstantList[2] = 0.0
+  [358] getlocal 2 .............................. <tShader>
+  [360] pushsymb 904 ............................ <#blendFunctionList>
+  [363] pushint8 3 .............................. <3>
+  [365] getlocal 3 .............................. <tBlendMode>
+  [367] pusharglistnoret 4 ...................... <tShader, #blendFunctionList, 3, tBlendMode>
+  [369] objcall 99 .............................. tShader.blendFunctionList[3] = tBlendMode
+  [371] getlocal 2 .............................. <tShader>
+  [373] pushsymb 1258 ........................... <#blendConstantList>
+  [376] pushint8 3 .............................. <3>
+  [378] pushfloat32 0.0 ......................... <0.0>
+  [383] pusharglistnoret 4 ...................... <tShader, #blendConstantList, 3, 0.0>
+  [385] objcall 99 .............................. tShader.blendConstantList[3] = 0.0
+  [387] getglobal 43 ............................ <gGame>
+  [389] pushsymb 1278 ........................... <#AddShaders>
+  [392] pusharglist 2 ........................... <gGame, #AddShaders>
+  [394] extcall 542 ............................. <getaProp(gGame, #AddShaders)>
+  [397] pusharglist 0 ........................... <>
+  [399] extcall 40 .............................. <VOID>
+  [401] eq ...................................... <getaProp(gGame, #AddShaders) = VOID>
+  [402] jmpifz [417] ............................ if getaProp(gGame, #AddShaders) = VOID then
+  [405] getglobal 43 ............................ <gGame>
+  [407] pushsymb 1278 ........................... <#AddShaders>
+  [410] pusharglist 0 ........................... <[]>
+  [412] pushlist ................................ <[]>
+  [413] pusharglistnoret 3 ...................... <gGame, #AddShaders, []>
+  [415] objcall 103 ............................. gGame[#AddShaders] = []
+  [417] getglobal 43 ............................ <gGame>
+  [419] getchainedprop 1278 ..................... <gGame.AddShaders>
+  [422] getlocal 2 .............................. <tShader>
+  [424] pusharglistnoret 2 ...................... <gGame.AddShaders, tShader>
+  [426] objcall 42 .............................. gGame.AddShaders.add(tShader)
+  [428] getlocal 2 .............................. <tShader>
+  [430] pusharglistnoret 1 ...................... <tShader>
+  [432] extcall 52 .............................. return tShader
+  [434] ret
+end
+
+on CreateProxyShader tmember
+  [  0] getparam 0 .............................. <tmember>
+  [  2] pusharglist 0 ........................... <>
+  [  4] extcall 40 .............................. <VOID>
+  [  6] eq ...................................... <tmember = VOID>
+  [  7] jmpifz [ 11] ............................ if tmember = VOID then
+  [ 10] ret ..................................... exit
+  [ 11] getparam 0 .............................. <tmember>
+  [ 13] getobjprop 598 .......................... <tmember.type>
+  [ 16] pushsymb 610 ............................ <#shockwave3d>
+  [ 19] nteq .................................... <tmember.type <> #shockwave3d>
+  [ 20] jmpifz [ 24] ............................ if tmember.type <> #shockwave3d then
+  [ 23] ret ..................................... exit
+  [ 24] getglobal 43 ............................ <gGame>
+  [ 26] pushsymb 1280 ........................... <#ProxyShader>
+  [ 29] getparam 0 .............................. <tmember>
+  [ 31] getchainedprop 64 ....................... <tmember.member>
+  [ 33] pushcons 14 ............................. <"Proxy_Material">
+  [ 35] pushsymb 531 ............................ <#standard>
+  [ 38] pusharglist 3 ........................... <tmember.member, "Proxy_Material", #standard>
+  [ 40] objcall 896 ............................. <tmember.member.newShader("Proxy_Material", #standard)>
+  [ 43] pusharglistnoret 3 ...................... <gGame, #ProxyShader, tmember.member.newShader("Proxy_Material", #standard)>
+  [ 45] objcall 103 ............................. gGame[#ProxyShader] = tmember.member.newShader("Proxy_Material", #standard)
+  [ 47] getglobal 43 ............................ <gGame>
+  [ 49] getchainedprop 1280 ..................... <gGame.ProxyShader>
+  [ 52] pushint16 250 ........................... <250>
+  [ 55] pushzero ................................ <0>
+  [ 56] pushint16 247 ........................... <247>
+  [ 59] pusharglist 3 ........................... <250, 0, 247>
+  [ 61] extcall 282 ............................. <rgb(250, 0, 247)>
+  [ 64] setobjprop 897 .......................... gGame.ProxyShader.ambient = rgb(250, 0, 247)
+  [ 67] getglobal 43 ............................ <gGame>
+  [ 69] getchainedprop 1280 ..................... <gGame.ProxyShader>
+  [ 72] pushint16 250 ........................... <250>
+  [ 75] pushzero ................................ <0>
+  [ 76] pushint16 247 ........................... <247>
+  [ 79] pusharglist 3 ........................... <250, 0, 247>
+  [ 81] extcall 282 ............................. <rgb(250, 0, 247)>
+  [ 84] setobjprop 898 .......................... gGame.ProxyShader.diffuse = rgb(250, 0, 247)
+  [ 87] getglobal 43 ............................ <gGame>
+  [ 89] getchainedprop 1280 ..................... <gGame.ProxyShader>
+  [ 92] pushint8 54 ............................. <54>
+  [ 94] pushint8 102 ............................ <102>
+  [ 96] pushint16 191 ........................... <191>
+  [ 99] pusharglist 3 ........................... <54, 102, 191>
+  [101] extcall 282 ............................. <rgb(54, 102, 191)>
+  [104] setobjprop 900 .......................... gGame.ProxyShader.emissive = rgb(54, 102, 191)
+  [107] getglobal 43 ............................ <gGame>
+  [109] getchainedprop 1280 ..................... <gGame.ProxyShader>
+  [112] pushzero ................................ <0>
+  [113] pushzero ................................ <0>
+  [114] pushzero ................................ <0>
+  [115] pusharglist 3 ........................... <0, 0, 0>
+  [117] extcall 282 ............................. <rgb(0, 0, 0)>
+  [120] setobjprop 899 .......................... gGame.ProxyShader.specular = rgb(0, 0, 0)
+  [123] getglobal 43 ............................ <gGame>
+  [125] getchainedprop 1280 ..................... <gGame.ProxyShader>
+  [128] pushfloat32 0.0 ......................... <0.0>
+  [133] setobjprop 901 .......................... gGame.ProxyShader.shininess = 0.0
+  [136] getglobal 43 ............................ <gGame>
+  [138] getchainedprop 1280 ..................... <gGame.ProxyShader>
+  [141] pusharglist 0 ........................... <>
+  [143] extcall 40 .............................. <VOID>
+  [145] setobjprop 1244 ......................... gGame.ProxyShader.textureList = VOID
+  [148] ret
+end

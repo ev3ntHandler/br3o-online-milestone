@@ -1,0 +1,366 @@
+property p
+global g
+
+on new me, tTag
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 377 ............................ <#tag>
+  [ 12] getparam 1 .............................. <tTag>
+  [ 14] pusharglistnoret 3 ...................... <p, #tag, tTag>
+  [ 16] objcall 103 ............................. p[#tag] = tTag
+  [ 18] getprop 563 ............................. <p>
+  [ 21] pushsymb 3062 ........................... <#ScriptLimit>
+  [ 24] pushzero ................................ <0>
+  [ 25] pusharglistnoret 3 ...................... <p, #ScriptLimit, 0>
+  [ 27] objcall 103 ............................. p[#ScriptLimit] = 0
+  [ 29] getprop 563 ............................. <p>
+  [ 32] pushsymb 1814 ........................... <#Cleared>
+  [ 35] pushzero ................................ <0>
+  [ 36] pusharglistnoret 3 ...................... <p, #Cleared, 0>
+  [ 38] objcall 103 ............................. p[#Cleared] = 0
+  [ 40] getparam 0 .............................. <me>
+  [ 42] pusharglistnoret 1 ...................... <me>
+  [ 44] objcall 3154 ............................ me.prepare()
+  [ 47] getparam 0 .............................. <me>
+  [ 49] pusharglistnoret 1 ...................... <me>
+  [ 51] extcall 52 .............................. return me
+  [ 53] ret
+end
+
+on prepare me
+  [  0] getglobal 395 ........................... <g>
+  [  3] pushsymb 137 ............................ <#cars>
+  [  5] getprop 563 ............................. <p>
+  [  8] getobjprop 377 .......................... <p.tag>
+  [ 11] pusharglist 3 ........................... <g, #cars, p.tag>
+  [ 13] objcall 70 .............................. <g.cars[p.tag]>
+  [ 15] setlocal 0 .............................. t = g.cars[p.tag]
+  [ 17] getlocal 0 .............................. <t>
+  [ 19] pushsymb 250 ............................ <#car>
+  [ 21] pushsymb 3170 ........................... <#WheelPartPos>
+  [ 24] pusharglist 0 ........................... <[]>
+  [ 26] pushlist ................................ <[]>
+  [ 27] pusharglistnoret 4 ...................... <t, #car, #WheelPartPos, []>
+  [ 29] objcall 99 .............................. t.car[#WheelPartPos] = []
+  [ 31] pushint8 1 .............................. <1>
+  [ 33] setlocal 1
+  [ 35] getlocal 1
+  [ 37] pushint8 2 .............................. <2>
+  [ 39] lteq
+  [ 40] jmpifz [121] ............................ repeat with i = 1 to 2
+  [ 43] getlocal 0 .............................. <t>
+  [ 45] getchainedprop 250 ...................... <t.car>
+  [ 47] getchainedprop 3170 ..................... <t.car.WheelPartPos>
+  [ 50] getlocal 0 .............................. <t>
+  [ 52] getchainedprop 250 ...................... <t.car>
+  [ 54] getobjprop 235 .......................... <t.car.name>
+  [ 56] pusharglist 1 ........................... <t.car.name>
+  [ 58] extcall 64 .............................. <member(t.car.name)>
+  [ 60] getlocal 0 .............................. <t>
+  [ 62] getchainedprop 250 ...................... <t.car>
+  [ 64] getobjprop 235 .......................... <t.car.name>
+  [ 66] pushcons 0 .............................. <"WheelPart">
+  [ 68] joinstr ................................. <t.car.name & "WheelPart">
+  [ 69] getlocal 1 .............................. <i>
+  [ 71] joinstr ................................. <t.car.name & "WheelPart" & i>
+  [ 72] pushcons 1 .............................. <"_Dummy">
+  [ 74] joinstr ................................. <t.car.name & "WheelPart" & i & "_Dummy">
+  [ 75] pusharglist 2 ........................... <member(t.car.name), t.car.name & "WheelPart" & i & "_Dummy">
+  [ 77] objcall 65 .............................. <member(t.car.name).group(t.car.name & "WheelPart" & i & "_Dummy")>
+  [ 79] getchainedprop 214 ...................... <member(t.car.name).group(t.car.name & "WheelPart" & i & "_Dummy").transform>
+  [ 81] getobjprop 215 .......................... <member(t.car.name).group(t.car.name & "WheelPart" & i & "_Dummy").transform.position>
+  [ 83] getlocal 0 .............................. <t>
+  [ 85] getchainedprop 250 ...................... <t.car>
+  [ 87] getobjprop 235 .......................... <t.car.name>
+  [ 89] pusharglist 1 ........................... <t.car.name>
+  [ 91] extcall 64 .............................. <member(t.car.name)>
+  [ 93] getlocal 0 .............................. <t>
+  [ 95] getchainedprop 250 ...................... <t.car>
+  [ 97] getobjprop 235 .......................... <t.car.name>
+  [ 99] pusharglist 2 ........................... <member(t.car.name), t.car.name>
+  [101] objcall 71 .............................. <member(t.car.name).model(t.car.name)>
+  [103] getchainedprop 214 ...................... <member(t.car.name).model(t.car.name).transform>
+  [105] getobjprop 215 .......................... <member(t.car.name).model(t.car.name).transform.position>
+  [107] sub ..................................... <member(t.car.name).group(t.car.name & "WheelPart" & i & "_Dummy").transform.position - member(t.car.name).model(t.car.name).transform.position>
+  [108] pusharglistnoret 2 ...................... <t.car.WheelPartPos, member(t.car.name).group(t.car.name & "WheelPart" & i & "_Dummy").transform.position - member(t.car.name).model(t.car.name).transform.position>
+  [110] objcall 42 .............................. t.car.WheelPartPos.add(member(t.car.name).group(t.car.name & "WheelPart" & i & "_Dummy").transform.position - member(t.car.name).model(t.car.name).transform.position)
+  [112] pushint8 1
+  [114] getlocal 1
+  [116] add
+  [117] setlocal 1
+  [119] endrepeat [ 35]
+  [121] getlocal 0 .............................. <t>
+  [123] pushsymb 250 ............................ <#car>
+  [125] pushsymb 3171 ........................... <#ExhaustPartPos>
+  [128] pusharglist 0 ........................... <[]>
+  [130] pushlist ................................ <[]>
+  [131] pusharglistnoret 4 ...................... <t, #car, #ExhaustPartPos, []>
+  [133] objcall 99 .............................. t.car[#ExhaustPartPos] = []
+  [135] pushint8 1 .............................. <1>
+  [137] setlocal 1
+  [139] getlocal 1
+  [141] pushint8 2 .............................. <2>
+  [143] lteq
+  [144] jmpifz [225] ............................ repeat with i = 1 to 2
+  [147] getlocal 0 .............................. <t>
+  [149] getchainedprop 250 ...................... <t.car>
+  [151] getchainedprop 3171 ..................... <t.car.ExhaustPartPos>
+  [154] getlocal 0 .............................. <t>
+  [156] getchainedprop 250 ...................... <t.car>
+  [158] getobjprop 235 .......................... <t.car.name>
+  [160] pusharglist 1 ........................... <t.car.name>
+  [162] extcall 64 .............................. <member(t.car.name)>
+  [164] getlocal 0 .............................. <t>
+  [166] getchainedprop 250 ...................... <t.car>
+  [168] getobjprop 235 .......................... <t.car.name>
+  [170] pushcons 2 .............................. <"ExhaustPart">
+  [172] joinstr ................................. <t.car.name & "ExhaustPart">
+  [173] getlocal 1 .............................. <i>
+  [175] joinstr ................................. <t.car.name & "ExhaustPart" & i>
+  [176] pushcons 1 .............................. <"_Dummy">
+  [178] joinstr ................................. <t.car.name & "ExhaustPart" & i & "_Dummy">
+  [179] pusharglist 2 ........................... <member(t.car.name), t.car.name & "ExhaustPart" & i & "_Dummy">
+  [181] objcall 65 .............................. <member(t.car.name).group(t.car.name & "ExhaustPart" & i & "_Dummy")>
+  [183] getchainedprop 214 ...................... <member(t.car.name).group(t.car.name & "ExhaustPart" & i & "_Dummy").transform>
+  [185] getobjprop 215 .......................... <member(t.car.name).group(t.car.name & "ExhaustPart" & i & "_Dummy").transform.position>
+  [187] getlocal 0 .............................. <t>
+  [189] getchainedprop 250 ...................... <t.car>
+  [191] getobjprop 235 .......................... <t.car.name>
+  [193] pusharglist 1 ........................... <t.car.name>
+  [195] extcall 64 .............................. <member(t.car.name)>
+  [197] getlocal 0 .............................. <t>
+  [199] getchainedprop 250 ...................... <t.car>
+  [201] getobjprop 235 .......................... <t.car.name>
+  [203] pusharglist 2 ........................... <member(t.car.name), t.car.name>
+  [205] objcall 71 .............................. <member(t.car.name).model(t.car.name)>
+  [207] getchainedprop 214 ...................... <member(t.car.name).model(t.car.name).transform>
+  [209] getobjprop 215 .......................... <member(t.car.name).model(t.car.name).transform.position>
+  [211] sub ..................................... <member(t.car.name).group(t.car.name & "ExhaustPart" & i & "_Dummy").transform.position - member(t.car.name).model(t.car.name).transform.position>
+  [212] pusharglistnoret 2 ...................... <t.car.ExhaustPartPos, member(t.car.name).group(t.car.name & "ExhaustPart" & i & "_Dummy").transform.position - member(t.car.name).model(t.car.name).transform.position>
+  [214] objcall 42 .............................. t.car.ExhaustPartPos.add(member(t.car.name).group(t.car.name & "ExhaustPart" & i & "_Dummy").transform.position - member(t.car.name).model(t.car.name).transform.position)
+  [216] pushint8 1
+  [218] getlocal 1
+  [220] add
+  [221] setlocal 1
+  [223] endrepeat [139]
+  [225] getlocal 0 .............................. <t>
+  [227] pushsymb 250 ............................ <#car>
+  [229] pushsymb 3172 ........................... <#WheelPart>
+  [232] pusharglist 0 ........................... <[]>
+  [234] pushlist ................................ <[]>
+  [235] pusharglistnoret 4 ...................... <t, #car, #WheelPart, []>
+  [237] objcall 99 .............................. t.car[#WheelPart] = []
+  [239] pushint8 1 .............................. <1>
+  [241] setlocal 1
+  [243] getlocal 1
+  [245] pushint8 2 .............................. <2>
+  [247] lteq
+  [248] jmpifz [373] ............................ repeat with i = 1 to 2
+  [251] getlocal 0 .............................. <t>
+  [253] getchainedprop 376 ...................... <t.general>
+  [256] getchainedprop 64 ....................... <t.general.member>
+  [258] getobjprop 235 .......................... <t.general.member.name>
+  [260] pushsymb 598 ............................ <#type>
+  [263] pushsymb 3173 ........................... <#Wheel>
+  [266] pushsymb 1213 ........................... <#NameTag>
+  [269] getprop 563 ............................. <p>
+  [272] getobjprop 377 .......................... <p.tag>
+  [275] pusharglist 1 ........................... <p.tag>
+  [277] extcall 67 .............................. <string(p.tag)>
+  [279] pusharglist 4 ........................... <[#type: #Wheel, #NameTag: string(p.tag)]>
+  [281] pushproplist ............................ <[#type: #Wheel, #NameTag: string(p.tag)]>
+  [282] pusharglist 2 ........................... <t.general.member.name, [#type: #Wheel, #NameTag: string(p.tag)]>
+  [284] extcall 1284 ............................ <CreateParticleSystem(t.general.member.name, [#type: #Wheel, #NameTag: string(p.tag)])>
+  [287] setlocal 2 .............................. pPart = CreateParticleSystem(t.general.member.name, [#type: #Wheel, #NameTag: string(p.tag)])
+  [289] getlocal 2 .............................. <pPart>
+  [291] getchainedprop 214 ...................... <pPart.transform>
+  [293] pushfloat32 0.0 ......................... <0.0>
+  [298] pushfloat32 0.0 ......................... <0.0>
+  [303] pushfloat32 150.0 ....................... <150.0>
+  [308] inv ..................................... <-150.0>
+  [309] pusharglist 3 ........................... <0.0, 0.0, -150.0>
+  [311] extcall 212 ............................. <vector(0.0, 0.0, -150.0)>
+  [313] setobjprop 215 .......................... pPart.transform.position = vector(0.0, 0.0, -150.0)
+  [315] getlocal 2 .............................. <pPart>
+  [317] getlocal 0 .............................. <t>
+  [319] getchainedprop 250 ...................... <t.car>
+  [321] getobjprop 71 ........................... <t.car.model>
+  [323] setobjprop 207 .......................... pPart.parent = t.car.model
+  [325] getlocal 2 .............................. <pPart>
+  [327] getchainedprop 214 ...................... <pPart.transform>
+  [329] getlocal 0 .............................. <t>
+  [331] getchainedprop 250 ...................... <t.car>
+  [333] pushsymb 3170 ........................... <#WheelPartPos>
+  [336] getlocal 1 .............................. <i>
+  [338] pusharglist 3 ........................... <t.car, #WheelPartPos, i>
+  [340] objcall 70 .............................. <t.car.WheelPartPos[i]>
+  [342] setobjprop 215 .......................... pPart.transform.position = t.car.WheelPartPos[i]
+  [344] getlocal 2 .............................. <pPart>
+  [346] pusharglistnoret 1 ...................... <pPart>
+  [348] objcall 662 ............................. pPart.removeFromWorld()
+  [351] getlocal 0 .............................. <t>
+  [353] getchainedprop 250 ...................... <t.car>
+  [355] getchainedprop 3172 ..................... <t.car.WheelPart>
+  [358] getlocal 2 .............................. <pPart>
+  [360] pusharglistnoret 2 ...................... <t.car.WheelPart, pPart>
+  [362] objcall 42 .............................. t.car.WheelPart.add(pPart)
+  [364] pushint8 1
+  [366] getlocal 1
+  [368] add
+  [369] setlocal 1
+  [371] endrepeat [243]
+  [373] getlocal 0 .............................. <t>
+  [375] pushsymb 250 ............................ <#car>
+  [377] pushsymb 3174 ........................... <#ExhaustPart>
+  [380] pusharglist 0 ........................... <[]>
+  [382] pushlist ................................ <[]>
+  [383] pusharglistnoret 4 ...................... <t, #car, #ExhaustPart, []>
+  [385] objcall 99 .............................. t.car[#ExhaustPart] = []
+  [387] pushint8 1 .............................. <1>
+  [389] setlocal 1
+  [391] getlocal 1
+  [393] pushint8 2 .............................. <2>
+  [395] lteq
+  [396] jmpifz [514] ............................ repeat with i = 1 to 2
+  [399] getlocal 0 .............................. <t>
+  [401] getchainedprop 376 ...................... <t.general>
+  [404] getchainedprop 64 ....................... <t.general.member>
+  [406] getobjprop 235 .......................... <t.general.member.name>
+  [408] pushsymb 598 ............................ <#type>
+  [411] pushsymb 3175 ........................... <#Exhaust>
+  [414] pushsymb 1213 ........................... <#NameTag>
+  [417] getprop 563 ............................. <p>
+  [420] getobjprop 377 .......................... <p.tag>
+  [423] pusharglist 1 ........................... <p.tag>
+  [425] extcall 67 .............................. <string(p.tag)>
+  [427] pusharglist 4 ........................... <[#type: #Exhaust, #NameTag: string(p.tag)]>
+  [429] pushproplist ............................ <[#type: #Exhaust, #NameTag: string(p.tag)]>
+  [430] pusharglist 2 ........................... <t.general.member.name, [#type: #Exhaust, #NameTag: string(p.tag)]>
+  [432] extcall 1284 ............................ <CreateParticleSystem(t.general.member.name, [#type: #Exhaust, #NameTag: string(p.tag)])>
+  [435] setlocal 2 .............................. pPart = CreateParticleSystem(t.general.member.name, [#type: #Exhaust, #NameTag: string(p.tag)])
+  [437] getlocal 2 .............................. <pPart>
+  [439] getchainedprop 214 ...................... <pPart.transform>
+  [441] pushfloat32 0.0 ......................... <0.0>
+  [446] pushfloat32 0.0 ......................... <0.0>
+  [451] pushfloat32 150.0 ....................... <150.0>
+  [456] inv ..................................... <-150.0>
+  [457] pusharglist 3 ........................... <0.0, 0.0, -150.0>
+  [459] extcall 212 ............................. <vector(0.0, 0.0, -150.0)>
+  [461] setobjprop 215 .......................... pPart.transform.position = vector(0.0, 0.0, -150.0)
+  [463] getlocal 2 .............................. <pPart>
+  [465] getlocal 0 .............................. <t>
+  [467] getchainedprop 250 ...................... <t.car>
+  [469] getobjprop 71 ........................... <t.car.model>
+  [471] setobjprop 207 .......................... pPart.parent = t.car.model
+  [473] getlocal 2 .............................. <pPart>
+  [475] getchainedprop 214 ...................... <pPart.transform>
+  [477] getlocal 0 .............................. <t>
+  [479] getchainedprop 250 ...................... <t.car>
+  [481] pushsymb 3171 ........................... <#ExhaustPartPos>
+  [484] getlocal 1 .............................. <i>
+  [486] pusharglist 3 ........................... <t.car, #ExhaustPartPos, i>
+  [488] objcall 70 .............................. <t.car.ExhaustPartPos[i]>
+  [490] setobjprop 215 .......................... pPart.transform.position = t.car.ExhaustPartPos[i]
+  [492] getlocal 0 .............................. <t>
+  [494] getchainedprop 250 ...................... <t.car>
+  [496] getchainedprop 3174 ..................... <t.car.ExhaustPart>
+  [499] getlocal 2 .............................. <pPart>
+  [501] pusharglistnoret 2 ...................... <t.car.ExhaustPart, pPart>
+  [503] objcall 42 .............................. t.car.ExhaustPart.add(pPart)
+  [505] pushint8 1
+  [507] getlocal 1
+  [509] add
+  [510] setlocal 1
+  [512] endrepeat [391]
+  [514] getlocal 0 .............................. <t>
+  [516] pushsymb 250 ............................ <#car>
+  [518] pushsymb 3176 ........................... <#NitroPart>
+  [521] pusharglist 0 ........................... <[]>
+  [523] pushlist ................................ <[]>
+  [524] pusharglistnoret 4 ...................... <t, #car, #NitroPart, []>
+  [526] objcall 99 .............................. t.car[#NitroPart] = []
+  [528] pushint8 1 .............................. <1>
+  [530] setlocal 1
+  [532] getlocal 1
+  [534] pushint8 2 .............................. <2>
+  [536] lteq
+  [537] jmpifz [677] ............................ repeat with i = 1 to 2
+  [540] getlocal 0 .............................. <t>
+  [542] getchainedprop 376 ...................... <t.general>
+  [545] getchainedprop 64 ....................... <t.general.member>
+  [547] getobjprop 235 .......................... <t.general.member.name>
+  [549] pushsymb 598 ............................ <#type>
+  [552] pushsymb 371 ............................ <#Nitro>
+  [555] pushsymb 1213 ........................... <#NameTag>
+  [558] getprop 563 ............................. <p>
+  [561] getobjprop 377 .......................... <p.tag>
+  [564] pusharglist 1 ........................... <p.tag>
+  [566] extcall 67 .............................. <string(p.tag)>
+  [568] pusharglist 4 ........................... <[#type: #Nitro, #NameTag: string(p.tag)]>
+  [570] pushproplist ............................ <[#type: #Nitro, #NameTag: string(p.tag)]>
+  [571] pusharglist 2 ........................... <t.general.member.name, [#type: #Nitro, #NameTag: string(p.tag)]>
+  [573] extcall 1284 ............................ <CreateParticleSystem(t.general.member.name, [#type: #Nitro, #NameTag: string(p.tag)])>
+  [576] setlocal 2 .............................. pPart = CreateParticleSystem(t.general.member.name, [#type: #Nitro, #NameTag: string(p.tag)])
+  [578] getlocal 2 .............................. <pPart>
+  [580] getchainedprop 214 ...................... <pPart.transform>
+  [582] pushfloat32 0.0 ......................... <0.0>
+  [587] pushfloat32 0.0 ......................... <0.0>
+  [592] pushfloat32 150.0 ....................... <150.0>
+  [597] inv ..................................... <-150.0>
+  [598] pusharglist 3 ........................... <0.0, 0.0, -150.0>
+  [600] extcall 212 ............................. <vector(0.0, 0.0, -150.0)>
+  [602] setobjprop 215 .......................... pPart.transform.position = vector(0.0, 0.0, -150.0)
+  [604] getlocal 2 .............................. <pPart>
+  [606] getlocal 0 .............................. <t>
+  [608] getchainedprop 250 ...................... <t.car>
+  [610] getobjprop 71 ........................... <t.car.model>
+  [612] setobjprop 207 .......................... pPart.parent = t.car.model
+  [614] getlocal 2 .............................. <pPart>
+  [616] getchainedprop 214 ...................... <pPart.transform>
+  [618] getlocal 0 .............................. <t>
+  [620] getchainedprop 250 ...................... <t.car>
+  [622] pushsymb 3171 ........................... <#ExhaustPartPos>
+  [625] getlocal 1 .............................. <i>
+  [627] pusharglist 3 ........................... <t.car, #ExhaustPartPos, i>
+  [629] objcall 70 .............................. <t.car.ExhaustPartPos[i]>
+  [631] getlocal 0 .............................. <t>
+  [633] getchainedprop 250 ...................... <t.car>
+  [635] getchainedprop 71 ....................... <t.car.model>
+  [637] getchainedprop 214 ...................... <t.car.model.transform>
+  [639] getobjprop 1187 ......................... <t.car.model.transform.yAxis>
+  [642] pushcons 3 .............................. <0.20000000000000001>
+  [644] mul ..................................... <t.car.model.transform.yAxis * 0.20000000000000001>
+  [645] sub ..................................... <t.car.ExhaustPartPos[i] - (t.car.model.transform.yAxis * 0.20000000000000001)>
+  [646] setobjprop 215 .......................... pPart.transform.position = t.car.ExhaustPartPos[i] - (t.car.model.transform.yAxis * 0.20000000000000001)
+  [648] getlocal 2 .............................. <pPart>
+  [650] pusharglistnoret 1 ...................... <pPart>
+  [652] objcall 662 ............................. pPart.removeFromWorld()
+  [655] getlocal 0 .............................. <t>
+  [657] getchainedprop 250 ...................... <t.car>
+  [659] getchainedprop 3176 ..................... <t.car.NitroPart>
+  [662] getlocal 2 .............................. <pPart>
+  [664] pusharglistnoret 2 ...................... <t.car.NitroPart, pPart>
+  [666] objcall 42 .............................. t.car.NitroPart.add(pPart)
+  [668] pushint8 1
+  [670] getlocal 1
+  [672] add
+  [673] setlocal 1
+  [675] endrepeat [532]
+  [677] getlocal 0 .............................. <t>
+  [679] getchainedprop 376 ...................... <t.general>
+  [682] getchainedprop 1439 ..................... <t.general.States>
+  [685] pushsymb 3164 ........................... <#updateEffects>
+  [688] pusharglistnoret 2 ...................... <t.general.States, #updateEffects>
+  [690] objcall 42 .............................. t.general.States.add(#updateEffects)
+  [692] ret
+end
+
+on enterFrame me
+  [  0] ret
+end
+
+on clear me
+  [  0] ret
+end

@@ -1,0 +1,233 @@
+on DuplicateTexture me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 64 .............................. <member(tTarget)>
+  [  6] setlocal 0 .............................. tmember = member(tTarget)
+  [  8] getlocal 0 .............................. <tmember>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <tmember = VOID>
+  [ 15] jmpifz [ 25] ............................ if tmember = VOID then
+  [ 18] pusharglist 0 ........................... <[]>
+  [ 20] pushlist ................................ <[]>
+  [ 21] pusharglistnoret 1 ...................... <[]>
+  [ 23] extcall 52 .............................. return []
+  [ 25] getparam 2 .............................. <tDataList>
+  [ 27] getobjprop 122 .......................... <tDataList.ilk>
+  [ 29] pushsymb 67 ............................. <#string>
+  [ 31] eq ...................................... <tDataList.ilk = #string>
+  [ 32] jmpifz [ 44] ............................ if tDataList.ilk = #string then
+  [ 35] getparam 2 .............................. <tDataList>
+  [ 37] pusharglist 1 ........................... <tDataList>
+  [ 39] extcall 503 ............................. <value(tDataList)>
+  [ 42] setparam 2 .............................. tDataList = value(tDataList)
+  [ 44] getparam 2 .............................. <tDataList>
+  [ 46] getobjprop 122 .......................... <tDataList.ilk>
+  [ 48] pushsymb 541 ............................ <#propList>
+  [ 51] nteq .................................... <tDataList.ilk <> #propList>
+  [ 52] jmpifz [ 62] ............................ if tDataList.ilk <> #propList then
+  [ 55] pusharglist 0 ........................... <[]>
+  [ 57] pushlist ................................ <[]>
+  [ 58] pusharglistnoret 1 ...................... <[]>
+  [ 60] extcall 52 .............................. return []
+  [ 62] getlocal 0 .............................. <tmember>
+  [ 64] setlocal 1 .............................. tSourceMember = tmember
+  [ 66] getparam 2 .............................. <tDataList>
+  [ 68] pushsymb 1212 ........................... <#sourceMember>
+  [ 71] pusharglist 2 ........................... <tDataList, #sourceMember>
+  [ 73] objcall 105 ............................. <tDataList[#sourceMember]>
+  [ 75] getobjprop 122 .......................... <tDataList[#sourceMember].ilk>
+  [ 77] pushsymb 67 ............................. <#string>
+  [ 79] eq ...................................... <tDataList[#sourceMember].ilk = #string>
+  [ 80] jmpifz [ 94] ............................ if tDataList[#sourceMember].ilk = #string then
+  [ 83] getparam 2 .............................. <tDataList>
+  [ 85] getobjprop 1212 ......................... <tDataList.sourceMember>
+  [ 88] pusharglist 1 ........................... <tDataList.sourceMember>
+  [ 90] extcall 64 .............................. <member(tDataList.sourceMember)>
+  [ 92] setlocal 1 .............................. tSourceMember = member(tDataList.sourceMember)
+  [ 94] pusharglist 0 ........................... <[]>
+  [ 96] pushlist ................................ <[]>
+  [ 97] setlocal 2 .............................. tTargetList = []
+  [ 99] getparam 2 .............................. <tDataList>
+  [101] pushsymb 218 ............................ <#texture>
+  [103] pusharglist 2 ........................... <tDataList, #texture>
+  [105] objcall 105 ............................. <tDataList[#texture]>
+  [107] getobjprop 122 .......................... <tDataList[#texture].ilk>
+  [109] pushsymb 40 ............................. <#void>
+  [111] eq ...................................... <tDataList[#texture].ilk = #void>
+  [112] jmpifz [125] ............................ if tDataList[#texture].ilk = #void then
+  [115] getparam 2 .............................. <tDataList>
+  [117] pushsymb 218 ............................ <#texture>
+  [119] pushcons 0 .............................. <"*.*">
+  [121] pusharglistnoret 3 ...................... <tDataList, #texture, "*.*">
+  [123] objcall 103 ............................. tDataList[#texture] = "*.*"
+  [125] getparam 2 .............................. <tDataList>
+  [127] pushsymb 218 ............................ <#texture>
+  [129] pusharglist 2 ........................... <tDataList, #texture>
+  [131] objcall 105 ............................. <tDataList[#texture]>
+  [133] getobjprop 122 .......................... <tDataList[#texture].ilk>
+  [135] pushsymb 126 ............................ <#list>
+  [137] eq ...................................... <tDataList[#texture].ilk = #list>
+  [138] jmpifz [150] ............................ if tDataList[#texture].ilk = #list then / else
+  [141] getparam 2 .............................. <tDataList>
+  [143] getobjprop 218 .......................... <tDataList.texture>
+  [145] setlocal 2 .............................. tTargetList = tDataList.texture
+  [147] jmp [252]
+  [150] getparam 2 .............................. <tDataList>
+  [152] pushsymb 218 ............................ <#texture>
+  [154] pusharglist 2 ........................... <tDataList, #texture>
+  [156] objcall 105 ............................. <tDataList[#texture]>
+  [158] getobjprop 122 .......................... <tDataList[#texture].ilk>
+  [160] pushsymb 67 ............................. <#string>
+  [162] eq ...................................... <tDataList[#texture].ilk = #string>
+  [163] jmpifz [252] ............................ if tDataList[#texture].ilk = #string then
+  [166] getparam 2 .............................. <tDataList>
+  [168] getchainedprop 218 ...................... <tDataList.texture>
+  [170] pushsymb 68 ............................. <#char>
+  [172] pushint8 1 .............................. <1>
+  [174] pusharglist 3 ........................... <tDataList.texture, #char, 1>
+  [176] objcall 70 .............................. <tDataList.texture.char[1]>
+  [178] pushcons 1 .............................. <"*">
+  [180] eq ...................................... <tDataList.texture.char[1] = "*">
+  [181] jmpifz [242] ............................ if tDataList.texture.char[1] = "*" then / else
+  [184] getparam 2 .............................. <tDataList>
+  [186] getobjprop 208 .......................... <tDataList.shader>
+  [188] setlocal 3 .............................. tString = tDataList.shader
+  [190] getlocal 3 .............................. <tString>
+  [192] pushcons 0 .............................. <"*.*">
+  [194] nteq .................................... <tString <> "*.*">
+  [195] jmpifz [215] ............................ if tString <> "*.*" then
+  [198] pushint8 3 .............................. <3>
+  [200] pushchunkvarref 5 ....................... <tString>
+  [202] pushsymb 68 ............................. <#char>
+  [204] pushint8 1 .............................. <1>
+  [206] pusharglist 3 ........................... <tString, #char, 1>
+  [208] objcall 102 ............................. <tString.char[1]>
+  [210] pusharglistnoret 1 ...................... <tString.char[1]>
+  [212] objcall 562 ............................. delete tString.char[1]
+  [215] pushzero ................................ <0>
+  [216] getlocal 1 .............................. <tSourceMember>
+  [218] getobjprop 235 .......................... <tSourceMember.name>
+  [220] pushsymb 598 ............................ <#type>
+  [223] pushsymb 218 ............................ <#texture>
+  [225] pushsymb 67 ............................. <#string>
+  [227] getlocal 3 .............................. <tString>
+  [229] pusharglist 4 ........................... <[#type: #texture, #string: tString]>
+  [231] pushproplist ............................ <[#type: #texture, #string: tString]>
+  [232] pusharglist 3 ........................... <0, tSourceMember.name, [#type: #texture, #string: tString]>
+  [234] extcall 1265 ............................ <GetStringList(0, tSourceMember.name, [#type: #texture, #string: tString])>
+  [237] setlocal 2 .............................. tTargetList = GetStringList(0, tSourceMember.name, [#type: #texture, #string: tString])
+  [239] jmp [252]
+  [242] getlocal 2 .............................. <tTargetList>
+  [244] getparam 2 .............................. <tDataList>
+  [246] getobjprop 218 .......................... <tDataList.texture>
+  [248] pusharglistnoret 2 ...................... <tTargetList, tDataList.texture>
+  [250] objcall 42 .............................. tTargetList.add(tDataList.texture)
+  [252] getlocal 2 .............................. <tTargetList>
+  [254] getobjprop 129 .......................... <tTargetList.count>
+  [256] pushzero ................................ <0>
+  [257] eq ...................................... <tTargetList.count = 0>
+  [258] jmpifz [268] ............................ if tTargetList.count = 0 then
+  [261] pusharglist 0 ........................... <[]>
+  [263] pushlist ................................ <[]>
+  [264] pusharglistnoret 1 ...................... <[]>
+  [266] extcall 52 .............................. return []
+  [268] pusharglist 0 ........................... <>
+  [270] extcall 40 .............................. <VOID>
+  [272] setlocal 4 .............................. tNameTag = VOID
+  [274] getparam 2 .............................. <tDataList>
+  [276] pushsymb 1213 ........................... <#NameTag>
+  [279] pusharglist 2 ........................... <tDataList, #NameTag>
+  [281] objcall 105 ............................. <tDataList[#NameTag]>
+  [283] getobjprop 122 .......................... <tDataList[#NameTag].ilk>
+  [285] pushsymb 67 ............................. <#string>
+  [287] eq ...................................... <tDataList[#NameTag].ilk = #string>
+  [288] jmpifz [298] ............................ if tDataList[#NameTag].ilk = #string then
+  [291] getparam 2 .............................. <tDataList>
+  [293] getobjprop 1213 ......................... <tDataList.NameTag>
+  [296] setlocal 4 .............................. tNameTag = tDataList.NameTag
+  [298] pusharglist 0 ........................... <[]>
+  [300] pushlist ................................ <[]>
+  [301] setlocal 5 .............................. tTextureList = []
+  [303] getlocal 2 .............................. <tTargetList>
+  [305] peek 0
+  [307] pusharglist 1
+  [309] extcall 129
+  [311] pushint8 1
+  [313] peek 0
+  [315] peek 2
+  [317] lteq
+  [318] jmpifz [438] ............................ repeat with i in tTargetList
+  [321] peek 2
+  [323] peek 1
+  [325] pusharglist 2
+  [327] extcall 105
+  [329] setlocal 6
+  [331] getlocal 1 .............................. <tSourceMember>
+  [333] getlocal 6 .............................. <i>
+  [335] pusharglist 2 ........................... <tSourceMember, i>
+  [337] objcall 218 ............................. <tSourceMember.texture(i)>
+  [339] setlocal 7 .............................. tTexture = tSourceMember.texture(i)
+  [341] getlocal 7 .............................. <tTexture>
+  [343] getobjprop 64 ........................... <tTexture.member>
+  [345] setlocal 8 .............................. tTextureMember = tTexture.member
+  [347] getlocal 8 .............................. <tTextureMember>
+  [349] getchainedprop 319 ...................... <tTextureMember.image>
+  [352] pusharglist 1 ........................... <tTextureMember.image>
+  [354] objcall 233 ............................. <tTextureMember.image.duplicate()>
+  [356] setlocal 9 .............................. tImage = tTextureMember.image.duplicate()
+  [358] getlocal 0 .............................. <tmember>
+  [360] getlocal 4 .............................. <tNameTag>
+  [362] getlocal 7 .............................. <tTexture>
+  [364] getobjprop 235 .......................... <tTexture.name>
+  [366] joinstr ................................. <tNameTag & tTexture.name>
+  [367] pushsymb 902 ............................ <#fromImageObject>
+  [370] getlocal 9 .............................. <tImage>
+  [372] pusharglist 4 ........................... <tmember, tNameTag & tTexture.name, #fromImageObject, tImage>
+  [374] objcall 903 ............................. <tmember.newTexture(tNameTag & tTexture.name, #fromImageObject, tImage)>
+  [377] setlocal 10 ............................. tNewTexture = tmember.newTexture(tNameTag & tTexture.name, #fromImageObject, tImage)
+  [379] getlocal 10 ............................. <tNewTexture>
+  [381] getlocal 7 .............................. <tTexture>
+  [383] getobjprop 331 .......................... <tTexture.quality>
+  [386] setobjprop 331 .......................... tNewTexture.quality = tTexture.quality
+  [389] getlocal 10 ............................. <tNewTexture>
+  [391] getlocal 7 .............................. <tTexture>
+  [393] getobjprop 226 .......................... <tTexture.nearFiltering>
+  [395] setobjprop 226 .......................... tNewTexture.nearFiltering = tTexture.nearFiltering
+  [397] getlocal 10 ............................. <tNewTexture>
+  [399] getlocal 7 .............................. <tTexture>
+  [401] getobjprop 1281 ......................... <tTexture.compressed>
+  [404] setobjprop 1281 ......................... tNewTexture.compressed = tTexture.compressed
+  [407] getlocal 10 ............................. <tNewTexture>
+  [409] getlocal 7 .............................. <tTexture>
+  [411] getobjprop 348 .......................... <tTexture.renderFormat>
+  [414] setobjprop 348 .......................... tNewTexture.renderFormat = tTexture.renderFormat
+  [417] getlocal 10 ............................. <tNewTexture>
+  [419] getlocal 7 .............................. <tTexture>
+  [421] getobjprop 64 ........................... <tTexture.member>
+  [423] setobjprop 64 ........................... tNewTexture.member = tTexture.member
+  [425] getlocal 5 .............................. <tTextureList>
+  [427] getlocal 10 ............................. <tNewTexture>
+  [429] pusharglistnoret 2 ...................... <tTextureList, tNewTexture>
+  [431] objcall 42 .............................. tTextureList.add(tNewTexture)
+  [433] pushint8 1
+  [435] add
+  [436] endrepeat [313]
+  [438] pop 3
+  [440] getlocal 5 .............................. <tTextureList>
+  [442] getobjprop 129 .......................... <tTextureList.count>
+  [444] pushint8 1 .............................. <1>
+  [446] eq ...................................... <tTextureList.count = 1>
+  [447] jmpifz [465] ............................ if tTextureList.count = 1 then / else
+  [450] getlocal 5 .............................. <tTextureList>
+  [452] pushint8 1 .............................. <1>
+  [454] pusharglist 2 ........................... <tTextureList, 1>
+  [456] objcall 105 ............................. <tTextureList[1]>
+  [458] pusharglistnoret 1 ...................... <tTextureList[1]>
+  [460] extcall 52 .............................. return tTextureList[1]
+  [462] jmp [471]
+  [465] getlocal 5 .............................. <tTextureList>
+  [467] pusharglistnoret 1 ...................... <tTextureList>
+  [469] extcall 52 .............................. return tTextureList
+  [471] ret
+end

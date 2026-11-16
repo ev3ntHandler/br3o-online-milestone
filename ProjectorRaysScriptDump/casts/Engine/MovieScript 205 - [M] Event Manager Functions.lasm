@@ -1,0 +1,1937 @@
+global g, gSystem, gLoader, gData, gSound, gGame
+
+on AddScript tTarget, tDataList
+  [  0] getparam 0 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 503 ............................. <value(tTarget)>
+  [  7] setlocal 0 .............................. pValue = value(tTarget)
+  [  9] getlocal 0 .............................. <pValue>
+  [ 11] getobjprop 122 .......................... <pValue.ilk>
+  [ 13] pushsymb 123 ............................ <#integer>
+  [ 15] eq ...................................... <pValue.ilk = #integer>
+  [ 16] getlocal 0 .............................. <pValue>
+  [ 18] pushzero ................................ <0>
+  [ 19] nteq .................................... <pValue <> 0>
+  [ 20] and ..................................... <(pValue.ilk = #integer) and (pValue <> 0)>
+  [ 21] jmpifz [ 35] ............................ if (pValue.ilk = #integer) and (pValue <> 0) then / else
+  [ 24] getparam 0 .............................. <tTarget>
+  [ 26] getparam 1 .............................. <tDataList>
+  [ 28] pusharglistnoret 2 ...................... <tTarget, tDataList>
+  [ 30] localcall 2 ............................. AddScriptToSprite(tTarget, tDataList)
+  [ 32] jmp [ 43]
+  [ 35] getparam 0 .............................. <tTarget>
+  [ 37] getparam 1 .............................. <tDataList>
+  [ 39] pusharglistnoret 2 ...................... <tTarget, tDataList>
+  [ 41] localcall 1 ............................. AddScriptToScriptList(tTarget, tDataList)
+  [ 43] ret
+end
+
+on AddScriptToScriptList tTarget, tDataList
+  [  0] getparam 1 .............................. <tDataList>
+  [  2] pusharglist 1 ........................... <tDataList>
+  [  4] extcall 503 ............................. <value(tDataList)>
+  [  7] setparam 1 .............................. tDataList = value(tDataList)
+  [  9] getparam 1 .............................. <tDataList>
+  [ 11] pusharglist 1 ........................... <tDataList>
+  [ 13] extcall 503 ............................. <value(tDataList)>
+  [ 16] pushsymb 36 ............................. <#script>
+  [ 18] pusharglist 2 ........................... <value(tDataList), #script>
+  [ 20] objcall 105 ............................. <value(tDataList)[#script]>
+  [ 22] setlocal 0 .............................. pScriptName = value(tDataList)[#script]
+  [ 24] getlocal 0 .............................. <pScriptName>
+  [ 26] pusharglist 0 ........................... <>
+  [ 28] extcall 40 .............................. <VOID>
+  [ 30] eq ...................................... <pScriptName = VOID>
+  [ 31] getlocal 0 .............................. <pScriptName>
+  [ 33] pushcons 0 .............................. <EMPTY>
+  [ 35] eq ...................................... <pScriptName = EMPTY>
+  [ 36] or ...................................... <(pScriptName = VOID) or (pScriptName = EMPTY)>
+  [ 37] jmpifz [ 60] ............................ if (pScriptName = VOID) or (pScriptName = EMPTY) then
+  [ 40] pushcons 1 .............................. <"Function: AddScriptToSprite. Target: ">
+  [ 42] getparam 0 .............................. <tTarget>
+  [ 44] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget>
+  [ 45] pushcons 2 .............................. <" Parameters: ">
+  [ 47] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: ">
+  [ 48] getparam 1 .............................. <tDataList>
+  [ 50] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 51] pushcons 3 .............................. <" Script was VOID.">
+  [ 53] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " Script was VOID.">
+  [ 54] pusharglistnoret 1 ...................... <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " Script was VOID.">
+  [ 56] extcall 511 ............................. ShowError("Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " Script was VOID.")
+  [ 59] ret ..................................... exit
+  [ 60] gettoplevelprop 33 ...................... <_movie>
+  [ 62] pushcons 4 .............................. <"Engine">
+  [ 64] pusharglist 2 ........................... <_movie, "Engine">
+  [ 66] objcall 58 .............................. <_movie.castLib("Engine")>
+  [ 68] pushsymb 64 ............................. <#member>
+  [ 70] pusharglist 2 ........................... <_movie.castLib("Engine"), #member>
+  [ 72] objcall 129 ............................. <_movie.castLib("Engine").member.count>
+  [ 74] setlocal 1 .............................. pCount = _movie.castLib("Engine").member.count
+  [ 76] pushint8 1 .............................. <1>
+  [ 78] setlocal 2
+  [ 80] getlocal 2
+  [ 82] getlocal 1 .............................. <pCount>
+  [ 84] lteq
+  [ 85] jmpifz [200] ............................ repeat with i = 1 to pCount
+  [ 88] gettoplevelprop 33 ...................... <_movie>
+  [ 90] pushcons 4 .............................. <"Engine">
+  [ 92] pusharglist 2 ........................... <_movie, "Engine">
+  [ 94] objcall 58 .............................. <_movie.castLib("Engine")>
+  [ 96] pushsymb 64 ............................. <#member>
+  [ 98] getlocal 2 .............................. <i>
+  [100] pusharglist 3 ........................... <_movie.castLib("Engine"), #member, i>
+  [102] objcall 70 .............................. <_movie.castLib("Engine").member[i]>
+  [104] setlocal 3 .............................. pMember = _movie.castLib("Engine").member[i]
+  [106] getlocal 3 .............................. <pMember>
+  [108] getobjprop 598 .......................... <pMember.type>
+  [111] pushsymb 36 ............................. <#script>
+  [113] eq ...................................... <pMember.type = #script>
+  [114] jmpifz [188] ............................ if pMember.type = #script then
+  [117] gettoplevelprop 33 ...................... <_movie>
+  [119] pushcons 4 .............................. <"Engine">
+  [121] pusharglist 2 ........................... <_movie, "Engine">
+  [123] objcall 58 .............................. <_movie.castLib("Engine")>
+  [125] pushsymb 64 ............................. <#member>
+  [127] getlocal 2 .............................. <i>
+  [129] pusharglist 3 ........................... <_movie.castLib("Engine"), #member, i>
+  [131] objcall 102 ............................. <_movie.castLib("Engine").member[i]>
+  [133] getobjprop 235 .......................... <_movie.castLib("Engine").member[i].name>
+  [135] setlocal 4 .............................. pMemberName = _movie.castLib("Engine").member[i].name
+  [137] getlocal 4 .............................. <pMemberName>
+  [139] getlocal 0 .............................. <pScriptName>
+  [141] eq ...................................... <pMemberName = pScriptName>
+  [142] jmpifz [151] ............................ if pMemberName = pScriptName then / else
+  [145] jmp [200] ............................... exit repeat
+  [148] jmp [185]
+  [151] getlocal 2 .............................. <i>
+  [153] getlocal 1 .............................. <pCount>
+  [155] eq ...................................... <i = pCount>
+  [156] getlocal 4 .............................. <pMemberName>
+  [158] getlocal 0 .............................. <pScriptName>
+  [160] nteq .................................... <pMemberName <> pScriptName>
+  [161] and ..................................... <(i = pCount) and (pMemberName <> pScriptName)>
+  [162] jmpifz [185] ............................ if (i = pCount) and (pMemberName <> pScriptName) then
+  [165] pushcons 1 .............................. <"Function: AddScriptToSprite. Target: ">
+  [167] getparam 0 .............................. <tTarget>
+  [169] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget>
+  [170] pushcons 2 .............................. <" Parameters: ">
+  [172] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: ">
+  [173] getparam 1 .............................. <tDataList>
+  [175] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList>
+  [176] pushcons 5 .............................. <" Couldn't find this scriptname in 'Engine' cast.">
+  [178] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " Couldn't find this scriptname in 'Engine' cast.">
+  [179] pusharglistnoret 1 ...................... <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " Couldn't find this scriptname in 'Engine' cast.">
+  [181] extcall 511 ............................. ShowError("Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " Couldn't find this scriptname in 'Engine' cast.")
+  [184] ret ..................................... exit
+  [185] jmp [191] ............................... next repeat
+  [188] jmp [191] ............................... next repeat
+  [191] pushint8 1
+  [193] getlocal 2
+  [195] add
+  [196] setlocal 2
+  [198] endrepeat [ 80]
+  [200] getparam 0 .............................. <tTarget>
+  [202] pusharglist 1 ........................... <tTarget>
+  [204] extcall 64 .............................. <member(tTarget)>
+  [206] setlocal 3 .............................. pMember = member(tTarget)
+  [208] pusharglist 0 ........................... <>
+  [210] extcall 40 .............................. <VOID>
+  [212] setlocal 4 .............................. pMemberName = VOID
+  [214] getlocal 3 .............................. <pMember>
+  [216] pusharglist 0 ........................... <>
+  [218] extcall 40 .............................. <VOID>
+  [220] nteq .................................... <pMember <> VOID>
+  [221] jmpifz [230] ............................ if pMember <> VOID then
+  [224] getlocal 3 .............................. <pMember>
+  [226] getobjprop 235 .......................... <pMember.name>
+  [228] setlocal 4 .............................. pMemberName = pMember.name
+  [230] pushint8 1 .............................. <1>
+  [232] setlocal 5 .............................. pSpriteNr = 1
+  [234] getparam 1 .............................. <tDataList>
+  [236] pushsymb 87 ............................. <#data>
+  [238] pusharglist 2 ........................... <tDataList, #data>
+  [240] objcall 105 ............................. <tDataList[#data]>
+  [242] setlocal 6 .............................. pDataList = tDataList[#data]
+  [244] getlocal 6 .............................. <pDataList>
+  [246] pusharglist 0 ........................... <>
+  [248] extcall 40 .............................. <VOID>
+  [250] eq ...................................... <pDataList = VOID>
+  [251] getlocal 6 .............................. <pDataList>
+  [253] pushcons 0 .............................. <EMPTY>
+  [255] eq ...................................... <pDataList = EMPTY>
+  [256] or ...................................... <(pDataList = VOID) or (pDataList = EMPTY)>
+  [257] getlocal 6 .............................. <pDataList>
+  [259] getobjprop 122 .......................... <pDataList.ilk>
+  [261] pushsymb 541 ............................ <#propList>
+  [264] nteq .................................... <pDataList.ilk <> #propList>
+  [265] or ...................................... <(pDataList = VOID) or (pDataList = EMPTY) or (pDataList.ilk <> #propList)>
+  [266] jmpifz [283] ............................ if (pDataList = VOID) or (pDataList = EMPTY) or (pDataList.ilk <> #propList) then
+  [269] pushcons 6 .............................. <"Function: AddScript. Parameters: ">
+  [271] getlocal 6 .............................. <pDataList>
+  [273] joinstr ................................. <"Function: AddScript. Parameters: " & pDataList>
+  [274] pushcons 7 .............................. <" No correct datalist.">
+  [276] joinstr ................................. <"Function: AddScript. Parameters: " & pDataList & " No correct datalist.">
+  [277] pusharglistnoret 1 ...................... <"Function: AddScript. Parameters: " & pDataList & " No correct datalist.">
+  [279] extcall 511 ............................. ShowError("Function: AddScript. Parameters: " & pDataList & " No correct datalist.")
+  [282] ret ..................................... exit
+  [283] getlocal 6 .............................. <pDataList>
+  [285] pushsymb 949 ............................ <#memberName>
+  [288] pusharglist 2 ........................... <pDataList, #memberName>
+  [290] extcall 542 ............................. <getaProp(pDataList, #memberName)>
+  [293] pusharglist 0 ........................... <>
+  [295] extcall 40 .............................. <VOID>
+  [297] eq ...................................... <getaProp(pDataList, #memberName) = VOID>
+  [298] getlocal 4 .............................. <pMemberName>
+  [300] pusharglist 0 ........................... <>
+  [302] extcall 40 .............................. <VOID>
+  [304] nteq .................................... <pMemberName <> VOID>
+  [305] and ..................................... <(getaProp(pDataList, #memberName) = VOID) and (pMemberName <> VOID)>
+  [306] jmpifz [320] ............................ if (getaProp(pDataList, #memberName) = VOID) and (pMemberName <> VOID) then
+  [309] getlocal 6 .............................. <pDataList>
+  [311] pushsymb 949 ............................ <#memberName>
+  [314] getlocal 4 .............................. <pMemberName>
+  [316] pusharglistnoret 3 ...................... <pDataList, #memberName, pMemberName>
+  [318] objcall 103 ............................. pDataList[#memberName] = pMemberName
+  [320] getlocal 6 .............................. <pDataList>
+  [322] pushsymb 564 ............................ <#SpriteNR>
+  [325] pusharglist 2 ........................... <pDataList, #SpriteNR>
+  [327] extcall 542 ............................. <getaProp(pDataList, #SpriteNR)>
+  [330] pusharglist 0 ........................... <>
+  [332] extcall 40 .............................. <VOID>
+  [334] eq ...................................... <getaProp(pDataList, #SpriteNR) = VOID>
+  [335] getlocal 5 .............................. <pSpriteNr>
+  [337] pusharglist 0 ........................... <>
+  [339] extcall 40 .............................. <VOID>
+  [341] nteq .................................... <pSpriteNr <> VOID>
+  [342] and ..................................... <(getaProp(pDataList, #SpriteNR) = VOID) and (pSpriteNr <> VOID)>
+  [343] jmpifz [357] ............................ if (getaProp(pDataList, #SpriteNR) = VOID) and (pSpriteNr <> VOID) then
+  [346] getlocal 6 .............................. <pDataList>
+  [348] pushsymb 564 ............................ <#SpriteNR>
+  [351] getlocal 5 .............................. <pSpriteNr>
+  [353] pusharglistnoret 3 ...................... <pDataList, #SpriteNR, pSpriteNr>
+  [355] objcall 103 ............................. pDataList[#SpriteNR] = pSpriteNr
+  [357] getparam 1 .............................. <tDataList>
+  [359] pushsymb 1597 ........................... <#system>
+  [362] pusharglist 2 ........................... <tDataList, #system>
+  [364] objcall 105 ............................. <tDataList[#system]>
+  [366] getobjprop 122 .......................... <tDataList[#system].ilk>
+  [368] pushsymb 123 ............................ <#integer>
+  [370] eq ...................................... <tDataList[#system].ilk = #integer>
+  [371] jmpifz [384] ............................ if tDataList[#system].ilk = #integer then / else
+  [374] getparam 1 .............................. <tDataList>
+  [376] getobjprop 1597 ......................... <tDataList.system>
+  [379] setlocal 7 .............................. tSystem = tDataList.system
+  [381] jmp [387]
+  [384] pushzero ................................ <0>
+  [385] setlocal 7 .............................. tSystem = 0
+  [387] getlocal 0 .............................. <pScriptName>
+  [389] pusharglist 1 ........................... <pScriptName>
+  [391] extcall 36 .............................. <script(pScriptName)>
+  [393] getlocal 6 .............................. <pDataList>
+  [395] pusharglist 2 ........................... <script(pScriptName), pDataList>
+  [397] extcall 35 .............................. <new(script(pScriptName), pDataList)>
+  [399] setlocal 8 .............................. pScript = new(script(pScriptName), pDataList)
+  [401] getlocal 8 .............................. <pScript>
+  [403] pusharglist 0 ........................... <>
+  [405] extcall 40 .............................. <VOID>
+  [407] nteq .................................... <pScript <> VOID>
+  [408] jmpifz [479] ............................ if pScript <> VOID then
+  [411] getlocal 7 .............................. <tSystem>
+  [413] pushint8 1 .............................. <1>
+  [415] eq ...................................... <tSystem = 1>
+  [416] jmpifz [433] ............................ if tSystem = 1 then / else
+  [419] getglobal 50 ............................ <gSystem>
+  [421] getchainedprop 300 ...................... <gSystem.scriptList>
+  [424] getlocal 8 .............................. <pScript>
+  [426] pusharglistnoret 2 ...................... <gSystem.scriptList, pScript>
+  [428] objcall 42 .............................. gSystem.scriptList.add(pScript)
+  [430] jmp [444]
+  [433] getglobal 43 ............................ <gGame>
+  [435] getchainedprop 300 ...................... <gGame.scriptList>
+  [438] getlocal 8 .............................. <pScript>
+  [440] pusharglistnoret 2 ...................... <gGame.scriptList, pScript>
+  [442] objcall 42 .............................. gGame.scriptList.add(pScript)
+  [444] getlocal 6 .............................. <pDataList>
+  [446] pushsymb 298 ............................ <#camera>
+  [449] pusharglist 2 ........................... <pDataList, #camera>
+  [451] objcall 105 ............................. <pDataList[#camera]>
+  [453] pushint8 1 .............................. <1>
+  [455] eq ...................................... <pDataList[#camera] = 1>
+  [456] jmpifz [479] ............................ if pDataList[#camera] = 1 then
+  [459] getlocal 3 .............................. <pMember>
+  [461] getobjprop 235 .......................... <pMember.name>
+  [463] pushsymb 36 ............................. <#script>
+  [465] pushcons 8 .............................. <"[PS] Camera">
+  [467] pushsymb 87 ............................. <#data>
+  [469] pusharglist 0 ........................... <[:]>
+  [471] pushproplist ............................ <[:]>
+  [472] pusharglist 4 ........................... <[#script: "[PS] Camera", #data: [:]]>
+  [474] pushproplist ............................ <[#script: "[PS] Camera", #data: [:]]>
+  [475] pusharglistnoret 2 ...................... <pMember.name, [#script: "[PS] Camera", #data: [:]]>
+  [477] localcall 0 ............................. AddScript(pMember.name, [#script: "[PS] Camera", #data: [:]])
+  [479] ret
+end
+
+on AddScriptToSprite tTarget, tDataList
+  [  0] getparam 0 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 503 ............................. <value(tTarget)>
+  [  7] setlocal 0 .............................. pSpriteNr = value(tTarget)
+  [  9] getlocal 0 .............................. <pSpriteNr>
+  [ 11] pusharglist 0 ........................... <>
+  [ 13] extcall 40 .............................. <VOID>
+  [ 15] eq ...................................... <pSpriteNr = VOID>
+  [ 16] getlocal 0 .............................. <pSpriteNr>
+  [ 18] getobjprop 122 .......................... <pSpriteNr.ilk>
+  [ 20] pushsymb 123 ............................ <#integer>
+  [ 22] nteq .................................... <pSpriteNr.ilk <> #integer>
+  [ 23] or ...................................... <(pSpriteNr = VOID) or (pSpriteNr.ilk <> #integer)>
+  [ 24] jmpifz [ 47] ............................ if (pSpriteNr = VOID) or (pSpriteNr.ilk <> #integer) then
+  [ 27] pushcons 1 .............................. <"Function: AddScriptToSprite. Target: ">
+  [ 29] getparam 0 .............................. <tTarget>
+  [ 31] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget>
+  [ 32] pushcons 2 .............................. <" Parameters: ">
+  [ 34] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: ">
+  [ 35] getparam 1 .............................. <tDataList>
+  [ 37] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 38] pushcons 9 .............................. <" Target wasn't a integer or was VOID.">
+  [ 40] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " Target wasn't a integer or was VOID.">
+  [ 41] pusharglistnoret 1 ...................... <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " Target wasn't a integer or was VOID.">
+  [ 43] extcall 511 ............................. ShowError("Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " Target wasn't a integer or was VOID.")
+  [ 46] ret ..................................... exit
+  [ 47] getlocal 0 .............................. <pSpriteNr>
+  [ 49] pusharglist 1 ........................... <pSpriteNr>
+  [ 51] extcall 487 ............................. <sprite(pSpriteNr)>
+  [ 54] setlocal 1 .............................. pSprite = sprite(pSpriteNr)
+  [ 56] getlocal 1 .............................. <pSprite>
+  [ 58] getobjprop 64 ........................... <pSprite.member>
+  [ 60] pushzero ................................ <0>
+  [ 61] pushzero ................................ <0>
+  [ 62] pusharglist 2 ........................... <0, 0>
+  [ 64] extcall 64 .............................. <member(0, 0)>
+  [ 66] eq ...................................... <pSprite.member = member(0, 0)>
+  [ 67] jmpifz [ 90] ............................ if pSprite.member = member(0, 0) then
+  [ 70] pushcons 1 .............................. <"Function: AddScriptToSprite. Target: ">
+  [ 72] getparam 0 .............................. <tTarget>
+  [ 74] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget>
+  [ 75] pushcons 2 .............................. <" Parameters: ">
+  [ 77] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: ">
+  [ 78] getparam 1 .............................. <tDataList>
+  [ 80] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 81] pushcons 10 ............................. <" There was no member/sprite in target channel.">
+  [ 83] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " There was no member/sprite in target channel.">
+  [ 84] pusharglistnoret 1 ...................... <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " There was no member/sprite in target channel.">
+  [ 86] extcall 511 ............................. ShowError("Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " There was no member/sprite in target channel.")
+  [ 89] ret ..................................... exit
+  [ 90] getparam 1 .............................. <tDataList>
+  [ 92] pusharglist 1 ........................... <tDataList>
+  [ 94] extcall 503 ............................. <value(tDataList)>
+  [ 97] pushsymb 36 ............................. <#script>
+  [ 99] pusharglist 2 ........................... <value(tDataList), #script>
+  [101] objcall 105 ............................. <value(tDataList)[#script]>
+  [103] setlocal 2 .............................. pScriptName = value(tDataList)[#script]
+  [105] getlocal 2 .............................. <pScriptName>
+  [107] pusharglist 0 ........................... <>
+  [109] extcall 40 .............................. <VOID>
+  [111] eq ...................................... <pScriptName = VOID>
+  [112] getlocal 2 .............................. <pScriptName>
+  [114] pushcons 0 .............................. <EMPTY>
+  [116] eq ...................................... <pScriptName = EMPTY>
+  [117] or ...................................... <(pScriptName = VOID) or (pScriptName = EMPTY)>
+  [118] jmpifz [141] ............................ if (pScriptName = VOID) or (pScriptName = EMPTY) then
+  [121] pushcons 1 .............................. <"Function: AddScriptToSprite. Target: ">
+  [123] getparam 0 .............................. <tTarget>
+  [125] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget>
+  [126] pushcons 2 .............................. <" Parameters: ">
+  [128] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: ">
+  [129] getparam 1 .............................. <tDataList>
+  [131] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList>
+  [132] pushcons 3 .............................. <" Script was VOID.">
+  [134] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " Script was VOID.">
+  [135] pusharglistnoret 1 ...................... <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " Script was VOID.">
+  [137] extcall 511 ............................. ShowError("Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " Script was VOID.")
+  [140] ret ..................................... exit
+  [141] gettoplevelprop 33 ...................... <_movie>
+  [143] pushcons 4 .............................. <"Engine">
+  [145] pusharglist 2 ........................... <_movie, "Engine">
+  [147] objcall 58 .............................. <_movie.castLib("Engine")>
+  [149] pushsymb 64 ............................. <#member>
+  [151] pusharglist 2 ........................... <_movie.castLib("Engine"), #member>
+  [153] objcall 129 ............................. <_movie.castLib("Engine").member.count>
+  [155] setlocal 3 .............................. pCount = _movie.castLib("Engine").member.count
+  [157] pushint8 1 .............................. <1>
+  [159] setlocal 4
+  [161] getlocal 4
+  [163] getlocal 3 .............................. <pCount>
+  [165] lteq
+  [166] jmpifz [281] ............................ repeat with i = 1 to pCount
+  [169] gettoplevelprop 33 ...................... <_movie>
+  [171] pushcons 4 .............................. <"Engine">
+  [173] pusharglist 2 ........................... <_movie, "Engine">
+  [175] objcall 58 .............................. <_movie.castLib("Engine")>
+  [177] pushsymb 64 ............................. <#member>
+  [179] getlocal 4 .............................. <i>
+  [181] pusharglist 3 ........................... <_movie.castLib("Engine"), #member, i>
+  [183] objcall 70 .............................. <_movie.castLib("Engine").member[i]>
+  [185] setlocal 5 .............................. pMember = _movie.castLib("Engine").member[i]
+  [187] getlocal 5 .............................. <pMember>
+  [189] getobjprop 598 .......................... <pMember.type>
+  [192] pushsymb 36 ............................. <#script>
+  [194] eq ...................................... <pMember.type = #script>
+  [195] jmpifz [269] ............................ if pMember.type = #script then
+  [198] gettoplevelprop 33 ...................... <_movie>
+  [200] pushcons 4 .............................. <"Engine">
+  [202] pusharglist 2 ........................... <_movie, "Engine">
+  [204] objcall 58 .............................. <_movie.castLib("Engine")>
+  [206] pushsymb 64 ............................. <#member>
+  [208] getlocal 4 .............................. <i>
+  [210] pusharglist 3 ........................... <_movie.castLib("Engine"), #member, i>
+  [212] objcall 102 ............................. <_movie.castLib("Engine").member[i]>
+  [214] getobjprop 235 .......................... <_movie.castLib("Engine").member[i].name>
+  [216] setlocal 6 .............................. pMemberName = _movie.castLib("Engine").member[i].name
+  [218] getlocal 6 .............................. <pMemberName>
+  [220] getlocal 2 .............................. <pScriptName>
+  [222] eq ...................................... <pMemberName = pScriptName>
+  [223] jmpifz [232] ............................ if pMemberName = pScriptName then / else
+  [226] jmp [281] ............................... exit repeat
+  [229] jmp [266]
+  [232] getlocal 4 .............................. <i>
+  [234] getlocal 3 .............................. <pCount>
+  [236] eq ...................................... <i = pCount>
+  [237] getlocal 6 .............................. <pMemberName>
+  [239] getlocal 2 .............................. <pScriptName>
+  [241] nteq .................................... <pMemberName <> pScriptName>
+  [242] and ..................................... <(i = pCount) and (pMemberName <> pScriptName)>
+  [243] jmpifz [266] ............................ if (i = pCount) and (pMemberName <> pScriptName) then
+  [246] pushcons 1 .............................. <"Function: AddScriptToSprite. Target: ">
+  [248] getparam 0 .............................. <tTarget>
+  [250] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget>
+  [251] pushcons 2 .............................. <" Parameters: ">
+  [253] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: ">
+  [254] getparam 1 .............................. <tDataList>
+  [256] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList>
+  [257] pushcons 5 .............................. <" Couldn't find this scriptname in 'Engine' cast.">
+  [259] joinstr ................................. <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " Couldn't find this scriptname in 'Engine' cast.">
+  [260] pusharglistnoret 1 ...................... <"Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " Couldn't find this scriptname in 'Engine' cast.">
+  [262] extcall 511 ............................. ShowError("Function: AddScriptToSprite. Target: " & tTarget & " Parameters: " & tDataList & " Couldn't find this scriptname in 'Engine' cast.")
+  [265] ret ..................................... exit
+  [266] jmp [272] ............................... next repeat
+  [269] jmp [272] ............................... next repeat
+  [272] pushint8 1
+  [274] getlocal 4
+  [276] add
+  [277] setlocal 4
+  [279] endrepeat [161]
+  [281] getparam 1 .............................. <tDataList>
+  [283] pusharglist 1 ........................... <tDataList>
+  [285] extcall 503 ............................. <value(tDataList)>
+  [288] pushsymb 87 ............................. <#data>
+  [290] pusharglist 2 ........................... <value(tDataList), #data>
+  [292] objcall 105 ............................. <value(tDataList)[#data]>
+  [294] setlocal 7 .............................. pDataList = value(tDataList)[#data]
+  [296] getlocal 7 .............................. <pDataList>
+  [298] pusharglist 0 ........................... <>
+  [300] extcall 40 .............................. <VOID>
+  [302] eq ...................................... <pDataList = VOID>
+  [303] getlocal 7 .............................. <pDataList>
+  [305] pushcons 0 .............................. <EMPTY>
+  [307] eq ...................................... <pDataList = EMPTY>
+  [308] or ...................................... <(pDataList = VOID) or (pDataList = EMPTY)>
+  [309] getlocal 7 .............................. <pDataList>
+  [311] getobjprop 122 .......................... <pDataList.ilk>
+  [313] pushsymb 541 ............................ <#propList>
+  [316] nteq .................................... <pDataList.ilk <> #propList>
+  [317] or ...................................... <(pDataList = VOID) or (pDataList = EMPTY) or (pDataList.ilk <> #propList)>
+  [318] jmpifz [335] ............................ if (pDataList = VOID) or (pDataList = EMPTY) or (pDataList.ilk <> #propList) then
+  [321] pushcons 11 ............................. <"Function: AddScriptToSprite. Parameters: ">
+  [323] getlocal 7 .............................. <pDataList>
+  [325] joinstr ................................. <"Function: AddScriptToSprite. Parameters: " & pDataList>
+  [326] pushcons 7 .............................. <" No correct datalist.">
+  [328] joinstr ................................. <"Function: AddScriptToSprite. Parameters: " & pDataList & " No correct datalist.">
+  [329] pusharglistnoret 1 ...................... <"Function: AddScriptToSprite. Parameters: " & pDataList & " No correct datalist.">
+  [331] extcall 511 ............................. ShowError("Function: AddScriptToSprite. Parameters: " & pDataList & " No correct datalist.")
+  [334] ret ..................................... exit
+  [335] getlocal 7 .............................. <pDataList>
+  [337] pushsymb 949 ............................ <#memberName>
+  [340] pusharglist 2 ........................... <pDataList, #memberName>
+  [342] extcall 542 ............................. <getaProp(pDataList, #memberName)>
+  [345] pusharglist 0 ........................... <>
+  [347] extcall 40 .............................. <VOID>
+  [349] eq ...................................... <getaProp(pDataList, #memberName) = VOID>
+  [350] jmpifz [368] ............................ if getaProp(pDataList, #memberName) = VOID then
+  [353] getlocal 7 .............................. <pDataList>
+  [355] pushsymb 949 ............................ <#memberName>
+  [358] getlocal 1 .............................. <pSprite>
+  [360] getchainedprop 64 ....................... <pSprite.member>
+  [362] getobjprop 235 .......................... <pSprite.member.name>
+  [364] pusharglistnoret 3 ...................... <pDataList, #memberName, pSprite.member.name>
+  [366] objcall 103 ............................. pDataList[#memberName] = pSprite.member.name
+  [368] getlocal 7 .............................. <pDataList>
+  [370] pushsymb 564 ............................ <#SpriteNR>
+  [373] pusharglist 2 ........................... <pDataList, #SpriteNR>
+  [375] extcall 542 ............................. <getaProp(pDataList, #SpriteNR)>
+  [378] pusharglist 0 ........................... <>
+  [380] extcall 40 .............................. <VOID>
+  [382] eq ...................................... <getaProp(pDataList, #SpriteNR) = VOID>
+  [383] jmpifz [397] ............................ if getaProp(pDataList, #SpriteNR) = VOID then
+  [386] getlocal 7 .............................. <pDataList>
+  [388] pushsymb 564 ............................ <#SpriteNR>
+  [391] getlocal 0 .............................. <pSpriteNr>
+  [393] pusharglistnoret 3 ...................... <pDataList, #SpriteNR, pSpriteNr>
+  [395] objcall 103 ............................. pDataList[#SpriteNR] = pSpriteNr
+  [397] getlocal 1 .............................. <pSprite>
+  [399] getobjprop 580 .......................... <pSprite.scriptInstanceList>
+  [402] pusharglist 0 ........................... <[]>
+  [404] pushlist ................................ <[]>
+  [405] eq ...................................... <pSprite.scriptInstanceList = []>
+  [406] getlocal 1 .............................. <pSprite>
+  [408] getchainedprop 64 ....................... <pSprite.member>
+  [410] getobjprop 598 .......................... <pSprite.member.type>
+  [413] pushsymb 610 ............................ <#shockwave3d>
+  [416] eq ...................................... <pSprite.member.type = #shockwave3d>
+  [417] and ..................................... <(pSprite.scriptInstanceList = []) and (pSprite.member.type = #shockwave3d)>
+  [418] jmpifz [526] ............................ if (pSprite.scriptInstanceList = []) and (pSprite.member.type = #shockwave3d) then
+  [421] pushcons 12 ............................. <"[PS] 3D Script Manager">
+  [423] pusharglist 1 ........................... <"[PS] 3D Script Manager">
+  [425] extcall 36 .............................. <script("[PS] 3D Script Manager")>
+  [427] pushsymb 564 ............................ <#SpriteNR>
+  [430] getlocal 0 .............................. <pSpriteNr>
+  [432] pusharglist 2 ........................... <[#SpriteNR: pSpriteNr]>
+  [434] pushproplist ............................ <[#SpriteNR: pSpriteNr]>
+  [435] pusharglist 2 ........................... <script("[PS] 3D Script Manager"), [#SpriteNR: pSpriteNr]>
+  [437] objcall 35 .............................. <script("[PS] 3D Script Manager").new([#SpriteNR: pSpriteNr])>
+  [439] setlocal 8 .............................. pScript = script("[PS] 3D Script Manager").new([#SpriteNR: pSpriteNr])
+  [441] getlocal 1 .............................. <pSprite>
+  [443] getchainedprop 580 ...................... <pSprite.scriptInstanceList>
+  [446] getlocal 8 .............................. <pScript>
+  [448] pusharglistnoret 2 ...................... <pSprite.scriptInstanceList, pScript>
+  [450] objcall 42 .............................. pSprite.scriptInstanceList.add(pScript)
+  [452] getlocal 0 .............................. <pSpriteNr>
+  [454] pushsymb 36 ............................. <#script>
+  [456] pushcons 8 .............................. <"[PS] Camera">
+  [458] pushsymb 87 ............................. <#data>
+  [460] pusharglist 0 ........................... <[:]>
+  [462] pushproplist ............................ <[:]>
+  [463] pusharglist 4 ........................... <[#script: "[PS] Camera", #data: [:]]>
+  [465] pushproplist ............................ <[#script: "[PS] Camera", #data: [:]]>
+  [466] pusharglistnoret 2 ...................... <pSpriteNr, [#script: "[PS] Camera", #data: [:]]>
+  [468] localcall 0 ............................. AddScript(pSpriteNr, [#script: "[PS] Camera", #data: [:]])
+  [470] getlocal 1 .............................. <pSprite>
+  [472] getobjprop 64 ........................... <pSprite.member>
+  [474] pusharglistnoret 1 ...................... <pSprite.member>
+  [476] extcall 1242 ............................ CreateProxyShader(pSprite.member)
+  [479] getglobal 43 ............................ <gGame>
+  [481] pushsymb 1484 ........................... <#FPSCounter>
+  [484] pusharglist 2 ........................... <gGame, #FPSCounter>
+  [486] extcall 542 ............................. <getaProp(gGame, #FPSCounter)>
+  [489] pusharglist 0 ........................... <>
+  [491] extcall 40 .............................. <VOID>
+  [493] nteq .................................... <getaProp(gGame, #FPSCounter) <> VOID>
+  [494] jmpifz [526] ............................ if getaProp(gGame, #FPSCounter) <> VOID then
+  [497] getglobal 43 ............................ <gGame>
+  [499] getobjprop 1484 ......................... <gGame.FPSCounter>
+  [502] pushint8 1 .............................. <1>
+  [504] eq ...................................... <gGame.FPSCounter = 1>
+  [505] jmpifz [526] ............................ if gGame.FPSCounter = 1 then
+  [508] getlocal 0 .............................. <pSpriteNr>
+  [510] pushsymb 36 ............................. <#script>
+  [512] pushcons 13 ............................. <"[PS] FPS Counter">
+  [514] pushsymb 87 ............................. <#data>
+  [516] pusharglist 0 ........................... <[:]>
+  [518] pushproplist ............................ <[:]>
+  [519] pusharglist 4 ........................... <[#script: "[PS] FPS Counter", #data: [:]]>
+  [521] pushproplist ............................ <[#script: "[PS] FPS Counter", #data: [:]]>
+  [522] pusharglistnoret 2 ...................... <pSpriteNr, [#script: "[PS] FPS Counter", #data: [:]]>
+  [524] localcall 0 ............................. AddScript(pSpriteNr, [#script: "[PS] FPS Counter", #data: [:]])
+  [526] getlocal 1 .............................. <pSprite>
+  [528] getchainedprop 64 ....................... <pSprite.member>
+  [530] getobjprop 598 .......................... <pSprite.member.type>
+  [533] pushsymb 610 ............................ <#shockwave3d>
+  [536] eq ...................................... <pSprite.member.type = #shockwave3d>
+  [537] jmpifz [563] ............................ if pSprite.member.type = #shockwave3d then / else
+  [540] getlocal 1 .............................. <pSprite>
+  [542] pushsymb 580 ............................ <#scriptInstanceList>
+  [545] pushint8 1 .............................. <1>
+  [547] pusharglist 3 ........................... <pSprite, #scriptInstanceList, 1>
+  [549] objcall 102 ............................. <pSprite.scriptInstanceList[1]>
+  [551] getlocal 2 .............................. <pScriptName>
+  [553] getlocal 7 .............................. <pDataList>
+  [555] pusharglistnoret 3 ...................... <pSprite.scriptInstanceList[1], pScriptName, pDataList>
+  [557] objcall 721 ............................. pSprite.scriptInstanceList[1].AddScript(pScriptName, pDataList)
+  [560] jmp [599]
+  [563] getlocal 7 .............................. <pDataList>
+  [565] pushsymb 564 ............................ <#SpriteNR>
+  [568] getlocal 0 .............................. <pSpriteNr>
+  [570] pusharglistnoret 3 ...................... <pDataList, #SpriteNR, pSpriteNr>
+  [572] objcall 103 ............................. pDataList[#SpriteNR] = pSpriteNr
+  [574] getlocal 2 .............................. <pScriptName>
+  [576] pusharglist 1 ........................... <pScriptName>
+  [578] extcall 36 .............................. <script(pScriptName)>
+  [580] getlocal 7 .............................. <pDataList>
+  [582] pusharglist 2 ........................... <script(pScriptName), pDataList>
+  [584] objcall 35 .............................. <script(pScriptName).new(pDataList)>
+  [586] setlocal 8 .............................. pScript = script(pScriptName).new(pDataList)
+  [588] getlocal 1 .............................. <pSprite>
+  [590] getchainedprop 580 ...................... <pSprite.scriptInstanceList>
+  [593] getlocal 8 .............................. <pScript>
+  [595] pusharglistnoret 2 ...................... <pSprite.scriptInstanceList, pScript>
+  [597] objcall 42 .............................. pSprite.scriptInstanceList.add(pScript)
+  [599] ret
+end
+
+on DeleteScript me, tTarget, tDataList
+  [  0] getparam 2 .............................. <tDataList>
+  [  2] pusharglist 1 ........................... <tDataList>
+  [  4] extcall 503 ............................. <value(tDataList)>
+  [  7] setparam 2 .............................. tDataList = value(tDataList)
+  [  9] getparam 2 .............................. <tDataList>
+  [ 11] getobjprop 122 .......................... <tDataList.ilk>
+  [ 13] pushsymb 541 ............................ <#propList>
+  [ 16] nteq .................................... <tDataList.ilk <> #propList>
+  [ 17] jmpifz [ 25] ............................ if tDataList.ilk <> #propList then
+  [ 20] pushzero ................................ <0>
+  [ 21] pusharglistnoret 1 ...................... <0>
+  [ 23] extcall 52 .............................. return 0
+  [ 25] getparam 1 .............................. <tTarget>
+  [ 27] pusharglist 1 ........................... <tTarget>
+  [ 29] extcall 503 ............................. <value(tTarget)>
+  [ 32] setlocal 0 .............................. tList = value(tTarget)
+  [ 34] getlocal 0 .............................. <tList>
+  [ 36] getchainedprop 300 ...................... <tList.scriptList>
+  [ 39] pusharglist 1 ........................... <tList.scriptList>
+  [ 41] objcall 233 ............................. <tList.scriptList.duplicate()>
+  [ 43] setlocal 0 .............................. tList = tList.scriptList.duplicate()
+  [ 45] getlocal 0 .............................. <tList>
+  [ 47] peek 0
+  [ 49] pusharglist 1
+  [ 51] extcall 129
+  [ 53] pushint8 1
+  [ 55] peek 0
+  [ 57] peek 2
+  [ 59] lteq
+  [ 60] jmpifz [172] ............................ repeat with i in tList
+  [ 63] peek 2
+  [ 65] peek 1
+  [ 67] pusharglist 2
+  [ 69] extcall 105
+  [ 71] setlocal 1
+  [ 73] getlocal 1 .............................. <i>
+  [ 75] pushsymb 563 ............................ <#p>
+  [ 78] pusharglist 2 ........................... <i, #p>
+  [ 80] objcall 105 ............................. <i[#p]>
+  [ 82] pusharglist 1 ........................... <i[#p]>
+  [ 84] extcall 389 ............................. <voidp(i[#p])>
+  [ 87] pushzero ................................ <0>
+  [ 88] eq ...................................... <voidp(i[#p]) = 0>
+  [ 89] jmpifz [167] ............................ if voidp(i[#p]) = 0 then
+  [ 92] getlocal 1 .............................. <i>
+  [ 94] pushsymb 563 ............................ <#p>
+  [ 97] pushsymb 565 ............................ <#ScriptName>
+  [100] pusharglist 3 ........................... <i, #p, #ScriptName>
+  [102] objcall 70 .............................. <i.p[#ScriptName]>
+  [104] pusharglist 1 ........................... <i.p[#ScriptName]>
+  [106] extcall 389 ............................. <voidp(i.p[#ScriptName])>
+  [109] pushzero ................................ <0>
+  [110] eq ...................................... <voidp(i.p[#ScriptName]) = 0>
+  [111] jmpifz [167] ............................ if voidp(i.p[#ScriptName]) = 0 then
+  [114] getlocal 1 .............................. <i>
+  [116] getchainedprop 563 ...................... <i.p>
+  [119] getobjprop 565 .......................... <i.p.ScriptName>
+  [122] setlocal 2 .............................. tName = i.p.ScriptName
+  [124] getlocal 2 .............................. <tName>
+  [126] getparam 2 .............................. <tDataList>
+  [128] getobjprop 235 .......................... <tDataList.name>
+  [130] eq ...................................... <tName = tDataList.name>
+  [131] jmpifz [167] ............................ if tName = tDataList.name then
+  [134] getlocal 1 .............................. <i>
+  [136] pusharglist 1 ........................... <i>
+  [138] objcall 1068 ............................ <i.handlers()>
+  [141] setlocal 3 .............................. tHandlers = i.handlers()
+  [143] getlocal 3 .............................. <tHandlers>
+  [145] pushsymb 562 ............................ <#delete>
+  [148] pusharglist 2 ........................... <tHandlers, #delete>
+  [150] objcall 166 ............................. <tHandlers.getPos(#delete)>
+  [152] pushzero ................................ <0>
+  [153] nteq .................................... <tHandlers.getPos(#delete) <> 0>
+  [154] jmpifz [167] ............................ if tHandlers.getPos(#delete) <> 0 then
+  [157] pushsymb 562 ............................ <#delete>
+  [160] getlocal 1 .............................. <i>
+  [162] pusharglistnoret 2 ...................... <#delete, i>
+  [164] extcall 567 ............................. call(#delete, i)
+  [167] pushint8 1
+  [169] add
+  [170] endrepeat [ 55]
+  [172] pop 3
+  [174] ret
+end
+
+on GetScript me, tTarget, tDataList
+  [  0] getparam 2 .............................. <tDataList>
+  [  2] pushsymb 36 ............................. <#script>
+  [  4] pusharglist 2 ........................... <tDataList, #script>
+  [  6] objcall 105 ............................. <tDataList[#script]>
+  [  8] getobjprop 122 .......................... <tDataList[#script].ilk>
+  [ 10] pushsymb 67 ............................. <#string>
+  [ 12] eq ...................................... <tDataList[#script].ilk = #string>
+  [ 13] jmpifz [ 25] ............................ if tDataList[#script].ilk = #string then / else
+  [ 16] getparam 2 .............................. <tDataList>
+  [ 18] getobjprop 36 ........................... <tDataList.script>
+  [ 20] setlocal 0 .............................. tScript = tDataList.script
+  [ 22] jmp [ 30]
+  [ 25] pushzero ................................ <0>
+  [ 26] pusharglistnoret 1 ...................... <0>
+  [ 28] extcall 52 .............................. return 0
+  [ 30] getglobal 43 ............................ <gGame>
+  [ 32] getobjprop 300 .......................... <gGame.scriptList>
+  [ 35] peek 0
+  [ 37] pusharglist 1
+  [ 39] extcall 129
+  [ 41] pushint8 1
+  [ 43] peek 0
+  [ 45] peek 2
+  [ 47] lteq
+  [ 48] jmpifz [127] ............................ repeat with i in gGame.scriptList
+  [ 51] peek 2
+  [ 53] peek 1
+  [ 55] pusharglist 2
+  [ 57] extcall 105
+  [ 59] setlocal 1
+  [ 61] getlocal 1 .............................. <i>
+  [ 63] pushsymb 563 ............................ <#p>
+  [ 66] pusharglist 2 ........................... <i, #p>
+  [ 68] objcall 105 ............................. <i[#p]>
+  [ 70] pusharglist 1 ........................... <i[#p]>
+  [ 72] extcall 389 ............................. <voidp(i[#p])>
+  [ 75] pushzero ................................ <0>
+  [ 76] eq ...................................... <voidp(i[#p]) = 0>
+  [ 77] jmpifz [122] ............................ if voidp(i[#p]) = 0 then
+  [ 80] getlocal 1 .............................. <i>
+  [ 82] pushsymb 563 ............................ <#p>
+  [ 85] pushsymb 565 ............................ <#ScriptName>
+  [ 88] pusharglist 3 ........................... <i, #p, #ScriptName>
+  [ 90] objcall 70 .............................. <i.p[#ScriptName]>
+  [ 92] pusharglist 1 ........................... <i.p[#ScriptName]>
+  [ 94] extcall 389 ............................. <voidp(i.p[#ScriptName])>
+  [ 97] pushzero ................................ <0>
+  [ 98] eq ...................................... <voidp(i.p[#ScriptName]) = 0>
+  [ 99] jmpifz [122] ............................ if voidp(i.p[#ScriptName]) = 0 then
+  [102] getlocal 0 .............................. <tScript>
+  [104] getlocal 1 .............................. <i>
+  [106] getchainedprop 563 ...................... <i.p>
+  [109] getobjprop 565 .......................... <i.p.ScriptName>
+  [112] eq ...................................... <tScript = i.p.ScriptName>
+  [113] jmpifz [122] ............................ if tScript = i.p.ScriptName then
+  [116] getlocal 1 .............................. <i>
+  [118] pusharglistnoret 1 ...................... <i>
+  [120] extcall 52 .............................. return i
+  [122] pushint8 1
+  [124] add
+  [125] endrepeat [ 43]
+  [127] pop 3
+  [129] getglobal 50 ............................ <gSystem>
+  [131] getobjprop 300 .......................... <gSystem.scriptList>
+  [134] peek 0
+  [136] pusharglist 1
+  [138] extcall 129
+  [140] pushint8 1
+  [142] peek 0
+  [144] peek 2
+  [146] lteq
+  [147] jmpifz [226] ............................ repeat with i in gSystem.scriptList
+  [150] peek 2
+  [152] peek 1
+  [154] pusharglist 2
+  [156] extcall 105
+  [158] setlocal 1
+  [160] getlocal 1 .............................. <i>
+  [162] pushsymb 563 ............................ <#p>
+  [165] pusharglist 2 ........................... <i, #p>
+  [167] objcall 105 ............................. <i[#p]>
+  [169] pusharglist 1 ........................... <i[#p]>
+  [171] extcall 389 ............................. <voidp(i[#p])>
+  [174] pushzero ................................ <0>
+  [175] eq ...................................... <voidp(i[#p]) = 0>
+  [176] jmpifz [221] ............................ if voidp(i[#p]) = 0 then
+  [179] getlocal 1 .............................. <i>
+  [181] pushsymb 563 ............................ <#p>
+  [184] pushsymb 565 ............................ <#ScriptName>
+  [187] pusharglist 3 ........................... <i, #p, #ScriptName>
+  [189] objcall 70 .............................. <i.p[#ScriptName]>
+  [191] pusharglist 1 ........................... <i.p[#ScriptName]>
+  [193] extcall 389 ............................. <voidp(i.p[#ScriptName])>
+  [196] pushzero ................................ <0>
+  [197] eq ...................................... <voidp(i.p[#ScriptName]) = 0>
+  [198] jmpifz [221] ............................ if voidp(i.p[#ScriptName]) = 0 then
+  [201] getlocal 0 .............................. <tScript>
+  [203] getlocal 1 .............................. <i>
+  [205] getchainedprop 563 ...................... <i.p>
+  [208] getobjprop 565 .......................... <i.p.ScriptName>
+  [211] eq ...................................... <tScript = i.p.ScriptName>
+  [212] jmpifz [221] ............................ if tScript = i.p.ScriptName then
+  [215] getlocal 1 .............................. <i>
+  [217] pusharglistnoret 1 ...................... <i>
+  [219] extcall 52 .............................. return i
+  [221] pushint8 1
+  [223] add
+  [224] endrepeat [142]
+  [226] pop 3
+  [228] gettoplevelprop 33 ...................... <_movie>
+  [230] getobjprop 41 ........................... <_movie.actorList>
+  [232] peek 0
+  [234] pusharglist 1
+  [236] extcall 129
+  [238] pushint8 1
+  [240] peek 0
+  [242] peek 2
+  [244] lteq
+  [245] jmpifz [324] ............................ repeat with i in _movie.actorList
+  [248] peek 2
+  [250] peek 1
+  [252] pusharglist 2
+  [254] extcall 105
+  [256] setlocal 1
+  [258] getlocal 1 .............................. <i>
+  [260] pushsymb 563 ............................ <#p>
+  [263] pusharglist 2 ........................... <i, #p>
+  [265] objcall 105 ............................. <i[#p]>
+  [267] pusharglist 1 ........................... <i[#p]>
+  [269] extcall 389 ............................. <voidp(i[#p])>
+  [272] pushzero ................................ <0>
+  [273] eq ...................................... <voidp(i[#p]) = 0>
+  [274] jmpifz [319] ............................ if voidp(i[#p]) = 0 then
+  [277] getlocal 1 .............................. <i>
+  [279] pushsymb 563 ............................ <#p>
+  [282] pushsymb 565 ............................ <#ScriptName>
+  [285] pusharglist 3 ........................... <i, #p, #ScriptName>
+  [287] objcall 70 .............................. <i.p[#ScriptName]>
+  [289] pusharglist 1 ........................... <i.p[#ScriptName]>
+  [291] extcall 389 ............................. <voidp(i.p[#ScriptName])>
+  [294] pushzero ................................ <0>
+  [295] eq ...................................... <voidp(i.p[#ScriptName]) = 0>
+  [296] jmpifz [319] ............................ if voidp(i.p[#ScriptName]) = 0 then
+  [299] getlocal 0 .............................. <tScript>
+  [301] getlocal 1 .............................. <i>
+  [303] getchainedprop 563 ...................... <i.p>
+  [306] getobjprop 565 .......................... <i.p.ScriptName>
+  [309] eq ...................................... <tScript = i.p.ScriptName>
+  [310] jmpifz [319] ............................ if tScript = i.p.ScriptName then
+  [313] getlocal 1 .............................. <i>
+  [315] pusharglistnoret 1 ...................... <i>
+  [317] extcall 52 .............................. return i
+  [319] pushint8 1
+  [321] add
+  [322] endrepeat [240]
+  [324] pop 3
+  [326] ret
+end
+
+on AddModule tTarget, tDataList
+  [  0] getparam 0 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 503 ............................. <value(tTarget)>
+  [  7] setlocal 0 .............................. pSpriteNr = value(tTarget)
+  [  9] getlocal 0 .............................. <pSpriteNr>
+  [ 11] pusharglist 0 ........................... <>
+  [ 13] extcall 40 .............................. <VOID>
+  [ 15] eq ...................................... <pSpriteNr = VOID>
+  [ 16] getlocal 0 .............................. <pSpriteNr>
+  [ 18] getobjprop 122 .......................... <pSpriteNr.ilk>
+  [ 20] pushsymb 123 ............................ <#integer>
+  [ 22] nteq .................................... <pSpriteNr.ilk <> #integer>
+  [ 23] or ...................................... <(pSpriteNr = VOID) or (pSpriteNr.ilk <> #integer)>
+  [ 24] jmpifz [ 47] ............................ if (pSpriteNr = VOID) or (pSpriteNr.ilk <> #integer) then
+  [ 27] pushcons 14 ............................. <"Function: AddModule. Target: ">
+  [ 29] getparam 0 .............................. <tTarget>
+  [ 31] joinstr ................................. <"Function: AddModule. Target: " & tTarget>
+  [ 32] pushcons 2 .............................. <" Parameters: ">
+  [ 34] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: ">
+  [ 35] getparam 1 .............................. <tDataList>
+  [ 37] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 38] pushcons 9 .............................. <" Target wasn't a integer or was VOID.">
+  [ 40] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " Target wasn't a integer or was VOID.">
+  [ 41] pusharglistnoret 1 ...................... <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " Target wasn't a integer or was VOID.">
+  [ 43] extcall 511 ............................. ShowError("Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " Target wasn't a integer or was VOID.")
+  [ 46] ret ..................................... exit
+  [ 47] getlocal 0 .............................. <pSpriteNr>
+  [ 49] pusharglist 1 ........................... <pSpriteNr>
+  [ 51] extcall 487 ............................. <sprite(pSpriteNr)>
+  [ 54] setlocal 1 .............................. pSprite = sprite(pSpriteNr)
+  [ 56] getlocal 1 .............................. <pSprite>
+  [ 58] getobjprop 64 ........................... <pSprite.member>
+  [ 60] pushzero ................................ <0>
+  [ 61] pushzero ................................ <0>
+  [ 62] pusharglist 2 ........................... <0, 0>
+  [ 64] extcall 64 .............................. <member(0, 0)>
+  [ 66] eq ...................................... <pSprite.member = member(0, 0)>
+  [ 67] jmpifz [ 90] ............................ if pSprite.member = member(0, 0) then
+  [ 70] pushcons 14 ............................. <"Function: AddModule. Target: ">
+  [ 72] getparam 0 .............................. <tTarget>
+  [ 74] joinstr ................................. <"Function: AddModule. Target: " & tTarget>
+  [ 75] pushcons 2 .............................. <" Parameters: ">
+  [ 77] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: ">
+  [ 78] getparam 1 .............................. <tDataList>
+  [ 80] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 81] pushcons 10 ............................. <" There was no member/sprite in target channel.">
+  [ 83] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " There was no member/sprite in target channel.">
+  [ 84] pusharglistnoret 1 ...................... <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " There was no member/sprite in target channel.">
+  [ 86] extcall 511 ............................. ShowError("Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " There was no member/sprite in target channel.")
+  [ 89] ret ..................................... exit
+  [ 90] getparam 1 .............................. <tDataList>
+  [ 92] pusharglist 1 ........................... <tDataList>
+  [ 94] extcall 503 ............................. <value(tDataList)>
+  [ 97] pushsymb 565 ............................ <#ScriptName>
+  [100] pusharglist 2 ........................... <value(tDataList), #ScriptName>
+  [102] objcall 105 ............................. <value(tDataList)[#ScriptName]>
+  [104] setlocal 2 .............................. pParentScriptName = value(tDataList)[#ScriptName]
+  [106] getlocal 2 .............................. <pParentScriptName>
+  [108] pusharglist 0 ........................... <>
+  [110] extcall 40 .............................. <VOID>
+  [112] eq ...................................... <pParentScriptName = VOID>
+  [113] getlocal 2 .............................. <pParentScriptName>
+  [115] pushcons 0 .............................. <EMPTY>
+  [117] eq ...................................... <pParentScriptName = EMPTY>
+  [118] or ...................................... <(pParentScriptName = VOID) or (pParentScriptName = EMPTY)>
+  [119] jmpifz [142] ............................ if (pParentScriptName = VOID) or (pParentScriptName = EMPTY) then
+  [122] pushcons 14 ............................. <"Function: AddModule. Target: ">
+  [124] getparam 0 .............................. <tTarget>
+  [126] joinstr ................................. <"Function: AddModule. Target: " & tTarget>
+  [127] pushcons 2 .............................. <" Parameters: ">
+  [129] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: ">
+  [130] getparam 1 .............................. <tDataList>
+  [132] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList>
+  [133] pushcons 15 ............................. <" ScriptName was VOID. AddModule NEEDS a reference to parent script,">
+  [135] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " ScriptName was VOID. AddModule NEEDS a reference to parent script,">
+  [136] pusharglistnoret 1 ...................... <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " ScriptName was VOID. AddModule NEEDS a reference to parent script,">
+  [138] extcall 511 ............................. ShowError("Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " ScriptName was VOID. AddModule NEEDS a reference to parent script,")
+  [141] ret ..................................... exit
+  [142] getparam 1 .............................. <tDataList>
+  [144] pusharglist 1 ........................... <tDataList>
+  [146] extcall 503 ............................. <value(tDataList)>
+  [149] pushsymb 36 ............................. <#script>
+  [151] pusharglist 2 ........................... <value(tDataList), #script>
+  [153] objcall 105 ............................. <value(tDataList)[#script]>
+  [155] setlocal 3 .............................. pScriptName = value(tDataList)[#script]
+  [157] getlocal 3 .............................. <pScriptName>
+  [159] pusharglist 0 ........................... <>
+  [161] extcall 40 .............................. <VOID>
+  [163] eq ...................................... <pScriptName = VOID>
+  [164] getlocal 3 .............................. <pScriptName>
+  [166] pushcons 0 .............................. <EMPTY>
+  [168] eq ...................................... <pScriptName = EMPTY>
+  [169] or ...................................... <(pScriptName = VOID) or (pScriptName = EMPTY)>
+  [170] jmpifz [193] ............................ if (pScriptName = VOID) or (pScriptName = EMPTY) then
+  [173] pushcons 14 ............................. <"Function: AddModule. Target: ">
+  [175] getparam 0 .............................. <tTarget>
+  [177] joinstr ................................. <"Function: AddModule. Target: " & tTarget>
+  [178] pushcons 2 .............................. <" Parameters: ">
+  [180] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: ">
+  [181] getparam 1 .............................. <tDataList>
+  [183] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList>
+  [184] pushcons 3 .............................. <" Script was VOID.">
+  [186] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " Script was VOID.">
+  [187] pusharglistnoret 1 ...................... <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " Script was VOID.">
+  [189] extcall 511 ............................. ShowError("Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " Script was VOID.")
+  [192] ret ..................................... exit
+  [193] gettoplevelprop 33 ...................... <_movie>
+  [195] pushcons 4 .............................. <"Engine">
+  [197] pusharglist 2 ........................... <_movie, "Engine">
+  [199] objcall 58 .............................. <_movie.castLib("Engine")>
+  [201] pushsymb 64 ............................. <#member>
+  [203] pusharglist 2 ........................... <_movie.castLib("Engine"), #member>
+  [205] objcall 129 ............................. <_movie.castLib("Engine").member.count>
+  [207] setlocal 4 .............................. pCount = _movie.castLib("Engine").member.count
+  [209] pushint8 1 .............................. <1>
+  [211] setlocal 5
+  [213] getlocal 5
+  [215] getlocal 4 .............................. <pCount>
+  [217] lteq
+  [218] jmpifz [333] ............................ repeat with i = 1 to pCount
+  [221] gettoplevelprop 33 ...................... <_movie>
+  [223] pushcons 4 .............................. <"Engine">
+  [225] pusharglist 2 ........................... <_movie, "Engine">
+  [227] objcall 58 .............................. <_movie.castLib("Engine")>
+  [229] pushsymb 64 ............................. <#member>
+  [231] getlocal 5 .............................. <i>
+  [233] pusharglist 3 ........................... <_movie.castLib("Engine"), #member, i>
+  [235] objcall 70 .............................. <_movie.castLib("Engine").member[i]>
+  [237] setlocal 6 .............................. pMember = _movie.castLib("Engine").member[i]
+  [239] getlocal 6 .............................. <pMember>
+  [241] getobjprop 598 .......................... <pMember.type>
+  [244] pushsymb 36 ............................. <#script>
+  [246] eq ...................................... <pMember.type = #script>
+  [247] jmpifz [321] ............................ if pMember.type = #script then
+  [250] gettoplevelprop 33 ...................... <_movie>
+  [252] pushcons 4 .............................. <"Engine">
+  [254] pusharglist 2 ........................... <_movie, "Engine">
+  [256] objcall 58 .............................. <_movie.castLib("Engine")>
+  [258] pushsymb 64 ............................. <#member>
+  [260] getlocal 5 .............................. <i>
+  [262] pusharglist 3 ........................... <_movie.castLib("Engine"), #member, i>
+  [264] objcall 102 ............................. <_movie.castLib("Engine").member[i]>
+  [266] getobjprop 235 .......................... <_movie.castLib("Engine").member[i].name>
+  [268] setlocal 7 .............................. pMemberName = _movie.castLib("Engine").member[i].name
+  [270] getlocal 7 .............................. <pMemberName>
+  [272] getlocal 3 .............................. <pScriptName>
+  [274] eq ...................................... <pMemberName = pScriptName>
+  [275] jmpifz [284] ............................ if pMemberName = pScriptName then / else
+  [278] jmp [333] ............................... exit repeat
+  [281] jmp [318]
+  [284] getlocal 5 .............................. <i>
+  [286] getlocal 4 .............................. <pCount>
+  [288] eq ...................................... <i = pCount>
+  [289] getlocal 7 .............................. <pMemberName>
+  [291] getlocal 3 .............................. <pScriptName>
+  [293] nteq .................................... <pMemberName <> pScriptName>
+  [294] and ..................................... <(i = pCount) and (pMemberName <> pScriptName)>
+  [295] jmpifz [318] ............................ if (i = pCount) and (pMemberName <> pScriptName) then
+  [298] pushcons 14 ............................. <"Function: AddModule. Target: ">
+  [300] getparam 0 .............................. <tTarget>
+  [302] joinstr ................................. <"Function: AddModule. Target: " & tTarget>
+  [303] pushcons 2 .............................. <" Parameters: ">
+  [305] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: ">
+  [306] getparam 1 .............................. <tDataList>
+  [308] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList>
+  [309] pushcons 5 .............................. <" Couldn't find this scriptname in 'Engine' cast.">
+  [311] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " Couldn't find this scriptname in 'Engine' cast.">
+  [312] pusharglistnoret 1 ...................... <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " Couldn't find this scriptname in 'Engine' cast.">
+  [314] extcall 511 ............................. ShowError("Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " Couldn't find this scriptname in 'Engine' cast.")
+  [317] ret ..................................... exit
+  [318] jmp [324] ............................... next repeat
+  [321] jmp [324] ............................... next repeat
+  [324] pushint8 1
+  [326] getlocal 5
+  [328] add
+  [329] setlocal 5
+  [331] endrepeat [213]
+  [333] getparam 1 .............................. <tDataList>
+  [335] pusharglist 1 ........................... <tDataList>
+  [337] extcall 503 ............................. <value(tDataList)>
+  [340] pushsymb 87 ............................. <#data>
+  [342] pusharglist 2 ........................... <value(tDataList), #data>
+  [344] objcall 105 ............................. <value(tDataList)[#data]>
+  [346] setlocal 8 .............................. pDataList = value(tDataList)[#data]
+  [348] getlocal 8 .............................. <pDataList>
+  [350] pusharglist 0 ........................... <>
+  [352] extcall 40 .............................. <VOID>
+  [354] eq ...................................... <pDataList = VOID>
+  [355] getlocal 8 .............................. <pDataList>
+  [357] pushcons 0 .............................. <EMPTY>
+  [359] eq ...................................... <pDataList = EMPTY>
+  [360] or ...................................... <(pDataList = VOID) or (pDataList = EMPTY)>
+  [361] getlocal 8 .............................. <pDataList>
+  [363] getobjprop 122 .......................... <pDataList.ilk>
+  [365] pushsymb 541 ............................ <#propList>
+  [368] nteq .................................... <pDataList.ilk <> #propList>
+  [369] or ...................................... <(pDataList = VOID) or (pDataList = EMPTY) or (pDataList.ilk <> #propList)>
+  [370] jmpifz [387] ............................ if (pDataList = VOID) or (pDataList = EMPTY) or (pDataList.ilk <> #propList) then
+  [373] pushcons 6 .............................. <"Function: AddScript. Parameters: ">
+  [375] getlocal 8 .............................. <pDataList>
+  [377] joinstr ................................. <"Function: AddScript. Parameters: " & pDataList>
+  [378] pushcons 7 .............................. <" No correct datalist.">
+  [380] joinstr ................................. <"Function: AddScript. Parameters: " & pDataList & " No correct datalist.">
+  [381] pusharglistnoret 1 ...................... <"Function: AddScript. Parameters: " & pDataList & " No correct datalist.">
+  [383] extcall 511 ............................. ShowError("Function: AddScript. Parameters: " & pDataList & " No correct datalist.")
+  [386] ret ..................................... exit
+  [387] getlocal 8 .............................. <pDataList>
+  [389] pushsymb 949 ............................ <#memberName>
+  [392] pusharglist 2 ........................... <pDataList, #memberName>
+  [394] extcall 542 ............................. <getaProp(pDataList, #memberName)>
+  [397] pusharglist 0 ........................... <>
+  [399] extcall 40 .............................. <VOID>
+  [401] eq ...................................... <getaProp(pDataList, #memberName) = VOID>
+  [402] jmpifz [420] ............................ if getaProp(pDataList, #memberName) = VOID then
+  [405] getlocal 8 .............................. <pDataList>
+  [407] pushsymb 949 ............................ <#memberName>
+  [410] getlocal 1 .............................. <pSprite>
+  [412] getchainedprop 64 ....................... <pSprite.member>
+  [414] getobjprop 235 .......................... <pSprite.member.name>
+  [416] pusharglistnoret 3 ...................... <pDataList, #memberName, pSprite.member.name>
+  [418] objcall 103 ............................. pDataList[#memberName] = pSprite.member.name
+  [420] getlocal 8 .............................. <pDataList>
+  [422] pushsymb 564 ............................ <#SpriteNR>
+  [425] pusharglist 2 ........................... <pDataList, #SpriteNR>
+  [427] extcall 542 ............................. <getaProp(pDataList, #SpriteNR)>
+  [430] pusharglist 0 ........................... <>
+  [432] extcall 40 .............................. <VOID>
+  [434] eq ...................................... <getaProp(pDataList, #SpriteNR) = VOID>
+  [435] jmpifz [449] ............................ if getaProp(pDataList, #SpriteNR) = VOID then
+  [438] getlocal 8 .............................. <pDataList>
+  [440] pushsymb 564 ............................ <#SpriteNR>
+  [443] getlocal 0 .............................. <pSpriteNr>
+  [445] pusharglistnoret 3 ...................... <pDataList, #SpriteNR, pSpriteNr>
+  [447] objcall 103 ............................. pDataList[#SpriteNR] = pSpriteNr
+  [449] getlocal 1 .............................. <pSprite>
+  [451] getobjprop 580 .......................... <pSprite.scriptInstanceList>
+  [454] pusharglist 0 ........................... <[]>
+  [456] pushlist ................................ <[]>
+  [457] eq ...................................... <pSprite.scriptInstanceList = []>
+  [458] jmpifz [481] ............................ if pSprite.scriptInstanceList = [] then
+  [461] pushcons 14 ............................. <"Function: AddModule. Target: ">
+  [463] getparam 0 .............................. <tTarget>
+  [465] joinstr ................................. <"Function: AddModule. Target: " & tTarget>
+  [466] pushcons 2 .............................. <" Parameters: ">
+  [468] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: ">
+  [469] getparam 1 .............................. <tDataList>
+  [471] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList>
+  [472] pushcons 16 ............................. <" Target sprite doesn't have any scripts attached to it.">
+  [474] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " Target sprite doesn't have any scripts attached to it.">
+  [475] pusharglistnoret 1 ...................... <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " Target sprite doesn't have any scripts attached to it.">
+  [477] extcall 511 ............................. ShowError("Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " Target sprite doesn't have any scripts attached to it.")
+  [480] ret ..................................... exit
+  [481] getlocal 1 .............................. <pSprite>
+  [483] pushsymb 580 ............................ <#scriptInstanceList>
+  [486] pusharglist 2 ........................... <pSprite, #scriptInstanceList>
+  [488] objcall 129 ............................. <pSprite.scriptInstanceList.count>
+  [490] setlocal 4 .............................. pCount = pSprite.scriptInstanceList.count
+  [492] getlocal 4 .............................. <pCount>
+  [494] pushint8 1 .............................. <1>
+  [496] eq ...................................... <pCount = 1>
+  [497] jmpifz [720] ............................ if pCount = 1 then
+  [500] getlocal 1 .............................. <pSprite>
+  [502] pushsymb 580 ............................ <#scriptInstanceList>
+  [505] pushint8 1 .............................. <1>
+  [507] pusharglist 3 ........................... <pSprite, #scriptInstanceList, 1>
+  [509] objcall 102 ............................. <pSprite.scriptInstanceList[1]>
+  [511] getchainedprop 563 ...................... <pSprite.scriptInstanceList[1].p>
+  [514] getobjprop 565 .......................... <pSprite.scriptInstanceList[1].p.ScriptName>
+  [517] setlocal 9 .............................. pReturnedScriptName = pSprite.scriptInstanceList[1].p.ScriptName
+  [519] getlocal 9 .............................. <pReturnedScriptName>
+  [521] pusharglist 0 ........................... <>
+  [523] extcall 40 .............................. <VOID>
+  [525] nteq .................................... <pReturnedScriptName <> VOID>
+  [526] getlocal 9 .............................. <pReturnedScriptName>
+  [528] getlocal 2 .............................. <pParentScriptName>
+  [530] eq ...................................... <pReturnedScriptName = pParentScriptName>
+  [531] and ..................................... <(pReturnedScriptName <> VOID) and (pReturnedScriptName = pParentScriptName)>
+  [532] jmpifz [552] ............................ if (pReturnedScriptName <> VOID) and (pReturnedScriptName = pParentScriptName) then / else
+  [535] getlocal 1 .............................. <pSprite>
+  [537] getchainedprop 580 ...................... <pSprite.scriptInstanceList>
+  [540] getlocal 3 .............................. <pScriptName>
+  [542] getlocal 8 .............................. <pDataList>
+  [544] pusharglistnoret 3 ...................... <pSprite.scriptInstanceList, pScriptName, pDataList>
+  [546] objcall 721 ............................. pSprite.scriptInstanceList.AddScript(pScriptName, pDataList)
+  [549] jmp [720]
+  [552] getlocal 9 .............................. <pReturnedScriptName>
+  [554] pushcons 17 ............................. <"3D Script Manager">
+  [556] eq ...................................... <pReturnedScriptName = "3D Script Manager">
+  [557] getlocal 9 .............................. <pReturnedScriptName>
+  [559] pushcons 18 ............................. <"2D Script Manager">
+  [561] eq ...................................... <pReturnedScriptName = "2D Script Manager">
+  [562] or ...................................... <(pReturnedScriptName = "3D Script Manager") or (pReturnedScriptName = "2D Script Manager")>
+  [563] jmpifz [720] ............................ if (pReturnedScriptName = "3D Script Manager") or (pReturnedScriptName = "2D Script Manager") then
+  [566] getlocal 1 .............................. <pSprite>
+  [568] pushsymb 580 ............................ <#scriptInstanceList>
+  [571] pushint8 1 .............................. <1>
+  [573] pusharglist 3 ........................... <pSprite, #scriptInstanceList, 1>
+  [575] objcall 102 ............................. <pSprite.scriptInstanceList[1]>
+  [577] getchainedprop 563 ...................... <pSprite.scriptInstanceList[1].p>
+  [580] pushsymb 300 ............................ <#scriptList>
+  [583] pusharglist 2 ........................... <pSprite.scriptInstanceList[1].p, #scriptList>
+  [585] objcall 129 ............................. <pSprite.scriptInstanceList[1].p.scriptList.count>
+  [587] setlocal 10 ............................. pCount2 = pSprite.scriptInstanceList[1].p.scriptList.count
+  [589] pushint8 1 .............................. <1>
+  [591] setlocal 5
+  [593] getlocal 5
+  [595] getlocal 10 ............................. <pCount2>
+  [597] lteq
+  [598] jmpifz [720] ............................ repeat with i = 1 to pCount2
+  [601] getlocal 1 .............................. <pSprite>
+  [603] pushsymb 580 ............................ <#scriptInstanceList>
+  [606] pushint8 1 .............................. <1>
+  [608] pusharglist 3 ........................... <pSprite, #scriptInstanceList, 1>
+  [610] objcall 102 ............................. <pSprite.scriptInstanceList[1]>
+  [612] getchainedprop 563 ...................... <pSprite.scriptInstanceList[1].p>
+  [615] pushsymb 300 ............................ <#scriptList>
+  [618] getlocal 5 .............................. <i>
+  [620] pusharglist 3 ........................... <pSprite.scriptInstanceList[1].p, #scriptList, i>
+  [622] objcall 102 ............................. <pSprite.scriptInstanceList[1].p.scriptList[i]>
+  [624] getchainedprop 563 ...................... <pSprite.scriptInstanceList[1].p.scriptList[i].p>
+  [627] getobjprop 565 .......................... <pSprite.scriptInstanceList[1].p.scriptList[i].p.ScriptName>
+  [630] setlocal 11 ............................. pSubReturnedScriptName = pSprite.scriptInstanceList[1].p.scriptList[i].p.ScriptName
+  [632] getlocal 11 ............................. <pSubReturnedScriptName>
+  [634] getlocal 2 .............................. <pParentScriptName>
+  [636] eq ...................................... <pSubReturnedScriptName = pParentScriptName>
+  [637] jmpifz [678] ............................ if pSubReturnedScriptName = pParentScriptName then
+  [640] getlocal 1 .............................. <pSprite>
+  [642] pushsymb 580 ............................ <#scriptInstanceList>
+  [645] pushint8 1 .............................. <1>
+  [647] pusharglist 3 ........................... <pSprite, #scriptInstanceList, 1>
+  [649] objcall 102 ............................. <pSprite.scriptInstanceList[1]>
+  [651] getchainedprop 563 ...................... <pSprite.scriptInstanceList[1].p>
+  [654] pushsymb 300 ............................ <#scriptList>
+  [657] getlocal 5 .............................. <i>
+  [659] pusharglist 3 ........................... <pSprite.scriptInstanceList[1].p, #scriptList, i>
+  [661] objcall 102 ............................. <pSprite.scriptInstanceList[1].p.scriptList[i]>
+  [663] getlocal 3 .............................. <pScriptName>
+  [665] getlocal 8 .............................. <pDataList>
+  [667] pusharglistnoret 3 ...................... <pSprite.scriptInstanceList[1].p.scriptList[i], pScriptName, pDataList>
+  [669] objcall 721 ............................. pSprite.scriptInstanceList[1].p.scriptList[i].AddScript(pScriptName, pDataList)
+  [672] jmp [720] ............................... exit repeat
+  [675] jmp [711] ............................... next repeat
+  [678] getlocal 5 .............................. <i>
+  [680] getlocal 10 ............................. <pCount2>
+  [682] eq ...................................... <i = pCount2>
+  [683] getlocal 11 ............................. <pSubReturnedScriptName>
+  [685] getlocal 2 .............................. <pParentScriptName>
+  [687] nteq .................................... <pSubReturnedScriptName <> pParentScriptName>
+  [688] and ..................................... <(i = pCount2) and (pSubReturnedScriptName <> pParentScriptName)>
+  [689] jmpifz [711] ............................ if (i = pCount2) and (pSubReturnedScriptName <> pParentScriptName) then
+  [692] pushcons 14 ............................. <"Function: AddModule. Target: ">
+  [694] getparam 0 .............................. <tTarget>
+  [696] joinstr ................................. <"Function: AddModule. Target: " & tTarget>
+  [697] pushcons 2 .............................. <" Parameters: ">
+  [699] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: ">
+  [700] getparam 1 .............................. <tDataList>
+  [702] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList>
+  [703] pushcons 19 ............................. <" No script with scriptname found... sorry...">
+  [705] joinstr ................................. <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " No script with scriptname found... sorry...">
+  [706] pusharglistnoret 1 ...................... <"Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " No script with scriptname found... sorry...">
+  [708] extcall 511 ............................. ShowError("Function: AddModule. Target: " & tTarget & " Parameters: " & tDataList & " No script with scriptname found... sorry...")
+  [711] pushint8 1
+  [713] getlocal 5
+  [715] add
+  [716] setlocal 5
+  [718] endrepeat [593]
+  [720] ret
+end
+
+on SetAttribute tTarget, tDataList
+  [  0] getparam 0 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 64 .............................. <member(tTarget)>
+  [  6] setlocal 0 .............................. pMember = member(tTarget)
+  [  8] getlocal 0 .............................. <pMember>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <pMember = VOID>
+  [ 15] jmpifz [ 38] ............................ if pMember = VOID then
+  [ 18] pushcons 20 ............................. <"Function: SetAttribute. Target: ">
+  [ 20] getparam 0 .............................. <tTarget>
+  [ 22] joinstr ................................. <"Function: SetAttribute. Target: " & tTarget>
+  [ 23] pushcons 2 .............................. <" Parameters: ">
+  [ 25] joinstr ................................. <"Function: SetAttribute. Target: " & tTarget & " Parameters: ">
+  [ 26] getparam 1 .............................. <tDataList>
+  [ 28] joinstr ................................. <"Function: SetAttribute. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 29] pushcons 21 ............................. <" No such member.">
+  [ 31] joinstr ................................. <"Function: SetAttribute. Target: " & tTarget & " Parameters: " & tDataList & " No such member.">
+  [ 32] pusharglistnoret 1 ...................... <"Function: SetAttribute. Target: " & tTarget & " Parameters: " & tDataList & " No such member.">
+  [ 34] extcall 511 ............................. ShowError("Function: SetAttribute. Target: " & tTarget & " Parameters: " & tDataList & " No such member.")
+  [ 37] ret ..................................... exit
+  [ 38] getparam 1 .............................. <tDataList>
+  [ 40] pusharglist 1 ........................... <tDataList>
+  [ 42] extcall 503 ............................. <value(tDataList)>
+  [ 45] setlocal 1 .............................. pDataList = value(tDataList)
+  [ 47] getlocal 1 .............................. <pDataList>
+  [ 49] pusharglist 0 ........................... <>
+  [ 51] extcall 40 .............................. <VOID>
+  [ 53] eq ...................................... <pDataList = VOID>
+  [ 54] getlocal 1 .............................. <pDataList>
+  [ 56] getobjprop 122 .......................... <pDataList.ilk>
+  [ 58] pushsymb 541 ............................ <#propList>
+  [ 61] nteq .................................... <pDataList.ilk <> #propList>
+  [ 62] or ...................................... <(pDataList = VOID) or (pDataList.ilk <> #propList)>
+  [ 63] jmpifz [ 86] ............................ if (pDataList = VOID) or (pDataList.ilk <> #propList) then
+  [ 66] pushcons 20 ............................. <"Function: SetAttribute. Target: ">
+  [ 68] getparam 0 .............................. <tTarget>
+  [ 70] joinstr ................................. <"Function: SetAttribute. Target: " & tTarget>
+  [ 71] pushcons 2 .............................. <" Parameters: ">
+  [ 73] joinstr ................................. <"Function: SetAttribute. Target: " & tTarget & " Parameters: ">
+  [ 74] getparam 1 .............................. <tDataList>
+  [ 76] joinstr ................................. <"Function: SetAttribute. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 77] pushcons 22 ............................. <" Datalist obsolete (VOID or not #proplist).">
+  [ 79] joinstr ................................. <"Function: SetAttribute. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [ 80] pusharglistnoret 1 ...................... <"Function: SetAttribute. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [ 82] extcall 511 ............................. ShowError("Function: SetAttribute. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).")
+  [ 85] ret ..................................... exit
+  [ 86] getlocal 1 .............................. <pDataList>
+  [ 88] pushsymb 1944 ........................... <#attribute>
+  [ 91] pusharglist 2 ........................... <pDataList, #attribute>
+  [ 93] objcall 105 ............................. <pDataList[#attribute]>
+  [ 95] setlocal 2 .............................. pType = pDataList[#attribute]
+  [ 97] getlocal 1 .............................. <pDataList>
+  [ 99] pushsymb 1668 ........................... <#ModelName>
+  [102] pusharglist 2 ........................... <pDataList, #ModelName>
+  [104] objcall 105 ............................. <pDataList[#ModelName]>
+  [106] setlocal 3 .............................. pModelName = pDataList[#ModelName]
+  [108] getlocal 1 .............................. <pDataList>
+  [110] pushsymb 67 ............................. <#string>
+  [112] pusharglist 2 ........................... <pDataList, #string>
+  [114] objcall 105 ............................. <pDataList[#string]>
+  [116] setlocal 4 .............................. pString = pDataList[#string]
+  [118] getlocal 4 .............................. <pString>
+  [120] pusharglist 0 ........................... <>
+  [122] extcall 40 .............................. <VOID>
+  [124] eq ...................................... <pString = VOID>
+  [125] getlocal 3 .............................. <pModelName>
+  [127] pusharglist 0 ........................... <>
+  [129] extcall 40 .............................. <VOID>
+  [131] eq ...................................... <pModelName = VOID>
+  [132] and ..................................... <(pString = VOID) and (pModelName = VOID)>
+  [133] jmpifz [159] ............................ if (pString = VOID) and (pModelName = VOID) then / else
+  [136] pushcons 20 ............................. <"Function: SetAttribute. Target: ">
+  [138] getparam 0 .............................. <tTarget>
+  [140] joinstr ................................. <"Function: SetAttribute. Target: " & tTarget>
+  [141] pushcons 2 .............................. <" Parameters: ">
+  [143] joinstr ................................. <"Function: SetAttribute. Target: " & tTarget & " Parameters: ">
+  [144] getparam 1 .............................. <tDataList>
+  [146] joinstr ................................. <"Function: SetAttribute. Target: " & tTarget & " Parameters: " & tDataList>
+  [147] pushcons 23 ............................. <" No model (#modelName) found and #string obsolote in member (target).">
+  [149] joinstr ................................. <"Function: SetAttribute. Target: " & tTarget & " Parameters: " & tDataList & " No model (#modelName) found and #string obsolote in member (target).">
+  [150] pusharglistnoret 1 ...................... <"Function: SetAttribute. Target: " & tTarget & " Parameters: " & tDataList & " No model (#modelName) found and #string obsolote in member (target).">
+  [152] extcall 511 ............................. ShowError("Function: SetAttribute. Target: " & tTarget & " Parameters: " & tDataList & " No model (#modelName) found and #string obsolote in member (target).")
+  [155] ret ..................................... exit
+  [156] jmp [210]
+  [159] getlocal 3 .............................. <pModelName>
+  [161] pusharglist 0 ........................... <>
+  [163] extcall 40 .............................. <VOID>
+  [165] nteq .................................... <pModelName <> VOID>
+  [166] jmpifz [189] ............................ if pModelName <> VOID then
+  [169] getlocal 0 .............................. <pMember>
+  [171] getlocal 1 .............................. <pDataList>
+  [173] pushsymb 1668 ........................... <#ModelName>
+  [176] pusharglist 2 ........................... <pDataList, #ModelName>
+  [178] objcall 105 ............................. <pDataList[#ModelName]>
+  [180] pusharglist 2 ........................... <pMember, pDataList[#ModelName]>
+  [182] objcall 71 .............................. <pMember.model(pDataList[#ModelName])>
+  [184] pusharglist 1 ........................... <[pMember.model(pDataList[#ModelName])]>
+  [186] pushlist ................................ <[pMember.model(pDataList[#ModelName])]>
+  [187] setlocal 5 .............................. pModelList = [pMember.model(pDataList[#ModelName])]
+  [189] getlocal 4 .............................. <pString>
+  [191] pusharglist 0 ........................... <>
+  [193] extcall 40 .............................. <VOID>
+  [195] nteq .................................... <pString <> VOID>
+  [196] jmpifz [210] ............................ if pString <> VOID then
+  [199] getlocal 0 .............................. <pMember>
+  [201] getlocal 4 .............................. <pString>
+  [203] pusharglist 2 ........................... <pMember, pString>
+  [205] extcall 1466 ............................ <GetModelList(pMember, pString)>
+  [208] setlocal 5 .............................. pModelList = GetModelList(pMember, pString)
+  [210] getlocal 2 .............................. <pType>
+  [212] pushsymb 1945 ........................... <#floor>
+  [215] eq ...................................... <pType = #floor>
+  [216] jmpifz [332] ............................ if pType = #floor then
+  [219] getglobal 43 ............................ <gGame>
+  [221] pushsymb 1741 ........................... <#FloorList>
+  [224] pusharglist 2 ........................... <gGame, #FloorList>
+  [226] extcall 542 ............................. <getaProp(gGame, #FloorList)>
+  [229] pusharglist 0 ........................... <>
+  [231] extcall 40 .............................. <VOID>
+  [233] eq ...................................... <getaProp(gGame, #FloorList) = VOID>
+  [234] jmpifz [249] ............................ if getaProp(gGame, #FloorList) = VOID then
+  [237] getglobal 43 ............................ <gGame>
+  [239] pushsymb 1741 ........................... <#FloorList>
+  [242] pusharglist 0 ........................... <[]>
+  [244] pushlist ................................ <[]>
+  [245] pusharglistnoret 3 ...................... <gGame, #FloorList, []>
+  [247] objcall 103 ............................. gGame[#FloorList] = []
+  [249] getlocal 5 .............................. <pModelList>
+  [251] getobjprop 129 .......................... <pModelList.count>
+  [253] setlocal 6 .............................. pCount = pModelList.count
+  [255] pushint8 1 .............................. <1>
+  [257] setlocal 7
+  [259] getlocal 7
+  [261] getlocal 6 .............................. <pCount>
+  [263] lteq
+  [264] jmpifz [332] ............................ repeat with i = 1 to pCount
+  [267] getlocal 5 .............................. <pModelList>
+  [269] getlocal 7 .............................. <i>
+  [271] pusharglist 2 ........................... <pModelList, i>
+  [273] objcall 105 ............................. <pModelList[i]>
+  [275] setlocal 8 .............................. pmodel = pModelList[i]
+  [277] getlocal 8 .............................. <pmodel>
+  [279] pusharglist 0 ........................... <>
+  [281] extcall 40 .............................. <VOID>
+  [283] eq ...................................... <pmodel = VOID>
+  [284] jmpifz [312] ............................ if pmodel = VOID then
+  [287] pushcons 20 ............................. <"Function: SetAttribute. Target: ">
+  [289] getparam 0 .............................. <tTarget>
+  [291] joinstr ................................. <"Function: SetAttribute. Target: " & tTarget>
+  [292] pushcons 2 .............................. <" Parameters: ">
+  [294] joinstr ................................. <"Function: SetAttribute. Target: " & tTarget & " Parameters: ">
+  [295] getparam 1 .............................. <tDataList>
+  [297] joinstr ................................. <"Function: SetAttribute. Target: " & tTarget & " Parameters: " & tDataList>
+  [298] pushcons 24 ............................. <" Model does not exist in member (target).">
+  [300] joinstr ................................. <"Function: SetAttribute. Target: " & tTarget & " Parameters: " & tDataList & " Model does not exist in member (target).">
+  [301] pusharglistnoret 1 ...................... <"Function: SetAttribute. Target: " & tTarget & " Parameters: " & tDataList & " Model does not exist in member (target).">
+  [303] extcall 511 ............................. ShowError("Function: SetAttribute. Target: " & tTarget & " Parameters: " & tDataList & " Model does not exist in member (target).")
+  [306] jmp [323] ............................... next repeat
+  [309] jmp [323] ............................... next repeat
+  [312] getglobal 43 ............................ <gGame>
+  [314] getchainedprop 1741 ..................... <gGame.FloorList>
+  [317] getlocal 8 .............................. <pmodel>
+  [319] pusharglistnoret 2 ...................... <gGame.FloorList, pmodel>
+  [321] objcall 42 .............................. gGame.FloorList.add(pmodel)
+  [323] pushint8 1
+  [325] getlocal 7
+  [327] add
+  [328] setlocal 7
+  [330] endrepeat [259]
+  [332] ret
+end
+
+on RunHandler tTarget, tDataList
+  [  0] pushcons 25 ............................. <"Function: RunHandler">
+  [  2] pushcons 26 ............................. <"Target">
+  [  4] joinpadstr .............................. <"Function: RunHandler" && "Target">
+  [  5] getparam 0 .............................. <tTarget>
+  [  7] joinpadstr .............................. <"Function: RunHandler" && "Target" && tTarget>
+  [  8] pushcons 27 ............................. <"DataList">
+  [ 10] joinpadstr .............................. <"Function: RunHandler" && "Target" && tTarget && "DataList">
+  [ 11] getparam 1 .............................. <tDataList>
+  [ 13] joinpadstr .............................. <"Function: RunHandler" && "Target" && tTarget && "DataList" && tDataList>
+  [ 14] pusharglistnoret 1 ...................... <"Function: RunHandler" && "Target" && tTarget && "DataList" && tDataList>
+  [ 16] extcall 511 ............................. ShowError("Function: RunHandler" && "Target" && tTarget && "DataList" && tDataList)
+  [ 19] getparam 0 .............................. <tTarget>
+  [ 21] pusharglist 1 ........................... <tTarget>
+  [ 23] extcall 503 ............................. <value(tTarget)>
+  [ 26] pusharglist 1 ........................... <value(tTarget)>
+  [ 28] extcall 487 ............................. <sprite(value(tTarget))>
+  [ 31] setlocal 0 .............................. pSprite = sprite(value(tTarget))
+  [ 33] getlocal 0 .............................. <pSprite>
+  [ 35] getchainedprop 64 ....................... <pSprite.member>
+  [ 37] getobjprop 235 .......................... <pSprite.member.name>
+  [ 39] pushcons 0 .............................. <EMPTY>
+  [ 41] eq ...................................... <pSprite.member.name = EMPTY>
+  [ 42] jmpifz [ 68] ............................ if pSprite.member.name = EMPTY then
+  [ 45] pushcons 25 ............................. <"Function: RunHandler">
+  [ 47] pushcons 26 ............................. <"Target">
+  [ 49] joinpadstr .............................. <"Function: RunHandler" && "Target">
+  [ 50] getparam 0 .............................. <tTarget>
+  [ 52] joinpadstr .............................. <"Function: RunHandler" && "Target" && tTarget>
+  [ 53] pushcons 27 ............................. <"DataList">
+  [ 55] joinpadstr .............................. <"Function: RunHandler" && "Target" && tTarget && "DataList">
+  [ 56] getparam 1 .............................. <tDataList>
+  [ 58] joinpadstr .............................. <"Function: RunHandler" && "Target" && tTarget && "DataList" && tDataList>
+  [ 59] pushcons 28 ............................. <" No sprite in this channel.">
+  [ 61] joinstr ................................. <"Function: RunHandler" && "Target" && tTarget && "DataList" && tDataList & " No sprite in this channel.">
+  [ 62] pusharglistnoret 1 ...................... <"Function: RunHandler" && "Target" && tTarget && "DataList" && tDataList & " No sprite in this channel.">
+  [ 64] extcall 511 ............................. ShowError("Function: RunHandler" && "Target" && tTarget && "DataList" && tDataList & " No sprite in this channel.")
+  [ 67] ret ..................................... exit
+  [ 68] getparam 1 .............................. <tDataList>
+  [ 70] setlocal 1 .............................. pDataList = tDataList
+  [ 72] getlocal 1 .............................. <pDataList>
+  [ 74] getobjprop 122 .......................... <pDataList.ilk>
+  [ 76] pushsymb 67 ............................. <#string>
+  [ 78] eq ...................................... <pDataList.ilk = #string>
+  [ 79] jmpifz [ 91] ............................ if pDataList.ilk = #string then
+  [ 82] getlocal 1 .............................. <pDataList>
+  [ 84] pusharglist 1 ........................... <pDataList>
+  [ 86] extcall 503 ............................. <value(pDataList)>
+  [ 89] setlocal 1 .............................. pDataList = value(pDataList)
+  [ 91] getlocal 1 .............................. <pDataList>
+  [ 93] pusharglist 0 ........................... <>
+  [ 95] extcall 40 .............................. <VOID>
+  [ 97] eq ...................................... <pDataList = VOID>
+  [ 98] getlocal 1 .............................. <pDataList>
+  [100] getobjprop 122 .......................... <pDataList.ilk>
+  [102] pushsymb 541 ............................ <#propList>
+  [105] nteq .................................... <pDataList.ilk <> #propList>
+  [106] or ...................................... <(pDataList = VOID) or (pDataList.ilk <> #propList)>
+  [107] jmpifz [130] ............................ if (pDataList = VOID) or (pDataList.ilk <> #propList) then
+  [110] pushcons 29 ............................. <"Function: LinkKey. Target: ">
+  [112] getparam 0 .............................. <tTarget>
+  [114] joinstr ................................. <"Function: LinkKey. Target: " & tTarget>
+  [115] pushcons 2 .............................. <" Parameters: ">
+  [117] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: ">
+  [118] getparam 1 .............................. <tDataList>
+  [120] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList>
+  [121] pushcons 22 ............................. <" Datalist obsolete (VOID or not #proplist).">
+  [123] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [124] pusharglistnoret 1 ...................... <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [126] extcall 511 ............................. ShowError("Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).")
+  [129] ret ..................................... exit
+  [130] pusharglist 0 ........................... <>
+  [132] extcall 40 .............................. <VOID>
+  [134] setlocal 2 .............................. pHandler = VOID
+  [136] getlocal 1 .............................. <pDataList>
+  [138] pushsymb 786 ............................ <#handler>
+  [141] pusharglist 2 ........................... <pDataList, #handler>
+  [143] extcall 542 ............................. <getaProp(pDataList, #handler)>
+  [146] getobjprop 122 .......................... <getaProp(pDataList, #handler).ilk>
+  [148] pushsymb 67 ............................. <#string>
+  [150] eq ...................................... <getaProp(pDataList, #handler).ilk = #string>
+  [151] jmpifz [165] ............................ if getaProp(pDataList, #handler).ilk = #string then
+  [154] getlocal 1 .............................. <pDataList>
+  [156] pushsymb 786 ............................ <#handler>
+  [159] pusharglist 2 ........................... <pDataList, #handler>
+  [161] objcall 105 ............................. <pDataList[#handler]>
+  [163] setlocal 2 .............................. pHandler = pDataList[#handler]
+  [165] getlocal 2 .............................. <pHandler>
+  [167] pusharglist 0 ........................... <>
+  [169] extcall 40 .............................. <VOID>
+  [171] eq ...................................... <pHandler = VOID>
+  [172] jmpifz [195] ............................ if pHandler = VOID then
+  [175] pushcons 29 ............................. <"Function: LinkKey. Target: ">
+  [177] getparam 0 .............................. <tTarget>
+  [179] joinstr ................................. <"Function: LinkKey. Target: " & tTarget>
+  [180] pushcons 2 .............................. <" Parameters: ">
+  [182] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: ">
+  [183] getparam 1 .............................. <tDataList>
+  [185] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList>
+  [186] pushcons 30 ............................. <" No handler.">
+  [188] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " No handler.">
+  [189] pusharglistnoret 1 ...................... <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " No handler.">
+  [191] extcall 511 ............................. ShowError("Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " No handler.")
+  [194] ret ..................................... exit
+  [195] getlocal 2 .............................. <pHandler>
+  [197] pusharglist 1 ........................... <pHandler>
+  [199] extcall 88 .............................. <symbol(pHandler)>
+  [201] setlocal 2 .............................. pHandler = symbol(pHandler)
+  [203] getlocal 0 .............................. <pSprite>
+  [205] pushsymb 580 ............................ <#scriptInstanceList>
+  [208] pusharglist 2 ........................... <pSprite, #scriptInstanceList>
+  [210] objcall 129 ............................. <pSprite.scriptInstanceList.count>
+  [212] setlocal 3 .............................. pCount = pSprite.scriptInstanceList.count
+  [214] getlocal 3 .............................. <pCount>
+  [216] pushzero ................................ <0>
+  [217] eq ...................................... <pCount = 0>
+  [218] jmpifz [244] ............................ if pCount = 0 then / else
+  [221] pushcons 29 ............................. <"Function: LinkKey. Target: ">
+  [223] getparam 0 .............................. <tTarget>
+  [225] joinstr ................................. <"Function: LinkKey. Target: " & tTarget>
+  [226] pushcons 2 .............................. <" Parameters: ">
+  [228] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: ">
+  [229] getparam 1 .............................. <tDataList>
+  [231] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList>
+  [232] pushcons 31 ............................. <" This sprite doesn't have any scripts attached to it.">
+  [234] joinstr ................................. <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " This sprite doesn't have any scripts attached to it.">
+  [235] pusharglistnoret 1 ...................... <"Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " This sprite doesn't have any scripts attached to it.">
+  [237] extcall 511 ............................. ShowError("Function: LinkKey. Target: " & tTarget & " Parameters: " & tDataList & " This sprite doesn't have any scripts attached to it.")
+  [240] ret ..................................... exit
+  [241] jmp [309]
+  [244] pushint8 1 .............................. <1>
+  [246] setlocal 4
+  [248] getlocal 4
+  [250] getlocal 3 .............................. <pCount>
+  [252] lteq
+  [253] jmpifz [309] ............................ repeat with i = 1 to pCount
+  [256] getlocal 0 .............................. <pSprite>
+  [258] pushsymb 580 ............................ <#scriptInstanceList>
+  [261] getlocal 4 .............................. <i>
+  [263] pusharglist 3 ........................... <pSprite, #scriptInstanceList, i>
+  [265] objcall 70 .............................. <pSprite.scriptInstanceList[i]>
+  [267] setlocal 5 .............................. pScript = pSprite.scriptInstanceList[i]
+  [269] getlocal 5 .............................. <pScript>
+  [271] pusharglist 1 ........................... <pScript>
+  [273] objcall 1068 ............................ <pScript.handlers()>
+  [276] setlocal 6 .............................. pHandlers = pScript.handlers()
+  [278] getlocal 6 .............................. <pHandlers>
+  [280] getlocal 2 .............................. <pHandler>
+  [282] pusharglist 2 ........................... <pHandlers, pHandler>
+  [284] objcall 166 ............................. <pHandlers.getPos(pHandler)>
+  [286] pushzero ................................ <0>
+  [287] nteq .................................... <pHandlers.getPos(pHandler) <> 0>
+  [288] jmpifz [300] ............................ if pHandlers.getPos(pHandler) <> 0 then
+  [291] getlocal 2 .............................. <pHandler>
+  [293] getlocal 5 .............................. <pScript>
+  [295] pusharglistnoret 2 ...................... <pHandler, pScript>
+  [297] extcall 567 ............................. call(pHandler, pScript)
+  [300] pushint8 1
+  [302] getlocal 4
+  [304] add
+  [305] setlocal 4
+  [307] endrepeat [248]
+  [309] ret
+end
+
+on DoHandler tTarget, tDataList, t1, t2
+  [  0] pushcons 32 ............................. <"Function: DoHandler">
+  [  2] pushcons 26 ............................. <"Target">
+  [  4] joinpadstr .............................. <"Function: DoHandler" && "Target">
+  [  5] getparam 0 .............................. <tTarget>
+  [  7] joinpadstr .............................. <"Function: DoHandler" && "Target" && tTarget>
+  [  8] pushcons 27 ............................. <"DataList">
+  [ 10] joinpadstr .............................. <"Function: DoHandler" && "Target" && tTarget && "DataList">
+  [ 11] getparam 1 .............................. <tDataList>
+  [ 13] joinpadstr .............................. <"Function: DoHandler" && "Target" && tTarget && "DataList" && tDataList>
+  [ 14] pusharglistnoret 1 ...................... <"Function: DoHandler" && "Target" && tTarget && "DataList" && tDataList>
+  [ 16] extcall 511 ............................. ShowError("Function: DoHandler" && "Target" && tTarget && "DataList" && tDataList)
+  [ 19] getparam 1 .............................. <tDataList>
+  [ 21] pushcons 33 ............................. <"(">
+  [ 23] joinstr ................................. <tDataList & "(">
+  [ 24] getparam 2 .............................. <t1>
+  [ 26] pusharglist 1 ........................... <t1>
+  [ 28] extcall 67 .............................. <string(t1)>
+  [ 30] joinstr ................................. <tDataList & "(" & string(t1)>
+  [ 31] pushcons 34 ............................. <")">
+  [ 33] joinstr ................................. <tDataList & "(" & string(t1) & ")">
+  [ 34] pusharglistnoret 1 ...................... <tDataList & "(" & string(t1) & ")">
+  [ 36] extcall 535 ............................. do(tDataList & "(" & string(t1) & ")")
+  [ 39] ret
+end
+
+on goto tTarget, tDataList
+  [  0] pushcons 35 ............................. <"Function: GoTo">
+  [  2] pushcons 26 ............................. <"Target">
+  [  4] joinpadstr .............................. <"Function: GoTo" && "Target">
+  [  5] getparam 0 .............................. <tTarget>
+  [  7] joinpadstr .............................. <"Function: GoTo" && "Target" && tTarget>
+  [  8] pushcons 27 ............................. <"DataList">
+  [ 10] joinpadstr .............................. <"Function: GoTo" && "Target" && tTarget && "DataList">
+  [ 11] getparam 1 .............................. <tDataList>
+  [ 13] joinpadstr .............................. <"Function: GoTo" && "Target" && tTarget && "DataList" && tDataList>
+  [ 14] pusharglistnoret 1 ...................... <"Function: GoTo" && "Target" && tTarget && "DataList" && tDataList>
+  [ 16] extcall 511 ............................. ShowError("Function: GoTo" && "Target" && tTarget && "DataList" && tDataList)
+  [ 19] getparam 1 .............................. <tDataList>
+  [ 21] setlocal 0 .............................. pDataList = tDataList
+  [ 23] getlocal 0 .............................. <pDataList>
+  [ 25] getobjprop 122 .......................... <pDataList.ilk>
+  [ 27] pushsymb 67 ............................. <#string>
+  [ 29] eq ...................................... <pDataList.ilk = #string>
+  [ 30] jmpifz [ 42] ............................ if pDataList.ilk = #string then
+  [ 33] getlocal 0 .............................. <pDataList>
+  [ 35] pusharglist 1 ........................... <pDataList>
+  [ 37] extcall 503 ............................. <value(pDataList)>
+  [ 40] setlocal 0 .............................. pDataList = value(pDataList)
+  [ 42] getlocal 0 .............................. <pDataList>
+  [ 44] pusharglist 0 ........................... <>
+  [ 46] extcall 40 .............................. <VOID>
+  [ 48] eq ...................................... <pDataList = VOID>
+  [ 49] getlocal 0 .............................. <pDataList>
+  [ 51] getobjprop 122 .......................... <pDataList.ilk>
+  [ 53] pushsymb 541 ............................ <#propList>
+  [ 56] nteq .................................... <pDataList.ilk <> #propList>
+  [ 57] or ...................................... <(pDataList = VOID) or (pDataList.ilk <> #propList)>
+  [ 58] jmpifz [ 81] ............................ if (pDataList = VOID) or (pDataList.ilk <> #propList) then
+  [ 61] pushcons 36 ............................. <"Function: GoTo. Target: ">
+  [ 63] getparam 0 .............................. <tTarget>
+  [ 65] joinstr ................................. <"Function: GoTo. Target: " & tTarget>
+  [ 66] pushcons 2 .............................. <" Parameters: ">
+  [ 68] joinstr ................................. <"Function: GoTo. Target: " & tTarget & " Parameters: ">
+  [ 69] getparam 1 .............................. <tDataList>
+  [ 71] joinstr ................................. <"Function: GoTo. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 72] pushcons 22 ............................. <" Datalist obsolete (VOID or not #proplist).">
+  [ 74] joinstr ................................. <"Function: GoTo. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [ 75] pusharglistnoret 1 ...................... <"Function: GoTo. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [ 77] extcall 511 ............................. ShowError("Function: GoTo. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).")
+  [ 80] ret ..................................... exit
+  [ 81] pusharglist 0 ........................... <>
+  [ 83] extcall 40 .............................. <VOID>
+  [ 85] setlocal 1 .............................. pFrame = VOID
+  [ 87] getlocal 0 .............................. <pDataList>
+  [ 89] pushsymb 432 ............................ <#frame>
+  [ 92] pusharglist 2 ........................... <pDataList, #frame>
+  [ 94] extcall 542 ............................. <getaProp(pDataList, #frame)>
+  [ 97] getobjprop 122 .......................... <getaProp(pDataList, #frame).ilk>
+  [ 99] pushsymb 123 ............................ <#integer>
+  [101] eq ...................................... <getaProp(pDataList, #frame).ilk = #integer>
+  [102] jmpifz [116] ............................ if getaProp(pDataList, #frame).ilk = #integer then
+  [105] getlocal 0 .............................. <pDataList>
+  [107] pushsymb 432 ............................ <#frame>
+  [110] pusharglist 2 ........................... <pDataList, #frame>
+  [112] objcall 105 ............................. <pDataList[#frame]>
+  [114] setlocal 1 .............................. pFrame = pDataList[#frame]
+  [116] getlocal 1 .............................. <pFrame>
+  [118] pushzero ................................ <0>
+  [119] lteq .................................... <pFrame <= 0>
+  [120] getlocal 1 .............................. <pFrame>
+  [122] pusharglist 0 ........................... <>
+  [124] extcall 40 .............................. <VOID>
+  [126] nteq .................................... <pFrame <> VOID>
+  [127] and ..................................... <(pFrame <= 0) and (pFrame <> VOID)>
+  [128] jmpifz [151] ............................ if (pFrame <= 0) and (pFrame <> VOID) then
+  [131] pushcons 36 ............................. <"Function: GoTo. Target: ">
+  [133] getparam 0 .............................. <tTarget>
+  [135] joinstr ................................. <"Function: GoTo. Target: " & tTarget>
+  [136] pushcons 2 .............................. <" Parameters: ">
+  [138] joinstr ................................. <"Function: GoTo. Target: " & tTarget & " Parameters: ">
+  [139] getparam 1 .............................. <tDataList>
+  [141] joinstr ................................. <"Function: GoTo. Target: " & tTarget & " Parameters: " & tDataList>
+  [142] pushcons 37 ............................. <" Frame below or equal to 0. What are you thinking...?!">
+  [144] joinstr ................................. <"Function: GoTo. Target: " & tTarget & " Parameters: " & tDataList & " Frame below or equal to 0. What are you thinking...?!">
+  [145] pusharglistnoret 1 ...................... <"Function: GoTo. Target: " & tTarget & " Parameters: " & tDataList & " Frame below or equal to 0. What are you thinking...?!">
+  [147] extcall 511 ............................. ShowError("Function: GoTo. Target: " & tTarget & " Parameters: " & tDataList & " Frame below or equal to 0. What are you thinking...?!")
+  [150] ret ..................................... exit
+  [151] pusharglist 0 ........................... <>
+  [153] extcall 40 .............................. <VOID>
+  [155] setlocal 2 .............................. pmarker = VOID
+  [157] getlocal 0 .............................. <pDataList>
+  [159] pushsymb 538 ............................ <#marker>
+  [162] pusharglist 2 ........................... <pDataList, #marker>
+  [164] extcall 542 ............................. <getaProp(pDataList, #marker)>
+  [167] getobjprop 122 .......................... <getaProp(pDataList, #marker).ilk>
+  [169] pushsymb 67 ............................. <#string>
+  [171] eq ...................................... <getaProp(pDataList, #marker).ilk = #string>
+  [172] jmpifz [186] ............................ if getaProp(pDataList, #marker).ilk = #string then
+  [175] getlocal 0 .............................. <pDataList>
+  [177] pushsymb 538 ............................ <#marker>
+  [180] pusharglist 2 ........................... <pDataList, #marker>
+  [182] objcall 105 ............................. <pDataList[#marker]>
+  [184] setlocal 2 .............................. pmarker = pDataList[#marker]
+  [186] gettoplevelprop 33 ...................... <_movie>
+  [188] pusharglist 1 ........................... <_movie>
+  [190] objcall 2953 ............................ <_movie.markerlist()>
+  [193] getobjprop 129 .......................... <_movie.markerlist().count>
+  [195] setlocal 3 .............................. pCount = _movie.markerlist().count
+  [197] pushint8 1 .............................. <1>
+  [199] setlocal 4
+  [201] getlocal 4
+  [203] getlocal 3 .............................. <pCount>
+  [205] lteq
+  [206] jmpifz [281] ............................ repeat with i = 1 to pCount
+  [209] gettoplevelprop 33 ...................... <_movie>
+  [211] pusharglist 1 ........................... <_movie>
+  [213] objcall 2953 ............................ <_movie.markerlist()>
+  [216] getlocal 4 .............................. <i>
+  [218] pusharglist 2 ........................... <_movie.markerlist(), i>
+  [220] objcall 105 ............................. <_movie.markerlist()[i]>
+  [222] setlocal 5 .............................. pMarkerToCheck = _movie.markerlist()[i]
+  [224] getlocal 2 .............................. <pmarker>
+  [226] getlocal 5 .............................. <pMarkerToCheck>
+  [228] eq ...................................... <pmarker = pMarkerToCheck>
+  [229] jmpifz [235] ............................ if pmarker = pMarkerToCheck then
+  [232] jmp [281] ............................... exit repeat
+  [235] getlocal 2 .............................. <pmarker>
+  [237] getlocal 5 .............................. <pMarkerToCheck>
+  [239] nteq .................................... <pmarker <> pMarkerToCheck>
+  [240] getlocal 4 .............................. <i>
+  [242] getlocal 3 .............................. <pCount>
+  [244] eq ...................................... <i = pCount>
+  [245] and ..................................... <(pmarker <> pMarkerToCheck) and (i = pCount)>
+  [246] jmpifz [272] ............................ if (pmarker <> pMarkerToCheck) and (i = pCount) then
+  [249] pushcons 36 ............................. <"Function: GoTo. Target: ">
+  [251] getparam 0 .............................. <tTarget>
+  [253] joinstr ................................. <"Function: GoTo. Target: " & tTarget>
+  [254] pushcons 2 .............................. <" Parameters: ">
+  [256] joinstr ................................. <"Function: GoTo. Target: " & tTarget & " Parameters: ">
+  [257] getparam 1 .............................. <tDataList>
+  [259] joinstr ................................. <"Function: GoTo. Target: " & tTarget & " Parameters: " & tDataList>
+  [260] pushcons 38 ............................. <" No such maker found in score.">
+  [262] joinstr ................................. <"Function: GoTo. Target: " & tTarget & " Parameters: " & tDataList & " No such maker found in score.">
+  [263] pusharglistnoret 1 ...................... <"Function: GoTo. Target: " & tTarget & " Parameters: " & tDataList & " No such maker found in score.">
+  [265] extcall 511 ............................. ShowError("Function: GoTo. Target: " & tTarget & " Parameters: " & tDataList & " No such maker found in score.")
+  [268] jmp [281] ............................... exit repeat
+  [271] ret ..................................... exit
+  [272] pushint8 1
+  [274] getlocal 4
+  [276] add
+  [277] setlocal 4
+  [279] endrepeat [201]
+  [281] getlocal 1 .............................. <pFrame>
+  [283] pusharglist 0 ........................... <>
+  [285] extcall 40 .............................. <VOID>
+  [287] eq ...................................... <pFrame = VOID>
+  [288] getlocal 2 .............................. <pmarker>
+  [290] pusharglist 0 ........................... <>
+  [292] extcall 40 .............................. <VOID>
+  [294] eq ...................................... <pmarker = VOID>
+  [295] and ..................................... <(pFrame = VOID) and (pmarker = VOID)>
+  [296] jmpifz [319] ............................ if (pFrame = VOID) and (pmarker = VOID) then
+  [299] pushcons 36 ............................. <"Function: GoTo. Target: ">
+  [301] getparam 0 .............................. <tTarget>
+  [303] joinstr ................................. <"Function: GoTo. Target: " & tTarget>
+  [304] pushcons 2 .............................. <" Parameters: ">
+  [306] joinstr ................................. <"Function: GoTo. Target: " & tTarget & " Parameters: ">
+  [307] getparam 1 .............................. <tDataList>
+  [309] joinstr ................................. <"Function: GoTo. Target: " & tTarget & " Parameters: " & tDataList>
+  [310] pushcons 39 ............................. <" Frame and marker both VOID.">
+  [312] joinstr ................................. <"Function: GoTo. Target: " & tTarget & " Parameters: " & tDataList & " Frame and marker both VOID.">
+  [313] pusharglistnoret 1 ...................... <"Function: GoTo. Target: " & tTarget & " Parameters: " & tDataList & " Frame and marker both VOID.">
+  [315] extcall 511 ............................. ShowError("Function: GoTo. Target: " & tTarget & " Parameters: " & tDataList & " Frame and marker both VOID.")
+  [318] ret ..................................... exit
+  [319] getlocal 1 .............................. <pFrame>
+  [321] pusharglist 0 ........................... <>
+  [323] extcall 40 .............................. <VOID>
+  [325] nteq .................................... <pFrame <> VOID>
+  [326] jmpifz [338] ............................ if pFrame <> VOID then
+  [329] gettoplevelprop 33 ...................... <_movie>
+  [331] getlocal 1 .............................. <pFrame>
+  [333] pusharglistnoret 2 ...................... <_movie, pFrame>
+  [335] objcall 539 ............................. _movie.go(pFrame)
+  [338] getlocal 2 .............................. <pmarker>
+  [340] pusharglist 0 ........................... <>
+  [342] extcall 40 .............................. <VOID>
+  [344] nteq .................................... <pmarker <> VOID>
+  [345] jmpifz [357] ............................ if pmarker <> VOID then
+  [348] gettoplevelprop 33 ...................... <_movie>
+  [350] getlocal 2 .............................. <pmarker>
+  [352] pusharglistnoret 2 ...................... <_movie, pmarker>
+  [354] objcall 539 ............................. _movie.go(pmarker)
+  [357] gettoplevelprop 387 ..................... <_player>
+  [360] pushint8 1 .............................. <1>
+  [362] inv ..................................... <-1>
+  [363] pusharglistnoret 2 ...................... <_player, -1>
+  [365] objcall 766 ............................. _player.cursor(-1)
+  [368] ret
+end
+
+on CreateTimeOut tTarget, tDataList
+  [  0] getparam 0 .............................. <tTarget>
+  [  2] setlocal 0 .............................. pTimeOUtName = tTarget
+  [  4] getlocal 0 .............................. <pTimeOUtName>
+  [  6] pusharglist 0 ........................... <>
+  [  8] extcall 40 .............................. <VOID>
+  [ 10] eq ...................................... <pTimeOUtName = VOID>
+  [ 11] jmpifz [ 35] ............................ if pTimeOUtName = VOID then
+  [ 14] pushcons 40 ............................. <"GenericTimeOut">
+  [ 16] gettoplevelprop 33 ...................... <_movie>
+  [ 18] pushsymb 427 ............................ <#timeoutList>
+  [ 21] pusharglist 2 ........................... <_movie, #timeoutList>
+  [ 23] objcall 129 ............................. <_movie.timeoutList.count>
+  [ 25] pushint8 1 .............................. <1>
+  [ 27] add ..................................... <_movie.timeoutList.count + 1>
+  [ 28] pusharglist 1 ........................... <_movie.timeoutList.count + 1>
+  [ 30] extcall 67 .............................. <string(_movie.timeoutList.count + 1)>
+  [ 32] joinstr ................................. <"GenericTimeOut" & string(_movie.timeoutList.count + 1)>
+  [ 33] setlocal 0 .............................. pTimeOUtName = "GenericTimeOut" & string(_movie.timeoutList.count + 1)
+  [ 35] getparam 1 .............................. <tDataList>
+  [ 37] pusharglist 1 ........................... <tDataList>
+  [ 39] extcall 503 ............................. <value(tDataList)>
+  [ 42] setlocal 1 .............................. pDataList = value(tDataList)
+  [ 44] getlocal 1 .............................. <pDataList>
+  [ 46] pusharglist 0 ........................... <>
+  [ 48] extcall 40 .............................. <VOID>
+  [ 50] eq ...................................... <pDataList = VOID>
+  [ 51] getlocal 1 .............................. <pDataList>
+  [ 53] getobjprop 122 .......................... <pDataList.ilk>
+  [ 55] pushsymb 541 ............................ <#propList>
+  [ 58] nteq .................................... <pDataList.ilk <> #propList>
+  [ 59] or ...................................... <(pDataList = VOID) or (pDataList.ilk <> #propList)>
+  [ 60] jmpifz [ 83] ............................ if (pDataList = VOID) or (pDataList.ilk <> #propList) then
+  [ 63] pushcons 41 ............................. <"Function: CreateTimeOut. Target: ">
+  [ 65] getparam 0 .............................. <tTarget>
+  [ 67] joinstr ................................. <"Function: CreateTimeOut. Target: " & tTarget>
+  [ 68] pushcons 2 .............................. <" Parameters: ">
+  [ 70] joinstr ................................. <"Function: CreateTimeOut. Target: " & tTarget & " Parameters: ">
+  [ 71] getparam 1 .............................. <tDataList>
+  [ 73] joinstr ................................. <"Function: CreateTimeOut. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 74] pushcons 22 ............................. <" Datalist obsolete (VOID or not #proplist).">
+  [ 76] joinstr ................................. <"Function: CreateTimeOut. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [ 77] pusharglistnoret 1 ...................... <"Function: CreateTimeOut. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [ 79] extcall 511 ............................. ShowError("Function: CreateTimeOut. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).")
+  [ 82] ret ..................................... exit
+  [ 83] pushfloat32 1.0 ......................... <1.0>
+  [ 88] getglobal 43 ............................ <gGame>
+  [ 90] getobjprop 453 .......................... <gGame.tempo>
+  [ 93] div ..................................... <1.0 / gGame.tempo>
+  [ 94] setlocal 2 .............................. pPeriod = 1.0 / gGame.tempo
+  [ 96] getlocal 1 .............................. <pDataList>
+  [ 98] pushsymb 2955 ........................... <#period>
+  [101] pusharglist 2 ........................... <pDataList, #period>
+  [103] extcall 542 ............................. <getaProp(pDataList, #period)>
+  [106] getobjprop 122 .......................... <getaProp(pDataList, #period).ilk>
+  [108] pushsymb 123 ............................ <#integer>
+  [110] eq ...................................... <getaProp(pDataList, #period).ilk = #integer>
+  [111] jmpifz [125] ............................ if getaProp(pDataList, #period).ilk = #integer then
+  [114] getlocal 1 .............................. <pDataList>
+  [116] pushsymb 2955 ........................... <#period>
+  [119] pusharglist 2 ........................... <pDataList, #period>
+  [121] objcall 105 ............................. <pDataList[#period]>
+  [123] setlocal 2 .............................. pPeriod = pDataList[#period]
+  [125] pushsymb 57 ............................. <#put>
+  [127] setlocal 3 .............................. pHandler = #put
+  [129] getlocal 1 .............................. <pDataList>
+  [131] pushsymb 786 ............................ <#handler>
+  [134] pusharglist 2 ........................... <pDataList, #handler>
+  [136] extcall 542 ............................. <getaProp(pDataList, #handler)>
+  [139] getobjprop 122 .......................... <getaProp(pDataList, #handler).ilk>
+  [141] pushsymb 88 ............................. <#symbol>
+  [143] eq ...................................... <getaProp(pDataList, #handler).ilk = #symbol>
+  [144] jmpifz [158] ............................ if getaProp(pDataList, #handler).ilk = #symbol then
+  [147] getlocal 1 .............................. <pDataList>
+  [149] pushsymb 786 ............................ <#handler>
+  [152] pusharglist 2 ........................... <pDataList, #handler>
+  [154] objcall 105 ............................. <pDataList[#handler]>
+  [156] setlocal 3 .............................. pHandler = pDataList[#handler]
+  [158] pusharglist 0 ........................... <[]>
+  [160] pushlist ................................ <[]>
+  [161] setlocal 4 .............................. PList = []
+  [163] getlocal 1 .............................. <pDataList>
+  [165] pushsymb 126 ............................ <#list>
+  [167] pusharglist 2 ........................... <pDataList, #list>
+  [169] objcall 105 ............................. <pDataList[#list]>
+  [171] pusharglist 0 ........................... <>
+  [173] extcall 40 .............................. <VOID>
+  [175] nteq .................................... <pDataList[#list] <> VOID>
+  [176] jmpifz [189] ............................ if pDataList[#list] <> VOID then
+  [179] getlocal 1 .............................. <pDataList>
+  [181] pushsymb 126 ............................ <#list>
+  [183] pusharglist 2 ........................... <pDataList, #list>
+  [185] objcall 105 ............................. <pDataList[#list]>
+  [187] setlocal 4 .............................. PList = pDataList[#list]
+  [189] pusharglist 0 ........................... <>
+  [191] extcall 238 ............................. <timeout()>
+  [193] getlocal 0 .............................. <pTimeOUtName>
+  [195] getlocal 2 .............................. <pPeriod>
+  [197] getlocal 3 .............................. <pHandler>
+  [199] getlocal 4 .............................. <PList>
+  [201] pusharglistnoret 5 ...................... <timeout(), pTimeOUtName, pPeriod, pHandler, PList>
+  [203] objcall 35 .............................. timeout().new(pTimeOUtName, pPeriod, pHandler, PList)
+  [205] ret
+end
+
+on Iterate me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] getobjprop 122 .......................... <tTarget.ilk>
+  [  4] pushsymb 67 ............................. <#string>
+  [  6] eq ...................................... <tTarget.ilk = #string>
+  [  7] jmpifz [ 19] ............................ if tTarget.ilk = #string then
+  [ 10] getparam 1 .............................. <tTarget>
+  [ 12] pusharglist 1 ........................... <tTarget>
+  [ 14] extcall 503 ............................. <value(tTarget)>
+  [ 17] setparam 1 .............................. tTarget = value(tTarget)
+  [ 19] getparam 1 .............................. <tTarget>
+  [ 21] getobjprop 122 .......................... <tTarget.ilk>
+  [ 23] pushsymb 123 ............................ <#integer>
+  [ 25] nteq .................................... <tTarget.ilk <> #integer>
+  [ 26] jmpifz [ 34] ............................ if tTarget.ilk <> #integer then
+  [ 29] pushzero ................................ <0>
+  [ 30] pusharglistnoret 1 ...................... <0>
+  [ 32] extcall 52 .............................. return 0
+  [ 34] getparam 2 .............................. <tDataList>
+  [ 36] getobjprop 122 .......................... <tDataList.ilk>
+  [ 38] pushsymb 67 ............................. <#string>
+  [ 40] eq ...................................... <tDataList.ilk = #string>
+  [ 41] jmpifz [ 53] ............................ if tDataList.ilk = #string then
+  [ 44] getparam 2 .............................. <tDataList>
+  [ 46] pusharglist 1 ........................... <tDataList>
+  [ 48] extcall 503 ............................. <value(tDataList)>
+  [ 51] setparam 2 .............................. tDataList = value(tDataList)
+  [ 53] getparam 2 .............................. <tDataList>
+  [ 55] getobjprop 122 .......................... <tDataList.ilk>
+  [ 57] pushsymb 541 ............................ <#propList>
+  [ 60] nteq .................................... <tDataList.ilk <> #propList>
+  [ 61] jmpifz [ 69] ............................ if tDataList.ilk <> #propList then
+  [ 64] pushzero ................................ <0>
+  [ 65] pusharglistnoret 1 ...................... <0>
+  [ 67] extcall 52 .............................. return 0
+  [ 69] pusharglist 0 ........................... <>
+  [ 71] extcall 40 .............................. <VOID>
+  [ 73] setlocal 0 .............................. tEvent = VOID
+  [ 75] getparam 2 .............................. <tDataList>
+  [ 77] pushsymb 148 ............................ <#event>
+  [ 79] pusharglist 2 ........................... <tDataList, #event>
+  [ 81] objcall 105 ............................. <tDataList[#event]>
+  [ 83] getobjprop 122 .......................... <tDataList[#event].ilk>
+  [ 85] pushsymb 67 ............................. <#string>
+  [ 87] eq ...................................... <tDataList[#event].ilk = #string>
+  [ 88] jmpifz [ 97] ............................ if tDataList[#event].ilk = #string then
+  [ 91] getparam 2 .............................. <tDataList>
+  [ 93] getobjprop 148 .......................... <tDataList.event>
+  [ 95] setlocal 0 .............................. tEvent = tDataList.event
+  [ 97] pushint8 1 .............................. <1>
+  [ 99] setlocal 1
+  [101] getlocal 1
+  [103] getparam 1 .............................. <tTarget>
+  [105] lteq
+  [106] jmpifz [131] ............................ repeat with i = 1 to tTarget
+  [109] getglobal 43 ............................ <gGame>
+  [111] getlocal 1 .............................. <i>
+  [113] setobjprop 458 .......................... gGame.Iteration = i
+  [116] getlocal 0 .............................. <tEvent>
+  [118] pusharglistnoret 1 ...................... <tEvent>
+  [120] extcall 148 ............................. event(tEvent)
+  [122] pushint8 1
+  [124] getlocal 1
+  [126] add
+  [127] setlocal 1
+  [129] endrepeat [101]
+  [131] getglobal 43 ............................ <gGame>
+  [133] pusharglist 0 ........................... <>
+  [135] extcall 40 .............................. <VOID>
+  [137] setobjprop 458 .......................... gGame.Iteration = VOID
+  [140] pushint8 1 .............................. <1>
+  [142] pusharglistnoret 1 ...................... <1>
+  [144] extcall 52 .............................. return 1
+  [146] ret
+end

@@ -1,0 +1,887 @@
+global gSystem, gData, gGame
+
+on collisionCallback collisionReport
+  [  0] getparam 0 .............................. <collisionReport>
+  [  2] peek 0
+  [  4] pusharglist 1
+  [  6] extcall 129
+  [  8] pushint8 1
+  [ 10] peek 0
+  [ 12] peek 2
+  [ 14] lteq
+  [ 15] jmpifz [209] ............................ repeat with i in collisionReport
+  [ 18] peek 2
+  [ 20] peek 1
+  [ 22] pusharglist 2
+  [ 24] extcall 105
+  [ 26] setlocal 0
+  [ 28] getglobal 43 ............................ <gGame>
+  [ 30] pushsymb 1391 ........................... <#collisionReports>
+  [ 33] getlocal 0 .............................. <i>
+  [ 35] getchainedprop 1515 ..................... <i.ObjectA>
+  [ 38] getobjprop 235 .......................... <i.ObjectA.name>
+  [ 40] pusharglist 1 ........................... <i.ObjectA.name>
+  [ 42] extcall 88 .............................. <symbol(i.ObjectA.name)>
+  [ 44] pusharglist 3 ........................... <gGame, #collisionReports, symbol(i.ObjectA.name)>
+  [ 46] objcall 70 .............................. <gGame.collisionReports[symbol(i.ObjectA.name)]>
+  [ 48] pusharglist 1 ........................... <gGame.collisionReports[symbol(i.ObjectA.name)]>
+  [ 50] extcall 389 ............................. <voidp(gGame.collisionReports[symbol(i.ObjectA.name)])>
+  [ 53] pushzero ................................ <0>
+  [ 54] eq ...................................... <voidp(gGame.collisionReports[symbol(i.ObjectA.name)]) = 0>
+  [ 55] jmpifz [116] ............................ if voidp(gGame.collisionReports[symbol(i.ObjectA.name)]) = 0 then
+  [ 58] getglobal 43 ............................ <gGame>
+  [ 60] pushsymb 1391 ........................... <#collisionReports>
+  [ 63] getlocal 0 .............................. <i>
+  [ 65] getchainedprop 1515 ..................... <i.ObjectA>
+  [ 68] getobjprop 235 .......................... <i.ObjectA.name>
+  [ 70] pusharglist 1 ........................... <i.ObjectA.name>
+  [ 72] extcall 88 .............................. <symbol(i.ObjectA.name)>
+  [ 74] getlocal 0 .............................. <i>
+  [ 76] getchainedprop 1516 ..................... <i.ObjectB>
+  [ 79] getobjprop 235 .......................... <i.ObjectB.name>
+  [ 81] getlocal 0 .............................. <i>
+  [ 83] pushsymb 1517 ........................... <#contactPoints>
+  [ 86] pushint8 1 .............................. <1>
+  [ 88] pusharglist 3 ........................... <i, #contactPoints, 1>
+  [ 90] objcall 102 ............................. <i.contactPoints[1]>
+  [ 92] pushint8 1 .............................. <1>
+  [ 94] pusharglist 2 ........................... <i.contactPoints[1], 1>
+  [ 96] objcall 105 ............................. <i.contactPoints[1][1]>
+  [ 98] getlocal 0 .............................. <i>
+  [100] pushsymb 1518 ........................... <#contactNormals>
+  [103] pushint8 1 .............................. <1>
+  [105] pusharglist 3 ........................... <i, #contactNormals, 1>
+  [107] objcall 70 .............................. <i.contactNormals[1]>
+  [109] pusharglist 3 ........................... <[i.ObjectB.name, i.contactPoints[1][1], i.contactNormals[1]]>
+  [111] pushlist ................................ <[i.ObjectB.name, i.contactPoints[1][1], i.contactNormals[1]]>
+  [112] pusharglistnoret 4 ...................... <gGame, #collisionReports, symbol(i.ObjectA.name), [i.ObjectB.name, i.contactPoints[1][1], i.contactNormals[1]]>
+  [114] objcall 99 .............................. gGame.collisionReports[symbol(i.ObjectA.name)] = [i.ObjectB.name, i.contactPoints[1][1], i.contactNormals[1]]
+  [116] getglobal 43 ............................ <gGame>
+  [118] pushsymb 1391 ........................... <#collisionReports>
+  [121] getlocal 0 .............................. <i>
+  [123] getchainedprop 1516 ..................... <i.ObjectB>
+  [126] getobjprop 235 .......................... <i.ObjectB.name>
+  [128] pusharglist 1 ........................... <i.ObjectB.name>
+  [130] extcall 88 .............................. <symbol(i.ObjectB.name)>
+  [132] pusharglist 3 ........................... <gGame, #collisionReports, symbol(i.ObjectB.name)>
+  [134] objcall 70 .............................. <gGame.collisionReports[symbol(i.ObjectB.name)]>
+  [136] pusharglist 1 ........................... <gGame.collisionReports[symbol(i.ObjectB.name)]>
+  [138] extcall 389 ............................. <voidp(gGame.collisionReports[symbol(i.ObjectB.name)])>
+  [141] pushzero ................................ <0>
+  [142] eq ...................................... <voidp(gGame.collisionReports[symbol(i.ObjectB.name)]) = 0>
+  [143] jmpifz [204] ............................ if voidp(gGame.collisionReports[symbol(i.ObjectB.name)]) = 0 then
+  [146] getglobal 43 ............................ <gGame>
+  [148] pushsymb 1391 ........................... <#collisionReports>
+  [151] getlocal 0 .............................. <i>
+  [153] getchainedprop 1516 ..................... <i.ObjectB>
+  [156] getobjprop 235 .......................... <i.ObjectB.name>
+  [158] pusharglist 1 ........................... <i.ObjectB.name>
+  [160] extcall 88 .............................. <symbol(i.ObjectB.name)>
+  [162] getlocal 0 .............................. <i>
+  [164] getchainedprop 1515 ..................... <i.ObjectA>
+  [167] getobjprop 235 .......................... <i.ObjectA.name>
+  [169] getlocal 0 .............................. <i>
+  [171] pushsymb 1517 ........................... <#contactPoints>
+  [174] pushint8 1 .............................. <1>
+  [176] pusharglist 3 ........................... <i, #contactPoints, 1>
+  [178] objcall 102 ............................. <i.contactPoints[1]>
+  [180] pushint8 1 .............................. <1>
+  [182] pusharglist 2 ........................... <i.contactPoints[1], 1>
+  [184] objcall 105 ............................. <i.contactPoints[1][1]>
+  [186] getlocal 0 .............................. <i>
+  [188] pushsymb 1518 ........................... <#contactNormals>
+  [191] pushint8 1 .............................. <1>
+  [193] pusharglist 3 ........................... <i, #contactNormals, 1>
+  [195] objcall 70 .............................. <i.contactNormals[1]>
+  [197] pusharglist 3 ........................... <[i.ObjectA.name, i.contactPoints[1][1], i.contactNormals[1]]>
+  [199] pushlist ................................ <[i.ObjectA.name, i.contactPoints[1][1], i.contactNormals[1]]>
+  [200] pusharglistnoret 4 ...................... <gGame, #collisionReports, symbol(i.ObjectB.name), [i.ObjectA.name, i.contactPoints[1][1], i.contactNormals[1]]>
+  [202] objcall 99 .............................. gGame.collisionReports[symbol(i.ObjectB.name)] = [i.ObjectA.name, i.contactPoints[1][1], i.contactNormals[1]]
+  [204] pushint8 1
+  [206] add
+  [207] endrepeat [ 10]
+  [209] pop 3
+  [211] ret
+end
+
+on AddObstacle me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 64 .............................. <member(tTarget)>
+  [  6] setlocal 0 .............................. tmember = member(tTarget)
+  [  8] getlocal 0 .............................. <tmember>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <tmember = VOID>
+  [ 15] jmpifz [ 23] ............................ if tmember = VOID then
+  [ 18] pushzero ................................ <0>
+  [ 19] pusharglistnoret 1 ...................... <0>
+  [ 21] extcall 52 .............................. return 0
+  [ 23] getparam 2 .............................. <tDataList>
+  [ 25] getobjprop 122 .......................... <tDataList.ilk>
+  [ 27] pushsymb 67 ............................. <#string>
+  [ 29] eq ...................................... <tDataList.ilk = #string>
+  [ 30] jmpifz [ 42] ............................ if tDataList.ilk = #string then
+  [ 33] getparam 2 .............................. <tDataList>
+  [ 35] pusharglist 1 ........................... <tDataList>
+  [ 37] extcall 503 ............................. <value(tDataList)>
+  [ 40] setparam 2 .............................. tDataList = value(tDataList)
+  [ 42] getparam 2 .............................. <tDataList>
+  [ 44] getobjprop 122 .......................... <tDataList.ilk>
+  [ 46] pushsymb 541 ............................ <#propList>
+  [ 49] nteq .................................... <tDataList.ilk <> #propList>
+  [ 50] jmpifz [ 58] ............................ if tDataList.ilk <> #propList then
+  [ 53] pushzero ................................ <0>
+  [ 54] pusharglistnoret 1 ...................... <0>
+  [ 56] extcall 52 .............................. return 0
+  [ 58] getglobal 43 ............................ <gGame>
+  [ 60] pushsymb 1389 ........................... <#Physics>
+  [ 63] pusharglist 2 ........................... <gGame, #Physics>
+  [ 65] objcall 105 ............................. <gGame[#Physics]>
+  [ 67] pusharglist 1 ........................... <gGame[#Physics]>
+  [ 69] extcall 389 ............................. <voidp(gGame[#Physics])>
+  [ 72] pushint8 1 .............................. <1>
+  [ 74] eq ...................................... <voidp(gGame[#Physics]) = 1>
+  [ 75] jmpifz [108] ............................ if voidp(gGame[#Physics]) = 1 then
+  [ 78] pushcons 0 .............................. <"[PS] Physics">
+  [ 80] pusharglist 1 ........................... <"[PS] Physics">
+  [ 82] extcall 36 .............................. <script("[PS] Physics")>
+  [ 84] pushsymb 64 ............................. <#member>
+  [ 86] getlocal 0 .............................. <tmember>
+  [ 88] pusharglist 2 ........................... <[#member: tmember]>
+  [ 90] pushproplist ............................ <[#member: tmember]>
+  [ 91] pusharglist 2 ........................... <script("[PS] Physics"), [#member: tmember]>
+  [ 93] extcall 35 .............................. <new(script("[PS] Physics"), [#member: tmember])>
+  [ 95] setlocal 1 .............................. tScript = new(script("[PS] Physics"), [#member: tmember])
+  [ 97] getglobal 43 ............................ <gGame>
+  [ 99] getchainedprop 300 ...................... <gGame.scriptList>
+  [102] getlocal 1 .............................. <tScript>
+  [104] pusharglistnoret 2 ...................... <gGame.scriptList, tScript>
+  [106] objcall 42 .............................. gGame.scriptList.add(tScript)
+  [108] getglobal 43 ............................ <gGame>
+  [110] getobjprop 1389 ......................... <gGame.Physics>
+  [113] pusharglist 0 ........................... <>
+  [115] extcall 40 .............................. <VOID>
+  [117] eq ...................................... <gGame.Physics = VOID>
+  [118] jmpifz [126] ............................ if gGame.Physics = VOID then
+  [121] pushzero ................................ <0>
+  [122] pusharglistnoret 1 ...................... <0>
+  [124] extcall 52 .............................. return 0
+  [126] pusharglist 0 ........................... <[]>
+  [128] pushlist ................................ <[]>
+  [129] setlocal 2 .............................. tTargetList = []
+  [131] getparam 2 .............................. <tDataList>
+  [133] pushsymb 71 ............................. <#model>
+  [135] pusharglist 2 ........................... <tDataList, #model>
+  [137] objcall 105 ............................. <tDataList[#model]>
+  [139] getobjprop 122 .......................... <tDataList[#model].ilk>
+  [141] pushsymb 40 ............................. <#void>
+  [143] eq ...................................... <tDataList[#model].ilk = #void>
+  [144] jmpifz [157] ............................ if tDataList[#model].ilk = #void then
+  [147] getparam 2 .............................. <tDataList>
+  [149] pushsymb 71 ............................. <#model>
+  [151] pushcons 1 .............................. <"*.*">
+  [153] pusharglistnoret 3 ...................... <tDataList, #model, "*.*">
+  [155] objcall 103 ............................. tDataList[#model] = "*.*"
+  [157] getparam 2 .............................. <tDataList>
+  [159] pushsymb 71 ............................. <#model>
+  [161] pusharglist 2 ........................... <tDataList, #model>
+  [163] objcall 105 ............................. <tDataList[#model]>
+  [165] getobjprop 122 .......................... <tDataList[#model].ilk>
+  [167] pushsymb 126 ............................ <#list>
+  [169] eq ...................................... <tDataList[#model].ilk = #list>
+  [170] jmpifz [182] ............................ if tDataList[#model].ilk = #list then / else
+  [173] getparam 2 .............................. <tDataList>
+  [175] getobjprop 71 ........................... <tDataList.model>
+  [177] setlocal 2 .............................. tTargetList = tDataList.model
+  [179] jmp [284]
+  [182] getparam 2 .............................. <tDataList>
+  [184] pushsymb 71 ............................. <#model>
+  [186] pusharglist 2 ........................... <tDataList, #model>
+  [188] objcall 105 ............................. <tDataList[#model]>
+  [190] getobjprop 122 .......................... <tDataList[#model].ilk>
+  [192] pushsymb 67 ............................. <#string>
+  [194] eq ...................................... <tDataList[#model].ilk = #string>
+  [195] jmpifz [284] ............................ if tDataList[#model].ilk = #string then
+  [198] getparam 2 .............................. <tDataList>
+  [200] getchainedprop 71 ....................... <tDataList.model>
+  [202] pushsymb 68 ............................. <#char>
+  [204] pushint8 1 .............................. <1>
+  [206] pusharglist 3 ........................... <tDataList.model, #char, 1>
+  [208] objcall 70 .............................. <tDataList.model.char[1]>
+  [210] pushcons 2 .............................. <"*">
+  [212] eq ...................................... <tDataList.model.char[1] = "*">
+  [213] jmpifz [274] ............................ if tDataList.model.char[1] = "*" then / else
+  [216] getparam 2 .............................. <tDataList>
+  [218] getobjprop 71 ........................... <tDataList.model>
+  [220] setlocal 3 .............................. tString = tDataList.model
+  [222] getlocal 3 .............................. <tString>
+  [224] pushcons 1 .............................. <"*.*">
+  [226] nteq .................................... <tString <> "*.*">
+  [227] jmpifz [247] ............................ if tString <> "*.*" then
+  [230] pushint8 3 .............................. <3>
+  [232] pushchunkvarref 5 ....................... <tString>
+  [234] pushsymb 68 ............................. <#char>
+  [236] pushint8 1 .............................. <1>
+  [238] pusharglist 3 ........................... <tString, #char, 1>
+  [240] objcall 102 ............................. <tString.char[1]>
+  [242] pusharglistnoret 1 ...................... <tString.char[1]>
+  [244] objcall 562 ............................. delete tString.char[1]
+  [247] pushzero ................................ <0>
+  [248] getlocal 0 .............................. <tmember>
+  [250] getobjprop 235 .......................... <tmember.name>
+  [252] pushsymb 598 ............................ <#type>
+  [255] pushsymb 71 ............................. <#model>
+  [257] pushsymb 67 ............................. <#string>
+  [259] getlocal 3 .............................. <tString>
+  [261] pusharglist 4 ........................... <[#type: #model, #string: tString]>
+  [263] pushproplist ............................ <[#type: #model, #string: tString]>
+  [264] pusharglist 3 ........................... <0, tmember.name, [#type: #model, #string: tString]>
+  [266] extcall 1152 ............................ <GetObjectList(0, tmember.name, [#type: #model, #string: tString])>
+  [269] setlocal 2 .............................. tTargetList = GetObjectList(0, tmember.name, [#type: #model, #string: tString])
+  [271] jmp [284]
+  [274] getlocal 2 .............................. <tTargetList>
+  [276] getparam 2 .............................. <tDataList>
+  [278] getobjprop 71 ........................... <tDataList.model>
+  [280] pusharglistnoret 2 ...................... <tTargetList, tDataList.model>
+  [282] objcall 42 .............................. tTargetList.add(tDataList.model)
+  [284] getlocal 2 .............................. <tTargetList>
+  [286] getobjprop 129 .......................... <tTargetList.count>
+  [288] pushzero ................................ <0>
+  [289] eq ...................................... <tTargetList.count = 0>
+  [290] jmpifz [300] ............................ if tTargetList.count = 0 then
+  [293] pusharglist 0 ........................... <[]>
+  [295] pushlist ................................ <[]>
+  [296] pusharglistnoret 1 ...................... <[]>
+  [298] extcall 52 .............................. return []
+  [300] getglobal 43 ............................ <gGame>
+  [302] pushsymb 1520 ........................... <#StaticRBList>
+  [305] pusharglist 2 ........................... <gGame, #StaticRBList>
+  [307] objcall 105 ............................. <gGame[#StaticRBList]>
+  [309] pusharglist 1 ........................... <gGame[#StaticRBList]>
+  [311] extcall 389 ............................. <voidp(gGame[#StaticRBList])>
+  [314] pushint8 1 .............................. <1>
+  [316] eq ...................................... <voidp(gGame[#StaticRBList]) = 1>
+  [317] jmpifz [332] ............................ if voidp(gGame[#StaticRBList]) = 1 then
+  [320] getglobal 43 ............................ <gGame>
+  [322] pushsymb 1520 ........................... <#StaticRBList>
+  [325] pusharglist 0 ........................... <[]>
+  [327] pushlist ................................ <[]>
+  [328] pusharglistnoret 3 ...................... <gGame, #StaticRBList, []>
+  [330] objcall 103 ............................. gGame[#StaticRBList] = []
+  [332] getglobal 43 ............................ <gGame>
+  [334] pushsymb 1521 ........................... <#DynamicRBList>
+  [337] pusharglist 2 ........................... <gGame, #DynamicRBList>
+  [339] objcall 105 ............................. <gGame[#DynamicRBList]>
+  [341] pusharglist 1 ........................... <gGame[#DynamicRBList]>
+  [343] extcall 389 ............................. <voidp(gGame[#DynamicRBList])>
+  [346] pushint8 1 .............................. <1>
+  [348] eq ...................................... <voidp(gGame[#DynamicRBList]) = 1>
+  [349] jmpifz [364] ............................ if voidp(gGame[#DynamicRBList]) = 1 then
+  [352] getglobal 43 ............................ <gGame>
+  [354] pushsymb 1521 ........................... <#DynamicRBList>
+  [357] pusharglist 0 ........................... <[]>
+  [359] pushlist ................................ <[]>
+  [360] pusharglistnoret 3 ...................... <gGame, #DynamicRBList, []>
+  [362] objcall 103 ............................. gGame[#DynamicRBList] = []
+  [364] getparam 2 .............................. <tDataList>
+  [366] pushsymb 598 ............................ <#type>
+  [369] pusharglist 2 ........................... <tDataList, #type>
+  [371] objcall 105 ............................. <tDataList[#type]>
+  [373] getobjprop 122 .......................... <tDataList[#type].ilk>
+  [375] pushsymb 88 ............................. <#symbol>
+  [377] eq ...................................... <tDataList[#type].ilk = #symbol>
+  [378] jmpifz [422] ............................ if tDataList[#type].ilk = #symbol then / else
+  [381] pushsymb 1055 ........................... <#static>
+  [384] pushsymb 1372 ........................... <#dynamic>
+  [387] pusharglist 2 ........................... <[#static, #dynamic]>
+  [389] pushlist ................................ <[#static, #dynamic]>
+  [390] getparam 2 .............................. <tDataList>
+  [392] getobjprop 598 .......................... <tDataList.type>
+  [395] pusharglist 2 ........................... <[#static, #dynamic], tDataList.type>
+  [397] objcall 166 ............................. <[#static, #dynamic].getPos(tDataList.type)>
+  [399] pushzero ................................ <0>
+  [400] nteq .................................... <[#static, #dynamic].getPos(tDataList.type) <> 0>
+  [401] jmpifz [414] ............................ if [#static, #dynamic].getPos(tDataList.type) <> 0 then / else
+  [404] getparam 2 .............................. <tDataList>
+  [406] getobjprop 598 .......................... <tDataList.type>
+  [409] setlocal 4 .............................. tType = tDataList.type
+  [411] jmp [419]
+  [414] pushsymb 1055 ........................... <#static>
+  [417] setlocal 4 .............................. tType = #static
+  [419] jmp [427]
+  [422] pushsymb 1055 ........................... <#static>
+  [425] setlocal 4 .............................. tType = #static
+  [427] getparam 2 .............................. <tDataList>
+  [429] pushsymb 1522 ........................... <#pinned>
+  [432] pusharglist 2 ........................... <tDataList, #pinned>
+  [434] objcall 105 ............................. <tDataList[#pinned]>
+  [436] getobjprop 122 .......................... <tDataList[#pinned].ilk>
+  [438] pushsymb 123 ............................ <#integer>
+  [440] eq ...................................... <tDataList[#pinned].ilk = #integer>
+  [441] jmpifz [454] ............................ if tDataList[#pinned].ilk = #integer then / else
+  [444] getparam 2 .............................. <tDataList>
+  [446] getobjprop 1522 ......................... <tDataList.pinned>
+  [449] setlocal 5 .............................. tPinned = tDataList.pinned
+  [451] jmp [457]
+  [454] pushzero ................................ <0>
+  [455] setlocal 5 .............................. tPinned = 0
+  [457] getparam 2 .............................. <tDataList>
+  [459] pushsymb 1523 ........................... <#restitution>
+  [462] pusharglist 2 ........................... <tDataList, #restitution>
+  [464] objcall 105 ............................. <tDataList[#restitution]>
+  [466] getobjprop 122 .......................... <tDataList[#restitution].ilk>
+  [468] pushsymb 123 ............................ <#integer>
+  [470] eq ...................................... <tDataList[#restitution].ilk = #integer>
+  [471] getparam 2 .............................. <tDataList>
+  [473] pushsymb 1523 ........................... <#restitution>
+  [476] pusharglist 2 ........................... <tDataList, #restitution>
+  [478] objcall 105 ............................. <tDataList[#restitution]>
+  [480] getobjprop 122 .......................... <tDataList[#restitution].ilk>
+  [482] pushsymb 544 ............................ <#float>
+  [485] eq ...................................... <tDataList[#restitution].ilk = #float>
+  [486] or ...................................... <(tDataList[#restitution].ilk = #integer) or (tDataList[#restitution].ilk = #float)>
+  [487] jmpifz [500] ............................ if (tDataList[#restitution].ilk = #integer) or (tDataList[#restitution].ilk = #float) then / else
+  [490] getparam 2 .............................. <tDataList>
+  [492] getobjprop 1523 ......................... <tDataList.restitution>
+  [495] setlocal 6 .............................. tRestitution = tDataList.restitution
+  [497] jmp [520]
+  [500] getlocal 4 .............................. <tType>
+  [502] pushsymb 1055 ........................... <#static>
+  [505] eq ...................................... <tType = #static>
+  [506] jmpifz [516] ............................ if tType = #static then / else
+  [509] pushcons 3 .............................. <0.10000000000000001>
+  [511] setlocal 6 .............................. tRestitution = 0.10000000000000001
+  [513] jmp [520]
+  [516] pushcons 4 .............................. <0.20000000000000001>
+  [518] setlocal 6 .............................. tRestitution = 0.20000000000000001
+  [520] getparam 2 .............................. <tDataList>
+  [522] pushsymb 1524 ........................... <#friction>
+  [525] pusharglist 2 ........................... <tDataList, #friction>
+  [527] objcall 105 ............................. <tDataList[#friction]>
+  [529] getobjprop 122 .......................... <tDataList[#friction].ilk>
+  [531] pushsymb 123 ............................ <#integer>
+  [533] eq ...................................... <tDataList[#friction].ilk = #integer>
+  [534] getparam 2 .............................. <tDataList>
+  [536] pushsymb 1524 ........................... <#friction>
+  [539] pusharglist 2 ........................... <tDataList, #friction>
+  [541] objcall 105 ............................. <tDataList[#friction]>
+  [543] getobjprop 122 .......................... <tDataList[#friction].ilk>
+  [545] pushsymb 544 ............................ <#float>
+  [548] eq ...................................... <tDataList[#friction].ilk = #float>
+  [549] or ...................................... <(tDataList[#friction].ilk = #integer) or (tDataList[#friction].ilk = #float)>
+  [550] jmpifz [563] ............................ if (tDataList[#friction].ilk = #integer) or (tDataList[#friction].ilk = #float) then / else
+  [553] getparam 2 .............................. <tDataList>
+  [555] getobjprop 1524 ......................... <tDataList.friction>
+  [558] setlocal 7 .............................. tFriction = tDataList.friction
+  [560] jmp [586]
+  [563] getlocal 4 .............................. <tType>
+  [565] pushsymb 1055 ........................... <#static>
+  [568] eq ...................................... <tType = #static>
+  [569] jmpifz [579] ............................ if tType = #static then / else
+  [572] pushcons 3 .............................. <0.10000000000000001>
+  [574] setlocal 7 .............................. tFriction = 0.10000000000000001
+  [576] jmp [586]
+  [579] pushfloat32 0.5 ......................... <0.5>
+  [584] setlocal 7 .............................. tFriction = 0.5
+  [586] getparam 2 .............................. <tDataList>
+  [588] pushsymb 1373 ........................... <#mass>
+  [591] pusharglist 2 ........................... <tDataList, #mass>
+  [593] objcall 105 ............................. <tDataList[#mass]>
+  [595] getobjprop 122 .......................... <tDataList[#mass].ilk>
+  [597] pushsymb 123 ............................ <#integer>
+  [599] eq ...................................... <tDataList[#mass].ilk = #integer>
+  [600] getparam 2 .............................. <tDataList>
+  [602] pushsymb 1373 ........................... <#mass>
+  [605] pusharglist 2 ........................... <tDataList, #mass>
+  [607] objcall 105 ............................. <tDataList[#mass]>
+  [609] getobjprop 122 .......................... <tDataList[#mass].ilk>
+  [611] pushsymb 544 ............................ <#float>
+  [614] eq ...................................... <tDataList[#mass].ilk = #float>
+  [615] or ...................................... <(tDataList[#mass].ilk = #integer) or (tDataList[#mass].ilk = #float)>
+  [616] jmpifz [629] ............................ if (tDataList[#mass].ilk = #integer) or (tDataList[#mass].ilk = #float) then / else
+  [619] getparam 2 .............................. <tDataList>
+  [621] getobjprop 1373 ......................... <tDataList.mass>
+  [624] setlocal 8 .............................. tMass = tDataList.mass
+  [626] jmp [636]
+  [629] pushfloat32 0.0 ......................... <0.0>
+  [634] setlocal 8 .............................. tMass = 0.0
+  [636] pusharglist 0 ........................... <[]>
+  [638] pushlist ................................ <[]>
+  [639] setlocal 9 .............................. tList = []
+  [641] getlocal 2 .............................. <tTargetList>
+  [643] peek 0
+  [645] pusharglist 1
+  [647] extcall 129
+  [649] pushint8 1
+  [651] peek 0
+  [653] peek 2
+  [655] lteq
+  [656] jmpifz [863] ............................ repeat with i in tTargetList
+  [659] peek 2
+  [661] peek 1
+  [663] pusharglist 2
+  [665] extcall 105
+  [667] setlocal 10
+  [669] getlocal 0 .............................. <tmember>
+  [671] getlocal 10 ............................. <i>
+  [673] pusharglist 2 ........................... <tmember, i>
+  [675] objcall 71 .............................. <tmember.model(i)>
+  [677] setlocal 11 ............................. tmodel = tmember.model(i)
+  [679] getlocal 11 ............................. <tmodel>
+  [681] pushsymb 995 ............................ <#meshDeform>
+  [684] pusharglistnoret 2 ...................... <tmodel, #meshDeform>
+  [686] objcall 261 ............................. tmodel.addModifier(#meshDeform)
+  [689] getparam 2 .............................. <tDataList>
+  [691] pushsymb 1374 ........................... <#bodyProxy>
+  [694] pusharglist 2 ........................... <tDataList, #bodyProxy>
+  [696] objcall 105 ............................. <tDataList[#bodyProxy]>
+  [698] getobjprop 122 .......................... <tDataList[#bodyProxy].ilk>
+  [700] pushsymb 88 ............................. <#symbol>
+  [702] eq ...................................... <tDataList[#bodyProxy].ilk = #symbol>
+  [703] jmpifz [753] ............................ if tDataList[#bodyProxy].ilk = #symbol then / else
+  [706] pushsymb 1375 ........................... <#convexShape>
+  [709] pushsymb 1525 ........................... <#concaveShape>
+  [712] pushsymb 1526 ........................... <#box>
+  [715] pushsymb 1527 ........................... <#sphere>
+  [718] pusharglist 4 ........................... <[#convexShape, #concaveShape, #box, #sphere]>
+  [720] pushlist ................................ <[#convexShape, #concaveShape, #box, #sphere]>
+  [721] getparam 2 .............................. <tDataList>
+  [723] getobjprop 1374 ......................... <tDataList.bodyProxy>
+  [726] pusharglist 2 ........................... <[#convexShape, #concaveShape, #box, #sphere], tDataList.bodyProxy>
+  [728] objcall 166 ............................. <[#convexShape, #concaveShape, #box, #sphere].getPos(tDataList.bodyProxy)>
+  [730] pushzero ................................ <0>
+  [731] nteq .................................... <[#convexShape, #concaveShape, #box, #sphere].getPos(tDataList.bodyProxy) <> 0>
+  [732] jmpifz [745] ............................ if [#convexShape, #concaveShape, #box, #sphere].getPos(tDataList.bodyProxy) <> 0 then / else
+  [735] getparam 2 .............................. <tDataList>
+  [737] getobjprop 1374 ......................... <tDataList.bodyProxy>
+  [740] setlocal 12 ............................. tBodyProxy = tDataList.bodyProxy
+  [742] jmp [750]
+  [745] pushsymb 1375 ........................... <#convexShape>
+  [748] setlocal 12 ............................. tBodyProxy = #convexShape
+  [750] jmp [758]
+  [753] pushsymb 1375 ........................... <#convexShape>
+  [756] setlocal 12 ............................. tBodyProxy = #convexShape
+  [758] getglobal 43 ............................ <gGame>
+  [760] getchainedprop 1389 ..................... <gGame.Physics>
+  [763] getlocal 10 ............................. <i>
+  [765] getlocal 10 ............................. <i>
+  [767] getlocal 12 ............................. <tBodyProxy>
+  [769] getlocal 4 .............................. <tType>
+  [771] pusharglist 5 ........................... <gGame.Physics, i, i, tBodyProxy, tType>
+  [773] objcall 1528 ............................ <gGame.Physics.createRigidBody(i, i, tBodyProxy, tType)>
+  [776] setlocal 13 ............................. tRB = gGame.Physics.createRigidBody(i, i, tBodyProxy, tType)
+  [778] getlocal 13 ............................. <tRB>
+  [780] getlocal 6 .............................. <tRestitution>
+  [782] setobjprop 1523 ......................... tRB.restitution = tRestitution
+  [785] getlocal 13 ............................. <tRB>
+  [787] getlocal 7 .............................. <tFriction>
+  [789] setobjprop 1524 ......................... tRB.friction = tFriction
+  [792] getlocal 13 ............................. <tRB>
+  [794] getlocal 8 .............................. <tMass>
+  [796] setobjprop 1373 ......................... tRB.mass = tMass
+  [799] getlocal 13 ............................. <tRB>
+  [801] getlocal 5 .............................. <tPinned>
+  [803] setobjprop 1529 ......................... tRB.isPinned = tPinned
+  [806] getlocal 4 .............................. <tType>
+  [808] pushsymb 1372 ........................... <#dynamic>
+  [811] eq ...................................... <tType = #dynamic>
+  [812] jmpifz [829] ............................ if tType = #dynamic then / else
+  [815] getglobal 43 ............................ <gGame>
+  [817] getchainedprop 1521 ..................... <gGame.DynamicRBList>
+  [820] getlocal 13 ............................. <tRB>
+  [822] pusharglistnoret 2 ...................... <gGame.DynamicRBList, tRB>
+  [824] objcall 42 .............................. gGame.DynamicRBList.add(tRB)
+  [826] jmp [840]
+  [829] getglobal 43 ............................ <gGame>
+  [831] getchainedprop 1520 ..................... <gGame.StaticRBList>
+  [834] getlocal 13 ............................. <tRB>
+  [836] pusharglistnoret 2 ...................... <gGame.StaticRBList, tRB>
+  [838] objcall 42 .............................. gGame.StaticRBList.add(tRB)
+  [840] getlocal 11 ............................. <tmodel>
+  [842] pushsymb 995 ............................ <#meshDeform>
+  [845] pusharglistnoret 2 ...................... <tmodel, #meshDeform>
+  [847] objcall 296 ............................. tmodel.removeModifier(#meshDeform)
+  [850] getlocal 9 .............................. <tList>
+  [852] getlocal 13 ............................. <tRB>
+  [854] pusharglistnoret 2 ...................... <tList, tRB>
+  [856] objcall 42 .............................. tList.add(tRB)
+  [858] pushint8 1
+  [860] add
+  [861] endrepeat [651]
+  [863] pop 3
+  [865] getlocal 9 .............................. <tList>
+  [867] getobjprop 129 .......................... <tList.count>
+  [869] pushint8 1 .............................. <1>
+  [871] eq ...................................... <tList.count = 1>
+  [872] jmpifz [887] ............................ if tList.count = 1 then
+  [875] getlocal 9 .............................. <tList>
+  [877] pushint8 1 .............................. <1>
+  [879] pusharglist 2 ........................... <tList, 1>
+  [881] objcall 105 ............................. <tList[1]>
+  [883] pusharglistnoret 1 ...................... <tList[1]>
+  [885] extcall 52 .............................. return tList[1]
+  [887] ret
+end
+
+on AddCollisionReport tTarget, tDataList
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pushsymb 1389 ........................... <#Physics>
+  [  5] pusharglist 2 ........................... <gGame, #Physics>
+  [  7] objcall 105 ............................. <gGame[#Physics]>
+  [  9] pusharglist 1 ........................... <gGame[#Physics]>
+  [ 11] extcall 389 ............................. <voidp(gGame[#Physics])>
+  [ 14] pushint8 1 .............................. <1>
+  [ 16] eq ...................................... <voidp(gGame[#Physics]) = 1>
+  [ 17] jmpifz [ 40] ............................ if voidp(gGame[#Physics]) = 1 then
+  [ 20] pushcons 5 .............................. <"Function: AddCollisionReport. Target: ">
+  [ 22] getparam 0 .............................. <tTarget>
+  [ 24] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget>
+  [ 25] pushcons 6 .............................. <" Parameters: ">
+  [ 27] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: ">
+  [ 28] getparam 1 .............................. <tDataList>
+  [ 30] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 31] pushcons 7 .............................. <" There is no physic reference in gGame.">
+  [ 33] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " There is no physic reference in gGame.">
+  [ 34] pusharglistnoret 1 ...................... <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " There is no physic reference in gGame.">
+  [ 36] extcall 511 ............................. ShowError("Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " There is no physic reference in gGame.")
+  [ 39] ret ..................................... exit
+  [ 40] getglobal 43 ............................ <gGame>
+  [ 42] getobjprop 1389 ......................... <gGame.Physics>
+  [ 45] pusharglist 0 ........................... <>
+  [ 47] extcall 40 .............................. <VOID>
+  [ 49] eq ...................................... <gGame.Physics = VOID>
+  [ 50] jmpifz [ 73] ............................ if gGame.Physics = VOID then
+  [ 53] pushcons 5 .............................. <"Function: AddCollisionReport. Target: ">
+  [ 55] getparam 0 .............................. <tTarget>
+  [ 57] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget>
+  [ 58] pushcons 6 .............................. <" Parameters: ">
+  [ 60] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: ">
+  [ 61] getparam 1 .............................. <tDataList>
+  [ 63] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 64] pushcons 8 .............................. <" There is no physic member ageia found (or is VOID).">
+  [ 66] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " There is no physic member ageia found (or is VOID).">
+  [ 67] pusharglistnoret 1 ...................... <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " There is no physic member ageia found (or is VOID).">
+  [ 69] extcall 511 ............................. ShowError("Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " There is no physic member ageia found (or is VOID).")
+  [ 72] ret ..................................... exit
+  [ 73] getparam 1 .............................. <tDataList>
+  [ 75] pusharglist 1 ........................... <tDataList>
+  [ 77] extcall 503 ............................. <value(tDataList)>
+  [ 80] setlocal 0 .............................. pDataList = value(tDataList)
+  [ 82] getlocal 0 .............................. <pDataList>
+  [ 84] pusharglist 0 ........................... <>
+  [ 86] extcall 40 .............................. <VOID>
+  [ 88] eq ...................................... <pDataList = VOID>
+  [ 89] getlocal 0 .............................. <pDataList>
+  [ 91] getobjprop 122 .......................... <pDataList.ilk>
+  [ 93] pushsymb 541 ............................ <#propList>
+  [ 96] nteq .................................... <pDataList.ilk <> #propList>
+  [ 97] or ...................................... <(pDataList = VOID) or (pDataList.ilk <> #propList)>
+  [ 98] jmpifz [121] ............................ if (pDataList = VOID) or (pDataList.ilk <> #propList) then
+  [101] pushcons 5 .............................. <"Function: AddCollisionReport. Target: ">
+  [103] getparam 0 .............................. <tTarget>
+  [105] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget>
+  [106] pushcons 6 .............................. <" Parameters: ">
+  [108] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: ">
+  [109] getparam 1 .............................. <tDataList>
+  [111] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList>
+  [112] pushcons 9 .............................. <" Datalist obsolete (VOID or not #proplist).">
+  [114] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [115] pusharglistnoret 1 ...................... <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).">
+  [117] extcall 511 ............................. ShowError("Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete (VOID or not #proplist).")
+  [120] ret ..................................... exit
+  [121] getglobal 43 ............................ <gGame>
+  [123] pushsymb 1391 ........................... <#collisionReports>
+  [126] pusharglist 2 ........................... <gGame, #collisionReports>
+  [128] objcall 105 ............................. <gGame[#collisionReports]>
+  [130] pusharglist 1 ........................... <gGame[#collisionReports]>
+  [132] extcall 389 ............................. <voidp(gGame[#collisionReports])>
+  [135] pushint8 1 .............................. <1>
+  [137] eq ...................................... <voidp(gGame[#collisionReports]) = 1>
+  [138] jmpifz [153] ............................ if voidp(gGame[#collisionReports]) = 1 then
+  [141] getglobal 43 ............................ <gGame>
+  [143] pushsymb 1391 ........................... <#collisionReports>
+  [146] pusharglist 0 ........................... <[:]>
+  [148] pushproplist ............................ <[:]>
+  [149] pusharglistnoret 3 ...................... <gGame, #collisionReports, [:]>
+  [151] objcall 103 ............................. gGame[#collisionReports] = [:]
+  [153] getlocal 0 .............................. <pDataList>
+  [155] pushsymb 1377 ........................... <#nameA>
+  [158] pusharglist 2 ........................... <pDataList, #nameA>
+  [160] objcall 105 ............................. <pDataList[#nameA]>
+  [162] setlocal 1 .............................. pNameA = pDataList[#nameA]
+  [164] getlocal 0 .............................. <pDataList>
+  [166] pushsymb 1378 ........................... <#nameB>
+  [169] pusharglist 2 ........................... <pDataList, #nameB>
+  [171] objcall 105 ............................. <pDataList[#nameB]>
+  [173] setlocal 2 .............................. pNameB = pDataList[#nameB]
+  [175] getlocal 1 .............................. <pNameA>
+  [177] pusharglist 0 ........................... <>
+  [179] extcall 40 .............................. <VOID>
+  [181] eq ...................................... <pNameA = VOID>
+  [182] getlocal 2 .............................. <pNameB>
+  [184] pusharglist 0 ........................... <>
+  [186] extcall 40 .............................. <VOID>
+  [188] eq ...................................... <pNameB = VOID>
+  [189] or ...................................... <(pNameA = VOID) or (pNameB = VOID)>
+  [190] jmpifz [213] ............................ if (pNameA = VOID) or (pNameB = VOID) then
+  [193] pushcons 5 .............................. <"Function: AddCollisionReport. Target: ">
+  [195] getparam 0 .............................. <tTarget>
+  [197] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget>
+  [198] pushcons 6 .............................. <" Parameters: ">
+  [200] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: ">
+  [201] getparam 1 .............................. <tDataList>
+  [203] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList>
+  [204] pushcons 10 ............................. <" NameA and/or NameB was VOID. Needed!">
+  [206] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " NameA and/or NameB was VOID. Needed!">
+  [207] pusharglistnoret 1 ...................... <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " NameA and/or NameB was VOID. Needed!">
+  [209] extcall 511 ............................. ShowError("Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " NameA and/or NameB was VOID. Needed!")
+  [212] ret ..................................... exit
+  [213] getlocal 1 .............................. <pNameA>
+  [215] pushsymb 1535 ........................... <#all>
+  [218] eq ...................................... <pNameA = #all>
+  [219] jmpifz [252] ............................ if pNameA = #all then
+  [222] getglobal 43 ............................ <gGame>
+  [224] getchainedprop 1389 ..................... <gGame.Physics>
+  [227] pusharglistnoret 1 ...................... <gGame.Physics>
+  [229] objcall 1536 ............................ gGame.Physics.EnableCollisionCallback()
+  [232] pushcons 5 .............................. <"Function: AddCollisionReport. Target: ">
+  [234] getparam 0 .............................. <tTarget>
+  [236] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget>
+  [237] pushcons 6 .............................. <" Parameters: ">
+  [239] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: ">
+  [240] getparam 1 .............................. <tDataList>
+  [242] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList>
+  [243] pushcons 11 ............................. <" PLEASE NOTE! pName = #all. NOTHING IS ADDED TO THE COLLISIONREPORTLIST,.. YOU KNOW WHY!!!">
+  [245] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " PLEASE NOTE! pName = #all. NOTHING IS ADDED TO THE COLLISIONREPORTLIST,.. YOU KNOW WHY!!!">
+  [246] pusharglistnoret 1 ...................... <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " PLEASE NOTE! pName = #all. NOTHING IS ADDED TO THE COLLISIONREPORTLIST,.. YOU KNOW WHY!!!">
+  [248] extcall 511 ............................. ShowError("Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " PLEASE NOTE! pName = #all. NOTHING IS ADDED TO THE COLLISIONREPORTLIST,.. YOU KNOW WHY!!!")
+  [251] ret ..................................... exit
+  [252] getlocal 2 .............................. <pNameB>
+  [254] pushsymb 1535 ........................... <#all>
+  [257] eq ...................................... <pNameB = #all>
+  [258] jmpifz [400] ............................ if pNameB = #all then
+  [261] getglobal 43 ............................ <gGame>
+  [263] getchainedprop 1389 ..................... <gGame.Physics>
+  [266] getlocal 1 .............................. <pNameA>
+  [268] pusharglist 2 ........................... <gGame.Physics, pNameA>
+  [270] objcall 1537 ............................ <gGame.Physics.getRigidBody(pNameA)>
+  [273] setlocal 3 .............................. pA = gGame.Physics.getRigidBody(pNameA)
+  [275] getlocal 3 .............................. <pA>
+  [277] pusharglist 0 ........................... <>
+  [279] extcall 40 .............................. <VOID>
+  [281] eq ...................................... <pA = VOID>
+  [282] jmpifz [305] ............................ if pA = VOID then
+  [285] pushcons 5 .............................. <"Function: AddCollisionReport. Target: ">
+  [287] getparam 0 .............................. <tTarget>
+  [289] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget>
+  [290] pushcons 6 .............................. <" Parameters: ">
+  [292] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: ">
+  [293] getparam 1 .............................. <tDataList>
+  [295] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList>
+  [296] pushcons 12 ............................. <" No rigidbody found in physics file with nameA.">
+  [298] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " No rigidbody found in physics file with nameA.">
+  [299] pusharglistnoret 1 ...................... <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " No rigidbody found in physics file with nameA.">
+  [301] extcall 511 ............................. ShowError("Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " No rigidbody found in physics file with nameA.")
+  [304] ret ..................................... exit
+  [305] getglobal 43 ............................ <gGame>
+  [307] getchainedprop 1389 ..................... <gGame.Physics>
+  [310] pusharglist 1 ........................... <gGame.Physics>
+  [312] objcall 1538 ............................ <gGame.Physics.getRigidBodies()>
+  [315] setlocal 4 .............................. PList = gGame.Physics.getRigidBodies()
+  [317] getlocal 4 .............................. <PList>
+  [319] getobjprop 129 .......................... <PList.count>
+  [321] setlocal 5 .............................. pCount = PList.count
+  [323] pushint8 1 .............................. <1>
+  [325] setlocal 6
+  [327] getlocal 6
+  [329] getlocal 5 .............................. <pCount>
+  [331] lteq
+  [332] jmpifz [379] ............................ repeat with i = 1 to pCount
+  [335] getlocal 4 .............................. <PList>
+  [337] getlocal 6 .............................. <i>
+  [339] pusharglist 2 ........................... <PList, i>
+  [341] objcall 105 ............................. <PList[i]>
+  [343] setlocal 7 .............................. pB = PList[i]
+  [345] getlocal 3 .............................. <pA>
+  [347] getlocal 7 .............................. <pB>
+  [349] eq ...................................... <pA = pB>
+  [350] jmpifz [356] ............................ if pA = pB then
+  [353] jmp [370] ............................... next repeat
+  [356] getglobal 43 ............................ <gGame>
+  [358] getchainedprop 1389 ..................... <gGame.Physics>
+  [361] getlocal 3 .............................. <pA>
+  [363] getlocal 7 .............................. <pB>
+  [365] pusharglistnoret 3 ...................... <gGame.Physics, pA, pB>
+  [367] objcall 1536 ............................ gGame.Physics.EnableCollisionCallback(pA, pB)
+  [370] pushint8 1
+  [372] getlocal 6
+  [374] add
+  [375] setlocal 6
+  [377] endrepeat [327]
+  [379] getglobal 43 ............................ <gGame>
+  [381] pushsymb 1391 ........................... <#collisionReports>
+  [384] getlocal 3 .............................. <pA>
+  [386] getobjprop 235 .......................... <pA.name>
+  [388] pusharglist 1 ........................... <pA.name>
+  [390] extcall 88 .............................. <symbol(pA.name)>
+  [392] pusharglist 0 ........................... <[]>
+  [394] pushlist ................................ <[]>
+  [395] pusharglistnoret 4 ...................... <gGame, #collisionReports, symbol(pA.name), []>
+  [397] objcall 99 .............................. gGame.collisionReports[symbol(pA.name)] = []
+  [399] ret ..................................... exit
+  [400] getlocal 2 .............................. <pNameB>
+  [402] pushsymb 137 ............................ <#cars>
+  [404] eq ...................................... <pNameB = #cars>
+  [405] jmpifz [603] ............................ if pNameB = #cars then
+  [408] getglobal 43 ............................ <gGame>
+  [410] getchainedprop 1389 ..................... <gGame.Physics>
+  [413] getlocal 1 .............................. <pNameA>
+  [415] pusharglist 2 ........................... <gGame.Physics, pNameA>
+  [417] objcall 1537 ............................ <gGame.Physics.getRigidBody(pNameA)>
+  [420] setlocal 3 .............................. pA = gGame.Physics.getRigidBody(pNameA)
+  [422] getlocal 3 .............................. <pA>
+  [424] pusharglist 0 ........................... <>
+  [426] extcall 40 .............................. <VOID>
+  [428] eq ...................................... <pA = VOID>
+  [429] getlocal 3 .............................. <pA>
+  [431] pusharglist 0 ........................... <>
+  [433] extcall 40 .............................. <VOID>
+  [435] eq ...................................... <pA = VOID>
+  [436] or ...................................... <(pA = VOID) or (pA = VOID)>
+  [437] jmpifz [460] ............................ if (pA = VOID) or (pA = VOID) then
+  [440] pushcons 5 .............................. <"Function: AddCollisionReport. Target: ">
+  [442] getparam 0 .............................. <tTarget>
+  [444] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget>
+  [445] pushcons 6 .............................. <" Parameters: ">
+  [447] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: ">
+  [448] getparam 1 .............................. <tDataList>
+  [450] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList>
+  [451] pushcons 12 ............................. <" No rigidbody found in physics file with nameA.">
+  [453] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " No rigidbody found in physics file with nameA.">
+  [454] pusharglistnoret 1 ...................... <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " No rigidbody found in physics file with nameA.">
+  [456] extcall 511 ............................. ShowError("Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " No rigidbody found in physics file with nameA.")
+  [459] ret ..................................... exit
+  [460] getglobal 43 ............................ <gGame>
+  [462] pushsymb 137 ............................ <#cars>
+  [464] pusharglist 2 ........................... <gGame, #cars>
+  [466] extcall 542 ............................. <getaProp(gGame, #cars)>
+  [469] pusharglist 0 ........................... <>
+  [471] extcall 40 .............................. <VOID>
+  [473] eq ...................................... <getaProp(gGame, #cars) = VOID>
+  [474] jmpifz [497] ............................ if getaProp(gGame, #cars) = VOID then
+  [477] pushcons 5 .............................. <"Function: AddCollisionReport. Target: ">
+  [479] getparam 0 .............................. <tTarget>
+  [481] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget>
+  [482] pushcons 6 .............................. <" Parameters: ">
+  [484] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: ">
+  [485] getparam 1 .............................. <tDataList>
+  [487] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList>
+  [488] pushcons 13 ............................. <" Tag was #cars, but was not found in g as a sub array.">
+  [490] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " Tag was #cars, but was not found in g as a sub array.">
+  [491] pusharglistnoret 1 ...................... <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " Tag was #cars, but was not found in g as a sub array.">
+  [493] extcall 511 ............................. ShowError("Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " Tag was #cars, but was not found in g as a sub array.")
+  [496] ret ..................................... exit
+  [497] getglobal 43 ............................ <gGame>
+  [499] pushsymb 137 ............................ <#cars>
+  [501] pusharglist 2 ........................... <gGame, #cars>
+  [503] objcall 129 ............................. <gGame.cars.count>
+  [505] setlocal 5 .............................. pCount = gGame.cars.count
+  [507] pushint8 1 .............................. <1>
+  [509] setlocal 6
+  [511] getlocal 6
+  [513] getlocal 5 .............................. <pCount>
+  [515] lteq
+  [516] jmpifz [582] ............................ repeat with i = 1 to pCount
+  [519] getglobal 43 ............................ <gGame>
+  [521] getchainedprop 1389 ..................... <gGame.Physics>
+  [524] getglobal 43 ............................ <gGame>
+  [526] pushsymb 137 ............................ <#cars>
+  [528] getlocal 6 .............................. <i>
+  [530] pusharglist 3 ........................... <gGame, #cars, i>
+  [532] objcall 102 ............................. <gGame.cars[i]>
+  [534] pushsymb 1539 ........................... <#chassis>
+  [537] pusharglist 2 ........................... <gGame.cars[i], #chassis>
+  [539] objcall 105 ............................. <gGame.cars[i][#chassis]>
+  [541] pusharglist 2 ........................... <gGame.Physics, gGame.cars[i][#chassis]>
+  [543] objcall 1537 ............................ <gGame.Physics.getRigidBody(gGame.cars[i][#chassis])>
+  [546] setlocal 7 .............................. pB = gGame.Physics.getRigidBody(gGame.cars[i][#chassis])
+  [548] getlocal 3 .............................. <pA>
+  [550] getlocal 7 .............................. <pB>
+  [552] eq ...................................... <pA = pB>
+  [553] jmpifz [559] ............................ if pA = pB then
+  [556] jmp [573] ............................... next repeat
+  [559] getglobal 43 ............................ <gGame>
+  [561] getchainedprop 1389 ..................... <gGame.Physics>
+  [564] getlocal 3 .............................. <pA>
+  [566] getlocal 7 .............................. <pB>
+  [568] pusharglistnoret 3 ...................... <gGame.Physics, pA, pB>
+  [570] objcall 1536 ............................ gGame.Physics.EnableCollisionCallback(pA, pB)
+  [573] pushint8 1
+  [575] getlocal 6
+  [577] add
+  [578] setlocal 6
+  [580] endrepeat [511]
+  [582] getglobal 43 ............................ <gGame>
+  [584] pushsymb 1391 ........................... <#collisionReports>
+  [587] getlocal 3 .............................. <pA>
+  [589] getobjprop 235 .......................... <pA.name>
+  [591] pusharglist 1 ........................... <pA.name>
+  [593] extcall 88 .............................. <symbol(pA.name)>
+  [595] pusharglist 0 ........................... <[]>
+  [597] pushlist ................................ <[]>
+  [598] pusharglistnoret 4 ...................... <gGame, #collisionReports, symbol(pA.name), []>
+  [600] objcall 99 .............................. gGame.collisionReports[symbol(pA.name)] = []
+  [602] ret ..................................... exit
+  [603] getglobal 43 ............................ <gGame>
+  [605] getchainedprop 1389 ..................... <gGame.Physics>
+  [608] getlocal 1 .............................. <pNameA>
+  [610] pusharglist 2 ........................... <gGame.Physics, pNameA>
+  [612] objcall 1537 ............................ <gGame.Physics.getRigidBody(pNameA)>
+  [615] setlocal 3 .............................. pA = gGame.Physics.getRigidBody(pNameA)
+  [617] getglobal 43 ............................ <gGame>
+  [619] getchainedprop 1389 ..................... <gGame.Physics>
+  [622] getlocal 2 .............................. <pNameB>
+  [624] pusharglist 2 ........................... <gGame.Physics, pNameB>
+  [626] objcall 1537 ............................ <gGame.Physics.getRigidBody(pNameB)>
+  [629] setlocal 7 .............................. pB = gGame.Physics.getRigidBody(pNameB)
+  [631] getlocal 3 .............................. <pA>
+  [633] pusharglist 0 ........................... <>
+  [635] extcall 40 .............................. <VOID>
+  [637] eq ...................................... <pA = VOID>
+  [638] getlocal 3 .............................. <pA>
+  [640] pusharglist 0 ........................... <>
+  [642] extcall 40 .............................. <VOID>
+  [644] eq ...................................... <pA = VOID>
+  [645] or ...................................... <(pA = VOID) or (pA = VOID)>
+  [646] jmpifz [669] ............................ if (pA = VOID) or (pA = VOID) then
+  [649] pushcons 5 .............................. <"Function: AddCollisionReport. Target: ">
+  [651] getparam 0 .............................. <tTarget>
+  [653] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget>
+  [654] pushcons 6 .............................. <" Parameters: ">
+  [656] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: ">
+  [657] getparam 1 .............................. <tDataList>
+  [659] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList>
+  [660] pushcons 14 ............................. <" No rigidbody found in physics file with nameA and/ NameB.">
+  [662] joinstr ................................. <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " No rigidbody found in physics file with nameA and/ NameB.">
+  [663] pusharglistnoret 1 ...................... <"Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " No rigidbody found in physics file with nameA and/ NameB.">
+  [665] extcall 511 ............................. ShowError("Function: AddCollisionReport. Target: " & tTarget & " Parameters: " & tDataList & " No rigidbody found in physics file with nameA and/ NameB.")
+  [668] ret ..................................... exit
+  [669] getglobal 43 ............................ <gGame>
+  [671] getchainedprop 1389 ..................... <gGame.Physics>
+  [674] getlocal 3 .............................. <pA>
+  [676] getlocal 7 .............................. <pB>
+  [678] pusharglistnoret 3 ...................... <gGame.Physics, pA, pB>
+  [680] objcall 1536 ............................ gGame.Physics.EnableCollisionCallback(pA, pB)
+  [683] getglobal 43 ............................ <gGame>
+  [685] pushsymb 1391 ........................... <#collisionReports>
+  [688] getlocal 3 .............................. <pA>
+  [690] getobjprop 235 .......................... <pA.name>
+  [692] pusharglist 1 ........................... <pA.name>
+  [694] extcall 88 .............................. <symbol(pA.name)>
+  [696] pusharglist 0 ........................... <[]>
+  [698] pushlist ................................ <[]>
+  [699] pusharglistnoret 4 ...................... <gGame, #collisionReports, symbol(pA.name), []>
+  [701] objcall 99 .............................. gGame.collisionReports[symbol(pA.name)] = []
+  [703] ret
+end

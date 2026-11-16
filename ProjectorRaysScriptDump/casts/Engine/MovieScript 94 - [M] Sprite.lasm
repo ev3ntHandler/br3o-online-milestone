@@ -1,0 +1,494 @@
+global gSystem, gLoader, gData, gGame
+
+on CreateSprite tTarget, tDataList
+  [  0] getparam 0 .............................. <tTarget>
+  [  2] pusharglist 0 ........................... <>
+  [  4] extcall 40 .............................. <VOID>
+  [  6] eq ...................................... <tTarget = VOID>
+  [  7] getparam 0 .............................. <tTarget>
+  [  9] pushcons 0 .............................. <EMPTY>
+  [ 11] eq ...................................... <tTarget = EMPTY>
+  [ 12] or ...................................... <(tTarget = VOID) or (tTarget = EMPTY)>
+  [ 13] jmpifz [ 36] ............................ if (tTarget = VOID) or (tTarget = EMPTY) then
+  [ 16] pushcons 1 .............................. <"Function: CreateSprite. Target: ">
+  [ 18] getparam 0 .............................. <tTarget>
+  [ 20] joinstr ................................. <"Function: CreateSprite. Target: " & tTarget>
+  [ 21] pushcons 2 .............................. <" Parameters: ">
+  [ 23] joinstr ................................. <"Function: CreateSprite. Target: " & tTarget & " Parameters: ">
+  [ 24] getparam 1 .............................. <tDataList>
+  [ 26] joinstr ................................. <"Function: CreateSprite. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 27] pushcons 3 .............................. <" No target. Function aborted.">
+  [ 29] joinstr ................................. <"Function: CreateSprite. Target: " & tTarget & " Parameters: " & tDataList & " No target. Function aborted.">
+  [ 30] pusharglistnoret 1 ...................... <"Function: CreateSprite. Target: " & tTarget & " Parameters: " & tDataList & " No target. Function aborted.">
+  [ 32] extcall 511 ............................. ShowError("Function: CreateSprite. Target: " & tTarget & " Parameters: " & tDataList & " No target. Function aborted.")
+  [ 35] ret ..................................... exit
+  [ 36] getparam 0 .............................. <tTarget>
+  [ 38] pusharglist 1 ........................... <tTarget>
+  [ 40] extcall 64 .............................. <member(tTarget)>
+  [ 42] setlocal 0 .............................. pMember = member(tTarget)
+  [ 44] getlocal 0 .............................. <pMember>
+  [ 46] pusharglist 0 ........................... <>
+  [ 48] extcall 40 .............................. <VOID>
+  [ 50] eq ...................................... <pMember = VOID>
+  [ 51] jmpifz [ 74] ............................ if pMember = VOID then
+  [ 54] pushcons 1 .............................. <"Function: CreateSprite. Target: ">
+  [ 56] getparam 0 .............................. <tTarget>
+  [ 58] joinstr ................................. <"Function: CreateSprite. Target: " & tTarget>
+  [ 59] pushcons 2 .............................. <" Parameters: ">
+  [ 61] joinstr ................................. <"Function: CreateSprite. Target: " & tTarget & " Parameters: ">
+  [ 62] getparam 1 .............................. <tDataList>
+  [ 64] joinstr ................................. <"Function: CreateSprite. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 65] pushcons 4 .............................. <" No member with target name.">
+  [ 67] joinstr ................................. <"Function: CreateSprite. Target: " & tTarget & " Parameters: " & tDataList & " No member with target name.">
+  [ 68] pusharglistnoret 1 ...................... <"Function: CreateSprite. Target: " & tTarget & " Parameters: " & tDataList & " No member with target name.">
+  [ 70] extcall 511 ............................. ShowError("Function: CreateSprite. Target: " & tTarget & " Parameters: " & tDataList & " No member with target name.")
+  [ 73] ret ..................................... exit
+  [ 74] getparam 1 .............................. <tDataList>
+  [ 76] pusharglist 0 ........................... <>
+  [ 78] extcall 40 .............................. <VOID>
+  [ 80] eq ...................................... <tDataList = VOID>
+  [ 81] getparam 1 .............................. <tDataList>
+  [ 83] pushcons 0 .............................. <EMPTY>
+  [ 85] eq ...................................... <tDataList = EMPTY>
+  [ 86] or ...................................... <(tDataList = VOID) or (tDataList = EMPTY)>
+  [ 87] jmpifz [176] ............................ if (tDataList = VOID) or (tDataList = EMPTY) then / else
+  [ 90] pushcons 1 .............................. <"Function: CreateSprite. Target: ">
+  [ 92] getparam 0 .............................. <tTarget>
+  [ 94] joinstr ................................. <"Function: CreateSprite. Target: " & tTarget>
+  [ 95] pushcons 2 .............................. <" Parameters: ">
+  [ 97] joinstr ................................. <"Function: CreateSprite. Target: " & tTarget & " Parameters: ">
+  [ 98] getparam 1 .............................. <tDataList>
+  [100] joinstr ................................. <"Function: CreateSprite. Target: " & tTarget & " Parameters: " & tDataList>
+  [101] pushcons 5 .............................. <" DataList VOID. Datalist will be set to default settings.">
+  [103] joinstr ................................. <"Function: CreateSprite. Target: " & tTarget & " Parameters: " & tDataList & " DataList VOID. Datalist will be set to default settings.">
+  [104] pusharglistnoret 1 ...................... <"Function: CreateSprite. Target: " & tTarget & " Parameters: " & tDataList & " DataList VOID. Datalist will be set to default settings.">
+  [106] extcall 511 ............................. ShowError("Function: CreateSprite. Target: " & tTarget & " Parameters: " & tDataList & " DataList VOID. Datalist will be set to default settings.")
+  [109] pusharglist 0 ........................... <>
+  [111] extcall 468 ............................. <GetStageSize()>
+  [114] setlocal 1 .............................. pLoc = GetStageSize()
+  [116] pushsymb 1102 ........................... <#channel>
+  [119] pusharglist 0 ........................... <>
+  [121] extcall 467 ............................. <GetEmptyChannel()>
+  [124] pushsymb 1131 ........................... <#loc>
+  [127] getlocal 1 .............................. <pLoc>
+  [129] pushint8 1 .............................. <1>
+  [131] pusharglist 2 ........................... <pLoc, 1>
+  [133] objcall 105 ............................. <pLoc[1]>
+  [135] pushint8 2 .............................. <2>
+  [137] div ..................................... <pLoc[1] / 2>
+  [138] getlocal 1 .............................. <pLoc>
+  [140] pushint8 2 .............................. <2>
+  [142] pusharglist 2 ........................... <pLoc, 2>
+  [144] objcall 105 ............................. <pLoc[2]>
+  [146] pushint8 2 .............................. <2>
+  [148] div ..................................... <pLoc[2] / 2>
+  [149] pusharglist 2 ........................... <pLoc[1] / 2, pLoc[2] / 2>
+  [151] extcall 302 ............................. <point(pLoc[1] / 2, pLoc[2] / 2)>
+  [154] pushsymb 201 ............................ <#size>
+  [156] getlocal 0 .............................. <pMember>
+  [158] getobjprop 229 .......................... <pMember.width>
+  [160] getlocal 0 .............................. <pMember>
+  [162] getobjprop 283 .......................... <pMember.height>
+  [165] pusharglist 2 ........................... <[pMember.width, pMember.height]>
+  [167] pushlist ................................ <[pMember.width, pMember.height]>
+  [168] pusharglist 6 ........................... <[#channel: GetEmptyChannel(), #loc: point(pLoc[1] / 2, pLoc[2] / 2), #size: [pMember.width, pMember.height]]>
+  [170] pushproplist ............................ <[#channel: GetEmptyChannel(), #loc: point(pLoc[1] / 2, pLoc[2] / 2), #size: [pMember.width, pMember.height]]>
+  [171] setlocal 2 .............................. pDataList = [#channel: GetEmptyChannel(), #loc: point(pLoc[1] / 2, pLoc[2] / 2), #size: [pMember.width, pMember.height]]
+  [173] jmp [216]
+  [176] getparam 1 .............................. <tDataList>
+  [178] pusharglist 1 ........................... <tDataList>
+  [180] extcall 503 ............................. <value(tDataList)>
+  [183] setlocal 2 .............................. pDataList = value(tDataList)
+  [185] getlocal 2 .............................. <pDataList>
+  [187] getobjprop 122 .......................... <pDataList.ilk>
+  [189] pushsymb 541 ............................ <#propList>
+  [192] nteq .................................... <pDataList.ilk <> #propList>
+  [193] jmpifz [216] ............................ if pDataList.ilk <> #propList then
+  [196] pushcons 1 .............................. <"Function: CreateSprite. Target: ">
+  [198] getparam 0 .............................. <tTarget>
+  [200] joinstr ................................. <"Function: CreateSprite. Target: " & tTarget>
+  [201] pushcons 2 .............................. <" Parameters: ">
+  [203] joinstr ................................. <"Function: CreateSprite. Target: " & tTarget & " Parameters: ">
+  [204] getparam 1 .............................. <tDataList>
+  [206] joinstr ................................. <"Function: CreateSprite. Target: " & tTarget & " Parameters: " & tDataList>
+  [207] pushcons 6 .............................. <" After value() datalist wasn't a proplist.">
+  [209] joinstr ................................. <"Function: CreateSprite. Target: " & tTarget & " Parameters: " & tDataList & " After value() datalist wasn't a proplist.">
+  [210] pusharglistnoret 1 ...................... <"Function: CreateSprite. Target: " & tTarget & " Parameters: " & tDataList & " After value() datalist wasn't a proplist.">
+  [212] extcall 511 ............................. ShowError("Function: CreateSprite. Target: " & tTarget & " Parameters: " & tDataList & " After value() datalist wasn't a proplist.")
+  [215] ret ..................................... exit
+  [216] gettoplevelprop 33 ...................... <_movie>
+  [218] getlocal 2 .............................. <pDataList>
+  [220] pushsymb 1102 ........................... <#channel>
+  [223] pusharglist 2 ........................... <pDataList, #channel>
+  [225] objcall 105 ............................. <pDataList[#channel]>
+  [227] pushint8 1 .............................. <1>
+  [229] pusharglistnoret 3 ...................... <_movie, pDataList[#channel], 1>
+  [231] objcall 1132 ............................ _movie.puppetSprite(pDataList[#channel], 1)
+  [234] getlocal 2 .............................. <pDataList>
+  [236] pushsymb 1102 ........................... <#channel>
+  [239] pusharglist 2 ........................... <pDataList, #channel>
+  [241] objcall 105 ............................. <pDataList[#channel]>
+  [243] pusharglist 1 ........................... <pDataList[#channel]>
+  [245] extcall 487 ............................. <sprite(pDataList[#channel])>
+  [248] getlocal 0 .............................. <pMember>
+  [250] setobjprop 64 ........................... sprite(pDataList[#channel]).member = pMember
+  [252] getlocal 0 .............................. <pMember>
+  [254] getobjprop 229 .......................... <pMember.width>
+  [256] getlocal 0 .............................. <pMember>
+  [258] getobjprop 283 .......................... <pMember.height>
+  [261] pusharglist 2 ........................... <[pMember.width, pMember.height]>
+  [263] pushlist ................................ <[pMember.width, pMember.height]>
+  [264] setlocal 3 .............................. tSize = [pMember.width, pMember.height]
+  [266] getlocal 2 .............................. <pDataList>
+  [268] pushsymb 201 ............................ <#size>
+  [270] pusharglist 2 ........................... <pDataList, #size>
+  [272] extcall 542 ............................. <getaProp(pDataList, #size)>
+  [275] getobjprop 122 .......................... <getaProp(pDataList, #size).ilk>
+  [277] pushsymb 126 ............................ <#list>
+  [279] eq ...................................... <getaProp(pDataList, #size).ilk = #list>
+  [280] jmpifz [293] ............................ if getaProp(pDataList, #size).ilk = #list then
+  [283] getlocal 2 .............................. <pDataList>
+  [285] pushsymb 201 ............................ <#size>
+  [287] pusharglist 2 ........................... <pDataList, #size>
+  [289] objcall 105 ............................. <pDataList[#size]>
+  [291] setlocal 3 .............................. tSize = pDataList[#size]
+  [293] getlocal 2 .............................. <pDataList>
+  [295] pushsymb 201 ............................ <#size>
+  [297] pusharglist 2 ........................... <pDataList, #size>
+  [299] extcall 542 ............................. <getaProp(pDataList, #size)>
+  [302] getobjprop 122 .......................... <getaProp(pDataList, #size).ilk>
+  [304] pushsymb 88 ............................. <#symbol>
+  [306] eq ...................................... <getaProp(pDataList, #size).ilk = #symbol>
+  [307] jmpifz [320] ............................ if getaProp(pDataList, #size).ilk = #symbol then
+  [310] getlocal 2 .............................. <pDataList>
+  [312] pushsymb 201 ............................ <#size>
+  [314] pusharglist 2 ........................... <pDataList, #size>
+  [316] objcall 105 ............................. <pDataList[#size]>
+  [318] setlocal 3 .............................. tSize = pDataList[#size]
+  [320] getlocal 3 .............................. <tSize>
+  [322] pushsymb 1133 ........................... <#fullscreen640>
+  [325] eq ...................................... <tSize = #fullscreen640>
+  [326] jmpifz [395] ............................ if tSize = #fullscreen640 then
+  [329] getglobal 43 ............................ <gGame>
+  [331] pushsymb 409 ............................ <#resolution>
+  [334] pushint8 1 .............................. <1>
+  [336] pusharglist 3 ........................... <gGame, #resolution, 1>
+  [338] objcall 70 .............................. <gGame.resolution[1]>
+  [340] pushfloat32 640.0 ....................... <640.0>
+  [345] div ..................................... <gGame.resolution[1] / 640.0>
+  [346] setlocal 4 .............................. t1 = gGame.resolution[1] / 640.0
+  [348] getglobal 43 ............................ <gGame>
+  [350] pushsymb 409 ............................ <#resolution>
+  [353] pushint8 2 .............................. <2>
+  [355] pusharglist 3 ........................... <gGame, #resolution, 2>
+  [357] objcall 70 .............................. <gGame.resolution[2]>
+  [359] pushfloat32 480.0 ....................... <480.0>
+  [364] div ..................................... <gGame.resolution[2] / 480.0>
+  [365] setlocal 5 .............................. t2 = gGame.resolution[2] / 480.0
+  [367] getlocal 0 .............................. <pMember>
+  [369] getobjprop 229 .......................... <pMember.width>
+  [371] getlocal 4 .............................. <t1>
+  [373] mul ..................................... <pMember.width * t1>
+  [374] pusharglist 1 ........................... <pMember.width * t1>
+  [376] extcall 123 ............................. <integer(pMember.width * t1)>
+  [378] getlocal 0 .............................. <pMember>
+  [380] getobjprop 283 .......................... <pMember.height>
+  [383] getlocal 5 .............................. <t2>
+  [385] mul ..................................... <pMember.height * t2>
+  [386] pusharglist 1 ........................... <pMember.height * t2>
+  [388] extcall 123 ............................. <integer(pMember.height * t2)>
+  [390] pusharglist 2 ........................... <[integer(pMember.width * t1), integer(pMember.height * t2)]>
+  [392] pushlist ................................ <[integer(pMember.width * t1), integer(pMember.height * t2)]>
+  [393] setlocal 3 .............................. tSize = [integer(pMember.width * t1), integer(pMember.height * t2)]
+  [395] getlocal 2 .............................. <pDataList>
+  [397] pushsymb 1102 ........................... <#channel>
+  [400] pusharglist 2 ........................... <pDataList, #channel>
+  [402] objcall 105 ............................. <pDataList[#channel]>
+  [404] pusharglist 1 ........................... <pDataList[#channel]>
+  [406] extcall 487 ............................. <sprite(pDataList[#channel])>
+  [409] getlocal 3 .............................. <tSize>
+  [411] pushint8 1 .............................. <1>
+  [413] pusharglist 2 ........................... <tSize, 1>
+  [415] objcall 105 ............................. <tSize[1]>
+  [417] setobjprop 229 .......................... sprite(pDataList[#channel]).width = tSize[1]
+  [419] getlocal 2 .............................. <pDataList>
+  [421] pushsymb 1102 ........................... <#channel>
+  [424] pusharglist 2 ........................... <pDataList, #channel>
+  [426] objcall 105 ............................. <pDataList[#channel]>
+  [428] pusharglist 1 ........................... <pDataList[#channel]>
+  [430] extcall 487 ............................. <sprite(pDataList[#channel])>
+  [433] getlocal 3 .............................. <tSize>
+  [435] pushint8 2 .............................. <2>
+  [437] pusharglist 2 ........................... <tSize, 2>
+  [439] objcall 105 ............................. <tSize[2]>
+  [441] setobjprop 283 .......................... sprite(pDataList[#channel]).height = tSize[2]
+  [444] pushzero ................................ <0>
+  [445] setlocal 6 .............................. tFlipH = 0
+  [447] pushzero ................................ <0>
+  [448] setlocal 7 .............................. tFlipV = 0
+  [450] getlocal 2 .............................. <pDataList>
+  [452] pushsymb 1134 ........................... <#flipH>
+  [455] pusharglist 2 ........................... <pDataList, #flipH>
+  [457] extcall 542 ............................. <getaProp(pDataList, #flipH)>
+  [460] getobjprop 122 .......................... <getaProp(pDataList, #flipH).ilk>
+  [462] pushsymb 123 ............................ <#integer>
+  [464] eq ...................................... <getaProp(pDataList, #flipH).ilk = #integer>
+  [465] jmpifz [479] ............................ if getaProp(pDataList, #flipH).ilk = #integer then
+  [468] getlocal 2 .............................. <pDataList>
+  [470] pushsymb 1134 ........................... <#flipH>
+  [473] pusharglist 2 ........................... <pDataList, #flipH>
+  [475] objcall 105 ............................. <pDataList[#flipH]>
+  [477] setlocal 6 .............................. tFlipH = pDataList[#flipH]
+  [479] getlocal 2 .............................. <pDataList>
+  [481] pushsymb 1135 ........................... <#flipV>
+  [484] pusharglist 2 ........................... <pDataList, #flipV>
+  [486] extcall 542 ............................. <getaProp(pDataList, #flipV)>
+  [489] getobjprop 122 .......................... <getaProp(pDataList, #flipV).ilk>
+  [491] pushsymb 123 ............................ <#integer>
+  [493] eq ...................................... <getaProp(pDataList, #flipV).ilk = #integer>
+  [494] jmpifz [508] ............................ if getaProp(pDataList, #flipV).ilk = #integer then
+  [497] getlocal 2 .............................. <pDataList>
+  [499] pushsymb 1135 ........................... <#flipV>
+  [502] pusharglist 2 ........................... <pDataList, #flipV>
+  [504] objcall 105 ............................. <pDataList[#flipV]>
+  [506] setlocal 7 .............................. tFlipV = pDataList[#flipV]
+  [508] getlocal 2 .............................. <pDataList>
+  [510] pushsymb 1102 ........................... <#channel>
+  [513] pusharglist 2 ........................... <pDataList, #channel>
+  [515] objcall 105 ............................. <pDataList[#channel]>
+  [517] pusharglist 1 ........................... <pDataList[#channel]>
+  [519] extcall 487 ............................. <sprite(pDataList[#channel])>
+  [522] getlocal 6 .............................. <tFlipH>
+  [524] setobjprop 1134 ......................... sprite(pDataList[#channel]).flipH = tFlipH
+  [527] getlocal 2 .............................. <pDataList>
+  [529] pushsymb 1102 ........................... <#channel>
+  [532] pusharglist 2 ........................... <pDataList, #channel>
+  [534] objcall 105 ............................. <pDataList[#channel]>
+  [536] pusharglist 1 ........................... <pDataList[#channel]>
+  [538] extcall 487 ............................. <sprite(pDataList[#channel])>
+  [541] getlocal 7 .............................. <tFlipV>
+  [543] setobjprop 1135 ......................... sprite(pDataList[#channel]).flipV = tFlipV
+  [546] pushzero ................................ <0>
+  [547] setlocal 8 .............................. tInk = 0
+  [549] getlocal 2 .............................. <pDataList>
+  [551] pushsymb 1136 ........................... <#ink>
+  [554] pusharglist 2 ........................... <pDataList, #ink>
+  [556] extcall 542 ............................. <getaProp(pDataList, #ink)>
+  [559] getobjprop 122 .......................... <getaProp(pDataList, #ink).ilk>
+  [561] pushsymb 123 ............................ <#integer>
+  [563] eq ...................................... <getaProp(pDataList, #ink).ilk = #integer>
+  [564] jmpifz [578] ............................ if getaProp(pDataList, #ink).ilk = #integer then
+  [567] getlocal 2 .............................. <pDataList>
+  [569] pushsymb 1136 ........................... <#ink>
+  [572] pusharglist 2 ........................... <pDataList, #ink>
+  [574] objcall 105 ............................. <pDataList[#ink]>
+  [576] setlocal 8 .............................. tInk = pDataList[#ink]
+  [578] getlocal 2 .............................. <pDataList>
+  [580] pushsymb 1102 ........................... <#channel>
+  [583] pusharglist 2 ........................... <pDataList, #channel>
+  [585] objcall 105 ............................. <pDataList[#channel]>
+  [587] pusharglist 1 ........................... <pDataList[#channel]>
+  [589] extcall 487 ............................. <sprite(pDataList[#channel])>
+  [592] getlocal 8 .............................. <tInk>
+  [594] setobjprop 1136 ......................... sprite(pDataList[#channel]).ink = tInk
+  [597] pushint8 100 ............................ <100>
+  [599] setlocal 9 .............................. tBlend = 100
+  [601] getlocal 2 .............................. <pDataList>
+  [603] pushsymb 367 ............................ <#blend>
+  [606] pusharglist 2 ........................... <pDataList, #blend>
+  [608] extcall 542 ............................. <getaProp(pDataList, #blend)>
+  [611] getobjprop 122 .......................... <getaProp(pDataList, #blend).ilk>
+  [613] pushsymb 123 ............................ <#integer>
+  [615] eq ...................................... <getaProp(pDataList, #blend).ilk = #integer>
+  [616] jmpifz [630] ............................ if getaProp(pDataList, #blend).ilk = #integer then
+  [619] getlocal 2 .............................. <pDataList>
+  [621] pushsymb 367 ............................ <#blend>
+  [624] pusharglist 2 ........................... <pDataList, #blend>
+  [626] objcall 105 ............................. <pDataList[#blend]>
+  [628] setlocal 9 .............................. tBlend = pDataList[#blend]
+  [630] getlocal 2 .............................. <pDataList>
+  [632] pushsymb 1102 ........................... <#channel>
+  [635] pusharglist 2 ........................... <pDataList, #channel>
+  [637] objcall 105 ............................. <pDataList[#channel]>
+  [639] pusharglist 1 ........................... <pDataList[#channel]>
+  [641] extcall 487 ............................. <sprite(pDataList[#channel])>
+  [644] getlocal 9 .............................. <tBlend>
+  [646] setobjprop 367 .......................... sprite(pDataList[#channel]).blend = tBlend
+  [649] pusharglist 0 ........................... <>
+  [651] extcall 468 ............................. <GetStageSize()>
+  [654] setlocal 10 ............................. tStageLoc = GetStageSize()
+  [656] getlocal 10 ............................. <tStageLoc>
+  [658] pushint8 1 .............................. <1>
+  [660] pusharglist 2 ........................... <tStageLoc, 1>
+  [662] objcall 105 ............................. <tStageLoc[1]>
+  [664] pushint8 2 .............................. <2>
+  [666] div ..................................... <tStageLoc[1] / 2>
+  [667] getlocal 10 ............................. <tStageLoc>
+  [669] pushint8 2 .............................. <2>
+  [671] pusharglist 2 ........................... <tStageLoc, 2>
+  [673] objcall 105 ............................. <tStageLoc[2]>
+  [675] pushint8 2 .............................. <2>
+  [677] div ..................................... <tStageLoc[2] / 2>
+  [678] pusharglist 2 ........................... <tStageLoc[1] / 2, tStageLoc[2] / 2>
+  [680] extcall 302 ............................. <point(tStageLoc[1] / 2, tStageLoc[2] / 2)>
+  [683] setlocal 11 ............................. tLoc = point(tStageLoc[1] / 2, tStageLoc[2] / 2)
+  [685] getlocal 2 .............................. <pDataList>
+  [687] pushsymb 1131 ........................... <#loc>
+  [690] pusharglist 2 ........................... <pDataList, #loc>
+  [692] extcall 542 ............................. <getaProp(pDataList, #loc)>
+  [695] getobjprop 122 .......................... <getaProp(pDataList, #loc).ilk>
+  [697] pushsymb 302 ............................ <#point>
+  [700] eq ...................................... <getaProp(pDataList, #loc).ilk = #point>
+  [701] jmpifz [715] ............................ if getaProp(pDataList, #loc).ilk = #point then
+  [704] getlocal 2 .............................. <pDataList>
+  [706] pushsymb 1131 ........................... <#loc>
+  [709] pusharglist 2 ........................... <pDataList, #loc>
+  [711] objcall 105 ............................. <pDataList[#loc]>
+  [713] setlocal 11 ............................. tLoc = pDataList[#loc]
+  [715] getlocal 2 .............................. <pDataList>
+  [717] pushsymb 1131 ........................... <#loc>
+  [720] pusharglist 2 ........................... <pDataList, #loc>
+  [722] extcall 542 ............................. <getaProp(pDataList, #loc)>
+  [725] getobjprop 122 .......................... <getaProp(pDataList, #loc).ilk>
+  [727] pushsymb 88 ............................. <#symbol>
+  [729] eq ...................................... <getaProp(pDataList, #loc).ilk = #symbol>
+  [730] jmpifz [744] ............................ if getaProp(pDataList, #loc).ilk = #symbol then
+  [733] getlocal 2 .............................. <pDataList>
+  [735] pushsymb 1131 ........................... <#loc>
+  [738] pusharglist 2 ........................... <pDataList, #loc>
+  [740] objcall 105 ............................. <pDataList[#loc]>
+  [742] setlocal 11 ............................. tLoc = pDataList[#loc]
+  [744] getlocal 11 ............................. <tLoc>
+  [746] pushsymb 1137 ........................... <#centerSprite>
+  [749] eq ...................................... <tLoc = #centerSprite>
+  [750] jmpifz [799] ............................ if tLoc = #centerSprite then
+  [753] getlocal 2 .............................. <pDataList>
+  [755] pushsymb 1102 ........................... <#channel>
+  [758] pusharglist 2 ........................... <pDataList, #channel>
+  [760] objcall 105 ............................. <pDataList[#channel]>
+  [762] pusharglist 1 ........................... <pDataList[#channel]>
+  [764] extcall 487 ............................. <sprite(pDataList[#channel])>
+  [767] getobjprop 229 .......................... <sprite(pDataList[#channel]).width>
+  [769] pushint8 2 .............................. <2>
+  [771] div ..................................... <sprite(pDataList[#channel]).width / 2>
+  [772] getlocal 2 .............................. <pDataList>
+  [774] pushsymb 1102 ........................... <#channel>
+  [777] pusharglist 2 ........................... <pDataList, #channel>
+  [779] objcall 105 ............................. <pDataList[#channel]>
+  [781] pusharglist 1 ........................... <pDataList[#channel]>
+  [783] extcall 487 ............................. <sprite(pDataList[#channel])>
+  [786] getobjprop 283 .......................... <sprite(pDataList[#channel]).height>
+  [789] pushint8 2 .............................. <2>
+  [791] div ..................................... <sprite(pDataList[#channel]).height / 2>
+  [792] pusharglist 2 ........................... <sprite(pDataList[#channel]).width / 2, sprite(pDataList[#channel]).height / 2>
+  [794] extcall 302 ............................. <point(sprite(pDataList[#channel]).width / 2, sprite(pDataList[#channel]).height / 2)>
+  [797] setlocal 11 ............................. tLoc = point(sprite(pDataList[#channel]).width / 2, sprite(pDataList[#channel]).height / 2)
+  [799] getlocal 2 .............................. <pDataList>
+  [801] pushsymb 1102 ........................... <#channel>
+  [804] pusharglist 2 ........................... <pDataList, #channel>
+  [806] objcall 105 ............................. <pDataList[#channel]>
+  [808] pusharglist 1 ........................... <pDataList[#channel]>
+  [810] extcall 487 ............................. <sprite(pDataList[#channel])>
+  [813] getlocal 11 ............................. <tLoc>
+  [815] setobjprop 1131 ......................... sprite(pDataList[#channel]).loc = tLoc
+  [818] getlocal 2 .............................. <pDataList>
+  [820] pushsymb 1102 ........................... <#channel>
+  [823] pusharglist 2 ........................... <pDataList, #channel>
+  [825] objcall 105 ............................. <pDataList[#channel]>
+  [827] pusharglist 1 ........................... <pDataList[#channel]>
+  [829] extcall 487 ............................. <sprite(pDataList[#channel])>
+  [832] getchainedprop 64 ....................... <sprite(pDataList[#channel]).member>
+  [834] getobjprop 598 .......................... <sprite(pDataList[#channel]).member.type>
+  [837] pushsymb 610 ............................ <#shockwave3d>
+  [840] eq ...................................... <sprite(pDataList[#channel]).member.type = #shockwave3d>
+  [841] jmpifz [900] ............................ if sprite(pDataList[#channel]).member.type = #shockwave3d then
+  [844] pushint8 1 .............................. <1>
+  [846] setlocal 12 ............................. tDTS = 1
+  [848] getlocal 2 .............................. <pDataList>
+  [850] pushsymb 1138 ........................... <#dts>
+  [853] pusharglist 2 ........................... <pDataList, #dts>
+  [855] objcall 105 ............................. <pDataList[#dts]>
+  [857] pusharglist 1 ........................... <pDataList[#dts]>
+  [859] extcall 389 ............................. <voidp(pDataList[#dts])>
+  [862] pushzero ................................ <0>
+  [863] eq ...................................... <voidp(pDataList[#dts]) = 0>
+  [864] jmpifz [874] ............................ if voidp(pDataList[#dts]) = 0 then
+  [867] getlocal 2 .............................. <pDataList>
+  [869] getobjprop 1138 ......................... <pDataList.dts>
+  [872] setlocal 12 ............................. tDTS = pDataList.dts
+  [874] gettoplevelprop 33 ...................... <_movie>
+  [876] pusharglistnoret 1 ...................... <_movie>
+  [878] objcall 364 ............................. _movie.updateStage()
+  [881] getlocal 2 .............................. <pDataList>
+  [883] pushsymb 1102 ........................... <#channel>
+  [886] pusharglist 2 ........................... <pDataList, #channel>
+  [888] objcall 105 ............................. <pDataList[#channel]>
+  [890] pusharglist 1 ........................... <pDataList[#channel]>
+  [892] extcall 487 ............................. <sprite(pDataList[#channel])>
+  [895] getlocal 12 ............................. <tDTS>
+  [897] setobjprop 1139 ......................... sprite(pDataList[#channel]).directToStage = tDTS
+  [900] pushzero ................................ <0>
+  [901] setlocal 13 ............................. tManager = 0
+  [903] getlocal 2 .............................. <pDataList>
+  [905] pushsymb 1140 ........................... <#manager>
+  [908] pusharglist 2 ........................... <pDataList, #manager>
+  [910] objcall 105 ............................. <pDataList[#manager]>
+  [912] pusharglist 1 ........................... <pDataList[#manager]>
+  [914] extcall 389 ............................. <voidp(pDataList[#manager])>
+  [917] pushzero ................................ <0>
+  [918] eq ...................................... <voidp(pDataList[#manager]) = 0>
+  [919] jmpifz [929] ............................ if voidp(pDataList[#manager]) = 0 then
+  [922] getlocal 2 .............................. <pDataList>
+  [924] getobjprop 1140 ......................... <pDataList.manager>
+  [927] setlocal 13 ............................. tManager = pDataList.manager
+  [929] getlocal 13 ............................. <tManager>
+  [931] pushint8 1 .............................. <1>
+  [933] eq ...................................... <tManager = 1>
+  [934] jmpifz [987] ............................ if tManager = 1 then
+  [937] pushcons 7 .............................. <"[PS] Script Manager">
+  [939] pusharglist 1 ........................... <"[PS] Script Manager">
+  [941] extcall 36 .............................. <script("[PS] Script Manager")>
+  [943] pushsymb 564 ............................ <#SpriteNR>
+  [946] getlocal 2 .............................. <pDataList>
+  [948] pushsymb 1102 ........................... <#channel>
+  [951] pusharglist 2 ........................... <pDataList, #channel>
+  [953] objcall 105 ............................. <pDataList[#channel]>
+  [955] pusharglist 2 ........................... <[#SpriteNR: pDataList[#channel]]>
+  [957] pushproplist ............................ <[#SpriteNR: pDataList[#channel]]>
+  [958] pusharglist 2 ........................... <script("[PS] Script Manager"), [#SpriteNR: pDataList[#channel]]>
+  [960] objcall 35 .............................. <script("[PS] Script Manager").new([#SpriteNR: pDataList[#channel]])>
+  [962] setlocal 14 ............................. tScript = script("[PS] Script Manager").new([#SpriteNR: pDataList[#channel]])
+  [964] getlocal 2 .............................. <pDataList>
+  [966] pushsymb 1102 ........................... <#channel>
+  [969] pusharglist 2 ........................... <pDataList, #channel>
+  [971] objcall 105 ............................. <pDataList[#channel]>
+  [973] pusharglist 1 ........................... <pDataList[#channel]>
+  [975] extcall 487 ............................. <sprite(pDataList[#channel])>
+  [978] getchainedprop 580 ...................... <sprite(pDataList[#channel]).scriptInstanceList>
+  [981] getlocal 14 ............................. <tScript>
+  [983] pusharglistnoret 2 ...................... <sprite(pDataList[#channel]).scriptInstanceList, tScript>
+  [985] objcall 42 .............................. sprite(pDataList[#channel]).scriptInstanceList.add(tScript)
+  [987] pushzero ................................ <0>
+  [988] setlocal 15 ............................. tDefault3d = 0
+  [990] getlocal 2 .............................. <pDataList>
+  [992] pushsymb 1141 ........................... <#default3d>
+  [995] pusharglist 2 ........................... <pDataList, #default3d>
+  [997] objcall 105 ............................. <pDataList[#default3d]>
+  [999] pusharglist 1 ........................... <pDataList[#default3d]>
+  [1001] extcall 389 ............................ <voidp(pDataList[#default3d])>
+  [1004] pushzero ............................... <0>
+  [1005] eq ..................................... <voidp(pDataList[#default3d]) = 0>
+  [1006] jmpifz [1016] .......................... if voidp(pDataList[#default3d]) = 0 then
+  [1009] getlocal 2 ............................. <pDataList>
+  [1011] getobjprop 1141 ........................ <pDataList.default3d>
+  [1014] setlocal 15 ............................ tDefault3d = pDataList.default3d
+  [1016] getlocal 15 ............................ <tDefault3d>
+  [1018] pushint8 1 ............................. <1>
+  [1020] eq ..................................... <tDefault3d = 1>
+  [1021] jmpifz [1024] .......................... if tDefault3d = 1 then
+  [1024] ret
+end
+
+on DeleteDynamicSprites me
+  [  0] ret
+end

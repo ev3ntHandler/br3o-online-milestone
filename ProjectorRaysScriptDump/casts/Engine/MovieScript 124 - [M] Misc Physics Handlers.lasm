@@ -1,0 +1,391 @@
+global gGame, g
+
+on PhysicsExplodeChildren tmember, tModelName, tMass
+  [  0] getglobal 395 ........................... <g>
+  [  3] getobjprop 1389 ......................... <g.Physics>
+  [  6] pusharglist 0 ........................... <>
+  [  8] extcall 40 .............................. <VOID>
+  [ 10] eq ...................................... <g.Physics = VOID>
+  [ 11] jmpifz [ 15] ............................ if g.Physics = VOID then
+  [ 14] ret ..................................... exit
+  [ 15] getparam 0 .............................. <tmember>
+  [ 17] setlocal 0 .............................. pMember = tmember
+  [ 19] getlocal 0 .............................. <pMember>
+  [ 21] pusharglist 0 ........................... <>
+  [ 23] extcall 40 .............................. <VOID>
+  [ 25] eq ...................................... <pMember = VOID>
+  [ 26] jmpifz [ 30] ............................ if pMember = VOID then
+  [ 29] ret ..................................... exit
+  [ 30] getparam 1 .............................. <tModelName>
+  [ 32] setlocal 1 .............................. pModelName = tModelName
+  [ 34] getlocal 1 .............................. <pModelName>
+  [ 36] pusharglist 0 ........................... <>
+  [ 38] extcall 40 .............................. <VOID>
+  [ 40] eq ...................................... <pModelName = VOID>
+  [ 41] jmpifz [ 45] ............................ if pModelName = VOID then
+  [ 44] ret ..................................... exit
+  [ 45] getparam 2 .............................. <tMass>
+  [ 47] setlocal 2 .............................. pMass = tMass
+  [ 49] getlocal 2 .............................. <pMass>
+  [ 51] pusharglist 0 ........................... <>
+  [ 53] extcall 40 .............................. <VOID>
+  [ 55] eq ...................................... <pMass = VOID>
+  [ 56] jmpifz [ 66] ............................ if pMass = VOID then
+  [ 59] pushfloat32 60.0 ........................ <60.0>
+  [ 64] setlocal 2 .............................. pMass = 60.0
+  [ 66] getlocal 0 .............................. <pMember>
+  [ 68] getlocal 1 .............................. <pModelName>
+  [ 70] pusharglist 2 ........................... <pMember, pModelName>
+  [ 72] objcall 71 .............................. <pMember.model(pModelName)>
+  [ 74] setlocal 3 .............................. pmodel = pMember.model(pModelName)
+  [ 76] getlocal 3 .............................. <pmodel>
+  [ 78] pusharglist 0 ........................... <>
+  [ 80] extcall 40 .............................. <VOID>
+  [ 82] eq ...................................... <pmodel = VOID>
+  [ 83] jmpifz [ 87] ............................ if pmodel = VOID then
+  [ 86] ret ..................................... exit
+  [ 87] getlocal 3 .............................. <pmodel>
+  [ 89] pushsymb 1546 ........................... <#child>
+  [ 92] pusharglist 2 ........................... <pmodel, #child>
+  [ 94] objcall 129 ............................. <pmodel.child.count>
+  [ 96] setlocal 4 .............................. pCount = pmodel.child.count
+  [ 98] getlocal 4 .............................. <pCount>
+  [100] pushzero ................................ <0>
+  [101] eq ...................................... <pCount = 0>
+  [102] getlocal 4 .............................. <pCount>
+  [104] pusharglist 0 ........................... <>
+  [106] extcall 40 .............................. <VOID>
+  [108] eq ...................................... <pCount = VOID>
+  [109] or ...................................... <(pCount = 0) or (pCount = VOID)>
+  [110] jmpifz [114] ............................ if (pCount = 0) or (pCount = VOID) then
+  [113] ret ..................................... exit
+  [114] pusharglist 0 ........................... <[]>
+  [116] pushlist ................................ <[]>
+  [117] setlocal 5 .............................. pChildList = []
+  [119] pushint8 1 .............................. <1>
+  [121] setlocal 6
+  [123] getlocal 6
+  [125] getlocal 4 .............................. <pCount>
+  [127] lteq
+  [128] jmpifz [161] ............................ repeat with j = 1 to pCount
+  [131] getlocal 3 .............................. <pmodel>
+  [133] pushsymb 1546 ........................... <#child>
+  [136] getlocal 6 .............................. <j>
+  [138] pusharglist 3 ........................... <pmodel, #child, j>
+  [140] objcall 70 .............................. <pmodel.child[j]>
+  [142] setlocal 7 .............................. pListModel = pmodel.child[j]
+  [144] getlocal 5 .............................. <pChildList>
+  [146] getlocal 7 .............................. <pListModel>
+  [148] pusharglistnoret 2 ...................... <pChildList, pListModel>
+  [150] objcall 42 .............................. pChildList.add(pListModel)
+  [152] pushint8 1
+  [154] getlocal 6
+  [156] add
+  [157] setlocal 6
+  [159] endrepeat [123]
+  [161] pushint8 1 .............................. <1>
+  [163] setlocal 8
+  [165] getlocal 8
+  [167] getlocal 4 .............................. <pCount>
+  [169] lteq
+  [170] jmpifz [304] ............................ repeat with i = 1 to pCount
+  [173] getlocal 5 .............................. <pChildList>
+  [175] getlocal 8 .............................. <i>
+  [177] pusharglist 2 ........................... <pChildList, i>
+  [179] objcall 105 ............................. <pChildList[i]>
+  [181] setlocal 9 .............................. pChildModel = pChildList[i]
+  [183] getlocal 9 .............................. <pChildModel>
+  [185] pusharglist 1 ........................... <pChildModel>
+  [187] objcall 1109 ............................ <pChildModel.getWorldTransform()>
+  [190] setlocal 10 ............................. pTransform = pChildModel.getWorldTransform()
+  [192] getlocal 9 .............................. <pChildModel>
+  [194] getlocal 0 .............................. <pMember>
+  [196] pushcons 0 .............................. <"World">
+  [198] pusharglist 2 ........................... <pMember, "World">
+  [200] objcall 65 .............................. <pMember.group("World")>
+  [202] setobjprop 207 .......................... pChildModel.parent = pMember.group("World")
+  [204] getlocal 9 .............................. <pChildModel>
+  [206] getlocal 10 ............................. <pTransform>
+  [208] setobjprop 214 .......................... pChildModel.transform = pTransform
+  [210] getlocal 9 .............................. <pChildModel>
+  [212] getobjprop 294 .......................... <pChildModel.modifier>
+  [215] setlocal 11 ............................. pModifierList = pChildModel.modifier
+  [217] getlocal 11 ............................. <pModifierList>
+  [219] pushsymb 995 ............................ <#meshDeform>
+  [222] pusharglist 2 ........................... <pModifierList, #meshDeform>
+  [224] objcall 166 ............................. <pModifierList.getPos(#meshDeform)>
+  [226] pushzero ................................ <0>
+  [227] eq ...................................... <pModifierList.getPos(#meshDeform) = 0>
+  [228] jmpifz [241] ............................ if pModifierList.getPos(#meshDeform) = 0 then
+  [231] getlocal 9 .............................. <pChildModel>
+  [233] pushsymb 995 ............................ <#meshDeform>
+  [236] pusharglistnoret 2 ...................... <pChildModel, #meshDeform>
+  [238] objcall 261 ............................. pChildModel.addModifier(#meshDeform)
+  [241] getglobal 395 ........................... <g>
+  [244] getchainedprop 1389 ..................... <g.Physics>
+  [247] getlocal 9 .............................. <pChildModel>
+  [249] getobjprop 235 .......................... <pChildModel.name>
+  [251] getlocal 9 .............................. <pChildModel>
+  [253] getobjprop 235 .......................... <pChildModel.name>
+  [255] pushsymb 1375 ........................... <#convexShape>
+  [258] pushsymb 1372 ........................... <#dynamic>
+  [261] pusharglist 5 ........................... <g.Physics, pChildModel.name, pChildModel.name, #convexShape, #dynamic>
+  [263] objcall 1528 ............................ <g.Physics.createRigidBody(pChildModel.name, pChildModel.name, #convexShape, #dynamic)>
+  [266] setlocal 12 ............................. pRB = g.Physics.createRigidBody(pChildModel.name, pChildModel.name, #convexShape, #dynamic)
+  [268] getlocal 12 ............................. <pRB>
+  [270] pushcons 1 .............................. <0.20000000000000001>
+  [272] setobjprop 1523 ......................... pRB.restitution = 0.20000000000000001
+  [275] getlocal 12 ............................. <pRB>
+  [277] pushfloat32 0.5 ......................... <0.5>
+  [282] setobjprop 1524 ......................... pRB.friction = 0.5
+  [285] getlocal 12 ............................. <pRB>
+  [287] pushfloat32 60.0 ........................ <60.0>
+  [292] setobjprop 1373 ......................... pRB.mass = 60.0
+  [295] pushint8 1
+  [297] getlocal 8
+  [299] add
+  [300] setlocal 8
+  [302] endrepeat [165]
+  [304] ret
+end
+
+on areaDamage me, tPosition, tData, tSender, tParent
+  [  0] pusharglist 0 ........................... <[]>
+  [  2] pushlist ................................ <[]>
+  [  3] setlocal 0 .............................. tList = []
+  [  5] getparam 4 .............................. <tParent>
+  [  7] pusharglist 0 ........................... <>
+  [  9] extcall 40 .............................. <VOID>
+  [ 11] eq ...................................... <tParent = VOID>
+  [ 12] jmpifz [ 29] ............................ if tParent = VOID then / else
+  [ 15] getglobal 43 ............................ <gGame>
+  [ 17] getchainedprop 1521 ..................... <gGame.DynamicRBList>
+  [ 20] pusharglist 1 ........................... <gGame.DynamicRBList>
+  [ 22] objcall 233 ............................. <gGame.DynamicRBList.duplicate()>
+  [ 24] setlocal 0 .............................. tList = gGame.DynamicRBList.duplicate()
+  [ 26] jmp [ 77]
+  [ 29] getparam 4 .............................. <tParent>
+  [ 31] getobjprop 236 .......................... <tParent.userData>
+  [ 33] setlocal 1 .............................. tUD = tParent.userData
+  [ 35] getlocal 1 .............................. <tUD>
+  [ 37] pushsymb 237 ............................ <#Obstacles>
+  [ 39] pusharglist 2 ........................... <tUD, #Obstacles>
+  [ 41] objcall 105 ............................. <tUD[#Obstacles]>
+  [ 43] pusharglist 1 ........................... <tUD[#Obstacles]>
+  [ 45] extcall 389 ............................. <voidp(tUD[#Obstacles])>
+  [ 48] pushzero ................................ <0>
+  [ 49] eq ...................................... <voidp(tUD[#Obstacles]) = 0>
+  [ 50] jmpifz [ 66] ............................ if voidp(tUD[#Obstacles]) = 0 then / else
+  [ 53] getlocal 1 .............................. <tUD>
+  [ 55] getchainedprop 237 ...................... <tUD.Obstacles>
+  [ 57] pusharglist 1 ........................... <tUD.Obstacles>
+  [ 59] objcall 233 ............................. <tUD.Obstacles.duplicate()>
+  [ 61] setlocal 0 .............................. tList = tUD.Obstacles.duplicate()
+  [ 63] jmp [ 77]
+  [ 66] getglobal 43 ............................ <gGame>
+  [ 68] getchainedprop 1521 ..................... <gGame.DynamicRBList>
+  [ 71] pusharglist 1 ........................... <gGame.DynamicRBList>
+  [ 73] objcall 233 ............................. <gGame.DynamicRBList.duplicate()>
+  [ 75] setlocal 0 .............................. tList = gGame.DynamicRBList.duplicate()
+  [ 77] getglobal 43 ............................ <gGame>
+  [ 79] getobjprop 137 .......................... <gGame.cars>
+  [ 81] peek 0
+  [ 83] pusharglist 1
+  [ 85] extcall 129
+  [ 87] pushint8 1
+  [ 89] peek 0
+  [ 91] peek 2
+  [ 93] lteq
+  [ 94] jmpifz [125] ............................ repeat with i in gGame.cars
+  [ 97] peek 2
+  [ 99] peek 1
+  [101] pusharglist 2
+  [103] extcall 105
+  [105] setlocal 2
+  [107] getlocal 0 .............................. <tList>
+  [109] getlocal 2 .............................. <i>
+  [111] getchainedprop 250 ...................... <i.car>
+  [113] getobjprop 1555 ......................... <i.car.PhysicsCar>
+  [116] pusharglistnoret 2 ...................... <tList, i.car.PhysicsCar>
+  [118] objcall 42 .............................. tList.add(i.car.PhysicsCar)
+  [120] pushint8 1
+  [122] add
+  [123] endrepeat [ 89]
+  [125] pop 3
+  [127] getparam 1 .............................. <tPosition>
+  [129] pushzero ................................ <0>
+  [130] pushzero ................................ <0>
+  [131] pushfloat32 4.5 ......................... <4.5>
+  [136] pusharglist 3 ........................... <0, 0, 4.5>
+  [138] extcall 212 ............................. <vector(0, 0, 4.5)>
+  [140] sub ..................................... <tPosition - vector(0, 0, 4.5)>
+  [141] setlocal 3 .............................. tOffset = tPosition - vector(0, 0, 4.5)
+  [143] pushint8 1 .............................. <1>
+  [145] setlocal 2
+  [147] getlocal 2
+  [149] getlocal 0 .............................. <tList>
+  [151] getobjprop 129 .......................... <tList.count>
+  [153] lteq
+  [154] jmpifz [481] ............................ repeat with i = 1 to tList.count
+  [157] getlocal 0 .............................. <tList>
+  [159] getlocal 2 .............................. <i>
+  [161] pusharglist 2 ........................... <tList, i>
+  [163] objcall 105 ............................. <tList[i]>
+  [165] setlocal 4 .............................. tRB = tList[i]
+  [167] getlocal 4 .............................. <tRB>
+  [169] getobjprop 235 .......................... <tRB.name>
+  [171] setlocal 5 .............................. tName = tRB.name
+  [173] getlocal 5 .............................. <tName>
+  [175] getparam 3 .............................. <tSender>
+  [177] eq ...................................... <tName = tSender>
+  [178] jmpifz [184] ............................ if tName = tSender then
+  [181] jmp [471] ............................... next repeat
+  [184] getparam 1 .............................. <tPosition>
+  [186] getlocal 4 .............................. <tRB>
+  [188] getobjprop 215 .......................... <tRB.position>
+  [190] pusharglist 2 ........................... <tPosition, tRB.position>
+  [192] objcall 1117 ............................ <tPosition.distanceTo(tRB.position)>
+  [195] setlocal 6 .............................. tDistance = tPosition.distanceTo(tRB.position)
+  [197] getlocal 6 .............................. <tDistance>
+  [199] getparam 2 .............................. <tData>
+  [201] pushint8 3 .............................. <3>
+  [203] pusharglist 2 ........................... <tData, 3>
+  [205] objcall 105 ............................. <tData[3]>
+  [207] lteq .................................... <tDistance <= tData[3]>
+  [208] jmpifz [471] ............................ if tDistance <= tData[3] then
+  [211] pushfloat32 1.0 ......................... <1.0>
+  [216] getlocal 6 .............................. <tDistance>
+  [218] getparam 2 .............................. <tData>
+  [220] pushint8 3 .............................. <3>
+  [222] pusharglist 2 ........................... <tData, 3>
+  [224] objcall 105 ............................. <tData[3]>
+  [226] div ..................................... <tDistance / tData[3]>
+  [227] sub ..................................... <1.0 - (tDistance / tData[3])>
+  [228] setlocal 7 .............................. tPerc = 1.0 - (tDistance / tData[3])
+  [230] getparam 2 .............................. <tData>
+  [232] pushint8 1 .............................. <1>
+  [234] pusharglist 2 ........................... <tData, 1>
+  [236] objcall 105 ............................. <tData[1]>
+  [238] getparam 2 .............................. <tData>
+  [240] pushint8 2 .............................. <2>
+  [242] pusharglist 2 ........................... <tData, 2>
+  [244] objcall 105 ............................. <tData[2]>
+  [246] getparam 2 .............................. <tData>
+  [248] pushint8 1 .............................. <1>
+  [250] pusharglist 2 ........................... <tData, 1>
+  [252] objcall 105 ............................. <tData[1]>
+  [254] sub ..................................... <tData[2] - tData[1]>
+  [255] getlocal 7 .............................. <tPerc>
+  [257] mul ..................................... <(tData[2] - tData[1]) * tPerc>
+  [258] add ..................................... <tData[1] + ((tData[2] - tData[1]) * tPerc)>
+  [259] setlocal 8 .............................. tDamage = tData[1] + ((tData[2] - tData[1]) * tPerc)
+  [261] getlocal 5 .............................. <tName>
+  [263] pushcons 2 .............................. <"Proxy">
+  [265] containsstr ............................. <tName contains "Proxy">
+  [266] jmpifz [319] ............................ if tName contains "Proxy" then / else
+  [269] getglobal 43 ............................ <gGame>
+  [271] pushsymb 137 ............................ <#cars>
+  [273] getlocal 5 .............................. <tName>
+  [275] pushsymb 68 ............................. <#char>
+  [277] pushint8 1 .............................. <1>
+  [279] getlocal 5 .............................. <tName>
+  [281] getobjprop 69 ........................... <tName.length>
+  [283] pushint8 5 .............................. <5>
+  [285] sub ..................................... <tName.length - 5>
+  [286] pusharglist 4 ........................... <tName, #char, 1, tName.length - 5>
+  [288] objcall 70 .............................. <tName.char[1..tName.length - 5]>
+  [290] pusharglist 1 ........................... <tName.char[1..tName.length - 5]>
+  [292] extcall 88 .............................. <symbol(tName.char[1..tName.length - 5])>
+  [294] pusharglist 3 ........................... <gGame, #cars, symbol(tName.char[1..tName.length - 5])>
+  [296] objcall 102 ............................. <gGame.cars[symbol(tName.char[1..tName.length - 5])]>
+  [298] getchainedprop 250 ...................... <gGame.cars[symbol(tName.char[1..tName.length - 5])].car>
+  [300] getchainedprop 251 ...................... <gGame.cars[symbol(tName.char[1..tName.length - 5])].car.impacts>
+  [302] getlocal 8 .............................. <tDamage>
+  [304] pushsymb 1545 ........................... <#areaDamage>
+  [307] getparam 3 .............................. <tSender>
+  [309] pusharglist 3 ........................... <[tDamage, #areaDamage, tSender]>
+  [311] pushlist ................................ <[tDamage, #areaDamage, tSender]>
+  [312] pusharglistnoret 2 ...................... <gGame.cars[symbol(tName.char[1..tName.length - 5])].car.impacts, [tDamage, #areaDamage, tSender]>
+  [314] objcall 42 .............................. gGame.cars[symbol(tName.char[1..tName.length - 5])].car.impacts.add([tDamage, #areaDamage, tSender])
+  [316] jmp [361]
+  [319] getglobal 43 ............................ <gGame>
+  [321] getchainedprop 64 ....................... <gGame.member>
+  [323] getlocal 5 .............................. <tName>
+  [325] pusharglist 2 ........................... <gGame.member, tName>
+  [327] objcall 71 .............................. <gGame.member.model(tName)>
+  [329] getchainedprop 236 ...................... <gGame.member.model(tName).userData>
+  [331] getobjprop 1556 ......................... <gGame.member.model(tName).userData.Health>
+  [334] pusharglist 1 ........................... <gGame.member.model(tName).userData.Health>
+  [336] extcall 389 ............................. <voidp(gGame.member.model(tName).userData.Health)>
+  [339] pushzero ................................ <0>
+  [340] eq ...................................... <voidp(gGame.member.model(tName).userData.Health) = 0>
+  [341] jmpifz [361] ............................ if voidp(gGame.member.model(tName).userData.Health) = 0 then
+  [344] getglobal 43 ............................ <gGame>
+  [346] getchainedprop 254 ...................... <gGame.AreaDamageList>
+  [348] getlocal 4 .............................. <tRB>
+  [350] getlocal 8 .............................. <tDamage>
+  [352] getparam 3 .............................. <tSender>
+  [354] pusharglist 3 ........................... <[tRB, tDamage, tSender]>
+  [356] pushlist ................................ <[tRB, tDamage, tSender]>
+  [357] pusharglistnoret 2 ...................... <gGame.AreaDamageList, [tRB, tDamage, tSender]>
+  [359] objcall 42 .............................. gGame.AreaDamageList.add([tRB, tDamage, tSender])
+  [361] getlocal 4 .............................. <tRB>
+  [363] getobjprop 215 .......................... <tRB.position>
+  [365] getlocal 3 .............................. <tOffset>
+  [367] sub ..................................... <tRB.position - tOffset>
+  [368] setlocal 9 .............................. tVector = tRB.position - tOffset
+  [370] getlocal 9 .............................. <tVector>
+  [372] pusharglistnoret 1 ...................... <tVector>
+  [374] objcall 1179 ............................ tVector.normalize()
+  [377] getlocal 5 .............................. <tName>
+  [379] pushcons 2 .............................. <"Proxy">
+  [381] containsstr ............................. <tName contains "Proxy">
+  [382] jmpifz [395] ............................ if tName contains "Proxy" then / else
+  [385] getlocal 4 .............................. <tRB>
+  [387] getobjprop 1373 ......................... <tRB.mass>
+  [390] setlocal 10 ............................. tMass = tRB.mass
+  [392] jmp [405]
+  [395] getlocal 4 .............................. <tRB>
+  [397] getobjprop 1373 ......................... <tRB.mass>
+  [400] pushint8 3 .............................. <3>
+  [402] mul ..................................... <tRB.mass * 3>
+  [403] setlocal 10 ............................. tMass = tRB.mass * 3
+  [405] getlocal 9 .............................. <tVector>
+  [407] getlocal 10 ............................. <tMass>
+  [409] getlocal 7 .............................. <tPerc>
+  [411] mul ..................................... <tMass * tPerc>
+  [412] mul ..................................... <tVector * (tMass * tPerc)>
+  [413] setlocal 11 ............................. tLinVector = tVector * (tMass * tPerc)
+  [415] getlocal 11 ............................. <tLinVector>
+  [417] getlocal 11 ............................. <tLinVector>
+  [419] getobjprop 1190 ......................... <tLinVector.z>
+  [422] pushint8 2 .............................. <2>
+  [424] mul ..................................... <tLinVector.z * 2>
+  [425] setobjprop 1190 ......................... tLinVector.z = tLinVector.z * 2
+  [428] getlocal 4 .............................. <tRB>
+  [430] getlocal 11 ............................. <tLinVector>
+  [432] pusharglistnoret 2 ...................... <tRB, tLinVector>
+  [434] objcall 1393 ............................ tRB.applyLinearImpulse(tLinVector)
+  [437] getlocal 9 .............................. <tVector>
+  [439] getobjprop 557 .......................... <tVector.x>
+  [442] pushint16 10000 ......................... <10000>
+  [445] mul ..................................... <tVector.x * 10000>
+  [446] getlocal 9 .............................. <tVector>
+  [448] getobjprop 1189 ......................... <tVector.y>
+  [451] pushint16 10000 ......................... <10000>
+  [454] mul ..................................... <tVector.y * 10000>
+  [455] pushzero ................................ <0>
+  [456] pusharglist 3 ........................... <tVector.x * 10000, tVector.y * 10000, 0>
+  [458] extcall 212 ............................. <vector(tVector.x * 10000, tVector.y * 10000, 0)>
+  [460] setlocal 12 ............................. tTest = vector(tVector.x * 10000, tVector.y * 10000, 0)
+  [462] getlocal 4 .............................. <tRB>
+  [464] getlocal 12 ............................. <tTest>
+  [466] pusharglistnoret 2 ...................... <tRB, tTest>
+  [468] objcall 1557 ............................ tRB.applyAngularImpulse(tTest)
+  [471] pushint8 1
+  [473] getlocal 2
+  [475] add
+  [476] setlocal 2
+  [478] endrepeat [147]
+  [481] ret
+end

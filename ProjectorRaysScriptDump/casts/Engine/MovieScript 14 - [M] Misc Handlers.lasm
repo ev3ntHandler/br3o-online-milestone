@@ -1,0 +1,1264 @@
+global gGame
+
+on GetEmptyChannel t1, t2
+  [  0] getparam 0 .............................. <t1>
+  [  2] pusharglist 0 ........................... <>
+  [  4] extcall 40 .............................. <VOID>
+  [  6] eq ...................................... <t1 = VOID>
+  [  7] jmpifz [ 14] ............................ if t1 = VOID then
+  [ 10] pushint8 1 .............................. <1>
+  [ 12] setparam 0 .............................. t1 = 1
+  [ 14] getparam 1 .............................. <t2>
+  [ 16] pusharglist 0 ........................... <>
+  [ 18] extcall 40 .............................. <VOID>
+  [ 20] eq ...................................... <t2 = VOID>
+  [ 21] jmpifz [ 31] ............................ if t2 = VOID then
+  [ 24] gettoplevelprop 33 ...................... <_movie>
+  [ 26] getobjprop 486 .......................... <_movie.lastChannel>
+  [ 29] setparam 1 .............................. t2 = _movie.lastChannel
+  [ 31] getparam 0 .............................. <t1>
+  [ 33] setlocal 0
+  [ 35] getlocal 0
+  [ 37] getparam 1 .............................. <t2>
+  [ 39] lteq
+  [ 40] jmpifz [ 72] ............................ repeat with i = t1 to t2
+  [ 43] getlocal 0 .............................. <i>
+  [ 45] pusharglist 1 ........................... <i>
+  [ 47] extcall 487 ............................. <sprite(i)>
+  [ 50] getchainedprop 64 ....................... <sprite(i).member>
+  [ 52] getobjprop 235 .......................... <sprite(i).member.name>
+  [ 54] pushcons 0 .............................. <EMPTY>
+  [ 56] eq ...................................... <sprite(i).member.name = EMPTY>
+  [ 57] jmpifz [ 63] ............................ if sprite(i).member.name = EMPTY then
+  [ 60] jmp [ 72] ............................... exit repeat
+  [ 63] pushint8 1
+  [ 65] getlocal 0
+  [ 67] add
+  [ 68] setlocal 0
+  [ 70] endrepeat [ 35]
+  [ 72] getlocal 0 .............................. <i>
+  [ 74] pusharglistnoret 1 ...................... <i>
+  [ 76] extcall 52 .............................. return i
+  [ 78] ret
+end
+
+on GetStageSize me
+  [  0] gettoplevelprop 33 ...................... <_movie>
+  [  2] getchainedprop 455 ...................... <_movie.stage>
+  [  5] getobjprop 320 .......................... <_movie.stage.rect>
+  [  8] setlocal 0 .............................. prect = _movie.stage.rect
+  [ 10] getlocal 0 .............................. <prect>
+  [ 12] pushint8 3 .............................. <3>
+  [ 14] pusharglist 2 ........................... <prect, 3>
+  [ 16] objcall 105 ............................. <prect[3]>
+  [ 18] getlocal 0 .............................. <prect>
+  [ 20] pushint8 1 .............................. <1>
+  [ 22] pusharglist 2 ........................... <prect, 1>
+  [ 24] objcall 105 ............................. <prect[1]>
+  [ 26] sub ..................................... <prect[3] - prect[1]>
+  [ 27] setlocal 1 .............................. pwidth = prect[3] - prect[1]
+  [ 29] getlocal 0 .............................. <prect>
+  [ 31] pushint8 4 .............................. <4>
+  [ 33] pusharglist 2 ........................... <prect, 4>
+  [ 35] objcall 105 ............................. <prect[4]>
+  [ 37] getlocal 0 .............................. <prect>
+  [ 39] pushint8 2 .............................. <2>
+  [ 41] pusharglist 2 ........................... <prect, 2>
+  [ 43] objcall 105 ............................. <prect[2]>
+  [ 45] sub ..................................... <prect[4] - prect[2]>
+  [ 46] setlocal 2 .............................. pheight = prect[4] - prect[2]
+  [ 48] getlocal 1 .............................. <pwidth>
+  [ 50] getlocal 2 .............................. <pheight>
+  [ 52] pusharglist 2 ........................... <[pwidth, pheight]>
+  [ 54] pushlist ................................ <[pwidth, pheight]>
+  [ 55] setlocal 3 .............................. pStageSize = [pwidth, pheight]
+  [ 57] getlocal 3 .............................. <pStageSize>
+  [ 59] pusharglistnoret 1 ...................... <pStageSize>
+  [ 61] extcall 52 .............................. return pStageSize
+  [ 63] ret
+end
+
+on GetExternalCasts me
+  [  0] gettoplevelprop 33 ...................... <_movie>
+  [  2] pushsymb 58 ............................. <#castLib>
+  [  4] pusharglist 2 ........................... <_movie, #castLib>
+  [  6] objcall 129 ............................. <_movie.castLib.count>
+  [  8] setlocal 0 .............................. pCount = _movie.castLib.count
+  [ 10] pusharglist 0 ........................... <[]>
+  [ 12] pushlist ................................ <[]>
+  [ 13] setlocal 1 .............................. PList = []
+  [ 15] pushint8 1 .............................. <1>
+  [ 17] setlocal 2
+  [ 19] getlocal 2
+  [ 21] getlocal 0 .............................. <pCount>
+  [ 23] lteq
+  [ 24] jmpifz [101] ............................ repeat with i = 1 to pCount
+  [ 27] gettoplevelprop 33 ...................... <_movie>
+  [ 29] pushsymb 58 ............................. <#castLib>
+  [ 31] getlocal 2 .............................. <i>
+  [ 33] pusharglist 3 ........................... <_movie, #castLib, i>
+  [ 35] objcall 102 ............................. <_movie.castLib[i]>
+  [ 37] getobjprop 59 ........................... <_movie.castLib[i].fileName>
+  [ 39] setlocal 3 .............................. pFilename = _movie.castLib[i].fileName
+  [ 41] getlocal 3 .............................. <pFilename>
+  [ 43] pushcons 1 .............................. <".dir">
+  [ 45] containsstr ............................. <pFilename contains ".dir">
+  [ 46] jmpifz [ 52] ............................ if pFilename contains ".dir" then
+  [ 49] jmp [ 92] ............................... next repeat
+  [ 52] getlocal 3 .............................. <pFilename>
+  [ 54] pushcons 2 .............................. <".dcr">
+  [ 56] containsstr ............................. <pFilename contains ".dcr">
+  [ 57] jmpifz [ 63] ............................ if pFilename contains ".dcr" then
+  [ 60] jmp [ 92] ............................... next repeat
+  [ 63] getlocal 3 .............................. <pFilename>
+  [ 65] pushcons 3 .............................. <".dxr">
+  [ 67] containsstr ............................. <pFilename contains ".dxr">
+  [ 68] jmpifz [ 74] ............................ if pFilename contains ".dxr" then
+  [ 71] jmp [ 92] ............................... next repeat
+  [ 74] getlocal 1 .............................. <PList>
+  [ 76] gettoplevelprop 33 ...................... <_movie>
+  [ 78] pushsymb 58 ............................. <#castLib>
+  [ 80] getlocal 2 .............................. <i>
+  [ 82] pusharglist 3 ........................... <_movie, #castLib, i>
+  [ 84] objcall 102 ............................. <_movie.castLib[i]>
+  [ 86] getobjprop 235 .......................... <_movie.castLib[i].name>
+  [ 88] pusharglistnoret 2 ...................... <PList, _movie.castLib[i].name>
+  [ 90] objcall 42 .............................. PList.add(_movie.castLib[i].name)
+  [ 92] pushint8 1
+  [ 94] getlocal 2
+  [ 96] add
+  [ 97] setlocal 2
+  [ 99] endrepeat [ 19]
+  [101] getlocal 1 .............................. <PList>
+  [103] pusharglistnoret 1 ...................... <PList>
+  [105] extcall 52 .............................. return PList
+  [107] ret
+end
+
+on GetInternalCasts me
+  [  0] gettoplevelprop 33 ...................... <_movie>
+  [  2] pushsymb 58 ............................. <#castLib>
+  [  4] pusharglist 2 ........................... <_movie, #castLib>
+  [  6] objcall 129 ............................. <_movie.castLib.count>
+  [  8] setlocal 0 .............................. pCount = _movie.castLib.count
+  [ 10] pusharglist 0 ........................... <[]>
+  [ 12] pushlist ................................ <[]>
+  [ 13] setlocal 1 .............................. PList = []
+  [ 15] pushint8 1 .............................. <1>
+  [ 17] setlocal 2
+  [ 19] getlocal 2
+  [ 21] getlocal 0 .............................. <pCount>
+  [ 23] lteq
+  [ 24] jmpifz [128] ............................ repeat with i = 1 to pCount
+  [ 27] gettoplevelprop 33 ...................... <_movie>
+  [ 29] pushsymb 58 ............................. <#castLib>
+  [ 31] getlocal 2 .............................. <i>
+  [ 33] pusharglist 3 ........................... <_movie, #castLib, i>
+  [ 35] objcall 102 ............................. <_movie.castLib[i]>
+  [ 37] getobjprop 59 ........................... <_movie.castLib[i].fileName>
+  [ 39] setlocal 3 .............................. pFilename = _movie.castLib[i].fileName
+  [ 41] getlocal 3 .............................. <pFilename>
+  [ 43] pushcons 1 .............................. <".dir">
+  [ 45] containsstr ............................. <pFilename contains ".dir">
+  [ 46] jmpifz [ 67] ............................ if pFilename contains ".dir" then
+  [ 49] getlocal 1 .............................. <PList>
+  [ 51] gettoplevelprop 33 ...................... <_movie>
+  [ 53] pushsymb 58 ............................. <#castLib>
+  [ 55] getlocal 2 .............................. <i>
+  [ 57] pusharglist 3 ........................... <_movie, #castLib, i>
+  [ 59] objcall 102 ............................. <_movie.castLib[i]>
+  [ 61] getobjprop 235 .......................... <_movie.castLib[i].name>
+  [ 63] pusharglistnoret 2 ...................... <PList, _movie.castLib[i].name>
+  [ 65] objcall 42 .............................. PList.add(_movie.castLib[i].name)
+  [ 67] getlocal 3 .............................. <pFilename>
+  [ 69] pushcons 2 .............................. <".dcr">
+  [ 71] containsstr ............................. <pFilename contains ".dcr">
+  [ 72] jmpifz [ 93] ............................ if pFilename contains ".dcr" then
+  [ 75] getlocal 1 .............................. <PList>
+  [ 77] gettoplevelprop 33 ...................... <_movie>
+  [ 79] pushsymb 58 ............................. <#castLib>
+  [ 81] getlocal 2 .............................. <i>
+  [ 83] pusharglist 3 ........................... <_movie, #castLib, i>
+  [ 85] objcall 102 ............................. <_movie.castLib[i]>
+  [ 87] getobjprop 235 .......................... <_movie.castLib[i].name>
+  [ 89] pusharglistnoret 2 ...................... <PList, _movie.castLib[i].name>
+  [ 91] objcall 42 .............................. PList.add(_movie.castLib[i].name)
+  [ 93] getlocal 3 .............................. <pFilename>
+  [ 95] pushcons 3 .............................. <".dxr">
+  [ 97] containsstr ............................. <pFilename contains ".dxr">
+  [ 98] jmpifz [119] ............................ if pFilename contains ".dxr" then
+  [101] getlocal 1 .............................. <PList>
+  [103] gettoplevelprop 33 ...................... <_movie>
+  [105] pushsymb 58 ............................. <#castLib>
+  [107] getlocal 2 .............................. <i>
+  [109] pusharglist 3 ........................... <_movie, #castLib, i>
+  [111] objcall 102 ............................. <_movie.castLib[i]>
+  [113] getobjprop 235 .......................... <_movie.castLib[i].name>
+  [115] pusharglistnoret 2 ...................... <PList, _movie.castLib[i].name>
+  [117] objcall 42 .............................. PList.add(_movie.castLib[i].name)
+  [119] pushint8 1
+  [121] getlocal 2
+  [123] add
+  [124] setlocal 2
+  [126] endrepeat [ 19]
+  [128] getlocal 1 .............................. <PList>
+  [130] pusharglistnoret 1 ...................... <PList>
+  [132] extcall 52 .............................. return PList
+  [134] ret
+end
+
+on ShowCastNames me
+  [  0] gettoplevelprop 33 ...................... <_movie>
+  [  2] pushsymb 58 ............................. <#castLib>
+  [  4] pusharglist 2 ........................... <_movie, #castLib>
+  [  6] objcall 129 ............................. <_movie.castLib.count>
+  [  8] setlocal 0 .............................. pCount = _movie.castLib.count
+  [ 10] pushint8 1 .............................. <1>
+  [ 12] setlocal 1
+  [ 14] getlocal 1
+  [ 16] getlocal 0 .............................. <pCount>
+  [ 18] lteq
+  [ 19] jmpifz [ 64] ............................ repeat with i = 1 to pCount
+  [ 22] gettoplevelprop 33 ...................... <_movie>
+  [ 24] getlocal 1 .............................. <i>
+  [ 26] pusharglist 2 ........................... <_movie, i>
+  [ 28] objcall 58 .............................. <_movie.castLib(i)>
+  [ 30] getobjprop 235 .......................... <_movie.castLib(i).name>
+  [ 32] setlocal 2 .............................. pName = _movie.castLib(i).name
+  [ 34] gettoplevelprop 33 ...................... <_movie>
+  [ 36] getlocal 1 .............................. <i>
+  [ 38] pusharglist 2 ........................... <_movie, i>
+  [ 40] objcall 58 .............................. <_movie.castLib(i)>
+  [ 42] getobjprop 59 ........................... <_movie.castLib(i).fileName>
+  [ 44] setlocal 3 .............................. pFilename = _movie.castLib(i).fileName
+  [ 46] getlocal 2 .............................. <pName>
+  [ 48] getlocal 3 .............................. <pFilename>
+  [ 50] joinpadstr .............................. <pName && pFilename>
+  [ 51] pusharglistnoret 1 ...................... <pName && pFilename>
+  [ 53] extcall 57 .............................. put pName && pFilename
+  [ 55] pushint8 1
+  [ 57] getlocal 1
+  [ 59] add
+  [ 60] setlocal 1
+  [ 62] endrepeat [ 14]
+  [ 64] ret
+end
+
+on EncodeAndSaveData tObject, tEncode
+  [  0] getparam 1 .............................. <tEncode>
+  [  2] pushint8 1 .............................. <1>
+  [  4] eq ...................................... <tEncode = 1>
+  [  5] jmpifz [ 19] ............................ if tEncode = 1 then / else
+  [  8] getparam 0 .............................. <tObject>
+  [ 10] pusharglist 1 ........................... <tObject>
+  [ 12] localcall 7 ............................. <EncodeHard(tObject)>
+  [ 14] setlocal 0 .............................. pString = EncodeHard(tObject)
+  [ 16] jmp [ 27]
+  [ 19] getparam 0 .............................. <tObject>
+  [ 21] pusharglist 1 ........................... <tObject>
+  [ 23] extcall 67 .............................. <string(tObject)>
+  [ 25] setlocal 0 .............................. pString = string(tObject)
+  [ 27] gettoplevelprop 387 ..................... <_player>
+  [ 30] getglobal 43 ............................ <gGame>
+  [ 32] getobjprop 452 .......................... <gGame.PrefFile>
+  [ 35] getlocal 0 .............................. <pString>
+  [ 37] pusharglist 3 ........................... <_player, gGame.PrefFile, pString>
+  [ 39] objcall 498 ............................. <_player.setPref(gGame.PrefFile, pString)>
+  [ 42] setlocal 1 .............................. tResult = _player.setPref(gGame.PrefFile, pString)
+  [ 44] getlocal 1 .............................. <tResult>
+  [ 46] pusharglistnoret 1 ...................... <tResult>
+  [ 48] extcall 52 .............................. return tResult
+  [ 50] ret
+end
+
+on DecodeAndRetrieveData tString, tDecode
+  [  0] getparam 1 .............................. <tDecode>
+  [  2] pushint8 1 .............................. <1>
+  [  4] eq ...................................... <tDecode = 1>
+  [  5] jmpifz [ 19] ............................ if tDecode = 1 then / else
+  [  8] getparam 0 .............................. <tString>
+  [ 10] pusharglist 1 ........................... <tString>
+  [ 12] localcall 8 ............................. <DecodeHard(tString)>
+  [ 14] setlocal 0 .............................. pPropList = DecodeHard(tString)
+  [ 16] jmp [ 42]
+  [ 19] getparam 0 .............................. <tString>
+  [ 21] setlocal 0 .............................. pPropList = tString
+  [ 23] getlocal 0 .............................. <pPropList>
+  [ 25] getobjprop 122 .......................... <pPropList.ilk>
+  [ 27] pushsymb 67 ............................. <#string>
+  [ 29] eq ...................................... <pPropList.ilk = #string>
+  [ 30] jmpifz [ 42] ............................ if pPropList.ilk = #string then
+  [ 33] getlocal 0 .............................. <pPropList>
+  [ 35] pusharglist 1 ........................... <pPropList>
+  [ 37] extcall 503 ............................. <value(pPropList)>
+  [ 40] setlocal 0 .............................. pPropList = value(pPropList)
+  [ 42] getlocal 0 .............................. <pPropList>
+  [ 44] pusharglistnoret 1 ...................... <pPropList>
+  [ 46] extcall 52 .............................. return pPropList
+  [ 48] ret
+end
+
+on EncodeHard tObject
+  [  0] getparam 0 .............................. <tObject>
+  [  2] pusharglist 1 ........................... <tObject>
+  [  4] extcall 67 .............................. <string(tObject)>
+  [  6] setlocal 0 .............................. pString = string(tObject)
+  [  8] getlocal 0 .............................. <pString>
+  [ 10] getobjprop 69 ........................... <pString.length>
+  [ 12] setlocal 1 .............................. pLength = pString.length
+  [ 14] pushcons 0 .............................. <EMPTY>
+  [ 16] setlocal 2 .............................. pEncodedString = EMPTY
+  [ 18] pushint8 1 .............................. <1>
+  [ 20] setlocal 3
+  [ 22] getlocal 3
+  [ 24] getlocal 1 .............................. <pLength>
+  [ 26] lteq
+  [ 27] jmpifz [ 94] ............................ repeat with i = 1 to pLength
+  [ 30] getlocal 0 .............................. <pString>
+  [ 32] pushsymb 68 ............................. <#char>
+  [ 34] getlocal 3 .............................. <i>
+  [ 36] pusharglist 3 ........................... <pString, #char, i>
+  [ 38] objcall 70 .............................. <pString.char[i]>
+  [ 40] setlocal 4 .............................. pChar = pString.char[i]
+  [ 42] getlocal 4 .............................. <pChar>
+  [ 44] getobjprop 506 .......................... <pChar.charToNum>
+  [ 47] pusharglist 1 ........................... <pChar.charToNum>
+  [ 49] extcall 67 .............................. <string(pChar.charToNum)>
+  [ 51] setlocal 5 .............................. pCharString = string(pChar.charToNum)
+  [ 53] getlocal 5 .............................. <pCharString>
+  [ 55] getobjprop 69 ........................... <pCharString.length>
+  [ 57] pushint8 2 .............................. <2>
+  [ 59] eq ...................................... <pCharString.length = 2>
+  [ 60] jmpifz [ 70] ............................ if pCharString.length = 2 then
+  [ 63] pushcons 4 .............................. <"0">
+  [ 65] getlocal 5 .............................. <pCharString>
+  [ 67] joinstr ................................. <"0" & pCharString>
+  [ 68] setlocal 5 .............................. pCharString = "0" & pCharString
+  [ 70] getlocal 5 .............................. <pCharString>
+  [ 72] pusharglist 1 ........................... <pCharString>
+  [ 74] localcall 9 ............................. <ConvertIntegerToChar(pCharString)>
+  [ 76] setlocal 5 .............................. pCharString = ConvertIntegerToChar(pCharString)
+  [ 78] getlocal 2 .............................. <pEncodedString>
+  [ 80] getlocal 5 .............................. <pCharString>
+  [ 82] joinstr ................................. <pEncodedString & pCharString>
+  [ 83] setlocal 2 .............................. pEncodedString = pEncodedString & pCharString
+  [ 85] pushint8 1
+  [ 87] getlocal 3
+  [ 89] add
+  [ 90] setlocal 3
+  [ 92] endrepeat [ 22]
+  [ 94] getlocal 2 .............................. <pEncodedString>
+  [ 96] pusharglistnoret 1 ...................... <pEncodedString>
+  [ 98] extcall 52 .............................. return pEncodedString
+  [100] ret
+end
+
+on DecodeHard tString
+  [  0] getparam 0 .............................. <tString>
+  [  2] getobjprop 122 .......................... <tString.ilk>
+  [  4] pushsymb 67 ............................. <#string>
+  [  6] nteq .................................... <tString.ilk <> #string>
+  [  7] jmpifz [ 18] ............................ if tString.ilk <> #string then
+  [ 10] pushcons 5 .............................. <"No string to 'hard decode'">
+  [ 12] pusharglistnoret 1 ...................... <"No string to 'hard decode'">
+  [ 14] extcall 511 ............................. ShowError("No string to 'hard decode'")
+  [ 17] ret ..................................... exit
+  [ 18] pushcons 0 .............................. <EMPTY>
+  [ 20] setlocal 0 .............................. pPropListString = EMPTY
+  [ 22] pushcons 6 .............................. <"q">
+  [ 24] pushcons 7 .............................. <"w">
+  [ 26] pushcons 8 .............................. <"e">
+  [ 28] pushcons 9 .............................. <"r">
+  [ 30] pushcons 10 ............................. <"t">
+  [ 32] pushcons 11 ............................. <"y">
+  [ 34] pushcons 12 ............................. <"u">
+  [ 36] pushcons 13 ............................. <"i">
+  [ 38] pushcons 14 ............................. <"o">
+  [ 40] pushcons 15 ............................. <"p">
+  [ 42] pusharglist 10 .......................... <["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"]>
+  [ 44] pushlist ................................ <["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"]>
+  [ 45] setlocal 1 .............................. pIntList = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"]
+  [ 47] getparam 0 .............................. <tString>
+  [ 49] getobjprop 69 ........................... <tString.length>
+  [ 51] pushint8 3 .............................. <3>
+  [ 53] div ..................................... <tString.length / 3>
+  [ 54] setlocal 2 .............................. pCount = tString.length / 3
+  [ 56] pushint8 1 .............................. <1>
+  [ 58] setlocal 3 .............................. pCounter = 1
+  [ 60] pushint8 1 .............................. <1>
+  [ 62] setlocal 4
+  [ 64] getlocal 4
+  [ 66] getlocal 2 .............................. <pCount>
+  [ 68] lteq
+  [ 69] jmpifz [211] ............................ repeat with i = 1 to pCount
+  [ 72] getlocal 3 .............................. <pCounter>
+  [ 74] setlocal 5 .............................. pCnt1 = pCounter
+  [ 76] getlocal 3 .............................. <pCounter>
+  [ 78] pushint8 2 .............................. <2>
+  [ 80] add ..................................... <pCounter + 2>
+  [ 81] setlocal 6 .............................. pCnt2 = pCounter + 2
+  [ 83] getparam 0 .............................. <tString>
+  [ 85] pushsymb 68 ............................. <#char>
+  [ 87] getlocal 5 .............................. <pCnt1>
+  [ 89] getlocal 6 .............................. <pCnt2>
+  [ 91] pusharglist 4 ........................... <tString, #char, pCnt1, pCnt2>
+  [ 93] objcall 70 .............................. <tString.char[pCnt1..pCnt2]>
+  [ 95] setlocal 7 .............................. pCharSet = tString.char[pCnt1..pCnt2]
+  [ 97] pushcons 0 .............................. <EMPTY>
+  [ 99] setlocal 8 .............................. pIntCharSet = EMPTY
+  [101] pushint8 1 .............................. <1>
+  [103] setlocal 9
+  [105] getlocal 9
+  [107] pushint8 3 .............................. <3>
+  [109] lteq
+  [110] jmpifz [170] ............................ repeat with j = 1 to 3
+  [113] getlocal 7 .............................. <pCharSet>
+  [115] pushsymb 68 ............................. <#char>
+  [117] getlocal 9 .............................. <j>
+  [119] pusharglist 3 ........................... <pCharSet, #char, j>
+  [121] objcall 70 .............................. <pCharSet.char[j]>
+  [123] setlocal 10 ............................. pChar = pCharSet.char[j]
+  [125] getlocal 1 .............................. <pIntList>
+  [127] getlocal 10 ............................. <pChar>
+  [129] pusharglist 2 ........................... <pIntList, pChar>
+  [131] objcall 166 ............................. <pIntList.getPos(pChar)>
+  [133] setlocal 11 ............................. pValue = pIntList.getPos(pChar)
+  [135] getlocal 11 ............................. <pValue>
+  [137] pushint8 10 ............................. <10>
+  [139] eq ...................................... <pValue = 10>
+  [140] jmpifz [146] ............................ if pValue = 10 then
+  [143] pushzero ................................ <0>
+  [144] setlocal 11 ............................. pValue = 0
+  [146] getlocal 11 ............................. <pValue>
+  [148] pusharglist 1 ........................... <pValue>
+  [150] extcall 67 .............................. <string(pValue)>
+  [152] setlocal 12 ............................. pStringValue = string(pValue)
+  [154] getlocal 8 .............................. <pIntCharSet>
+  [156] getlocal 12 ............................. <pStringValue>
+  [158] joinstr ................................. <pIntCharSet & pStringValue>
+  [159] setlocal 8 .............................. pIntCharSet = pIntCharSet & pStringValue
+  [161] pushint8 1
+  [163] getlocal 9
+  [165] add
+  [166] setlocal 9
+  [168] endrepeat [105]
+  [170] getlocal 8 .............................. <pIntCharSet>
+  [172] pusharglist 1 ........................... <pIntCharSet>
+  [174] extcall 503 ............................. <value(pIntCharSet)>
+  [177] setlocal 13 ............................. pNum = value(pIntCharSet)
+  [179] getlocal 13 ............................. <pNum>
+  [181] pusharglist 1 ........................... <pNum>
+  [183] extcall 512 ............................. <numToChar(pNum)>
+  [186] setlocal 14 ............................. pFinalCHar = numToChar(pNum)
+  [188] getlocal 0 .............................. <pPropListString>
+  [190] getlocal 14 ............................. <pFinalCHar>
+  [192] joinstr ................................. <pPropListString & pFinalCHar>
+  [193] setlocal 0 .............................. pPropListString = pPropListString & pFinalCHar
+  [195] getlocal 3 .............................. <pCounter>
+  [197] pushint8 3 .............................. <3>
+  [199] add ..................................... <pCounter + 3>
+  [200] setlocal 3 .............................. pCounter = pCounter + 3
+  [202] pushint8 1
+  [204] getlocal 4
+  [206] add
+  [207] setlocal 4
+  [209] endrepeat [ 64]
+  [211] getlocal 0 .............................. <pPropListString>
+  [213] pusharglist 1 ........................... <pPropListString>
+  [215] extcall 503 ............................. <value(pPropListString)>
+  [218] setlocal 15 ............................. pPropList = value(pPropListString)
+  [220] getlocal 15 ............................. <pPropList>
+  [222] pusharglistnoret 1 ...................... <pPropList>
+  [224] extcall 52 .............................. return pPropList
+  [226] ret
+end
+
+on ConvertIntegerToChar tString
+  [  0] pushcons 16 ............................. <"asdfghjkl">
+  [  2] setlocal 0 .............................. pZeroList = "asdfghjkl"
+  [  4] pushcons 17 ............................. <"qwertyuiop">
+  [  6] setlocal 1 .............................. pIntList = "qwertyuiop"
+  [  8] pushcons 0 .............................. <EMPTY>
+  [ 10] setlocal 2 .............................. pNewString = EMPTY
+  [ 12] getparam 0 .............................. <tString>
+  [ 14] getobjprop 69 ........................... <tString.length>
+  [ 16] setlocal 3 .............................. pCount = tString.length
+  [ 18] pushint8 1 .............................. <1>
+  [ 20] setlocal 4
+  [ 22] getlocal 4
+  [ 24] getlocal 3 .............................. <pCount>
+  [ 26] lteq
+  [ 27] jmpifz [137] ............................ repeat with i = 1 to pCount
+  [ 30] getparam 0 .............................. <tString>
+  [ 32] pushsymb 68 ............................. <#char>
+  [ 34] getlocal 4 .............................. <i>
+  [ 36] pusharglist 3 ........................... <tString, #char, i>
+  [ 38] objcall 70 .............................. <tString.char[i]>
+  [ 40] pusharglist 1 ........................... <tString.char[i]>
+  [ 42] extcall 503 ............................. <value(tString.char[i])>
+  [ 45] setlocal 5 .............................. pValue = value(tString.char[i])
+  [ 47] getlocal 4 .............................. <i>
+  [ 49] pushint8 1 .............................. <1>
+  [ 51] eq ...................................... <i = 1>
+  [ 52] jmpifz [ 98] ............................ if i = 1 then / else
+  [ 55] getlocal 5 .............................. <pValue>
+  [ 57] pushzero ................................ <0>
+  [ 58] eq ...................................... <pValue = 0>
+  [ 59] jmpifz [ 83] ............................ if pValue = 0 then / else
+  [ 62] getlocal 0 .............................. <pZeroList>
+  [ 64] pushsymb 68 ............................. <#char>
+  [ 66] pushint8 1 .............................. <1>
+  [ 68] pushint8 9 .............................. <9>
+  [ 70] pusharglist 2 ........................... <1, 9>
+  [ 72] extcall 176 ............................. <random(1, 9)>
+  [ 74] pusharglist 3 ........................... <pZeroList, #char, random(1, 9)>
+  [ 76] objcall 70 .............................. <pZeroList.char[random(1, 9)]>
+  [ 78] setlocal 6 .............................. pNewChar = pZeroList.char[random(1, 9)]
+  [ 80] jmp [ 95]
+  [ 83] getlocal 1 .............................. <pIntList>
+  [ 85] pushsymb 68 ............................. <#char>
+  [ 87] getlocal 5 .............................. <pValue>
+  [ 89] pusharglist 3 ........................... <pIntList, #char, pValue>
+  [ 91] objcall 70 .............................. <pIntList.char[pValue]>
+  [ 93] setlocal 6 .............................. pNewChar = pIntList.char[pValue]
+  [ 95] jmp [121]
+  [ 98] getlocal 5 .............................. <pValue>
+  [100] pushzero ................................ <0>
+  [101] eq ...................................... <pValue = 0>
+  [102] jmpifz [109] ............................ if pValue = 0 then
+  [105] pushint8 10 ............................. <10>
+  [107] setlocal 5 .............................. pValue = 10
+  [109] getlocal 1 .............................. <pIntList>
+  [111] pushsymb 68 ............................. <#char>
+  [113] getlocal 5 .............................. <pValue>
+  [115] pusharglist 3 ........................... <pIntList, #char, pValue>
+  [117] objcall 70 .............................. <pIntList.char[pValue]>
+  [119] setlocal 6 .............................. pNewChar = pIntList.char[pValue]
+  [121] getlocal 2 .............................. <pNewString>
+  [123] getlocal 6 .............................. <pNewChar>
+  [125] joinstr ................................. <pNewString & pNewChar>
+  [126] setlocal 2 .............................. pNewString = pNewString & pNewChar
+  [128] pushint8 1
+  [130] getlocal 4
+  [132] add
+  [133] setlocal 4
+  [135] endrepeat [ 22]
+  [137] getlocal 2 .............................. <pNewString>
+  [139] pusharglistnoret 1 ...................... <pNewString>
+  [141] extcall 52 .............................. return pNewString
+  [143] ret
+end
+
+on Encode tString
+  [  0] getparam 0 .............................. <tString>
+  [  2] getobjprop 122 .......................... <tString.ilk>
+  [  4] pushsymb 67 ............................. <#string>
+  [  6] nteq .................................... <tString.ilk <> #string>
+  [  7] jmpifz [ 11] ............................ if tString.ilk <> #string then
+  [ 10] ret ..................................... exit
+  [ 11] pushcons 18 ............................. <"qweasdzxcrtyfghvbnuiojklmp,[]: 0192837465#">
+  [ 13] pushcons 19 ............................. <QUOTE>
+  [ 15] joinstr ................................. <"qweasdzxcrtyfghvbnuiojklmp,[]: 0192837465#" & QUOTE>
+  [ 16] setlocal 0 .............................. pRandomList = "qweasdzxcrtyfghvbnuiojklmp,[]: 0192837465#" & QUOTE
+  [ 18] pushcons 20 ............................. <"abcdefghijklmnopqrstuvwxyz">
+  [ 20] pushcons 19 ............................. <QUOTE>
+  [ 22] joinstr ................................. <"abcdefghijklmnopqrstuvwxyz" & QUOTE>
+  [ 23] pushcons 21 ............................. <"#0 123456789,:[]">
+  [ 25] joinstr ................................. <"abcdefghijklmnopqrstuvwxyz" & QUOTE & "#0 123456789,:[]">
+  [ 26] setlocal 1 .............................. pNormalList = "abcdefghijklmnopqrstuvwxyz" & QUOTE & "#0 123456789,:[]"
+  [ 28] pushcons 0 .............................. <EMPTY>
+  [ 30] setlocal 2 .............................. pNewString = EMPTY
+  [ 32] getparam 0 .............................. <tString>
+  [ 34] getobjprop 69 ........................... <tString.length>
+  [ 36] setlocal 3 .............................. pCount = tString.length
+  [ 38] pushint8 1 .............................. <1>
+  [ 40] setlocal 4
+  [ 42] getlocal 4
+  [ 44] getlocal 3 .............................. <pCount>
+  [ 46] lteq
+  [ 47] jmpifz [142] ............................ repeat with i = 1 to pCount
+  [ 50] getparam 0 .............................. <tString>
+  [ 52] pushsymb 68 ............................. <#char>
+  [ 54] getlocal 4 .............................. <i>
+  [ 56] pusharglist 3 ........................... <tString, #char, i>
+  [ 58] objcall 70 .............................. <tString.char[i]>
+  [ 60] setlocal 5 .............................. pOldChar = tString.char[i]
+  [ 62] pushint8 1 .............................. <1>
+  [ 64] setlocal 6
+  [ 66] getlocal 6
+  [ 68] getlocal 1 .............................. <pNormalList>
+  [ 70] getobjprop 69 ........................... <pNormalList.length>
+  [ 72] lteq
+  [ 73] jmpifz [133] ............................ repeat with j = 1 to pNormalList.length
+  [ 76] getlocal 1 .............................. <pNormalList>
+  [ 78] pushsymb 68 ............................. <#char>
+  [ 80] getlocal 6 .............................. <j>
+  [ 82] pusharglist 3 ........................... <pNormalList, #char, j>
+  [ 84] objcall 70 .............................. <pNormalList.char[j]>
+  [ 86] setlocal 7 .............................. pCheckChar = pNormalList.char[j]
+  [ 88] getlocal 7 .............................. <pCheckChar>
+  [ 90] getlocal 5 .............................. <pOldChar>
+  [ 92] eq ...................................... <pCheckChar = pOldChar>
+  [ 93] jmpifz [121] ............................ if pCheckChar = pOldChar then
+  [ 96] getlocal 0 .............................. <pRandomList>
+  [ 98] pushsymb 68 ............................. <#char>
+  [100] getlocal 6 .............................. <j>
+  [102] pusharglist 3 ........................... <pRandomList, #char, j>
+  [104] objcall 70 .............................. <pRandomList.char[j]>
+  [106] setlocal 8 .............................. pNewChar = pRandomList.char[j]
+  [108] getlocal 2 .............................. <pNewString>
+  [110] getlocal 8 .............................. <pNewChar>
+  [112] joinstr ................................. <pNewString & pNewChar>
+  [113] setlocal 2 .............................. pNewString = pNewString & pNewChar
+  [115] jmp [133] ............................... exit repeat
+  [118] jmp [124] ............................... next repeat
+  [121] jmp [124] ............................... next repeat
+  [124] pushint8 1
+  [126] getlocal 6
+  [128] add
+  [129] setlocal 6
+  [131] endrepeat [ 66]
+  [133] pushint8 1
+  [135] getlocal 4
+  [137] add
+  [138] setlocal 4
+  [140] endrepeat [ 42]
+  [142] getlocal 2 .............................. <pNewString>
+  [144] pusharglistnoret 1 ...................... <pNewString>
+  [146] extcall 52 .............................. return pNewString
+  [148] ret
+end
+
+on Decode tString
+  [  0] getparam 0 .............................. <tString>
+  [  2] getobjprop 122 .......................... <tString.ilk>
+  [  4] pushsymb 67 ............................. <#string>
+  [  6] nteq .................................... <tString.ilk <> #string>
+  [  7] jmpifz [ 11] ............................ if tString.ilk <> #string then
+  [ 10] ret ..................................... exit
+  [ 11] pushcons 18 ............................. <"qweasdzxcrtyfghvbnuiojklmp,[]: 0192837465#">
+  [ 13] pushcons 19 ............................. <QUOTE>
+  [ 15] joinstr ................................. <"qweasdzxcrtyfghvbnuiojklmp,[]: 0192837465#" & QUOTE>
+  [ 16] setlocal 0 .............................. pRandomList = "qweasdzxcrtyfghvbnuiojklmp,[]: 0192837465#" & QUOTE
+  [ 18] pushcons 20 ............................. <"abcdefghijklmnopqrstuvwxyz">
+  [ 20] pushcons 19 ............................. <QUOTE>
+  [ 22] joinstr ................................. <"abcdefghijklmnopqrstuvwxyz" & QUOTE>
+  [ 23] pushcons 21 ............................. <"#0 123456789,:[]">
+  [ 25] joinstr ................................. <"abcdefghijklmnopqrstuvwxyz" & QUOTE & "#0 123456789,:[]">
+  [ 26] setlocal 1 .............................. pNormalList = "abcdefghijklmnopqrstuvwxyz" & QUOTE & "#0 123456789,:[]"
+  [ 28] pushcons 0 .............................. <EMPTY>
+  [ 30] setlocal 2 .............................. pNewString = EMPTY
+  [ 32] getparam 0 .............................. <tString>
+  [ 34] getobjprop 69 ........................... <tString.length>
+  [ 36] setlocal 3 .............................. pCount = tString.length
+  [ 38] pushint8 1 .............................. <1>
+  [ 40] setlocal 4
+  [ 42] getlocal 4
+  [ 44] getlocal 3 .............................. <pCount>
+  [ 46] lteq
+  [ 47] jmpifz [142] ............................ repeat with i = 1 to pCount
+  [ 50] getparam 0 .............................. <tString>
+  [ 52] pushsymb 68 ............................. <#char>
+  [ 54] getlocal 4 .............................. <i>
+  [ 56] pusharglist 3 ........................... <tString, #char, i>
+  [ 58] objcall 70 .............................. <tString.char[i]>
+  [ 60] setlocal 5 .............................. pOldChar = tString.char[i]
+  [ 62] pushint8 1 .............................. <1>
+  [ 64] setlocal 6
+  [ 66] getlocal 6
+  [ 68] getlocal 0 .............................. <pRandomList>
+  [ 70] getobjprop 69 ........................... <pRandomList.length>
+  [ 72] lteq
+  [ 73] jmpifz [133] ............................ repeat with j = 1 to pRandomList.length
+  [ 76] getlocal 0 .............................. <pRandomList>
+  [ 78] pushsymb 68 ............................. <#char>
+  [ 80] getlocal 6 .............................. <j>
+  [ 82] pusharglist 3 ........................... <pRandomList, #char, j>
+  [ 84] objcall 70 .............................. <pRandomList.char[j]>
+  [ 86] setlocal 7 .............................. pCheckChar = pRandomList.char[j]
+  [ 88] getlocal 7 .............................. <pCheckChar>
+  [ 90] getlocal 5 .............................. <pOldChar>
+  [ 92] eq ...................................... <pCheckChar = pOldChar>
+  [ 93] jmpifz [121] ............................ if pCheckChar = pOldChar then
+  [ 96] getlocal 1 .............................. <pNormalList>
+  [ 98] pushsymb 68 ............................. <#char>
+  [100] getlocal 6 .............................. <j>
+  [102] pusharglist 3 ........................... <pNormalList, #char, j>
+  [104] objcall 70 .............................. <pNormalList.char[j]>
+  [106] setlocal 8 .............................. pNewChar = pNormalList.char[j]
+  [108] getlocal 2 .............................. <pNewString>
+  [110] getlocal 8 .............................. <pNewChar>
+  [112] joinstr ................................. <pNewString & pNewChar>
+  [113] setlocal 2 .............................. pNewString = pNewString & pNewChar
+  [115] jmp [133] ............................... exit repeat
+  [118] jmp [124] ............................... next repeat
+  [121] jmp [124] ............................... next repeat
+  [124] pushint8 1
+  [126] getlocal 6
+  [128] add
+  [129] setlocal 6
+  [131] endrepeat [ 66]
+  [133] pushint8 1
+  [135] getlocal 4
+  [137] add
+  [138] setlocal 4
+  [140] endrepeat [ 42]
+  [142] getlocal 2 .............................. <pNewString>
+  [144] pusharglistnoret 1 ...................... <pNewString>
+  [146] extcall 52 .............................. return pNewString
+  [148] ret
+end
+
+on GetTimeString tMillisec, tFormat
+  [  0] getparam 0 .............................. <tMillisec>
+  [  2] pushint16 1000 .......................... <1000>
+  [  5] div ..................................... <tMillisec / 1000>
+  [  6] pusharglist 1 ........................... <tMillisec / 1000>
+  [  8] extcall 123 ............................. <integer(tMillisec / 1000)>
+  [ 10] setlocal 0 .............................. sec = integer(tMillisec / 1000)
+  [ 12] getlocal 0 .............................. <sec>
+  [ 14] pushint8 60 ............................. <60>
+  [ 16] div ..................................... <sec / 60>
+  [ 17] pusharglist 1 ........................... <sec / 60>
+  [ 19] extcall 123 ............................. <integer(sec / 60)>
+  [ 21] setlocal 1 .............................. min = integer(sec / 60)
+  [ 23] getlocal 0 .............................. <sec>
+  [ 25] getlocal 1 .............................. <min>
+  [ 27] pushint8 60 ............................. <60>
+  [ 29] mul ..................................... <min * 60>
+  [ 30] sub ..................................... <sec - (min * 60)>
+  [ 31] setlocal 0 .............................. sec = sec - (min * 60)
+  [ 33] getlocal 1 .............................. <min>
+  [ 35] pushint8 60 ............................. <60>
+  [ 37] div ..................................... <min / 60>
+  [ 38] pusharglist 1 ........................... <min / 60>
+  [ 40] extcall 123 ............................. <integer(min / 60)>
+  [ 42] setlocal 2 .............................. Hour = integer(min / 60)
+  [ 44] getlocal 1 .............................. <min>
+  [ 46] getlocal 2 .............................. <Hour>
+  [ 48] pushint8 60 ............................. <60>
+  [ 50] mul ..................................... <Hour * 60>
+  [ 51] sub ..................................... <min - (Hour * 60)>
+  [ 52] setlocal 1 .............................. min = min - (Hour * 60)
+  [ 54] getparam 0 .............................. <tMillisec>
+  [ 56] getlocal 0 .............................. <sec>
+  [ 58] pushint16 1000 .......................... <1000>
+  [ 61] mul ..................................... <sec * 1000>
+  [ 62] sub ..................................... <tMillisec - (sec * 1000)>
+  [ 63] getlocal 1 .............................. <min>
+  [ 65] pushint8 60 ............................. <60>
+  [ 67] mul ..................................... <min * 60>
+  [ 68] pushint16 1000 .......................... <1000>
+  [ 71] mul ..................................... <min * 60 * 1000>
+  [ 72] sub ..................................... <tMillisec - (sec * 1000) - (min * 60 * 1000)>
+  [ 73] getlocal 2 .............................. <Hour>
+  [ 75] pushint8 60 ............................. <60>
+  [ 77] mul ..................................... <Hour * 60>
+  [ 78] pushint8 60 ............................. <60>
+  [ 80] mul ..................................... <Hour * 60 * 60>
+  [ 81] pushint16 1000 .......................... <1000>
+  [ 84] mul ..................................... <Hour * 60 * 60 * 1000>
+  [ 85] sub ..................................... <tMillisec - (sec * 1000) - (min * 60 * 1000) - (Hour * 60 * 60 * 1000)>
+  [ 86] pushfloat32 10.0 ........................ <10.0>
+  [ 91] div ..................................... <(tMillisec - (sec * 1000) - (min * 60 * 1000) - (Hour * 60 * 60 * 1000)) / 10.0>
+  [ 92] pusharglist 1 ........................... <(tMillisec - (sec * 1000) - (min * 60 * 1000) - (Hour * 60 * 60 * 1000)) / 10.0>
+  [ 94] extcall 123 ............................. <integer((tMillisec - (sec * 1000) - (min * 60 * 1000) - (Hour * 60 * 60 * 1000)) / 10.0)>
+  [ 96] setparam 0 .............................. tMillisec = integer((tMillisec - (sec * 1000) - (min * 60 * 1000) - (Hour * 60 * 60 * 1000)) / 10.0)
+  [ 98] getparam 1 .............................. <tFormat>
+  [100] pusharglist 0 ........................... <>
+  [102] extcall 40 .............................. <VOID>
+  [104] eq ...................................... <tFormat = VOID>
+  [105] jmpifz [113] ............................ if tFormat = VOID then
+  [108] pushsymb 531 ............................ <#standard>
+  [111] setparam 1 .............................. tFormat = #standard
+  [113] getparam 1 .............................. <tFormat>
+  [115] pushsymb 531 ............................ <#standard>
+  [118] eq ...................................... <tFormat = #standard>
+  [119] jmpifz [262] ............................ if tFormat = #standard then
+  [122] getlocal 1 .............................. <min>
+  [124] pushint8 10 ............................. <10>
+  [126] lt ...................................... <min < 10>
+  [127] jmpifz [160] ............................ if min < 10 then / else
+  [130] pushcons 4 .............................. <"0">
+  [132] getlocal 1 .............................. <min>
+  [134] pushint8 100 ............................ <100>
+  [136] add ..................................... <min + 100>
+  [137] pusharglist 1 ........................... <min + 100>
+  [139] extcall 67 .............................. <string(min + 100)>
+  [141] pushsymb 68 ............................. <#char>
+  [143] pushint8 3 .............................. <3>
+  [145] pushint8 3 .............................. <3>
+  [147] pusharglist 4 ........................... <string(min + 100), #char, 3, 3>
+  [149] objcall 70 .............................. <string(min + 100).char[3..3]>
+  [151] joinstr ................................. <"0" & string(min + 100).char[3..3]>
+  [152] pushcons 22 ............................. <":">
+  [154] joinstr ................................. <"0" & string(min + 100).char[3..3] & ":">
+  [155] setlocal 3 .............................. minString = "0" & string(min + 100).char[3..3] & ":"
+  [157] jmp [184]
+  [160] getlocal 1 .............................. <min>
+  [162] pushint8 100 ............................ <100>
+  [164] add ..................................... <min + 100>
+  [165] pusharglist 1 ........................... <min + 100>
+  [167] extcall 67 .............................. <string(min + 100)>
+  [169] pushsymb 68 ............................. <#char>
+  [171] pushint8 3 .............................. <3>
+  [173] pushint8 3 .............................. <3>
+  [175] pusharglist 4 ........................... <string(min + 100), #char, 3, 3>
+  [177] objcall 70 .............................. <string(min + 100).char[3..3]>
+  [179] pushcons 22 ............................. <":">
+  [181] joinstr ................................. <string(min + 100).char[3..3] & ":">
+  [182] setlocal 3 .............................. minString = string(min + 100).char[3..3] & ":"
+  [184] getlocal 0 .............................. <sec>
+  [186] pushint8 100 ............................ <100>
+  [188] add ..................................... <sec + 100>
+  [189] pusharglist 1 ........................... <sec + 100>
+  [191] extcall 67 .............................. <string(sec + 100)>
+  [193] pushsymb 68 ............................. <#char>
+  [195] pushint8 2 .............................. <2>
+  [197] pushint8 3 .............................. <3>
+  [199] pusharglist 4 ........................... <string(sec + 100), #char, 2, 3>
+  [201] objcall 70 .............................. <string(sec + 100).char[2..3]>
+  [203] pushcons 23 ............................. <".">
+  [205] joinstr ................................. <string(sec + 100).char[2..3] & ".">
+  [206] setlocal 4 .............................. secString = string(sec + 100).char[2..3] & "."
+  [208] getparam 0 .............................. <tMillisec>
+  [210] pushint8 10 ............................. <10>
+  [212] lt ...................................... <tMillisec < 10>
+  [213] jmpifz [230] ............................ if tMillisec < 10 then / else
+  [216] pushcons 4 .............................. <"0">
+  [218] getparam 0 .............................. <tMillisec>
+  [220] pusharglist 1 ........................... <tMillisec>
+  [222] extcall 67 .............................. <string(tMillisec)>
+  [224] joinstr ................................. <"0" & string(tMillisec)>
+  [225] setlocal 5 .............................. MilliString = "0" & string(tMillisec)
+  [227] jmp [238]
+  [230] getparam 0 .............................. <tMillisec>
+  [232] pusharglist 1 ........................... <tMillisec>
+  [234] extcall 67 .............................. <string(tMillisec)>
+  [236] setlocal 5 .............................. MilliString = string(tMillisec)
+  [238] getparam 0 .............................. <tMillisec>
+  [240] pushint8 100 ............................ <100>
+  [242] eq ...................................... <tMillisec = 100>
+  [243] jmpifz [250] ............................ if tMillisec = 100 then
+  [246] pushcons 24 ............................. <"00">
+  [248] setlocal 5 .............................. MilliString = "00"
+  [250] getlocal 3 .............................. <minString>
+  [252] getlocal 4 .............................. <secString>
+  [254] joinstr ................................. <minString & secString>
+  [255] getlocal 5 .............................. <MilliString>
+  [257] joinstr ................................. <minString & secString & MilliString>
+  [258] pusharglistnoret 1 ...................... <minString & secString & MilliString>
+  [260] extcall 52 .............................. return minString & secString & MilliString
+  [262] ret
+end
+
+on HoldAndDo me, tProperties, tTimeOut
+  [  0] getparam 1 .............................. <tProperties>
+  [  2] pushsymb 534 ............................ <#ToDo>
+  [  5] pusharglist 2 ........................... <tProperties, #ToDo>
+  [  7] objcall 105 ............................. <tProperties[#ToDo]>
+  [  9] setlocal 0 .............................. pToDo = tProperties[#ToDo]
+  [ 11] getlocal 0 .............................. <pToDo>
+  [ 13] pusharglist 0 ........................... <>
+  [ 15] extcall 40 .............................. <VOID>
+  [ 17] nteq .................................... <pToDo <> VOID>
+  [ 18] getlocal 0 .............................. <pToDo>
+  [ 20] pushcons 0 .............................. <EMPTY>
+  [ 22] nteq .................................... <pToDo <> EMPTY>
+  [ 23] or ...................................... <(pToDo <> VOID) or (pToDo <> EMPTY)>
+  [ 24] jmpifz [ 34] ............................ if (pToDo <> VOID) or (pToDo <> EMPTY) then
+  [ 27] getlocal 0 .............................. <pToDo>
+  [ 29] pusharglistnoret 1 ...................... <pToDo>
+  [ 31] extcall 535 ............................. do(pToDo)
+  [ 34] getparam 2 .............................. <tTimeOut>
+  [ 36] pusharglistnoret 1 ...................... <tTimeOut>
+  [ 38] objcall 255 ............................. tTimeOut.forget()
+  [ 40] ret
+end
+
+on HoldAndGoTo me, tProperties, tTimeOut
+  [  0] getparam 1 .............................. <tProperties>
+  [  2] pushsymb 538 ............................ <#marker>
+  [  5] pusharglist 2 ........................... <tProperties, #marker>
+  [  7] objcall 105 ............................. <tProperties[#marker]>
+  [  9] setlocal 0 .............................. pmarker = tProperties[#marker]
+  [ 11] getlocal 0 .............................. <pmarker>
+  [ 13] pusharglist 0 ........................... <>
+  [ 15] extcall 40 .............................. <VOID>
+  [ 17] nteq .................................... <pmarker <> VOID>
+  [ 18] jmpifz [ 30] ............................ if pmarker <> VOID then
+  [ 21] gettoplevelprop 33 ...................... <_movie>
+  [ 23] getlocal 0 .............................. <pmarker>
+  [ 25] pusharglistnoret 2 ...................... <_movie, pmarker>
+  [ 27] objcall 539 ............................. _movie.go(pmarker)
+  [ 30] getparam 2 .............................. <tTimeOut>
+  [ 32] pusharglistnoret 1 ...................... <tTimeOut>
+  [ 34] objcall 255 ............................. tTimeOut.forget()
+  [ 36] ret
+end
+
+on ManipulateTime tTarget, tDataList
+  [  0] getparam 1 .............................. <tDataList>
+  [  2] setlocal 0 .............................. pDataList = tDataList
+  [  4] getlocal 0 .............................. <pDataList>
+  [  6] getobjprop 122 .......................... <pDataList.ilk>
+  [  8] pushsymb 67 ............................. <#string>
+  [ 10] eq ...................................... <pDataList.ilk = #string>
+  [ 11] jmpifz [ 23] ............................ if pDataList.ilk = #string then
+  [ 14] getlocal 0 .............................. <pDataList>
+  [ 16] pusharglist 1 ........................... <pDataList>
+  [ 18] extcall 503 ............................. <value(pDataList)>
+  [ 21] setlocal 0 .............................. pDataList = value(pDataList)
+  [ 23] getlocal 0 .............................. <pDataList>
+  [ 25] pusharglist 0 ........................... <>
+  [ 27] extcall 40 .............................. <VOID>
+  [ 29] eq ...................................... <pDataList = VOID>
+  [ 30] getlocal 0 .............................. <pDataList>
+  [ 32] getobjprop 122 .......................... <pDataList.ilk>
+  [ 34] pushsymb 541 ............................ <#propList>
+  [ 37] nteq .................................... <pDataList.ilk <> #propList>
+  [ 38] or ...................................... <(pDataList = VOID) or (pDataList.ilk <> #propList)>
+  [ 39] jmpifz [ 66] ............................ if (pDataList = VOID) or (pDataList.ilk <> #propList) then
+  [ 42] pushcons 25 ............................. <"Function: ManipulateTime. Target: ">
+  [ 44] getparam 0 .............................. <tTarget>
+  [ 46] joinstr ................................. <"Function: ManipulateTime. Target: " & tTarget>
+  [ 47] pushcons 26 ............................. <" Parameters: ">
+  [ 49] joinstr ................................. <"Function: ManipulateTime. Target: " & tTarget & " Parameters: ">
+  [ 50] getparam 1 .............................. <tDataList>
+  [ 52] joinstr ................................. <"Function: ManipulateTime. Target: " & tTarget & " Parameters: " & tDataList>
+  [ 53] pushcons 27 ............................. <" Datalist obsolete set to [:].">
+  [ 55] joinstr ................................. <"Function: ManipulateTime. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete set to [:].">
+  [ 56] pusharglistnoret 1 ...................... <"Function: ManipulateTime. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete set to [:].">
+  [ 58] extcall 511 ............................. ShowError("Function: ManipulateTime. Target: " & tTarget & " Parameters: " & tDataList & " Datalist obsolete set to [:].")
+  [ 61] pusharglist 0 ........................... <[:]>
+  [ 63] pushproplist ............................ <[:]>
+  [ 64] setlocal 0 .............................. pDataList = [:]
+  [ 66] pushfloat32 1.0 ......................... <1.0>
+  [ 71] setlocal 1 .............................. pTargetTime = 1.0
+  [ 73] getlocal 0 .............................. <pDataList>
+  [ 75] pushsymb 543 ............................ <#targetTime>
+  [ 78] pusharglist 2 ........................... <pDataList, #targetTime>
+  [ 80] extcall 542 ............................. <getaProp(pDataList, #targetTime)>
+  [ 83] getobjprop 122 .......................... <getaProp(pDataList, #targetTime).ilk>
+  [ 85] pushsymb 544 ............................ <#float>
+  [ 88] eq ...................................... <getaProp(pDataList, #targetTime).ilk = #float>
+  [ 89] jmpifz [103] ............................ if getaProp(pDataList, #targetTime).ilk = #float then
+  [ 92] getlocal 0 .............................. <pDataList>
+  [ 94] pushsymb 543 ............................ <#targetTime>
+  [ 97] pusharglist 2 ........................... <pDataList, #targetTime>
+  [ 99] objcall 105 ............................. <pDataList[#targetTime]>
+  [101] setlocal 1 .............................. pTargetTime = pDataList[#targetTime]
+  [103] pushcons 28 ............................. <0.29999999999999999>
+  [105] setlocal 2 .............................. pDefaultStep = 0.29999999999999999
+  [107] getlocal 0 .............................. <pDataList>
+  [109] pushsymb 545 ............................ <#defaultStep>
+  [112] pusharglist 2 ........................... <pDataList, #defaultStep>
+  [114] extcall 542 ............................. <getaProp(pDataList, #defaultStep)>
+  [117] getobjprop 122 .......................... <getaProp(pDataList, #defaultStep).ilk>
+  [119] pushsymb 544 ............................ <#float>
+  [122] eq ...................................... <getaProp(pDataList, #defaultStep).ilk = #float>
+  [123] jmpifz [137] ............................ if getaProp(pDataList, #defaultStep).ilk = #float then
+  [126] getlocal 0 .............................. <pDataList>
+  [128] pushsymb 545 ............................ <#defaultStep>
+  [131] pusharglist 2 ........................... <pDataList, #defaultStep>
+  [133] objcall 105 ............................. <pDataList[#defaultStep]>
+  [135] setlocal 2 .............................. pDefaultStep = pDataList[#defaultStep]
+  [137] getglobal 43 ............................ <gGame>
+  [139] getobjprop 454 .......................... <gGame.TimeMP>
+  [142] getlocal 1 .............................. <pTargetTime>
+  [144] eq ...................................... <gGame.TimeMP = pTargetTime>
+  [145] jmpifz [149] ............................ if gGame.TimeMP = pTargetTime then
+  [148] ret ..................................... exit
+  [149] pushsymb 543 ............................ <#targetTime>
+  [152] getlocal 1 .............................. <pTargetTime>
+  [154] pushsymb 545 ............................ <#defaultStep>
+  [157] getlocal 2 .............................. <pDefaultStep>
+  [159] pushsymb 546 ............................ <#Counter>
+  [162] pushzero ................................ <0>
+  [163] pusharglist 6 ........................... <[#targetTime: pTargetTime, #defaultStep: pDefaultStep, #Counter: 0]>
+  [165] pushproplist ............................ <[#targetTime: pTargetTime, #defaultStep: pDefaultStep, #Counter: 0]>
+  [166] setlocal 3 .............................. PList = [#targetTime: pTargetTime, #defaultStep: pDefaultStep, #Counter: 0]
+  [168] pushfloat32 1.0 ......................... <1.0>
+  [173] getglobal 43 ............................ <gGame>
+  [175] getobjprop 453 .......................... <gGame.tempo>
+  [178] div ..................................... <1.0 / gGame.tempo>
+  [179] pushfloat32 1000.0 ...................... <1000.0>
+  [184] mul ..................................... <1.0 / gGame.tempo * 1000.0>
+  [185] pusharglist 1 ........................... <1.0 / gGame.tempo * 1000.0>
+  [187] extcall 123 ............................. <integer(1.0 / gGame.tempo * 1000.0)>
+  [189] setlocal 4 .............................. pPeriod = integer(1.0 / gGame.tempo * 1000.0)
+  [191] pusharglist 0 ........................... <>
+  [193] extcall 238 ............................. <timeout()>
+  [195] pushcons 29 ............................. <"ManipulateTimeTimeOut">
+  [197] getlocal 4 .............................. <pPeriod>
+  [199] pushsymb 481 ............................ <#manipulateTimeTimeOut>
+  [202] getlocal 3 .............................. <PList>
+  [204] pusharglistnoret 5 ...................... <timeout(), "ManipulateTimeTimeOut", pPeriod, #manipulateTimeTimeOut, PList>
+  [206] objcall 35 .............................. timeout().new("ManipulateTimeTimeOut", pPeriod, #manipulateTimeTimeOut, PList)
+  [208] ret
+end
+
+on manipulateTimeTimeOut tProperties, tTimeOut
+  [  0] getparam 0 .............................. <tProperties>
+  [  2] pushsymb 543 ............................ <#targetTime>
+  [  5] pusharglist 2 ........................... <tProperties, #targetTime>
+  [  7] objcall 105 ............................. <tProperties[#targetTime]>
+  [  9] setlocal 0 .............................. pTargetTime = tProperties[#targetTime]
+  [ 11] getparam 0 .............................. <tProperties>
+  [ 13] pushsymb 545 ............................ <#defaultStep>
+  [ 16] pusharglist 2 ........................... <tProperties, #defaultStep>
+  [ 18] objcall 105 ............................. <tProperties[#defaultStep]>
+  [ 20] setlocal 1 .............................. pDefaultStep = tProperties[#defaultStep]
+  [ 22] getparam 0 .............................. <tProperties>
+  [ 24] pushsymb 546 ............................ <#Counter>
+  [ 27] pusharglist 2 ........................... <tProperties, #Counter>
+  [ 29] objcall 105 ............................. <tProperties[#Counter]>
+  [ 31] setlocal 2 .............................. pCounter = tProperties[#Counter]
+  [ 33] getlocal 2 .............................. <pCounter>
+  [ 35] pushint8 1 .............................. <1>
+  [ 37] add ..................................... <pCounter + 1>
+  [ 38] setlocal 2 .............................. pCounter = pCounter + 1
+  [ 40] getparam 0 .............................. <tProperties>
+  [ 42] pushsymb 546 ............................ <#Counter>
+  [ 45] getlocal 2 .............................. <pCounter>
+  [ 47] pusharglistnoret 3 ...................... <tProperties, #Counter, pCounter>
+  [ 49] objcall 103 ............................. tProperties[#Counter] = pCounter
+  [ 51] getlocal 1 .............................. <pDefaultStep>
+  [ 53] getlocal 2 .............................. <pCounter>
+  [ 55] div ..................................... <pDefaultStep / pCounter>
+  [ 56] setlocal 3 .............................. Py = pDefaultStep / pCounter
+  [ 58] getlocal 0 .............................. <pTargetTime>
+  [ 60] getglobal 43 ............................ <gGame>
+  [ 62] getobjprop 454 .......................... <gGame.TimeMP>
+  [ 65] lt ...................................... <pTargetTime < gGame.TimeMP>
+  [ 66] jmpifz [ 77] ............................ if pTargetTime < gGame.TimeMP then
+  [ 69] getlocal 3 .............................. <Py>
+  [ 71] pushint8 1 .............................. <1>
+  [ 73] inv ..................................... <-1>
+  [ 74] mul ..................................... <Py * -1>
+  [ 75] setlocal 3 .............................. Py = Py * -1
+  [ 77] getlocal 3 .............................. <Py>
+  [ 79] pushfloat32 0.0 ......................... <0.0>
+  [ 84] lt ...................................... <Py < 0.0>
+  [ 85] jmpifz [139] ............................ if Py < 0.0 then / else
+  [ 88] getglobal 43 ............................ <gGame>
+  [ 90] getobjprop 454 .......................... <gGame.TimeMP>
+  [ 93] getlocal 0 .............................. <pTargetTime>
+  [ 95] gt ...................................... <gGame.TimeMP > pTargetTime>
+  [ 96] jmpifz [112] ............................ if gGame.TimeMP > pTargetTime then
+  [ 99] getglobal 43 ............................ <gGame>
+  [101] getglobal 43 ............................ <gGame>
+  [103] getobjprop 454 .......................... <gGame.TimeMP>
+  [106] getlocal 3 .............................. <Py>
+  [108] add ..................................... <gGame.TimeMP + Py>
+  [109] setobjprop 454 .......................... gGame.TimeMP = gGame.TimeMP + Py
+  [112] getglobal 43 ............................ <gGame>
+  [114] getobjprop 454 .......................... <gGame.TimeMP>
+  [117] getlocal 0 .............................. <pTargetTime>
+  [119] lt ...................................... <gGame.TimeMP < pTargetTime>
+  [120] jmpifz [136] ............................ if gGame.TimeMP < pTargetTime then
+  [123] getglobal 43 ............................ <gGame>
+  [125] getlocal 0 .............................. <pTargetTime>
+  [127] setobjprop 454 .......................... gGame.TimeMP = pTargetTime
+  [130] getparam 1 .............................. <tTimeOut>
+  [132] pusharglistnoret 1 ...................... <tTimeOut>
+  [134] objcall 255 ............................. tTimeOut.forget()
+  [136] jmp [187]
+  [139] getglobal 43 ............................ <gGame>
+  [141] getobjprop 454 .......................... <gGame.TimeMP>
+  [144] getlocal 0 .............................. <pTargetTime>
+  [146] lt ...................................... <gGame.TimeMP < pTargetTime>
+  [147] jmpifz [163] ............................ if gGame.TimeMP < pTargetTime then
+  [150] getglobal 43 ............................ <gGame>
+  [152] getglobal 43 ............................ <gGame>
+  [154] getobjprop 454 .......................... <gGame.TimeMP>
+  [157] getlocal 3 .............................. <Py>
+  [159] add ..................................... <gGame.TimeMP + Py>
+  [160] setobjprop 454 .......................... gGame.TimeMP = gGame.TimeMP + Py
+  [163] getglobal 43 ............................ <gGame>
+  [165] getobjprop 454 .......................... <gGame.TimeMP>
+  [168] getlocal 0 .............................. <pTargetTime>
+  [170] gt ...................................... <gGame.TimeMP > pTargetTime>
+  [171] jmpifz [187] ............................ if gGame.TimeMP > pTargetTime then
+  [174] getglobal 43 ............................ <gGame>
+  [176] getlocal 0 .............................. <pTargetTime>
+  [178] setobjprop 454 .......................... gGame.TimeMP = pTargetTime
+  [181] getparam 1 .............................. <tTimeOut>
+  [183] pusharglistnoret 1 ...................... <tTimeOut>
+  [185] objcall 255 ............................. tTimeOut.forget()
+  [187] ret
+end
+
+on ClearTimeOutList me
+  [  0] gettoplevelprop 33 ...................... <_movie>
+  [  2] pusharglist 0 ........................... <[]>
+  [  4] pushlist ................................ <[]>
+  [  5] setobjprop 427 .......................... _movie.timeoutList = []
+  [  8] ret
+end
+
+on ClearActorList me
+  [  0] gettoplevelprop 33 ...................... <_movie>
+  [  2] pusharglist 0 ........................... <[]>
+  [  4] pushlist ................................ <[]>
+  [  5] setobjprop 41 ........................... _movie.actorList = []
+  [  7] ret
+end
+
+on fullscreen me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getobjprop 422 .......................... <gGame.fullscreen>
+  [  5] pushint8 1 .............................. <1>
+  [  7] eq ...................................... <gGame.fullscreen = 1>
+  [  8] jmpifz [ 28] ............................ if gGame.fullscreen = 1 then / else
+  [ 11] pusharglistnoret 0 ...................... <>
+  [ 13] localcall 22 ............................ ResXoff()
+  [ 15] pusharglistnoret 0 ...................... <>
+  [ 17] localcall 20 ............................ SetStageSize()
+  [ 19] getglobal 43 ............................ <gGame>
+  [ 21] pushzero ................................ <0>
+  [ 22] setobjprop 422 .......................... gGame.fullscreen = 0
+  [ 25] jmp [ 39]
+  [ 28] pusharglistnoret 0 ...................... <>
+  [ 30] localcall 21 ............................ ResXon()
+  [ 32] getglobal 43 ............................ <gGame>
+  [ 34] pushint8 1 .............................. <1>
+  [ 36] setobjprop 422 .......................... gGame.fullscreen = 1
+  [ 39] ret
+end
+
+on SetStageSize me
+  [  0] pusharglist 0 ........................... <>
+  [  2] extcall 553 ............................. <resx_getDisplayMode()>
+  [  5] setlocal 0 .............................. Display = resx_getDisplayMode()
+  [  7] pushzero ................................ <0>
+  [  8] pushzero ................................ <0>
+  [  9] getlocal 0 .............................. <Display>
+  [ 11] pushcons 30 ............................. <"xResolution">
+  [ 13] pusharglist 2 ........................... <Display, "xResolution">
+  [ 15] objcall 105 ............................. <Display["xResolution"]>
+  [ 17] getlocal 0 .............................. <Display>
+  [ 19] pushcons 31 ............................. <"yResolution">
+  [ 21] pusharglist 2 ........................... <Display, "yResolution">
+  [ 23] objcall 105 ............................. <Display["yResolution"]>
+  [ 25] pusharglist 4 ........................... <0, 0, Display["xResolution"], Display["yResolution"]>
+  [ 27] extcall 320 ............................. <rect(0, 0, Display["xResolution"], Display["yResolution"])>
+  [ 30] setlocal 1 .............................. t = rect(0, 0, Display["xResolution"], Display["yResolution"])
+  [ 32] getlocal 1 .............................. <t>
+  [ 34] pushint8 3 .............................. <3>
+  [ 36] pusharglist 2 ........................... <t, 3>
+  [ 38] objcall 105 ............................. <t[3]>
+  [ 40] pushint8 2 .............................. <2>
+  [ 42] div ..................................... <t[3] / 2>
+  [ 43] getglobal 43 ............................ <gGame>
+  [ 45] pushsymb 409 ............................ <#resolution>
+  [ 48] pushint8 1 .............................. <1>
+  [ 50] pusharglist 3 ........................... <gGame, #resolution, 1>
+  [ 52] objcall 70 .............................. <gGame.resolution[1]>
+  [ 54] pushint8 2 .............................. <2>
+  [ 56] div ..................................... <gGame.resolution[1] / 2>
+  [ 57] sub ..................................... <(t[3] / 2) - (gGame.resolution[1] / 2)>
+  [ 58] setlocal 2 .............................. t1 = (t[3] / 2) - (gGame.resolution[1] / 2)
+  [ 60] getlocal 1 .............................. <t>
+  [ 62] pushint8 4 .............................. <4>
+  [ 64] pusharglist 2 ........................... <t, 4>
+  [ 66] objcall 105 ............................. <t[4]>
+  [ 68] pushint8 2 .............................. <2>
+  [ 70] div ..................................... <t[4] / 2>
+  [ 71] getglobal 43 ............................ <gGame>
+  [ 73] pushsymb 409 ............................ <#resolution>
+  [ 76] pushint8 2 .............................. <2>
+  [ 78] pusharglist 3 ........................... <gGame, #resolution, 2>
+  [ 80] objcall 70 .............................. <gGame.resolution[2]>
+  [ 82] pushint8 2 .............................. <2>
+  [ 84] div ..................................... <gGame.resolution[2] / 2>
+  [ 85] sub ..................................... <(t[4] / 2) - (gGame.resolution[2] / 2)>
+  [ 86] setlocal 3 .............................. t2 = (t[4] / 2) - (gGame.resolution[2] / 2)
+  [ 88] getmovieprop 455 ........................ <the stage>
+  [ 91] getlocal 2 .............................. <t1>
+  [ 93] getlocal 3 .............................. <t2>
+  [ 95] getlocal 2 .............................. <t1>
+  [ 97] getglobal 43 ............................ <gGame>
+  [ 99] pushsymb 409 ............................ <#resolution>
+  [102] pushint8 1 .............................. <1>
+  [104] pusharglist 3 ........................... <gGame, #resolution, 1>
+  [106] objcall 70 .............................. <gGame.resolution[1]>
+  [108] add ..................................... <t1 + gGame.resolution[1]>
+  [109] getlocal 3 .............................. <t2>
+  [111] getglobal 43 ............................ <gGame>
+  [113] pushsymb 409 ............................ <#resolution>
+  [116] pushint8 2 .............................. <2>
+  [118] pusharglist 3 ........................... <gGame, #resolution, 2>
+  [120] objcall 70 .............................. <gGame.resolution[2]>
+  [122] add ..................................... <t2 + gGame.resolution[2]>
+  [123] pusharglist 4 ........................... <t1, t2, t1 + gGame.resolution[1], t2 + gGame.resolution[2]>
+  [125] extcall 320 ............................. <rect(t1, t2, t1 + gGame.resolution[1], t2 + gGame.resolution[2])>
+  [128] setobjprop 320 .......................... (the stage).rect = rect(t1, t2, t1 + gGame.resolution[1], t2 + gGame.resolution[2])
+  [131] ret
+end
+
+on ResXon me
+  [  0] pusharglist 0 ........................... <[]>
+  [  2] pushlist ................................ <[]>
+  [  3] setlocal 0 .............................. tempList = []
+  [  5] pusharglist 0 ........................... <>
+  [  7] extcall 553 ............................. <resx_getDisplayMode()>
+  [ 10] setlocal 0 .............................. tempList = resx_getDisplayMode()
+  [ 12] getglobal 43 ............................ <gGame>
+  [ 14] pushsymb 554 ............................ <#OrigResolution>
+  [ 17] getlocal 0 .............................. <tempList>
+  [ 19] pusharglist 1 ........................... <tempList>
+  [ 21] objcall 233 ............................. <tempList.duplicate()>
+  [ 23] pusharglistnoret 3 ...................... <gGame, #OrigResolution, tempList.duplicate()>
+  [ 25] objcall 103 ............................. gGame[#OrigResolution] = tempList.duplicate()
+  [ 27] getlocal 0 .............................. <tempList>
+  [ 29] pushint8 1 .............................. <1>
+  [ 31] getglobal 43 ............................ <gGame>
+  [ 33] pushsymb 409 ............................ <#resolution>
+  [ 36] pushint8 1 .............................. <1>
+  [ 38] pusharglist 3 ........................... <gGame, #resolution, 1>
+  [ 40] objcall 70 .............................. <gGame.resolution[1]>
+  [ 42] pusharglistnoret 3 ...................... <tempList, 1, gGame.resolution[1]>
+  [ 44] objcall 103 ............................. tempList[1] = gGame.resolution[1]
+  [ 46] getlocal 0 .............................. <tempList>
+  [ 48] pushint8 2 .............................. <2>
+  [ 50] getglobal 43 ............................ <gGame>
+  [ 52] pushsymb 409 ............................ <#resolution>
+  [ 55] pushint8 2 .............................. <2>
+  [ 57] pusharglist 3 ........................... <gGame, #resolution, 2>
+  [ 59] objcall 70 .............................. <gGame.resolution[2]>
+  [ 61] pusharglistnoret 3 ...................... <tempList, 2, gGame.resolution[2]>
+  [ 63] objcall 103 ............................. tempList[2] = gGame.resolution[2]
+  [ 65] getlocal 0 .............................. <tempList>
+  [ 67] pusharglist 1 ........................... <tempList>
+  [ 69] extcall 555 ............................. <resx_setDisplayMode(tempList)>
+  [ 72] setlocal 1 .............................. x = resx_setDisplayMode(tempList)
+  [ 74] getlocal 1 .............................. <x>
+  [ 76] pushzero ................................ <0>
+  [ 77] eq ...................................... <x = 0>
+  [ 78] jmpifz [ 84] ............................ if x = 0 then / else
+  [ 81] jmp [ 84]
+  [ 84] getmovieprop 455 ........................ <the stage>
+  [ 87] getmovieprop 552 ........................ <the desktopRectList>
+  [ 90] pushint8 1 .............................. <1>
+  [ 92] pusharglist 2 ........................... <the desktopRectList, 1>
+  [ 94] objcall 105 ............................. <(the desktopRectList)[1]>
+  [ 96] setobjprop 320 .......................... (the stage).rect = (the desktopRectList)[1]
+  [ 99] ret
+end
+
+on ResXoff me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getobjprop 554 .......................... <gGame.OrigResolution>
+  [  5] pusharglist 1 ........................... <gGame.OrigResolution>
+  [  7] extcall 555 ............................. <resx_setDisplayMode(gGame.OrigResolution)>
+  [ 10] setlocal 0 .............................. x = resx_setDisplayMode(gGame.OrigResolution)
+  [ 12] ret
+end
+
+on GameQuit me
+  [  0] gettoplevelprop 387 ..................... <_player>
+  [  3] pusharglistnoret 1 ...................... <_player>
+  [  5] objcall 558 ............................. _player.quit()
+  [  8] ret
+end

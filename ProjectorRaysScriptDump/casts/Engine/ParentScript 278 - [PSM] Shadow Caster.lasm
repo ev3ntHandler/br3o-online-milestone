@@ -1,0 +1,1306 @@
+property pShadowMember, pTrackMember, pSpriteNr, pSpriteLoc, pSpriteDebugLoc, pTag, pOffset, pCamFov, pTextureSize, pShadowSize, pTextureName, pBlend, pcolor, pBlur, pDebug, pShadow, pShadowCamera, pTrackCamera, pCamInvMTX, pCamOrigin2D, pt, pStageImage, pimage, pAlpha
+global gStageImage, gSelectedCar, gSelectedTrack, gRayCastList
+
+on new me, pParams
+  [  0] getparam 1 .............................. <pParams>
+  [  2] pushsymb 3198 ........................... <#shadowMember>
+  [  5] pusharglist 2 ........................... <pParams, #shadowMember>
+  [  7] objcall 105 ............................. <pParams[#shadowMember]>
+  [  9] setprop 3197 ............................ pShadowMember = pParams[#shadowMember]
+  [ 12] getparam 1 .............................. <pParams>
+  [ 14] pushsymb 3200 ........................... <#trackMember>
+  [ 17] pusharglist 2 ........................... <pParams, #trackMember>
+  [ 19] objcall 105 ............................. <pParams[#trackMember]>
+  [ 21] setprop 3199 ............................ pTrackMember = pParams[#trackMember]
+  [ 24] getparam 1 .............................. <pParams>
+  [ 26] pushsymb 3201 ........................... <#spritechannel>
+  [ 29] pusharglist 2 ........................... <pParams, #spritechannel>
+  [ 31] objcall 105 ............................. <pParams[#spritechannel]>
+  [ 33] setprop 2847 ............................ pSpriteNr = pParams[#spritechannel]
+  [ 36] getparam 1 .............................. <pParams>
+  [ 38] pushsymb 3203 ........................... <#spriteLoc>
+  [ 41] pusharglist 2 ........................... <pParams, #spriteLoc>
+  [ 43] objcall 105 ............................. <pParams[#spriteLoc]>
+  [ 45] setprop 3202 ............................ pSpriteLoc = pParams[#spriteLoc]
+  [ 48] getparam 1 .............................. <pParams>
+  [ 50] pushsymb 3205 ........................... <#spriteDebugLoc>
+  [ 53] pusharglist 2 ........................... <pParams, #spriteDebugLoc>
+  [ 55] objcall 105 ............................. <pParams[#spriteDebugLoc]>
+  [ 57] setprop 3204 ............................ pSpriteDebugLoc = pParams[#spriteDebugLoc]
+  [ 60] getparam 1 .............................. <pParams>
+  [ 62] pushsymb 377 ............................ <#tag>
+  [ 65] pusharglist 2 ........................... <pParams, #tag>
+  [ 67] objcall 105 ............................. <pParams[#tag]>
+  [ 69] setprop 2844 ............................ pTag = pParams[#tag]
+  [ 72] getparam 1 .............................. <pParams>
+  [ 74] pushsymb 3207 ........................... <#CamOffSet>
+  [ 77] pusharglist 2 ........................... <pParams, #CamOffSet>
+  [ 79] objcall 105 ............................. <pParams[#CamOffSet]>
+  [ 81] setprop 3206 ............................ pOffset = pParams[#CamOffSet]
+  [ 84] getparam 1 .............................. <pParams>
+  [ 86] pushsymb 3209 ........................... <#camfov>
+  [ 89] pusharglist 2 ........................... <pParams, #camfov>
+  [ 91] objcall 105 ............................. <pParams[#camfov]>
+  [ 93] setprop 3208 ............................ pCamFov = pParams[#camfov]
+  [ 96] getparam 1 .............................. <pParams>
+  [ 98] pushsymb 3211 ........................... <#textureSize>
+  [101] pusharglist 2 ........................... <pParams, #textureSize>
+  [103] objcall 105 ............................. <pParams[#textureSize]>
+  [105] setprop 3210 ............................ pTextureSize = pParams[#textureSize]
+  [108] getparam 1 .............................. <pParams>
+  [110] pushsymb 3213 ........................... <#ShadowSize>
+  [113] pusharglist 2 ........................... <pParams, #ShadowSize>
+  [115] objcall 105 ............................. <pParams[#ShadowSize]>
+  [117] setprop 3212 ............................ pShadowSize = pParams[#ShadowSize]
+  [120] getparam 1 .............................. <pParams>
+  [122] pushsymb 2634 ........................... <#TextureName>
+  [125] pusharglist 2 ........................... <pParams, #TextureName>
+  [127] objcall 105 ............................. <pParams[#TextureName]>
+  [129] setprop 1694 ............................ pTextureName = pParams[#TextureName]
+  [132] getparam 1 .............................. <pParams>
+  [134] pushsymb 367 ............................ <#blend>
+  [137] pusharglist 2 ........................... <pParams, #blend>
+  [139] objcall 105 ............................. <pParams[#blend]>
+  [141] setprop 2764 ............................ pBlend = pParams[#blend]
+  [144] getparam 1 .............................. <pParams>
+  [146] pushsymb 223 ............................ <#color>
+  [148] pusharglist 2 ........................... <pParams, #color>
+  [150] objcall 105 ............................. <pParams[#color]>
+  [152] setprop 3214 ............................ pcolor = pParams[#color]
+  [155] getparam 1 .............................. <pParams>
+  [157] pushsymb 1581 ........................... <#blur>
+  [160] pusharglist 2 ........................... <pParams, #blur>
+  [162] objcall 105 ............................. <pParams[#blur]>
+  [164] setprop 3215 ............................ pBlur = pParams[#blur]
+  [167] getparam 1 .............................. <pParams>
+  [169] pushsymb 430 ............................ <#debug>
+  [172] pusharglist 2 ........................... <pParams, #debug>
+  [174] objcall 105 ............................. <pParams[#debug]>
+  [176] setprop 3216 ............................ pDebug = pParams[#debug]
+  [179] getprop 3197 ............................ <pShadowMember>
+  [182] pusharglist 0 ........................... <>
+  [184] extcall 40 .............................. <VOID>
+  [186] eq ...................................... <pShadowMember = VOID>
+  [187] getprop 3199 ............................ <pTrackMember>
+  [190] pusharglist 0 ........................... <>
+  [192] extcall 40 .............................. <VOID>
+  [194] eq ...................................... <pTrackMember = VOID>
+  [195] or ...................................... <(pShadowMember = VOID) or (pTrackMember = VOID)>
+  [196] jmpifz [200] ............................ if (pShadowMember = VOID) or (pTrackMember = VOID) then
+  [199] ret ..................................... exit
+  [200] getprop 2847 ............................ <pSpriteNr>
+  [203] pusharglist 0 ........................... <>
+  [205] extcall 40 .............................. <VOID>
+  [207] eq ...................................... <pSpriteNr = VOID>
+  [208] jmpifz [216] ............................ if pSpriteNr = VOID then
+  [211] pushint8 11 ............................. <11>
+  [213] setprop 2847 ............................ pSpriteNr = 11
+  [216] getprop 2844 ............................ <pTag>
+  [219] pusharglist 0 ........................... <>
+  [221] extcall 40 .............................. <VOID>
+  [223] eq ...................................... <pTag = VOID>
+  [224] jmpifz [233] ............................ if pTag = VOID then
+  [227] pushsymb 531 ............................ <#standard>
+  [230] setprop 2844 ............................ pTag = #standard
+  [233] getprop 3206 ............................ <pOffset>
+  [236] pusharglist 0 ........................... <>
+  [238] extcall 40 .............................. <VOID>
+  [240] eq ...................................... <pOffset = VOID>
+  [241] jmpifz [257] ............................ if pOffset = VOID then
+  [244] pushint8 100 ............................ <100>
+  [246] pushint8 100 ............................ <100>
+  [248] pushint8 100 ............................ <100>
+  [250] pusharglist 3 ........................... <100, 100, 100>
+  [252] extcall 212 ............................. <vector(100, 100, 100)>
+  [254] setprop 3206 ............................ pOffset = vector(100, 100, 100)
+  [257] getprop 3208 ............................ <pCamFov>
+  [260] pusharglist 0 ........................... <>
+  [262] extcall 40 .............................. <VOID>
+  [264] eq ...................................... <pCamFov = VOID>
+  [265] jmpifz [276] ............................ if pCamFov = VOID then
+  [268] pushfloat32 55.0 ........................ <55.0>
+  [273] setprop 3208 ............................ pCamFov = 55.0
+  [276] getprop 3210 ............................ <pTextureSize>
+  [279] pusharglist 0 ........................... <>
+  [281] extcall 40 .............................. <VOID>
+  [283] eq ...................................... <pTextureSize = VOID>
+  [284] jmpifz [293] ............................ if pTextureSize = VOID then
+  [287] pushint16 128 ........................... <128>
+  [290] setprop 3210 ............................ pTextureSize = 128
+  [293] getprop 3212 ............................ <pShadowSize>
+  [296] pusharglist 0 ........................... <>
+  [298] extcall 40 .............................. <VOID>
+  [300] eq ...................................... <pShadowSize = VOID>
+  [301] jmpifz [314] ............................ if pShadowSize = VOID then
+  [304] pushint8 1 .............................. <1>
+  [306] pushint8 1 .............................. <1>
+  [308] pusharglist 2 ........................... <[1, 1]>
+  [310] pushlist ................................ <[1, 1]>
+  [311] setprop 3212 ............................ pShadowSize = [1, 1]
+  [314] getprop 1694 ............................ <pTextureName>
+  [317] pusharglist 0 ........................... <>
+  [319] extcall 40 .............................. <VOID>
+  [321] eq ...................................... <pTextureName = VOID>
+  [322] jmpifz [330] ............................ if pTextureName = VOID then
+  [325] pushcons 0 .............................. <"CarShadow_Texture">
+  [327] setprop 1694 ............................ pTextureName = "CarShadow_Texture"
+  [330] getprop 2764 ............................ <pBlend>
+  [333] pusharglist 0 ........................... <>
+  [335] extcall 40 .............................. <VOID>
+  [337] eq ...................................... <pBlend = VOID>
+  [338] jmpifz [346] ............................ if pBlend = VOID then
+  [341] pushint8 80 ............................. <80>
+  [343] setprop 2764 ............................ pBlend = 80
+  [346] getprop 3214 ............................ <pcolor>
+  [349] pusharglist 0 ........................... <>
+  [351] extcall 40 .............................. <VOID>
+  [353] eq ...................................... <pcolor = VOID>
+  [354] jmpifz [368] ............................ if pcolor = VOID then
+  [357] pushzero ................................ <0>
+  [358] pushzero ................................ <0>
+  [359] pushzero ................................ <0>
+  [360] pusharglist 3 ........................... <0, 0, 0>
+  [362] extcall 282 ............................. <rgb(0, 0, 0)>
+  [365] setprop 3214 ............................ pcolor = rgb(0, 0, 0)
+  [368] getprop 3215 ............................ <pBlur>
+  [371] pusharglist 0 ........................... <>
+  [373] extcall 40 .............................. <VOID>
+  [375] eq ...................................... <pBlur = VOID>
+  [376] jmpifz [383] ............................ if pBlur = VOID then
+  [379] pushzero ................................ <0>
+  [380] setprop 3215 ............................ pBlur = 0
+  [383] getprop 3216 ............................ <pDebug>
+  [386] pusharglist 0 ........................... <>
+  [388] extcall 40 .............................. <VOID>
+  [390] eq ...................................... <pDebug = VOID>
+  [391] jmpifz [398] ............................ if pDebug = VOID then
+  [394] pushzero ................................ <0>
+  [395] setprop 3216 ............................ pDebug = 0
+  [398] getprop 3202 ............................ <pSpriteLoc>
+  [401] pusharglist 0 ........................... <>
+  [403] extcall 40 .............................. <VOID>
+  [405] eq ...................................... <pSpriteLoc = VOID>
+  [406] jmpifz [429] ............................ if pSpriteLoc = VOID then
+  [409] getprop 3210 ............................ <pTextureSize>
+  [412] pushint8 2 .............................. <2>
+  [414] div ..................................... <pTextureSize / 2>
+  [415] getprop 3210 ............................ <pTextureSize>
+  [418] pushint8 2 .............................. <2>
+  [420] div ..................................... <pTextureSize / 2>
+  [421] pusharglist 2 ........................... <pTextureSize / 2, pTextureSize / 2>
+  [423] extcall 302 ............................. <point(pTextureSize / 2, pTextureSize / 2)>
+  [426] setprop 3202 ............................ pSpriteLoc = point(pTextureSize / 2, pTextureSize / 2)
+  [429] getprop 3204 ............................ <pSpriteDebugLoc>
+  [432] pusharglist 0 ........................... <>
+  [434] extcall 40 .............................. <VOID>
+  [436] eq ...................................... <pSpriteDebugLoc = VOID>
+  [437] jmpifz [464] ............................ if pSpriteDebugLoc = VOID then
+  [440] pushint16 640 ........................... <640>
+  [443] getprop 3210 ............................ <pTextureSize>
+  [446] pushint8 2 .............................. <2>
+  [448] div ..................................... <pTextureSize / 2>
+  [449] add ..................................... <640 + (pTextureSize / 2)>
+  [450] getprop 3210 ............................ <pTextureSize>
+  [453] pushint8 2 .............................. <2>
+  [455] div ..................................... <pTextureSize / 2>
+  [456] pusharglist 2 ........................... <640 + (pTextureSize / 2), pTextureSize / 2>
+  [458] extcall 302 ............................. <point(640 + (pTextureSize / 2), pTextureSize / 2)>
+  [461] setprop 3204 ............................ pSpriteDebugLoc = point(640 + (pTextureSize / 2), pTextureSize / 2)
+  [464] getprop 3197 ............................ <pShadowMember>
+  [467] getobjprop 235 .......................... <pShadowMember.name>
+  [469] pusharglistnoret 1 ...................... <pShadowMember.name>
+  [471] extcall 674 ............................. resetWorld(pShadowMember.name)
+  [474] pusharglistnoret 0 ...................... <>
+  [476] localcall 5 ............................. SetupCarShadow()
+  [478] getparam 0 .............................. <me>
+  [480] pusharglistnoret 1 ...................... <me>
+  [482] extcall 52 .............................. return me
+  [484] ret
+end
+
+on enterFrame me
+  [  0] getprop 3197 ............................ <pShadowMember>
+  [  3] getglobal 3218 .......................... <gSelectedCar>
+  [  6] pusharglist 2 ........................... <pShadowMember, gSelectedCar>
+  [  8] objcall 71 .............................. <pShadowMember.model(gSelectedCar)>
+  [ 10] getchainedprop 214 ...................... <pShadowMember.model(gSelectedCar).transform>
+  [ 12] getprop 3199 ............................ <pTrackMember>
+  [ 15] getprop 2844 ............................ <pTag>
+  [ 18] getglobal 3218 .......................... <gSelectedCar>
+  [ 21] joinstr ................................. <pTag & gSelectedCar>
+  [ 22] pushcons 1 .............................. <"Proxy">
+  [ 24] joinstr ................................. <pTag & gSelectedCar & "Proxy">
+  [ 25] pusharglist 2 ........................... <pTrackMember, pTag & gSelectedCar & "Proxy">
+  [ 27] objcall 71 .............................. <pTrackMember.model(pTag & gSelectedCar & "Proxy")>
+  [ 29] getchainedprop 214 ...................... <pTrackMember.model(pTag & gSelectedCar & "Proxy").transform>
+  [ 31] getobjprop 215 .......................... <pTrackMember.model(pTag & gSelectedCar & "Proxy").transform.position>
+  [ 33] setobjprop 215 .......................... pShadowMember.model(gSelectedCar).transform.position = pTrackMember.model(pTag & gSelectedCar & "Proxy").transform.position
+  [ 35] getprop 3197 ............................ <pShadowMember>
+  [ 38] getglobal 3218 .......................... <gSelectedCar>
+  [ 41] pusharglist 2 ........................... <pShadowMember, gSelectedCar>
+  [ 43] objcall 71 .............................. <pShadowMember.model(gSelectedCar)>
+  [ 45] getchainedprop 214 ...................... <pShadowMember.model(gSelectedCar).transform>
+  [ 47] getprop 3199 ............................ <pTrackMember>
+  [ 50] getprop 2844 ............................ <pTag>
+  [ 53] getglobal 3218 .......................... <gSelectedCar>
+  [ 56] joinstr ................................. <pTag & gSelectedCar>
+  [ 57] pushcons 1 .............................. <"Proxy">
+  [ 59] joinstr ................................. <pTag & gSelectedCar & "Proxy">
+  [ 60] pusharglist 2 ........................... <pTrackMember, pTag & gSelectedCar & "Proxy">
+  [ 62] objcall 71 .............................. <pTrackMember.model(pTag & gSelectedCar & "Proxy")>
+  [ 64] getchainedprop 214 ...................... <pTrackMember.model(pTag & gSelectedCar & "Proxy").transform>
+  [ 66] getobjprop 1162 ......................... <pTrackMember.model(pTag & gSelectedCar & "Proxy").transform.rotation>
+  [ 69] setobjprop 1162 ......................... pShadowMember.model(gSelectedCar).transform.rotation = pTrackMember.model(pTag & gSelectedCar & "Proxy").transform.rotation
+  [ 72] getprop 3219 ............................ <pShadowCamera>
+  [ 75] getprop 3197 ............................ <pShadowMember>
+  [ 78] pusharglistnoret 2 ...................... <pShadowCamera, pShadowMember>
+  [ 80] localcall 6 ............................. setCamera(pShadowCamera, pShadowMember)
+  [ 82] getprop 3220 ............................ <pTrackCamera>
+  [ 85] getprop 3199 ............................ <pTrackMember>
+  [ 88] pusharglistnoret 2 ...................... <pTrackCamera, pTrackMember>
+  [ 90] localcall 6 ............................. setCamera(pTrackCamera, pTrackMember)
+  [ 92] getglobal 3222 .......................... <gStageImage>
+  [ 95] getprop 2847 ............................ <pSpriteNr>
+  [ 98] pusharglist 1 ........................... <pSpriteNr>
+  [100] extcall 487 ............................. <sprite(pSpriteNr)>
+  [103] getobjprop 320 .......................... <sprite(pSpriteNr).rect>
+  [106] pusharglist 2 ........................... <gStageImage, sprite(pSpriteNr).rect>
+  [108] objcall 1601 ............................ <gStageImage.crop(sprite(pSpriteNr).rect)>
+  [111] setprop 3221 ............................ pStageImage = gStageImage.crop(sprite(pSpriteNr).rect)
+  [114] getprop 3215 ............................ <pBlur>
+  [117] pushzero ................................ <0>
+  [118] nteq .................................... <pBlur <> 0>
+  [119] jmpifz [154] ............................ if pBlur <> 0 then
+  [122] pushint8 1 .............................. <1>
+  [124] setlocal 0
+  [126] getlocal 0
+  [128] getprop 3215 ............................ <pBlur>
+  [131] lteq
+  [132] jmpifz [154] ............................ repeat with i = 1 to pBlur
+  [135] getprop 3221 ............................ <pStageImage>
+  [138] pusharglist 1 ........................... <pStageImage>
+  [140] localcall 4 ............................. <blur(pStageImage)>
+  [142] setprop 3221 ............................ pStageImage = blur(pStageImage)
+  [145] pushint8 1
+  [147] getlocal 0
+  [149] add
+  [150] setlocal 0
+  [152] endrepeat [126]
+  [154] getprop 980 ............................. <pAlpha>
+  [157] getprop 3221 ............................ <pStageImage>
+  [160] getprop 980 ............................. <pAlpha>
+  [163] getobjprop 320 .......................... <pAlpha.rect>
+  [166] getprop 3221 ............................ <pStageImage>
+  [169] getobjprop 320 .......................... <pStageImage.rect>
+  [172] pusharglistnoret 4 ...................... <pAlpha, pStageImage, pAlpha.rect, pStageImage.rect>
+  [174] objcall 321 ............................. pAlpha.copyPixels(pStageImage, pAlpha.rect, pStageImage.rect)
+  [177] getprop 983 ............................. <pimage>
+  [180] getprop 980 ............................. <pAlpha>
+  [183] pusharglistnoret 2 ...................... <pimage, pAlpha>
+  [185] objcall 346 ............................. pimage.setAlpha(pAlpha)
+  [188] getprop 3199 ............................ <pTrackMember>
+  [191] getprop 1694 ............................ <pTextureName>
+  [194] pusharglist 2 ........................... <pTrackMember, pTextureName>
+  [196] objcall 218 ............................. <pTrackMember.texture(pTextureName)>
+  [198] getprop 983 ............................. <pimage>
+  [201] setobjprop 319 .......................... pTrackMember.texture(pTextureName).image = pimage
+  [204] getglobal 3223 .......................... <gRayCastList>
+  [207] getprop 2844 ............................ <pTag>
+  [210] pusharglist 2 ........................... <gRayCastList, pTag>
+  [212] objcall 105 ............................. <gRayCastList[pTag]>
+  [214] pusharglist 0 ........................... <[]>
+  [216] pushlist ................................ <[]>
+  [217] eq ...................................... <gRayCastList[pTag] = []>
+  [218] jmpifz [222] ............................ if gRayCastList[pTag] = [] then
+  [221] ret ..................................... exit
+  [222] getglobal 3223 .......................... <gRayCastList>
+  [225] getprop 2844 ............................ <pTag>
+  [228] pusharglist 2 ........................... <gRayCastList, pTag>
+  [230] objcall 105 ............................. <gRayCastList[pTag]>
+  [232] pushint8 1 .............................. <1>
+  [234] pusharglist 2 ........................... <gRayCastList[pTag], 1>
+  [236] objcall 105 ............................. <gRayCastList[pTag][1]>
+  [238] pushsymb 2306 ........................... <#isectPosition>
+  [241] pusharglist 2 ........................... <gRayCastList[pTag][1], #isectPosition>
+  [243] objcall 105 ............................. <gRayCastList[pTag][1][#isectPosition]>
+  [245] setlocal 1 .............................. positionShadow = gRayCastList[pTag][1][#isectPosition]
+  [247] getglobal 3223 .......................... <gRayCastList>
+  [250] getprop 2844 ............................ <pTag>
+  [253] pusharglist 2 ........................... <gRayCastList, pTag>
+  [255] objcall 105 ............................. <gRayCastList[pTag]>
+  [257] pushint8 1 .............................. <1>
+  [259] pusharglist 2 ........................... <gRayCastList[pTag], 1>
+  [261] objcall 105 ............................. <gRayCastList[pTag][1]>
+  [263] pushsymb 2307 ........................... <#isectNormal>
+  [266] pusharglist 2 ........................... <gRayCastList[pTag][1], #isectNormal>
+  [268] objcall 105 ............................. <gRayCastList[pTag][1][#isectNormal]>
+  [270] setlocal 2 .............................. normalShadow = gRayCastList[pTag][1][#isectNormal]
+  [272] getprop 3224 ............................ <pShadow>
+  [275] getchainedprop 214 ...................... <pShadow.transform>
+  [277] getlocal 1 .............................. <positionShadow>
+  [279] pushzero ................................ <0>
+  [280] pushzero ................................ <0>
+  [281] pushcons 2 .............................. <0.025>
+  [283] pusharglist 3 ........................... <0, 0, 0.025>
+  [285] extcall 212 ............................. <vector(0, 0, 0.025)>
+  [287] add ..................................... <positionShadow + vector(0, 0, 0.025)>
+  [288] setobjprop 215 .......................... pShadow.transform.position = positionShadow + vector(0, 0, 0.025)
+  [290] getprop 3224 ............................ <pShadow>
+  [293] pushzero ................................ <0>
+  [294] pushzero ................................ <0>
+  [295] pushint8 1 .............................. <1>
+  [297] pusharglist 3 ........................... <0, 0, 1>
+  [299] extcall 212 ............................. <vector(0, 0, 1)>
+  [301] pushzero ................................ <0>
+  [302] pushint8 1 .............................. <1>
+  [304] pushzero ................................ <0>
+  [305] pusharglist 3 ........................... <0, 1, 0>
+  [307] extcall 212 ............................. <vector(0, 1, 0)>
+  [309] pusharglist 2 ........................... <[vector(0, 0, 1), vector(0, 1, 0)]>
+  [311] pushlist ................................ <[vector(0, 0, 1), vector(0, 1, 0)]>
+  [312] setobjprop 1172 ......................... pShadow.pointAtOrientation = [vector(0, 0, 1), vector(0, 1, 0)]
+  [315] getprop 3224 ............................ <pShadow>
+  [318] getprop 3224 ............................ <pShadow>
+  [321] getchainedprop 214 ...................... <pShadow.transform>
+  [323] getobjprop 215 .......................... <pShadow.transform.position>
+  [325] getlocal 2 .............................. <normalShadow>
+  [327] add ..................................... <pShadow.transform.position + normalShadow>
+  [328] pusharglistnoret 2 ...................... <pShadow, pShadow.transform.position + normalShadow>
+  [330] objcall 1340 ............................ pShadow.pointAt(pShadow.transform.position + normalShadow)
+  [333] getprop 3224 ............................ <pShadow>
+  [336] pushzero ................................ <0>
+  [337] pushzero ................................ <0>
+  [338] getprop 3199 ............................ <pTrackMember>
+  [341] getprop 2844 ............................ <pTag>
+  [344] getglobal 3218 .......................... <gSelectedCar>
+  [347] joinstr ................................. <pTag & gSelectedCar>
+  [348] pushcons 1 .............................. <"Proxy">
+  [350] joinstr ................................. <pTag & gSelectedCar & "Proxy">
+  [351] pusharglist 2 ........................... <pTrackMember, pTag & gSelectedCar & "Proxy">
+  [353] objcall 71 .............................. <pTrackMember.model(pTag & gSelectedCar & "Proxy")>
+  [355] getchainedprop 214 ...................... <pTrackMember.model(pTag & gSelectedCar & "Proxy").transform>
+  [357] pushsymb 1162 ........................... <#rotation>
+  [360] pushint8 3 .............................. <3>
+  [362] pusharglist 3 ........................... <pTrackMember.model(pTag & gSelectedCar & "Proxy").transform, #rotation, 3>
+  [364] objcall 70 .............................. <pTrackMember.model(pTag & gSelectedCar & "Proxy").transform.rotation[3]>
+  [366] pusharglistnoret 4 ...................... <pShadow, 0, 0, pTrackMember.model(pTag & gSelectedCar & "Proxy").transform.rotation[3]>
+  [368] objcall 1471 ............................ pShadow.rotate(0, 0, pTrackMember.model(pTag & gSelectedCar & "Proxy").transform.rotation[3])
+  [371] pusharglistnoret 0 ...................... <>
+  [373] localcall 2 ............................. SetCoordinates()
+  [375] ret
+end
+
+on SetCoordinates me
+  [  0] getprop 3220 ............................ <pTrackCamera>
+  [  3] getobjprop 320 .......................... <pTrackCamera.rect>
+  [  6] getobjprop 229 .......................... <pTrackCamera.rect.width>
+  [  8] pushint8 2 .............................. <2>
+  [ 10] div ..................................... <pTrackCamera.rect.width / 2>
+  [ 11] getprop 3220 ............................ <pTrackCamera>
+  [ 14] getobjprop 320 .......................... <pTrackCamera.rect>
+  [ 17] getobjprop 283 .......................... <pTrackCamera.rect.height>
+  [ 20] pushint8 2 .............................. <2>
+  [ 22] div ..................................... <pTrackCamera.rect.height / 2>
+  [ 23] pusharglist 2 ........................... <pTrackCamera.rect.width / 2, pTrackCamera.rect.height / 2>
+  [ 25] extcall 302 ............................. <point(pTrackCamera.rect.width / 2, pTrackCamera.rect.height / 2)>
+  [ 28] setprop 3227 ............................ pCamOrigin2D = point(pTrackCamera.rect.width / 2, pTrackCamera.rect.height / 2)
+  [ 31] getprop 3220 ............................ <pTrackCamera>
+  [ 34] getobjprop 3229 ......................... <pTrackCamera.projectionAngle>
+  [ 37] pusharglist 0 ........................... <>
+  [ 39] extcall 959 ............................. <PI>
+  [ 42] pushfloat32 360.0 ....................... <360.0>
+  [ 47] div ..................................... <PI / 360.0>
+  [ 48] mul ..................................... <pTrackCamera.projectionAngle * (PI / 360.0)>
+  [ 49] pusharglist 1 ........................... <pTrackCamera.projectionAngle * (PI / 360.0)>
+  [ 51] extcall 3228 ............................ <tan(pTrackCamera.projectionAngle * (PI / 360.0))>
+  [ 54] setlocal 0 .............................. pCamDist2Plane = tan(pTrackCamera.projectionAngle * (PI / 360.0))
+  [ 56] getprop 3227 ............................ <pCamOrigin2D>
+  [ 59] pushint8 2 .............................. <2>
+  [ 61] pusharglist 2 ........................... <pCamOrigin2D, 2>
+  [ 63] objcall 105 ............................. <pCamOrigin2D[2]>
+  [ 65] getlocal 0 .............................. <pCamDist2Plane>
+  [ 67] div ..................................... <pCamOrigin2D[2] / pCamDist2Plane>
+  [ 68] setlocal 1 .............................. pCamProjDist = pCamOrigin2D[2] / pCamDist2Plane
+  [ 70] getprop 3220 ............................ <pTrackCamera>
+  [ 73] getchainedprop 214 ...................... <pTrackCamera.transform>
+  [ 75] pusharglist 1 ........................... <pTrackCamera.transform>
+  [ 77] objcall 1452 ............................ <pTrackCamera.transform.inverse()>
+  [ 80] setprop 3230 ............................ pCamInvMTX = pTrackCamera.transform.inverse()
+  [ 83] getprop 3230 ............................ <pCamInvMTX>
+  [ 86] getlocal 1 .............................. <pCamProjDist>
+  [ 88] getlocal 1 .............................. <pCamProjDist>
+  [ 90] pushint8 1 .............................. <1>
+  [ 92] pusharglistnoret 4 ...................... <pCamInvMTX, pCamProjDist, pCamProjDist, 1>
+  [ 94] objcall 307 ............................. pCamInvMTX.scale(pCamProjDist, pCamProjDist, 1)
+  [ 97] getprop 3220 ............................ <pTrackCamera>
+  [100] getobjprop 320 .......................... <pTrackCamera.rect>
+  [103] getobjprop 229 .......................... <pTrackCamera.rect.width>
+  [105] pushfloat32 1.0 ......................... <1.0>
+  [110] mul ..................................... <pTrackCamera.rect.width * 1.0>
+  [111] getprop 3220 ............................ <pTrackCamera>
+  [114] getobjprop 320 .......................... <pTrackCamera.rect>
+  [117] getobjprop 283 .......................... <pTrackCamera.rect.height>
+  [120] pushfloat32 1.0 ......................... <1.0>
+  [125] mul ..................................... <pTrackCamera.rect.height * 1.0>
+  [126] pusharglist 2 ........................... <pTrackCamera.rect.width * 1.0, pTrackCamera.rect.height * 1.0>
+  [128] extcall 302 ............................. <point(pTrackCamera.rect.width * 1.0, pTrackCamera.rect.height * 1.0)>
+  [131] setlocal 2 .............................. projSize = point(pTrackCamera.rect.width * 1.0, pTrackCamera.rect.height * 1.0)
+  [133] pushzero ................................ <0>
+  [134] pushzero ................................ <0>
+  [135] pusharglist 2 ........................... <0, 0>
+  [137] extcall 302 ............................. <point(0, 0)>
+  [140] setprop 3231 ............................ pt = point(0, 0)
+  [143] pushzero ................................ <0>
+  [144] pushzero ................................ <0>
+  [145] pushzero ................................ <0>
+  [146] pusharglist 3 ........................... <0, 0, 0>
+  [148] extcall 212 ............................. <vector(0, 0, 0)>
+  [150] setlocal 3 .............................. zVector = vector(0, 0, 0)
+  [152] getprop 3199 ............................ <pTrackMember>
+  [155] getprop 2844 ............................ <pTag>
+  [158] getglobal 3218 .......................... <gSelectedCar>
+  [161] joinstr ................................. <pTag & gSelectedCar>
+  [162] pushcons 3 .............................. <"ShadowCaster">
+  [164] joinstr ................................. <pTag & gSelectedCar & "ShadowCaster">
+  [165] pusharglist 2 ........................... <pTrackMember, pTag & gSelectedCar & "ShadowCaster">
+  [167] objcall 71 .............................. <pTrackMember.model(pTag & gSelectedCar & "ShadowCaster")>
+  [169] setlocal 4 .............................. tm = pTrackMember.model(pTag & gSelectedCar & "ShadowCaster")
+  [171] pushint8 1 .............................. <1>
+  [173] setlocal 5
+  [175] getlocal 5
+  [177] getlocal 4 .............................. <tm>
+  [179] getchainedprop 995 ...................... <tm.meshDeform>
+  [182] pushsymb 998 ............................ <#mesh>
+  [185] pusharglist 2 ........................... <tm.meshDeform, #mesh>
+  [187] objcall 129 ............................. <tm.meshDeform.mesh.count>
+  [189] lteq
+  [190] jmpifz [380] ............................ repeat with m = 1 to tm.meshDeform.mesh.count
+  [193] getlocal 4 .............................. <tm>
+  [195] getchainedprop 995 ...................... <tm.meshDeform>
+  [198] pushsymb 998 ............................ <#mesh>
+  [201] getlocal 5 .............................. <m>
+  [203] pusharglist 3 ........................... <tm.meshDeform, #mesh, m>
+  [205] objcall 102 ............................. <tm.meshDeform.mesh[m]>
+  [207] getobjprop 883 .......................... <tm.meshDeform.mesh[m].vertexList>
+  [210] setlocal 6 .............................. vertexList = tm.meshDeform.mesh[m].vertexList
+  [212] getlocal 4 .............................. <tm>
+  [214] getchainedprop 995 ...................... <tm.meshDeform>
+  [217] pushsymb 998 ............................ <#mesh>
+  [220] getlocal 5 .............................. <m>
+  [222] pusharglist 3 ........................... <tm.meshDeform, #mesh, m>
+  [224] objcall 102 ............................. <tm.meshDeform.mesh[m]>
+  [226] pushsymb 1939 ........................... <#textureLayer>
+  [229] pushint8 1 .............................. <1>
+  [231] pusharglist 3 ........................... <tm.meshDeform.mesh[m], #textureLayer, 1>
+  [233] objcall 102 ............................. <tm.meshDeform.mesh[m].textureLayer[1]>
+  [235] getobjprop 886 .......................... <tm.meshDeform.mesh[m].textureLayer[1].textureCoordinateList>
+  [238] setlocal 7 .............................. textureCoordinateList = tm.meshDeform.mesh[m].textureLayer[1].textureCoordinateList
+  [240] getlocal 6 .............................. <vertexList>
+  [242] getobjprop 129 .......................... <vertexList.count>
+  [244] setlocal 8 .............................. t = vertexList.count
+  [246] pushint8 1 .............................. <1>
+  [248] setlocal 9
+  [250] getlocal 9
+  [252] getlocal 8 .............................. <t>
+  [254] lteq
+  [255] jmpifz [343] ............................ repeat with i = 1 to t
+  [258] getlocal 4 .............................. <tm>
+  [260] getobjprop 214 .......................... <tm.transform>
+  [262] getlocal 6 .............................. <vertexList>
+  [264] getlocal 9 .............................. <i>
+  [266] pusharglist 2 ........................... <vertexList, i>
+  [268] objcall 105 ............................. <vertexList[i]>
+  [270] mul ..................................... <tm.transform * vertexList[i]>
+  [271] getlocal 3 .............................. <zVector>
+  [273] add ..................................... <(tm.transform * vertexList[i]) + zVector>
+  [274] pusharglist 1 ........................... <(tm.transform * vertexList[i]) + zVector>
+  [276] localcall 3 ............................. <worldSpaceToSpriteSpace((tm.transform * vertexList[i]) + zVector)>
+  [278] getlocal 2 .............................. <projSize>
+  [280] div ..................................... <worldSpaceToSpriteSpace((tm.transform * vertexList[i]) + zVector) / projSize>
+  [281] setlocal 10 ............................. tp = worldSpaceToSpriteSpace((tm.transform * vertexList[i]) + zVector) / projSize
+  [283] getlocal 7 .............................. <textureCoordinateList>
+  [285] getlocal 9 .............................. <i>
+  [287] pusharglist 2 ........................... <textureCoordinateList, i>
+  [289] objcall 105 ............................. <textureCoordinateList[i]>
+  [291] pushint8 1 .............................. <1>
+  [293] getlocal 10 ............................. <tp>
+  [295] pushint8 1 .............................. <1>
+  [297] pusharglist 2 ........................... <tp, 1>
+  [299] objcall 105 ............................. <tp[1]>
+  [301] pushint8 1 .............................. <1>
+  [303] inv ..................................... <-1>
+  [304] mul ..................................... <tp[1] * -1>
+  [305] pushint8 1 .............................. <1>
+  [307] add ..................................... <(tp[1] * -1) + 1>
+  [308] pusharglistnoret 3 ...................... <textureCoordinateList[i], 1, (tp[1] * -1) + 1>
+  [310] objcall 103 ............................. textureCoordinateList[i][1] = (tp[1] * -1) + 1
+  [312] getlocal 7 .............................. <textureCoordinateList>
+  [314] getlocal 9 .............................. <i>
+  [316] pusharglist 2 ........................... <textureCoordinateList, i>
+  [318] objcall 105 ............................. <textureCoordinateList[i]>
+  [320] pushint8 2 .............................. <2>
+  [322] getlocal 10 ............................. <tp>
+  [324] pushint8 2 .............................. <2>
+  [326] pusharglist 2 ........................... <tp, 2>
+  [328] objcall 105 ............................. <tp[2]>
+  [330] pusharglistnoret 3 ...................... <textureCoordinateList[i], 2, tp[2]>
+  [332] objcall 103 ............................. textureCoordinateList[i][2] = tp[2]
+  [334] pushint8 1
+  [336] getlocal 9
+  [338] add
+  [339] setlocal 9
+  [341] endrepeat [250]
+  [343] getlocal 4 .............................. <tm>
+  [345] getchainedprop 995 ...................... <tm.meshDeform>
+  [348] pushsymb 998 ............................ <#mesh>
+  [351] getlocal 5 .............................. <m>
+  [353] pusharglist 3 ........................... <tm.meshDeform, #mesh, m>
+  [355] objcall 102 ............................. <tm.meshDeform.mesh[m]>
+  [357] pushsymb 1939 ........................... <#textureLayer>
+  [360] pushint8 1 .............................. <1>
+  [362] pusharglist 3 ........................... <tm.meshDeform.mesh[m], #textureLayer, 1>
+  [364] objcall 102 ............................. <tm.meshDeform.mesh[m].textureLayer[1]>
+  [366] getlocal 7 .............................. <textureCoordinateList>
+  [368] setobjprop 886 .......................... tm.meshDeform.mesh[m].textureLayer[1].textureCoordinateList = textureCoordinateList
+  [371] pushint8 1
+  [373] getlocal 5
+  [375] add
+  [376] setlocal 5
+  [378] endrepeat [175]
+  [380] ret
+end
+
+on worldSpaceToSpriteSpace tVect
+  [  0] getprop 3230 ............................ <pCamInvMTX>
+  [  3] getparam 0 .............................. <tVect>
+  [  5] mul ..................................... <pCamInvMTX * tVect>
+  [  6] setlocal 0 .............................. tEyeSp = pCamInvMTX * tVect
+  [  8] getprop 3231 ............................ <pt>
+  [ 11] pushint8 1 .............................. <1>
+  [ 13] getlocal 0 .............................. <tEyeSp>
+  [ 15] getobjprop 557 .......................... <tEyeSp.x>
+  [ 18] getlocal 0 .............................. <tEyeSp>
+  [ 20] getobjprop 1190 ......................... <tEyeSp.z>
+  [ 23] div ..................................... <tEyeSp.x / tEyeSp.z>
+  [ 24] getprop 3227 ............................ <pCamOrigin2D>
+  [ 27] pushint8 1 .............................. <1>
+  [ 29] pusharglist 2 ........................... <pCamOrigin2D, 1>
+  [ 31] objcall 105 ............................. <pCamOrigin2D[1]>
+  [ 33] add ..................................... <(tEyeSp.x / tEyeSp.z) + pCamOrigin2D[1]>
+  [ 34] pusharglistnoret 3 ...................... <pt, 1, (tEyeSp.x / tEyeSp.z) + pCamOrigin2D[1]>
+  [ 36] objcall 103 ............................. pt[1] = (tEyeSp.x / tEyeSp.z) + pCamOrigin2D[1]
+  [ 38] getprop 3231 ............................ <pt>
+  [ 41] pushint8 2 .............................. <2>
+  [ 43] getlocal 0 .............................. <tEyeSp>
+  [ 45] getobjprop 1189 ......................... <tEyeSp.y>
+  [ 48] getlocal 0 .............................. <tEyeSp>
+  [ 50] getobjprop 1190 ......................... <tEyeSp.z>
+  [ 53] div ..................................... <tEyeSp.y / tEyeSp.z>
+  [ 54] inv ..................................... <-(tEyeSp.y / tEyeSp.z)>
+  [ 55] getprop 3227 ............................ <pCamOrigin2D>
+  [ 58] pushint8 2 .............................. <2>
+  [ 60] pusharglist 2 ........................... <pCamOrigin2D, 2>
+  [ 62] objcall 105 ............................. <pCamOrigin2D[2]>
+  [ 64] add ..................................... <-(tEyeSp.y / tEyeSp.z) + pCamOrigin2D[2]>
+  [ 65] pusharglistnoret 3 ...................... <pt, 2, -(tEyeSp.y / tEyeSp.z) + pCamOrigin2D[2]>
+  [ 67] objcall 103 ............................. pt[2] = -(tEyeSp.y / tEyeSp.z) + pCamOrigin2D[2]
+  [ 69] getprop 3231 ............................ <pt>
+  [ 72] pusharglistnoret 1 ...................... <pt>
+  [ 74] extcall 52 .............................. return pt
+  [ 76] ret
+end
+
+on blur tImg
+  [  0] getparam 0 .............................. <tImg>
+  [  2] pusharglist 1 ........................... <tImg>
+  [  4] extcall 122 ............................. <ilk(tImg)>
+  [  6] pushsymb 319 ............................ <#image>
+  [  9] nteq .................................... <ilk(tImg) <> #image>
+  [ 10] jmpifz [ 21] ............................ if ilk(tImg) <> #image then
+  [ 13] pusharglist 0 ........................... <>
+  [ 15] extcall 40 .............................. <VOID>
+  [ 17] pusharglistnoret 1 ...................... <VOID>
+  [ 19] extcall 52 .............................. return VOID
+  [ 21] getparam 0 .............................. <tImg>
+  [ 23] getobjprop 229 .......................... <tImg.width>
+  [ 25] getparam 0 .............................. <tImg>
+  [ 27] getobjprop 283 .......................... <tImg.height>
+  [ 30] pushint8 32 ............................. <32>
+  [ 32] pusharglist 3 ........................... <tImg.width, tImg.height, 32>
+  [ 34] extcall 319 ............................. <image(tImg.width, tImg.height, 32)>
+  [ 37] setlocal 0 .............................. buffer = image(tImg.width, tImg.height, 32)
+  [ 39] pushzero ................................ <0>
+  [ 40] pushzero ................................ <0>
+  [ 41] getparam 0 .............................. <tImg>
+  [ 43] getobjprop 229 .......................... <tImg.width>
+  [ 45] getparam 0 .............................. <tImg>
+  [ 47] getobjprop 283 .......................... <tImg.height>
+  [ 50] pusharglist 4 ........................... <0, 0, tImg.width, tImg.height>
+  [ 52] extcall 320 ............................. <rect(0, 0, tImg.width, tImg.height)>
+  [ 55] setlocal 1 .............................. myRect = rect(0, 0, tImg.width, tImg.height)
+  [ 57] pushzero ................................ <0>
+  [ 58] pushzero ................................ <0>
+  [ 59] pusharglist 2 ........................... <[0, 0]>
+  [ 61] pushlist ................................ <[0, 0]>
+  [ 62] pushint8 2 .............................. <2>
+  [ 64] pushint8 2 .............................. <2>
+  [ 66] pusharglist 2 ........................... <[2, 2]>
+  [ 68] pushlist ................................ <[2, 2]>
+  [ 69] pushzero ................................ <0>
+  [ 70] pushint8 2 .............................. <2>
+  [ 72] pusharglist 2 ........................... <[0, 2]>
+  [ 74] pushlist ................................ <[0, 2]>
+  [ 75] pushint8 2 .............................. <2>
+  [ 77] pushzero ................................ <0>
+  [ 78] pusharglist 2 ........................... <[2, 0]>
+  [ 80] pushlist ................................ <[2, 0]>
+  [ 81] pushzero ................................ <0>
+  [ 82] pushint8 1 .............................. <1>
+  [ 84] pusharglist 2 ........................... <[0, 1]>
+  [ 86] pushlist ................................ <[0, 1]>
+  [ 87] pushint8 2 .............................. <2>
+  [ 89] pushint8 1 .............................. <1>
+  [ 91] pusharglist 2 ........................... <[2, 1]>
+  [ 93] pushlist ................................ <[2, 1]>
+  [ 94] pushint8 1 .............................. <1>
+  [ 96] pushzero ................................ <0>
+  [ 97] pusharglist 2 ........................... <[1, 0]>
+  [ 99] pushlist ................................ <[1, 0]>
+  [100] pushint8 1 .............................. <1>
+  [102] pushint8 2 .............................. <2>
+  [104] pusharglist 2 ........................... <[1, 2]>
+  [106] pushlist ................................ <[1, 2]>
+  [107] pushint8 1 .............................. <1>
+  [109] pushint8 1 .............................. <1>
+  [111] pusharglist 2 ........................... <[1, 1]>
+  [113] pushlist ................................ <[1, 1]>
+  [114] pusharglist 9 ........................... <[[0, 0], [2, 2], [0, 2], [2, 0], [0, 1], [2, 1], [1, 0], [1, 2], [1, 1]]>
+  [116] pushlist ................................ <[[0, 0], [2, 2], [0, 2], [2, 0], [0, 1], [2, 1], [1, 0], [1, 2], [1, 1]]>
+  [117] setlocal 2 .............................. offsetL = [[0, 0], [2, 2], [0, 2], [2, 0], [0, 1], [2, 1], [1, 0], [1, 2], [1, 1]]
+  [119] pushint16 255 ........................... <255>
+  [122] getlocal 2 .............................. <offsetL>
+  [124] getobjprop 129 .......................... <offsetL.count>
+  [126] div ..................................... <255 / offsetL.count>
+  [127] pushcons 4 .............................. <1.69999999999999996>
+  [129] mul ..................................... <255 / offsetL.count * 1.69999999999999996>
+  [130] setlocal 3 .............................. myBlend = 255 / offsetL.count * 1.69999999999999996
+  [132] pushint8 1 .............................. <1>
+  [134] setlocal 4
+  [136] getlocal 4
+  [138] pushint8 9 .............................. <9>
+  [140] lteq
+  [141] jmpifz [210] ............................ repeat with j = 1 to 9
+  [144] getlocal 1 .............................. <myRect>
+  [146] getlocal 2 .............................. <offsetL>
+  [148] getlocal 4 .............................. <j>
+  [150] pusharglist 2 ........................... <offsetL, j>
+  [152] objcall 105 ............................. <offsetL[j]>
+  [154] pushint8 1 .............................. <1>
+  [156] pusharglist 2 ........................... <offsetL[j], 1>
+  [158] objcall 105 ............................. <offsetL[j][1]>
+  [160] getlocal 2 .............................. <offsetL>
+  [162] getlocal 4 .............................. <j>
+  [164] pusharglist 2 ........................... <offsetL, j>
+  [166] objcall 105 ............................. <offsetL[j]>
+  [168] pushint8 2 .............................. <2>
+  [170] pusharglist 2 ........................... <offsetL[j], 2>
+  [172] objcall 105 ............................. <offsetL[j][2]>
+  [174] pusharglist 3 ........................... <myRect, offsetL[j][1], offsetL[j][2]>
+  [176] objcall 211 ............................. <myRect.offset(offsetL[j][1], offsetL[j][2])>
+  [178] setlocal 5 .............................. destRect = myRect.offset(offsetL[j][1], offsetL[j][2])
+  [180] getlocal 0 .............................. <buffer>
+  [182] getparam 0 .............................. <tImg>
+  [184] getlocal 5 .............................. <destRect>
+  [186] getlocal 1 .............................. <myRect>
+  [188] pushsymb 3240 ........................... <#blendLevel>
+  [191] getlocal 3 .............................. <myBlend>
+  [193] pusharglist 2 ........................... <[#blendLevel: myBlend]>
+  [195] pushproplist ............................ <[#blendLevel: myBlend]>
+  [196] pusharglistnoret 5 ...................... <buffer, tImg, destRect, myRect, [#blendLevel: myBlend]>
+  [198] objcall 321 ............................. buffer.copyPixels(tImg, destRect, myRect, [#blendLevel: myBlend])
+  [201] pushint8 1
+  [203] getlocal 4
+  [205] add
+  [206] setlocal 4
+  [208] endrepeat [136]
+  [210] getlocal 0 .............................. <buffer>
+  [212] pusharglistnoret 1 ...................... <buffer>
+  [214] extcall 52 .............................. return buffer
+  [216] ret
+end
+
+on SetupCarShadow me
+  [  0] getprop 2847 ............................ <pSpriteNr>
+  [  3] pushint8 1 .............................. <1>
+  [  5] pusharglistnoret 2 ...................... <pSpriteNr, 1>
+  [  7] extcall 1132 ............................ puppetSprite(pSpriteNr, 1)
+  [ 10] getprop 2847 ............................ <pSpriteNr>
+  [ 13] pusharglist 1 ........................... <pSpriteNr>
+  [ 15] extcall 487 ............................. <sprite(pSpriteNr)>
+  [ 18] setlocal 0 .............................. pSprite = sprite(pSpriteNr)
+  [ 20] getlocal 0 .............................. <pSprite>
+  [ 22] getprop 3197 ............................ <pShadowMember>
+  [ 25] setobjprop 64 ........................... pSprite.member = pShadowMember
+  [ 27] getlocal 0 .............................. <pSprite>
+  [ 29] getprop 3210 ............................ <pTextureSize>
+  [ 32] setobjprop 229 .......................... pSprite.width = pTextureSize
+  [ 34] getlocal 0 .............................. <pSprite>
+  [ 36] getprop 3210 ............................ <pTextureSize>
+  [ 39] setobjprop 283 .......................... pSprite.height = pTextureSize
+  [ 42] getprop 3216 ............................ <pDebug>
+  [ 45] pushzero ................................ <0>
+  [ 46] eq ...................................... <pDebug = 0>
+  [ 47] jmpifz [ 58] ............................ if pDebug = 0 then
+  [ 50] getlocal 0 .............................. <pSprite>
+  [ 52] getprop 3202 ............................ <pSpriteLoc>
+  [ 55] setobjprop 1131 ......................... pSprite.loc = pSpriteLoc
+  [ 58] getprop 3216 ............................ <pDebug>
+  [ 61] pushint8 1 .............................. <1>
+  [ 63] eq ...................................... <pDebug = 1>
+  [ 64] jmpifz [ 75] ............................ if pDebug = 1 then
+  [ 67] getlocal 0 .............................. <pSprite>
+  [ 69] getprop 3204 ............................ <pSpriteDebugLoc>
+  [ 72] setobjprop 1131 ......................... pSprite.loc = pSpriteDebugLoc
+  [ 75] getglobal 3218 .......................... <gSelectedCar>
+  [ 78] getglobal 3218 .......................... <gSelectedCar>
+  [ 81] pushcons 5 .............................. <"Wheel_LB">
+  [ 83] joinstr ................................. <gSelectedCar & "Wheel_LB">
+  [ 84] getglobal 3218 .......................... <gSelectedCar>
+  [ 87] pushcons 6 .............................. <"Wheel_RB">
+  [ 89] joinstr ................................. <gSelectedCar & "Wheel_RB">
+  [ 90] getglobal 3218 .......................... <gSelectedCar>
+  [ 93] pushcons 7 .............................. <"Wheel_RF">
+  [ 95] joinstr ................................. <gSelectedCar & "Wheel_RF">
+  [ 96] getglobal 3218 .......................... <gSelectedCar>
+  [ 99] pushcons 8 .............................. <"Wheel_LF">
+  [101] joinstr ................................. <gSelectedCar & "Wheel_LF">
+  [102] pusharglist 5 ........................... <[gSelectedCar, gSelectedCar & "Wheel_LB", gSelectedCar & "Wheel_RB", gSelectedCar & "Wheel_RF", gSelectedCar & "Wheel_LF"]>
+  [104] pushlist ................................ <[gSelectedCar, gSelectedCar & "Wheel_LB", gSelectedCar & "Wheel_RB", gSelectedCar & "Wheel_RF", gSelectedCar & "Wheel_LF"]>
+  [105] setlocal 1 .............................. pModelList = [gSelectedCar, gSelectedCar & "Wheel_LB", gSelectedCar & "Wheel_RB", gSelectedCar & "Wheel_RF", gSelectedCar & "Wheel_LF"]
+  [107] getprop 3197 ............................ <pShadowMember>
+  [110] getobjprop 235 .......................... <pShadowMember.name>
+  [112] pushsymb 1366 ........................... <#cloneMember>
+  [115] getglobal 3218 .......................... <gSelectedCar>
+  [118] pushsymb 969 ............................ <#modelList>
+  [121] getlocal 1 .............................. <pModelList>
+  [123] pusharglist 4 ........................... <[#cloneMember: gSelectedCar, #modelList: pModelList]>
+  [125] pushproplist ............................ <[#cloneMember: gSelectedCar, #modelList: pModelList]>
+  [126] pusharglistnoret 2 ...................... <pShadowMember.name, [#cloneMember: gSelectedCar, #modelList: pModelList]>
+  [128] extcall 690 ............................. CLONEMODELS(pShadowMember.name, [#cloneMember: gSelectedCar, #modelList: pModelList])
+  [131] pusharglist 0 ........................... <[]>
+  [133] pushlist ................................ <[]>
+  [134] setlocal 2 .............................. pNitroBlastList = []
+  [136] getprop 3197 ............................ <pShadowMember>
+  [139] pushsymb 71 ............................. <#model>
+  [141] pusharglist 2 ........................... <pShadowMember, #model>
+  [143] objcall 129 ............................. <pShadowMember.model.count>
+  [145] setlocal 3 .............................. pCount = pShadowMember.model.count
+  [147] pushint8 1 .............................. <1>
+  [149] setlocal 4
+  [151] getlocal 4
+  [153] getlocal 3 .............................. <pCount>
+  [155] lteq
+  [156] jmpifz [205] ............................ repeat with i = 1 to pCount
+  [159] getprop 3197 ............................ <pShadowMember>
+  [162] pushsymb 71 ............................. <#model>
+  [164] getlocal 4 .............................. <i>
+  [166] pusharglist 3 ........................... <pShadowMember, #model, i>
+  [168] objcall 102 ............................. <pShadowMember.model[i]>
+  [170] getobjprop 235 .......................... <pShadowMember.model[i].name>
+  [172] setlocal 5 .............................. pModelName = pShadowMember.model[i].name
+  [174] getlocal 5 .............................. <pModelName>
+  [176] pushcons 9 .............................. <"NitroBlast">
+  [178] containsstr ............................. <pModelName contains "NitroBlast">
+  [179] jmpifz [196] ............................ if pModelName contains "NitroBlast" then
+  [182] getprop 3197 ............................ <pShadowMember>
+  [185] getlocal 5 .............................. <pModelName>
+  [187] pusharglist 2 ........................... <pShadowMember, pModelName>
+  [189] objcall 71 .............................. <pShadowMember.model(pModelName)>
+  [191] pusharglistnoret 1 ...................... <pShadowMember.model(pModelName)>
+  [193] objcall 662 ............................. pShadowMember.model(pModelName).removeFromWorld()
+  [196] pushint8 1
+  [198] getlocal 4
+  [200] add
+  [201] setlocal 4
+  [203] endrepeat [151]
+  [205] getglobal 3218 .......................... <gSelectedCar>
+  [208] pusharglist 1 ........................... <gSelectedCar>
+  [210] extcall 64 .............................. <member(gSelectedCar)>
+  [212] getglobal 3218 .......................... <gSelectedCar>
+  [215] pusharglist 2 ........................... <member(gSelectedCar), gSelectedCar>
+  [217] objcall 71 .............................. <member(gSelectedCar).model(gSelectedCar)>
+  [219] getchainedprop 214 ...................... <member(gSelectedCar).model(gSelectedCar).transform>
+  [221] getchainedprop 215 ...................... <member(gSelectedCar).model(gSelectedCar).transform.position>
+  [223] getobjprop 1190 ......................... <member(gSelectedCar).model(gSelectedCar).transform.position.z>
+  [226] setlocal 6 .............................. pWheelOffSet = member(gSelectedCar).model(gSelectedCar).transform.position.z
+  [228] pushint8 2 .............................. <2>
+  [230] setlocal 7
+  [232] getlocal 7
+  [234] getlocal 1 .............................. <pModelList>
+  [236] getobjprop 129 .......................... <pModelList.count>
+  [238] lteq
+  [239] jmpifz [325] ............................ repeat with j = 2 to pModelList.count
+  [242] getprop 3197 ............................ <pShadowMember>
+  [245] getlocal 1 .............................. <pModelList>
+  [247] getlocal 7 .............................. <j>
+  [249] pusharglist 2 ........................... <pModelList, j>
+  [251] objcall 105 ............................. <pModelList[j]>
+  [253] pusharglist 2 ........................... <pShadowMember, pModelList[j]>
+  [255] objcall 71 .............................. <pShadowMember.model(pModelList[j])>
+  [257] getprop 3197 ............................ <pShadowMember>
+  [260] getglobal 3218 .......................... <gSelectedCar>
+  [263] pusharglist 2 ........................... <pShadowMember, gSelectedCar>
+  [265] objcall 71 .............................. <pShadowMember.model(gSelectedCar)>
+  [267] setobjprop 207 .......................... pShadowMember.model(pModelList[j]).parent = pShadowMember.model(gSelectedCar)
+  [269] getprop 3197 ............................ <pShadowMember>
+  [272] getlocal 1 .............................. <pModelList>
+  [274] getlocal 7 .............................. <j>
+  [276] pusharglist 2 ........................... <pModelList, j>
+  [278] objcall 105 ............................. <pModelList[j]>
+  [280] pusharglist 2 ........................... <pShadowMember, pModelList[j]>
+  [282] objcall 71 .............................. <pShadowMember.model(pModelList[j])>
+  [284] getchainedprop 214 ...................... <pShadowMember.model(pModelList[j]).transform>
+  [286] getchainedprop 215 ...................... <pShadowMember.model(pModelList[j]).transform.position>
+  [288] getprop 3197 ............................ <pShadowMember>
+  [291] getlocal 1 .............................. <pModelList>
+  [293] getlocal 7 .............................. <j>
+  [295] pusharglist 2 ........................... <pModelList, j>
+  [297] objcall 105 ............................. <pModelList[j]>
+  [299] pusharglist 2 ........................... <pShadowMember, pModelList[j]>
+  [301] objcall 71 .............................. <pShadowMember.model(pModelList[j])>
+  [303] getchainedprop 214 ...................... <pShadowMember.model(pModelList[j]).transform>
+  [305] getchainedprop 215 ...................... <pShadowMember.model(pModelList[j]).transform.position>
+  [307] getobjprop 1190 ......................... <pShadowMember.model(pModelList[j]).transform.position.z>
+  [310] getlocal 6 .............................. <pWheelOffSet>
+  [312] sub ..................................... <pShadowMember.model(pModelList[j]).transform.position.z - pWheelOffSet>
+  [313] setobjprop 1190 ......................... pShadowMember.model(pModelList[j]).transform.position.z = pShadowMember.model(pModelList[j]).transform.position.z - pWheelOffSet
+  [316] pushint8 1
+  [318] getlocal 7
+  [320] add
+  [321] setlocal 7
+  [323] endrepeat [232]
+  [325] pushint8 1 .............................. <1>
+  [327] setlocal 8
+  [329] getlocal 8
+  [331] getlocal 1 .............................. <pModelList>
+  [333] getobjprop 129 .......................... <pModelList.count>
+  [335] lteq
+  [336] jmpifz [439] ............................ repeat with k = 1 to pModelList.count
+  [339] getprop 3197 ............................ <pShadowMember>
+  [342] getlocal 1 .............................. <pModelList>
+  [344] getlocal 8 .............................. <k>
+  [346] pusharglist 2 ........................... <pModelList, k>
+  [348] objcall 105 ............................. <pModelList[k]>
+  [350] pusharglist 2 ........................... <pShadowMember, pModelList[k]>
+  [352] objcall 72 .............................. <pShadowMember.modelResource(pModelList[k])>
+  [354] getchainedprop 1217 ..................... <pShadowMember.modelResource(pModelList[k]).lod>
+  [357] pushzero ................................ <0>
+  [358] setobjprop 1218 ......................... pShadowMember.modelResource(pModelList[k]).lod.auto = 0
+  [361] getprop 3197 ............................ <pShadowMember>
+  [364] getlocal 1 .............................. <pModelList>
+  [366] getlocal 8 .............................. <k>
+  [368] pusharglist 2 ........................... <pModelList, k>
+  [370] objcall 105 ............................. <pModelList[k]>
+  [372] pusharglist 2 ........................... <pShadowMember, pModelList[k]>
+  [374] objcall 72 .............................. <pShadowMember.modelResource(pModelList[k])>
+  [376] getchainedprop 1217 ..................... <pShadowMember.modelResource(pModelList[k]).lod>
+  [379] pushint8 100 ............................ <100>
+  [381] setobjprop 1219 ......................... pShadowMember.modelResource(pModelList[k]).lod.bias = 100
+  [384] getprop 3197 ............................ <pShadowMember>
+  [387] getlocal 1 .............................. <pModelList>
+  [389] getlocal 8 .............................. <k>
+  [391] pusharglist 2 ........................... <pModelList, k>
+  [393] objcall 105 ............................. <pModelList[k]>
+  [395] pusharglist 2 ........................... <pShadowMember, pModelList[k]>
+  [397] objcall 72 .............................. <pShadowMember.modelResource(pModelList[k])>
+  [399] getchainedprop 1217 ..................... <pShadowMember.modelResource(pModelList[k]).lod>
+  [402] pushint8 100 ............................ <100>
+  [404] setobjprop 1220 ......................... pShadowMember.modelResource(pModelList[k]).lod.level = 100
+  [407] getprop 3197 ............................ <pShadowMember>
+  [410] getlocal 1 .............................. <pModelList>
+  [412] getlocal 8 .............................. <k>
+  [414] pusharglist 2 ........................... <pModelList, k>
+  [416] objcall 105 ............................. <pModelList[k]>
+  [418] pusharglist 2 ........................... <pShadowMember, pModelList[k]>
+  [420] objcall 71 .............................. <pShadowMember.model(pModelList[k])>
+  [422] pushsymb 995 ............................ <#meshDeform>
+  [425] pusharglistnoret 2 ...................... <pShadowMember.model(pModelList[k]), #meshDeform>
+  [427] objcall 261 ............................. pShadowMember.model(pModelList[k]).addModifier(#meshDeform)
+  [430] pushint8 1
+  [432] getlocal 8
+  [434] add
+  [435] setlocal 8
+  [437] endrepeat [329]
+  [439] getprop 3197 ............................ <pShadowMember>
+  [442] pushsymb 208 ............................ <#shader>
+  [444] pusharglist 2 ........................... <pShadowMember, #shader>
+  [446] objcall 129 ............................. <pShadowMember.shader.count>
+  [448] setlocal 3 .............................. pCount = pShadowMember.shader.count
+  [450] pusharglist 0 ........................... <[]>
+  [452] pushlist ................................ <[]>
+  [453] setlocal 9 .............................. PList = []
+  [455] pushint8 1 .............................. <1>
+  [457] setlocal 10
+  [459] getlocal 10
+  [461] getlocal 3 .............................. <pCount>
+  [463] lteq
+  [464] jmpifz [499] ............................ repeat with l = 1 to pCount
+  [467] getprop 3197 ............................ <pShadowMember>
+  [470] pushsymb 208 ............................ <#shader>
+  [472] getlocal 10 ............................. <l>
+  [474] pusharglist 3 ........................... <pShadowMember, #shader, l>
+  [476] objcall 102 ............................. <pShadowMember.shader[l]>
+  [478] getobjprop 235 .......................... <pShadowMember.shader[l].name>
+  [480] setlocal 11 ............................. pShaderName = pShadowMember.shader[l].name
+  [482] getlocal 9 .............................. <PList>
+  [484] getlocal 11 ............................. <pShaderName>
+  [486] pusharglistnoret 2 ...................... <PList, pShaderName>
+  [488] objcall 42 .............................. PList.add(pShaderName)
+  [490] pushint8 1
+  [492] getlocal 10
+  [494] add
+  [495] setlocal 10
+  [497] endrepeat [459]
+  [499] getlocal 9 .............................. <PList>
+  [501] getobjprop 129 .......................... <PList.count>
+  [503] setlocal 12 ............................. pListCount = PList.count
+  [505] pushint8 1 .............................. <1>
+  [507] setlocal 4
+  [509] getlocal 4
+  [511] getlocal 12 ............................. <pListCount>
+  [513] lteq
+  [514] jmpifz [542] ............................ repeat with i = 1 to pListCount
+  [517] getprop 3197 ............................ <pShadowMember>
+  [520] getlocal 9 .............................. <PList>
+  [522] getlocal 4 .............................. <i>
+  [524] pusharglist 2 ........................... <PList, i>
+  [526] objcall 105 ............................. <PList[i]>
+  [528] pusharglistnoret 2 ...................... <pShadowMember, PList[i]>
+  [530] objcall 1241 ............................ pShadowMember.deleteShader(PList[i])
+  [533] pushint8 1
+  [535] getlocal 4
+  [537] add
+  [538] setlocal 4
+  [540] endrepeat [509]
+  [542] getprop 3197 ............................ <pShadowMember>
+  [545] pushcons 10 ............................. <"White_Material">
+  [547] pushsymb 531 ............................ <#standard>
+  [550] pusharglist 3 ........................... <pShadowMember, "White_Material", #standard>
+  [552] objcall 896 ............................. <pShadowMember.newShader("White_Material", #standard)>
+  [555] setlocal 13 ............................. pShader = pShadowMember.newShader("White_Material", #standard)
+  [557] getlocal 13 ............................. <pShader>
+  [559] pushzero ................................ <0>
+  [560] pushzero ................................ <0>
+  [561] pushzero ................................ <0>
+  [562] pusharglist 3 ........................... <0, 0, 0>
+  [564] extcall 282 ............................. <rgb(0, 0, 0)>
+  [567] setobjprop 897 .......................... pShader.ambient = rgb(0, 0, 0)
+  [570] getlocal 13 ............................. <pShader>
+  [572] pushzero ................................ <0>
+  [573] pushzero ................................ <0>
+  [574] pushzero ................................ <0>
+  [575] pusharglist 3 ........................... <0, 0, 0>
+  [577] extcall 282 ............................. <rgb(0, 0, 0)>
+  [580] setobjprop 898 .......................... pShader.diffuse = rgb(0, 0, 0)
+  [583] getlocal 13 ............................. <pShader>
+  [585] pushzero ................................ <0>
+  [586] pushzero ................................ <0>
+  [587] pushzero ................................ <0>
+  [588] pusharglist 3 ........................... <0, 0, 0>
+  [590] extcall 282 ............................. <rgb(0, 0, 0)>
+  [593] setobjprop 900 .......................... pShader.emissive = rgb(0, 0, 0)
+  [596] getlocal 13 ............................. <pShader>
+  [598] pushzero ................................ <0>
+  [599] pushzero ................................ <0>
+  [600] pushzero ................................ <0>
+  [601] pusharglist 3 ........................... <0, 0, 0>
+  [603] extcall 282 ............................. <rgb(0, 0, 0)>
+  [606] setobjprop 899 .......................... pShader.specular = rgb(0, 0, 0)
+  [609] getlocal 13 ............................. <pShader>
+  [611] pushfloat32 0.0 ......................... <0.0>
+  [616] setobjprop 901 .......................... pShader.shininess = 0.0
+  [619] getlocal 13 ............................. <pShader>
+  [621] pusharglist 0 ........................... <>
+  [623] extcall 40 .............................. <VOID>
+  [625] setobjprop 1244 ......................... pShader.textureList = VOID
+  [628] getprop 3197 ............................ <pShadowMember>
+  [631] pushsymb 71 ............................. <#model>
+  [633] pusharglist 2 ........................... <pShadowMember, #model>
+  [635] objcall 129 ............................. <pShadowMember.model.count>
+  [637] setlocal 3 .............................. pCount = pShadowMember.model.count
+  [639] pushint8 1 .............................. <1>
+  [641] setlocal 7
+  [643] getlocal 7
+  [645] getlocal 3 .............................. <pCount>
+  [647] lteq
+  [648] jmpifz [676] ............................ repeat with j = 1 to pCount
+  [651] getprop 3197 ............................ <pShadowMember>
+  [654] pushsymb 71 ............................. <#model>
+  [656] getlocal 7 .............................. <j>
+  [658] pusharglist 3 ........................... <pShadowMember, #model, j>
+  [660] objcall 102 ............................. <pShadowMember.model[j]>
+  [662] getlocal 13 ............................. <pShader>
+  [664] setobjprop 305 .......................... pShadowMember.model[j].shaderList = pShader
+  [667] pushint8 1
+  [669] getlocal 7
+  [671] add
+  [672] setlocal 7
+  [674] endrepeat [643]
+  [676] getprop 3210 ............................ <pTextureSize>
+  [679] getprop 3210 ............................ <pTextureSize>
+  [682] pushint8 32 ............................. <32>
+  [684] pusharglist 3 ........................... <pTextureSize, pTextureSize, 32>
+  [686] extcall 319 ............................. <image(pTextureSize, pTextureSize, 32)>
+  [689] setprop 983 ............................. pimage = image(pTextureSize, pTextureSize, 32)
+  [692] getprop 983 ............................. <pimage>
+  [695] getprop 983 ............................. <pimage>
+  [698] getobjprop 320 .......................... <pimage.rect>
+  [701] pushint16 255 ........................... <255>
+  [704] pushint16 255 ........................... <255>
+  [707] pushint16 255 ........................... <255>
+  [710] pusharglist 3 ........................... <255, 255, 255>
+  [712] extcall 282 ............................. <rgb(255, 255, 255)>
+  [715] pusharglistnoret 3 ...................... <pimage, pimage.rect, rgb(255, 255, 255)>
+  [717] objcall 345 ............................. pimage.fill(pimage.rect, rgb(255, 255, 255))
+  [720] getprop 983 ............................. <pimage>
+  [723] pushint8 1 .............................. <1>
+  [725] setobjprop 2607 ......................... pimage.useAlpha = 1
+  [728] getprop 3210 ............................ <pTextureSize>
+  [731] getprop 3210 ............................ <pTextureSize>
+  [734] pushint8 8 .............................. <8>
+  [736] pushsymb 3245 ........................... <#grayscale>
+  [739] pusharglist 4 ........................... <pTextureSize, pTextureSize, 8, #grayscale>
+  [741] extcall 319 ............................. <image(pTextureSize, pTextureSize, 8, #grayscale)>
+  [744] setprop 980 ............................. pAlpha = image(pTextureSize, pTextureSize, 8, #grayscale)
+  [747] getprop 980 ............................. <pAlpha>
+  [750] getprop 980 ............................. <pAlpha>
+  [753] getobjprop 320 .......................... <pAlpha.rect>
+  [756] pushzero ................................ <0>
+  [757] pushzero ................................ <0>
+  [758] pushzero ................................ <0>
+  [759] pusharglist 3 ........................... <0, 0, 0>
+  [761] extcall 282 ............................. <rgb(0, 0, 0)>
+  [764] pusharglistnoret 3 ...................... <pAlpha, pAlpha.rect, rgb(0, 0, 0)>
+  [766] objcall 345 ............................. pAlpha.fill(pAlpha.rect, rgb(0, 0, 0))
+  [769] getprop 3199 ............................ <pTrackMember>
+  [772] getprop 2844 ............................ <pTag>
+  [775] getglobal 3218 .......................... <gSelectedCar>
+  [778] joinstr ................................. <pTag & gSelectedCar>
+  [779] pushcons 3 .............................. <"ShadowCaster">
+  [781] joinstr ................................. <pTag & gSelectedCar & "ShadowCaster">
+  [782] pushsymb 3180 ........................... <#plane>
+  [785] pusharglist 3 ........................... <pTrackMember, pTag & gSelectedCar & "ShadowCaster", #plane>
+  [787] objcall 1287 ............................ <pTrackMember.newModelResource(pTag & gSelectedCar & "ShadowCaster", #plane)>
+  [790] setlocal 14 ............................. pShadowResource = pTrackMember.newModelResource(pTag & gSelectedCar & "ShadowCaster", #plane)
+  [792] getlocal 14 ............................. <pShadowResource>
+  [794] getprop 3212 ............................ <pShadowSize>
+  [797] pushint8 1 .............................. <1>
+  [799] pusharglist 2 ........................... <pShadowSize, 1>
+  [801] objcall 105 ............................. <pShadowSize[1]>
+  [803] pusharglist 1 ........................... <pShadowSize[1]>
+  [805] extcall 544 ............................. <float(pShadowSize[1])>
+  [808] setobjprop 229 .......................... pShadowResource.width = float(pShadowSize[1])
+  [810] getlocal 14 ............................. <pShadowResource>
+  [812] getprop 3212 ............................ <pShadowSize>
+  [815] pushint8 2 .............................. <2>
+  [817] pusharglist 2 ........................... <pShadowSize, 2>
+  [819] objcall 105 ............................. <pShadowSize[2]>
+  [821] pusharglist 1 ........................... <pShadowSize[2]>
+  [823] extcall 544 ............................. <float(pShadowSize[2])>
+  [826] setobjprop 69 ........................... pShadowResource.length = float(pShadowSize[2])
+  [828] getprop 3199 ............................ <pTrackMember>
+  [831] getprop 2844 ............................ <pTag>
+  [834] getglobal 3218 .......................... <gSelectedCar>
+  [837] joinstr ................................. <pTag & gSelectedCar>
+  [838] pushcons 3 .............................. <"ShadowCaster">
+  [840] joinstr ................................. <pTag & gSelectedCar & "ShadowCaster">
+  [841] getlocal 14 ............................. <pShadowResource>
+  [843] pusharglist 3 ........................... <pTrackMember, pTag & gSelectedCar & "ShadowCaster", pShadowResource>
+  [845] objcall 892 ............................. <pTrackMember.newModel(pTag & gSelectedCar & "ShadowCaster", pShadowResource)>
+  [848] setprop 3224 ............................ pShadow = pTrackMember.newModel(pTag & gSelectedCar & "ShadowCaster", pShadowResource)
+  [851] getprop 3224 ............................ <pShadow>
+  [854] pushsymb 995 ............................ <#meshDeform>
+  [857] pusharglistnoret 2 ...................... <pShadow, #meshDeform>
+  [859] objcall 261 ............................. pShadow.addModifier(#meshDeform)
+  [862] getprop 3199 ............................ <pTrackMember>
+  [865] getprop 1694 ............................ <pTextureName>
+  [868] pusharglist 2 ........................... <pTrackMember, pTextureName>
+  [870] objcall 218 ............................. <pTrackMember.texture(pTextureName)>
+  [872] pusharglist 0 ........................... <>
+  [874] extcall 40 .............................. <VOID>
+  [876] eq ...................................... <pTrackMember.texture(pTextureName) = VOID>
+  [877] jmpifz [933] ............................ if pTrackMember.texture(pTextureName) = VOID then / else
+  [880] getprop 3199 ............................ <pTrackMember>
+  [883] getprop 1694 ............................ <pTextureName>
+  [886] pusharglistnoret 2 ...................... <pTrackMember, pTextureName>
+  [888] objcall 903 ............................. pTrackMember.newTexture(pTextureName)
+  [891] getprop 3199 ............................ <pTrackMember>
+  [894] getprop 1694 ............................ <pTextureName>
+  [897] pusharglist 2 ........................... <pTrackMember, pTextureName>
+  [899] objcall 218 ............................. <pTrackMember.texture(pTextureName)>
+  [901] setlocal 15 ............................. pTexture = pTrackMember.texture(pTextureName)
+  [903] getlocal 15 ............................. <pTexture>
+  [905] getprop 1694 ............................ <pTextureName>
+  [908] pusharglist 1 ........................... <pTextureName>
+  [910] extcall 64 .............................. <member(pTextureName)>
+  [912] setobjprop 64 ........................... pTexture.member = member(pTextureName)
+  [914] getlocal 15 ............................. <pTexture>
+  [916] pushsymb 867 ............................ <#lowFiltered>
+  [919] setobjprop 331 .......................... pTexture.quality = #lowFiltered
+  [922] getlocal 15 ............................. <pTexture>
+  [924] pushsymb 865 ............................ <#rgba8888>
+  [927] setobjprop 348 .......................... pTexture.renderFormat = #rgba8888
+  [930] jmp [945]
+  [933] getprop 3199 ............................ <pTrackMember>
+  [936] getprop 1694 ............................ <pTextureName>
+  [939] pusharglist 2 ........................... <pTrackMember, pTextureName>
+  [941] objcall 218 ............................. <pTrackMember.texture(pTextureName)>
+  [943] setlocal 15 ............................. pTexture = pTrackMember.texture(pTextureName)
+  [945] getprop 3199 ............................ <pTrackMember>
+  [948] getprop 2844 ............................ <pTag>
+  [951] getglobal 3218 .......................... <gSelectedCar>
+  [954] joinstr ................................. <pTag & gSelectedCar>
+  [955] pushcons 11 ............................. <"ShadowCaster_Material">
+  [957] joinstr ................................. <pTag & gSelectedCar & "ShadowCaster_Material">
+  [958] pushsymb 531 ............................ <#standard>
+  [961] pusharglistnoret 3 ...................... <pTrackMember, pTag & gSelectedCar & "ShadowCaster_Material", #standard>
+  [963] objcall 896 ............................. pTrackMember.newShader(pTag & gSelectedCar & "ShadowCaster_Material", #standard)
+  [966] getprop 3199 ............................ <pTrackMember>
+  [969] getprop 2844 ............................ <pTag>
+  [972] getglobal 3218 .......................... <gSelectedCar>
+  [975] joinstr ................................. <pTag & gSelectedCar>
+  [976] pushcons 11 ............................. <"ShadowCaster_Material">
+  [978] joinstr ................................. <pTag & gSelectedCar & "ShadowCaster_Material">
+  [979] pusharglist 2 ........................... <pTrackMember, pTag & gSelectedCar & "ShadowCaster_Material">
+  [981] objcall 208 ............................. <pTrackMember.shader(pTag & gSelectedCar & "ShadowCaster_Material")>
+  [983] setlocal 13 ............................. pShader = pTrackMember.shader(pTag & gSelectedCar & "ShadowCaster_Material")
+  [985] getlocal 13 ............................. <pShader>
+  [987] pushzero ................................ <0>
+  [988] pushzero ................................ <0>
+  [989] pushzero ................................ <0>
+  [990] pusharglist 3 ........................... <0, 0, 0>
+  [992] extcall 282 ............................. <rgb(0, 0, 0)>
+  [995] setobjprop 900 .......................... pShader.emissive = rgb(0, 0, 0)
+  [998] getlocal 13 ............................. <pShader>
+  [1000] pushfloat32 0.0 ........................ <0.0>
+  [1005] setobjprop 901 ......................... pShader.shininess = 0.0
+  [1008] getlocal 13 ............................ <pShader>
+  [1010] getprop 2764 ........................... <pBlend>
+  [1013] setobjprop 367 ......................... pShader.blend = pBlend
+  [1016] getlocal 13 ............................ <pShader>
+  [1018] pushsymb 1244 .......................... <#textureList>
+  [1021] pushint8 1 ............................. <1>
+  [1023] getlocal 15 ............................ <pTexture>
+  [1025] pusharglistnoret 4 ..................... <pShader, #textureList, 1, pTexture>
+  [1027] objcall 99 ............................. pShader.textureList[1] = pTexture
+  [1029] getlocal 13 ............................ <pShader>
+  [1031] pushsymb 1268 .......................... <#textureRepeatList>
+  [1034] pushint8 1 ............................. <1>
+  [1036] pushzero ............................... <0>
+  [1037] pusharglistnoret 4 ..................... <pShader, #textureRepeatList, 1, 0>
+  [1039] objcall 99 ............................. pShader.textureRepeatList[1] = 0
+  [1041] getprop 3214 ........................... <pcolor>
+  [1044] pushzero ............................... <0>
+  [1045] pushzero ............................... <0>
+  [1046] pushzero ............................... <0>
+  [1047] pusharglist 3 .......................... <0, 0, 0>
+  [1049] extcall 282 ............................ <rgb(0, 0, 0)>
+  [1052] nteq ................................... <pcolor <> rgb(0, 0, 0)>
+  [1053] jmpifz [1071] .......................... if pcolor <> rgb(0, 0, 0) then
+  [1056] getlocal 13 ............................ <pShader>
+  [1058] pushint8 1 ............................. <1>
+  [1060] setobjprop 1246 ........................ pShader.useDiffuseWithTexture = 1
+  [1063] getlocal 13 ............................ <pShader>
+  [1065] getprop 3214 ........................... <pcolor>
+  [1068] setobjprop 898 ......................... pShader.diffuse = pcolor
+  [1071] getprop 3224 ........................... <pShadow>
+  [1074] getlocal 13 ............................ <pShader>
+  [1076] setobjprop 305 ......................... pShadow.shaderList = pShader
+  [1079] getprop 3197 ........................... <pShadowMember>
+  [1082] pushcons 12 ............................ <"ShadowCam">
+  [1084] pusharglist 2 .......................... <pShadowMember, "ShadowCam">
+  [1086] objcall 1157 ........................... <pShadowMember.newCamera("ShadowCam")>
+  [1089] setprop 3219 ........................... pShadowCamera = pShadowMember.newCamera("ShadowCam")
+  [1092] getprop 3219 ........................... <pShadowCamera>
+  [1095] pushzero ............................... <0>
+  [1096] pushzero ............................... <0>
+  [1097] getprop 3210 ........................... <pTextureSize>
+  [1100] getprop 3210 ........................... <pTextureSize>
+  [1103] pusharglist 4 .......................... <0, 0, pTextureSize, pTextureSize>
+  [1105] extcall 320 ............................ <rect(0, 0, pTextureSize, pTextureSize)>
+  [1108] setobjprop 320 ......................... pShadowCamera.rect = rect(0, 0, pTextureSize, pTextureSize)
+  [1111] getprop 3219 ........................... <pShadowCamera>
+  [1114] getprop 3208 ........................... <pCamFov>
+  [1117] setobjprop 299 ......................... pShadowCamera.fieldOfView = pCamFov
+  [1120] getprop 3219 ........................... <pShadowCamera>
+  [1123] getprop 3197 ........................... <pShadowMember>
+  [1126] pusharglistnoret 2 ..................... <pShadowCamera, pShadowMember>
+  [1128] localcall 6 ............................ setCamera(pShadowCamera, pShadowMember)
+  [1130] getlocal 0 ............................. <pSprite>
+  [1132] getprop 3219 ........................... <pShadowCamera>
+  [1135] setobjprop 298 ......................... pSprite.camera = pShadowCamera
+  [1138] getglobal 3246 ......................... <gSelectedTrack>
+  [1141] pusharglist 1 .......................... <gSelectedTrack>
+  [1143] extcall 64 ............................. <member(gSelectedTrack)>
+  [1145] pushcons 13 ............................ <"LightCam">
+  [1147] pusharglist 2 .......................... <member(gSelectedTrack), "LightCam">
+  [1149] objcall 1157 ........................... <member(gSelectedTrack).newCamera("LightCam")>
+  [1152] setprop 3220 ........................... pTrackCamera = member(gSelectedTrack).newCamera("LightCam")
+  [1155] getprop 3220 ........................... <pTrackCamera>
+  [1158] pushzero ............................... <0>
+  [1159] pushzero ............................... <0>
+  [1160] getprop 3210 ........................... <pTextureSize>
+  [1163] getprop 3210 ........................... <pTextureSize>
+  [1166] pusharglist 4 .......................... <0, 0, pTextureSize, pTextureSize>
+  [1168] extcall 320 ............................ <rect(0, 0, pTextureSize, pTextureSize)>
+  [1171] setobjprop 320 ......................... pTrackCamera.rect = rect(0, 0, pTextureSize, pTextureSize)
+  [1174] getprop 3220 ........................... <pTrackCamera>
+  [1177] getprop 3208 ........................... <pCamFov>
+  [1180] setobjprop 299 ......................... pTrackCamera.fieldOfView = pCamFov
+  [1183] getprop 3220 ........................... <pTrackCamera>
+  [1186] getprop 3199 ........................... <pTrackMember>
+  [1189] pusharglistnoret 2 ..................... <pTrackCamera, pTrackMember>
+  [1191] localcall 6 ............................ setCamera(pTrackCamera, pTrackMember)
+  [1193] ret
+end
+
+on setCamera tCam, tmember
+  [  0] getprop 3199 ............................ <pTrackMember>
+  [  3] getprop 2844 ............................ <pTag>
+  [  6] getglobal 3218 .......................... <gSelectedCar>
+  [  9] joinstr ................................. <pTag & gSelectedCar>
+  [ 10] pushcons 1 .............................. <"Proxy">
+  [ 12] joinstr ................................. <pTag & gSelectedCar & "Proxy">
+  [ 13] pusharglist 2 ........................... <pTrackMember, pTag & gSelectedCar & "Proxy">
+  [ 15] objcall 71 .............................. <pTrackMember.model(pTag & gSelectedCar & "Proxy")>
+  [ 17] getchainedprop 214 ...................... <pTrackMember.model(pTag & gSelectedCar & "Proxy").transform>
+  [ 19] getobjprop 215 .......................... <pTrackMember.model(pTag & gSelectedCar & "Proxy").transform.position>
+  [ 21] getprop 3206 ............................ <pOffset>
+  [ 24] add ..................................... <pTrackMember.model(pTag & gSelectedCar & "Proxy").transform.position + pOffset>
+  [ 25] setlocal 0 .............................. pPos = pTrackMember.model(pTag & gSelectedCar & "Proxy").transform.position + pOffset
+  [ 27] getprop 3199 ............................ <pTrackMember>
+  [ 30] getprop 2844 ............................ <pTag>
+  [ 33] getglobal 3218 .......................... <gSelectedCar>
+  [ 36] joinstr ................................. <pTag & gSelectedCar>
+  [ 37] pushcons 1 .............................. <"Proxy">
+  [ 39] joinstr ................................. <pTag & gSelectedCar & "Proxy">
+  [ 40] pusharglist 2 ........................... <pTrackMember, pTag & gSelectedCar & "Proxy">
+  [ 42] objcall 71 .............................. <pTrackMember.model(pTag & gSelectedCar & "Proxy")>
+  [ 44] getchainedprop 214 ...................... <pTrackMember.model(pTag & gSelectedCar & "Proxy").transform>
+  [ 46] getobjprop 215 .......................... <pTrackMember.model(pTag & gSelectedCar & "Proxy").transform.position>
+  [ 48] setlocal 1 .............................. pPointAt = pTrackMember.model(pTag & gSelectedCar & "Proxy").transform.position
+  [ 50] getparam 0 .............................. <tCam>
+  [ 52] getchainedprop 214 ...................... <tCam.transform>
+  [ 54] getlocal 0 .............................. <pPos>
+  [ 56] setobjprop 215 .......................... tCam.transform.position = pPos
+  [ 58] getparam 0 .............................. <tCam>
+  [ 60] getlocal 1 .............................. <pPointAt>
+  [ 62] pushzero ................................ <0>
+  [ 63] pushzero ................................ <0>
+  [ 64] pushint8 1 .............................. <1>
+  [ 66] pusharglist 3 ........................... <0, 0, 1>
+  [ 68] extcall 212 ............................. <vector(0, 0, 1)>
+  [ 70] pusharglistnoret 3 ...................... <tCam, pPointAt, vector(0, 0, 1)>
+  [ 72] objcall 1340 ............................ tCam.pointAt(pPointAt, vector(0, 0, 1))
+  [ 75] ret
+end

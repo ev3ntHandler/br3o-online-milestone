@@ -1,0 +1,367 @@
+global g, gGame, gData
+
+on roughVram me, tList
+  [  0] pushcons 0 .............................. <"Main">
+  [  2] pushcons 1 .............................. <"Hangar">
+  [  4] pushcons 2 .............................. <"Earth">
+  [  6] pushcons 3 .............................. <"Car">
+  [  8] pushcons 4 .............................. <"Logo">
+  [ 10] pusharglist 5 ........................... <["Main", "Hangar", "Earth", "Car", "Logo"]>
+  [ 12] pushlist ................................ <["Main", "Hangar", "Earth", "Car", "Logo"]>
+  [ 13] setparam 1 .............................. tList = ["Main", "Hangar", "Earth", "Car", "Logo"]
+  [ 15] pushcons 5 .............................. <EMPTY>
+  [ 17] setlocal 0 .............................. tResult = EMPTY
+  [ 19] pushzero ................................ <0>
+  [ 20] setlocal 1 .............................. tTotalRam = 0
+  [ 22] getparam 1 .............................. <tList>
+  [ 24] peek 0
+  [ 26] pusharglist 1
+  [ 28] extcall 129
+  [ 30] pushint8 1
+  [ 32] peek 0
+  [ 34] peek 2
+  [ 36] lteq
+  [ 37] jmpifz [209] ............................ repeat with j in tList
+  [ 40] peek 2
+  [ 42] peek 1
+  [ 44] pusharglist 2
+  [ 46] extcall 105
+  [ 48] setlocal 2
+  [ 50] getlocal 2 .............................. <j>
+  [ 52] pusharglist 1 ........................... <j>
+  [ 54] extcall 64 .............................. <member(j)>
+  [ 56] setlocal 3 .............................. tmember = member(j)
+  [ 58] pushzero ................................ <0>
+  [ 59] setlocal 4 .............................. tMemberRam = 0
+  [ 61] pushint8 1 .............................. <1>
+  [ 63] setlocal 5
+  [ 65] getlocal 5
+  [ 67] getlocal 3 .............................. <tmember>
+  [ 69] pushsymb 218 ............................ <#texture>
+  [ 71] pusharglist 2 ........................... <tmember, #texture>
+  [ 73] objcall 129 ............................. <tmember.texture.count>
+  [ 75] lteq
+  [ 76] jmpifz [177] ............................ repeat with i = 1 to tmember.texture.count
+  [ 79] pushcons 0 .............................. <"Main">
+  [ 81] pusharglist 1 ........................... <"Main">
+  [ 83] extcall 64 .............................. <member("Main")>
+  [ 85] pushsymb 218 ............................ <#texture>
+  [ 87] getlocal 5 .............................. <i>
+  [ 89] pusharglist 3 ........................... <member("Main"), #texture, i>
+  [ 91] objcall 70 .............................. <member("Main").texture[i]>
+  [ 93] setlocal 6 .............................. tTexture = member("Main").texture[i]
+  [ 95] getlocal 6 .............................. <tTexture>
+  [ 97] getobjprop 348 .......................... <tTexture.renderFormat>
+  [100] pushsymb 865 ............................ <#rgba8888>
+  [103] eq ...................................... <tTexture.renderFormat = #rgba8888>
+  [104] getlocal 6 .............................. <tTexture>
+  [106] getobjprop 348 .......................... <tTexture.renderFormat>
+  [109] pushsymb 2971 ........................... <#rgba8880>
+  [112] eq ...................................... <tTexture.renderFormat = #rgba8880>
+  [113] or ...................................... <(tTexture.renderFormat = #rgba8888) or (tTexture.renderFormat = #rgba8880)>
+  [114] jmpifz [124] ............................ if (tTexture.renderFormat = #rgba8888) or (tTexture.renderFormat = #rgba8880) then / else
+  [117] pushint8 32 ............................. <32>
+  [119] setlocal 7 .............................. tBit = 32
+  [121] jmp [128]
+  [124] pushint8 16 ............................. <16>
+  [126] setlocal 7 .............................. tBit = 16
+  [128] getlocal 6 .............................. <tTexture>
+  [130] getobjprop 283 .......................... <tTexture.height>
+  [133] getlocal 6 .............................. <tTexture>
+  [135] getobjprop 229 .......................... <tTexture.width>
+  [137] mul ..................................... <tTexture.height * tTexture.width>
+  [138] getlocal 7 .............................. <tBit>
+  [140] mul ..................................... <tTexture.height * tTexture.width * tBit>
+  [141] pushfloat32 8.0 ......................... <8.0>
+  [146] div ..................................... <tTexture.height * tTexture.width * tBit / 8.0>
+  [147] pushfloat32 1024.0 ...................... <1024.0>
+  [152] div ..................................... <tTexture.height * tTexture.width * tBit / 8.0 / 1024.0>
+  [153] pushfloat32 1024.0 ...................... <1024.0>
+  [158] div ..................................... <tTexture.height * tTexture.width * tBit / 8.0 / 1024.0 / 1024.0>
+  [159] setlocal 8 .............................. tTextureRam = tTexture.height * tTexture.width * tBit / 8.0 / 1024.0 / 1024.0
+  [161] getlocal 4 .............................. <tMemberRam>
+  [163] getlocal 8 .............................. <tTextureRam>
+  [165] add ..................................... <tMemberRam + tTextureRam>
+  [166] setlocal 4 .............................. tMemberRam = tMemberRam + tTextureRam
+  [168] pushint8 1
+  [170] getlocal 5
+  [172] add
+  [173] setlocal 5
+  [175] endrepeat [ 65]
+  [177] getlocal 1 .............................. <tTotalRam>
+  [179] getlocal 4 .............................. <tMemberRam>
+  [181] add ..................................... <tTotalRam + tMemberRam>
+  [182] setlocal 1 .............................. tTotalRam = tTotalRam + tMemberRam
+  [184] getlocal 0 .............................. <tResult>
+  [186] getlocal 2 .............................. <j>
+  [188] joinpadstr .............................. <tResult && j>
+  [189] pushcons 6 .............................. <": ">
+  [191] joinstr ................................. <tResult && j & ": ">
+  [192] getlocal 4 .............................. <tMemberRam>
+  [194] pusharglist 1 ........................... <tMemberRam>
+  [196] extcall 67 .............................. <string(tMemberRam)>
+  [198] joinstr ................................. <tResult && j & ": " & string(tMemberRam)>
+  [199] pushcons 7 .............................. <" ">
+  [201] joinpadstr .............................. <tResult && j & ": " & string(tMemberRam) && " ">
+  [202] setlocal 0 .............................. tResult = tResult && j & ": " & string(tMemberRam) && " "
+  [204] pushint8 1
+  [206] add
+  [207] endrepeat [ 32]
+  [209] pop 3
+  [211] pushcons 8 .............................. <"very rough VRAM usage. Excluding all frame buffers">
+  [213] pusharglistnoret 1 ...................... <"very rough VRAM usage. Excluding all frame buffers">
+  [215] extcall 57 .............................. put "very rough VRAM usage. Excluding all frame buffers"
+  [217] getlocal 0 .............................. <tResult>
+  [219] pusharglistnoret 1 ...................... <tResult>
+  [221] extcall 57 .............................. put tResult
+  [223] pushcons 9 .............................. <"Total ram: ">
+  [225] getlocal 1 .............................. <tTotalRam>
+  [227] joinstr ................................. <"Total ram: " & tTotalRam>
+  [228] pusharglistnoret 1 ...................... <"Total ram: " & tTotalRam>
+  [230] extcall 57 .............................. put "Total ram: " & tTotalRam
+  [232] ret
+end
+
+on REPAIR me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getglobal 43 ............................ <gGame>
+  [  4] pushsymb 137 ............................ <#cars>
+  [  6] pushint8 1 .............................. <1>
+  [  8] pusharglist 3 ........................... <gGame, #cars, 1>
+  [ 10] objcall 102 ............................. <gGame.cars[1]>
+  [ 12] getchainedprop 376 ...................... <gGame.cars[1].general>
+  [ 15] getobjprop 377 .......................... <gGame.cars[1].general.tag>
+  [ 18] setobjprop 2102 ......................... gGame.currentCar = gGame.cars[1].general.tag
+  [ 21] pushsymb 2976 ........................... <#RepairPickup>
+  [ 24] pusharglistnoret 1 ...................... <#RepairPickup>
+  [ 26] extcall 148 ............................. event(#RepairPickup)
+  [ 28] getglobal 43 ............................ <gGame>
+  [ 30] pushsymb 54 ............................. <#none>
+  [ 32] setobjprop 2102 ......................... gGame.currentCar = #none
+  [ 35] ret
+end
+
+on doIt me
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setlocal 0 .............................. p = [:]
+  [  5] getlocal 0 .............................. <p>
+  [  7] pushsymb 64 ............................. <#member>
+  [  9] pushcons 0 .............................. <"Main">
+  [ 11] pusharglist 1 ........................... <"Main">
+  [ 13] extcall 64 .............................. <member("Main")>
+  [ 15] pusharglistnoret 3 ...................... <p, #member, member("Main")>
+  [ 17] objcall 103 ............................. p[#member] = member("Main")
+  [ 19] pushcons 10 ............................. <"DOWNLOADING SHARED DATA 100 %">
+  [ 21] setlocal 1 .............................. tText = "DOWNLOADING SHARED DATA 100 %"
+  [ 23] pushzero ................................ <0>
+  [ 24] getlocal 0 .............................. <p>
+  [ 26] getchainedprop 64 ....................... <p.member>
+  [ 28] getobjprop 235 .......................... <p.member.name>
+  [ 30] pushsymb 80 ............................. <#text>
+  [ 32] getlocal 1 .............................. <tText>
+  [ 34] pushsymb 218 ............................ <#texture>
+  [ 36] pushcons 11 ............................. <"Downloading_Texture">
+  [ 38] pushsymb 221 ............................ <#fontSize>
+  [ 40] pushint8 10 ............................. <10>
+  [ 42] pushsymb 219 ............................ <#align>
+  [ 44] pushsymb 220 ............................ <#right>
+  [ 46] pushsymb 223 ............................ <#color>
+  [ 48] getglobal 86 ............................ <gData>
+  [ 50] getchainedprop 87 ....................... <gData.data>
+  [ 52] getchainedprop 224 ...................... <gData.data.TextColor>
+  [ 54] getobjprop 225 .......................... <gData.data.TextColor.White>
+  [ 56] pushsymb 229 ............................ <#width>
+  [ 58] pushint16 256 ........................... <256>
+  [ 61] pushsymb 642 ............................ <#filters>
+  [ 64] getglobal 86 ............................ <gData>
+  [ 66] getchainedprop 87 ....................... <gData.data>
+  [ 68] getchainedprop 643 ...................... <gData.data.ButtonFilters>
+  [ 71] getobjprop 644 .......................... <gData.data.ButtonFilters.BR3GlowWhite>
+  [ 74] pusharglist 1 ........................... <[gData.data.ButtonFilters.BR3GlowWhite]>
+  [ 76] pushlist ................................ <[gData.data.ButtonFilters.BR3GlowWhite]>
+  [ 77] pusharglist 14 .......................... <[#text: tText, #texture: "Downloading_Texture", #fontSize: 10, #align: #right, #color: gData.data.TextColor.White, #width: 256, #filters: [gData.data.ButtonFilters.BR3GlowWhite]]>
+  [ 79] pushproplist ............................ <[#text: tText, #texture: "Downloading_Texture", #fontSize: 10, #align: #right, #color: gData.data.TextColor.White, #width: 256, #filters: [gData.data.ButtonFilters.BR3GlowWhite]]>
+  [ 80] pusharglistnoret 3 ...................... <0, p.member.name, [#text: tText, #texture: "Downloading_Texture", #fontSize: 10, #align: #right, #color: gData.data.TextColor.White, #width: 256, #filters: [gData.data.ButtonFilters.BR3GlowWhite]]>
+  [ 82] extcall 217 ............................. CreateTextTexture(0, p.member.name, [#text: tText, #texture: "Downloading_Texture", #fontSize: 10, #align: #right, #color: gData.data.TextColor.White, #width: 256, #filters: [gData.data.ButtonFilters.BR3GlowWhite]])
+  [ 84] getlocal 0 .............................. <p>
+  [ 86] getchainedprop 64 ....................... <p.member>
+  [ 88] getobjprop 235 .......................... <p.member.name>
+  [ 90] pushsymb 646 ............................ <#material>
+  [ 93] pushcons 12 ............................. <"Downloading_Material">
+  [ 95] pushsymb 647 ............................ <#texture1>
+  [ 98] pushcons 11 ............................. <"Downloading_Texture">
+  [100] pusharglist 4 ........................... <[#material: "Downloading_Material", #texture1: "Downloading_Texture"]>
+  [102] pushproplist ............................ <[#material: "Downloading_Material", #texture1: "Downloading_Texture"]>
+  [103] pusharglistnoret 2 ...................... <p.member.name, [#material: "Downloading_Material", #texture1: "Downloading_Texture"]>
+  [105] extcall 645 ............................. ASSIGNTEXTURE(p.member.name, [#material: "Downloading_Material", #texture1: "Downloading_Texture"])
+  [108] ret
+end
+
+on repeatDown me
+  [  0] pushint8 20 ............................. <20>
+  [  2] setlocal 0 .............................. t1 = 20
+  [  4] pushint8 1 .............................. <1>
+  [  6] setlocal 1 .............................. t2 = 1
+  [  8] getlocal 0 .............................. <t1>
+  [ 10] setlocal 2
+  [ 12] getlocal 2
+  [ 14] getlocal 1 .............................. <t2>
+  [ 16] lteq
+  [ 17] jmpifz [ 35] ............................ repeat with j = t1 to t2
+  [ 20] getlocal 2 .............................. <j>
+  [ 22] pusharglistnoret 1 ...................... <j>
+  [ 24] extcall 57 .............................. put j
+  [ 26] pushint8 1
+  [ 28] getlocal 2
+  [ 30] add
+  [ 31] setlocal 2
+  [ 33] endrepeat [ 12]
+  [ 35] ret
+end
+
+on test1 me
+  [  0] pushzero ................................ <0>
+  [  1] pushcons 1 .............................. <"Hangar">
+  [  3] pushsymb 1160 ........................... <#object>
+  [  6] pushcons 13 ............................. <"Hangar_CameraTarget">
+  [  8] pushsymb 93 ............................. <#target>
+  [ 10] pushcons 14 ............................. <"Nissan_CameraTarget">
+  [ 12] pushsymb 639 ............................ <#Percentage>
+  [ 15] pushint8 10 ............................. <10>
+  [ 17] pusharglist 6 ........................... <[#object: "Hangar_CameraTarget", #target: "Nissan_CameraTarget", #Percentage: 10]>
+  [ 19] pushproplist ............................ <[#object: "Hangar_CameraTarget", #target: "Nissan_CameraTarget", #Percentage: 10]>
+  [ 20] pusharglistnoret 3 ...................... <0, "Hangar", [#object: "Hangar_CameraTarget", #target: "Nissan_CameraTarget", #Percentage: 10]>
+  [ 22] extcall 700 ............................. AddToInterPolator(0, "Hangar", [#object: "Hangar_CameraTarget", #target: "Nissan_CameraTarget", #Percentage: 10])
+  [ 25] ret
+end
+
+on test2 me
+  [  0] pushzero ................................ <0>
+  [  1] pushcons 1 .............................. <"Hangar">
+  [  3] pushsymb 1160 ........................... <#object>
+  [  6] pushcons 13 ............................. <"Hangar_CameraTarget">
+  [  8] pushsymb 93 ............................. <#target>
+  [ 10] pushcons 15 ............................. <"BMW_CameraTarget">
+  [ 12] pushsymb 639 ............................ <#Percentage>
+  [ 15] pushint8 10 ............................. <10>
+  [ 17] pusharglist 6 ........................... <[#object: "Hangar_CameraTarget", #target: "BMW_CameraTarget", #Percentage: 10]>
+  [ 19] pushproplist ............................ <[#object: "Hangar_CameraTarget", #target: "BMW_CameraTarget", #Percentage: 10]>
+  [ 20] pusharglistnoret 3 ...................... <0, "Hangar", [#object: "Hangar_CameraTarget", #target: "BMW_CameraTarget", #Percentage: 10]>
+  [ 22] extcall 700 ............................. AddToInterPolator(0, "Hangar", [#object: "Hangar_CameraTarget", #target: "BMW_CameraTarget", #Percentage: 10])
+  [ 25] ret
+end
+
+on test3 me
+  [  0] pushzero ................................ <0>
+  [  1] pushcons 1 .............................. <"Hangar">
+  [  3] pushsymb 1160 ........................... <#object>
+  [  6] pushcons 13 ............................. <"Hangar_CameraTarget">
+  [  8] pushsymb 93 ............................. <#target>
+  [ 10] pushcons 16 ............................. <"Eclipse_CameraTarget">
+  [ 12] pushsymb 639 ............................ <#Percentage>
+  [ 15] pushint8 10 ............................. <10>
+  [ 17] pusharglist 6 ........................... <[#object: "Hangar_CameraTarget", #target: "Eclipse_CameraTarget", #Percentage: 10]>
+  [ 19] pushproplist ............................ <[#object: "Hangar_CameraTarget", #target: "Eclipse_CameraTarget", #Percentage: 10]>
+  [ 20] pusharglistnoret 3 ...................... <0, "Hangar", [#object: "Hangar_CameraTarget", #target: "Eclipse_CameraTarget", #Percentage: 10]>
+  [ 22] extcall 700 ............................. AddToInterPolator(0, "Hangar", [#object: "Hangar_CameraTarget", #target: "Eclipse_CameraTarget", #Percentage: 10])
+  [ 25] ret
+end
+
+on test4 me
+  [  0] pushzero ................................ <0>
+  [  1] pushcons 1 .............................. <"Hangar">
+  [  3] pushsymb 1160 ........................... <#object>
+  [  6] pushcons 13 ............................. <"Hangar_CameraTarget">
+  [  8] pushsymb 93 ............................. <#target>
+  [ 10] pushcons 17 ............................. <"AudiR8_CameraTarget">
+  [ 12] pushsymb 639 ............................ <#Percentage>
+  [ 15] pushint8 10 ............................. <10>
+  [ 17] pusharglist 6 ........................... <[#object: "Hangar_CameraTarget", #target: "AudiR8_CameraTarget", #Percentage: 10]>
+  [ 19] pushproplist ............................ <[#object: "Hangar_CameraTarget", #target: "AudiR8_CameraTarget", #Percentage: 10]>
+  [ 20] pusharglistnoret 3 ...................... <0, "Hangar", [#object: "Hangar_CameraTarget", #target: "AudiR8_CameraTarget", #Percentage: 10]>
+  [ 22] extcall 700 ............................. AddToInterPolator(0, "Hangar", [#object: "Hangar_CameraTarget", #target: "AudiR8_CameraTarget", #Percentage: 10])
+  [ 25] ret
+end
+
+on test234321 me
+  [  0] pushzero ................................ <0>
+  [  1] pushcons 2 .............................. <"Earth">
+  [  3] pushsymb 1160 ........................... <#object>
+  [  6] pushcons 18 ............................. <"Earth_Camera">
+  [  8] pushsymb 93 ............................. <#target>
+  [ 10] pushcons 19 ............................. <"Earth_CameraTarget">
+  [ 12] pusharglist 4 ........................... <[#object: "Earth_Camera", #target: "Earth_CameraTarget"]>
+  [ 14] pushproplist ............................ <[#object: "Earth_Camera", #target: "Earth_CameraTarget"]>
+  [ 15] pusharglistnoret 3 ...................... <0, "Earth", [#object: "Earth_Camera", #target: "Earth_CameraTarget"]>
+  [ 17] extcall 701 ............................. AddToPointAt(0, "Earth", [#object: "Earth_Camera", #target: "Earth_CameraTarget"])
+  [ 20] pushzero ................................ <0>
+  [ 21] pushcons 2 .............................. <"Earth">
+  [ 23] pushsymb 1160 ........................... <#object>
+  [ 26] pushcons 18 ............................. <"Earth_Camera">
+  [ 28] pushsymb 93 ............................. <#target>
+  [ 30] pushcons 20 ............................. <"America_Camera">
+  [ 32] pushsymb 639 ............................ <#Percentage>
+  [ 35] pushint8 3 .............................. <3>
+  [ 37] pusharglist 6 ........................... <[#object: "Earth_Camera", #target: "America_Camera", #Percentage: 3]>
+  [ 39] pushproplist ............................ <[#object: "Earth_Camera", #target: "America_Camera", #Percentage: 3]>
+  [ 40] pusharglistnoret 3 ...................... <0, "Earth", [#object: "Earth_Camera", #target: "America_Camera", #Percentage: 3]>
+  [ 42] extcall 700 ............................. AddToInterPolator(0, "Earth", [#object: "Earth_Camera", #target: "America_Camera", #Percentage: 3])
+  [ 45] pushzero ................................ <0>
+  [ 46] pushcons 2 .............................. <"Earth">
+  [ 48] pushsymb 1160 ........................... <#object>
+  [ 51] pushcons 19 ............................. <"Earth_CameraTarget">
+  [ 53] pushsymb 93 ............................. <#target>
+  [ 55] pushcons 21 ............................. <"America_CameraTarget">
+  [ 57] pushsymb 639 ............................ <#Percentage>
+  [ 60] pushint8 5 .............................. <5>
+  [ 62] pusharglist 6 ........................... <[#object: "Earth_CameraTarget", #target: "America_CameraTarget", #Percentage: 5]>
+  [ 64] pushproplist ............................ <[#object: "Earth_CameraTarget", #target: "America_CameraTarget", #Percentage: 5]>
+  [ 65] pusharglistnoret 3 ...................... <0, "Earth", [#object: "Earth_CameraTarget", #target: "America_CameraTarget", #Percentage: 5]>
+  [ 67] extcall 700 ............................. AddToInterPolator(0, "Earth", [#object: "Earth_CameraTarget", #target: "America_CameraTarget", #Percentage: 5])
+  [ 70] ret
+end
+
+on test234232 me
+  [  0] pushzero ................................ <0>
+  [  1] pushcons 2 .............................. <"Earth">
+  [  3] pushsymb 1160 ........................... <#object>
+  [  6] pushcons 18 ............................. <"Earth_Camera">
+  [  8] pushsymb 93 ............................. <#target>
+  [ 10] pushcons 22 ............................. <"Asia_Camera">
+  [ 12] pushsymb 639 ............................ <#Percentage>
+  [ 15] pushint8 3 .............................. <3>
+  [ 17] pusharglist 6 ........................... <[#object: "Earth_Camera", #target: "Asia_Camera", #Percentage: 3]>
+  [ 19] pushproplist ............................ <[#object: "Earth_Camera", #target: "Asia_Camera", #Percentage: 3]>
+  [ 20] pusharglistnoret 3 ...................... <0, "Earth", [#object: "Earth_Camera", #target: "Asia_Camera", #Percentage: 3]>
+  [ 22] extcall 700 ............................. AddToInterPolator(0, "Earth", [#object: "Earth_Camera", #target: "Asia_Camera", #Percentage: 3])
+  [ 25] pushzero ................................ <0>
+  [ 26] pushcons 2 .............................. <"Earth">
+  [ 28] pushsymb 1160 ........................... <#object>
+  [ 31] pushcons 19 ............................. <"Earth_CameraTarget">
+  [ 33] pushsymb 93 ............................. <#target>
+  [ 35] pushcons 23 ............................. <"Asia_CameraTarget">
+  [ 37] pushsymb 639 ............................ <#Percentage>
+  [ 40] pushint8 5 .............................. <5>
+  [ 42] pusharglist 6 ........................... <[#object: "Earth_CameraTarget", #target: "Asia_CameraTarget", #Percentage: 5]>
+  [ 44] pushproplist ............................ <[#object: "Earth_CameraTarget", #target: "Asia_CameraTarget", #Percentage: 5]>
+  [ 45] pusharglistnoret 3 ...................... <0, "Earth", [#object: "Earth_CameraTarget", #target: "Asia_CameraTarget", #Percentage: 5]>
+  [ 47] extcall 700 ............................. AddToInterPolator(0, "Earth", [#object: "Earth_CameraTarget", #target: "Asia_CameraTarget", #Percentage: 5])
+  [ 50] ret
+end
+
+on test3453434 me
+  [  0] pushzero ................................ <0>
+  [  1] pushcons 2 .............................. <"Earth">
+  [  3] pushsymb 1160 ........................... <#object>
+  [  6] pushcons 18 ............................. <"Earth_Camera">
+  [  8] pushsymb 93 ............................. <#target>
+  [ 10] pushcons 24 ............................. <"Africa_Camera">
+  [ 12] pushsymb 639 ............................ <#Percentage>
+  [ 15] pushint8 3 .............................. <3>
+  [ 17] pusharglist 6 ........................... <[#object: "Earth_Camera", #target: "Africa_Camera", #Percentage: 3]>
+  [ 19] pushproplist ............................ <[#object: "Earth_Camera", #target: "Africa_Camera", #Percentage: 3]>
+  [ 20] pusharglistnoret 3 ...................... <0, "Earth", [#object: "Earth_Camera", #target: "Africa_Camera", #Percentage: 3]>
+  [ 22] extcall 700 ............................. AddToInterPolator(0, "Earth", [#object: "Earth_Camera", #target: "Africa_Camera", #Percentage: 3])
+  [ 25] ret
+end

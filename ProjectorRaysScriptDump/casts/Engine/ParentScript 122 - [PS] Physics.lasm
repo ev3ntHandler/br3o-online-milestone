@@ -1,0 +1,111 @@
+property p
+global gGame
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getparam 1 .............................. <tParams>
+  [  8] pushsymb 64 ............................. <#member>
+  [ 10] pusharglist 2 ........................... <tParams, #member>
+  [ 12] objcall 105 ............................. <tParams[#member]>
+  [ 14] pusharglist 1 ........................... <tParams[#member]>
+  [ 16] extcall 64 .............................. <member(tParams[#member])>
+  [ 18] setlocal 0 .............................. tmember = member(tParams[#member])
+  [ 20] getlocal 0 .............................. <tmember>
+  [ 22] pusharglist 0 ........................... <>
+  [ 24] extcall 40 .............................. <VOID>
+  [ 26] eq ...................................... <tmember = VOID>
+  [ 27] jmpifz [ 31] ............................ if tmember = VOID then
+  [ 30] ret ..................................... exit
+  [ 31] getprop 563 ............................. <p>
+  [ 34] pushsymb 565 ............................ <#ScriptName>
+  [ 37] pushcons 0 .............................. <"[PS] Physics">
+  [ 39] pusharglistnoret 3 ...................... <p, #ScriptName, "[PS] Physics">
+  [ 41] objcall 103 ............................. p[#ScriptName] = "[PS] Physics"
+  [ 43] getglobal 43 ............................ <gGame>
+  [ 45] pushsymb 1389 ........................... <#Physics>
+  [ 48] getlocal 0 .............................. <tmember>
+  [ 50] getobjprop 235 .......................... <tmember.name>
+  [ 52] pushcons 1 .............................. <"_Physics">
+  [ 54] joinstr ................................. <tmember.name & "_Physics">
+  [ 55] pushsymb 598 ............................ <#type>
+  [ 58] pushsymb 1389 ........................... <#Physics>
+  [ 61] pusharglist 2 ........................... <[#type: #Physics]>
+  [ 63] pushproplist ............................ <[#type: #Physics]>
+  [ 64] pusharglist 2 ........................... <tmember.name & "_Physics", [#type: #Physics]>
+  [ 66] extcall 597 ............................. <createMember(tmember.name & "_Physics", [#type: #Physics])>
+  [ 69] pusharglistnoret 3 ...................... <gGame, #Physics, createMember(tmember.name & "_Physics", [#type: #Physics])>
+  [ 71] objcall 103 ............................. gGame[#Physics] = createMember(tmember.name & "_Physics", [#type: #Physics])
+  [ 73] getprop 563 ............................. <p>
+  [ 76] pushsymb 1505 ........................... <#timeStep>
+  [ 79] pushcons 2 .............................. <0.0333>
+  [ 81] pusharglistnoret 3 ...................... <p, #timeStep, 0.0333>
+  [ 83] objcall 103 ............................. p[#timeStep] = 0.0333
+  [ 85] getprop 563 ............................. <p>
+  [ 88] pushsymb 1506 ........................... <#subSteps>
+  [ 91] pushint8 4 .............................. <4>
+  [ 93] pusharglistnoret 3 ...................... <p, #subSteps, 4>
+  [ 95] objcall 103 ............................. p[#subSteps] = 4
+  [ 97] getglobal 43 ............................ <gGame>
+  [ 99] getchainedprop 1389 ..................... <gGame.Physics>
+  [102] pusharglistnoret 1 ...................... <gGame.Physics>
+  [104] objcall 1507 ............................ gGame.Physics.destroy()
+  [107] getglobal 43 ............................ <gGame>
+  [109] getchainedprop 1389 ..................... <gGame.Physics>
+  [112] getlocal 0 .............................. <tmember>
+  [114] pushfloat32 1.0 ......................... <1.0>
+  [119] pushfloat32 1.0 ......................... <1.0>
+  [124] pushfloat32 1.0 ......................... <1.0>
+  [129] pusharglist 3 ........................... <1.0, 1.0, 1.0>
+  [131] extcall 212 ............................. <vector(1.0, 1.0, 1.0)>
+  [133] pushsymb 1508 ........................... <#equal>
+  [136] getprop 563 ............................. <p>
+  [139] getobjprop 1505 ......................... <p.timeStep>
+  [142] getprop 563 ............................. <p>
+  [145] getobjprop 1506 ......................... <p.subSteps>
+  [148] pusharglistnoret 6 ...................... <gGame.Physics, tmember, vector(1.0, 1.0, 1.0), #equal, p.timeStep, p.subSteps>
+  [150] objcall 415 ............................. gGame.Physics.Init(tmember, vector(1.0, 1.0, 1.0), #equal, p.timeStep, p.subSteps)
+  [153] getglobal 43 ............................ <gGame>
+  [155] getchainedprop 1389 ..................... <gGame.Physics>
+  [158] pushfloat32 0.0 ......................... <0.0>
+  [163] pushfloat32 0.0 ......................... <0.0>
+  [168] pushcons 3 .............................. <39.24000000000000199>
+  [170] inv ..................................... <-39.24000000000000199>
+  [171] pusharglist 3 ........................... <0.0, 0.0, -39.24000000000000199>
+  [173] extcall 212 ............................. <vector(0.0, 0.0, -39.24000000000000199)>
+  [175] setobjprop 1307 ......................... gGame.Physics.gravity = vector(0.0, 0.0, -39.24000000000000199)
+  [178] getglobal 43 ............................ <gGame>
+  [180] getchainedprop 1389 ..................... <gGame.Physics>
+  [183] pushint8 1 .............................. <1>
+  [185] setobjprop 1509 ......................... gGame.Physics.sleepThreshold = 1
+  [188] getglobal 43 ............................ <gGame>
+  [190] getchainedprop 1389 ..................... <gGame.Physics>
+  [193] pushsymb 1510 ........................... <#linearVelocity>
+  [196] setobjprop 1511 ......................... gGame.Physics.sleepMode = #linearVelocity
+  [199] getglobal 43 ............................ <gGame>
+  [201] getchainedprop 1389 ..................... <gGame.Physics>
+  [204] pushsymb 1512 ........................... <#collisionCallback>
+  [207] pusharglistnoret 2 ...................... <gGame.Physics, #collisionCallback>
+  [209] objcall 1513 ............................ gGame.Physics.RegisterCollisionCallback(#collisionCallback)
+  [212] getparam 0 .............................. <me>
+  [214] pusharglistnoret 1 ...................... <me>
+  [216] extcall 52 .............................. return me
+  [218] ret
+end
+
+on enterFrame me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getchainedprop 1389 ..................... <gGame.Physics>
+  [  5] getprop 563 ............................. <p>
+  [  8] getobjprop 1505 ......................... <p.timeStep>
+  [ 11] getglobal 43 ............................ <gGame>
+  [ 13] getobjprop 454 .......................... <gGame.TimeMP>
+  [ 16] mul ..................................... <p.timeStep * gGame.TimeMP>
+  [ 17] setobjprop 1505 ......................... gGame.Physics.timeStep = p.timeStep * gGame.TimeMP
+  [ 20] getglobal 43 ............................ <gGame>
+  [ 22] getchainedprop 1389 ..................... <gGame.Physics>
+  [ 25] pusharglistnoret 1 ...................... <gGame.Physics>
+  [ 27] objcall 1514 ............................ gGame.Physics.simulate()
+  [ 30] ret
+end

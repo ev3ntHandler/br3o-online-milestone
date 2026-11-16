@@ -1,0 +1,984 @@
+global gSystem, gData, gGame
+
+on CreateTextTexture me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 64 .............................. <member(tTarget)>
+  [  6] setlocal 0 .............................. tmember = member(tTarget)
+  [  8] getlocal 0 .............................. <tmember>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <tmember = VOID>
+  [ 15] jmpifz [ 23] ............................ if tmember = VOID then
+  [ 18] pushzero ................................ <0>
+  [ 19] pusharglistnoret 1 ...................... <0>
+  [ 21] extcall 52 .............................. return 0
+  [ 23] getparam 2 .............................. <tDataList>
+  [ 25] getobjprop 122 .......................... <tDataList.ilk>
+  [ 27] pushsymb 67 ............................. <#string>
+  [ 29] eq ...................................... <tDataList.ilk = #string>
+  [ 30] jmpifz [ 42] ............................ if tDataList.ilk = #string then
+  [ 33] getparam 2 .............................. <tDataList>
+  [ 35] pusharglist 1 ........................... <tDataList>
+  [ 37] extcall 503 ............................. <value(tDataList)>
+  [ 40] setparam 2 .............................. tDataList = value(tDataList)
+  [ 42] getparam 2 .............................. <tDataList>
+  [ 44] getobjprop 122 .......................... <tDataList.ilk>
+  [ 46] pushsymb 541 ............................ <#propList>
+  [ 49] nteq .................................... <tDataList.ilk <> #propList>
+  [ 50] jmpifz [ 58] ............................ if tDataList.ilk <> #propList then
+  [ 53] pushzero ................................ <0>
+  [ 54] pusharglistnoret 1 ...................... <0>
+  [ 56] extcall 52 .............................. return 0
+  [ 58] pushcons 0 .............................. <"Text">
+  [ 60] pusharglist 1 ........................... <"Text">
+  [ 62] extcall 64 .............................. <member("Text")>
+  [ 64] setlocal 1 .............................. tTextMember = member("Text")
+  [ 66] pusharglist 0 ........................... <>
+  [ 68] extcall 40 .............................. <VOID>
+  [ 70] setlocal 2 .............................. tText = VOID
+  [ 72] getparam 2 .............................. <tDataList>
+  [ 74] pushsymb 80 ............................. <#text>
+  [ 76] pusharglist 2 ........................... <tDataList, #text>
+  [ 78] objcall 105 ............................. <tDataList[#text]>
+  [ 80] getobjprop 122 .......................... <tDataList[#text].ilk>
+  [ 82] pushsymb 67 ............................. <#string>
+  [ 84] eq ...................................... <tDataList[#text].ilk = #string>
+  [ 85] jmpifz [ 94] ............................ if tDataList[#text].ilk = #string then
+  [ 88] getparam 2 .............................. <tDataList>
+  [ 90] getobjprop 80 ........................... <tDataList.text>
+  [ 92] setlocal 2 .............................. tText = tDataList.text
+  [ 94] getlocal 2 .............................. <tText>
+  [ 96] pusharglist 0 ........................... <>
+  [ 98] extcall 40 .............................. <VOID>
+  [100] eq ...................................... <tText = VOID>
+  [101] jmpifz [109] ............................ if tText = VOID then
+  [104] pushzero ................................ <0>
+  [105] pusharglistnoret 1 ...................... <0>
+  [107] extcall 52 .............................. return 0
+  [109] pusharglist 0 ........................... <>
+  [111] extcall 40 .............................. <VOID>
+  [113] setlocal 3 .............................. tTextureName = VOID
+  [115] getparam 2 .............................. <tDataList>
+  [117] pushsymb 218 ............................ <#texture>
+  [119] pusharglist 2 ........................... <tDataList, #texture>
+  [121] objcall 105 ............................. <tDataList[#texture]>
+  [123] getobjprop 122 .......................... <tDataList[#texture].ilk>
+  [125] pushsymb 67 ............................. <#string>
+  [127] eq ...................................... <tDataList[#texture].ilk = #string>
+  [128] jmpifz [137] ............................ if tDataList[#texture].ilk = #string then
+  [131] getparam 2 .............................. <tDataList>
+  [133] getobjprop 218 .......................... <tDataList.texture>
+  [135] setlocal 3 .............................. tTextureName = tDataList.texture
+  [137] getlocal 3 .............................. <tTextureName>
+  [139] pusharglist 0 ........................... <>
+  [141] extcall 40 .............................. <VOID>
+  [143] eq ...................................... <tTextureName = VOID>
+  [144] jmpifz [151] ............................ if tTextureName = VOID then
+  [147] getlocal 2 .............................. <tText>
+  [149] setlocal 3 .............................. tTextureName = tText
+  [151] pushcons 1 .............................. <"Arial">
+  [153] setlocal 4 .............................. tFont = "Arial"
+  [155] getglobal 43 ............................ <gGame>
+  [157] pushsymb 2515 ........................... <#font>
+  [160] pusharglist 2 ........................... <gGame, #font>
+  [162] objcall 105 ............................. <gGame[#font]>
+  [164] pusharglist 1 ........................... <gGame[#font]>
+  [166] extcall 389 ............................. <voidp(gGame[#font])>
+  [169] pushzero ................................ <0>
+  [170] eq ...................................... <voidp(gGame[#font]) = 0>
+  [171] jmpifz [181] ............................ if voidp(gGame[#font]) = 0 then
+  [174] getglobal 43 ............................ <gGame>
+  [176] getobjprop 2515 ......................... <gGame.font>
+  [179] setlocal 4 .............................. tFont = gGame.font
+  [181] getlocal 1 .............................. <tTextMember>
+  [183] getobjprop 221 .......................... <tTextMember.fontSize>
+  [185] setlocal 5 .............................. tFontSize = tTextMember.fontSize
+  [187] getparam 2 .............................. <tDataList>
+  [189] pushsymb 221 ............................ <#fontSize>
+  [191] pusharglist 2 ........................... <tDataList, #fontSize>
+  [193] objcall 105 ............................. <tDataList[#fontSize]>
+  [195] getobjprop 122 .......................... <tDataList[#fontSize].ilk>
+  [197] pushsymb 123 ............................ <#integer>
+  [199] eq ...................................... <tDataList[#fontSize].ilk = #integer>
+  [200] jmpifz [215] ............................ if tDataList[#fontSize].ilk = #integer then
+  [203] getparam 2 .............................. <tDataList>
+  [205] getobjprop 221 .......................... <tDataList.fontSize>
+  [207] getglobal 43 ............................ <gGame>
+  [209] getobjprop 410 .......................... <gGame.SourceRatio>
+  [212] mul ..................................... <tDataList.fontSize * gGame.SourceRatio>
+  [213] setlocal 5 .............................. tFontSize = tDataList.fontSize * gGame.SourceRatio
+  [215] getlocal 1 .............................. <tTextMember>
+  [217] getlocal 5 .............................. <tFontSize>
+  [219] setobjprop 221 .......................... tTextMember.fontSize = tFontSize
+  [221] getparam 2 .............................. <tDataList>
+  [223] pushsymb 283 ............................ <#height>
+  [226] pusharglist 2 ........................... <tDataList, #height>
+  [228] objcall 105 ............................. <tDataList[#height]>
+  [230] getobjprop 122 .......................... <tDataList[#height].ilk>
+  [232] pushsymb 123 ............................ <#integer>
+  [234] eq ...................................... <tDataList[#height].ilk = #integer>
+  [235] jmpifz [257] ............................ if tDataList[#height].ilk = #integer then / else
+  [238] getlocal 1 .............................. <tTextMember>
+  [240] getparam 2 .............................. <tDataList>
+  [242] getobjprop 283 .......................... <tDataList.height>
+  [245] getglobal 43 ............................ <gGame>
+  [247] getobjprop 410 .......................... <gGame.SourceRatio>
+  [250] mul ..................................... <tDataList.height * gGame.SourceRatio>
+  [251] setobjprop 283 .......................... tTextMember.height = tDataList.height * gGame.SourceRatio
+  [254] jmp [393]
+  [257] pushint8 2 .............................. <2>
+  [259] pushint8 4 .............................. <4>
+  [261] pushint8 8 .............................. <8>
+  [263] pushint8 16 ............................. <16>
+  [265] pushint8 32 ............................. <32>
+  [267] pushint8 64 ............................. <64>
+  [269] pushint16 128 ........................... <128>
+  [272] pushint16 256 ........................... <256>
+  [275] pushint16 512 ........................... <512>
+  [278] pusharglist 9 ........................... <[2, 4, 8, 16, 32, 64, 128, 256, 512]>
+  [280] pushlist ................................ <[2, 4, 8, 16, 32, 64, 128, 256, 512]>
+  [281] setlocal 6 .............................. tList = [2, 4, 8, 16, 32, 64, 128, 256, 512]
+  [283] getlocal 6 .............................. <tList>
+  [285] pusharglistnoret 1 ...................... <tList>
+  [287] objcall 304 ............................. tList.sort()
+  [290] getlocal 6 .............................. <tList>
+  [292] getlocal 5 .............................. <tFontSize>
+  [294] pusharglist 2 ........................... <tList, tFontSize>
+  [296] objcall 166 ............................. <tList.getPos(tFontSize)>
+  [298] pushzero ................................ <0>
+  [299] nteq .................................... <tList.getPos(tFontSize) <> 0>
+  [300] jmpifz [325] ............................ if tList.getPos(tFontSize) <> 0 then / else
+  [303] getlocal 6 .............................. <tList>
+  [305] getlocal 6 .............................. <tList>
+  [307] getlocal 5 .............................. <tFontSize>
+  [309] pusharglist 2 ........................... <tList, tFontSize>
+  [311] objcall 166 ............................. <tList.getPos(tFontSize)>
+  [313] pushint8 1 .............................. <1>
+  [315] add ..................................... <tList.getPos(tFontSize) + 1>
+  [316] pusharglist 2 ........................... <tList, tList.getPos(tFontSize) + 1>
+  [318] objcall 105 ............................. <tList[tList.getPos(tFontSize) + 1]>
+  [320] setlocal 7 .............................. tHeight = tList[tList.getPos(tFontSize) + 1]
+  [322] jmp [386]
+  [325] getlocal 6 .............................. <tList>
+  [327] getlocal 5 .............................. <tFontSize>
+  [329] pusharglistnoret 2 ...................... <tList, tFontSize>
+  [331] objcall 42 .............................. tList.add(tFontSize)
+  [333] getlocal 6 .............................. <tList>
+  [335] getlocal 5 .............................. <tFontSize>
+  [337] pusharglist 2 ........................... <tList, tFontSize>
+  [339] objcall 166 ............................. <tList.getPos(tFontSize)>
+  [341] getlocal 6 .............................. <tList>
+  [343] getobjprop 129 .......................... <tList.count>
+  [345] eq ...................................... <tList.getPos(tFontSize) = tList.count>
+  [346] jmpifz [367] ............................ if tList.getPos(tFontSize) = tList.count then / else
+  [349] getlocal 6 .............................. <tList>
+  [351] getlocal 6 .............................. <tList>
+  [353] getobjprop 129 .......................... <tList.count>
+  [355] pushint8 1 .............................. <1>
+  [357] sub ..................................... <tList.count - 1>
+  [358] pusharglist 2 ........................... <tList, tList.count - 1>
+  [360] objcall 105 ............................. <tList[tList.count - 1]>
+  [362] setlocal 7 .............................. tHeight = tList[tList.count - 1]
+  [364] jmp [386]
+  [367] getlocal 6 .............................. <tList>
+  [369] getlocal 6 .............................. <tList>
+  [371] getlocal 5 .............................. <tFontSize>
+  [373] pusharglist 2 ........................... <tList, tFontSize>
+  [375] objcall 166 ............................. <tList.getPos(tFontSize)>
+  [377] pushint8 1 .............................. <1>
+  [379] add ..................................... <tList.getPos(tFontSize) + 1>
+  [380] pusharglist 2 ........................... <tList, tList.getPos(tFontSize) + 1>
+  [382] objcall 105 ............................. <tList[tList.getPos(tFontSize) + 1]>
+  [384] setlocal 7 .............................. tHeight = tList[tList.getPos(tFontSize) + 1]
+  [386] getlocal 1 .............................. <tTextMember>
+  [388] getlocal 7 .............................. <tHeight>
+  [390] setobjprop 283 .......................... tTextMember.height = tHeight
+  [393] pushzero ................................ <0>
+  [394] setlocal 8 .............................. tWrap = 0
+  [396] getparam 2 .............................. <tDataList>
+  [398] pushsymb 284 ............................ <#wrap>
+  [401] pusharglist 2 ........................... <tDataList, #wrap>
+  [403] objcall 105 ............................. <tDataList[#wrap]>
+  [405] getobjprop 122 .......................... <tDataList[#wrap].ilk>
+  [407] pushsymb 123 ............................ <#integer>
+  [409] eq ...................................... <tDataList[#wrap].ilk = #integer>
+  [410] jmpifz [424] ............................ if tDataList[#wrap].ilk = #integer then
+  [413] getparam 2 .............................. <tDataList>
+  [415] pushsymb 284 ............................ <#wrap>
+  [418] pusharglist 2 ........................... <tDataList, #wrap>
+  [420] objcall 105 ............................. <tDataList[#wrap]>
+  [422] setlocal 8 .............................. tWrap = tDataList[#wrap]
+  [424] getlocal 1 .............................. <tTextMember>
+  [426] getlocal 8 .............................. <tWrap>
+  [428] setobjprop 326 .......................... tTextMember.wordWrap = tWrap
+  [431] pushint16 256 ........................... <256>
+  [434] setlocal 9 .............................. tWidth = 256
+  [436] getparam 2 .............................. <tDataList>
+  [438] pushsymb 229 ............................ <#width>
+  [440] pusharglist 2 ........................... <tDataList, #width>
+  [442] objcall 105 ............................. <tDataList[#width]>
+  [444] getobjprop 122 .......................... <tDataList[#width].ilk>
+  [446] pushsymb 123 ............................ <#integer>
+  [448] eq ...................................... <tDataList[#width].ilk = #integer>
+  [449] jmpifz [462] ............................ if tDataList[#width].ilk = #integer then
+  [452] getparam 2 .............................. <tDataList>
+  [454] pushsymb 229 ............................ <#width>
+  [456] pusharglist 2 ........................... <tDataList, #width>
+  [458] objcall 105 ............................. <tDataList[#width]>
+  [460] setlocal 9 .............................. tWidth = tDataList[#width]
+  [462] getlocal 1 .............................. <tTextMember>
+  [464] getlocal 9 .............................. <tWidth>
+  [466] getglobal 43 ............................ <gGame>
+  [468] getobjprop 410 .......................... <gGame.SourceRatio>
+  [471] mul ..................................... <tWidth * gGame.SourceRatio>
+  [472] setobjprop 229 .......................... tTextMember.width = tWidth * gGame.SourceRatio
+  [474] getlocal 1 .............................. <tTextMember>
+  [476] pushzero ................................ <0>
+  [477] setobjprop 322 .......................... tTextMember.topSpacing = 0
+  [480] getlocal 1 .............................. <tTextMember>
+  [482] pushzero ................................ <0>
+  [483] setobjprop 324 .......................... tTextMember.fixedLineSpace = 0
+  [486] pushint8 12 ............................. <12>
+  [488] setlocal 10 ............................. tFixedLineSpace = 12
+  [490] getparam 2 .............................. <tDataList>
+  [492] pushsymb 222 ............................ <#lineSpacing>
+  [494] pusharglist 2 ........................... <tDataList, #lineSpacing>
+  [496] objcall 105 ............................. <tDataList[#lineSpacing]>
+  [498] getobjprop 122 .......................... <tDataList[#lineSpacing].ilk>
+  [500] pushsymb 123 ............................ <#integer>
+  [502] eq ...................................... <tDataList[#lineSpacing].ilk = #integer>
+  [503] jmpifz [512] ............................ if tDataList[#lineSpacing].ilk = #integer then
+  [506] getparam 2 .............................. <tDataList>
+  [508] getobjprop 222 .......................... <tDataList.lineSpacing>
+  [510] setlocal 10 ............................. tFixedLineSpace = tDataList.lineSpacing
+  [512] getlocal 1 .............................. <tTextMember>
+  [514] getlocal 10 ............................. <tFixedLineSpace>
+  [516] getglobal 43 ............................ <gGame>
+  [518] getobjprop 410 .......................... <gGame.SourceRatio>
+  [521] mul ..................................... <tFixedLineSpace * gGame.SourceRatio>
+  [522] setobjprop 324 .......................... tTextMember.fixedLineSpace = tFixedLineSpace * gGame.SourceRatio
+  [525] getlocal 1 .............................. <tTextMember>
+  [527] getlocal 5 .............................. <tFontSize>
+  [529] pushint8 2 .............................. <2>
+  [531] div ..................................... <tFontSize / 2>
+  [532] pushfloat32 2.5 ......................... <2.5>
+  [537] getglobal 43 ............................ <gGame>
+  [539] getobjprop 410 .......................... <gGame.SourceRatio>
+  [542] mul ..................................... <2.5 * gGame.SourceRatio>
+  [543] sub ..................................... <(tFontSize / 2) - (2.5 * gGame.SourceRatio)>
+  [544] setobjprop 322 .......................... tTextMember.topSpacing = (tFontSize / 2) - (2.5 * gGame.SourceRatio)
+  [547] pushsymb 203 ............................ <#left>
+  [549] setlocal 11 ............................. tALign = #left
+  [551] getparam 2 .............................. <tDataList>
+  [553] pushsymb 219 ............................ <#align>
+  [555] pusharglist 2 ........................... <tDataList, #align>
+  [557] objcall 105 ............................. <tDataList[#align]>
+  [559] getobjprop 122 .......................... <tDataList[#align].ilk>
+  [561] pushsymb 88 ............................. <#symbol>
+  [563] eq ...................................... <tDataList[#align].ilk = #symbol>
+  [564] jmpifz [603] ............................ if tDataList[#align].ilk = #symbol then
+  [567] pushsymb 203 ............................ <#left>
+  [569] pushsymb 1907 ........................... <#center>
+  [572] pushsymb 220 ............................ <#right>
+  [574] pushsymb 2516 ........................... <#Full>
+  [577] pusharglist 4 ........................... <[#left, #center, #right, #Full]>
+  [579] pushlist ................................ <[#left, #center, #right, #Full]>
+  [580] setlocal 6 .............................. tList = [#left, #center, #right, #Full]
+  [582] getlocal 6 .............................. <tList>
+  [584] getparam 2 .............................. <tDataList>
+  [586] getobjprop 219 .......................... <tDataList.align>
+  [588] pusharglist 2 ........................... <tList, tDataList.align>
+  [590] objcall 166 ............................. <tList.getPos(tDataList.align)>
+  [592] pushzero ................................ <0>
+  [593] nteq .................................... <tList.getPos(tDataList.align) <> 0>
+  [594] jmpifz [603] ............................ if tList.getPos(tDataList.align) <> 0 then
+  [597] getparam 2 .............................. <tDataList>
+  [599] getobjprop 219 .......................... <tDataList.align>
+  [601] setlocal 11 ............................. tALign = tDataList.align
+  [603] getlocal 1 .............................. <tTextMember>
+  [605] getlocal 11 ............................. <tALign>
+  [607] setobjprop 323 .......................... tTextMember.alignment = tALign
+  [610] getlocal 1 .............................. <tTextMember>
+  [612] getobjprop 2517 ......................... <tTextMember.fontStyle>
+  [615] setlocal 12 ............................. tFontStyle = tTextMember.fontStyle
+  [617] getparam 2 .............................. <tDataList>
+  [619] pushsymb 2517 ........................... <#fontStyle>
+  [622] pusharglist 2 ........................... <tDataList, #fontStyle>
+  [624] objcall 105 ............................. <tDataList[#fontStyle]>
+  [626] getobjprop 122 .......................... <tDataList[#fontStyle].ilk>
+  [628] pushsymb 88 ............................. <#symbol>
+  [630] eq ...................................... <tDataList[#fontStyle].ilk = #symbol>
+  [631] jmpifz [671] ............................ if tDataList[#fontStyle].ilk = #symbol then
+  [634] pushsymb 2518 ........................... <#bold>
+  [637] pushsymb 2519 ........................... <#italic>
+  [640] pushsymb 2520 ........................... <#underline>
+  [643] pusharglist 3 ........................... <[#bold, #italic, #underline]>
+  [645] pushlist ................................ <[#bold, #italic, #underline]>
+  [646] setlocal 6 .............................. tList = [#bold, #italic, #underline]
+  [648] getlocal 6 .............................. <tList>
+  [650] getparam 2 .............................. <tDataList>
+  [652] getobjprop 2517 ......................... <tDataList.fontStyle>
+  [655] pusharglist 2 ........................... <tList, tDataList.fontStyle>
+  [657] objcall 166 ............................. <tList.getPos(tDataList.fontStyle)>
+  [659] pushzero ................................ <0>
+  [660] nteq .................................... <tList.getPos(tDataList.fontStyle) <> 0>
+  [661] jmpifz [671] ............................ if tList.getPos(tDataList.fontStyle) <> 0 then
+  [664] getparam 2 .............................. <tDataList>
+  [666] getobjprop 2517 ......................... <tDataList.fontStyle>
+  [669] setlocal 5 .............................. tFontSize = tDataList.fontStyle
+  [671] getlocal 1 .............................. <tTextMember>
+  [673] getlocal 12 ............................. <tFontStyle>
+  [675] setobjprop 2517 ......................... tTextMember.fontStyle = tFontStyle
+  [678] pushzero ................................ <0>
+  [679] setlocal 13 ............................. tKerning = 0
+  [681] getparam 2 .............................. <tDataList>
+  [683] pushsymb 2521 ........................... <#kerning>
+  [686] pusharglist 2 ........................... <tDataList, #kerning>
+  [688] objcall 105 ............................. <tDataList[#kerning]>
+  [690] getobjprop 122 .......................... <tDataList[#kerning].ilk>
+  [692] pushsymb 123 ............................ <#integer>
+  [694] eq ...................................... <tDataList[#kerning].ilk = #integer>
+  [695] jmpifz [705] ............................ if tDataList[#kerning].ilk = #integer then
+  [698] getparam 2 .............................. <tDataList>
+  [700] getobjprop 2521 ......................... <tDataList.kerning>
+  [703] setlocal 13 ............................. tKerning = tDataList.kerning
+  [705] getlocal 1 .............................. <tTextMember>
+  [707] getlocal 13 ............................. <tKerning>
+  [709] setobjprop 2522 ......................... tTextMember.kerningThreshold = tKerning
+  [712] pushcons 0 .............................. <"Text">
+  [714] pusharglist 1 ........................... <"Text">
+  [716] extcall 64 .............................. <member("Text")>
+  [718] getobjprop 223 .......................... <member("Text").color>
+  [720] setlocal 14 ............................. tColor = member("Text").color
+  [722] getparam 2 .............................. <tDataList>
+  [724] pushsymb 223 ............................ <#color>
+  [726] pusharglist 2 ........................... <tDataList, #color>
+  [728] objcall 105 ............................. <tDataList[#color]>
+  [730] getobjprop 122 .......................... <tDataList[#color].ilk>
+  [732] pushsymb 223 ............................ <#color>
+  [734] eq ...................................... <tDataList[#color].ilk = #color>
+  [735] jmpifz [744] ............................ if tDataList[#color].ilk = #color then
+  [738] getparam 2 .............................. <tDataList>
+  [740] getobjprop 223 .......................... <tDataList.color>
+  [742] setlocal 14 ............................. tColor = tDataList.color
+  [744] getlocal 1 .............................. <tTextMember>
+  [746] getlocal 14 ............................. <tColor>
+  [748] setobjprop 223 .......................... tTextMember.color = tColor
+  [750] pusharglist 0 ........................... <>
+  [752] extcall 40 .............................. <VOID>
+  [754] setlocal 15 ............................. tFilters = VOID
+  [756] getparam 2 .............................. <tDataList>
+  [758] pushsymb 642 ............................ <#filters>
+  [761] pusharglist 2 ........................... <tDataList, #filters>
+  [763] objcall 105 ............................. <tDataList[#filters]>
+  [765] getobjprop 122 .......................... <tDataList[#filters].ilk>
+  [767] pushsymb 126 ............................ <#list>
+  [769] eq ...................................... <tDataList[#filters].ilk = #list>
+  [770] jmpifz [780] ............................ if tDataList[#filters].ilk = #list then
+  [773] getparam 2 .............................. <tDataList>
+  [775] getobjprop 642 .......................... <tDataList.filters>
+  [778] setlocal 15 ............................. tFilters = tDataList.filters
+  [780] pushzero ................................ <0>
+  [781] setlocal 16 ............................. tResize = 0
+  [783] getparam 2 .............................. <tDataList>
+  [785] pushsymb 227 ............................ <#resize>
+  [787] pusharglist 2 ........................... <tDataList, #resize>
+  [789] objcall 105 ............................. <tDataList[#resize]>
+  [791] getobjprop 122 .......................... <tDataList[#resize].ilk>
+  [793] pushsymb 123 ............................ <#integer>
+  [795] eq ...................................... <tDataList[#resize].ilk = #integer>
+  [796] jmpifz [805] ............................ if tDataList[#resize].ilk = #integer then
+  [799] getparam 2 .............................. <tDataList>
+  [801] getobjprop 227 .......................... <tDataList.resize>
+  [803] setlocal 16 ............................. tResize = tDataList.resize
+  [805] pushzero ................................ <0>
+  [806] setlocal 17 ............................. tOffSetH = 0
+  [808] getparam 2 .............................. <tDataList>
+  [810] pushsymb 2523 ........................... <#offsetH>
+  [813] pusharglist 2 ........................... <tDataList, #offsetH>
+  [815] objcall 105 ............................. <tDataList[#offsetH]>
+  [817] getobjprop 122 .......................... <tDataList[#offsetH].ilk>
+  [819] pushsymb 123 ............................ <#integer>
+  [821] eq ...................................... <tDataList[#offsetH].ilk = #integer>
+  [822] jmpifz [832] ............................ if tDataList[#offsetH].ilk = #integer then
+  [825] getparam 2 .............................. <tDataList>
+  [827] getobjprop 2523 ......................... <tDataList.offsetH>
+  [830] setlocal 17 ............................. tOffSetH = tDataList.offsetH
+  [832] pushcons 2 .............................. <"Menu">
+  [834] pusharglist 1 ........................... <"Menu">
+  [836] extcall 58 .............................. <castLib("Menu")>
+  [838] pusharglist 1 ........................... <castLib("Menu")>
+  [840] objcall 316 ............................. <castLib("Menu").findEmpty()>
+  [843] setlocal 18 ............................. tEmpty = castLib("Menu").findEmpty()
+  [845] pushsymb 317 ............................ <#bitmap>
+  [848] getlocal 18 ............................. <tEmpty>
+  [850] pushcons 2 .............................. <"Menu">
+  [852] pusharglist 2 ........................... <tEmpty, "Menu">
+  [854] extcall 64 .............................. <member(tEmpty, "Menu")>
+  [856] pusharglist 2 ........................... <#bitmap, member(tEmpty, "Menu")>
+  [858] extcall 35 .............................. <new(#bitmap, member(tEmpty, "Menu"))>
+  [860] setlocal 19 ............................. tTextureMember = new(#bitmap, member(tEmpty, "Menu"))
+  [862] getlocal 19 ............................. <tTextureMember>
+  [864] getlocal 3 .............................. <tTextureName>
+  [866] setobjprop 235 .......................... tTextureMember.name = tTextureName
+  [868] getglobal 50 ............................ <gSystem>
+  [870] getchainedprop 318 ...................... <gSystem.DynamicMembers>
+  [873] getlocal 19 ............................. <tTextureMember>
+  [875] pusharglistnoret 2 ...................... <gSystem.DynamicMembers, tTextureMember>
+  [877] objcall 42 .............................. gSystem.DynamicMembers.add(tTextureMember)
+  [879] getlocal 1 .............................. <tTextMember>
+  [881] getlocal 2 .............................. <tText>
+  [883] setobjprop 80 ........................... tTextMember.text = tText
+  [885] getlocal 16 ............................. <tResize>
+  [887] pushint8 1 .............................. <1>
+  [889] eq ...................................... <tResize = 1>
+  [890] jmpifz [899] ............................ if tResize = 1 then
+  [893] getlocal 1 .............................. <tTextMember>
+  [895] pusharglistnoret 1 ...................... <tTextMember>
+  [897] localcall 1 ............................. resizeText(tTextMember)
+  [899] pushcons 3 .............................. <"ImageTemplate">
+  [901] pusharglist 1 ........................... <"ImageTemplate">
+  [903] extcall 64 .............................. <member("ImageTemplate")>
+  [905] getlocal 1 .............................. <tTextMember>
+  [907] getobjprop 319 .......................... <tTextMember.image>
+  [910] setobjprop 319 .......................... member("ImageTemplate").image = tTextMember.image
+  [913] getlocal 17 ............................. <tOffSetH>
+  [915] pushzero ................................ <0>
+  [916] eq ...................................... <tOffSetH = 0>
+  [917] jmpifz [934] ............................ if tOffSetH = 0 then / else
+  [920] pushcons 3 .............................. <"ImageTemplate">
+  [922] pusharglist 1 ........................... <"ImageTemplate">
+  [924] extcall 64 .............................. <member("ImageTemplate")>
+  [926] getobjprop 319 .......................... <member("ImageTemplate").image>
+  [929] setlocal 20 ............................. tImage = member("ImageTemplate").image
+  [931] jmp [1147]
+  [934] getlocal 1 .............................. <tTextMember>
+  [936] pushsymb 320 ............................ <#rect>
+  [939] pushint8 3 .............................. <3>
+  [941] pusharglist 3 ........................... <tTextMember, #rect, 3>
+  [943] objcall 70 .............................. <tTextMember.rect[3]>
+  [945] getlocal 1 .............................. <tTextMember>
+  [947] pushsymb 320 ............................ <#rect>
+  [950] pushint8 4 .............................. <4>
+  [952] pusharglist 3 ........................... <tTextMember, #rect, 4>
+  [954] objcall 70 .............................. <tTextMember.rect[4]>
+  [956] pushint8 32 ............................. <32>
+  [958] pushint8 1 .............................. <1>
+  [960] pusharglist 4 ........................... <tTextMember.rect[3], tTextMember.rect[4], 32, 1>
+  [962] extcall 319 ............................. <image(tTextMember.rect[3], tTextMember.rect[4], 32, 1)>
+  [965] setlocal 21 ............................. tNewImage = image(tTextMember.rect[3], tTextMember.rect[4], 32, 1)
+  [967] getlocal 1 .............................. <tTextMember>
+  [969] getchainedprop 319 ...................... <tTextMember.image>
+  [972] pusharglist 1 ........................... <tTextMember.image>
+  [974] objcall 233 ............................. <tTextMember.image.duplicate()>
+  [976] setlocal 22 ............................. tTempImage = tTextMember.image.duplicate()
+  [978] getlocal 21 ............................. <tNewImage>
+  [980] getlocal 22 ............................. <tTempImage>
+  [982] getlocal 17 ............................. <tOffSetH>
+  [984] pushzero ................................ <0>
+  [985] getlocal 1 .............................. <tTextMember>
+  [987] pushsymb 320 ............................ <#rect>
+  [990] pushint8 3 .............................. <3>
+  [992] pusharglist 3 ........................... <tTextMember, #rect, 3>
+  [994] objcall 70 .............................. <tTextMember.rect[3]>
+  [996] getlocal 17 ............................. <tOffSetH>
+  [998] add ..................................... <tTextMember.rect[3] + tOffSetH>
+  [999] getlocal 1 .............................. <tTextMember>
+  [1001] pushsymb 320 ........................... <#rect>
+  [1004] pushint8 4 ............................. <4>
+  [1006] pusharglist 3 .......................... <tTextMember, #rect, 4>
+  [1008] objcall 70 ............................. <tTextMember.rect[4]>
+  [1010] pusharglist 4 .......................... <tOffSetH, 0, tTextMember.rect[3] + tOffSetH, tTextMember.rect[4]>
+  [1012] extcall 320 ............................ <rect(tOffSetH, 0, tTextMember.rect[3] + tOffSetH, tTextMember.rect[4])>
+  [1015] getlocal 22 ............................ <tTempImage>
+  [1017] getobjprop 320 ......................... <tTempImage.rect>
+  [1020] pusharglistnoret 4 ..................... <tNewImage, tTempImage, rect(tOffSetH, 0, tTextMember.rect[3] + tOffSetH, tTextMember.rect[4]), tTempImage.rect>
+  [1022] objcall 321 ............................ tNewImage.copyPixels(tTempImage, rect(tOffSetH, 0, tTextMember.rect[3] + tOffSetH, tTextMember.rect[4]), tTempImage.rect)
+  [1025] getlocal 22 ............................ <tTempImage>
+  [1027] pusharglist 1 .......................... <tTempImage>
+  [1029] objcall 344 ............................ <tTempImage.extractAlpha()>
+  [1032] setlocal 23 ............................ tNewAlpha = tTempImage.extractAlpha()
+  [1034] getlocal 23 ............................ <tNewAlpha>
+  [1036] getlocal 23 ............................ <tNewAlpha>
+  [1038] getobjprop 320 ......................... <tNewAlpha.rect>
+  [1041] pushint16 255 .......................... <255>
+  [1044] pushint16 255 .......................... <255>
+  [1047] pushint16 255 .......................... <255>
+  [1050] pusharglist 3 .......................... <255, 255, 255>
+  [1052] extcall 282 ............................ <rgb(255, 255, 255)>
+  [1055] pusharglistnoret 3 ..................... <tNewAlpha, tNewAlpha.rect, rgb(255, 255, 255)>
+  [1057] objcall 345 ............................ tNewAlpha.fill(tNewAlpha.rect, rgb(255, 255, 255))
+  [1060] getlocal 22 ............................ <tTempImage>
+  [1062] pusharglist 1 .......................... <tTempImage>
+  [1064] objcall 344 ............................ <tTempImage.extractAlpha()>
+  [1067] setlocal 24 ............................ tTempAlpha = tTempImage.extractAlpha()
+  [1069] getlocal 23 ............................ <tNewAlpha>
+  [1071] getlocal 24 ............................ <tTempAlpha>
+  [1073] getlocal 17 ............................ <tOffSetH>
+  [1075] pushzero ............................... <0>
+  [1076] getlocal 1 ............................. <tTextMember>
+  [1078] pushsymb 320 ........................... <#rect>
+  [1081] pushint8 3 ............................. <3>
+  [1083] pusharglist 3 .......................... <tTextMember, #rect, 3>
+  [1085] objcall 70 ............................. <tTextMember.rect[3]>
+  [1087] getlocal 17 ............................ <tOffSetH>
+  [1089] add .................................... <tTextMember.rect[3] + tOffSetH>
+  [1090] getlocal 1 ............................. <tTextMember>
+  [1092] pushsymb 320 ........................... <#rect>
+  [1095] pushint8 4 ............................. <4>
+  [1097] pusharglist 3 .......................... <tTextMember, #rect, 4>
+  [1099] objcall 70 ............................. <tTextMember.rect[4]>
+  [1101] pusharglist 4 .......................... <tOffSetH, 0, tTextMember.rect[3] + tOffSetH, tTextMember.rect[4]>
+  [1103] extcall 320 ............................ <rect(tOffSetH, 0, tTextMember.rect[3] + tOffSetH, tTextMember.rect[4])>
+  [1106] getlocal 24 ............................ <tTempAlpha>
+  [1108] getobjprop 320 ......................... <tTempAlpha.rect>
+  [1111] pusharglistnoret 4 ..................... <tNewAlpha, tTempAlpha, rect(tOffSetH, 0, tTextMember.rect[3] + tOffSetH, tTextMember.rect[4]), tTempAlpha.rect>
+  [1113] objcall 321 ............................ tNewAlpha.copyPixels(tTempAlpha, rect(tOffSetH, 0, tTextMember.rect[3] + tOffSetH, tTextMember.rect[4]), tTempAlpha.rect)
+  [1116] getlocal 21 ............................ <tNewImage>
+  [1118] getlocal 23 ............................ <tNewAlpha>
+  [1120] pusharglistnoret 2 ..................... <tNewImage, tNewAlpha>
+  [1122] objcall 346 ............................ tNewImage.setAlpha(tNewAlpha)
+  [1125] pushcons 3 ............................. <"ImageTemplate">
+  [1127] pusharglist 1 .......................... <"ImageTemplate">
+  [1129] extcall 64 ............................. <member("ImageTemplate")>
+  [1131] getlocal 21 ............................ <tNewImage>
+  [1133] setobjprop 319 ......................... member("ImageTemplate").image = tNewImage
+  [1136] pushcons 3 ............................. <"ImageTemplate">
+  [1138] pusharglist 1 .......................... <"ImageTemplate">
+  [1140] extcall 64 ............................. <member("ImageTemplate")>
+  [1142] getobjprop 319 ......................... <member("ImageTemplate").image>
+  [1145] setlocal 20 ............................ tImage = member("ImageTemplate").image
+  [1147] getlocal 15 ............................ <tFilters>
+  [1149] pusharglist 0 .......................... <>
+  [1151] extcall 40 ............................. <VOID>
+  [1153] nteq ................................... <tFilters <> VOID>
+  [1154] jmpifz [1229] .......................... if tFilters <> VOID then
+  [1157] pushint8 1 ............................. <1>
+  [1159] setlocal 25
+  [1161] getlocal 25
+  [1163] getlocal 15 ............................ <tFilters>
+  [1165] getobjprop 129 ......................... <tFilters.count>
+  [1167] lteq
+  [1168] jmpifz [1229] .......................... repeat with i = 1 to tFilters.count
+  [1171] getlocal 15 ............................ <tFilters>
+  [1173] getlocal 25 ............................ <i>
+  [1175] pusharglist 2 .......................... <tFilters, i>
+  [1177] objcall 105 ............................ <tFilters[i]>
+  [1179] pushint8 1 ............................. <1>
+  [1181] pusharglist 2 .......................... <tFilters[i], 1>
+  [1183] objcall 130 ............................ <tFilters[i].getPropAt(1)>
+  [1185] getlocal 15 ............................ <tFilters>
+  [1187] getlocal 25 ............................ <i>
+  [1189] pusharglist 2 .......................... <tFilters, i>
+  [1191] objcall 105 ............................ <tFilters[i]>
+  [1193] pushint8 1 ............................. <1>
+  [1195] pusharglist 2 .......................... <tFilters[i], 1>
+  [1197] objcall 105 ............................ <tFilters[i][1]>
+  [1199] pusharglist 2 .......................... <tFilters[i].getPropAt(1), tFilters[i][1]>
+  [1201] extcall 327 ............................ <filter(tFilters[i].getPropAt(1), tFilters[i][1])>
+  [1204] setlocal 26 ............................ tFilter = filter(tFilters[i].getPropAt(1), tFilters[i][1])
+  [1206] getlocal 20 ............................ <tImage>
+  [1208] getlocal 26 ............................ <tFilter>
+  [1210] getlocal 20 ............................ <tImage>
+  [1212] getobjprop 320 ......................... <tImage.rect>
+  [1215] pusharglistnoret 3 ..................... <tImage, tFilter, tImage.rect>
+  [1217] objcall 333 ............................ tImage.applyFilter(tFilter, tImage.rect)
+  [1220] pushint8 1
+  [1222] getlocal 25
+  [1224] add
+  [1225] setlocal 25
+  [1227] endrepeat [1161]
+  [1229] getlocal 19 ............................ <tTextureMember>
+  [1231] getlocal 20 ............................ <tImage>
+  [1233] setobjprop 319 ......................... tTextureMember.image = tImage
+  [1236] pusharglist 0 .......................... <[]>
+  [1238] pushlist ............................... <[]>
+  [1239] setlocal 27 ............................ tForceSize = []
+  [1241] getparam 2 ............................. <tDataList>
+  [1243] pushsymb 285 ........................... <#forceSize>
+  [1246] pusharglist 2 .......................... <tDataList, #forceSize>
+  [1248] objcall 105 ............................ <tDataList[#forceSize]>
+  [1250] getobjprop 122 ......................... <tDataList[#forceSize].ilk>
+  [1252] pushsymb 126 ........................... <#list>
+  [1254] eq ..................................... <tDataList[#forceSize].ilk = #list>
+  [1255] jmpifz [1265] .......................... if tDataList[#forceSize].ilk = #list then
+  [1258] getparam 2 ............................. <tDataList>
+  [1260] getobjprop 285 ......................... <tDataList.forceSize>
+  [1263] setlocal 27 ............................ tForceSize = tDataList.forceSize
+  [1265] getlocal 27 ............................ <tForceSize>
+  [1267] getobjprop 129 ......................... <tForceSize.count>
+  [1269] pushzero ............................... <0>
+  [1270] gt ..................................... <tForceSize.count > 0>
+  [1271] jmpifz [1412] .......................... if tForceSize.count > 0 then
+  [1274] getlocal 27 ............................ <tForceSize>
+  [1276] pushint8 1 ............................. <1>
+  [1278] pusharglist 2 .......................... <tForceSize, 1>
+  [1280] objcall 105 ............................ <tForceSize[1]>
+  [1282] getglobal 43 ........................... <gGame>
+  [1284] getobjprop 410 ......................... <gGame.SourceRatio>
+  [1287] mul .................................... <tForceSize[1] * gGame.SourceRatio>
+  [1288] getlocal 27 ............................ <tForceSize>
+  [1290] pushint8 2 ............................. <2>
+  [1292] pusharglist 2 .......................... <tForceSize, 2>
+  [1294] objcall 105 ............................ <tForceSize[2]>
+  [1296] getglobal 43 ........................... <gGame>
+  [1298] getobjprop 410 ......................... <gGame.SourceRatio>
+  [1301] mul .................................... <tForceSize[2] * gGame.SourceRatio>
+  [1302] pushint8 32 ............................ <32>
+  [1304] pushint8 1 ............................. <1>
+  [1306] pusharglist 4 .......................... <tForceSize[1] * gGame.SourceRatio, tForceSize[2] * gGame.SourceRatio, 32, 1>
+  [1308] extcall 319 ............................ <image(tForceSize[1] * gGame.SourceRatio, tForceSize[2] * gGame.SourceRatio, 32, 1)>
+  [1311] setlocal 28 ............................ tForceImage = image(tForceSize[1] * gGame.SourceRatio, tForceSize[2] * gGame.SourceRatio, 32, 1)
+  [1313] getlocal 28 ............................ <tForceImage>
+  [1315] getlocal 20 ............................ <tImage>
+  [1317] getlocal 20 ............................ <tImage>
+  [1319] getobjprop 320 ......................... <tImage.rect>
+  [1322] getlocal 20 ............................ <tImage>
+  [1324] getobjprop 320 ......................... <tImage.rect>
+  [1327] pusharglistnoret 4 ..................... <tForceImage, tImage, tImage.rect, tImage.rect>
+  [1329] objcall 321 ............................ tForceImage.copyPixels(tImage, tImage.rect, tImage.rect)
+  [1332] getlocal 28 ............................ <tForceImage>
+  [1334] pusharglist 1 .......................... <tForceImage>
+  [1336] objcall 344 ............................ <tForceImage.extractAlpha()>
+  [1339] setlocal 29 ............................ tForceAlpha = tForceImage.extractAlpha()
+  [1341] getlocal 29 ............................ <tForceAlpha>
+  [1343] getlocal 29 ............................ <tForceAlpha>
+  [1345] getobjprop 320 ......................... <tForceAlpha.rect>
+  [1348] pushint16 255 .......................... <255>
+  [1351] pushint16 255 .......................... <255>
+  [1354] pushint16 255 .......................... <255>
+  [1357] pusharglist 3 .......................... <255, 255, 255>
+  [1359] extcall 282 ............................ <rgb(255, 255, 255)>
+  [1362] pusharglistnoret 3 ..................... <tForceAlpha, tForceAlpha.rect, rgb(255, 255, 255)>
+  [1364] objcall 345 ............................ tForceAlpha.fill(tForceAlpha.rect, rgb(255, 255, 255))
+  [1367] getlocal 20 ............................ <tImage>
+  [1369] pusharglist 1 .......................... <tImage>
+  [1371] objcall 344 ............................ <tImage.extractAlpha()>
+  [1374] setlocal 24 ............................ tTempAlpha = tImage.extractAlpha()
+  [1376] getlocal 29 ............................ <tForceAlpha>
+  [1378] getlocal 24 ............................ <tTempAlpha>
+  [1380] getlocal 24 ............................ <tTempAlpha>
+  [1382] getobjprop 320 ......................... <tTempAlpha.rect>
+  [1385] getlocal 24 ............................ <tTempAlpha>
+  [1387] getobjprop 320 ......................... <tTempAlpha.rect>
+  [1390] pusharglistnoret 4 ..................... <tForceAlpha, tTempAlpha, tTempAlpha.rect, tTempAlpha.rect>
+  [1392] objcall 321 ............................ tForceAlpha.copyPixels(tTempAlpha, tTempAlpha.rect, tTempAlpha.rect)
+  [1395] getlocal 28 ............................ <tForceImage>
+  [1397] getlocal 29 ............................ <tForceAlpha>
+  [1399] pusharglistnoret 2 ..................... <tForceImage, tForceAlpha>
+  [1401] objcall 346 ............................ tForceImage.setAlpha(tForceAlpha)
+  [1404] getlocal 28 ............................ <tForceImage>
+  [1406] pusharglist 1 .......................... <tForceImage>
+  [1408] objcall 233 ............................ <tForceImage.duplicate()>
+  [1410] setlocal 20 ............................ tImage = tForceImage.duplicate()
+  [1412] pushzero ............................... <0>
+  [1413] setlocal 30 ............................ tNearFiltering = 0
+  [1415] getparam 2 ............................. <tDataList>
+  [1417] pushsymb 226 ........................... <#nearFiltering>
+  [1419] pusharglist 2 .......................... <tDataList, #nearFiltering>
+  [1421] objcall 105 ............................ <tDataList[#nearFiltering]>
+  [1423] getobjprop 122 ......................... <tDataList[#nearFiltering].ilk>
+  [1425] pushsymb 123 ........................... <#integer>
+  [1427] eq ..................................... <tDataList[#nearFiltering].ilk = #integer>
+  [1428] jmpifz [1437] .......................... if tDataList[#nearFiltering].ilk = #integer then
+  [1431] getparam 2 ............................. <tDataList>
+  [1433] getobjprop 226 ......................... <tDataList.nearFiltering>
+  [1435] setlocal 30 ............................ tNearFiltering = tDataList.nearFiltering
+  [1437] getglobal 43 ........................... <gGame>
+  [1439] getobjprop 410 ......................... <gGame.SourceRatio>
+  [1442] pushint8 1 ............................. <1>
+  [1444] gt ..................................... <gGame.SourceRatio > 1>
+  [1445] jmpifz [1452] .......................... if gGame.SourceRatio > 1 then
+  [1448] pushint8 1 ............................. <1>
+  [1450] setlocal 30 ............................ tNearFiltering = 1
+  [1452] getlocal 0 ............................. <tmember>
+  [1454] getlocal 3 ............................. <tTextureName>
+  [1456] pusharglist 2 .......................... <tmember, tTextureName>
+  [1458] objcall 218 ............................ <tmember.texture(tTextureName)>
+  [1460] setlocal 31 ............................ tTexture = tmember.texture(tTextureName)
+  [1462] getlocal 31 ............................ <tTexture>
+  [1464] pusharglist 0 .......................... <>
+  [1466] extcall 40 ............................. <VOID>
+  [1468] eq ..................................... <tTexture = VOID>
+  [1469] jmpifz [1513] .......................... if tTexture = VOID then / else
+  [1472] getlocal 0 ............................. <tmember>
+  [1474] getlocal 3 ............................. <tTextureName>
+  [1476] pushsymb 1565 .......................... <#fromCastMember>
+  [1479] getlocal 19 ............................ <tTextureMember>
+  [1481] pusharglist 4 .......................... <tmember, tTextureName, #fromCastMember, tTextureMember>
+  [1483] objcall 903 ............................ <tmember.newTexture(tTextureName, #fromCastMember, tTextureMember)>
+  [1486] setlocal 31 ............................ tTexture = tmember.newTexture(tTextureName, #fromCastMember, tTextureMember)
+  [1488] getlocal 31 ............................ <tTexture>
+  [1490] pushsymb 867 ........................... <#lowFiltered>
+  [1493] setobjprop 331 ......................... tTexture.quality = #lowFiltered
+  [1496] getlocal 31 ............................ <tTexture>
+  [1498] getlocal 30 ............................ <tNearFiltering>
+  [1500] setobjprop 226 ......................... tTexture.nearFiltering = tNearFiltering
+  [1502] getlocal 31 ............................ <tTexture>
+  [1504] pushsymb 347 ........................... <#rgba4444>
+  [1507] setobjprop 348 ......................... tTexture.renderFormat = #rgba4444
+  [1510] jmp [1520]
+  [1513] getlocal 31 ............................ <tTexture>
+  [1515] getlocal 20 ............................ <tImage>
+  [1517] setobjprop 319 ......................... tTexture.image = tImage
+  [1520] getlocal 31 ............................ <tTexture>
+  [1522] pusharglistnoret 1 ..................... <tTexture>
+  [1524] extcall 52 ............................. return tTexture
+  [1526] ret
+end
+
+on resizeText tmember
+  [  0] getparam 0 .............................. <tmember>
+  [  2] getobjprop 221 .......................... <tmember.fontSize>
+  [  4] setlocal 0 .............................. tFontSize = tmember.fontSize
+  [  6] pushint8 1 .............................. <1>
+  [  8] setlocal 1
+  [ 10] getlocal 1
+  [ 12] getlocal 0 .............................. <tFontSize>
+  [ 14] lteq
+  [ 15] jmpifz [174] ............................ repeat with i = 1 to tFontSize
+  [ 18] getparam 0 .............................. <tmember>
+  [ 20] getparam 0 .............................. <tmember>
+  [ 22] getchainedprop 80 ....................... <tmember.text>
+  [ 24] getobjprop 69 ........................... <tmember.text.length>
+  [ 26] pushint8 1 .............................. <1>
+  [ 28] add ..................................... <tmember.text.length + 1>
+  [ 29] pusharglist 2 ........................... <tmember, tmember.text.length + 1>
+  [ 31] objcall 2540 ............................ <tmember.charPosToLoc(tmember.text.length + 1)>
+  [ 34] setlocal 2 .............................. tCharPos = tmember.charPosToLoc(tmember.text.length + 1)
+  [ 36] getlocal 2 .............................. <tCharPos>
+  [ 38] pushint8 1 .............................. <1>
+  [ 40] pusharglist 2 ........................... <tCharPos, 1>
+  [ 42] objcall 105 ............................. <tCharPos[1]>
+  [ 44] getparam 0 .............................. <tmember>
+  [ 46] pushsymb 320 ............................ <#rect>
+  [ 49] pushint8 3 .............................. <3>
+  [ 51] pusharglist 3 ........................... <tmember, #rect, 3>
+  [ 53] objcall 70 .............................. <tmember.rect[3]>
+  [ 55] gt ...................................... <tCharPos[1] > tmember.rect[3]>
+  [ 56] jmpifz [162] ............................ if tCharPos[1] > tmember.rect[3] then
+  [ 59] getparam 0 .............................. <tmember>
+  [ 61] getobjprop 80 ........................... <tmember.text>
+  [ 63] setlocal 3 .............................. tText = tmember.text
+  [ 65] getparam 0 .............................. <tmember>
+  [ 67] pushcons 4 .............................. <EMPTY>
+  [ 69] setobjprop 80 ........................... tmember.text = EMPTY
+  [ 71] getparam 0 .............................. <tmember>
+  [ 73] getparam 0 .............................. <tmember>
+  [ 75] getobjprop 221 .......................... <tmember.fontSize>
+  [ 77] pushint8 1 .............................. <1>
+  [ 79] sub ..................................... <tmember.fontSize - 1>
+  [ 80] setobjprop 221 .......................... tmember.fontSize = tmember.fontSize - 1
+  [ 82] getparam 0 .............................. <tmember>
+  [ 84] getlocal 3 .............................. <tText>
+  [ 86] setobjprop 80 ........................... tmember.text = tText
+  [ 88] getparam 0 .............................. <tmember>
+  [ 90] getlocal 3 .............................. <tText>
+  [ 92] pushsymb 68 ............................. <#char>
+  [ 94] pusharglist 2 ........................... <tText, #char>
+  [ 96] objcall 129 ............................. <tText.char.count>
+  [ 98] pushint8 1 .............................. <1>
+  [100] add ..................................... <tText.char.count + 1>
+  [101] pusharglist 2 ........................... <tmember, tText.char.count + 1>
+  [103] objcall 2540 ............................ <tmember.charPosToLoc(tText.char.count + 1)>
+  [106] getobjprop 1193 ......................... <tmember.charPosToLoc(tText.char.count + 1).locV>
+  [109] setlocal 4 .............................. textBottom = tmember.charPosToLoc(tText.char.count + 1).locV
+  [111] getparam 0 .............................. <tmember>
+  [113] getobjprop 2541 ......................... <tmember.pageHeight>
+  [116] getlocal 4 .............................. <textBottom>
+  [118] sub ..................................... <tmember.pageHeight - textBottom>
+  [119] getparam 0 .............................. <tmember>
+  [121] getobjprop 322 .......................... <tmember.topSpacing>
+  [124] add ..................................... <tmember.pageHeight - textBottom + tmember.topSpacing>
+  [125] pushint8 2 .............................. <2>
+  [127] div ..................................... <(tmember.pageHeight - textBottom + tmember.topSpacing) / 2>
+  [128] setlocal 5 .............................. spaceAtTop = (tmember.pageHeight - textBottom + tmember.topSpacing) / 2
+  [130] getlocal 5 .............................. <spaceAtTop>
+  [132] pushzero ................................ <0>
+  [133] gteq .................................... <spaceAtTop >= 0>
+  [134] jmpifz [153] ............................ if spaceAtTop >= 0 then / else
+  [137] getparam 0 .............................. <tmember>
+  [139] getlocal 5 .............................. <spaceAtTop>
+  [141] getglobal 43 ............................ <gGame>
+  [143] getobjprop 410 .......................... <gGame.SourceRatio>
+  [146] mul ..................................... <spaceAtTop * gGame.SourceRatio>
+  [147] setobjprop 322 .......................... tmember.topSpacing = spaceAtTop * gGame.SourceRatio
+  [150] jmp [159]
+  [153] getparam 0 .............................. <tmember>
+  [155] pushzero ................................ <0>
+  [156] setobjprop 322 .......................... tmember.topSpacing = 0
+  [159] jmp [165] ............................... next repeat
+  [162] jmp [174] ............................... exit repeat
+  [165] pushint8 1
+  [167] getlocal 1
+  [169] add
+  [170] setlocal 1
+  [172] endrepeat [ 10]
+  [174] ret
+end
+
+on convertToUpperCase me, tString
+  [  0] pushcons 4 .............................. <EMPTY>
+  [  2] setlocal 0 .............................. tNewString = EMPTY
+  [  4] pushcons 5 .............................. <"a">
+  [  6] pushcons 6 .............................. <"b">
+  [  8] pushcons 7 .............................. <"c">
+  [ 10] pushcons 8 .............................. <"d">
+  [ 12] pushcons 9 .............................. <"e">
+  [ 14] pushcons 10 ............................. <"f">
+  [ 16] pushcons 11 ............................. <"g">
+  [ 18] pushcons 12 ............................. <"h">
+  [ 20] pushcons 13 ............................. <"i">
+  [ 22] pushcons 14 ............................. <"j">
+  [ 24] pushcons 15 ............................. <"k">
+  [ 26] pushcons 16 ............................. <"l">
+  [ 28] pushcons 17 ............................. <"m">
+  [ 30] pushcons 18 ............................. <"n">
+  [ 32] pushcons 19 ............................. <"o">
+  [ 34] pushcons 20 ............................. <"p">
+  [ 36] pushcons 21 ............................. <"q">
+  [ 38] pushcons 22 ............................. <"r">
+  [ 40] pushcons 23 ............................. <"s">
+  [ 42] pushcons 24 ............................. <"t">
+  [ 44] pushcons 25 ............................. <"u">
+  [ 46] pushcons 26 ............................. <"v">
+  [ 48] pushcons 27 ............................. <"w">
+  [ 50] pushcons 28 ............................. <"x">
+  [ 52] pushcons 29 ............................. <"y">
+  [ 54] pushcons 30 ............................. <"z">
+  [ 56] pusharglist 26 .......................... <["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]>
+  [ 58] pushlist ................................ <["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]>
+  [ 59] setlocal 1 .............................. tList = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+  [ 61] pushint8 1 .............................. <1>
+  [ 63] setlocal 2
+  [ 65] getlocal 2
+  [ 67] getparam 1 .............................. <tString>
+  [ 69] getobjprop 69 ........................... <tString.length>
+  [ 71] lteq
+  [ 72] jmpifz [145] ............................ repeat with i = 1 to tString.length
+  [ 75] getparam 1 .............................. <tString>
+  [ 77] pushsymb 68 ............................. <#char>
+  [ 79] getlocal 2 .............................. <i>
+  [ 81] pusharglist 3 ........................... <tString, #char, i>
+  [ 83] objcall 70 .............................. <tString.char[i]>
+  [ 85] setlocal 3 .............................. tChar = tString.char[i]
+  [ 87] getlocal 1 .............................. <tList>
+  [ 89] getlocal 3 .............................. <tChar>
+  [ 91] pusharglist 2 ........................... <tList, tChar>
+  [ 93] objcall 166 ............................. <tList.getPos(tChar)>
+  [ 95] pushzero ................................ <0>
+  [ 96] nteq .................................... <tList.getPos(tChar) <> 0>
+  [ 97] jmpifz [129] ............................ if tList.getPos(tChar) <> 0 then
+  [100] getparam 1 .............................. <tString>
+  [102] pushsymb 68 ............................. <#char>
+  [104] getlocal 2 .............................. <i>
+  [106] pusharglist 3 ........................... <tString, #char, i>
+  [108] objcall 70 .............................. <tString.char[i]>
+  [110] pusharglist 1 ........................... <tString.char[i]>
+  [112] extcall 506 ............................. <charToNum(tString.char[i])>
+  [115] setlocal 3 .............................. tChar = charToNum(tString.char[i])
+  [117] getlocal 3 .............................. <tChar>
+  [119] pushint8 32 ............................. <32>
+  [121] sub ..................................... <tChar - 32>
+  [122] pusharglist 1 ........................... <tChar - 32>
+  [124] extcall 512 ............................. <numToChar(tChar - 32)>
+  [127] setlocal 3 .............................. tChar = numToChar(tChar - 32)
+  [129] getlocal 0 .............................. <tNewString>
+  [131] getlocal 3 .............................. <tChar>
+  [133] joinstr ................................. <tNewString & tChar>
+  [134] setlocal 0 .............................. tNewString = tNewString & tChar
+  [136] pushint8 1
+  [138] getlocal 2
+  [140] add
+  [141] setlocal 2
+  [143] endrepeat [ 65]
+  [145] getlocal 0 .............................. <tNewString>
+  [147] pusharglistnoret 1 ...................... <tNewString>
+  [149] extcall 52 .............................. return tNewString
+  [151] ret
+end
+
+on convertToLowerCase me, tString
+  [  0] pushcons 4 .............................. <EMPTY>
+  [  2] setlocal 0 .............................. tNewString = EMPTY
+  [  4] pushcons 31 ............................. <"A">
+  [  6] pushcons 32 ............................. <"B">
+  [  8] pushcons 33 ............................. <"C">
+  [ 10] pushcons 34 ............................. <"D">
+  [ 12] pushcons 35 ............................. <"E">
+  [ 14] pushcons 36 ............................. <"F">
+  [ 16] pushcons 37 ............................. <"G">
+  [ 18] pushcons 38 ............................. <"H">
+  [ 20] pushcons 39 ............................. <"I">
+  [ 22] pushcons 40 ............................. <"J">
+  [ 24] pushcons 41 ............................. <"K">
+  [ 26] pushcons 42 ............................. <"L">
+  [ 28] pushcons 43 ............................. <"M">
+  [ 30] pushcons 44 ............................. <"N">
+  [ 32] pushcons 45 ............................. <"O">
+  [ 34] pushcons 46 ............................. <"P">
+  [ 36] pushcons 47 ............................. <"Q">
+  [ 38] pushcons 48 ............................. <"R">
+  [ 40] pushcons 49 ............................. <"S">
+  [ 42] pushcons 50 ............................. <"T">
+  [ 44] pushcons 51 ............................. <"U">
+  [ 46] pushcons 52 ............................. <"V">
+  [ 48] pushcons 53 ............................. <"W">
+  [ 50] pushcons 54 ............................. <"X">
+  [ 52] pushcons 55 ............................. <"Y">
+  [ 54] pushcons 56 ............................. <"Z">
+  [ 56] pusharglist 26 .......................... <["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]>
+  [ 58] pushlist ................................ <["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]>
+  [ 59] setlocal 1 .............................. tList = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+  [ 61] pushint8 1 .............................. <1>
+  [ 63] setlocal 2
+  [ 65] getlocal 2
+  [ 67] getparam 1 .............................. <tString>
+  [ 69] getobjprop 69 ........................... <tString.length>
+  [ 71] lteq
+  [ 72] jmpifz [145] ............................ repeat with i = 1 to tString.length
+  [ 75] getparam 1 .............................. <tString>
+  [ 77] pushsymb 68 ............................. <#char>
+  [ 79] getlocal 2 .............................. <i>
+  [ 81] pusharglist 3 ........................... <tString, #char, i>
+  [ 83] objcall 70 .............................. <tString.char[i]>
+  [ 85] setlocal 3 .............................. tChar = tString.char[i]
+  [ 87] getlocal 1 .............................. <tList>
+  [ 89] getlocal 3 .............................. <tChar>
+  [ 91] pusharglist 2 ........................... <tList, tChar>
+  [ 93] objcall 166 ............................. <tList.getPos(tChar)>
+  [ 95] pushzero ................................ <0>
+  [ 96] nteq .................................... <tList.getPos(tChar) <> 0>
+  [ 97] jmpifz [129] ............................ if tList.getPos(tChar) <> 0 then
+  [100] getparam 1 .............................. <tString>
+  [102] pushsymb 68 ............................. <#char>
+  [104] getlocal 2 .............................. <i>
+  [106] pusharglist 3 ........................... <tString, #char, i>
+  [108] objcall 70 .............................. <tString.char[i]>
+  [110] pusharglist 1 ........................... <tString.char[i]>
+  [112] extcall 506 ............................. <charToNum(tString.char[i])>
+  [115] setlocal 3 .............................. tChar = charToNum(tString.char[i])
+  [117] getlocal 3 .............................. <tChar>
+  [119] pushint8 32 ............................. <32>
+  [121] add ..................................... <tChar + 32>
+  [122] pusharglist 1 ........................... <tChar + 32>
+  [124] extcall 512 ............................. <numToChar(tChar + 32)>
+  [127] setlocal 3 .............................. tChar = numToChar(tChar + 32)
+  [129] getlocal 0 .............................. <tNewString>
+  [131] getlocal 3 .............................. <tChar>
+  [133] joinstr ................................. <tNewString & tChar>
+  [134] setlocal 0 .............................. tNewString = tNewString & tChar
+  [136] pushint8 1
+  [138] getlocal 2
+  [140] add
+  [141] setlocal 2
+  [143] endrepeat [ 65]
+  [145] getlocal 0 .............................. <tNewString>
+  [147] pusharglistnoret 1 ...................... <tNewString>
+  [149] extcall 57 .............................. put tNewString
+  [151] getlocal 0 .............................. <tNewString>
+  [153] pusharglistnoret 1 ...................... <tNewString>
+  [155] extcall 52 .............................. return tNewString
+  [157] ret
+end

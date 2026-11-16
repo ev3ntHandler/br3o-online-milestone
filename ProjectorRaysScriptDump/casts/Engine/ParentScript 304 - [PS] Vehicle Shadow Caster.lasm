@@ -1,0 +1,1107 @@
+property p
+global gGame
+
+on new me, tDataList
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getobjprop 406 .......................... <gGame.Shadows>
+  [  5] pushzero ................................ <0>
+  [  6] eq ...................................... <gGame.Shadows = 0>
+  [  7] jmpifz [ 15] ............................ if gGame.Shadows = 0 then
+  [ 10] pushzero ................................ <0>
+  [ 11] pusharglistnoret 1 ...................... <0>
+  [ 13] extcall 52 .............................. return 0
+  [ 15] pusharglist 0 ........................... <[:]>
+  [ 17] pushproplist ............................ <[:]>
+  [ 18] setprop 563 ............................. p = [:]
+  [ 21] getprop 563 ............................. <p>
+  [ 24] pushsymb 377 ............................ <#tag>
+  [ 27] getparam 1 .............................. <tDataList>
+  [ 29] getobjprop 377 .......................... <tDataList.tag>
+  [ 32] pusharglistnoret 3 ...................... <p, #tag, tDataList.tag>
+  [ 34] objcall 103 ............................. p[#tag] = tDataList.tag
+  [ 36] getglobal 43 ............................ <gGame>
+  [ 38] pushsymb 137 ............................ <#cars>
+  [ 40] getprop 563 ............................. <p>
+  [ 43] getobjprop 377 .......................... <p.tag>
+  [ 46] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 48] objcall 70 .............................. <gGame.cars[p.tag]>
+  [ 50] setlocal 0 .............................. t = gGame.cars[p.tag]
+  [ 52] getprop 563 ............................. <p>
+  [ 55] pushsymb 64 ............................. <#member>
+  [ 57] getparam 1 .............................. <tDataList>
+  [ 59] getobjprop 64 ........................... <tDataList.member>
+  [ 61] pusharglist 1 ........................... <tDataList.member>
+  [ 63] extcall 64 .............................. <member(tDataList.member)>
+  [ 65] pusharglistnoret 3 ...................... <p, #member, member(tDataList.member)>
+  [ 67] objcall 103 ............................. p[#member] = member(tDataList.member)
+  [ 69] getprop 563 ............................. <p>
+  [ 72] pushsymb 487 ............................ <#sprite>
+  [ 75] pushint8 1 .............................. <1>
+  [ 77] pusharglist 1 ........................... <1>
+  [ 79] extcall 487 ............................. <sprite(1)>
+  [ 82] pusharglistnoret 3 ...................... <p, #sprite, sprite(1)>
+  [ 84] objcall 103 ............................. p[#sprite] = sprite(1)
+  [ 86] getprop 563 ............................. <p>
+  [ 89] getchainedprop 64 ....................... <p.member>
+  [ 91] getlocal 0 .............................. <t>
+  [ 93] getchainedprop 376 ...................... <t.general>
+  [ 96] getobjprop 377 .......................... <t.general.tag>
+  [ 99] pushcons 0 .............................. <"ShadowRecieverMesh">
+  [101] joinstr ................................. <t.general.tag & "ShadowRecieverMesh">
+  [102] pusharglist 2 ........................... <p.member, t.general.tag & "ShadowRecieverMesh">
+  [104] objcall 72 .............................. <p.member.modelResource(t.general.tag & "ShadowRecieverMesh")>
+  [106] setlocal 1 .............................. tCheckResource = p.member.modelResource(t.general.tag & "ShadowRecieverMesh")
+  [108] getlocal 1 .............................. <tCheckResource>
+  [110] pusharglist 0 ........................... <>
+  [112] extcall 40 .............................. <VOID>
+  [114] nteq .................................... <tCheckResource <> VOID>
+  [115] jmpifz [126] ............................ if tCheckResource <> VOID then
+  [118] pusharglist 0 ........................... <>
+  [120] extcall 40 .............................. <VOID>
+  [122] pusharglistnoret 1 ...................... <VOID>
+  [124] extcall 52 .............................. return VOID
+  [126] getprop 563 ............................. <p>
+  [129] pushsymb 565 ............................ <#ScriptName>
+  [132] pushcons 1 .............................. <"[PS] Vehicle Shadow Caster">
+  [134] pusharglistnoret 3 ...................... <p, #ScriptName, "[PS] Vehicle Shadow Caster">
+  [136] objcall 103 ............................. p[#ScriptName] = "[PS] Vehicle Shadow Caster"
+  [138] getprop 563 ............................. <p>
+  [141] pushsymb 1154 ........................... <#light>
+  [144] getprop 563 ............................. <p>
+  [147] getchainedprop 64 ....................... <p.member>
+  [149] getparam 1 .............................. <tDataList>
+  [151] getobjprop 1154 ......................... <tDataList.light>
+  [154] pusharglist 2 ........................... <p.member, tDataList.light>
+  [156] objcall 1154 ............................ <p.member.light(tDataList.light)>
+  [159] pusharglistnoret 3 ...................... <p, #light, p.member.light(tDataList.light)>
+  [161] objcall 103 ............................. p[#light] = p.member.light(tDataList.light)
+  [163] getprop 563 ............................. <p>
+  [166] getobjprop 1154 ......................... <p.light>
+  [169] pusharglist 0 ........................... <>
+  [171] extcall 40 .............................. <VOID>
+  [173] eq ...................................... <p.light = VOID>
+  [174] jmpifz [195] ............................ if p.light = VOID then
+  [177] getprop 563 ............................. <p>
+  [180] getprop 563 ............................. <p>
+  [183] getchainedprop 64 ....................... <p.member>
+  [185] pushcons 2 .............................. <"Omni001">
+  [187] pusharglist 2 ........................... <p.member, "Omni001">
+  [189] objcall 1154 ............................ <p.member.light("Omni001")>
+  [192] setobjprop 1154 ......................... p.light = p.member.light("Omni001")
+  [195] getprop 563 ............................. <p>
+  [198] getobjprop 1154 ......................... <p.light>
+  [201] pusharglist 0 ........................... <>
+  [203] extcall 40 .............................. <VOID>
+  [205] eq ...................................... <p.light = VOID>
+  [206] jmpifz [227] ............................ if p.light = VOID then
+  [209] getprop 563 ............................. <p>
+  [212] getprop 563 ............................. <p>
+  [215] getchainedprop 64 ....................... <p.member>
+  [217] pushcons 3 .............................. <"Direct001">
+  [219] pusharglist 2 ........................... <p.member, "Direct001">
+  [221] objcall 1154 ............................ <p.member.light("Direct001")>
+  [224] setobjprop 1154 ......................... p.light = p.member.light("Direct001")
+  [227] getprop 563 ............................. <p>
+  [230] getobjprop 1154 ......................... <p.light>
+  [233] pusharglist 0 ........................... <>
+  [235] extcall 40 .............................. <VOID>
+  [237] eq ...................................... <p.light = VOID>
+  [238] jmpifz [259] ............................ if p.light = VOID then
+  [241] getprop 563 ............................. <p>
+  [244] getprop 563 ............................. <p>
+  [247] getchainedprop 64 ....................... <p.member>
+  [249] pushcons 4 .............................. <"Default Max Light">
+  [251] pusharglist 2 ........................... <p.member, "Default Max Light">
+  [253] objcall 1154 ............................ <p.member.light("Default Max Light")>
+  [256] setobjprop 1154 ......................... p.light = p.member.light("Default Max Light")
+  [259] getprop 563 ............................. <p>
+  [262] getobjprop 1154 ......................... <p.light>
+  [265] pusharglist 0 ........................... <>
+  [267] extcall 40 .............................. <VOID>
+  [269] eq ...................................... <p.light = VOID>
+  [270] jmpifz [291] ............................ if p.light = VOID then
+  [273] getprop 563 ............................. <p>
+  [276] getprop 563 ............................. <p>
+  [279] getchainedprop 64 ....................... <p.member>
+  [281] pushcons 5 .............................. <"SunLight">
+  [283] pusharglist 2 ........................... <p.member, "SunLight">
+  [285] objcall 1154 ............................ <p.member.light("SunLight")>
+  [288] setobjprop 1154 ......................... p.light = p.member.light("SunLight")
+  [291] getprop 563 ............................. <p>
+  [294] getobjprop 1154 ......................... <p.light>
+  [297] pusharglist 0 ........................... <>
+  [299] extcall 40 .............................. <VOID>
+  [301] eq ...................................... <p.light = VOID>
+  [302] jmpifz [310] ............................ if p.light = VOID then
+  [305] pushzero ................................ <0>
+  [306] pusharglistnoret 1 ...................... <0>
+  [308] extcall 52 .............................. return 0
+  [310] getglobal 43 ............................ <gGame>
+  [312] pushsymb 3397 ........................... <#ShadowCasters>
+  [315] pusharglist 2 ........................... <gGame, #ShadowCasters>
+  [317] objcall 105 ............................. <gGame[#ShadowCasters]>
+  [319] pusharglist 1 ........................... <gGame[#ShadowCasters]>
+  [321] extcall 389 ............................. <voidp(gGame[#ShadowCasters])>
+  [324] pushint8 1 .............................. <1>
+  [326] eq ...................................... <voidp(gGame[#ShadowCasters]) = 1>
+  [327] jmpifz [340] ............................ if voidp(gGame[#ShadowCasters]) = 1 then
+  [330] getglobal 43 ............................ <gGame>
+  [332] pushsymb 3397 ........................... <#ShadowCasters>
+  [335] pushzero ................................ <0>
+  [336] pusharglistnoret 3 ...................... <gGame, #ShadowCasters, 0>
+  [338] objcall 103 ............................. gGame[#ShadowCasters] = 0
+  [340] getglobal 43 ............................ <gGame>
+  [342] getglobal 43 ............................ <gGame>
+  [344] getobjprop 3397 ......................... <gGame.ShadowCasters>
+  [347] pushint8 1 .............................. <1>
+  [349] add ..................................... <gGame.ShadowCasters + 1>
+  [350] setobjprop 3397 ......................... gGame.ShadowCasters = gGame.ShadowCasters + 1
+  [353] getprop 563 ............................. <p>
+  [356] pushsymb 298 ............................ <#camera>
+  [359] getprop 563 ............................. <p>
+  [362] getchainedprop 64 ....................... <p.member>
+  [364] pushcons 6 .............................. <"ShadowCaster">
+  [366] getglobal 43 ............................ <gGame>
+  [368] getobjprop 3397 ......................... <gGame.ShadowCasters>
+  [371] joinstr ................................. <"ShadowCaster" & gGame.ShadowCasters>
+  [372] pushcons 7 .............................. <"_Camera">
+  [374] joinstr ................................. <"ShadowCaster" & gGame.ShadowCasters & "_Camera">
+  [375] pusharglist 2 ........................... <p.member, "ShadowCaster" & gGame.ShadowCasters & "_Camera">
+  [377] objcall 1157 ............................ <p.member.newCamera("ShadowCaster" & gGame.ShadowCasters & "_Camera")>
+  [380] pusharglistnoret 3 ...................... <p, #camera, p.member.newCamera("ShadowCaster" & gGame.ShadowCasters & "_Camera")>
+  [382] objcall 103 ............................. p[#camera] = p.member.newCamera("ShadowCaster" & gGame.ShadowCasters & "_Camera")
+  [384] getprop 563 ............................. <p>
+  [387] getchainedprop 298 ...................... <p.camera>
+  [390] getprop 563 ............................. <p>
+  [393] getchainedprop 1154 ..................... <p.light>
+  [396] getobjprop 214 .......................... <p.light.transform>
+  [398] setobjprop 214 .......................... p.camera.transform = p.light.transform
+  [400] getprop 563 ............................. <p>
+  [403] getchainedprop 298 ...................... <p.camera>
+  [406] getchainedprop 214 ...................... <p.camera.transform>
+  [408] pushfloat32 1.0 ......................... <1.0>
+  [413] pushfloat32 1.0 ......................... <1.0>
+  [418] pushfloat32 1.0 ......................... <1.0>
+  [423] pusharglist 3 ........................... <1.0, 1.0, 1.0>
+  [425] extcall 212 ............................. <vector(1.0, 1.0, 1.0)>
+  [427] setobjprop 307 .......................... p.camera.transform.scale = vector(1.0, 1.0, 1.0)
+  [430] getprop 563 ............................. <p>
+  [433] getchainedprop 298 ...................... <p.camera>
+  [436] getchainedprop 871 ...................... <p.camera.colorBuffer>
+  [439] pushint16 255 ........................... <255>
+  [442] pushint16 255 ........................... <255>
+  [445] pushint16 255 ........................... <255>
+  [448] pusharglist 3 ........................... <255, 255, 255>
+  [450] extcall 282 ............................. <rgb(255, 255, 255)>
+  [453] setobjprop 2774 ......................... p.camera.colorBuffer.clearValue = rgb(255, 255, 255)
+  [456] getprop 563 ............................. <p>
+  [459] getchainedprop 298 ...................... <p.camera>
+  [462] pushfloat32 20.0 ........................ <20.0>
+  [467] setobjprop 299 .......................... p.camera.fieldOfView = 20.0
+  [470] getlocal 0 .............................. <t>
+  [472] getchainedprop 250 ...................... <t.car>
+  [474] getobjprop 235 .......................... <t.car.name>
+  [476] pushcons 8 .............................. <"BlackTruck">
+  [478] eq ...................................... <t.car.name = "BlackTruck">
+  [479] jmpifz [499] ............................ if t.car.name = "BlackTruck" then / else
+  [482] getprop 563 ............................. <p>
+  [485] getchainedprop 298 ...................... <p.camera>
+  [488] pushfloat32 30.0 ........................ <30.0>
+  [493] setobjprop 299 .......................... p.camera.fieldOfView = 30.0
+  [496] jmp [554]
+  [499] getlocal 0 .............................. <t>
+  [501] getchainedprop 250 ...................... <t.car>
+  [503] getobjprop 235 .......................... <t.car.name>
+  [505] pushcons 9 .............................. <"Tank">
+  [507] eq ...................................... <t.car.name = "Tank">
+  [508] jmpifz [528] ............................ if t.car.name = "Tank" then / else
+  [511] getprop 563 ............................. <p>
+  [514] getchainedprop 298 ...................... <p.camera>
+  [517] pushfloat32 30.0 ........................ <30.0>
+  [522] setobjprop 299 .......................... p.camera.fieldOfView = 30.0
+  [525] jmp [554]
+  [528] getlocal 0 .............................. <t>
+  [530] getchainedprop 250 ...................... <t.car>
+  [532] getobjprop 235 .......................... <t.car.name>
+  [534] pushcons 10 ............................. <"Apache">
+  [536] eq ...................................... <t.car.name = "Apache">
+  [537] jmpifz [554] ............................ if t.car.name = "Apache" then
+  [540] getprop 563 ............................. <p>
+  [543] getchainedprop 298 ...................... <p.camera>
+  [546] pushfloat32 30.0 ........................ <30.0>
+  [551] setobjprop 299 .......................... p.camera.fieldOfView = 30.0
+  [554] getprop 563 ............................. <p>
+  [557] getchainedprop 298 ...................... <p.camera>
+  [560] getchainedprop 121 ...................... <p.camera.fog>
+  [562] pushint8 1 .............................. <1>
+  [564] setobjprop 1414 ......................... p.camera.fog.enabled = 1
+  [567] getprop 563 ............................. <p>
+  [570] getchainedprop 298 ...................... <p.camera>
+  [573] getchainedprop 121 ...................... <p.camera.fog>
+  [575] pushint8 1 .............................. <1>
+  [577] setobjprop 1416 ......................... p.camera.fog.far = 1
+  [580] getprop 563 ............................. <p>
+  [583] getchainedprop 298 ...................... <p.camera>
+  [586] getchainedprop 121 ...................... <p.camera.fog>
+  [588] pushint8 1 .............................. <1>
+  [590] inv ..................................... <-1>
+  [591] setobjprop 1415 ......................... p.camera.fog.near = -1
+  [594] pushint16 132 ........................... <132>
+  [597] pushint16 132 ........................... <132>
+  [600] pushint16 132 ........................... <132>
+  [603] pusharglist 3 ........................... <132, 132, 132>
+  [605] extcall 282 ............................. <rgb(132, 132, 132)>
+  [608] setlocal 2 .............................. emColor = rgb(132, 132, 132)
+  [610] getprop 563 ............................. <p>
+  [613] getchainedprop 64 ....................... <p.member>
+  [615] getobjprop 235 .......................... <p.member.name>
+  [617] peek 0 .................................. case p.member.name of
+  [619] pushcons 11 ............................. <"CityAssets">
+  [621] eq
+  [622] jmpifz [644] ............................ (case) "CityAssets":
+  [625] pushint16 152 ........................... <152>
+  [628] pushint16 143 ........................... <143>
+  [631] pushint16 137 ........................... <137>
+  [634] pusharglist 3 ........................... <152, 143, 137>
+  [636] extcall 282 ............................. <rgb(152, 143, 137)>
+  [639] setlocal 2 .............................. emColor = rgb(152, 143, 137)
+  [641] jmp [719]
+  [644] peek 0
+  [646] pushcons 12 ............................. <"SnowAssets">
+  [648] eq
+  [649] jmpifz [668] ............................ (case) "SnowAssets":
+  [652] pushint8 122 ............................ <122>
+  [654] pushint8 115 ............................ <115>
+  [656] pushint8 97 ............................. <97>
+  [658] pusharglist 3 ........................... <122, 115, 97>
+  [660] extcall 282 ............................. <rgb(122, 115, 97)>
+  [663] setlocal 2 .............................. emColor = rgb(122, 115, 97)
+  [665] jmp [719]
+  [668] peek 0
+  [670] pushcons 13 ............................. <"JungleAssets">
+  [672] eq
+  [673] jmpifz [695] ............................ (case) "JungleAssets":
+  [676] pushint16 150 ........................... <150>
+  [679] pushint16 144 ........................... <144>
+  [682] pushint16 130 ........................... <130>
+  [685] pusharglist 3 ........................... <150, 144, 130>
+  [687] extcall 282 ............................. <rgb(150, 144, 130)>
+  [690] setlocal 2 .............................. emColor = rgb(150, 144, 130)
+  [692] jmp [719]
+  [695] peek 0
+  [697] pushcons 14 ............................. <"DesertAssets">
+  [699] eq
+  [700] jmpifz [719] ............................ (case) "DesertAssets":
+  [703] pushint16 171 ........................... <171>
+  [706] pushint16 171 ........................... <171>
+  [709] pushint16 180 ........................... <180>
+  [712] pusharglist 3 ........................... <171, 171, 180>
+  [714] extcall 282 ............................. <rgb(171, 171, 180)>
+  [717] setlocal 2 .............................. emColor = rgb(171, 171, 180)
+  [719] pop 1 ................................... end case
+  [721] getprop 563 ............................. <p>
+  [724] getchainedprop 298 ...................... <p.camera>
+  [727] getchainedprop 121 ...................... <p.camera.fog>
+  [729] getlocal 2 .............................. <emColor>
+  [731] setobjprop 223 .......................... p.camera.fog.color = emColor
+  [733] getprop 563 ............................. <p>
+  [736] getchainedprop 298 ...................... <p.camera>
+  [739] getchainedprop 121 ...................... <p.camera.fog>
+  [741] pushsymb 1297 ........................... <#linear>
+  [744] setobjprop 1417 ......................... p.camera.fog.decayMode = #linear
+  [747] pushint16 128 ........................... <128>
+  [750] setlocal 3 .............................. tShadowDetail = 128
+  [752] getglobal 43 ............................ <gGame>
+  [754] getobjprop 407 .......................... <gGame.ShadowsDetail>
+  [757] peek 0 .................................. case gGame.ShadowsDetail of
+  [759] pushsymb 1082 ........................... <#high>
+  [762] eq
+  [763] jmpifz [793] ............................ (case) #high:
+  [766] pushint16 512 ........................... <512>
+  [769] setlocal 3 .............................. tShadowDetail = 512
+  [771] getlocal 0 .............................. <t>
+  [773] getchainedprop 376 ...................... <t.general>
+  [776] getobjprop 378 .......................... <t.general.controller>
+  [779] pushsymb 132 ............................ <#AI>
+  [781] eq ...................................... <t.general.controller = #AI>
+  [782] jmpifz [790] ............................ if t.general.controller = #AI then
+  [785] pushint16 128 ........................... <128>
+  [788] setlocal 3 .............................. tShadowDetail = 128
+  [790] jmp [861]
+  [793] peek 0
+  [795] pushsymb 1081 ........................... <#medium>
+  [798] eq
+  [799] jmpifz [829] ............................ (case) #medium:
+  [802] pushint16 256 ........................... <256>
+  [805] setlocal 3 .............................. tShadowDetail = 256
+  [807] getlocal 0 .............................. <t>
+  [809] getchainedprop 376 ...................... <t.general>
+  [812] getobjprop 378 .......................... <t.general.controller>
+  [815] pushsymb 132 ............................ <#AI>
+  [817] eq ...................................... <t.general.controller = #AI>
+  [818] jmpifz [826] ............................ if t.general.controller = #AI then
+  [821] pushint16 128 ........................... <128>
+  [824] setlocal 3 .............................. tShadowDetail = 128
+  [826] jmp [861]
+  [829] peek 0
+  [831] pushsymb 1048 ........................... <#low>
+  [834] eq
+  [835] jmpifz [861] ............................ (case) #low:
+  [838] pushint16 128 ........................... <128>
+  [841] setlocal 3 .............................. tShadowDetail = 128
+  [843] getlocal 0 .............................. <t>
+  [845] getchainedprop 376 ...................... <t.general>
+  [848] getobjprop 378 .......................... <t.general.controller>
+  [851] pushsymb 132 ............................ <#AI>
+  [853] eq ...................................... <t.general.controller = #AI>
+  [854] jmpifz [861] ............................ if t.general.controller = #AI then
+  [857] pushint8 64 ............................. <64>
+  [859] setlocal 3 .............................. tShadowDetail = 64
+  [861] pop 1 ................................... end case
+  [863] getlocal 3 .............................. <tShadowDetail>
+  [865] setlocal 4 .............................. tWidth = tShadowDetail
+  [867] getlocal 3 .............................. <tShadowDetail>
+  [869] setlocal 5 .............................. tHeight = tShadowDetail
+  [871] getprop 563 ............................. <p>
+  [874] pushsymb 1569 ........................... <#RT>
+  [877] getprop 563 ............................. <p>
+  [880] getchainedprop 64 ....................... <p.member>
+  [882] pushcons 6 .............................. <"ShadowCaster">
+  [884] getglobal 43 ............................ <gGame>
+  [886] getobjprop 3397 ......................... <gGame.ShadowCasters>
+  [889] joinstr ................................. <"ShadowCaster" & gGame.ShadowCasters>
+  [890] pushcons 15 ............................. <"_Texture">
+  [892] joinstr ................................. <"ShadowCaster" & gGame.ShadowCasters & "_Texture">
+  [893] pushsymb 1570 ........................... <#renderTexture>
+  [896] getlocal 4 .............................. <tWidth>
+  [898] getlocal 5 .............................. <tHeight>
+  [900] pusharglist 5 ........................... <p.member, "ShadowCaster" & gGame.ShadowCasters & "_Texture", #renderTexture, tWidth, tHeight>
+  [902] objcall 903 ............................. <p.member.newTexture("ShadowCaster" & gGame.ShadowCasters & "_Texture", #renderTexture, tWidth, tHeight)>
+  [905] pusharglistnoret 3 ...................... <p, #RT, p.member.newTexture("ShadowCaster" & gGame.ShadowCasters & "_Texture", #renderTexture, tWidth, tHeight)>
+  [907] objcall 103 ............................. p[#RT] = p.member.newTexture("ShadowCaster" & gGame.ShadowCasters & "_Texture", #renderTexture, tWidth, tHeight)
+  [909] getprop 563 ............................. <p>
+  [912] getchainedprop 1569 ..................... <p.RT>
+  [915] pushsymb 865 ............................ <#rgba8888>
+  [918] setobjprop 348 .......................... p.RT.renderFormat = #rgba8888
+  [921] getprop 563 ............................. <p>
+  [924] getchainedprop 1569 ..................... <p.RT>
+  [927] pushsymb 867 ............................ <#lowFiltered>
+  [930] setobjprop 331 .......................... p.RT.quality = #lowFiltered
+  [933] getprop 563 ............................. <p>
+  [936] pushsymb 3398 ........................... <#shadow>
+  [939] pusharglist 0 ........................... <[:]>
+  [941] pushproplist ............................ <[:]>
+  [942] pusharglistnoret 3 ...................... <p, #shadow, [:]>
+  [944] objcall 103 ............................. p[#shadow] = [:]
+  [946] getprop 563 ............................. <p>
+  [949] pushsymb 3398 ........................... <#shadow>
+  [952] pushsymb 1583 ........................... <#BlurFilter>
+  [955] pushsymb 1583 ........................... <#BlurFilter>
+  [958] pushsymb 329 ............................ <#BlurX>
+  [961] pushint8 2 .............................. <2>
+  [963] pushsymb 330 ............................ <#BlurY>
+  [966] pushint8 2 .............................. <2>
+  [968] pushsymb 331 ............................ <#quality>
+  [971] pushint8 1 .............................. <1>
+  [973] pusharglist 6 ........................... <[#BlurX: 2, #BlurY: 2, #quality: 1]>
+  [975] pushproplist ............................ <[#BlurX: 2, #BlurY: 2, #quality: 1]>
+  [976] pusharglist 2 ........................... <#BlurFilter, [#BlurX: 2, #BlurY: 2, #quality: 1]>
+  [978] extcall 327 ............................. <filter(#BlurFilter, [#BlurX: 2, #BlurY: 2, #quality: 1])>
+  [981] pusharglistnoret 4 ...................... <p, #shadow, #BlurFilter, filter(#BlurFilter, [#BlurX: 2, #BlurY: 2, #quality: 1])>
+  [983] objcall 99 .............................. p.shadow[#BlurFilter] = filter(#BlurFilter, [#BlurX: 2, #BlurY: 2, #quality: 1])
+  [985] getprop 563 ............................. <p>
+  [988] getchainedprop 64 ....................... <p.member>
+  [990] getlocal 0 .............................. <t>
+  [992] getchainedprop 376 ...................... <t.general>
+  [995] getobjprop 377 .......................... <t.general.tag>
+  [998] pushcons 0 .............................. <"ShadowRecieverMesh">
+  [1000] joinstr ................................ <t.general.tag & "ShadowRecieverMesh">
+  [1001] pushsymb 3180 .......................... <#plane>
+  [1004] pusharglist 3 .......................... <p.member, t.general.tag & "ShadowRecieverMesh", #plane>
+  [1006] objcall 1287 ........................... <p.member.newModelResource(t.general.tag & "ShadowRecieverMesh", #plane)>
+  [1009] setlocal 6 ............................. tResource = p.member.newModelResource(t.general.tag & "ShadowRecieverMesh", #plane)
+  [1011] getlocal 6 ............................. <tResource>
+  [1013] pushfloat32 20.0 ....................... <20.0>
+  [1018] setobjprop 229 ......................... tResource.width = 20.0
+  [1020] getlocal 6 ............................. <tResource>
+  [1022] pushfloat32 20.0 ....................... <20.0>
+  [1027] setobjprop 69 .......................... tResource.length = 20.0
+  [1029] getlocal 6 ............................. <tResource>
+  [1031] pushint8 10 ............................ <10>
+  [1033] setobjprop 1625 ........................ tResource.lengthVertices = 10
+  [1036] getlocal 6 ............................. <tResource>
+  [1038] pushint8 10 ............................ <10>
+  [1040] setobjprop 1626 ........................ tResource.widthVertices = 10
+  [1043] getprop 563 ............................ <p>
+  [1046] pushsymb 3399 .......................... <#RecieverModel>
+  [1049] getprop 563 ............................ <p>
+  [1052] getchainedprop 64 ...................... <p.member>
+  [1054] getlocal 0 ............................. <t>
+  [1056] getchainedprop 376 ..................... <t.general>
+  [1059] getobjprop 377 ......................... <t.general.tag>
+  [1062] pushcons 16 ............................ <"ShadowReciever">
+  [1064] joinstr ................................ <t.general.tag & "ShadowReciever">
+  [1065] getlocal 6 ............................. <tResource>
+  [1067] pusharglist 3 .......................... <p.member, t.general.tag & "ShadowReciever", tResource>
+  [1069] objcall 892 ............................ <p.member.newModel(t.general.tag & "ShadowReciever", tResource)>
+  [1072] pusharglistnoret 3 ..................... <p, #RecieverModel, p.member.newModel(t.general.tag & "ShadowReciever", tResource)>
+  [1074] objcall 103 ............................ p[#RecieverModel] = p.member.newModel(t.general.tag & "ShadowReciever", tResource)
+  [1076] getprop 563 ............................ <p>
+  [1079] getchainedprop 3399 .................... <p.RecieverModel>
+  [1082] pushsymb 995 ........................... <#meshDeform>
+  [1085] pusharglistnoret 2 ..................... <p.RecieverModel, #meshDeform>
+  [1087] objcall 261 ............................ p.RecieverModel.addModifier(#meshDeform)
+  [1090] getprop 563 ............................ <p>
+  [1093] getchainedprop 3399 .................... <p.RecieverModel>
+  [1096] getchainedprop 995 ..................... <p.RecieverModel.meshDeform>
+  [1099] pushsymb 998 ........................... <#mesh>
+  [1102] pushint8 1 ............................. <1>
+  [1104] pusharglist 3 .......................... <p.RecieverModel.meshDeform, #mesh, 1>
+  [1106] objcall 102 ............................ <p.RecieverModel.meshDeform.mesh[1]>
+  [1108] getchainedprop 1939 .................... <p.RecieverModel.meshDeform.mesh[1].textureLayer>
+  [1111] pusharglistnoret 1 ..................... <p.RecieverModel.meshDeform.mesh[1].textureLayer>
+  [1113] objcall 42 ............................. p.RecieverModel.meshDeform.mesh[1].textureLayer.add()
+  [1115] getprop 563 ............................ <p>
+  [1118] getchainedprop 3399 .................... <p.RecieverModel>
+  [1121] getchainedprop 995 ..................... <p.RecieverModel.meshDeform>
+  [1124] pushsymb 998 ........................... <#mesh>
+  [1127] pushint8 1 ............................. <1>
+  [1129] pusharglist 3 .......................... <p.RecieverModel.meshDeform, #mesh, 1>
+  [1131] objcall 102 ............................ <p.RecieverModel.meshDeform.mesh[1]>
+  [1133] getchainedprop 1939 .................... <p.RecieverModel.meshDeform.mesh[1].textureLayer>
+  [1136] pusharglistnoret 1 ..................... <p.RecieverModel.meshDeform.mesh[1].textureLayer>
+  [1138] objcall 42 ............................. p.RecieverModel.meshDeform.mesh[1].textureLayer.add()
+  [1140] getprop 563 ............................ <p>
+  [1143] getchainedprop 3399 .................... <p.RecieverModel>
+  [1146] getchainedprop 995 ..................... <p.RecieverModel.meshDeform>
+  [1149] pushsymb 998 ........................... <#mesh>
+  [1152] pushint8 2 ............................. <2>
+  [1154] pusharglist 3 .......................... <p.RecieverModel.meshDeform, #mesh, 2>
+  [1156] objcall 102 ............................ <p.RecieverModel.meshDeform.mesh[2]>
+  [1158] getchainedprop 1939 .................... <p.RecieverModel.meshDeform.mesh[2].textureLayer>
+  [1161] pusharglistnoret 1 ..................... <p.RecieverModel.meshDeform.mesh[2].textureLayer>
+  [1163] objcall 42 ............................. p.RecieverModel.meshDeform.mesh[2].textureLayer.add()
+  [1165] getprop 563 ............................ <p>
+  [1168] getchainedprop 3399 .................... <p.RecieverModel>
+  [1171] getchainedprop 995 ..................... <p.RecieverModel.meshDeform>
+  [1174] pushsymb 998 ........................... <#mesh>
+  [1177] pushint8 2 ............................. <2>
+  [1179] pusharglist 3 .......................... <p.RecieverModel.meshDeform, #mesh, 2>
+  [1181] objcall 102 ............................ <p.RecieverModel.meshDeform.mesh[2]>
+  [1183] getchainedprop 1939 .................... <p.RecieverModel.meshDeform.mesh[2].textureLayer>
+  [1186] pusharglistnoret 1 ..................... <p.RecieverModel.meshDeform.mesh[2].textureLayer>
+  [1188] objcall 42 ............................. p.RecieverModel.meshDeform.mesh[2].textureLayer.add()
+  [1190] getprop 563 ............................ <p>
+  [1193] getchainedprop 64 ...................... <p.member>
+  [1195] getlocal 0 ............................. <t>
+  [1197] getchainedprop 376 ..................... <t.general>
+  [1200] getobjprop 377 ......................... <t.general.tag>
+  [1203] pushcons 17 ............................ <"ShadowReciever_Material">
+  [1205] joinstr ................................ <t.general.tag & "ShadowReciever_Material">
+  [1206] pushsymb 531 ........................... <#standard>
+  [1209] pusharglist 3 .......................... <p.member, t.general.tag & "ShadowReciever_Material", #standard>
+  [1211] objcall 896 ............................ <p.member.newShader(t.general.tag & "ShadowReciever_Material", #standard)>
+  [1214] setlocal 7 ............................. tShader = p.member.newShader(t.general.tag & "ShadowReciever_Material", #standard)
+  [1216] getlocal 7 ............................. <tShader>
+  [1218] getprop 563 ............................ <p>
+  [1221] getobjprop 1569 ........................ <p.RT>
+  [1224] setobjprop 218 ......................... tShader.texture = p.RT
+  [1226] getlocal 7 ............................. <tShader>
+  [1228] pushzero ............................... <0>
+  [1229] pushzero ............................... <0>
+  [1230] pushzero ............................... <0>
+  [1231] pusharglist 3 .......................... <0, 0, 0>
+  [1233] extcall 282 ............................ <rgb(0, 0, 0)>
+  [1236] setobjprop 897 ......................... tShader.ambient = rgb(0, 0, 0)
+  [1239] getlocal 7 ............................. <tShader>
+  [1241] pushzero ............................... <0>
+  [1242] pushzero ............................... <0>
+  [1243] pushzero ............................... <0>
+  [1244] pusharglist 3 .......................... <0, 0, 0>
+  [1246] extcall 282 ............................ <rgb(0, 0, 0)>
+  [1249] setobjprop 898 ......................... tShader.diffuse = rgb(0, 0, 0)
+  [1252] getlocal 7 ............................. <tShader>
+  [1254] pushzero ............................... <0>
+  [1255] pushzero ............................... <0>
+  [1256] pushzero ............................... <0>
+  [1257] pusharglist 3 .......................... <0, 0, 0>
+  [1259] extcall 282 ............................ <rgb(0, 0, 0)>
+  [1262] setobjprop 899 ......................... tShader.specular = rgb(0, 0, 0)
+  [1265] getlocal 7 ............................. <tShader>
+  [1267] pushzero ............................... <0>
+  [1268] pushzero ............................... <0>
+  [1269] pushzero ............................... <0>
+  [1270] pusharglist 3 .......................... <0, 0, 0>
+  [1272] extcall 282 ............................ <rgb(0, 0, 0)>
+  [1275] setobjprop 900 ......................... tShader.emissive = rgb(0, 0, 0)
+  [1278] getlocal 7 ............................. <tShader>
+  [1280] pushfloat32 0.0 ........................ <0.0>
+  [1285] setobjprop 901 ......................... tShader.shininess = 0.0
+  [1288] getprop 563 ............................ <p>
+  [1291] getchainedprop 64 ...................... <p.member>
+  [1293] getobjprop 235 ......................... <p.member.name>
+  [1295] pushsymb 1274 .......................... <#materialName>
+  [1298] getlocal 7 ............................. <tShader>
+  [1300] getobjprop 235 ......................... <tShader.name>
+  [1302] pushsymb 1275 .......................... <#blendMode>
+  [1305] pushsymb 919 ........................... <#multiply>
+  [1308] pusharglist 4 .......................... <[#materialName: tShader.name, #blendMode: #multiply]>
+  [1310] pushproplist ........................... <[#materialName: tShader.name, #blendMode: #multiply]>
+  [1311] pusharglistnoret 2 ..................... <p.member.name, [#materialName: tShader.name, #blendMode: #multiply]>
+  [1313] extcall 741 ............................ BlendShader(p.member.name, [#materialName: tShader.name, #blendMode: #multiply])
+  [1316] getprop 563 ............................ <p>
+  [1319] getchainedprop 3399 .................... <p.RecieverModel>
+  [1322] pushsymb 305 ........................... <#shaderList>
+  [1325] pushint8 1 ............................. <1>
+  [1327] getlocal 7 ............................. <tShader>
+  [1329] pusharglistnoret 4 ..................... <p.RecieverModel, #shaderList, 1, tShader>
+  [1331] objcall 99 ............................. p.RecieverModel.shaderList[1] = tShader
+  [1333] getprop 563 ............................ <p>
+  [1336] getchainedprop 3399 .................... <p.RecieverModel>
+  [1339] pushsymb 305 ........................... <#shaderList>
+  [1342] pushint8 2 ............................. <2>
+  [1344] getlocal 7 ............................. <tShader>
+  [1346] pusharglistnoret 4 ..................... <p.RecieverModel, #shaderList, 2, tShader>
+  [1348] objcall 99 ............................. p.RecieverModel.shaderList[2] = tShader
+  [1350] getprop 563 ............................ <p>
+  [1353] pushsymb 2069 .......................... <#shadowmodel>
+  [1356] getglobal 43 ........................... <gGame>
+  [1358] pushsymb 137 ........................... <#cars>
+  [1360] getprop 563 ............................ <p>
+  [1363] getobjprop 377 ......................... <p.tag>
+  [1366] pusharglist 3 .......................... <gGame, #cars, p.tag>
+  [1368] objcall 102 ............................ <gGame.cars[p.tag]>
+  [1370] getchainedprop 250 ..................... <gGame.cars[p.tag].car>
+  [1372] getobjprop 71 .......................... <gGame.cars[p.tag].car.model>
+  [1374] pusharglistnoret 3 ..................... <p, #shadowmodel, gGame.cars[p.tag].car.model>
+  [1376] objcall 103 ............................ p[#shadowmodel] = gGame.cars[p.tag].car.model
+  [1378] getprop 563 ............................ <p>
+  [1381] getchainedprop 2069 .................... <p.shadowmodel>
+  [1384] getchainedprop 236 ..................... <p.shadowmodel.userData>
+  [1386] pushsymb 208 ........................... <#shader>
+  [1388] getprop 563 ............................ <p>
+  [1391] getchainedprop 2069 .................... <p.shadowmodel>
+  [1394] getobjprop 305 ......................... <p.shadowmodel.shaderList>
+  [1397] pusharglistnoret 3 ..................... <p.shadowmodel.userData, #shader, p.shadowmodel.shaderList>
+  [1399] objcall 146 ............................ p.shadowmodel.userData.addProp(#shader, p.shadowmodel.shaderList)
+  [1401] getprop 563 ............................ <p>
+  [1404] pushsymb 3400 .......................... <#AdditionalModels>
+  [1407] getlocal 0 ............................. <t>
+  [1409] getchainedprop 250 ..................... <t.car>
+  [1411] getchainedprop 2165 .................... <t.car.wheellist>
+  [1414] pusharglist 1 .......................... <t.car.wheellist>
+  [1416] objcall 233 ............................ <t.car.wheellist.duplicate()>
+  [1418] pusharglistnoret 3 ..................... <p, #AdditionalModels, t.car.wheellist.duplicate()>
+  [1420] objcall 103 ............................ p[#AdditionalModels] = t.car.wheellist.duplicate()
+  [1422] getprop 563 ............................ <p>
+  [1425] pushsymb 1054 .......................... <#distance>
+  [1428] pushfloat32 20.0 ....................... <20.0>
+  [1433] pusharglistnoret 3 ..................... <p, #distance, 20.0>
+  [1435] objcall 103 ............................ p[#distance] = 20.0
+  [1437] getprop 563 ............................ <p>
+  [1440] getchainedprop 298 ..................... <p.camera>
+  [1443] getprop 563 ............................ <p>
+  [1446] getobjprop 2069 ........................ <p.shadowmodel>
+  [1449] setobjprop 1429 ........................ p.camera.rootNode = p.shadowmodel
+  [1452] getprop 563 ............................ <p>
+  [1455] pushsymb 1472 .......................... <#layer>
+  [1458] pushint8 3 ............................. <3>
+  [1460] pusharglistnoret 3 ..................... <p, #layer, 3>
+  [1462] objcall 103 ............................ p[#layer] = 3
+  [1464] pusharglist 0 .......................... <>
+  [1466] extcall 1272 ........................... <getRendererServices()>
+  [1469] getobjprop 3401 ........................ <getRendererServices().renderer>
+  [1472] pushsymb 1277 .......................... <#openGL>
+  [1475] eq ..................................... <getRendererServices().renderer = #openGL>
+  [1476] jmpifz [1487] .......................... if getRendererServices().renderer = #openGL then
+  [1479] getprop 563 ............................ <p>
+  [1482] pushint8 2 ............................. <2>
+  [1484] setobjprop 1472 ........................ p.layer = 2
+  [1487] getprop 563 ............................ <p>
+  [1490] pushsymb 327 ........................... <#filter>
+  [1493] pushzero ............................... <0>
+  [1494] pusharglistnoret 3 ..................... <p, #filter, 0>
+  [1496] objcall 103 ............................ p[#filter] = 0
+  [1498] getparam 0 ............................. <me>
+  [1500] pusharglistnoret 1 ..................... <me>
+  [1502] extcall 52 ............................. return me
+  [1504] ret
+end
+
+on enterFrame me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pushsymb 137 ............................ <#cars>
+  [  4] getprop 563 ............................. <p>
+  [  7] getobjprop 377 .......................... <p.tag>
+  [ 10] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 12] objcall 70 .............................. <gGame.cars[p.tag]>
+  [ 14] setlocal 0 .............................. t = gGame.cars[p.tag]
+  [ 16] getlocal 0 .............................. <t>
+  [ 18] getchainedprop 250 ...................... <t.car>
+  [ 20] getobjprop 1556 ......................... <t.car.Health>
+  [ 23] pushzero ................................ <0>
+  [ 24] lteq .................................... <t.car.Health <= 0>
+  [ 25] jmpifz [ 48] ............................ if t.car.Health <= 0 then / else
+  [ 28] getprop 563 ............................. <p>
+  [ 31] getchainedprop 3399 ..................... <p.RecieverModel>
+  [ 34] pusharglist 0 ........................... <>
+  [ 36] extcall 40 .............................. <VOID>
+  [ 38] setobjprop 207 .......................... p.RecieverModel.parent = VOID
+  [ 40] pushzero ................................ <0>
+  [ 41] pusharglistnoret 1 ...................... <0>
+  [ 43] extcall 52 .............................. return 0
+  [ 45] jmp [ 79]
+  [ 48] getlocal 0 .............................. <t>
+  [ 50] getchainedprop 376 ...................... <t.general>
+  [ 53] getobjprop 922 .......................... <t.general.limit>
+  [ 56] pushint8 1 .............................. <1>
+  [ 58] eq ...................................... <t.general.limit = 1>
+  [ 59] jmpifz [ 79] ............................ if t.general.limit = 1 then
+  [ 62] getprop 563 ............................. <p>
+  [ 65] getchainedprop 3399 ..................... <p.RecieverModel>
+  [ 68] pusharglist 0 ........................... <>
+  [ 70] extcall 40 .............................. <VOID>
+  [ 72] setobjprop 207 .......................... p.RecieverModel.parent = VOID
+  [ 74] pushzero ................................ <0>
+  [ 75] pusharglistnoret 1 ...................... <0>
+  [ 77] extcall 52 .............................. return 0
+  [ 79] getprop 563 ............................. <p>
+  [ 82] getchainedprop 3399 ..................... <p.RecieverModel>
+  [ 85] getprop 563 ............................. <p>
+  [ 88] getchainedprop 64 ....................... <p.member>
+  [ 90] pushcons 18 ............................. <"World">
+  [ 92] pusharglist 2 ........................... <p.member, "World">
+  [ 94] objcall 65 .............................. <p.member.group("World")>
+  [ 96] setobjprop 207 .......................... p.RecieverModel.parent = p.member.group("World")
+  [ 98] getprop 563 ............................. <p>
+  [101] getchainedprop 3399 ..................... <p.RecieverModel>
+  [104] getchainedprop 214 ...................... <p.RecieverModel.transform>
+  [106] getlocal 0 .............................. <t>
+  [108] getchainedprop 250 ...................... <t.car>
+  [110] getchainedprop 2069 ..................... <t.car.shadowmodel>
+  [113] getchainedprop 214 ...................... <t.car.shadowmodel.transform>
+  [115] getobjprop 215 .......................... <t.car.shadowmodel.transform.position>
+  [117] setobjprop 215 .......................... p.RecieverModel.transform.position = t.car.shadowmodel.transform.position
+  [119] getprop 563 ............................. <p>
+  [122] getchainedprop 3399 ..................... <p.RecieverModel>
+  [125] getchainedprop 214 ...................... <p.RecieverModel.transform>
+  [127] getlocal 0 .............................. <t>
+  [129] getchainedprop 250 ...................... <t.car>
+  [131] getchainedprop 2069 ..................... <t.car.shadowmodel>
+  [134] getchainedprop 214 ...................... <t.car.shadowmodel.transform>
+  [136] getobjprop 1162 ......................... <t.car.shadowmodel.transform.rotation>
+  [139] setobjprop 1162 ......................... p.RecieverModel.transform.rotation = t.car.shadowmodel.transform.rotation
+  [142] getprop 563 ............................. <p>
+  [145] getchainedprop 298 ...................... <p.camera>
+  [148] getchainedprop 214 ...................... <p.camera.transform>
+  [150] getprop 563 ............................. <p>
+  [153] getchainedprop 2069 ..................... <p.shadowmodel>
+  [156] getobjprop 1161 ......................... <p.shadowmodel.worldPosition>
+  [159] setobjprop 215 .......................... p.camera.transform.position = p.shadowmodel.worldPosition
+  [161] getprop 563 ............................. <p>
+  [164] getchainedprop 298 ...................... <p.camera>
+  [167] pushzero ................................ <0>
+  [168] pushzero ................................ <0>
+  [169] getprop 563 ............................. <p>
+  [172] getobjprop 1054 ......................... <p.distance>
+  [175] pushsymb 1370 ........................... <#self>
+  [178] pusharglistnoret 5 ...................... <p.camera, 0, 0, p.distance, #self>
+  [180] objcall 1371 ............................ p.camera.translate(0, 0, p.distance, #self)
+  [183] pusharglist 0 ........................... <[]>
+  [185] pushlist ................................ <[]>
+  [186] setlocal 1 .............................. tSourceList = []
+  [188] pusharglist 0 ........................... <[]>
+  [190] pushlist ................................ <[]>
+  [191] setlocal 2 .............................. tScaleList = []
+  [193] getprop 563 ............................. <p>
+  [196] getobjprop 3400 ......................... <p.AdditionalModels>
+  [199] peek 0
+  [201] pusharglist 1
+  [203] extcall 129
+  [205] pushint8 1
+  [207] peek 0
+  [209] peek 2
+  [211] lteq
+  [212] jmpifz [291] ............................ repeat with i in p.AdditionalModels
+  [215] peek 2
+  [217] peek 1
+  [219] pusharglist 2
+  [221] extcall 105
+  [223] setlocal 3
+  [225] getlocal 1 .............................. <tSourceList>
+  [227] getlocal 3 .............................. <i>
+  [229] pusharglist 1 ........................... <i>
+  [231] objcall 1109 ............................ <i.getWorldTransform()>
+  [234] pusharglistnoret 2 ...................... <tSourceList, i.getWorldTransform()>
+  [236] objcall 42 .............................. tSourceList.add(i.getWorldTransform())
+  [238] getlocal 2 .............................. <tScaleList>
+  [240] getlocal 3 .............................. <i>
+  [242] getchainedprop 214 ...................... <i.transform>
+  [244] getobjprop 307 .......................... <i.transform.scale>
+  [247] pusharglistnoret 2 ...................... <tScaleList, i.transform.scale>
+  [249] objcall 42 .............................. tScaleList.add(i.transform.scale)
+  [251] getlocal 3 .............................. <i>
+  [253] getprop 563 ............................. <p>
+  [256] getchainedprop 2069 ..................... <p.shadowmodel>
+  [259] pusharglist 1 ........................... <p.shadowmodel>
+  [261] objcall 1109 ............................ <p.shadowmodel.getWorldTransform()>
+  [264] pusharglist 1 ........................... <p.shadowmodel.getWorldTransform()>
+  [266] objcall 1452 ............................ <p.shadowmodel.getWorldTransform().inverse()>
+  [269] getlocal 3 .............................. <i>
+  [271] getobjprop 214 .......................... <i.transform>
+  [273] mul ..................................... <p.shadowmodel.getWorldTransform().inverse() * i.transform>
+  [274] setobjprop 214 .......................... i.transform = p.shadowmodel.getWorldTransform().inverse() * i.transform
+  [276] getlocal 3 .............................. <i>
+  [278] getprop 563 ............................. <p>
+  [281] getobjprop 2069 ......................... <p.shadowmodel>
+  [284] setobjprop 207 .......................... i.parent = p.shadowmodel
+  [286] pushint8 1
+  [288] add
+  [289] endrepeat [207]
+  [291] pop 3
+  [293] getprop 563 ............................. <p>
+  [296] getchainedprop 487 ...................... <p.sprite>
+  [299] getprop 563 ............................. <p>
+  [302] getobjprop 298 .......................... <p.camera>
+  [305] getprop 563 ............................. <p>
+  [308] getobjprop 1569 ......................... <p.RT>
+  [311] pusharglistnoret 3 ...................... <p.sprite, p.camera, p.RT>
+  [313] objcall 1579 ............................ p.sprite.renderToTexture(p.camera, p.RT)
+  [316] pushzero ................................ <0>
+  [317] setlocal 4 .............................. tCount = 0
+  [319] getprop 563 ............................. <p>
+  [322] getobjprop 3400 ......................... <p.AdditionalModels>
+  [325] peek 0
+  [327] pusharglist 1
+  [329] extcall 129
+  [331] pushint8 1
+  [333] peek 0
+  [335] peek 2
+  [337] lteq
+  [338] jmpifz [407] ............................ repeat with i in p.AdditionalModels
+  [341] peek 2
+  [343] peek 1
+  [345] pusharglist 2
+  [347] extcall 105
+  [349] setlocal 3
+  [351] getlocal 4 .............................. <tCount>
+  [353] pushint8 1 .............................. <1>
+  [355] add ..................................... <tCount + 1>
+  [356] setlocal 4 .............................. tCount = tCount + 1
+  [358] getlocal 3 .............................. <i>
+  [360] getlocal 0 .............................. <t>
+  [362] getchainedprop 376 ...................... <t.general>
+  [365] getchainedprop 64 ....................... <t.general.member>
+  [367] pushcons 18 ............................. <"World">
+  [369] pusharglist 2 ........................... <t.general.member, "World">
+  [371] objcall 65 .............................. <t.general.member.group("World")>
+  [373] setobjprop 207 .......................... i.parent = t.general.member.group("World")
+  [375] getlocal 3 .............................. <i>
+  [377] getlocal 1 .............................. <tSourceList>
+  [379] getlocal 4 .............................. <tCount>
+  [381] pusharglist 2 ........................... <tSourceList, tCount>
+  [383] objcall 105 ............................. <tSourceList[tCount]>
+  [385] setobjprop 214 .......................... i.transform = tSourceList[tCount]
+  [387] getlocal 3 .............................. <i>
+  [389] getchainedprop 214 ...................... <i.transform>
+  [391] getlocal 2 .............................. <tScaleList>
+  [393] getlocal 4 .............................. <tCount>
+  [395] pusharglist 2 ........................... <tScaleList, tCount>
+  [397] objcall 105 ............................. <tScaleList[tCount]>
+  [399] setobjprop 307 .......................... i.transform.scale = tScaleList[tCount]
+  [402] pushint8 1
+  [404] add
+  [405] endrepeat [333]
+  [407] pop 3
+  [409] getprop 563 ............................. <p>
+  [412] getobjprop 327 .......................... <p.filter>
+  [415] jmpifz [460] ............................ if p.filter then
+  [418] getprop 563 ............................. <p>
+  [421] getchainedprop 3398 ..................... <p.shadow>
+  [424] getobjprop 1583 ......................... <p.shadow.BlurFilter>
+  [427] setlocal 5 .............................. tFilter = p.shadow.BlurFilter
+  [429] getprop 563 ............................. <p>
+  [432] getchainedprop 1569 ..................... <p.RT>
+  [435] getobjprop 319 .......................... <p.RT.image>
+  [438] setlocal 6 .............................. tImage = p.RT.image
+  [440] getlocal 6 .............................. <tImage>
+  [442] getlocal 5 .............................. <tFilter>
+  [444] pusharglistnoret 2 ...................... <tImage, tFilter>
+  [446] objcall 333 ............................. tImage.applyFilter(tFilter)
+  [449] getprop 563 ............................. <p>
+  [452] getchainedprop 1569 ..................... <p.RT>
+  [455] getlocal 6 .............................. <tImage>
+  [457] setobjprop 319 .......................... p.RT.image = tImage
+  [460] getparam 0 .............................. <me>
+  [462] pusharglistnoret 1 ...................... <me>
+  [464] objcall 3195 ............................ me.SetCoordinates()
+  [467] ret
+end
+
+on SetCoordinates me
+  [  0] getprop 563 ............................. <p>
+  [  3] getchainedprop 298 ...................... <p.camera>
+  [  6] getobjprop 320 .......................... <p.camera.rect>
+  [  9] getobjprop 229 .......................... <p.camera.rect.width>
+  [ 11] pushint8 2 .............................. <2>
+  [ 13] div ..................................... <p.camera.rect.width / 2>
+  [ 14] getprop 563 ............................. <p>
+  [ 17] getchainedprop 298 ...................... <p.camera>
+  [ 20] getobjprop 320 .......................... <p.camera.rect>
+  [ 23] getobjprop 283 .......................... <p.camera.rect.height>
+  [ 26] pushint8 2 .............................. <2>
+  [ 28] div ..................................... <p.camera.rect.height / 2>
+  [ 29] pusharglist 2 ........................... <p.camera.rect.width / 2, p.camera.rect.height / 2>
+  [ 31] extcall 302 ............................. <point(p.camera.rect.width / 2, p.camera.rect.height / 2)>
+  [ 34] setlocal 0 .............................. pCamOrigin2D = point(p.camera.rect.width / 2, p.camera.rect.height / 2)
+  [ 36] getprop 563 ............................. <p>
+  [ 39] getchainedprop 298 ...................... <p.camera>
+  [ 42] getobjprop 3229 ......................... <p.camera.projectionAngle>
+  [ 45] pusharglist 0 ........................... <>
+  [ 47] extcall 959 ............................. <PI>
+  [ 50] pushfloat32 360.0 ....................... <360.0>
+  [ 55] div ..................................... <PI / 360.0>
+  [ 56] mul ..................................... <p.camera.projectionAngle * (PI / 360.0)>
+  [ 57] pusharglist 1 ........................... <p.camera.projectionAngle * (PI / 360.0)>
+  [ 59] extcall 3228 ............................ <tan(p.camera.projectionAngle * (PI / 360.0))>
+  [ 62] setlocal 1 .............................. pCamDist2Plane = tan(p.camera.projectionAngle * (PI / 360.0))
+  [ 64] getlocal 0 .............................. <pCamOrigin2D>
+  [ 66] pushint8 2 .............................. <2>
+  [ 68] pusharglist 2 ........................... <pCamOrigin2D, 2>
+  [ 70] objcall 105 ............................. <pCamOrigin2D[2]>
+  [ 72] getlocal 1 .............................. <pCamDist2Plane>
+  [ 74] div ..................................... <pCamOrigin2D[2] / pCamDist2Plane>
+  [ 75] inv ..................................... <-(pCamOrigin2D[2] / pCamDist2Plane)>
+  [ 76] setlocal 2 .............................. pCamProjDist = -(pCamOrigin2D[2] / pCamDist2Plane)
+  [ 78] getprop 563 ............................. <p>
+  [ 81] getchainedprop 298 ...................... <p.camera>
+  [ 84] getchainedprop 214 ...................... <p.camera.transform>
+  [ 86] pusharglist 1 ........................... <p.camera.transform>
+  [ 88] objcall 1452 ............................ <p.camera.transform.inverse()>
+  [ 91] setlocal 3 .............................. pCamInvMTX = p.camera.transform.inverse()
+  [ 93] getlocal 3 .............................. <pCamInvMTX>
+  [ 95] getlocal 2 .............................. <pCamProjDist>
+  [ 97] getlocal 2 .............................. <pCamProjDist>
+  [ 99] pushint8 1 .............................. <1>
+  [101] pusharglistnoret 4 ...................... <pCamInvMTX, pCamProjDist, pCamProjDist, 1>
+  [103] objcall 307 ............................. pCamInvMTX.scale(pCamProjDist, pCamProjDist, 1)
+  [106] getprop 563 ............................. <p>
+  [109] getchainedprop 298 ...................... <p.camera>
+  [112] getobjprop 320 .......................... <p.camera.rect>
+  [115] getobjprop 229 .......................... <p.camera.rect.width>
+  [117] pushfloat32 1.0 ......................... <1.0>
+  [122] mul ..................................... <p.camera.rect.width * 1.0>
+  [123] getprop 563 ............................. <p>
+  [126] getchainedprop 298 ...................... <p.camera>
+  [129] getobjprop 320 .......................... <p.camera.rect>
+  [132] getobjprop 283 .......................... <p.camera.rect.height>
+  [135] pushfloat32 1.0 ......................... <1.0>
+  [140] mul ..................................... <p.camera.rect.height * 1.0>
+  [141] pusharglist 2 ........................... <p.camera.rect.width * 1.0, p.camera.rect.height * 1.0>
+  [143] extcall 302 ............................. <point(p.camera.rect.width * 1.0, p.camera.rect.height * 1.0)>
+  [146] setlocal 4 .............................. projSize = point(p.camera.rect.width * 1.0, p.camera.rect.height * 1.0)
+  [148] pushzero ................................ <0>
+  [149] pushzero ................................ <0>
+  [150] pusharglist 2 ........................... <0, 0>
+  [152] extcall 302 ............................. <point(0, 0)>
+  [155] setlocal 5 .............................. pt = point(0, 0)
+  [157] pushzero ................................ <0>
+  [158] pushzero ................................ <0>
+  [159] pushzero ................................ <0>
+  [160] pusharglist 3 ........................... <0, 0, 0>
+  [162] extcall 212 ............................. <vector(0, 0, 0)>
+  [164] setlocal 6 .............................. zVector = vector(0, 0, 0)
+  [166] getprop 563 ............................. <p>
+  [169] getobjprop 3399 ......................... <p.RecieverModel>
+  [172] setlocal 7 .............................. tm = p.RecieverModel
+  [174] getlocal 7 .............................. <tm>
+  [176] getchainedprop 995 ...................... <tm.meshDeform>
+  [179] pushsymb 998 ............................ <#mesh>
+  [182] pusharglist 2 ........................... <tm.meshDeform, #mesh>
+  [184] objcall 129 ............................. <tm.meshDeform.mesh.count>
+  [186] setlocal 8 .............................. tCount = tm.meshDeform.mesh.count
+  [188] pushint8 1 .............................. <1>
+  [190] setlocal 9
+  [192] getlocal 9
+  [194] getlocal 8 .............................. <tCount>
+  [196] lteq
+  [197] jmpifz [493] ............................ repeat with m = 1 to tCount
+  [200] getlocal 7 .............................. <tm>
+  [202] getchainedprop 995 ...................... <tm.meshDeform>
+  [205] pushsymb 998 ............................ <#mesh>
+  [208] getlocal 9 .............................. <m>
+  [210] pusharglist 3 ........................... <tm.meshDeform, #mesh, m>
+  [212] objcall 102 ............................. <tm.meshDeform.mesh[m]>
+  [214] getobjprop 883 .......................... <tm.meshDeform.mesh[m].vertexList>
+  [217] setlocal 10 ............................. vertexList = tm.meshDeform.mesh[m].vertexList
+  [219] getlocal 7 .............................. <tm>
+  [221] getchainedprop 995 ...................... <tm.meshDeform>
+  [224] pushsymb 998 ............................ <#mesh>
+  [227] getlocal 9 .............................. <m>
+  [229] pusharglist 3 ........................... <tm.meshDeform, #mesh, m>
+  [231] objcall 102 ............................. <tm.meshDeform.mesh[m]>
+  [233] pushsymb 1939 ........................... <#textureLayer>
+  [236] getprop 563 ............................. <p>
+  [239] getobjprop 1472 ......................... <p.layer>
+  [242] pusharglist 3 ........................... <tm.meshDeform.mesh[m], #textureLayer, p.layer>
+  [244] objcall 102 ............................. <tm.meshDeform.mesh[m].textureLayer[p.layer]>
+  [246] getobjprop 886 .......................... <tm.meshDeform.mesh[m].textureLayer[p.layer].textureCoordinateList>
+  [249] setlocal 11 ............................. textureCoordinateList = tm.meshDeform.mesh[m].textureLayer[p.layer].textureCoordinateList
+  [251] getlocal 10 ............................. <vertexList>
+  [253] getobjprop 129 .......................... <vertexList.count>
+  [255] setlocal 12 ............................. t = vertexList.count
+  [257] getlocal 12 ............................. <t>
+  [259] pushzero ................................ <0>
+  [260] eq ...................................... <t = 0>
+  [261] jmpifz [268] ............................ if t = 0 then
+  [264] pusharglistnoret 0 ...................... <>
+  [266] extcall 52 .............................. return 
+  [268] pushint8 1 .............................. <1>
+  [270] setlocal 13
+  [272] getlocal 13
+  [274] getlocal 12 ............................. <t>
+  [276] lteq
+  [277] jmpifz [451] ............................ repeat with i = 1 to t
+  [280] getlocal 3 .............................. <pCamInvMTX>
+  [282] getlocal 7 .............................. <tm>
+  [284] getobjprop 214 .......................... <tm.transform>
+  [286] getlocal 10 ............................. <vertexList>
+  [288] getlocal 13 ............................. <i>
+  [290] pusharglist 2 ........................... <vertexList, i>
+  [292] objcall 105 ............................. <vertexList[i]>
+  [294] mul ..................................... <tm.transform * vertexList[i]>
+  [295] getlocal 6 .............................. <zVector>
+  [297] add ..................................... <(tm.transform * vertexList[i]) + zVector>
+  [298] mul ..................................... <pCamInvMTX * ((tm.transform * vertexList[i]) + zVector)>
+  [299] setlocal 14 ............................. tEyeSp = pCamInvMTX * ((tm.transform * vertexList[i]) + zVector)
+  [301] getlocal 5 .............................. <pt>
+  [303] pushint8 1 .............................. <1>
+  [305] getlocal 14 ............................. <tEyeSp>
+  [307] getobjprop 557 .......................... <tEyeSp.x>
+  [310] getlocal 14 ............................. <tEyeSp>
+  [312] getobjprop 1190 ......................... <tEyeSp.z>
+  [315] div ..................................... <tEyeSp.x / tEyeSp.z>
+  [316] getlocal 0 .............................. <pCamOrigin2D>
+  [318] pushint8 1 .............................. <1>
+  [320] pusharglist 2 ........................... <pCamOrigin2D, 1>
+  [322] objcall 105 ............................. <pCamOrigin2D[1]>
+  [324] add ..................................... <(tEyeSp.x / tEyeSp.z) + pCamOrigin2D[1]>
+  [325] pusharglistnoret 3 ...................... <pt, 1, (tEyeSp.x / tEyeSp.z) + pCamOrigin2D[1]>
+  [327] objcall 103 ............................. pt[1] = (tEyeSp.x / tEyeSp.z) + pCamOrigin2D[1]
+  [329] getlocal 5 .............................. <pt>
+  [331] pushint8 2 .............................. <2>
+  [333] getlocal 14 ............................. <tEyeSp>
+  [335] getobjprop 1189 ......................... <tEyeSp.y>
+  [338] getlocal 14 ............................. <tEyeSp>
+  [340] getobjprop 1190 ......................... <tEyeSp.z>
+  [343] div ..................................... <tEyeSp.y / tEyeSp.z>
+  [344] inv ..................................... <-(tEyeSp.y / tEyeSp.z)>
+  [345] getlocal 0 .............................. <pCamOrigin2D>
+  [347] pushint8 2 .............................. <2>
+  [349] pusharglist 2 ........................... <pCamOrigin2D, 2>
+  [351] objcall 105 ............................. <pCamOrigin2D[2]>
+  [353] add ..................................... <-(tEyeSp.y / tEyeSp.z) + pCamOrigin2D[2]>
+  [354] pusharglistnoret 3 ...................... <pt, 2, -(tEyeSp.y / tEyeSp.z) + pCamOrigin2D[2]>
+  [356] objcall 103 ............................. pt[2] = -(tEyeSp.y / tEyeSp.z) + pCamOrigin2D[2]
+  [358] getlocal 5 .............................. <pt>
+  [360] getlocal 4 .............................. <projSize>
+  [362] div ..................................... <pt / projSize>
+  [363] setlocal 15 ............................. tp = pt / projSize
+  [365] getlocal 11 ............................. <textureCoordinateList>
+  [367] getlocal 13 ............................. <i>
+  [369] pusharglist 2 ........................... <textureCoordinateList, i>
+  [371] objcall 105 ............................. <textureCoordinateList[i]>
+  [373] pushint8 1 .............................. <1>
+  [375] pushzero ................................ <0>
+  [376] pushfloat32 1.0 ......................... <1.0>
+  [381] getlocal 15 ............................. <tp>
+  [383] pushint8 1 .............................. <1>
+  [385] pusharglist 2 ........................... <tp, 1>
+  [387] objcall 105 ............................. <tp[1]>
+  [389] pusharglist 2 ........................... <1.0, tp[1]>
+  [391] extcall 356 ............................. <min(1.0, tp[1])>
+  [394] pusharglist 2 ........................... <0, min(1.0, tp[1])>
+  [396] extcall 370 ............................. <max(0, min(1.0, tp[1]))>
+  [399] pusharglistnoret 3 ...................... <textureCoordinateList[i], 1, max(0, min(1.0, tp[1]))>
+  [401] objcall 103 ............................. textureCoordinateList[i][1] = max(0, min(1.0, tp[1]))
+  [403] getlocal 11 ............................. <textureCoordinateList>
+  [405] getlocal 13 ............................. <i>
+  [407] pusharglist 2 ........................... <textureCoordinateList, i>
+  [409] objcall 105 ............................. <textureCoordinateList[i]>
+  [411] pushint8 2 .............................. <2>
+  [413] pushzero ................................ <0>
+  [414] pushfloat32 1.0 ......................... <1.0>
+  [419] getlocal 15 ............................. <tp>
+  [421] pushint8 2 .............................. <2>
+  [423] pusharglist 2 ........................... <tp, 2>
+  [425] objcall 105 ............................. <tp[2]>
+  [427] pusharglist 2 ........................... <1.0, tp[2]>
+  [429] extcall 356 ............................. <min(1.0, tp[2])>
+  [432] pusharglist 2 ........................... <0, min(1.0, tp[2])>
+  [434] extcall 370 ............................. <max(0, min(1.0, tp[2]))>
+  [437] inv ..................................... <-max(0, min(1.0, tp[2]))>
+  [438] pusharglistnoret 3 ...................... <textureCoordinateList[i], 2, -max(0, min(1.0, tp[2]))>
+  [440] objcall 103 ............................. textureCoordinateList[i][2] = -max(0, min(1.0, tp[2]))
+  [442] pushint8 1
+  [444] getlocal 13
+  [446] add
+  [447] setlocal 13
+  [449] endrepeat [272]
+  [451] getlocal 7 .............................. <tm>
+  [453] getchainedprop 995 ...................... <tm.meshDeform>
+  [456] pushsymb 998 ............................ <#mesh>
+  [459] getlocal 9 .............................. <m>
+  [461] pusharglist 3 ........................... <tm.meshDeform, #mesh, m>
+  [463] objcall 102 ............................. <tm.meshDeform.mesh[m]>
+  [465] pushsymb 1939 ........................... <#textureLayer>
+  [468] getprop 563 ............................. <p>
+  [471] getobjprop 1472 ......................... <p.layer>
+  [474] pusharglist 3 ........................... <tm.meshDeform.mesh[m], #textureLayer, p.layer>
+  [476] objcall 102 ............................. <tm.meshDeform.mesh[m].textureLayer[p.layer]>
+  [478] getlocal 11 ............................. <textureCoordinateList>
+  [480] setobjprop 886 .......................... tm.meshDeform.mesh[m].textureLayer[p.layer].textureCoordinateList = textureCoordinateList
+  [483] pushint8 1
+  [485] getlocal 9
+  [487] add
+  [488] setlocal 9
+  [490] endrepeat [192]
+  [493] ret
+end
+
+on delete me
+  [  0] getprop 563 ............................. <p>
+  [  3] getchainedprop 64 ....................... <p.member>
+  [  5] getprop 563 ............................. <p>
+  [  8] getchainedprop 3399 ..................... <p.RecieverModel>
+  [ 11] getchainedprop 73 ....................... <p.RecieverModel.resource>
+  [ 13] getobjprop 235 .......................... <p.RecieverModel.resource.name>
+  [ 15] pusharglistnoret 2 ...................... <p.member, p.RecieverModel.resource.name>
+  [ 17] objcall 2168 ............................ p.member.deleteModelResource(p.RecieverModel.resource.name)
+  [ 20] getprop 563 ............................. <p>
+  [ 23] getchainedprop 64 ....................... <p.member>
+  [ 25] getprop 563 ............................. <p>
+  [ 28] getchainedprop 3399 ..................... <p.RecieverModel>
+  [ 31] getobjprop 235 .......................... <p.RecieverModel.name>
+  [ 33] pusharglistnoret 2 ...................... <p.member, p.RecieverModel.name>
+  [ 35] objcall 2168 ............................ p.member.deleteModelResource(p.RecieverModel.name)
+  [ 38] getprop 563 ............................. <p>
+  [ 41] getchainedprop 64 ....................... <p.member>
+  [ 43] getprop 563 ............................. <p>
+  [ 46] getchainedprop 3405 ..................... <p.ShadowCaster>
+  [ 49] getobjprop 235 .......................... <p.ShadowCaster.name>
+  [ 51] pusharglistnoret 2 ...................... <p.member, p.ShadowCaster.name>
+  [ 53] objcall 1241 ............................ p.member.deleteShader(p.ShadowCaster.name)
+  [ 56] getprop 563 ............................. <p>
+  [ 59] getchainedprop 64 ....................... <p.member>
+  [ 61] getprop 563 ............................. <p>
+  [ 64] getchainedprop 1569 ..................... <p.RT>
+  [ 67] getobjprop 235 .......................... <p.RT.name>
+  [ 69] pusharglistnoret 2 ...................... <p.member, p.RT.name>
+  [ 71] objcall 682 ............................. p.member.deleteTexture(p.RT.name)
+  [ 74] getglobal 43 ............................ <gGame>
+  [ 76] getchainedprop 300 ...................... <gGame.scriptList>
+  [ 79] getparam 0 .............................. <me>
+  [ 81] pusharglistnoret 2 ...................... <gGame.scriptList, me>
+  [ 83] objcall 175 ............................. gGame.scriptList.deleteOne(me)
+  [ 85] ret
+end

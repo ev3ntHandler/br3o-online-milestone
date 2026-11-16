@@ -1,0 +1,1837 @@
+global g, gGame
+
+on SETVISIBLE me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 64 .............................. <member(tTarget)>
+  [  6] setlocal 0 .............................. tmember = member(tTarget)
+  [  8] getlocal 0 .............................. <tmember>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <tmember = VOID>
+  [ 15] jmpifz [ 25] ............................ if tmember = VOID then
+  [ 18] pusharglist 0 ........................... <[]>
+  [ 20] pushlist ................................ <[]>
+  [ 21] pusharglistnoret 1 ...................... <[]>
+  [ 23] extcall 52 .............................. return []
+  [ 25] getparam 2 .............................. <tDataList>
+  [ 27] getobjprop 122 .......................... <tDataList.ilk>
+  [ 29] pushsymb 67 ............................. <#string>
+  [ 31] eq ...................................... <tDataList.ilk = #string>
+  [ 32] jmpifz [ 44] ............................ if tDataList.ilk = #string then
+  [ 35] getparam 2 .............................. <tDataList>
+  [ 37] pusharglist 1 ........................... <tDataList>
+  [ 39] extcall 503 ............................. <value(tDataList)>
+  [ 42] setparam 2 .............................. tDataList = value(tDataList)
+  [ 44] getparam 2 .............................. <tDataList>
+  [ 46] getobjprop 122 .......................... <tDataList.ilk>
+  [ 48] pushsymb 541 ............................ <#propList>
+  [ 51] nteq .................................... <tDataList.ilk <> #propList>
+  [ 52] jmpifz [ 62] ............................ if tDataList.ilk <> #propList then
+  [ 55] pusharglist 0 ........................... <[]>
+  [ 57] pushlist ................................ <[]>
+  [ 58] pusharglistnoret 1 ...................... <[]>
+  [ 60] extcall 52 .............................. return []
+  [ 62] pushsymb 71 ............................. <#model>
+  [ 64] setlocal 1 .............................. tProp = #model
+  [ 66] getparam 2 .............................. <tDataList>
+  [ 68] pushsymb 65 ............................. <#group>
+  [ 70] pusharglist 2 ........................... <tDataList, #group>
+  [ 72] objcall 105 ............................. <tDataList[#group]>
+  [ 74] pusharglist 1 ........................... <tDataList[#group]>
+  [ 76] extcall 389 ............................. <voidp(tDataList[#group])>
+  [ 79] pushzero ................................ <0>
+  [ 80] eq ...................................... <voidp(tDataList[#group]) = 0>
+  [ 81] jmpifz [ 88] ............................ if voidp(tDataList[#group]) = 0 then
+  [ 84] pushsymb 65 ............................. <#group>
+  [ 86] setlocal 1 .............................. tProp = #group
+  [ 88] getparam 2 .............................. <tDataList>
+  [ 90] pushsymb 1154 ........................... <#light>
+  [ 93] pusharglist 2 ........................... <tDataList, #light>
+  [ 95] objcall 105 ............................. <tDataList[#light]>
+  [ 97] pusharglist 1 ........................... <tDataList[#light]>
+  [ 99] extcall 389 ............................. <voidp(tDataList[#light])>
+  [102] pushzero ................................ <0>
+  [103] eq ...................................... <voidp(tDataList[#light]) = 0>
+  [104] jmpifz [112] ............................ if voidp(tDataList[#light]) = 0 then
+  [107] pushsymb 1154 ........................... <#light>
+  [110] setlocal 1 .............................. tProp = #light
+  [112] getparam 2 .............................. <tDataList>
+  [114] pushsymb 298 ............................ <#camera>
+  [117] pusharglist 2 ........................... <tDataList, #camera>
+  [119] objcall 105 ............................. <tDataList[#camera]>
+  [121] pusharglist 1 ........................... <tDataList[#camera]>
+  [123] extcall 389 ............................. <voidp(tDataList[#camera])>
+  [126] pushzero ................................ <0>
+  [127] eq ...................................... <voidp(tDataList[#camera]) = 0>
+  [128] jmpifz [136] ............................ if voidp(tDataList[#camera]) = 0 then
+  [131] pushsymb 298 ............................ <#camera>
+  [134] setlocal 1 .............................. tProp = #camera
+  [136] pusharglist 0 ........................... <[]>
+  [138] pushlist ................................ <[]>
+  [139] setlocal 2 .............................. tTargetList = []
+  [141] getparam 2 .............................. <tDataList>
+  [143] getlocal 1 .............................. <tProp>
+  [145] pusharglist 2 ........................... <tDataList, tProp>
+  [147] objcall 105 ............................. <tDataList[tProp]>
+  [149] getobjprop 122 .......................... <tDataList[tProp].ilk>
+  [151] pushsymb 40 ............................. <#void>
+  [153] eq ...................................... <tDataList[tProp].ilk = #void>
+  [154] jmpifz [167] ............................ if tDataList[tProp].ilk = #void then
+  [157] getparam 2 .............................. <tDataList>
+  [159] pushsymb 71 ............................. <#model>
+  [161] pushcons 0 .............................. <"*.*">
+  [163] pusharglistnoret 3 ...................... <tDataList, #model, "*.*">
+  [165] objcall 103 ............................. tDataList[#model] = "*.*"
+  [167] getparam 2 .............................. <tDataList>
+  [169] getlocal 1 .............................. <tProp>
+  [171] pusharglist 2 ........................... <tDataList, tProp>
+  [173] objcall 105 ............................. <tDataList[tProp]>
+  [175] getobjprop 122 .......................... <tDataList[tProp].ilk>
+  [177] pushsymb 126 ............................ <#list>
+  [179] eq ...................................... <tDataList[tProp].ilk = #list>
+  [180] jmpifz [338] ............................ if tDataList[tProp].ilk = #list then / else
+  [183] getparam 2 .............................. <tDataList>
+  [185] getlocal 1 .............................. <tProp>
+  [187] pusharglist 2 ........................... <tDataList, tProp>
+  [189] objcall 105 ............................. <tDataList[tProp]>
+  [191] setlocal 2 .............................. tTargetList = tDataList[tProp]
+  [193] pusharglist 0 ........................... <[]>
+  [195] pushlist ................................ <[]>
+  [196] setlocal 3 .............................. tList = []
+  [198] getlocal 2 .............................. <tTargetList>
+  [200] peek 0
+  [202] pusharglist 1
+  [204] extcall 129
+  [206] pushint8 1
+  [208] peek 0
+  [210] peek 2
+  [212] lteq
+  [213] jmpifz [325] ............................ repeat with i in tTargetList
+  [216] peek 2
+  [218] peek 1
+  [220] pusharglist 2
+  [222] extcall 105
+  [224] setlocal 4
+  [226] getlocal 1 .............................. <tProp>
+  [228] pushsymb 71 ............................. <#model>
+  [230] eq ...................................... <tProp = #model>
+  [231] jmpifz [244] ............................ if tProp = #model then
+  [234] getlocal 0 .............................. <tmember>
+  [236] getlocal 4 .............................. <i>
+  [238] pusharglist 2 ........................... <tmember, i>
+  [240] objcall 71 .............................. <tmember.model(i)>
+  [242] setlocal 5 .............................. tEntry = tmember.model(i)
+  [244] getlocal 1 .............................. <tProp>
+  [246] pushsymb 65 ............................. <#group>
+  [248] eq ...................................... <tProp = #group>
+  [249] jmpifz [262] ............................ if tProp = #group then
+  [252] getlocal 0 .............................. <tmember>
+  [254] getlocal 4 .............................. <i>
+  [256] pusharglist 2 ........................... <tmember, i>
+  [258] objcall 65 .............................. <tmember.group(i)>
+  [260] setlocal 5 .............................. tEntry = tmember.group(i)
+  [262] getlocal 1 .............................. <tProp>
+  [264] pushsymb 1154 ........................... <#light>
+  [267] eq ...................................... <tProp = #light>
+  [268] jmpifz [282] ............................ if tProp = #light then
+  [271] getlocal 0 .............................. <tmember>
+  [273] getlocal 4 .............................. <i>
+  [275] pusharglist 2 ........................... <tmember, i>
+  [277] objcall 1154 ............................ <tmember.light(i)>
+  [280] setlocal 5 .............................. tEntry = tmember.light(i)
+  [282] getlocal 1 .............................. <tProp>
+  [284] pushsymb 298 ............................ <#camera>
+  [287] eq ...................................... <tProp = #camera>
+  [288] jmpifz [302] ............................ if tProp = #camera then
+  [291] getlocal 0 .............................. <tmember>
+  [293] getlocal 4 .............................. <i>
+  [295] pusharglist 2 ........................... <tmember, i>
+  [297] objcall 298 ............................. <tmember.camera(i)>
+  [300] setlocal 5 .............................. tEntry = tmember.camera(i)
+  [302] getlocal 5 .............................. <tEntry>
+  [304] pusharglist 0 ........................... <>
+  [306] extcall 40 .............................. <VOID>
+  [308] nteq .................................... <tEntry <> VOID>
+  [309] jmpifz [320] ............................ if tEntry <> VOID then
+  [312] getlocal 3 .............................. <tList>
+  [314] getlocal 5 .............................. <tEntry>
+  [316] pusharglistnoret 2 ...................... <tList, tEntry>
+  [318] objcall 42 .............................. tList.add(tEntry)
+  [320] pushint8 1
+  [322] add
+  [323] endrepeat [208]
+  [325] pop 3
+  [327] getlocal 3 .............................. <tList>
+  [329] pusharglist 1 ........................... <tList>
+  [331] objcall 233 ............................. <tList.duplicate()>
+  [333] setlocal 2 .............................. tTargetList = tList.duplicate()
+  [335] jmp [558]
+  [338] getparam 2 .............................. <tDataList>
+  [340] getlocal 1 .............................. <tProp>
+  [342] pusharglist 2 ........................... <tDataList, tProp>
+  [344] objcall 105 ............................. <tDataList[tProp]>
+  [346] getobjprop 122 .......................... <tDataList[tProp].ilk>
+  [348] pushsymb 67 ............................. <#string>
+  [350] eq ...................................... <tDataList[tProp].ilk = #string>
+  [351] jmpifz [558] ............................ if tDataList[tProp].ilk = #string then
+  [354] getparam 2 .............................. <tDataList>
+  [356] getlocal 1 .............................. <tProp>
+  [358] pusharglist 2 ........................... <tDataList, tProp>
+  [360] objcall 105 ............................. <tDataList[tProp]>
+  [362] pushsymb 68 ............................. <#char>
+  [364] pushint8 1 .............................. <1>
+  [366] pusharglist 3 ........................... <tDataList[tProp], #char, 1>
+  [368] objcall 70 .............................. <tDataList[tProp].char[1]>
+  [370] pushcons 1 .............................. <"*">
+  [372] eq ...................................... <tDataList[tProp].char[1] = "*">
+  [373] jmpifz [442] ............................ if tDataList[tProp].char[1] = "*" then / else
+  [376] getparam 2 .............................. <tDataList>
+  [378] getlocal 1 .............................. <tProp>
+  [380] pusharglist 2 ........................... <tDataList, tProp>
+  [382] objcall 105 ............................. <tDataList[tProp]>
+  [384] setlocal 6 .............................. tString = tDataList[tProp]
+  [386] getlocal 6 .............................. <tString>
+  [388] pushcons 0 .............................. <"*.*">
+  [390] nteq .................................... <tString <> "*.*">
+  [391] jmpifz [411] ............................ if tString <> "*.*" then
+  [394] pushint8 6 .............................. <6>
+  [396] pushchunkvarref 5 ....................... <tString>
+  [398] pushsymb 68 ............................. <#char>
+  [400] pushint8 1 .............................. <1>
+  [402] pusharglist 3 ........................... <tString, #char, 1>
+  [404] objcall 102 ............................. <tString.char[1]>
+  [406] pusharglistnoret 1 ...................... <tString.char[1]>
+  [408] objcall 562 ............................. delete tString.char[1]
+  [411] pushzero ................................ <0>
+  [412] getlocal 0 .............................. <tmember>
+  [414] getobjprop 235 .......................... <tmember.name>
+  [416] pushsymb 598 ............................ <#type>
+  [419] getlocal 1 .............................. <tProp>
+  [421] pushsymb 67 ............................. <#string>
+  [423] getlocal 6 .............................. <tString>
+  [425] pushsymb 1107 ........................... <#Reference>
+  [428] pushint8 1 .............................. <1>
+  [430] pusharglist 6 ........................... <[#type: tProp, #string: tString, #Reference: 1]>
+  [432] pushproplist ............................ <[#type: tProp, #string: tString, #Reference: 1]>
+  [433] pusharglist 3 ........................... <0, tmember.name, [#type: tProp, #string: tString, #Reference: 1]>
+  [435] localcall 7 ............................. <GetObjectList(0, tmember.name, [#type: tProp, #string: tString, #Reference: 1])>
+  [437] setlocal 2 .............................. tTargetList = GetObjectList(0, tmember.name, [#type: tProp, #string: tString, #Reference: 1])
+  [439] jmp [558]
+  [442] getlocal 1 .............................. <tProp>
+  [444] pushsymb 71 ............................. <#model>
+  [446] eq ...................................... <tProp = #model>
+  [447] jmpifz [470] ............................ if tProp = #model then
+  [450] getlocal 2 .............................. <tTargetList>
+  [452] getlocal 0 .............................. <tmember>
+  [454] getparam 2 .............................. <tDataList>
+  [456] getlocal 1 .............................. <tProp>
+  [458] pusharglist 2 ........................... <tDataList, tProp>
+  [460] objcall 105 ............................. <tDataList[tProp]>
+  [462] pusharglist 2 ........................... <tmember, tDataList[tProp]>
+  [464] objcall 71 .............................. <tmember.model(tDataList[tProp])>
+  [466] pusharglistnoret 2 ...................... <tTargetList, tmember.model(tDataList[tProp])>
+  [468] objcall 42 .............................. tTargetList.add(tmember.model(tDataList[tProp]))
+  [470] getlocal 1 .............................. <tProp>
+  [472] pushsymb 65 ............................. <#group>
+  [474] eq ...................................... <tProp = #group>
+  [475] jmpifz [498] ............................ if tProp = #group then
+  [478] getlocal 2 .............................. <tTargetList>
+  [480] getlocal 0 .............................. <tmember>
+  [482] getparam 2 .............................. <tDataList>
+  [484] getlocal 1 .............................. <tProp>
+  [486] pusharglist 2 ........................... <tDataList, tProp>
+  [488] objcall 105 ............................. <tDataList[tProp]>
+  [490] pusharglist 2 ........................... <tmember, tDataList[tProp]>
+  [492] objcall 65 .............................. <tmember.group(tDataList[tProp])>
+  [494] pusharglistnoret 2 ...................... <tTargetList, tmember.group(tDataList[tProp])>
+  [496] objcall 42 .............................. tTargetList.add(tmember.group(tDataList[tProp]))
+  [498] getlocal 1 .............................. <tProp>
+  [500] pushsymb 1154 ........................... <#light>
+  [503] eq ...................................... <tProp = #light>
+  [504] jmpifz [528] ............................ if tProp = #light then
+  [507] getlocal 2 .............................. <tTargetList>
+  [509] getlocal 0 .............................. <tmember>
+  [511] getparam 2 .............................. <tDataList>
+  [513] getlocal 1 .............................. <tProp>
+  [515] pusharglist 2 ........................... <tDataList, tProp>
+  [517] objcall 105 ............................. <tDataList[tProp]>
+  [519] pusharglist 2 ........................... <tmember, tDataList[tProp]>
+  [521] objcall 1154 ............................ <tmember.light(tDataList[tProp])>
+  [524] pusharglistnoret 2 ...................... <tTargetList, tmember.light(tDataList[tProp])>
+  [526] objcall 42 .............................. tTargetList.add(tmember.light(tDataList[tProp]))
+  [528] getlocal 1 .............................. <tProp>
+  [530] pushsymb 298 ............................ <#camera>
+  [533] eq ...................................... <tProp = #camera>
+  [534] jmpifz [558] ............................ if tProp = #camera then
+  [537] getlocal 2 .............................. <tTargetList>
+  [539] getlocal 0 .............................. <tmember>
+  [541] getparam 2 .............................. <tDataList>
+  [543] getlocal 1 .............................. <tProp>
+  [545] pusharglist 2 ........................... <tDataList, tProp>
+  [547] objcall 105 ............................. <tDataList[tProp]>
+  [549] pusharglist 2 ........................... <tmember, tDataList[tProp]>
+  [551] objcall 298 ............................. <tmember.camera(tDataList[tProp])>
+  [554] pusharglistnoret 2 ...................... <tTargetList, tmember.camera(tDataList[tProp])>
+  [556] objcall 42 .............................. tTargetList.add(tmember.camera(tDataList[tProp]))
+  [558] getlocal 2 .............................. <tTargetList>
+  [560] getobjprop 129 .......................... <tTargetList.count>
+  [562] pushzero ................................ <0>
+  [563] eq ...................................... <tTargetList.count = 0>
+  [564] jmpifz [574] ............................ if tTargetList.count = 0 then
+  [567] pusharglist 0 ........................... <[]>
+  [569] pushlist ................................ <[]>
+  [570] pusharglistnoret 1 ...................... <[]>
+  [572] extcall 52 .............................. return []
+  [574] pushint8 1 .............................. <1>
+  [576] setlocal 7 .............................. tState = 1
+  [578] getparam 2 .............................. <tDataList>
+  [580] pushsymb 89 ............................. <#state>
+  [582] pusharglist 2 ........................... <tDataList, #state>
+  [584] objcall 105 ............................. <tDataList[#state]>
+  [586] getobjprop 122 .......................... <tDataList[#state].ilk>
+  [588] pushsymb 123 ............................ <#integer>
+  [590] eq ...................................... <tDataList[#state].ilk = #integer>
+  [591] jmpifz [600] ............................ if tDataList[#state].ilk = #integer then
+  [594] getparam 2 .............................. <tDataList>
+  [596] getobjprop 89 ........................... <tDataList.state>
+  [598] setlocal 7 .............................. tState = tDataList.state
+  [600] pusharglist 0 ........................... <>
+  [602] extcall 40 .............................. <VOID>
+  [604] setlocal 8 .............................. tParent = VOID
+  [606] getparam 2 .............................. <tDataList>
+  [608] pushsymb 207 ............................ <#parent>
+  [610] pusharglist 2 ........................... <tDataList, #parent>
+  [612] objcall 105 ............................. <tDataList[#parent]>
+  [614] getobjprop 122 .......................... <tDataList[#parent].ilk>
+  [616] pushsymb 67 ............................. <#string>
+  [618] eq ...................................... <tDataList[#parent].ilk = #string>
+  [619] jmpifz [634] ............................ if tDataList[#parent].ilk = #string then
+  [622] getlocal 0 .............................. <tmember>
+  [624] getparam 2 .............................. <tDataList>
+  [626] getobjprop 207 .......................... <tDataList.parent>
+  [628] pusharglist 2 ........................... <tmember, tDataList.parent>
+  [630] localcall 6 ............................. <GetReferenceType(tmember, tDataList.parent)>
+  [632] setlocal 8 .............................. tParent = GetReferenceType(tmember, tDataList.parent)
+  [634] getlocal 2 .............................. <tTargetList>
+  [636] peek 0
+  [638] pusharglist 1
+  [640] extcall 129
+  [642] pushint8 1
+  [644] peek 0
+  [646] peek 2
+  [648] lteq
+  [649] jmpifz [807] ............................ repeat with i in tTargetList
+  [652] peek 2
+  [654] peek 1
+  [656] pusharglist 2
+  [658] extcall 105
+  [660] setlocal 4
+  [662] getlocal 4 .............................. <i>
+  [664] pusharglist 0 ........................... <>
+  [666] extcall 40 .............................. <VOID>
+  [668] eq ...................................... <i = VOID>
+  [669] jmpifz [675] ............................ if i = VOID then
+  [672] jmp [802] ............................... next repeat
+  [675] getlocal 7 .............................. <tState>
+  [677] pushint8 1 .............................. <1>
+  [679] eq ...................................... <tState = 1>
+  [680] jmpifz [757] ............................ if tState = 1 then
+  [683] getlocal 4 .............................. <i>
+  [685] getobjprop 236 .......................... <i.userData>
+  [687] setlocal 9 .............................. tUD = i.userData
+  [689] getlocal 8 .............................. <tParent>
+  [691] pusharglist 0 ........................... <>
+  [693] extcall 40 .............................. <VOID>
+  [695] eq ...................................... <tParent = VOID>
+  [696] jmpifz [748] ............................ if tParent = VOID then / else
+  [699] getlocal 9 .............................. <tUD>
+  [701] pushsymb 207 ............................ <#parent>
+  [703] pusharglist 2 ........................... <tUD, #parent>
+  [705] objcall 105 ............................. <tUD[#parent]>
+  [707] pusharglist 1 ........................... <tUD[#parent]>
+  [709] extcall 389 ............................. <voidp(tUD[#parent])>
+  [712] pushint8 1 .............................. <1>
+  [714] eq ...................................... <voidp(tUD[#parent]) = 1>
+  [715] jmpifz [733] ............................ if voidp(tUD[#parent]) = 1 then / else
+  [718] getlocal 4 .............................. <i>
+  [720] getlocal 0 .............................. <tmember>
+  [722] pushcons 2 .............................. <"World">
+  [724] pusharglist 2 ........................... <tmember, "World">
+  [726] objcall 65 .............................. <tmember.group("World")>
+  [728] setobjprop 207 .......................... i.parent = tmember.group("World")
+  [730] jmp [745]
+  [733] getlocal 4 .............................. <i>
+  [735] getlocal 9 .............................. <tUD>
+  [737] pushsymb 207 ............................ <#parent>
+  [739] pusharglist 2 ........................... <tUD, #parent>
+  [741] objcall 105 ............................. <tUD[#parent]>
+  [743] setobjprop 207 .......................... i.parent = tUD[#parent]
+  [745] jmp [754]
+  [748] getlocal 4 .............................. <i>
+  [750] getlocal 8 .............................. <tParent>
+  [752] setobjprop 207 .......................... i.parent = tParent
+  [754] jmp [802] ............................... next repeat
+  [757] getlocal 4 .............................. <i>
+  [759] getobjprop 236 .......................... <i.userData>
+  [761] setlocal 9 .............................. tUD = i.userData
+  [763] getlocal 9 .............................. <tUD>
+  [765] pushsymb 207 ............................ <#parent>
+  [767] pusharglist 2 ........................... <tUD, #parent>
+  [769] objcall 105 ............................. <tUD[#parent]>
+  [771] pusharglist 1 ........................... <tUD[#parent]>
+  [773] extcall 389 ............................. <voidp(tUD[#parent])>
+  [776] pushint8 1 .............................. <1>
+  [778] eq ...................................... <voidp(tUD[#parent]) = 1>
+  [779] jmpifz [794] ............................ if voidp(tUD[#parent]) = 1 then
+  [782] getlocal 9 .............................. <tUD>
+  [784] pushsymb 207 ............................ <#parent>
+  [786] getlocal 4 .............................. <i>
+  [788] getobjprop 207 .......................... <i.parent>
+  [790] pusharglistnoret 3 ...................... <tUD, #parent, i.parent>
+  [792] objcall 103 ............................. tUD[#parent] = i.parent
+  [794] getlocal 4 .............................. <i>
+  [796] pusharglist 0 ........................... <>
+  [798] extcall 40 .............................. <VOID>
+  [800] setobjprop 207 .......................... i.parent = VOID
+  [802] pushint8 1
+  [804] add
+  [805] endrepeat [644]
+  [807] pop 3
+  [809] getlocal 2 .............................. <tTargetList>
+  [811] pusharglistnoret 1 ...................... <tTargetList>
+  [813] extcall 52 .............................. return tTargetList
+  [815] ret
+end
+
+on CreateObject me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 64 .............................. <member(tTarget)>
+  [  6] setlocal 0 .............................. tmember = member(tTarget)
+  [  8] getlocal 0 .............................. <tmember>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <tmember = VOID>
+  [ 15] jmpifz [ 23] ............................ if tmember = VOID then
+  [ 18] pushzero ................................ <0>
+  [ 19] pusharglistnoret 1 ...................... <0>
+  [ 21] extcall 52 .............................. return 0
+  [ 23] getlocal 0 .............................. <tmember>
+  [ 25] getobjprop 598 .......................... <tmember.type>
+  [ 28] pushsymb 610 ............................ <#shockwave3d>
+  [ 31] nteq .................................... <tmember.type <> #shockwave3d>
+  [ 32] jmpifz [ 40] ............................ if tmember.type <> #shockwave3d then
+  [ 35] pushzero ................................ <0>
+  [ 36] pusharglistnoret 1 ...................... <0>
+  [ 38] extcall 52 .............................. return 0
+  [ 40] getparam 2 .............................. <tDataList>
+  [ 42] getobjprop 122 .......................... <tDataList.ilk>
+  [ 44] pushsymb 67 ............................. <#string>
+  [ 46] eq ...................................... <tDataList.ilk = #string>
+  [ 47] jmpifz [ 59] ............................ if tDataList.ilk = #string then
+  [ 50] getparam 2 .............................. <tDataList>
+  [ 52] pusharglist 1 ........................... <tDataList>
+  [ 54] extcall 503 ............................. <value(tDataList)>
+  [ 57] setparam 2 .............................. tDataList = value(tDataList)
+  [ 59] getparam 2 .............................. <tDataList>
+  [ 61] getobjprop 122 .......................... <tDataList.ilk>
+  [ 63] pushsymb 541 ............................ <#propList>
+  [ 66] nteq .................................... <tDataList.ilk <> #propList>
+  [ 67] jmpifz [ 75] ............................ if tDataList.ilk <> #propList then
+  [ 70] pushzero ................................ <0>
+  [ 71] pusharglistnoret 1 ...................... <0>
+  [ 73] extcall 52 .............................. return 0
+  [ 75] pusharglist 0 ........................... <>
+  [ 77] extcall 40 .............................. <VOID>
+  [ 79] setlocal 1 .............................. tName = VOID
+  [ 81] getparam 2 .............................. <tDataList>
+  [ 83] pushsymb 235 ............................ <#name>
+  [ 85] pusharglist 2 ........................... <tDataList, #name>
+  [ 87] objcall 105 ............................. <tDataList[#name]>
+  [ 89] getobjprop 122 .......................... <tDataList[#name].ilk>
+  [ 91] pushsymb 67 ............................. <#string>
+  [ 93] eq ...................................... <tDataList[#name].ilk = #string>
+  [ 94] jmpifz [103] ............................ if tDataList[#name].ilk = #string then
+  [ 97] getparam 2 .............................. <tDataList>
+  [ 99] getobjprop 235 .......................... <tDataList.name>
+  [101] setlocal 1 .............................. tName = tDataList.name
+  [103] getlocal 1 .............................. <tName>
+  [105] pusharglist 0 ........................... <>
+  [107] extcall 40 .............................. <VOID>
+  [109] eq ...................................... <tName = VOID>
+  [110] jmpifz [118] ............................ if tName = VOID then
+  [113] pushzero ................................ <0>
+  [114] pusharglistnoret 1 ...................... <0>
+  [116] extcall 52 .............................. return 0
+  [118] pusharglist 0 ........................... <>
+  [120] extcall 40 .............................. <VOID>
+  [122] setlocal 2 .............................. tType = VOID
+  [124] pushsymb 218 ............................ <#texture>
+  [126] pushsymb 208 ............................ <#shader>
+  [128] pushsymb 71 ............................. <#model>
+  [130] pushsymb 1154 ........................... <#light>
+  [133] pushsymb 65 ............................. <#group>
+  [135] pushsymb 1156 ........................... <#motion>
+  [138] pushsymb 298 ............................ <#camera>
+  [141] pusharglist 7 ........................... <[#texture, #shader, #model, #light, #group, #motion, #camera]>
+  [143] pushlist ................................ <[#texture, #shader, #model, #light, #group, #motion, #camera]>
+  [144] setlocal 3 .............................. tTypes = [#texture, #shader, #model, #light, #group, #motion, #camera]
+  [146] getparam 2 .............................. <tDataList>
+  [148] pushsymb 598 ............................ <#type>
+  [151] pusharglist 2 ........................... <tDataList, #type>
+  [153] objcall 105 ............................. <tDataList[#type]>
+  [155] getobjprop 122 .......................... <tDataList[#type].ilk>
+  [157] pushsymb 88 ............................. <#symbol>
+  [159] eq ...................................... <tDataList[#type].ilk = #symbol>
+  [160] jmpifz [186] ............................ if tDataList[#type].ilk = #symbol then
+  [163] getlocal 3 .............................. <tTypes>
+  [165] getparam 2 .............................. <tDataList>
+  [167] getobjprop 598 .......................... <tDataList.type>
+  [170] pusharglist 2 ........................... <tTypes, tDataList.type>
+  [172] objcall 166 ............................. <tTypes.getPos(tDataList.type)>
+  [174] pushzero ................................ <0>
+  [175] nteq .................................... <tTypes.getPos(tDataList.type) <> 0>
+  [176] jmpifz [186] ............................ if tTypes.getPos(tDataList.type) <> 0 then
+  [179] getparam 2 .............................. <tDataList>
+  [181] getobjprop 598 .......................... <tDataList.type>
+  [184] setlocal 2 .............................. tType = tDataList.type
+  [186] getlocal 2 .............................. <tType>
+  [188] pusharglist 0 ........................... <>
+  [190] extcall 40 .............................. <VOID>
+  [192] eq ...................................... <tType = VOID>
+  [193] jmpifz [201] ............................ if tType = VOID then
+  [196] pushzero ................................ <0>
+  [197] pusharglistnoret 1 ...................... <0>
+  [199] extcall 52 .............................. return 0
+  [201] getlocal 2 .............................. <tType>
+  [203] peek 0 .................................. case tType of
+  [205] pushsymb 218 ............................ <#texture>
+  [207] eq
+  [208] jmpifz [229] ............................ (case) #texture:
+  [211] pop 1
+  [213] getlocal 0 .............................. <tmember>
+  [215] getlocal 1 .............................. <tName>
+  [217] pusharglist 2 ........................... <tmember, tName>
+  [219] objcall 903 ............................. <tmember.newTexture(tName)>
+  [222] pusharglistnoret 1 ...................... <tmember.newTexture(tName)>
+  [224] extcall 52 .............................. return tmember.newTexture(tName)
+  [226] jmp [409]
+  [229] peek 0
+  [231] pushsymb 208 ............................ <#shader>
+  [233] eq
+  [234] jmpifz [258] ............................ (case) #shader:
+  [237] pop 1
+  [239] getlocal 0 .............................. <tmember>
+  [241] getlocal 1 .............................. <tName>
+  [243] pushsymb 531 ............................ <#standard>
+  [246] pusharglist 3 ........................... <tmember, tName, #standard>
+  [248] objcall 896 ............................. <tmember.newShader(tName, #standard)>
+  [251] pusharglistnoret 1 ...................... <tmember.newShader(tName, #standard)>
+  [253] extcall 52 .............................. return tmember.newShader(tName, #standard)
+  [255] jmp [409]
+  [258] peek 0
+  [260] pushsymb 71 ............................. <#model>
+  [262] eq
+  [263] jmpifz [292] ............................ (case) #model:
+  [266] pop 1
+  [268] getlocal 0 .............................. <tmember>
+  [270] getlocal 1 .............................. <tName>
+  [272] getlocal 0 .............................. <tmember>
+  [274] pushcons 3 .............................. <"DefaultModel">
+  [276] pusharglist 2 ........................... <tmember, "DefaultModel">
+  [278] objcall 72 .............................. <tmember.modelResource("DefaultModel")>
+  [280] pusharglist 3 ........................... <tmember, tName, tmember.modelResource("DefaultModel")>
+  [282] objcall 892 ............................. <tmember.newModel(tName, tmember.modelResource("DefaultModel"))>
+  [285] pusharglistnoret 1 ...................... <tmember.newModel(tName, tmember.modelResource("DefaultModel"))>
+  [287] extcall 52 .............................. return tmember.newModel(tName, tmember.modelResource("DefaultModel"))
+  [289] jmp [409]
+  [292] peek 0
+  [294] pushsymb 298 ............................ <#camera>
+  [297] eq
+  [298] jmpifz [319] ............................ (case) #camera:
+  [301] pop 1
+  [303] getlocal 0 .............................. <tmember>
+  [305] getlocal 1 .............................. <tName>
+  [307] pusharglist 2 ........................... <tmember, tName>
+  [309] objcall 1157 ............................ <tmember.newCamera(tName)>
+  [312] pusharglistnoret 1 ...................... <tmember.newCamera(tName)>
+  [314] extcall 52 .............................. return tmember.newCamera(tName)
+  [316] jmp [409]
+  [319] peek 0
+  [321] pushsymb 1154 ........................... <#light>
+  [324] eq
+  [325] jmpifz [349] ............................ (case) #light:
+  [328] pop 1
+  [330] getlocal 0 .............................. <tmember>
+  [332] getlocal 1 .............................. <tName>
+  [334] pushsymb 302 ............................ <#point>
+  [337] pusharglist 3 ........................... <tmember, tName, #point>
+  [339] objcall 1158 ............................ <tmember.newLight(tName, #point)>
+  [342] pusharglistnoret 1 ...................... <tmember.newLight(tName, #point)>
+  [344] extcall 52 .............................. return tmember.newLight(tName, #point)
+  [346] jmp [409]
+  [349] peek 0
+  [351] pushsymb 65 ............................. <#group>
+  [353] eq
+  [354] jmpifz [375] ............................ (case) #group:
+  [357] pop 1
+  [359] getlocal 0 .............................. <tmember>
+  [361] getlocal 1 .............................. <tName>
+  [363] pusharglist 2 ........................... <tmember, tName>
+  [365] objcall 877 ............................. <tmember.newGroup(tName)>
+  [368] pusharglistnoret 1 ...................... <tmember.newGroup(tName)>
+  [370] extcall 52 .............................. return tmember.newGroup(tName)
+  [372] jmp [409]
+  [375] peek 0
+  [377] pushsymb 1156 ........................... <#motion>
+  [380] eq
+  [381] jmpifz [402] ............................ (case) #motion:
+  [384] pop 1
+  [386] getlocal 0 .............................. <tmember>
+  [388] getlocal 1 .............................. <tName>
+  [390] pusharglist 2 ........................... <tmember, tName>
+  [392] objcall 1159 ............................ <tmember.newMotion(tName)>
+  [395] pusharglistnoret 1 ...................... <tmember.newMotion(tName)>
+  [397] extcall 52 .............................. return tmember.newMotion(tName)
+  [399] jmp [409] ............................... (case) otherwise:
+  [402] pop 1
+  [404] pushzero ................................ <0>
+  [405] pusharglistnoret 1 ...................... <0>
+  [407] extcall 52 .............................. return 0
+  [409] pop 1 ................................... end case
+  [411] ret
+end
+
+on SetPosDir me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 64 .............................. <member(tTarget)>
+  [  6] setlocal 0 .............................. tmember = member(tTarget)
+  [  8] getlocal 0 .............................. <tmember>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <tmember = VOID>
+  [ 15] jmpifz [ 23] ............................ if tmember = VOID then
+  [ 18] pushzero ................................ <0>
+  [ 19] pusharglistnoret 1 ...................... <0>
+  [ 21] extcall 52 .............................. return 0
+  [ 23] getlocal 0 .............................. <tmember>
+  [ 25] getobjprop 598 .......................... <tmember.type>
+  [ 28] pushsymb 610 ............................ <#shockwave3d>
+  [ 31] nteq .................................... <tmember.type <> #shockwave3d>
+  [ 32] jmpifz [ 40] ............................ if tmember.type <> #shockwave3d then
+  [ 35] pushzero ................................ <0>
+  [ 36] pusharglistnoret 1 ...................... <0>
+  [ 38] extcall 52 .............................. return 0
+  [ 40] getparam 2 .............................. <tDataList>
+  [ 42] getobjprop 122 .......................... <tDataList.ilk>
+  [ 44] pushsymb 67 ............................. <#string>
+  [ 46] eq ...................................... <tDataList.ilk = #string>
+  [ 47] jmpifz [ 59] ............................ if tDataList.ilk = #string then
+  [ 50] getparam 2 .............................. <tDataList>
+  [ 52] pusharglist 1 ........................... <tDataList>
+  [ 54] extcall 503 ............................. <value(tDataList)>
+  [ 57] setparam 2 .............................. tDataList = value(tDataList)
+  [ 59] getparam 2 .............................. <tDataList>
+  [ 61] getobjprop 122 .......................... <tDataList.ilk>
+  [ 63] pushsymb 541 ............................ <#propList>
+  [ 66] nteq .................................... <tDataList.ilk <> #propList>
+  [ 67] jmpifz [ 75] ............................ if tDataList.ilk <> #propList then
+  [ 70] pushzero ................................ <0>
+  [ 71] pusharglistnoret 1 ...................... <0>
+  [ 73] extcall 52 .............................. return 0
+  [ 75] pusharglist 0 ........................... <>
+  [ 77] extcall 40 .............................. <VOID>
+  [ 79] setlocal 1 .............................. tObject = VOID
+  [ 81] getparam 2 .............................. <tDataList>
+  [ 83] pushsymb 1160 ........................... <#object>
+  [ 86] pusharglist 2 ........................... <tDataList, #object>
+  [ 88] objcall 105 ............................. <tDataList[#object]>
+  [ 90] getobjprop 122 .......................... <tDataList[#object].ilk>
+  [ 92] pushsymb 67 ............................. <#string>
+  [ 94] eq ...................................... <tDataList[#object].ilk = #string>
+  [ 95] jmpifz [111] ............................ if tDataList[#object].ilk = #string then
+  [ 98] getlocal 0 .............................. <tmember>
+  [100] getparam 2 .............................. <tDataList>
+  [102] getobjprop 1160 ......................... <tDataList.object>
+  [105] pusharglist 2 ........................... <tmember, tDataList.object>
+  [107] localcall 6 ............................. <GetReferenceType(tmember, tDataList.object)>
+  [109] setlocal 1 .............................. tObject = GetReferenceType(tmember, tDataList.object)
+  [111] getlocal 1 .............................. <tObject>
+  [113] pusharglist 0 ........................... <>
+  [115] extcall 40 .............................. <VOID>
+  [117] eq ...................................... <tObject = VOID>
+  [118] jmpifz [126] ............................ if tObject = VOID then
+  [121] pushzero ................................ <0>
+  [122] pusharglistnoret 1 ...................... <0>
+  [124] extcall 52 .............................. return 0
+  [126] pusharglist 0 ........................... <>
+  [128] extcall 40 .............................. <VOID>
+  [130] setlocal 2 .............................. tPosition = VOID
+  [132] getparam 2 .............................. <tDataList>
+  [134] pushsymb 215 ............................ <#position>
+  [136] pusharglist 2 ........................... <tDataList, #position>
+  [138] objcall 105 ............................. <tDataList[#position]>
+  [140] getobjprop 122 .......................... <tDataList[#position].ilk>
+  [142] pushsymb 212 ............................ <#vector>
+  [144] eq ...................................... <tDataList[#position].ilk = #vector>
+  [145] jmpifz [157] ............................ if tDataList[#position].ilk = #vector then / else
+  [148] getparam 2 .............................. <tDataList>
+  [150] getobjprop 215 .......................... <tDataList.position>
+  [152] setlocal 2 .............................. tPosition = tDataList.position
+  [154] jmp [206]
+  [157] getparam 2 .............................. <tDataList>
+  [159] pushsymb 215 ............................ <#position>
+  [161] pusharglist 2 ........................... <tDataList, #position>
+  [163] objcall 105 ............................. <tDataList[#position]>
+  [165] getobjprop 122 .......................... <tDataList[#position].ilk>
+  [167] pushsymb 67 ............................. <#string>
+  [169] eq ...................................... <tDataList[#position].ilk = #string>
+  [170] jmpifz [206] ............................ if tDataList[#position].ilk = #string then
+  [173] getlocal 0 .............................. <tmember>
+  [175] getparam 2 .............................. <tDataList>
+  [177] getobjprop 215 .......................... <tDataList.position>
+  [179] pusharglist 2 ........................... <tmember, tDataList.position>
+  [181] localcall 6 ............................. <GetReferenceType(tmember, tDataList.position)>
+  [183] setlocal 3 .............................. tRefObject = GetReferenceType(tmember, tDataList.position)
+  [185] getlocal 3 .............................. <tRefObject>
+  [187] pusharglist 0 ........................... <>
+  [189] extcall 40 .............................. <VOID>
+  [191] nteq .................................... <tRefObject <> VOID>
+  [192] jmpifz [206] ............................ if tRefObject <> VOID then
+  [195] getlocal 3 .............................. <tRefObject>
+  [197] pusharglist 1 ........................... <tRefObject>
+  [199] objcall 1109 ............................ <tRefObject.getWorldTransform()>
+  [202] getobjprop 215 .......................... <tRefObject.getWorldTransform().position>
+  [204] setlocal 2 .............................. tPosition = tRefObject.getWorldTransform().position
+  [206] getlocal 2 .............................. <tPosition>
+  [208] pusharglist 0 ........................... <>
+  [210] extcall 40 .............................. <VOID>
+  [212] nteq .................................... <tPosition <> VOID>
+  [213] jmpifz [223] ............................ if tPosition <> VOID then
+  [216] getlocal 1 .............................. <tObject>
+  [218] getlocal 2 .............................. <tPosition>
+  [220] setobjprop 1161 ......................... tObject.worldPosition = tPosition
+  [223] pusharglist 0 ........................... <>
+  [225] extcall 40 .............................. <VOID>
+  [227] setlocal 4 .............................. tRotation = VOID
+  [229] getparam 2 .............................. <tDataList>
+  [231] pushsymb 1162 ........................... <#rotation>
+  [234] pusharglist 2 ........................... <tDataList, #rotation>
+  [236] objcall 105 ............................. <tDataList[#rotation]>
+  [238] getobjprop 122 .......................... <tDataList[#rotation].ilk>
+  [240] pushsymb 212 ............................ <#vector>
+  [242] eq ...................................... <tDataList[#rotation].ilk = #vector>
+  [243] jmpifz [255] ............................ if tDataList[#rotation].ilk = #vector then / else
+  [246] getparam 2 .............................. <tDataList>
+  [248] getobjprop 215 .......................... <tDataList.position>
+  [250] setlocal 2 .............................. tPosition = tDataList.position
+  [252] jmp [307]
+  [255] getparam 2 .............................. <tDataList>
+  [257] pushsymb 1162 ........................... <#rotation>
+  [260] pusharglist 2 ........................... <tDataList, #rotation>
+  [262] objcall 105 ............................. <tDataList[#rotation]>
+  [264] getobjprop 122 .......................... <tDataList[#rotation].ilk>
+  [266] pushsymb 67 ............................. <#string>
+  [268] eq ...................................... <tDataList[#rotation].ilk = #string>
+  [269] jmpifz [307] ............................ if tDataList[#rotation].ilk = #string then
+  [272] getlocal 0 .............................. <tmember>
+  [274] getparam 2 .............................. <tDataList>
+  [276] getobjprop 1162 ......................... <tDataList.rotation>
+  [279] pusharglist 2 ........................... <tmember, tDataList.rotation>
+  [281] localcall 6 ............................. <GetReferenceType(tmember, tDataList.rotation)>
+  [283] setlocal 3 .............................. tRefObject = GetReferenceType(tmember, tDataList.rotation)
+  [285] getlocal 3 .............................. <tRefObject>
+  [287] pusharglist 0 ........................... <>
+  [289] extcall 40 .............................. <VOID>
+  [291] nteq .................................... <tRefObject <> VOID>
+  [292] jmpifz [307] ............................ if tRefObject <> VOID then
+  [295] getlocal 3 .............................. <tRefObject>
+  [297] pusharglist 1 ........................... <tRefObject>
+  [299] objcall 1109 ............................ <tRefObject.getWorldTransform()>
+  [302] getobjprop 1162 ......................... <tRefObject.getWorldTransform().rotation>
+  [305] setlocal 4 .............................. tRotation = tRefObject.getWorldTransform().rotation
+  [307] getlocal 4 .............................. <tRotation>
+  [309] pusharglist 0 ........................... <>
+  [311] extcall 40 .............................. <VOID>
+  [313] nteq .................................... <tRotation <> VOID>
+  [314] jmpifz [326] ............................ if tRotation <> VOID then
+  [317] getlocal 1 .............................. <tObject>
+  [319] getchainedprop 214 ...................... <tObject.transform>
+  [321] getlocal 4 .............................. <tRotation>
+  [323] setobjprop 1162 ......................... tObject.transform.rotation = tRotation
+  [326] getparam 2 .............................. <tDataList>
+  [328] pushsymb 1163 ........................... <#PositionOffSet>
+  [331] pusharglist 2 ........................... <tDataList, #PositionOffSet>
+  [333] objcall 105 ............................. <tDataList[#PositionOffSet]>
+  [335] getobjprop 122 .......................... <tDataList[#PositionOffSet].ilk>
+  [337] pushsymb 212 ............................ <#vector>
+  [339] eq ...................................... <tDataList[#PositionOffSet].ilk = #vector>
+  [340] jmpifz [359] ............................ if tDataList[#PositionOffSet].ilk = #vector then
+  [343] getlocal 1 .............................. <tObject>
+  [345] getlocal 1 .............................. <tObject>
+  [347] getobjprop 1161 ......................... <tObject.worldPosition>
+  [350] getparam 2 .............................. <tDataList>
+  [352] getobjprop 1163 ......................... <tDataList.PositionOffSet>
+  [355] add ..................................... <tObject.worldPosition + tDataList.PositionOffSet>
+  [356] setobjprop 1161 ......................... tObject.worldPosition = tObject.worldPosition + tDataList.PositionOffSet
+  [359] ret
+end
+
+on RESETALL3D me
+  [  0] gettoplevelprop 33 ...................... <_movie>
+  [  2] pushsymb 58 ............................. <#castLib>
+  [  4] pusharglist 2 ........................... <_movie, #castLib>
+  [  6] objcall 129 ............................. <_movie.castLib.count>
+  [  8] setlocal 0 .............................. pCastCount = _movie.castLib.count
+  [ 10] pushint8 1 .............................. <1>
+  [ 12] setlocal 1
+  [ 14] getlocal 1
+  [ 16] getlocal 0 .............................. <pCastCount>
+  [ 18] lteq
+  [ 19] jmpifz [103] ............................ repeat with i = 1 to pCastCount
+  [ 22] gettoplevelprop 33 ...................... <_movie>
+  [ 24] getlocal 1 .............................. <i>
+  [ 26] pusharglist 2 ........................... <_movie, i>
+  [ 28] objcall 58 .............................. <_movie.castLib(i)>
+  [ 30] pushsymb 64 ............................. <#member>
+  [ 32] pusharglist 2 ........................... <_movie.castLib(i), #member>
+  [ 34] objcall 129 ............................. <_movie.castLib(i).member.count>
+  [ 36] setlocal 2 .............................. pMemberCount = _movie.castLib(i).member.count
+  [ 38] pushint8 1 .............................. <1>
+  [ 40] setlocal 3
+  [ 42] getlocal 3
+  [ 44] getlocal 2 .............................. <pMemberCount>
+  [ 46] lteq
+  [ 47] jmpifz [ 94] ............................ repeat with j = 1 to pMemberCount
+  [ 50] getlocal 3 .............................. <j>
+  [ 52] getlocal 1 .............................. <i>
+  [ 54] pusharglist 2 ........................... <j, i>
+  [ 56] extcall 64 .............................. <member(j, i)>
+  [ 58] getobjprop 598 .......................... <member(j, i).type>
+  [ 61] setlocal 4 .............................. pMemberType = member(j, i).type
+  [ 63] getlocal 4 .............................. <pMemberType>
+  [ 65] pushsymb 610 ............................ <#shockwave3d>
+  [ 68] eq ...................................... <pMemberType = #shockwave3d>
+  [ 69] jmpifz [ 85] ............................ if pMemberType = #shockwave3d then
+  [ 72] getlocal 3 .............................. <j>
+  [ 74] getlocal 1 .............................. <i>
+  [ 76] pusharglist 2 ........................... <j, i>
+  [ 78] extcall 64 .............................. <member(j, i)>
+  [ 80] pusharglistnoret 1 ...................... <member(j, i)>
+  [ 82] objcall 674 ............................. member(j, i).resetWorld()
+  [ 85] pushint8 1
+  [ 87] getlocal 3
+  [ 89] add
+  [ 90] setlocal 3
+  [ 92] endrepeat [ 42]
+  [ 94] pushint8 1
+  [ 96] getlocal 1
+  [ 98] add
+  [ 99] setlocal 1
+  [101] endrepeat [ 14]
+  [103] ret
+end
+
+on RESETMEMBER3D tmember
+  [  0] getparam 0 .............................. <tmember>
+  [  2] pusharglist 0 ........................... <>
+  [  4] extcall 40 .............................. <VOID>
+  [  6] eq ...................................... <tmember = VOID>
+  [  7] getparam 0 .............................. <tmember>
+  [  9] getobjprop 598 .......................... <tmember.type>
+  [ 12] pushsymb 610 ............................ <#shockwave3d>
+  [ 15] nteq .................................... <tmember.type <> #shockwave3d>
+  [ 16] or ...................................... <(tmember = VOID) or (tmember.type <> #shockwave3d)>
+  [ 17] jmpifz [ 31] ............................ if (tmember = VOID) or (tmember.type <> #shockwave3d) then / else
+  [ 20] pushcons 4 .............................. <"RESET3D: You're referring to a NON 3d or existing pMember. Check name or castnumber.">
+  [ 22] pusharglistnoret 1 ...................... <"RESET3D: You're referring to a NON 3d or existing pMember. Check name or castnumber.">
+  [ 24] extcall 511 ............................. ShowError("RESET3D: You're referring to a NON 3d or existing pMember. Check name or castnumber.")
+  [ 27] ret ..................................... exit
+  [ 28] jmp [ 38]
+  [ 31] getparam 0 .............................. <tmember>
+  [ 33] pusharglistnoret 1 ...................... <tmember>
+  [ 35] objcall 674 ............................. tmember.resetWorld()
+  [ 38] ret
+end
+
+on RESETCAST3D tCast
+  [  0] gettoplevelprop 33 ...................... <_movie>
+  [  2] getparam 0 .............................. <tCast>
+  [  4] pusharglist 2 ........................... <_movie, tCast>
+  [  6] objcall 58 .............................. <_movie.castLib(tCast)>
+  [  8] pushsymb 64 ............................. <#member>
+  [ 10] pusharglist 2 ........................... <_movie.castLib(tCast), #member>
+  [ 12] objcall 129 ............................. <_movie.castLib(tCast).member.count>
+  [ 14] setlocal 0 .............................. pMemberCount = _movie.castLib(tCast).member.count
+  [ 16] pushint8 1 .............................. <1>
+  [ 18] setlocal 1
+  [ 20] getlocal 1
+  [ 22] getlocal 0 .............................. <pMemberCount>
+  [ 24] lteq
+  [ 25] jmpifz [ 72] ............................ repeat with j = 1 to pMemberCount
+  [ 28] getlocal 1 .............................. <j>
+  [ 30] getparam 0 .............................. <tCast>
+  [ 32] pusharglist 2 ........................... <j, tCast>
+  [ 34] extcall 64 .............................. <member(j, tCast)>
+  [ 36] getobjprop 598 .......................... <member(j, tCast).type>
+  [ 39] setlocal 2 .............................. pMemberType = member(j, tCast).type
+  [ 41] getlocal 2 .............................. <pMemberType>
+  [ 43] pushsymb 610 ............................ <#shockwave3d>
+  [ 46] eq ...................................... <pMemberType = #shockwave3d>
+  [ 47] jmpifz [ 63] ............................ if pMemberType = #shockwave3d then
+  [ 50] getlocal 1 .............................. <j>
+  [ 52] getparam 0 .............................. <tCast>
+  [ 54] pusharglist 2 ........................... <j, tCast>
+  [ 56] extcall 64 .............................. <member(j, tCast)>
+  [ 58] pusharglistnoret 1 ...................... <member(j, tCast)>
+  [ 60] objcall 674 ............................. member(j, tCast).resetWorld()
+  [ 63] pushint8 1
+  [ 65] getlocal 1
+  [ 67] add
+  [ 68] setlocal 1
+  [ 70] endrepeat [ 20]
+  [ 72] ret
+end
+
+on GetReferenceType tmember, tString
+  [  0] getparam 0 .............................. <tmember>
+  [  2] getparam 1 .............................. <tString>
+  [  4] pusharglist 2 ........................... <tmember, tString>
+  [  6] objcall 71 .............................. <tmember.model(tString)>
+  [  8] pusharglist 0 ........................... <>
+  [ 10] extcall 40 .............................. <VOID>
+  [ 12] nteq .................................... <tmember.model(tString) <> VOID>
+  [ 13] jmpifz [ 28] ............................ if tmember.model(tString) <> VOID then
+  [ 16] getparam 0 .............................. <tmember>
+  [ 18] getparam 1 .............................. <tString>
+  [ 20] pusharglist 2 ........................... <tmember, tString>
+  [ 22] objcall 71 .............................. <tmember.model(tString)>
+  [ 24] pusharglistnoret 1 ...................... <tmember.model(tString)>
+  [ 26] extcall 52 .............................. return tmember.model(tString)
+  [ 28] getparam 0 .............................. <tmember>
+  [ 30] getparam 1 .............................. <tString>
+  [ 32] pusharglist 2 ........................... <tmember, tString>
+  [ 34] objcall 1154 ............................ <tmember.light(tString)>
+  [ 37] pusharglist 0 ........................... <>
+  [ 39] extcall 40 .............................. <VOID>
+  [ 41] nteq .................................... <tmember.light(tString) <> VOID>
+  [ 42] jmpifz [ 58] ............................ if tmember.light(tString) <> VOID then
+  [ 45] getparam 0 .............................. <tmember>
+  [ 47] getparam 1 .............................. <tString>
+  [ 49] pusharglist 2 ........................... <tmember, tString>
+  [ 51] objcall 1154 ............................ <tmember.light(tString)>
+  [ 54] pusharglistnoret 1 ...................... <tmember.light(tString)>
+  [ 56] extcall 52 .............................. return tmember.light(tString)
+  [ 58] getparam 0 .............................. <tmember>
+  [ 60] getparam 1 .............................. <tString>
+  [ 62] pusharglist 2 ........................... <tmember, tString>
+  [ 64] objcall 298 ............................. <tmember.camera(tString)>
+  [ 67] pusharglist 0 ........................... <>
+  [ 69] extcall 40 .............................. <VOID>
+  [ 71] nteq .................................... <tmember.camera(tString) <> VOID>
+  [ 72] jmpifz [ 88] ............................ if tmember.camera(tString) <> VOID then
+  [ 75] getparam 0 .............................. <tmember>
+  [ 77] getparam 1 .............................. <tString>
+  [ 79] pusharglist 2 ........................... <tmember, tString>
+  [ 81] objcall 298 ............................. <tmember.camera(tString)>
+  [ 84] pusharglistnoret 1 ...................... <tmember.camera(tString)>
+  [ 86] extcall 52 .............................. return tmember.camera(tString)
+  [ 88] getparam 0 .............................. <tmember>
+  [ 90] getparam 1 .............................. <tString>
+  [ 92] pusharglist 2 ........................... <tmember, tString>
+  [ 94] objcall 65 .............................. <tmember.group(tString)>
+  [ 96] pusharglist 0 ........................... <>
+  [ 98] extcall 40 .............................. <VOID>
+  [100] nteq .................................... <tmember.group(tString) <> VOID>
+  [101] jmpifz [116] ............................ if tmember.group(tString) <> VOID then
+  [104] getparam 0 .............................. <tmember>
+  [106] getparam 1 .............................. <tString>
+  [108] pusharglist 2 ........................... <tmember, tString>
+  [110] objcall 65 .............................. <tmember.group(tString)>
+  [112] pusharglistnoret 1 ...................... <tmember.group(tString)>
+  [114] extcall 52 .............................. return tmember.group(tString)
+  [116] pushcons 5 .............................. <"Function: GetReferenceType. Member: ">
+  [118] getparam 0 .............................. <tmember>
+  [120] joinstr ................................. <"Function: GetReferenceType. Member: " & tmember>
+  [121] pushcons 6 .............................. <" String: ">
+  [123] joinstr ................................. <"Function: GetReferenceType. Member: " & tmember & " String: ">
+  [124] getparam 1 .............................. <tString>
+  [126] joinstr ................................. <"Function: GetReferenceType. Member: " & tmember & " String: " & tString>
+  [127] pushcons 7 .............................. <" String not a string. Returned VOID">
+  [129] joinstr ................................. <"Function: GetReferenceType. Member: " & tmember & " String: " & tString & " String not a string. Returned VOID">
+  [130] pusharglistnoret 1 ...................... <"Function: GetReferenceType. Member: " & tmember & " String: " & tString & " String not a string. Returned VOID">
+  [132] extcall 511 ............................. ShowError("Function: GetReferenceType. Member: " & tmember & " String: " & tString & " String not a string. Returned VOID")
+  [135] pusharglist 0 ........................... <>
+  [137] extcall 40 .............................. <VOID>
+  [139] pusharglistnoret 1 ...................... <VOID>
+  [141] extcall 52 .............................. return VOID
+  [143] ret
+end
+
+on GetObjectList me, tTarget, tDataList
+  [  0] getparam 1 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 64 .............................. <member(tTarget)>
+  [  6] setlocal 0 .............................. tmember = member(tTarget)
+  [  8] getlocal 0 .............................. <tmember>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <tmember = VOID>
+  [ 15] jmpifz [ 25] ............................ if tmember = VOID then
+  [ 18] pusharglist 0 ........................... <[]>
+  [ 20] pushlist ................................ <[]>
+  [ 21] pusharglistnoret 1 ...................... <[]>
+  [ 23] extcall 52 .............................. return []
+  [ 25] getparam 2 .............................. <tDataList>
+  [ 27] getobjprop 122 .......................... <tDataList.ilk>
+  [ 29] pushsymb 67 ............................. <#string>
+  [ 31] eq ...................................... <tDataList.ilk = #string>
+  [ 32] jmpifz [ 44] ............................ if tDataList.ilk = #string then
+  [ 35] getparam 2 .............................. <tDataList>
+  [ 37] pusharglist 1 ........................... <tDataList>
+  [ 39] extcall 503 ............................. <value(tDataList)>
+  [ 42] setparam 2 .............................. tDataList = value(tDataList)
+  [ 44] getparam 2 .............................. <tDataList>
+  [ 46] getobjprop 122 .......................... <tDataList.ilk>
+  [ 48] pushsymb 541 ............................ <#propList>
+  [ 51] nteq .................................... <tDataList.ilk <> #propList>
+  [ 52] jmpifz [ 62] ............................ if tDataList.ilk <> #propList then
+  [ 55] pusharglist 0 ........................... <[]>
+  [ 57] pushlist ................................ <[]>
+  [ 58] pusharglistnoret 1 ...................... <[]>
+  [ 60] extcall 52 .............................. return []
+  [ 62] pushsymb 71 ............................. <#model>
+  [ 64] setlocal 1 .............................. tType = #model
+  [ 66] getparam 2 .............................. <tDataList>
+  [ 68] pushsymb 598 ............................ <#type>
+  [ 71] pusharglist 2 ........................... <tDataList, #type>
+  [ 73] objcall 105 ............................. <tDataList[#type]>
+  [ 75] getobjprop 122 .......................... <tDataList[#type].ilk>
+  [ 77] pushsymb 88 ............................. <#symbol>
+  [ 79] eq ...................................... <tDataList[#type].ilk = #symbol>
+  [ 80] jmpifz [ 90] ............................ if tDataList[#type].ilk = #symbol then
+  [ 83] getparam 2 .............................. <tDataList>
+  [ 85] getobjprop 598 .......................... <tDataList.type>
+  [ 88] setlocal 1 .............................. tType = tDataList.type
+  [ 90] pushcons 0 .............................. <"*.*">
+  [ 92] setlocal 2 .............................. tString = "*.*"
+  [ 94] getparam 2 .............................. <tDataList>
+  [ 96] pushsymb 67 ............................. <#string>
+  [ 98] pusharglist 2 ........................... <tDataList, #string>
+  [100] objcall 105 ............................. <tDataList[#string]>
+  [102] getobjprop 122 .......................... <tDataList[#string].ilk>
+  [104] pushsymb 67 ............................. <#string>
+  [106] eq ...................................... <tDataList[#string].ilk = #string>
+  [107] jmpifz [116] ............................ if tDataList[#string].ilk = #string then
+  [110] getparam 2 .............................. <tDataList>
+  [112] getobjprop 67 ........................... <tDataList.string>
+  [114] setlocal 2 .............................. tString = tDataList.string
+  [116] pushzero ................................ <0>
+  [117] setlocal 3 .............................. tRef = 0
+  [119] getparam 2 .............................. <tDataList>
+  [121] pushsymb 1107 ........................... <#Reference>
+  [124] pusharglist 2 ........................... <tDataList, #Reference>
+  [126] objcall 105 ............................. <tDataList[#Reference]>
+  [128] getobjprop 122 .......................... <tDataList[#Reference].ilk>
+  [130] pushsymb 123 ............................ <#integer>
+  [132] eq ...................................... <tDataList[#Reference].ilk = #integer>
+  [133] jmpifz [143] ............................ if tDataList[#Reference].ilk = #integer then
+  [136] getparam 2 .............................. <tDataList>
+  [138] getobjprop 1107 ......................... <tDataList.Reference>
+  [141] setlocal 3 .............................. tRef = tDataList.Reference
+  [143] pusharglist 0 ........................... <[]>
+  [145] pushlist ................................ <[]>
+  [146] setlocal 4 .............................. tList = []
+  [148] getlocal 1 .............................. <tType>
+  [150] pushsymb 71 ............................. <#model>
+  [152] eq ...................................... <tType = #model>
+  [153] jmpifz [281] ............................ if tType = #model then
+  [156] pushint8 1 .............................. <1>
+  [158] setlocal 5
+  [160] getlocal 5
+  [162] getlocal 0 .............................. <tmember>
+  [164] pushsymb 71 ............................. <#model>
+  [166] pusharglist 2 ........................... <tmember, #model>
+  [168] objcall 129 ............................. <tmember.model.count>
+  [170] lteq
+  [171] jmpifz [275] ............................ repeat with i = 1 to tmember.model.count
+  [174] getlocal 2 .............................. <tString>
+  [176] pushcons 0 .............................. <"*.*">
+  [178] eq ...................................... <tString = "*.*">
+  [179] jmpifz [203] ............................ if tString = "*.*" then
+  [182] getlocal 4 .............................. <tList>
+  [184] getlocal 0 .............................. <tmember>
+  [186] pushsymb 71 ............................. <#model>
+  [188] getlocal 5 .............................. <i>
+  [190] pusharglist 3 ........................... <tmember, #model, i>
+  [192] objcall 102 ............................. <tmember.model[i]>
+  [194] getobjprop 235 .......................... <tmember.model[i].name>
+  [196] pusharglistnoret 2 ...................... <tList, tmember.model[i].name>
+  [198] objcall 42 .............................. tList.add(tmember.model[i].name)
+  [200] jmp [266] ............................... next repeat
+  [203] getlocal 0 .............................. <tmember>
+  [205] pushsymb 71 ............................. <#model>
+  [207] getlocal 5 .............................. <i>
+  [209] pusharglist 3 ........................... <tmember, #model, i>
+  [211] objcall 102 ............................. <tmember.model[i]>
+  [213] getobjprop 235 .......................... <tmember.model[i].name>
+  [215] getlocal 2 .............................. <tString>
+  [217] containsstr ............................. <tmember.model[i].name contains tString>
+  [218] jmpifz [266] ............................ if tmember.model[i].name contains tString then
+  [221] getlocal 3 .............................. <tRef>
+  [223] pushint8 1 .............................. <1>
+  [225] eq ...................................... <tRef = 1>
+  [226] jmpifz [248] ............................ if tRef = 1 then
+  [229] getlocal 4 .............................. <tList>
+  [231] getlocal 0 .............................. <tmember>
+  [233] pushsymb 71 ............................. <#model>
+  [235] getlocal 5 .............................. <i>
+  [237] pusharglist 3 ........................... <tmember, #model, i>
+  [239] objcall 70 .............................. <tmember.model[i]>
+  [241] pusharglistnoret 2 ...................... <tList, tmember.model[i]>
+  [243] objcall 42 .............................. tList.add(tmember.model[i])
+  [245] jmp [266] ............................... next repeat
+  [248] getlocal 4 .............................. <tList>
+  [250] getlocal 0 .............................. <tmember>
+  [252] pushsymb 71 ............................. <#model>
+  [254] getlocal 5 .............................. <i>
+  [256] pusharglist 3 ........................... <tmember, #model, i>
+  [258] objcall 102 ............................. <tmember.model[i]>
+  [260] getobjprop 235 .......................... <tmember.model[i].name>
+  [262] pusharglistnoret 2 ...................... <tList, tmember.model[i].name>
+  [264] objcall 42 .............................. tList.add(tmember.model[i].name)
+  [266] pushint8 1
+  [268] getlocal 5
+  [270] add
+  [271] setlocal 5
+  [273] endrepeat [160]
+  [275] getlocal 4 .............................. <tList>
+  [277] pusharglistnoret 1 ...................... <tList>
+  [279] extcall 52 .............................. return tList
+  [281] getlocal 1 .............................. <tType>
+  [283] pushsymb 72 ............................. <#modelResource>
+  [285] eq ...................................... <tType = #modelResource>
+  [286] jmpifz [435] ............................ if tType = #modelResource then
+  [289] pushint8 1 .............................. <1>
+  [291] setlocal 5
+  [293] getlocal 5
+  [295] getlocal 0 .............................. <tmember>
+  [297] pushsymb 72 ............................. <#modelResource>
+  [299] pusharglist 2 ........................... <tmember, #modelResource>
+  [301] objcall 129 ............................. <tmember.modelResource.count>
+  [303] lteq
+  [304] jmpifz [429] ............................ repeat with i = 1 to tmember.modelResource.count
+  [307] getlocal 0 .............................. <tmember>
+  [309] pushsymb 72 ............................. <#modelResource>
+  [311] getlocal 5 .............................. <i>
+  [313] pusharglist 3 ........................... <tmember, #modelResource, i>
+  [315] objcall 102 ............................. <tmember.modelResource[i]>
+  [317] getobjprop 235 .......................... <tmember.modelResource[i].name>
+  [319] pushcons 3 .............................. <"DefaultModel">
+  [321] eq ...................................... <tmember.modelResource[i].name = "DefaultModel">
+  [322] jmpifz [328] ............................ if tmember.modelResource[i].name = "DefaultModel" then
+  [325] jmp [420] ............................... next repeat
+  [328] getlocal 2 .............................. <tString>
+  [330] pushcons 0 .............................. <"*.*">
+  [332] eq ...................................... <tString = "*.*">
+  [333] jmpifz [357] ............................ if tString = "*.*" then
+  [336] getlocal 4 .............................. <tList>
+  [338] getlocal 0 .............................. <tmember>
+  [340] pushsymb 72 ............................. <#modelResource>
+  [342] getlocal 5 .............................. <i>
+  [344] pusharglist 3 ........................... <tmember, #modelResource, i>
+  [346] objcall 102 ............................. <tmember.modelResource[i]>
+  [348] getobjprop 235 .......................... <tmember.modelResource[i].name>
+  [350] pusharglistnoret 2 ...................... <tList, tmember.modelResource[i].name>
+  [352] objcall 42 .............................. tList.add(tmember.modelResource[i].name)
+  [354] jmp [420] ............................... next repeat
+  [357] getlocal 0 .............................. <tmember>
+  [359] pushsymb 72 ............................. <#modelResource>
+  [361] getlocal 5 .............................. <i>
+  [363] pusharglist 3 ........................... <tmember, #modelResource, i>
+  [365] objcall 102 ............................. <tmember.modelResource[i]>
+  [367] getobjprop 235 .......................... <tmember.modelResource[i].name>
+  [369] getlocal 2 .............................. <tString>
+  [371] containsstr ............................. <tmember.modelResource[i].name contains tString>
+  [372] jmpifz [420] ............................ if tmember.modelResource[i].name contains tString then
+  [375] getlocal 3 .............................. <tRef>
+  [377] pushint8 1 .............................. <1>
+  [379] eq ...................................... <tRef = 1>
+  [380] jmpifz [402] ............................ if tRef = 1 then
+  [383] getlocal 4 .............................. <tList>
+  [385] getlocal 0 .............................. <tmember>
+  [387] pushsymb 72 ............................. <#modelResource>
+  [389] getlocal 5 .............................. <i>
+  [391] pusharglist 3 ........................... <tmember, #modelResource, i>
+  [393] objcall 70 .............................. <tmember.modelResource[i]>
+  [395] pusharglistnoret 2 ...................... <tList, tmember.modelResource[i]>
+  [397] objcall 42 .............................. tList.add(tmember.modelResource[i])
+  [399] jmp [420] ............................... next repeat
+  [402] getlocal 4 .............................. <tList>
+  [404] getlocal 0 .............................. <tmember>
+  [406] pushsymb 72 ............................. <#modelResource>
+  [408] getlocal 5 .............................. <i>
+  [410] pusharglist 3 ........................... <tmember, #modelResource, i>
+  [412] objcall 102 ............................. <tmember.modelResource[i]>
+  [414] getobjprop 235 .......................... <tmember.modelResource[i].name>
+  [416] pusharglistnoret 2 ...................... <tList, tmember.modelResource[i].name>
+  [418] objcall 42 .............................. tList.add(tmember.modelResource[i].name)
+  [420] pushint8 1
+  [422] getlocal 5
+  [424] add
+  [425] setlocal 5
+  [427] endrepeat [293]
+  [429] getlocal 4 .............................. <tList>
+  [431] pusharglistnoret 1 ...................... <tList>
+  [433] extcall 52 .............................. return tList
+  [435] getlocal 1 .............................. <tType>
+  [437] pushsymb 1156 ........................... <#motion>
+  [440] eq ...................................... <tType = #motion>
+  [441] jmpifz [596] ............................ if tType = #motion then
+  [444] pushint8 1 .............................. <1>
+  [446] setlocal 5
+  [448] getlocal 5
+  [450] getlocal 0 .............................. <tmember>
+  [452] pushsymb 1156 ........................... <#motion>
+  [455] pusharglist 2 ........................... <tmember, #motion>
+  [457] objcall 129 ............................. <tmember.motion.count>
+  [459] lteq
+  [460] jmpifz [590] ............................ repeat with i = 1 to tmember.motion.count
+  [463] getlocal 0 .............................. <tmember>
+  [465] pushsymb 1156 ........................... <#motion>
+  [468] getlocal 5 .............................. <i>
+  [470] pusharglist 3 ........................... <tmember, #motion, i>
+  [472] objcall 102 ............................. <tmember.motion[i]>
+  [474] getobjprop 235 .......................... <tmember.motion[i].name>
+  [476] pushcons 8 .............................. <"DefaultMotion">
+  [478] eq ...................................... <tmember.motion[i].name = "DefaultMotion">
+  [479] jmpifz [485] ............................ if tmember.motion[i].name = "DefaultMotion" then
+  [482] jmp [581] ............................... next repeat
+  [485] getlocal 2 .............................. <tString>
+  [487] pushcons 0 .............................. <"*.*">
+  [489] eq ...................................... <tString = "*.*">
+  [490] jmpifz [515] ............................ if tString = "*.*" then
+  [493] getlocal 4 .............................. <tList>
+  [495] getlocal 0 .............................. <tmember>
+  [497] pushsymb 1156 ........................... <#motion>
+  [500] getlocal 5 .............................. <i>
+  [502] pusharglist 3 ........................... <tmember, #motion, i>
+  [504] objcall 102 ............................. <tmember.motion[i]>
+  [506] getobjprop 235 .......................... <tmember.motion[i].name>
+  [508] pusharglistnoret 2 ...................... <tList, tmember.motion[i].name>
+  [510] objcall 42 .............................. tList.add(tmember.motion[i].name)
+  [512] jmp [581] ............................... next repeat
+  [515] getlocal 0 .............................. <tmember>
+  [517] pushsymb 1156 ........................... <#motion>
+  [520] getlocal 5 .............................. <i>
+  [522] pusharglist 3 ........................... <tmember, #motion, i>
+  [524] objcall 102 ............................. <tmember.motion[i]>
+  [526] getobjprop 235 .......................... <tmember.motion[i].name>
+  [528] getlocal 2 .............................. <tString>
+  [530] containsstr ............................. <tmember.motion[i].name contains tString>
+  [531] jmpifz [581] ............................ if tmember.motion[i].name contains tString then
+  [534] getlocal 3 .............................. <tRef>
+  [536] pushint8 1 .............................. <1>
+  [538] eq ...................................... <tRef = 1>
+  [539] jmpifz [562] ............................ if tRef = 1 then
+  [542] getlocal 4 .............................. <tList>
+  [544] getlocal 0 .............................. <tmember>
+  [546] pushsymb 1156 ........................... <#motion>
+  [549] getlocal 5 .............................. <i>
+  [551] pusharglist 3 ........................... <tmember, #motion, i>
+  [553] objcall 70 .............................. <tmember.motion[i]>
+  [555] pusharglistnoret 2 ...................... <tList, tmember.motion[i]>
+  [557] objcall 42 .............................. tList.add(tmember.motion[i])
+  [559] jmp [581] ............................... next repeat
+  [562] getlocal 4 .............................. <tList>
+  [564] getlocal 0 .............................. <tmember>
+  [566] pushsymb 1156 ........................... <#motion>
+  [569] getlocal 5 .............................. <i>
+  [571] pusharglist 3 ........................... <tmember, #motion, i>
+  [573] objcall 102 ............................. <tmember.motion[i]>
+  [575] getobjprop 235 .......................... <tmember.motion[i].name>
+  [577] pusharglistnoret 2 ...................... <tList, tmember.motion[i].name>
+  [579] objcall 42 .............................. tList.add(tmember.motion[i].name)
+  [581] pushint8 1
+  [583] getlocal 5
+  [585] add
+  [586] setlocal 5
+  [588] endrepeat [448]
+  [590] getlocal 4 .............................. <tList>
+  [592] pusharglistnoret 1 ...................... <tList>
+  [594] extcall 52 .............................. return tList
+  [596] getlocal 1 .............................. <tType>
+  [598] pushsymb 208 ............................ <#shader>
+  [600] eq ...................................... <tType = #shader>
+  [601] jmpifz [750] ............................ if tType = #shader then
+  [604] pushint8 1 .............................. <1>
+  [606] setlocal 5
+  [608] getlocal 5
+  [610] getlocal 0 .............................. <tmember>
+  [612] pushsymb 208 ............................ <#shader>
+  [614] pusharglist 2 ........................... <tmember, #shader>
+  [616] objcall 129 ............................. <tmember.shader.count>
+  [618] lteq
+  [619] jmpifz [744] ............................ repeat with i = 1 to tmember.shader.count
+  [622] getlocal 0 .............................. <tmember>
+  [624] pushsymb 208 ............................ <#shader>
+  [626] getlocal 5 .............................. <i>
+  [628] pusharglist 3 ........................... <tmember, #shader, i>
+  [630] objcall 102 ............................. <tmember.shader[i]>
+  [632] getobjprop 235 .......................... <tmember.shader[i].name>
+  [634] pushcons 9 .............................. <"DefaultShader">
+  [636] eq ...................................... <tmember.shader[i].name = "DefaultShader">
+  [637] jmpifz [643] ............................ if tmember.shader[i].name = "DefaultShader" then
+  [640] jmp [735] ............................... next repeat
+  [643] getlocal 2 .............................. <tString>
+  [645] pushcons 0 .............................. <"*.*">
+  [647] eq ...................................... <tString = "*.*">
+  [648] jmpifz [672] ............................ if tString = "*.*" then
+  [651] getlocal 4 .............................. <tList>
+  [653] getlocal 0 .............................. <tmember>
+  [655] pushsymb 208 ............................ <#shader>
+  [657] getlocal 5 .............................. <i>
+  [659] pusharglist 3 ........................... <tmember, #shader, i>
+  [661] objcall 102 ............................. <tmember.shader[i]>
+  [663] getobjprop 235 .......................... <tmember.shader[i].name>
+  [665] pusharglistnoret 2 ...................... <tList, tmember.shader[i].name>
+  [667] objcall 42 .............................. tList.add(tmember.shader[i].name)
+  [669] jmp [735] ............................... next repeat
+  [672] getlocal 0 .............................. <tmember>
+  [674] pushsymb 208 ............................ <#shader>
+  [676] getlocal 5 .............................. <i>
+  [678] pusharglist 3 ........................... <tmember, #shader, i>
+  [680] objcall 102 ............................. <tmember.shader[i]>
+  [682] getobjprop 235 .......................... <tmember.shader[i].name>
+  [684] getlocal 2 .............................. <tString>
+  [686] containsstr ............................. <tmember.shader[i].name contains tString>
+  [687] jmpifz [735] ............................ if tmember.shader[i].name contains tString then
+  [690] getlocal 3 .............................. <tRef>
+  [692] pushint8 1 .............................. <1>
+  [694] eq ...................................... <tRef = 1>
+  [695] jmpifz [717] ............................ if tRef = 1 then
+  [698] getlocal 4 .............................. <tList>
+  [700] getlocal 0 .............................. <tmember>
+  [702] pushsymb 208 ............................ <#shader>
+  [704] getlocal 5 .............................. <i>
+  [706] pusharglist 3 ........................... <tmember, #shader, i>
+  [708] objcall 70 .............................. <tmember.shader[i]>
+  [710] pusharglistnoret 2 ...................... <tList, tmember.shader[i]>
+  [712] objcall 42 .............................. tList.add(tmember.shader[i])
+  [714] jmp [735] ............................... next repeat
+  [717] getlocal 4 .............................. <tList>
+  [719] getlocal 0 .............................. <tmember>
+  [721] pushsymb 208 ............................ <#shader>
+  [723] getlocal 5 .............................. <i>
+  [725] pusharglist 3 ........................... <tmember, #shader, i>
+  [727] objcall 102 ............................. <tmember.shader[i]>
+  [729] getobjprop 235 .......................... <tmember.shader[i].name>
+  [731] pusharglistnoret 2 ...................... <tList, tmember.shader[i].name>
+  [733] objcall 42 .............................. tList.add(tmember.shader[i].name)
+  [735] pushint8 1
+  [737] getlocal 5
+  [739] add
+  [740] setlocal 5
+  [742] endrepeat [608]
+  [744] getlocal 4 .............................. <tList>
+  [746] pusharglistnoret 1 ...................... <tList>
+  [748] extcall 52 .............................. return tList
+  [750] getlocal 1 .............................. <tType>
+  [752] pushsymb 218 ............................ <#texture>
+  [754] eq ...................................... <tType = #texture>
+  [755] jmpifz [904] ............................ if tType = #texture then
+  [758] pushint8 1 .............................. <1>
+  [760] setlocal 5
+  [762] getlocal 5
+  [764] getlocal 0 .............................. <tmember>
+  [766] pushsymb 218 ............................ <#texture>
+  [768] pusharglist 2 ........................... <tmember, #texture>
+  [770] objcall 129 ............................. <tmember.texture.count>
+  [772] lteq
+  [773] jmpifz [898] ............................ repeat with i = 1 to tmember.texture.count
+  [776] getlocal 0 .............................. <tmember>
+  [778] pushsymb 218 ............................ <#texture>
+  [780] getlocal 5 .............................. <i>
+  [782] pusharglist 3 ........................... <tmember, #texture, i>
+  [784] objcall 102 ............................. <tmember.texture[i]>
+  [786] getobjprop 235 .......................... <tmember.texture[i].name>
+  [788] pushcons 10 ............................. <"DefaultTexture">
+  [790] eq ...................................... <tmember.texture[i].name = "DefaultTexture">
+  [791] jmpifz [797] ............................ if tmember.texture[i].name = "DefaultTexture" then
+  [794] jmp [889] ............................... next repeat
+  [797] getlocal 2 .............................. <tString>
+  [799] pushcons 0 .............................. <"*.*">
+  [801] eq ...................................... <tString = "*.*">
+  [802] jmpifz [826] ............................ if tString = "*.*" then
+  [805] getlocal 4 .............................. <tList>
+  [807] getlocal 0 .............................. <tmember>
+  [809] pushsymb 218 ............................ <#texture>
+  [811] getlocal 5 .............................. <i>
+  [813] pusharglist 3 ........................... <tmember, #texture, i>
+  [815] objcall 102 ............................. <tmember.texture[i]>
+  [817] getobjprop 235 .......................... <tmember.texture[i].name>
+  [819] pusharglistnoret 2 ...................... <tList, tmember.texture[i].name>
+  [821] objcall 42 .............................. tList.add(tmember.texture[i].name)
+  [823] jmp [889] ............................... next repeat
+  [826] getlocal 0 .............................. <tmember>
+  [828] pushsymb 218 ............................ <#texture>
+  [830] getlocal 5 .............................. <i>
+  [832] pusharglist 3 ........................... <tmember, #texture, i>
+  [834] objcall 102 ............................. <tmember.texture[i]>
+  [836] getobjprop 235 .......................... <tmember.texture[i].name>
+  [838] getlocal 2 .............................. <tString>
+  [840] containsstr ............................. <tmember.texture[i].name contains tString>
+  [841] jmpifz [889] ............................ if tmember.texture[i].name contains tString then
+  [844] getlocal 3 .............................. <tRef>
+  [846] pushint8 1 .............................. <1>
+  [848] eq ...................................... <tRef = 1>
+  [849] jmpifz [871] ............................ if tRef = 1 then
+  [852] getlocal 4 .............................. <tList>
+  [854] getlocal 0 .............................. <tmember>
+  [856] pushsymb 218 ............................ <#texture>
+  [858] getlocal 5 .............................. <i>
+  [860] pusharglist 3 ........................... <tmember, #texture, i>
+  [862] objcall 70 .............................. <tmember.texture[i]>
+  [864] pusharglistnoret 2 ...................... <tList, tmember.texture[i]>
+  [866] objcall 42 .............................. tList.add(tmember.texture[i])
+  [868] jmp [889] ............................... next repeat
+  [871] getlocal 4 .............................. <tList>
+  [873] getlocal 0 .............................. <tmember>
+  [875] pushsymb 218 ............................ <#texture>
+  [877] getlocal 5 .............................. <i>
+  [879] pusharglist 3 ........................... <tmember, #texture, i>
+  [881] objcall 102 ............................. <tmember.texture[i]>
+  [883] getobjprop 235 .......................... <tmember.texture[i].name>
+  [885] pusharglistnoret 2 ...................... <tList, tmember.texture[i].name>
+  [887] objcall 42 .............................. tList.add(tmember.texture[i].name)
+  [889] pushint8 1
+  [891] getlocal 5
+  [893] add
+  [894] setlocal 5
+  [896] endrepeat [762]
+  [898] getlocal 4 .............................. <tList>
+  [900] pusharglistnoret 1 ...................... <tList>
+  [902] extcall 52 .............................. return tList
+  [904] getlocal 1 .............................. <tType>
+  [906] pushsymb 1154 ........................... <#light>
+  [909] eq ...................................... <tType = #light>
+  [910] jmpifz [1043] ........................... if tType = #light then
+  [913] pushint8 1 .............................. <1>
+  [915] setlocal 5
+  [917] getlocal 5
+  [919] getlocal 0 .............................. <tmember>
+  [921] pushsymb 1154 ........................... <#light>
+  [924] pusharglist 2 ........................... <tmember, #light>
+  [926] objcall 129 ............................. <tmember.light.count>
+  [928] lteq
+  [929] jmpifz [1037] ........................... repeat with i = 1 to tmember.light.count
+  [932] getlocal 2 .............................. <tString>
+  [934] pushcons 0 .............................. <"*.*">
+  [936] eq ...................................... <tString = "*.*">
+  [937] jmpifz [962] ............................ if tString = "*.*" then
+  [940] getlocal 4 .............................. <tList>
+  [942] getlocal 0 .............................. <tmember>
+  [944] pushsymb 1154 ........................... <#light>
+  [947] getlocal 5 .............................. <i>
+  [949] pusharglist 3 ........................... <tmember, #light, i>
+  [951] objcall 102 ............................. <tmember.light[i]>
+  [953] getobjprop 235 .......................... <tmember.light[i].name>
+  [955] pusharglistnoret 2 ...................... <tList, tmember.light[i].name>
+  [957] objcall 42 .............................. tList.add(tmember.light[i].name)
+  [959] jmp [1028] .............................. next repeat
+  [962] getlocal 0 .............................. <tmember>
+  [964] pushsymb 1154 ........................... <#light>
+  [967] getlocal 5 .............................. <i>
+  [969] pusharglist 3 ........................... <tmember, #light, i>
+  [971] objcall 102 ............................. <tmember.light[i]>
+  [973] getobjprop 235 .......................... <tmember.light[i].name>
+  [975] getlocal 2 .............................. <tString>
+  [977] containsstr ............................. <tmember.light[i].name contains tString>
+  [978] jmpifz [1028] ........................... if tmember.light[i].name contains tString then
+  [981] getlocal 3 .............................. <tRef>
+  [983] pushint8 1 .............................. <1>
+  [985] eq ...................................... <tRef = 1>
+  [986] jmpifz [1009] ........................... if tRef = 1 then
+  [989] getlocal 4 .............................. <tList>
+  [991] getlocal 0 .............................. <tmember>
+  [993] pushsymb 1154 ........................... <#light>
+  [996] getlocal 5 .............................. <i>
+  [998] pusharglist 3 ........................... <tmember, #light, i>
+  [1000] objcall 70 ............................. <tmember.light[i]>
+  [1002] pusharglistnoret 2 ..................... <tList, tmember.light[i]>
+  [1004] objcall 42 ............................. tList.add(tmember.light[i])
+  [1006] jmp [1028] ............................. next repeat
+  [1009] getlocal 4 ............................. <tList>
+  [1011] getlocal 0 ............................. <tmember>
+  [1013] pushsymb 1154 .......................... <#light>
+  [1016] getlocal 5 ............................. <i>
+  [1018] pusharglist 3 .......................... <tmember, #light, i>
+  [1020] objcall 102 ............................ <tmember.light[i]>
+  [1022] getobjprop 235 ......................... <tmember.light[i].name>
+  [1024] pusharglistnoret 2 ..................... <tList, tmember.light[i].name>
+  [1026] objcall 42 ............................. tList.add(tmember.light[i].name)
+  [1028] pushint8 1
+  [1030] getlocal 5
+  [1032] add
+  [1033] setlocal 5
+  [1035] endrepeat [917]
+  [1037] getlocal 4 ............................. <tList>
+  [1039] pusharglistnoret 1 ..................... <tList>
+  [1041] extcall 52 ............................. return tList
+  [1043] getlocal 1 ............................. <tType>
+  [1045] pushsymb 298 ........................... <#camera>
+  [1048] eq ..................................... <tType = #camera>
+  [1049] jmpifz [1204] .......................... if tType = #camera then
+  [1052] pushint8 1 ............................. <1>
+  [1054] setlocal 5
+  [1056] getlocal 5
+  [1058] getlocal 0 ............................. <tmember>
+  [1060] pushsymb 298 ........................... <#camera>
+  [1063] pusharglist 2 .......................... <tmember, #camera>
+  [1065] objcall 129 ............................ <tmember.camera.count>
+  [1067] lteq
+  [1068] jmpifz [1198] .......................... repeat with i = 1 to tmember.camera.count
+  [1071] getlocal 0 ............................. <tmember>
+  [1073] pushsymb 298 ........................... <#camera>
+  [1076] getlocal 5 ............................. <i>
+  [1078] pusharglist 3 .......................... <tmember, #camera, i>
+  [1080] objcall 102 ............................ <tmember.camera[i]>
+  [1082] getobjprop 235 ......................... <tmember.camera[i].name>
+  [1084] pushcons 11 ............................ <"DefaultView">
+  [1086] eq ..................................... <tmember.camera[i].name = "DefaultView">
+  [1087] jmpifz [1093] .......................... if tmember.camera[i].name = "DefaultView" then
+  [1090] jmp [1189] ............................. next repeat
+  [1093] getlocal 2 ............................. <tString>
+  [1095] pushcons 0 ............................. <"*.*">
+  [1097] eq ..................................... <tString = "*.*">
+  [1098] jmpifz [1123] .......................... if tString = "*.*" then
+  [1101] getlocal 4 ............................. <tList>
+  [1103] getlocal 0 ............................. <tmember>
+  [1105] pushsymb 298 ........................... <#camera>
+  [1108] getlocal 5 ............................. <i>
+  [1110] pusharglist 3 .......................... <tmember, #camera, i>
+  [1112] objcall 102 ............................ <tmember.camera[i]>
+  [1114] getobjprop 235 ......................... <tmember.camera[i].name>
+  [1116] pusharglistnoret 2 ..................... <tList, tmember.camera[i].name>
+  [1118] objcall 42 ............................. tList.add(tmember.camera[i].name)
+  [1120] jmp [1189] ............................. next repeat
+  [1123] getlocal 0 ............................. <tmember>
+  [1125] pushsymb 298 ........................... <#camera>
+  [1128] getlocal 5 ............................. <i>
+  [1130] pusharglist 3 .......................... <tmember, #camera, i>
+  [1132] objcall 102 ............................ <tmember.camera[i]>
+  [1134] getobjprop 235 ......................... <tmember.camera[i].name>
+  [1136] getlocal 2 ............................. <tString>
+  [1138] containsstr ............................ <tmember.camera[i].name contains tString>
+  [1139] jmpifz [1189] .......................... if tmember.camera[i].name contains tString then
+  [1142] getlocal 3 ............................. <tRef>
+  [1144] pushint8 1 ............................. <1>
+  [1146] eq ..................................... <tRef = 1>
+  [1147] jmpifz [1170] .......................... if tRef = 1 then
+  [1150] getlocal 4 ............................. <tList>
+  [1152] getlocal 0 ............................. <tmember>
+  [1154] pushsymb 298 ........................... <#camera>
+  [1157] getlocal 5 ............................. <i>
+  [1159] pusharglist 3 .......................... <tmember, #camera, i>
+  [1161] objcall 70 ............................. <tmember.camera[i]>
+  [1163] pusharglistnoret 2 ..................... <tList, tmember.camera[i]>
+  [1165] objcall 42 ............................. tList.add(tmember.camera[i])
+  [1167] jmp [1189] ............................. next repeat
+  [1170] getlocal 4 ............................. <tList>
+  [1172] getlocal 0 ............................. <tmember>
+  [1174] pushsymb 298 ........................... <#camera>
+  [1177] getlocal 5 ............................. <i>
+  [1179] pusharglist 3 .......................... <tmember, #camera, i>
+  [1181] objcall 102 ............................ <tmember.camera[i]>
+  [1183] getobjprop 235 ......................... <tmember.camera[i].name>
+  [1185] pusharglistnoret 2 ..................... <tList, tmember.camera[i].name>
+  [1187] objcall 42 ............................. tList.add(tmember.camera[i].name)
+  [1189] pushint8 1
+  [1191] getlocal 5
+  [1193] add
+  [1194] setlocal 5
+  [1196] endrepeat [1056]
+  [1198] getlocal 4 ............................. <tList>
+  [1200] pusharglistnoret 1 ..................... <tList>
+  [1202] extcall 52 ............................. return tList
+  [1204] getlocal 1 ............................. <tType>
+  [1206] pushsymb 65 ............................ <#group>
+  [1208] eq ..................................... <tType = #group>
+  [1209] jmpifz [1358] .......................... if tType = #group then
+  [1212] pushint8 1 ............................. <1>
+  [1214] setlocal 5
+  [1216] getlocal 5
+  [1218] getlocal 0 ............................. <tmember>
+  [1220] pushsymb 65 ............................ <#group>
+  [1222] pusharglist 2 .......................... <tmember, #group>
+  [1224] objcall 129 ............................ <tmember.group.count>
+  [1226] lteq
+  [1227] jmpifz [1352] .......................... repeat with i = 1 to tmember.group.count
+  [1230] getlocal 0 ............................. <tmember>
+  [1232] pushsymb 65 ............................ <#group>
+  [1234] getlocal 5 ............................. <i>
+  [1236] pusharglist 3 .......................... <tmember, #group, i>
+  [1238] objcall 102 ............................ <tmember.group[i]>
+  [1240] getobjprop 235 ......................... <tmember.group[i].name>
+  [1242] pushcons 2 ............................. <"World">
+  [1244] eq ..................................... <tmember.group[i].name = "World">
+  [1245] jmpifz [1251] .......................... if tmember.group[i].name = "World" then
+  [1248] jmp [1343] ............................. next repeat
+  [1251] getlocal 2 ............................. <tString>
+  [1253] pushcons 0 ............................. <"*.*">
+  [1255] eq ..................................... <tString = "*.*">
+  [1256] jmpifz [1280] .......................... if tString = "*.*" then
+  [1259] getlocal 4 ............................. <tList>
+  [1261] getlocal 0 ............................. <tmember>
+  [1263] pushsymb 65 ............................ <#group>
+  [1265] getlocal 5 ............................. <i>
+  [1267] pusharglist 3 .......................... <tmember, #group, i>
+  [1269] objcall 102 ............................ <tmember.group[i]>
+  [1271] getobjprop 235 ......................... <tmember.group[i].name>
+  [1273] pusharglistnoret 2 ..................... <tList, tmember.group[i].name>
+  [1275] objcall 42 ............................. tList.add(tmember.group[i].name)
+  [1277] jmp [1343] ............................. next repeat
+  [1280] getlocal 0 ............................. <tmember>
+  [1282] pushsymb 65 ............................ <#group>
+  [1284] getlocal 5 ............................. <i>
+  [1286] pusharglist 3 .......................... <tmember, #group, i>
+  [1288] objcall 102 ............................ <tmember.group[i]>
+  [1290] getobjprop 235 ......................... <tmember.group[i].name>
+  [1292] getlocal 2 ............................. <tString>
+  [1294] containsstr ............................ <tmember.group[i].name contains tString>
+  [1295] jmpifz [1343] .......................... if tmember.group[i].name contains tString then
+  [1298] getlocal 3 ............................. <tRef>
+  [1300] pushint8 1 ............................. <1>
+  [1302] eq ..................................... <tRef = 1>
+  [1303] jmpifz [1325] .......................... if tRef = 1 then
+  [1306] getlocal 4 ............................. <tList>
+  [1308] getlocal 0 ............................. <tmember>
+  [1310] pushsymb 65 ............................ <#group>
+  [1312] getlocal 5 ............................. <i>
+  [1314] pusharglist 3 .......................... <tmember, #group, i>
+  [1316] objcall 70 ............................. <tmember.group[i]>
+  [1318] pusharglistnoret 2 ..................... <tList, tmember.group[i]>
+  [1320] objcall 42 ............................. tList.add(tmember.group[i])
+  [1322] jmp [1343] ............................. next repeat
+  [1325] getlocal 4 ............................. <tList>
+  [1327] getlocal 0 ............................. <tmember>
+  [1329] pushsymb 65 ............................ <#group>
+  [1331] getlocal 5 ............................. <i>
+  [1333] pusharglist 3 .......................... <tmember, #group, i>
+  [1335] objcall 102 ............................ <tmember.group[i]>
+  [1337] getobjprop 235 ......................... <tmember.group[i].name>
+  [1339] pusharglistnoret 2 ..................... <tList, tmember.group[i].name>
+  [1341] objcall 42 ............................. tList.add(tmember.group[i].name)
+  [1343] pushint8 1
+  [1345] getlocal 5
+  [1347] add
+  [1348] setlocal 5
+  [1350] endrepeat [1216]
+  [1352] getlocal 4 ............................. <tList>
+  [1354] pusharglistnoret 1 ..................... <tList>
+  [1356] extcall 52 ............................. return tList
+  [1358] ret
+end
+
+on SimpleShadow tTarget, tDataList
+  [  0] getparam 0 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 64 .............................. <member(tTarget)>
+  [  6] setlocal 0 .............................. tmember = member(tTarget)
+  [  8] getlocal 0 .............................. <tmember>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <tmember = VOID>
+  [ 15] jmpifz [ 19] ............................ if tmember = VOID then
+  [ 18] ret ..................................... exit
+  [ 19] getparam 1 .............................. <tDataList>
+  [ 21] getobjprop 122 .......................... <tDataList.ilk>
+  [ 23] pushsymb 67 ............................. <#string>
+  [ 25] eq ...................................... <tDataList.ilk = #string>
+  [ 26] jmpifz [ 38] ............................ if tDataList.ilk = #string then
+  [ 29] getparam 1 .............................. <tDataList>
+  [ 31] pusharglist 1 ........................... <tDataList>
+  [ 33] extcall 503 ............................. <value(tDataList)>
+  [ 36] setparam 1 .............................. tDataList = value(tDataList)
+  [ 38] getparam 1 .............................. <tDataList>
+  [ 40] getobjprop 122 .......................... <tDataList.ilk>
+  [ 42] pushsymb 541 ............................ <#propList>
+  [ 45] nteq .................................... <tDataList.ilk <> #propList>
+  [ 46] jmpifz [ 50] ............................ if tDataList.ilk <> #propList then
+  [ 49] ret ..................................... exit
+  [ 50] getlocal 0 .............................. <tmember>
+  [ 52] pushcons 12 ............................. <"SimpleShadow">
+  [ 54] pusharglist 2 ........................... <tmember, "SimpleShadow">
+  [ 56] objcall 71 .............................. <tmember.model("SimpleShadow")>
+  [ 58] setlocal 1 .............................. tOrigModel = tmember.model("SimpleShadow")
+  [ 60] getlocal 1 .............................. <tOrigModel>
+  [ 62] pusharglist 0 ........................... <>
+  [ 64] extcall 40 .............................. <VOID>
+  [ 66] eq ...................................... <tOrigModel = VOID>
+  [ 67] jmpifz [167] ............................ if tOrigModel = VOID then
+  [ 70] pushcons 12 ............................. <"SimpleShadow">
+  [ 72] pusharglist 1 ........................... <"SimpleShadow">
+  [ 74] extcall 64 .............................. <member("SimpleShadow")>
+  [ 76] setlocal 2 .............................. tSSMember = member("SimpleShadow")
+  [ 78] getlocal 2 .............................. <tSSMember>
+  [ 80] pusharglist 0 ........................... <>
+  [ 82] extcall 40 .............................. <VOID>
+  [ 84] eq ...................................... <tSSMember = VOID>
+  [ 85] jmpifz [ 89] ............................ if tSSMember = VOID then
+  [ 88] ret ..................................... exit
+  [ 89] pushcons 12 ............................. <"SimpleShadow">
+  [ 91] pushsymb 59 ............................. <#fileName>
+  [ 93] pushcons 13 ............................. <"SimpleShadow_Texture">
+  [ 95] pusharglist 2 ........................... <[#fileName: "SimpleShadow_Texture"]>
+  [ 97] pushproplist ............................ <[#fileName: "SimpleShadow_Texture"]>
+  [ 98] pusharglistnoret 2 ...................... <"SimpleShadow", [#fileName: "SimpleShadow_Texture"]>
+  [100] extcall 681 ............................. createTexture("SimpleShadow", [#fileName: "SimpleShadow_Texture"])
+  [103] getlocal 2 .............................. <tSSMember>
+  [105] pushcons 13 ............................. <"SimpleShadow_Texture">
+  [107] pusharglist 2 ........................... <tSSMember, "SimpleShadow_Texture">
+  [109] objcall 218 ............................. <tSSMember.texture("SimpleShadow_Texture")>
+  [111] pusharglist 0 ........................... <>
+  [113] extcall 40 .............................. <VOID>
+  [115] eq ...................................... <tSSMember.texture("SimpleShadow_Texture") = VOID>
+  [116] jmpifz [137] ............................ if tSSMember.texture("SimpleShadow_Texture") = VOID then
+  [119] getlocal 2 .............................. <tSSMember>
+  [121] pushcons 12 ............................. <"SimpleShadow">
+  [123] pusharglist 2 ........................... <tSSMember, "SimpleShadow">
+  [125] objcall 71 .............................. <tSSMember.model("SimpleShadow")>
+  [127] getlocal 2 .............................. <tSSMember>
+  [129] pushcons 9 .............................. <"DefaultShader">
+  [131] pusharglist 2 ........................... <tSSMember, "DefaultShader">
+  [133] objcall 208 ............................. <tSSMember.shader("DefaultShader")>
+  [135] setobjprop 208 .......................... tSSMember.model("SimpleShadow").shader = tSSMember.shader("DefaultShader")
+  [137] getlocal 0 .............................. <tmember>
+  [139] pushcons 12 ............................. <"SimpleShadow">
+  [141] pushcons 12 ............................. <"SimpleShadow">
+  [143] getlocal 2 .............................. <tSSMember>
+  [145] pusharglistnoret 4 ...................... <tmember, "SimpleShadow", "SimpleShadow", tSSMember>
+  [147] objcall 1169 ............................ tmember.cloneModelFromCastmember("SimpleShadow", "SimpleShadow", tSSMember)
+  [150] getlocal 0 .............................. <tmember>
+  [152] pushcons 12 ............................. <"SimpleShadow">
+  [154] pusharglist 2 ........................... <tmember, "SimpleShadow">
+  [156] objcall 71 .............................. <tmember.model("SimpleShadow")>
+  [158] setlocal 1 .............................. tOrigModel = tmember.model("SimpleShadow")
+  [160] getlocal 1 .............................. <tOrigModel>
+  [162] pusharglistnoret 1 ...................... <tOrigModel>
+  [164] objcall 662 ............................. tOrigModel.removeFromWorld()
+  [167] pusharglist 0 ........................... <>
+  [169] extcall 40 .............................. <VOID>
+  [171] setlocal 3 .............................. tmodel = VOID
+  [173] getparam 1 .............................. <tDataList>
+  [175] pushsymb 71 ............................. <#model>
+  [177] pusharglist 2 ........................... <tDataList, #model>
+  [179] extcall 542 ............................. <getaProp(tDataList, #model)>
+  [182] getobjprop 122 .......................... <getaProp(tDataList, #model).ilk>
+  [184] pushsymb 71 ............................. <#model>
+  [186] eq ...................................... <getaProp(tDataList, #model).ilk = #model>
+  [187] jmpifz [200] ............................ if getaProp(tDataList, #model).ilk = #model then
+  [190] getparam 1 .............................. <tDataList>
+  [192] pushsymb 71 ............................. <#model>
+  [194] pusharglist 2 ........................... <tDataList, #model>
+  [196] objcall 105 ............................. <tDataList[#model]>
+  [198] setlocal 3 .............................. tmodel = tDataList[#model]
+  [200] getlocal 3 .............................. <tmodel>
+  [202] pusharglist 0 ........................... <>
+  [204] extcall 40 .............................. <VOID>
+  [206] eq ...................................... <tmodel = VOID>
+  [207] jmpifz [211] ............................ if tmodel = VOID then
+  [210] ret ..................................... exit
+  [211] pusharglist 0 ........................... <>
+  [213] extcall 40 .............................. <VOID>
+  [215] setlocal 4 .............................. tSize = VOID
+  [217] getparam 1 .............................. <tDataList>
+  [219] pushsymb 201 ............................ <#size>
+  [221] pusharglist 2 ........................... <tDataList, #size>
+  [223] extcall 542 ............................. <getaProp(tDataList, #size)>
+  [226] getobjprop 122 .......................... <getaProp(tDataList, #size).ilk>
+  [228] pushsymb 544 ............................ <#float>
+  [231] eq ...................................... <getaProp(tDataList, #size).ilk = #float>
+  [232] jmpifz [245] ............................ if getaProp(tDataList, #size).ilk = #float then
+  [235] getparam 1 .............................. <tDataList>
+  [237] pushsymb 201 ............................ <#size>
+  [239] pusharglist 2 ........................... <tDataList, #size>
+  [241] objcall 105 ............................. <tDataList[#size]>
+  [243] setlocal 4 .............................. tSize = tDataList[#size]
+  [245] getlocal 4 .............................. <tSize>
+  [247] pusharglist 0 ........................... <>
+  [249] extcall 40 .............................. <VOID>
+  [251] eq ...................................... <tSize = VOID>
+  [252] jmpifz [268] ............................ if tSize = VOID then
+  [255] getlocal 3 .............................. <tmodel>
+  [257] pushsymb 1170 ........................... <#boundingSphere>
+  [260] pushint8 2 .............................. <2>
+  [262] pusharglist 3 ........................... <tmodel, #boundingSphere, 2>
+  [264] objcall 70 .............................. <tmodel.boundingSphere[2]>
+  [266] setlocal 4 .............................. tSize = tmodel.boundingSphere[2]
+  [268] pushfloat32 1.0 ......................... <1.0>
+  [273] setlocal 5 .............................. tSizeMulti = 1.0
+  [275] getparam 1 .............................. <tDataList>
+  [277] pushsymb 1171 ........................... <#sizeMulti>
+  [280] pusharglist 2 ........................... <tDataList, #sizeMulti>
+  [282] extcall 542 ............................. <getaProp(tDataList, #sizeMulti)>
+  [285] getobjprop 122 .......................... <getaProp(tDataList, #sizeMulti).ilk>
+  [287] pushsymb 544 ............................ <#float>
+  [290] eq ...................................... <getaProp(tDataList, #sizeMulti).ilk = #float>
+  [291] jmpifz [305] ............................ if getaProp(tDataList, #sizeMulti).ilk = #float then
+  [294] getparam 1 .............................. <tDataList>
+  [296] pushsymb 1171 ........................... <#sizeMulti>
+  [299] pusharglist 2 ........................... <tDataList, #sizeMulti>
+  [301] objcall 105 ............................. <tDataList[#sizeMulti]>
+  [303] setlocal 5 .............................. tSizeMulti = tDataList[#sizeMulti]
+  [305] pushfloat32 0.0 ......................... <0.0>
+  [310] pushfloat32 0.0 ......................... <0.0>
+  [315] pushfloat32 0.0 ......................... <0.0>
+  [320] pusharglist 3 ........................... <0.0, 0.0, 0.0>
+  [322] extcall 212 ............................. <vector(0.0, 0.0, 0.0)>
+  [324] getlocal 4 .............................. <tSize>
+  [326] add ..................................... <vector(0.0, 0.0, 0.0) + tSize>
+  [327] getlocal 5 .............................. <tSizeMulti>
+  [329] mul ..................................... <(vector(0.0, 0.0, 0.0) + tSize) * tSizeMulti>
+  [330] setlocal 6 .............................. tScale = (vector(0.0, 0.0, 0.0) + tSize) * tSizeMulti
+  [332] getlocal 0 .............................. <tmember>
+  [334] getlocal 3 .............................. <tmodel>
+  [336] getobjprop 235 .......................... <tmodel.name>
+  [338] pushcons 12 ............................. <"SimpleShadow">
+  [340] joinstr ................................. <tmodel.name & "SimpleShadow">
+  [341] getlocal 0 .............................. <tmember>
+  [343] pushcons 12 ............................. <"SimpleShadow">
+  [345] pusharglist 2 ........................... <tmember, "SimpleShadow">
+  [347] objcall 72 .............................. <tmember.modelResource("SimpleShadow")>
+  [349] pusharglist 3 ........................... <tmember, tmodel.name & "SimpleShadow", tmember.modelResource("SimpleShadow")>
+  [351] objcall 892 ............................. <tmember.newModel(tmodel.name & "SimpleShadow", tmember.modelResource("SimpleShadow"))>
+  [354] setlocal 7 .............................. tSimpleShadow = tmember.newModel(tmodel.name & "SimpleShadow", tmember.modelResource("SimpleShadow"))
+  [356] getlocal 7 .............................. <tSimpleShadow>
+  [358] pusharglistnoret 1 ...................... <tSimpleShadow>
+  [360] objcall 641 ............................. tSimpleShadow.addToWorld()
+  [363] getlocal 7 .............................. <tSimpleShadow>
+  [365] getlocal 1 .............................. <tOrigModel>
+  [367] getobjprop 208 .......................... <tOrigModel.shader>
+  [369] setobjprop 208 .......................... tSimpleShadow.shader = tOrigModel.shader
+  [371] getlocal 7 .............................. <tSimpleShadow>
+  [373] getchainedprop 214 ...................... <tSimpleShadow.transform>
+  [375] getlocal 6 .............................. <tScale>
+  [377] setobjprop 307 .......................... tSimpleShadow.transform.scale = tScale
+  [380] getlocal 7 .............................. <tSimpleShadow>
+  [382] pushzero ................................ <0>
+  [383] pushzero ................................ <0>
+  [384] pushint8 1 .............................. <1>
+  [386] pusharglist 3 ........................... <0, 0, 1>
+  [388] extcall 212 ............................. <vector(0, 0, 1)>
+  [390] pushzero ................................ <0>
+  [391] pushint8 1 .............................. <1>
+  [393] pushzero ................................ <0>
+  [394] pusharglist 3 ........................... <0, 1, 0>
+  [396] extcall 212 ............................. <vector(0, 1, 0)>
+  [398] pusharglist 2 ........................... <[vector(0, 0, 1), vector(0, 1, 0)]>
+  [400] pushlist ................................ <[vector(0, 0, 1), vector(0, 1, 0)]>
+  [401] setobjprop 1172 ......................... tSimpleShadow.pointAtOrientation = [vector(0, 0, 1), vector(0, 1, 0)]
+  [404] getlocal 7 .............................. <tSimpleShadow>
+  [406] pusharglistnoret 1 ...................... <tSimpleShadow>
+  [408] extcall 52 .............................. return tSimpleShadow
+  [410] ret
+end

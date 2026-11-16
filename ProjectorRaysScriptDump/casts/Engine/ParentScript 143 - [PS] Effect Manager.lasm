@@ -1,0 +1,828 @@
+property p
+global gSystem, gData, gGame
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 64 ............................. <#member>
+  [ 11] getparam 1 .............................. <tParams>
+  [ 13] getobjprop 949 .......................... <tParams.memberName>
+  [ 16] pusharglist 1 ........................... <tParams.memberName>
+  [ 18] extcall 64 .............................. <member(tParams.memberName)>
+  [ 20] pusharglistnoret 3 ...................... <p, #member, member(tParams.memberName)>
+  [ 22] objcall 103 ............................. p[#member] = member(tParams.memberName)
+  [ 24] pushcons 0 .............................. <"SetupDebris">
+  [ 26] pusharglistnoret 1 ...................... <"SetupDebris">
+  [ 28] extcall 148 ............................. event("SetupDebris")
+  [ 30] pushzero ................................ <0>
+  [ 31] getglobal 43 ............................ <gGame>
+  [ 33] getchainedprop 64 ....................... <gGame.member>
+  [ 35] getobjprop 235 .......................... <gGame.member.name>
+  [ 37] pushsymb 1212 ........................... <#sourceMember>
+  [ 40] pushcons 1 .............................. <"Debris">
+  [ 42] pushsymb 1216 ........................... <#hide>
+  [ 45] pushint8 1 .............................. <1>
+  [ 47] pushsymb 1217 ........................... <#lod>
+  [ 50] pushzero ................................ <0>
+  [ 51] pushsymb 562 ............................ <#delete>
+  [ 54] pushint8 1 .............................. <1>
+  [ 56] pusharglist 8 ........................... <[#sourceMember: "Debris", #hide: 1, #lod: 0, #delete: 1]>
+  [ 58] pushproplist ............................ <[#sourceMember: "Debris", #hide: 1, #lod: 0, #delete: 1]>
+  [ 59] pusharglistnoret 3 ...................... <0, gGame.member.name, [#sourceMember: "Debris", #hide: 1, #lod: 0, #delete: 1]>
+  [ 61] extcall 692 ............................. CloneModel(0, gGame.member.name, [#sourceMember: "Debris", #hide: 1, #lod: 0, #delete: 1])
+  [ 64] pushcons 2 .............................. <"Setup3DParticles">
+  [ 66] pusharglistnoret 1 ...................... <"Setup3DParticles">
+  [ 68] extcall 148 ............................. event("Setup3DParticles")
+  [ 70] pushzero ................................ <0>
+  [ 71] getprop 563 ............................. <p>
+  [ 74] getchainedprop 64 ....................... <p.member>
+  [ 76] getobjprop 235 .......................... <p.member.name>
+  [ 78] pushsymb 1212 ........................... <#sourceMember>
+  [ 81] pushcons 3 .............................. <"Particles">
+  [ 83] pushsymb 1216 ........................... <#hide>
+  [ 86] pushint8 1 .............................. <1>
+  [ 88] pushsymb 562 ............................ <#delete>
+  [ 91] pushint8 1 .............................. <1>
+  [ 93] pusharglist 6 ........................... <[#sourceMember: "Particles", #hide: 1, #delete: 1]>
+  [ 95] pushproplist ............................ <[#sourceMember: "Particles", #hide: 1, #delete: 1]>
+  [ 96] pusharglistnoret 3 ...................... <0, p.member.name, [#sourceMember: "Particles", #hide: 1, #delete: 1]>
+  [ 98] extcall 692 ............................. CloneModel(0, p.member.name, [#sourceMember: "Particles", #hide: 1, #delete: 1])
+  [101] getprop 563 ............................. <p>
+  [104] getchainedprop 64 ....................... <p.member>
+  [106] getobjprop 235 .......................... <p.member.name>
+  [108] pushsymb 1274 ........................... <#materialName>
+  [111] pushcons 4 .............................. <"ParticleExplosion1_Material">
+  [113] pushsymb 1275 ........................... <#blendMode>
+  [116] pushsymb 42 ............................. <#add>
+  [118] pusharglist 4 ........................... <[#materialName: "ParticleExplosion1_Material", #blendMode: #add]>
+  [120] pushproplist ............................ <[#materialName: "ParticleExplosion1_Material", #blendMode: #add]>
+  [121] pusharglistnoret 2 ...................... <p.member.name, [#materialName: "ParticleExplosion1_Material", #blendMode: #add]>
+  [123] extcall 741 ............................. BlendShader(p.member.name, [#materialName: "ParticleExplosion1_Material", #blendMode: #add])
+  [126] getprop 563 ............................. <p>
+  [129] getchainedprop 64 ....................... <p.member>
+  [131] getobjprop 235 .......................... <p.member.name>
+  [133] pushsymb 1274 ........................... <#materialName>
+  [136] pushcons 5 .............................. <"ParticleSmoke1_Material">
+  [138] pushsymb 1275 ........................... <#blendMode>
+  [141] pushsymb 919 ............................ <#multiply>
+  [144] pusharglist 4 ........................... <[#materialName: "ParticleSmoke1_Material", #blendMode: #multiply]>
+  [146] pushproplist ............................ <[#materialName: "ParticleSmoke1_Material", #blendMode: #multiply]>
+  [147] pusharglistnoret 2 ...................... <p.member.name, [#materialName: "ParticleSmoke1_Material", #blendMode: #multiply]>
+  [149] extcall 741 ............................. BlendShader(p.member.name, [#materialName: "ParticleSmoke1_Material", #blendMode: #multiply])
+  [152] getglobal 43 ............................ <gGame>
+  [154] getobjprop 1336 ......................... <gGame.traffic>
+  [157] pushint8 1 .............................. <1>
+  [159] eq ...................................... <gGame.traffic = 1>
+  [160] jmpifz [197] ............................ if gGame.traffic = 1 then
+  [163] pushzero ................................ <0>
+  [164] getglobal 43 ............................ <gGame>
+  [166] getchainedprop 64 ....................... <gGame.member>
+  [168] getobjprop 235 .......................... <gGame.member.name>
+  [170] pushsymb 1212 ........................... <#sourceMember>
+  [173] pushcons 6 .............................. <"TrafficDestroyed">
+  [175] pushsymb 1216 ........................... <#hide>
+  [178] pushint8 1 .............................. <1>
+  [180] pushsymb 1217 ........................... <#lod>
+  [183] pushzero ................................ <0>
+  [184] pushsymb 562 ............................ <#delete>
+  [187] pushint8 1 .............................. <1>
+  [189] pusharglist 8 ........................... <[#sourceMember: "TrafficDestroyed", #hide: 1, #lod: 0, #delete: 1]>
+  [191] pushproplist ............................ <[#sourceMember: "TrafficDestroyed", #hide: 1, #lod: 0, #delete: 1]>
+  [192] pusharglistnoret 3 ...................... <0, gGame.member.name, [#sourceMember: "TrafficDestroyed", #hide: 1, #lod: 0, #delete: 1]>
+  [194] extcall 692 ............................. CloneModel(0, gGame.member.name, [#sourceMember: "TrafficDestroyed", #hide: 1, #lod: 0, #delete: 1])
+  [197] getglobal 43 ............................ <gGame>
+  [199] pushsymb 1606 ........................... <#BulletHits>
+  [202] pusharglist 0 ........................... <[]>
+  [204] pushlist ................................ <[]>
+  [205] pusharglistnoret 3 ...................... <gGame, #BulletHits, []>
+  [207] objcall 103 ............................. gGame[#BulletHits] = []
+  [209] getglobal 43 ............................ <gGame>
+  [211] pushsymb 254 ............................ <#AreaDamageList>
+  [213] pusharglist 0 ........................... <[]>
+  [215] pushlist ................................ <[]>
+  [216] pusharglistnoret 3 ...................... <gGame, #AreaDamageList, []>
+  [218] objcall 103 ............................. gGame[#AreaDamageList] = []
+  [220] getglobal 43 ............................ <gGame>
+  [222] pushsymb 1607 ........................... <#destructiveList>
+  [225] pusharglist 2 ........................... <gGame, #destructiveList>
+  [227] objcall 105 ............................. <gGame[#destructiveList]>
+  [229] pusharglist 1 ........................... <gGame[#destructiveList]>
+  [231] extcall 389 ............................. <voidp(gGame[#destructiveList])>
+  [234] pushint8 1 .............................. <1>
+  [236] eq ...................................... <voidp(gGame[#destructiveList]) = 1>
+  [237] jmpifz [252] ............................ if voidp(gGame[#destructiveList]) = 1 then
+  [240] getglobal 43 ............................ <gGame>
+  [242] pushsymb 1607 ........................... <#destructiveList>
+  [245] pusharglist 0 ........................... <[]>
+  [247] pushlist ................................ <[]>
+  [248] pusharglistnoret 3 ...................... <gGame, #destructiveList, []>
+  [250] objcall 103 ............................. gGame[#destructiveList] = []
+  [252] getprop 563 ............................. <p>
+  [255] pushsymb 1608 ........................... <#RicochetsList>
+  [258] pusharglist 0 ........................... <[]>
+  [260] pushlist ................................ <[]>
+  [261] pusharglistnoret 3 ...................... <p, #RicochetsList, []>
+  [263] objcall 103 ............................. p[#RicochetsList] = []
+  [265] getparam 0 .............................. <me>
+  [267] pusharglistnoret 1 ...................... <me>
+  [269] extcall 52 .............................. return me
+  [271] ret
+end
+
+on enterFrame me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getchainedprop 1606 ..................... <gGame.BulletHits>
+  [  5] pusharglist 1 ........................... <gGame.BulletHits>
+  [  7] objcall 233 ............................. <gGame.BulletHits.duplicate()>
+  [  9] setlocal 0 .............................. tList = gGame.BulletHits.duplicate()
+  [ 11] getlocal 0 .............................. <tList>
+  [ 13] peek 0
+  [ 15] pusharglist 1
+  [ 17] extcall 129
+  [ 19] pushint8 1
+  [ 21] peek 0
+  [ 23] peek 2
+  [ 25] lteq
+  [ 26] jmpifz [728] ............................ repeat with i in tList
+  [ 29] peek 2
+  [ 31] peek 1
+  [ 33] pusharglist 2
+  [ 35] extcall 105
+  [ 37] setlocal 1
+  [ 39] getlocal 1 .............................. <i>
+  [ 41] pushint8 1 .............................. <1>
+  [ 43] pusharglist 2 ........................... <i, 1>
+  [ 45] objcall 105 ............................. <i[1]>
+  [ 47] getobjprop 235 .......................... <i[1].name>
+  [ 49] setlocal 2 .............................. tName = i[1].name
+  [ 51] getlocal 2 .............................. <tName>
+  [ 53] pushcons 7 .............................. <"Proxy">
+  [ 55] containsstr ............................. <tName contains "Proxy">
+  [ 56] jmpifz [321] ............................ if tName contains "Proxy" then / else
+  [ 59] getglobal 43 ............................ <gGame>
+  [ 61] pushsymb 137 ............................ <#cars>
+  [ 63] getlocal 2 .............................. <tName>
+  [ 65] pushsymb 68 ............................. <#char>
+  [ 67] pushint8 1 .............................. <1>
+  [ 69] getlocal 2 .............................. <tName>
+  [ 71] getobjprop 69 ........................... <tName.length>
+  [ 73] pushint8 5 .............................. <5>
+  [ 75] sub ..................................... <tName.length - 5>
+  [ 76] pusharglist 4 ........................... <tName, #char, 1, tName.length - 5>
+  [ 78] objcall 70 .............................. <tName.char[1..tName.length - 5]>
+  [ 80] pusharglist 1 ........................... <tName.char[1..tName.length - 5]>
+  [ 82] extcall 88 .............................. <symbol(tName.char[1..tName.length - 5])>
+  [ 84] pusharglist 3 ........................... <gGame, #cars, symbol(tName.char[1..tName.length - 5])>
+  [ 86] objcall 102 ............................. <gGame.cars[symbol(tName.char[1..tName.length - 5])]>
+  [ 88] getchainedprop 250 ...................... <gGame.cars[symbol(tName.char[1..tName.length - 5])].car>
+  [ 90] getchainedprop 251 ...................... <gGame.cars[symbol(tName.char[1..tName.length - 5])].car.impacts>
+  [ 92] getlocal 1 .............................. <i>
+  [ 94] pushint8 5 .............................. <5>
+  [ 96] pusharglist 2 ........................... <i, 5>
+  [ 98] objcall 105 ............................. <i[5]>
+  [100] pushsymb 1609 ........................... <#bullet>
+  [103] getlocal 1 .............................. <i>
+  [105] pushint8 6 .............................. <6>
+  [107] pusharglist 2 ........................... <i, 6>
+  [109] objcall 105 ............................. <i[6]>
+  [111] pusharglist 3 ........................... <[i[5], #bullet, i[6]]>
+  [113] pushlist ................................ <[i[5], #bullet, i[6]]>
+  [114] pusharglistnoret 2 ...................... <gGame.cars[symbol(tName.char[1..tName.length - 5])].car.impacts, [i[5], #bullet, i[6]]>
+  [116] objcall 42 .............................. gGame.cars[symbol(tName.char[1..tName.length - 5])].car.impacts.add([i[5], #bullet, i[6]])
+  [118] pushcons 8 .............................. <"HitMetal">
+  [120] pushint8 1 .............................. <1>
+  [122] pushint8 4 .............................. <4>
+  [124] pusharglist 2 ........................... <1, 4>
+  [126] extcall 176 ............................. <random(1, 4)>
+  [128] joinstr ................................. <"HitMetal" & random(1, 4)>
+  [129] pushcons 9 .............................. <"_SFX">
+  [131] joinstr ................................. <"HitMetal" & random(1, 4) & "_SFX">
+  [132] setlocal 3 .............................. tSound = "HitMetal" & random(1, 4) & "_SFX"
+  [134] getlocal 3 .............................. <tSound>
+  [136] pushsymb 1047 ........................... <#priority>
+  [139] pushsymb 1048 ........................... <#low>
+  [142] pushsymb 1050 ........................... <#surround>
+  [145] pushint8 1 .............................. <1>
+  [147] pushsymb 1051 ........................... <#member3DName>
+  [150] getglobal 43 ............................ <gGame>
+  [152] getchainedprop 64 ....................... <gGame.member>
+  [154] getobjprop 235 .......................... <gGame.member.name>
+  [156] pushsymb 1049 ........................... <#sender>
+  [159] getlocal 1 .............................. <i>
+  [161] pushint8 1 .............................. <1>
+  [163] pusharglist 2 ........................... <i, 1>
+  [165] objcall 105 ............................. <i[1]>
+  [167] getobjprop 235 .......................... <i[1].name>
+  [169] pushsymb 1052 ........................... <#targetName>
+  [172] getlocal 1 .............................. <i>
+  [174] pushint8 1 .............................. <1>
+  [176] pusharglist 2 ........................... <i, 1>
+  [178] objcall 105 ............................. <i[1]>
+  [180] getobjprop 235 .......................... <i[1].name>
+  [182] pushsymb 1053 ........................... <#referenceName>
+  [185] pushcons 10 ............................. <"Player1_Camera">
+  [187] pushsymb 1054 ........................... <#distance>
+  [190] pushint8 20 ............................. <20>
+  [192] pushint16 200 ........................... <200>
+  [195] pusharglist 2 ........................... <[20, 200]>
+  [197] pushlist ................................ <[20, 200]>
+  [198] pushsymb 1055 ........................... <#static>
+  [201] pushint8 1 .............................. <1>
+  [203] pusharglist 16 .......................... <[#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: i[1].name, #targetName: i[1].name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1]>
+  [205] pushproplist ............................ <[#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: i[1].name, #targetName: i[1].name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1]>
+  [206] pusharglistnoret 2 ...................... <tSound, [#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: i[1].name, #targetName: i[1].name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1]>
+  [208] extcall 289 ............................. PlaySound(tSound, [#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: i[1].name, #targetName: i[1].name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1])
+  [211] pushint8 1 .............................. <1>
+  [213] pushint8 3 .............................. <3>
+  [215] pusharglist 2 ........................... <1, 3>
+  [217] extcall 176 ............................. <random(1, 3)>
+  [219] pushint8 1 .............................. <1>
+  [221] eq ...................................... <random(1, 3) = 1>
+  [222] jmpifz [318] ............................ if random(1, 3) = 1 then
+  [225] pushcons 11 ............................. <"HitGlass">
+  [227] pushint8 1 .............................. <1>
+  [229] pushint8 3 .............................. <3>
+  [231] pusharglist 2 ........................... <1, 3>
+  [233] extcall 176 ............................. <random(1, 3)>
+  [235] joinstr ................................. <"HitGlass" & random(1, 3)>
+  [236] pushcons 9 .............................. <"_SFX">
+  [238] joinstr ................................. <"HitGlass" & random(1, 3) & "_SFX">
+  [239] setlocal 3 .............................. tSound = "HitGlass" & random(1, 3) & "_SFX"
+  [241] getlocal 3 .............................. <tSound>
+  [243] pushsymb 1047 ........................... <#priority>
+  [246] pushsymb 1048 ........................... <#low>
+  [249] pushsymb 1050 ........................... <#surround>
+  [252] pushint8 1 .............................. <1>
+  [254] pushsymb 1051 ........................... <#member3DName>
+  [257] getglobal 43 ............................ <gGame>
+  [259] getchainedprop 64 ....................... <gGame.member>
+  [261] getobjprop 235 .......................... <gGame.member.name>
+  [263] pushsymb 1049 ........................... <#sender>
+  [266] getlocal 1 .............................. <i>
+  [268] pushint8 1 .............................. <1>
+  [270] pusharglist 2 ........................... <i, 1>
+  [272] objcall 105 ............................. <i[1]>
+  [274] getobjprop 235 .......................... <i[1].name>
+  [276] pushsymb 1052 ........................... <#targetName>
+  [279] getlocal 1 .............................. <i>
+  [281] pushint8 1 .............................. <1>
+  [283] pusharglist 2 ........................... <i, 1>
+  [285] objcall 105 ............................. <i[1]>
+  [287] getobjprop 235 .......................... <i[1].name>
+  [289] pushsymb 1053 ........................... <#referenceName>
+  [292] pushcons 10 ............................. <"Player1_Camera">
+  [294] pushsymb 1054 ........................... <#distance>
+  [297] pushint8 20 ............................. <20>
+  [299] pushint16 200 ........................... <200>
+  [302] pusharglist 2 ........................... <[20, 200]>
+  [304] pushlist ................................ <[20, 200]>
+  [305] pushsymb 1055 ........................... <#static>
+  [308] pushint8 1 .............................. <1>
+  [310] pusharglist 16 .......................... <[#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: i[1].name, #targetName: i[1].name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1]>
+  [312] pushproplist ............................ <[#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: i[1].name, #targetName: i[1].name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1]>
+  [313] pusharglistnoret 2 ...................... <tSound, [#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: i[1].name, #targetName: i[1].name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1]>
+  [315] extcall 289 ............................. PlaySound(tSound, [#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: i[1].name, #targetName: i[1].name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1])
+  [318] jmp [711]
+  [321] getprop 563 ............................. <p>
+  [324] getchainedprop 64 ....................... <p.member>
+  [326] getlocal 2 .............................. <tName>
+  [328] pusharglist 2 ........................... <p.member, tName>
+  [330] objcall 71 .............................. <p.member.model(tName)>
+  [332] setlocal 4 .............................. tmodel = p.member.model(tName)
+  [334] getlocal 4 .............................. <tmodel>
+  [336] getobjprop 236 .......................... <tmodel.userData>
+  [338] setlocal 5 .............................. tData = tmodel.userData
+  [340] getglobal 43 ............................ <gGame>
+  [342] getchainedprop 1607 ..................... <gGame.destructiveList>
+  [345] getlocal 4 .............................. <tmodel>
+  [347] pusharglist 2 ........................... <gGame.destructiveList, tmodel>
+  [349] objcall 166 ............................. <gGame.destructiveList.getPos(tmodel)>
+  [351] pushzero ................................ <0>
+  [352] nteq .................................... <gGame.destructiveList.getPos(tmodel) <> 0>
+  [353] jmpifz [618] ............................ if gGame.destructiveList.getPos(tmodel) <> 0 then / else
+  [356] getlocal 5 .............................. <tData>
+  [358] getlocal 5 .............................. <tData>
+  [360] getobjprop 1556 ......................... <tData.Health>
+  [363] getlocal 1 .............................. <i>
+  [365] pushint8 5 .............................. <5>
+  [367] pusharglist 2 ........................... <i, 5>
+  [369] objcall 105 ............................. <i[5]>
+  [371] sub ..................................... <tData.Health - i[5]>
+  [372] setobjprop 1556 ......................... tData.Health = tData.Health - i[5]
+  [375] getlocal 5 .............................. <tData>
+  [377] getobjprop 1556 ......................... <tData.Health>
+  [380] pushzero ................................ <0>
+  [381] lteq .................................... <tData.Health <= 0>
+  [382] jmpifz [412] ............................ if tData.Health <= 0 then
+  [385] getparam 0 .............................. <me>
+  [387] getlocal 4 .............................. <tmodel>
+  [389] getlocal 5 .............................. <tData>
+  [391] getlocal 1 .............................. <i>
+  [393] pushint8 6 .............................. <6>
+  [395] pusharglist 2 ........................... <i, 6>
+  [397] objcall 105 ............................. <i[6]>
+  [399] getlocal 1 .............................. <i>
+  [401] pushint8 1 .............................. <1>
+  [403] pusharglist 2 ........................... <i, 1>
+  [405] objcall 105 ............................. <i[1]>
+  [407] pusharglistnoret 5 ...................... <me, tmodel, tData, i[6], i[1]>
+  [409] objcall 1605 ............................ me.DestructObject(tmodel, tData, i[6], i[1])
+  [412] getlocal 5 .............................. <tData>
+  [414] pushsymb 598 ............................ <#type>
+  [417] pusharglist 2 ........................... <tData, #type>
+  [419] objcall 105 ............................. <tData[#type]>
+  [421] pusharglist 1 ........................... <tData[#type]>
+  [423] extcall 389 ............................. <voidp(tData[#type])>
+  [426] pushzero ................................ <0>
+  [427] eq ...................................... <voidp(tData[#type]) = 0>
+  [428] jmpifz [615] ............................ if voidp(tData[#type]) = 0 then
+  [431] getlocal 5 .............................. <tData>
+  [433] getobjprop 598 .......................... <tData.type>
+  [436] peek 0 .................................. case tData.type of
+  [438] pushsymb 1610 ........................... <#metal>
+  [441] eq
+  [442] jmpifz [464] ............................ (case) #metal:
+  [445] pushcons 8 .............................. <"HitMetal">
+  [447] pushint8 1 .............................. <1>
+  [449] pushint8 4 .............................. <4>
+  [451] pusharglist 2 ........................... <1, 4>
+  [453] extcall 176 ............................. <random(1, 4)>
+  [455] joinstr ................................. <"HitMetal" & random(1, 4)>
+  [456] pushcons 9 .............................. <"_SFX">
+  [458] joinstr ................................. <"HitMetal" & random(1, 4) & "_SFX">
+  [459] setlocal 3 .............................. tSound = "HitMetal" & random(1, 4) & "_SFX"
+  [461] jmp [536]
+  [464] peek 0
+  [466] pushsymb 1611 ........................... <#concrete>
+  [469] eq
+  [470] jmpifz [492] ............................ (case) #concrete:
+  [473] pushcons 12 ............................. <"HitConcrete">
+  [475] pushint8 1 .............................. <1>
+  [477] pushint8 2 .............................. <2>
+  [479] pusharglist 2 ........................... <1, 2>
+  [481] extcall 176 ............................. <random(1, 2)>
+  [483] joinstr ................................. <"HitConcrete" & random(1, 2)>
+  [484] pushcons 9 .............................. <"_SFX">
+  [486] joinstr ................................. <"HitConcrete" & random(1, 2) & "_SFX">
+  [487] setlocal 3 .............................. tSound = "HitConcrete" & random(1, 2) & "_SFX"
+  [489] jmp [536]
+  [492] peek 0
+  [494] pushsymb 1612 ........................... <#wood>
+  [497] eq
+  [498] jmpifz [520] ............................ (case) #wood:
+  [501] pushcons 13 ............................. <"HitWood">
+  [503] pushint8 1 .............................. <1>
+  [505] pushint8 3 .............................. <3>
+  [507] pusharglist 2 ........................... <1, 3>
+  [509] extcall 176 ............................. <random(1, 3)>
+  [511] joinstr ................................. <"HitWood" & random(1, 3)>
+  [512] pushcons 9 .............................. <"_SFX">
+  [514] joinstr ................................. <"HitWood" & random(1, 3) & "_SFX">
+  [515] setlocal 3 .............................. tSound = "HitWood" & random(1, 3) & "_SFX"
+  [517] jmp [536] ............................... (case) otherwise:
+  [520] pushcons 14 ............................. <"HitDefault">
+  [522] pushint8 1 .............................. <1>
+  [524] pushint8 6 .............................. <6>
+  [526] pusharglist 2 ........................... <1, 6>
+  [528] extcall 176 ............................. <random(1, 6)>
+  [530] joinstr ................................. <"HitDefault" & random(1, 6)>
+  [531] pushcons 9 .............................. <"_SFX">
+  [533] joinstr ................................. <"HitDefault" & random(1, 6) & "_SFX">
+  [534] setlocal 3 .............................. tSound = "HitDefault" & random(1, 6) & "_SFX"
+  [536] pop 1 ................................... end case
+  [538] getlocal 3 .............................. <tSound>
+  [540] pushsymb 1047 ........................... <#priority>
+  [543] pushsymb 1048 ........................... <#low>
+  [546] pushsymb 1050 ........................... <#surround>
+  [549] pushint8 1 .............................. <1>
+  [551] pushsymb 1051 ........................... <#member3DName>
+  [554] getglobal 43 ............................ <gGame>
+  [556] getchainedprop 64 ....................... <gGame.member>
+  [558] getobjprop 235 .......................... <gGame.member.name>
+  [560] pushsymb 1049 ........................... <#sender>
+  [563] getlocal 1 .............................. <i>
+  [565] pushint8 1 .............................. <1>
+  [567] pusharglist 2 ........................... <i, 1>
+  [569] objcall 105 ............................. <i[1]>
+  [571] getobjprop 235 .......................... <i[1].name>
+  [573] pushsymb 1052 ........................... <#targetName>
+  [576] getlocal 1 .............................. <i>
+  [578] pushint8 1 .............................. <1>
+  [580] pusharglist 2 ........................... <i, 1>
+  [582] objcall 105 ............................. <i[1]>
+  [584] getobjprop 235 .......................... <i[1].name>
+  [586] pushsymb 1053 ........................... <#referenceName>
+  [589] pushcons 10 ............................. <"Player1_Camera">
+  [591] pushsymb 1054 ........................... <#distance>
+  [594] pushint8 20 ............................. <20>
+  [596] pushint16 200 ........................... <200>
+  [599] pusharglist 2 ........................... <[20, 200]>
+  [601] pushlist ................................ <[20, 200]>
+  [602] pushsymb 1055 ........................... <#static>
+  [605] pushint8 1 .............................. <1>
+  [607] pusharglist 16 .......................... <[#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: i[1].name, #targetName: i[1].name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1]>
+  [609] pushproplist ............................ <[#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: i[1].name, #targetName: i[1].name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1]>
+  [610] pusharglistnoret 2 ...................... <tSound, [#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: i[1].name, #targetName: i[1].name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1]>
+  [612] extcall 289 ............................. PlaySound(tSound, [#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: i[1].name, #targetName: i[1].name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1])
+  [615] jmp [711]
+  [618] pushcons 14 ............................. <"HitDefault">
+  [620] pushint8 1 .............................. <1>
+  [622] pushint8 6 .............................. <6>
+  [624] pusharglist 2 ........................... <1, 6>
+  [626] extcall 176 ............................. <random(1, 6)>
+  [628] joinstr ................................. <"HitDefault" & random(1, 6)>
+  [629] pushcons 9 .............................. <"_SFX">
+  [631] joinstr ................................. <"HitDefault" & random(1, 6) & "_SFX">
+  [632] setlocal 3 .............................. tSound = "HitDefault" & random(1, 6) & "_SFX"
+  [634] getlocal 3 .............................. <tSound>
+  [636] pushsymb 1047 ........................... <#priority>
+  [639] pushsymb 1048 ........................... <#low>
+  [642] pushsymb 1050 ........................... <#surround>
+  [645] pushint8 1 .............................. <1>
+  [647] pushsymb 1051 ........................... <#member3DName>
+  [650] getglobal 43 ............................ <gGame>
+  [652] getchainedprop 64 ....................... <gGame.member>
+  [654] getobjprop 235 .......................... <gGame.member.name>
+  [656] pushsymb 1049 ........................... <#sender>
+  [659] getlocal 1 .............................. <i>
+  [661] pushint8 1 .............................. <1>
+  [663] pusharglist 2 ........................... <i, 1>
+  [665] objcall 105 ............................. <i[1]>
+  [667] getobjprop 235 .......................... <i[1].name>
+  [669] pushsymb 1052 ........................... <#targetName>
+  [672] getlocal 1 .............................. <i>
+  [674] pushint8 1 .............................. <1>
+  [676] pusharglist 2 ........................... <i, 1>
+  [678] objcall 105 ............................. <i[1]>
+  [680] getobjprop 235 .......................... <i[1].name>
+  [682] pushsymb 1053 ........................... <#referenceName>
+  [685] pushcons 10 ............................. <"Player1_Camera">
+  [687] pushsymb 1054 ........................... <#distance>
+  [690] pushint8 20 ............................. <20>
+  [692] pushint16 200 ........................... <200>
+  [695] pusharglist 2 ........................... <[20, 200]>
+  [697] pushlist ................................ <[20, 200]>
+  [698] pushsymb 1055 ........................... <#static>
+  [701] pushint8 1 .............................. <1>
+  [703] pusharglist 16 .......................... <[#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: i[1].name, #targetName: i[1].name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1]>
+  [705] pushproplist ............................ <[#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: i[1].name, #targetName: i[1].name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1]>
+  [706] pusharglistnoret 2 ...................... <tSound, [#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: i[1].name, #targetName: i[1].name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1]>
+  [708] extcall 289 ............................. PlaySound(tSound, [#priority: #low, #surround: 1, #member3DName: gGame.member.name, #sender: i[1].name, #targetName: i[1].name, #referenceName: "Player1_Camera", #distance: [20, 200], #static: 1])
+  [711] getglobal 43 ............................ <gGame>
+  [713] getchainedprop 1606 ..................... <gGame.BulletHits>
+  [716] getlocal 1 .............................. <i>
+  [718] pusharglistnoret 2 ...................... <gGame.BulletHits, i>
+  [720] objcall 175 ............................. gGame.BulletHits.deleteOne(i)
+  [722] pushint8 1
+  [724] add
+  [725] endrepeat [ 21]
+  [728] pop 3
+  [730] getglobal 43 ............................ <gGame>
+  [732] getchainedprop 254 ...................... <gGame.AreaDamageList>
+  [734] pusharglist 1 ........................... <gGame.AreaDamageList>
+  [736] objcall 233 ............................. <gGame.AreaDamageList.duplicate()>
+  [738] setlocal 0 .............................. tList = gGame.AreaDamageList.duplicate()
+  [740] getlocal 0 .............................. <tList>
+  [742] peek 0
+  [744] pusharglist 1
+  [746] extcall 129
+  [748] pushint8 1
+  [750] peek 0
+  [752] peek 2
+  [754] lteq
+  [755] jmpifz [882] ............................ repeat with i in tList
+  [758] peek 2
+  [760] peek 1
+  [762] pusharglist 2
+  [764] extcall 105
+  [766] setlocal 1
+  [768] getprop 563 ............................. <p>
+  [771] getchainedprop 64 ....................... <p.member>
+  [773] getlocal 1 .............................. <i>
+  [775] pushint8 1 .............................. <1>
+  [777] pusharglist 2 ........................... <i, 1>
+  [779] objcall 105 ............................. <i[1]>
+  [781] getobjprop 235 .......................... <i[1].name>
+  [783] pusharglist 2 ........................... <p.member, i[1].name>
+  [785] objcall 71 .............................. <p.member.model(i[1].name)>
+  [787] setlocal 4 .............................. tmodel = p.member.model(i[1].name)
+  [789] getlocal 4 .............................. <tmodel>
+  [791] getobjprop 236 .......................... <tmodel.userData>
+  [793] setlocal 5 .............................. tData = tmodel.userData
+  [795] getglobal 43 ............................ <gGame>
+  [797] getchainedprop 1607 ..................... <gGame.destructiveList>
+  [800] getlocal 4 .............................. <tmodel>
+  [802] pusharglist 2 ........................... <gGame.destructiveList, tmodel>
+  [804] objcall 166 ............................. <gGame.destructiveList.getPos(tmodel)>
+  [806] pushzero ................................ <0>
+  [807] nteq .................................... <gGame.destructiveList.getPos(tmodel) <> 0>
+  [808] jmpifz [877] ............................ if gGame.destructiveList.getPos(tmodel) <> 0 then
+  [811] getlocal 5 .............................. <tData>
+  [813] getlocal 5 .............................. <tData>
+  [815] getobjprop 1556 ......................... <tData.Health>
+  [818] getlocal 1 .............................. <i>
+  [820] pushint8 2 .............................. <2>
+  [822] pusharglist 2 ........................... <i, 2>
+  [824] objcall 105 ............................. <i[2]>
+  [826] sub ..................................... <tData.Health - i[2]>
+  [827] setobjprop 1556 ......................... tData.Health = tData.Health - i[2]
+  [830] getlocal 5 .............................. <tData>
+  [832] getobjprop 1556 ......................... <tData.Health>
+  [835] pushzero ................................ <0>
+  [836] lteq .................................... <tData.Health <= 0>
+  [837] jmpifz [867] ............................ if tData.Health <= 0 then
+  [840] getparam 0 .............................. <me>
+  [842] getlocal 4 .............................. <tmodel>
+  [844] getlocal 5 .............................. <tData>
+  [846] getlocal 1 .............................. <i>
+  [848] pushint8 3 .............................. <3>
+  [850] pusharglist 2 ........................... <i, 3>
+  [852] objcall 105 ............................. <i[3]>
+  [854] getlocal 1 .............................. <i>
+  [856] pushint8 1 .............................. <1>
+  [858] pusharglist 2 ........................... <i, 1>
+  [860] objcall 105 ............................. <i[1]>
+  [862] pusharglistnoret 5 ...................... <me, tmodel, tData, i[3], i[1]>
+  [864] objcall 1605 ............................ me.DestructObject(tmodel, tData, i[3], i[1])
+  [867] getglobal 43 ............................ <gGame>
+  [869] getchainedprop 254 ...................... <gGame.AreaDamageList>
+  [871] getlocal 1 .............................. <i>
+  [873] pusharglistnoret 2 ...................... <gGame.AreaDamageList, i>
+  [875] objcall 175 ............................. gGame.AreaDamageList.deleteOne(i)
+  [877] pushint8 1
+  [879] add
+  [880] endrepeat [750]
+  [882] pop 3
+  [884] getprop 563 ............................. <p>
+  [887] getobjprop 1608 ......................... <p.RicochetsList>
+  [890] peek 0
+  [892] pusharglist 1
+  [894] extcall 129
+  [896] pushint8 1
+  [898] peek 0
+  [900] peek 2
+  [902] lteq
+  [903] jmpifz [921] ............................ repeat with i in p.RicochetsList
+  [906] peek 2
+  [908] peek 1
+  [910] pusharglist 2
+  [912] extcall 105
+  [914] setlocal 1
+  [916] pushint8 1
+  [918] add
+  [919] endrepeat [898]
+  [921] pop 3
+  [923] ret
+end
+
+on DestructObject me, tmodel, tData, tSender, tRB, tImpulse
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getchainedprop 1607 ..................... <gGame.destructiveList>
+  [  5] getparam 1 .............................. <tmodel>
+  [  7] pusharglistnoret 2 ...................... <gGame.destructiveList, tmodel>
+  [  9] objcall 175 ............................. gGame.destructiveList.deleteOne(tmodel)
+  [ 11] getglobal 43 ............................ <gGame>
+  [ 13] pushsymb 137 ............................ <#cars>
+  [ 15] getparam 3 .............................. <tSender>
+  [ 17] pusharglist 3 ........................... <gGame, #cars, tSender>
+  [ 19] objcall 70 .............................. <gGame.cars[tSender]>
+  [ 21] pusharglist 1 ........................... <gGame.cars[tSender]>
+  [ 23] extcall 389 ............................. <voidp(gGame.cars[tSender])>
+  [ 26] pushzero ................................ <0>
+  [ 27] eq ...................................... <voidp(gGame.cars[tSender]) = 0>
+  [ 28] jmpifz [168] ............................ if voidp(gGame.cars[tSender]) = 0 then
+  [ 31] getglobal 43 ............................ <gGame>
+  [ 33] pushsymb 137 ............................ <#cars>
+  [ 35] getparam 3 .............................. <tSender>
+  [ 37] pusharglist 3 ........................... <gGame, #cars, tSender>
+  [ 39] objcall 102 ............................. <gGame.cars[tSender]>
+  [ 41] getchainedprop 138 ...................... <gGame.cars[tSender].race>
+  [ 43] getglobal 43 ............................ <gGame>
+  [ 45] pushsymb 137 ............................ <#cars>
+  [ 47] getparam 3 .............................. <tSender>
+  [ 49] pusharglist 3 ........................... <gGame, #cars, tSender>
+  [ 51] objcall 102 ............................. <gGame.cars[tSender]>
+  [ 53] getchainedprop 138 ...................... <gGame.cars[tSender].race>
+  [ 55] getobjprop 136 .......................... <gGame.cars[tSender].race.score>
+  [ 57] getparam 2 .............................. <tData>
+  [ 59] getobjprop 136 .......................... <tData.score>
+  [ 61] add ..................................... <gGame.cars[tSender].race.score + tData.score>
+  [ 62] setobjprop 136 .......................... gGame.cars[tSender].race.score = gGame.cars[tSender].race.score + tData.score
+  [ 64] getglobal 43 ............................ <gGame>
+  [ 66] pushsymb 137 ............................ <#cars>
+  [ 68] getparam 3 .............................. <tSender>
+  [ 70] pusharglist 3 ........................... <gGame, #cars, tSender>
+  [ 72] objcall 102 ............................. <gGame.cars[tSender]>
+  [ 74] getchainedprop 138 ...................... <gGame.cars[tSender].race>
+  [ 76] getglobal 43 ............................ <gGame>
+  [ 78] pushsymb 137 ............................ <#cars>
+  [ 80] getparam 3 .............................. <tSender>
+  [ 82] pusharglist 3 ........................... <gGame, #cars, tSender>
+  [ 84] objcall 102 ............................. <gGame.cars[tSender]>
+  [ 86] getchainedprop 138 ...................... <gGame.cars[tSender].race>
+  [ 88] getobjprop 1614 ......................... <gGame.cars[tSender].race.addScore>
+  [ 91] getparam 2 .............................. <tData>
+  [ 93] getobjprop 136 .......................... <tData.score>
+  [ 95] add ..................................... <gGame.cars[tSender].race.addScore + tData.score>
+  [ 96] setobjprop 1614 ......................... gGame.cars[tSender].race.addScore = gGame.cars[tSender].race.addScore + tData.score
+  [ 99] getglobal 43 ............................ <gGame>
+  [101] pushsymb 137 ............................ <#cars>
+  [103] getparam 3 .............................. <tSender>
+  [105] pusharglist 3 ........................... <gGame, #cars, tSender>
+  [107] objcall 102 ............................. <gGame.cars[tSender]>
+  [109] getchainedprop 376 ...................... <gGame.cars[tSender].general>
+  [112] getobjprop 378 .......................... <gGame.cars[tSender].general.controller>
+  [115] pushsymb 379 ............................ <#player>
+  [118] eq ...................................... <gGame.cars[tSender].general.controller = #player>
+  [119] jmpifz [168] ............................ if gGame.cars[tSender].general.controller = #player then
+  [122] getparam 1 .............................. <tmodel>
+  [124] getobjprop 236 .......................... <tmodel.userData>
+  [126] setlocal 0 .............................. tUD = tmodel.userData
+  [128] getlocal 0 .............................. <tUD>
+  [130] pushsymb 1336 ........................... <#traffic>
+  [133] pusharglist 2 ........................... <tUD, #traffic>
+  [135] objcall 105 ............................. <tUD[#traffic]>
+  [137] pusharglist 1 ........................... <tUD[#traffic]>
+  [139] extcall 389 ............................. <voidp(tUD[#traffic])>
+  [142] pushzero ................................ <0>
+  [143] eq ...................................... <voidp(tUD[#traffic]) = 0>
+  [144] jmpifz [168] ............................ if voidp(tUD[#traffic]) = 0 then
+  [147] getglobal 43 ............................ <gGame>
+  [149] getchainedprop 150 ...................... <gGame.Statistics>
+  [151] getglobal 43 ............................ <gGame>
+  [153] getchainedprop 150 ...................... <gGame.Statistics>
+  [155] getobjprop 267 .......................... <gGame.Statistics.vehicles>
+  [158] pushint8 1 .............................. <1>
+  [160] add ..................................... <gGame.Statistics.vehicles + 1>
+  [161] setobjprop 267 .......................... gGame.Statistics.vehicles = gGame.Statistics.vehicles + 1
+  [164] pusharglistnoret 0 ...................... <>
+  [166] extcall 15 .............................. CheckTrophies()
+  [168] getparam 2 .............................. <tData>
+  [170] pushsymb 1615 ........................... <#effect>
+  [173] pusharglist 2 ........................... <tData, #effect>
+  [175] objcall 105 ............................. <tData[#effect]>
+  [177] getobjprop 122 .......................... <tData[#effect].ilk>
+  [179] pushsymb 88 ............................. <#symbol>
+  [181] eq ...................................... <tData[#effect].ilk = #symbol>
+  [182] jmpifz [501] ............................ if tData[#effect].ilk = #symbol then / else
+  [185] getparam 2 .............................. <tData>
+  [187] getobjprop 1615 ......................... <tData.effect>
+  [190] pushsymb 1616 ........................... <#explosion>
+  [193] eq ...................................... <tData.effect = #explosion>
+  [194] jmpifz [498] ............................ if tData.effect = #explosion then
+  [197] getprop 563 ............................. <p>
+  [200] getchainedprop 64 ....................... <p.member>
+  [202] getparam 2 .............................. <tData>
+  [204] getobjprop 71 ........................... <tData.model>
+  [206] pushcons 15 ............................. <"Destroyed_Object">
+  [208] joinstr ................................. <tData.model & "Destroyed_Object">
+  [209] pusharglist 2 ........................... <p.member, tData.model & "Destroyed_Object">
+  [211] objcall 72 .............................. <p.member.modelResource(tData.model & "Destroyed_Object")>
+  [213] setlocal 1 .............................. tResource = p.member.modelResource(tData.model & "Destroyed_Object")
+  [215] getlocal 1 .............................. <tResource>
+  [217] pusharglist 0 ........................... <>
+  [219] extcall 40 .............................. <VOID>
+  [221] nteq .................................... <tResource <> VOID>
+  [222] jmpifz [231] ............................ if tResource <> VOID then
+  [225] getparam 1 .............................. <tmodel>
+  [227] getlocal 1 .............................. <tResource>
+  [229] setobjprop 73 ........................... tmodel.resource = tResource
+  [231] getparam 1 .............................. <tmodel>
+  [233] getprop 563 ............................. <p>
+  [236] getchainedprop 64 ....................... <p.member>
+  [238] pushcons 16 ............................. <"Debris_Material">
+  [240] pusharglist 2 ........................... <p.member, "Debris_Material">
+  [242] objcall 208 ............................. <p.member.shader("Debris_Material")>
+  [244] setobjprop 208 .......................... tmodel.shader = p.member.shader("Debris_Material")
+  [246] pushint8 70 ............................. <70>
+  [248] inv ..................................... <-70>
+  [249] pushint8 70 ............................. <70>
+  [251] pusharglist 2 ........................... <-70, 70>
+  [253] extcall 176 ............................. <random(-70, 70)>
+  [255] pushcons 17 ............................. <0.01>
+  [257] mul ..................................... <random(-70, 70) * 0.01>
+  [258] setlocal 2 .............................. tRandom = random(-70, 70) * 0.01
+  [260] getparam 2 .............................. <tData>
+  [262] getobjprop 1373 ......................... <tData.mass>
+  [265] setlocal 3 .............................. tMass = tData.mass
+  [267] getlocal 3 .............................. <tMass>
+  [269] pushsymb 1055 ........................... <#static>
+  [272] nteq .................................... <tMass <> #static>
+  [273] jmpifz [343] ............................ if tMass <> #static then
+  [276] getparam 4 .............................. <tRB>
+  [278] getlocal 2 .............................. <tRandom>
+  [280] getlocal 3 .............................. <tMass>
+  [282] mul ..................................... <tRandom * tMass>
+  [283] getlocal 2 .............................. <tRandom>
+  [285] getlocal 3 .............................. <tMass>
+  [287] mul ..................................... <tRandom * tMass>
+  [288] getlocal 3 .............................. <tMass>
+  [290] pushint8 20 ............................. <20>
+  [292] mul ..................................... <tMass * 20>
+  [293] pusharglist 3 ........................... <tRandom * tMass, tRandom * tMass, tMass * 20>
+  [295] extcall 212 ............................. <vector(tRandom * tMass, tRandom * tMass, tMass * 20)>
+  [297] pusharglistnoret 2 ...................... <tRB, vector(tRandom * tMass, tRandom * tMass, tMass * 20)>
+  [299] objcall 1393 ............................ tRB.applyLinearImpulse(vector(tRandom * tMass, tRandom * tMass, tMass * 20))
+  [302] getparam 4 .............................. <tRB>
+  [304] getlocal 2 .............................. <tRandom>
+  [306] getlocal 3 .............................. <tMass>
+  [308] pushint8 20 ............................. <20>
+  [310] pushint8 30 ............................. <30>
+  [312] pusharglist 2 ........................... <20, 30>
+  [314] extcall 176 ............................. <random(20, 30)>
+  [316] mul ..................................... <tMass * random(20, 30)>
+  [317] mul ..................................... <tRandom * (tMass * random(20, 30))>
+  [318] getlocal 2 .............................. <tRandom>
+  [320] getlocal 3 .............................. <tMass>
+  [322] pushint8 20 ............................. <20>
+  [324] pushint8 30 ............................. <30>
+  [326] pusharglist 2 ........................... <20, 30>
+  [328] extcall 176 ............................. <random(20, 30)>
+  [330] mul ..................................... <tMass * random(20, 30)>
+  [331] mul ..................................... <tRandom * (tMass * random(20, 30))>
+  [332] getlocal 3 .............................. <tMass>
+  [334] pusharglist 3 ........................... <tRandom * (tMass * random(20, 30)), tRandom * (tMass * random(20, 30)), tMass>
+  [336] extcall 212 ............................. <vector(tRandom * (tMass * random(20, 30)), tRandom * (tMass * random(20, 30)), tMass)>
+  [338] pusharglistnoret 2 ...................... <tRB, vector(tRandom * (tMass * random(20, 30)), tRandom * (tMass * random(20, 30)), tMass)>
+  [340] objcall 1557 ............................ tRB.applyAngularImpulse(vector(tRandom * (tMass * random(20, 30)), tRandom * (tMass * random(20, 30)), tMass))
+  [343] pushcons 18 ............................. <"[PS] Rocket Explosion">
+  [345] pusharglist 1 ........................... <"[PS] Rocket Explosion">
+  [347] extcall 36 .............................. <script("[PS] Rocket Explosion")>
+  [349] getprop 563 ............................. <p>
+  [352] getobjprop 64 ........................... <p.member>
+  [354] getparam 1 .............................. <tmodel>
+  [356] getobjprop 1161 ......................... <tmodel.worldPosition>
+  [359] getglobal 43 ............................ <gGame>
+  [361] getchainedprop 64 ....................... <gGame.member>
+  [363] pushcons 19 ............................. <"PLayer1_camera">
+  [365] pusharglist 2 ........................... <gGame.member, "PLayer1_camera">
+  [367] objcall 298 ............................. <gGame.member.camera("PLayer1_camera")>
+  [370] pusharglist 0 ........................... <>
+  [372] extcall 40 .............................. <VOID>
+  [374] pushint16 1500 .......................... <1500>
+  [377] pusharglist 6 ........................... <script("[PS] Rocket Explosion"), p.member, tmodel.worldPosition, gGame.member.camera("PLayer1_camera"), VOID, 1500>
+  [379] extcall 35 .............................. <new(script("[PS] Rocket Explosion"), p.member, tmodel.worldPosition, gGame.member.camera("PLayer1_camera"), VOID, 1500)>
+  [381] setlocal 4 .............................. tExploScript = new(script("[PS] Rocket Explosion"), p.member, tmodel.worldPosition, gGame.member.camera("PLayer1_camera"), VOID, 1500)
+  [383] getlocal 4 .............................. <tExploScript>
+  [385] pusharglist 0 ........................... <>
+  [387] extcall 40 .............................. <VOID>
+  [389] nteq .................................... <tExploScript <> VOID>
+  [390] jmpifz [404] ............................ if tExploScript <> VOID then
+  [393] getglobal 43 ............................ <gGame>
+  [395] getchainedprop 300 ...................... <gGame.scriptList>
+  [398] getlocal 4 .............................. <tExploScript>
+  [400] pusharglistnoret 2 ...................... <gGame.scriptList, tExploScript>
+  [402] objcall 42 .............................. gGame.scriptList.add(tExploScript)
+  [404] pushcons 20 ............................. <"Explosion_SFX">
+  [406] pushsymb 1047 ........................... <#priority>
+  [409] pushsymb 1081 ........................... <#medium>
+  [412] pushsymb 1050 ........................... <#surround>
+  [415] pushint8 1 .............................. <1>
+  [417] pushsymb 1051 ........................... <#member3DName>
+  [420] getglobal 43 ............................ <gGame>
+  [422] getchainedprop 64 ....................... <gGame.member>
+  [424] getobjprop 235 .......................... <gGame.member.name>
+  [426] pushsymb 1049 ........................... <#sender>
+  [429] getparam 4 .............................. <tRB>
+  [431] getobjprop 235 .......................... <tRB.name>
+  [433] pushsymb 1052 ........................... <#targetName>
+  [436] getparam 4 .............................. <tRB>
+  [438] getobjprop 235 .......................... <tRB.name>
+  [440] pushsymb 1053 ........................... <#referenceName>
+  [443] pushcons 10 ............................. <"Player1_Camera">
+  [445] pushsymb 1054 ........................... <#distance>
+  [448] pushint8 100 ............................ <100>
+  [450] pushint16 350 ........................... <350>
+  [453] pusharglist 2 ........................... <[100, 350]>
+  [455] pushlist ................................ <[100, 350]>
+  [456] pushsymb 1055 ........................... <#static>
+  [459] pushint8 1 .............................. <1>
+  [461] pushsymb 1056 ........................... <#Override>
+  [464] pushint8 1 .............................. <1>
+  [466] pusharglist 18 .......................... <[#priority: #medium, #surround: 1, #member3DName: gGame.member.name, #sender: tRB.name, #targetName: tRB.name, #referenceName: "Player1_Camera", #distance: [100, 350], #static: 1, #Override: 1]>
+  [468] pushproplist ............................ <[#priority: #medium, #surround: 1, #member3DName: gGame.member.name, #sender: tRB.name, #targetName: tRB.name, #referenceName: "Player1_Camera", #distance: [100, 350], #static: 1, #Override: 1]>
+  [469] pusharglistnoret 2 ...................... <"Explosion_SFX", [#priority: #medium, #surround: 1, #member3DName: gGame.member.name, #sender: tRB.name, #targetName: tRB.name, #referenceName: "Player1_Camera", #distance: [100, 350], #static: 1, #Override: 1]>
+  [471] extcall 289 ............................. PlaySound("Explosion_SFX", [#priority: #medium, #surround: 1, #member3DName: gGame.member.name, #sender: tRB.name, #targetName: tRB.name, #referenceName: "Player1_Camera", #distance: [100, 350], #static: 1, #Override: 1])
+  [474] pushzero ................................ <0>
+  [475] getparam 1 .............................. <tmodel>
+  [477] getobjprop 1161 ......................... <tmodel.worldPosition>
+  [480] getparam 2 .............................. <tData>
+  [482] getobjprop 1545 ......................... <tData.areaDamage>
+  [485] getparam 1 .............................. <tmodel>
+  [487] getobjprop 235 .......................... <tmodel.name>
+  [489] getparam 2 .............................. <tData>
+  [491] getobjprop 207 .......................... <tData.parent>
+  [493] pusharglistnoret 5 ...................... <0, tmodel.worldPosition, tData.areaDamage, tmodel.name, tData.parent>
+  [495] extcall 1545 ............................ areaDamage(0, tmodel.worldPosition, tData.areaDamage, tmodel.name, tData.parent)
+  [498] jmp [516]
+  [501] getparam 1 .............................. <tmodel>
+  [503] getprop 563 ............................. <p>
+  [506] getchainedprop 64 ....................... <p.member>
+  [508] pushcons 16 ............................. <"Debris_Material">
+  [510] pusharglist 2 ........................... <p.member, "Debris_Material">
+  [512] objcall 208 ............................. <p.member.shader("Debris_Material")>
+  [514] setobjprop 208 .......................... tmodel.shader = p.member.shader("Debris_Material")
+  [516] ret
+end

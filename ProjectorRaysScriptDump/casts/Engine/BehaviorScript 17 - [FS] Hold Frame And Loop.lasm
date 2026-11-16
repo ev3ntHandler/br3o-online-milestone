@@ -1,0 +1,60 @@
+global gSystem
+
+on enterFrame me
+  [  0] gettoplevelprop 574 ..................... <_key>
+  [  3] getobjprop 577 .......................... <_key.commandDown>
+  [  6] pushint8 1 .............................. <1>
+  [  8] eq ...................................... <_key.commandDown = 1>
+  [  9] pushcons 0 .............................. <"i">
+  [ 11] pusharglist 1 ........................... <"i">
+  [ 13] extcall 582 ............................. <keyPressed("i")>
+  [ 16] and ..................................... <(_key.commandDown = 1) and keyPressed("i")>
+  [ 17] jmpifz [ 25] ............................ if (_key.commandDown = 1) and keyPressed("i") then
+  [ 20] pusharglistnoret 0 ...................... <>
+  [ 22] extcall 583 ............................. ShowVersion()
+  [ 25] gettoplevelprop 387 ..................... <_player>
+  [ 28] getobjprop 388 .......................... <_player.runMode>
+  [ 31] pushcons 1 .............................. <"Projector">
+  [ 33] eq ...................................... <_player.runMode = "Projector">
+  [ 34] jmpifz [ 93] ............................ if _player.runMode = "Projector" then
+  [ 37] gettoplevelprop 574 ..................... <_key>
+  [ 40] getobjprop 577 .......................... <_key.commandDown>
+  [ 43] pushint8 1 .............................. <1>
+  [ 45] eq ...................................... <_key.commandDown = 1>
+  [ 46] pushcons 2 .............................. <"q">
+  [ 48] pusharglist 1 ........................... <"q">
+  [ 50] extcall 582 ............................. <keyPressed("q")>
+  [ 53] and ..................................... <(_key.commandDown = 1) and keyPressed("q")>
+  [ 54] jmpifz [ 65] ............................ if (_key.commandDown = 1) and keyPressed("q") then
+  [ 57] gettoplevelprop 387 ..................... <_player>
+  [ 60] pusharglistnoret 1 ...................... <_player>
+  [ 62] objcall 558 ............................. _player.quit()
+  [ 65] gettoplevelprop 574 ..................... <_key>
+  [ 68] getobjprop 584 .......................... <_key.optionDown>
+  [ 71] pushint8 1 .............................. <1>
+  [ 73] eq ...................................... <_key.optionDown = 1>
+  [ 74] gettoplevelprop 574 ..................... <_key>
+  [ 77] pushcons 3 .............................. <RETURN>
+  [ 79] pusharglist 2 ........................... <_key, RETURN>
+  [ 81] objcall 582 ............................. <_key.keyPressed(RETURN)>
+  [ 84] and ..................................... <(_key.optionDown = 1) and _key.keyPressed(RETURN)>
+  [ 85] jmpifz [ 93] ............................ if (_key.optionDown = 1) and _key.keyPressed(RETURN) then
+  [ 88] pusharglistnoret 0 ...................... <>
+  [ 90] extcall 422 ............................. fullscreen()
+  [ 93] ret
+end
+
+on exitFrame me
+  [  0] gettoplevelprop 33 ...................... <_movie>
+  [  2] gettoplevelprop 33 ...................... <_movie>
+  [  4] getobjprop 432 .......................... <_movie.frame>
+  [  7] pusharglistnoret 2 ...................... <_movie, _movie.frame>
+  [  9] objcall 539 ............................. _movie.go(_movie.frame)
+  [ 12] getglobal 50 ............................ <gSystem>
+  [ 14] getglobal 50 ............................ <gSystem>
+  [ 16] getobjprop 432 .......................... <gSystem.frame>
+  [ 19] pushint8 1 .............................. <1>
+  [ 21] add ..................................... <gSystem.frame + 1>
+  [ 22] setobjprop 432 .......................... gSystem.frame = gSystem.frame + 1
+  [ 25] ret
+end

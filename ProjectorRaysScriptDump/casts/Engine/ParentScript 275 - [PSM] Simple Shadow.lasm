@@ -1,0 +1,497 @@
+property p
+global g
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 64 ............................. <#member>
+  [ 11] getparam 1 .............................. <tParams>
+  [ 13] pushsymb 949 ............................ <#memberName>
+  [ 16] pusharglist 2 ........................... <tParams, #memberName>
+  [ 18] objcall 105 ............................. <tParams[#memberName]>
+  [ 20] pusharglist 1 ........................... <tParams[#memberName]>
+  [ 22] extcall 64 .............................. <member(tParams[#memberName])>
+  [ 24] pusharglistnoret 3 ...................... <p, #member, member(tParams[#memberName])>
+  [ 26] objcall 103 ............................. p[#member] = member(tParams[#memberName])
+  [ 28] getprop 563 ............................. <p>
+  [ 31] getobjprop 64 ........................... <p.member>
+  [ 33] pusharglist 0 ........................... <>
+  [ 35] extcall 40 .............................. <VOID>
+  [ 37] eq ...................................... <p.member = VOID>
+  [ 38] getprop 563 ............................. <p>
+  [ 41] getchainedprop 64 ....................... <p.member>
+  [ 43] getobjprop 598 .......................... <p.member.type>
+  [ 46] pushsymb 610 ............................ <#shockwave3d>
+  [ 49] nteq .................................... <p.member.type <> #shockwave3d>
+  [ 50] or ...................................... <(p.member = VOID) or (p.member.type <> #shockwave3d)>
+  [ 51] jmpifz [ 68] ............................ if (p.member = VOID) or (p.member.type <> #shockwave3d) then
+  [ 54] pushcons 0 .............................. <"Script: [PSM] Car Shadow. ">
+  [ 56] getparam 1 .............................. <tParams>
+  [ 58] joinstr ................................. <"Script: [PSM] Car Shadow. " & tParams>
+  [ 59] pushcons 1 .............................. <" No such member or type is NOT shockwave3d">
+  [ 61] joinstr ................................. <"Script: [PSM] Car Shadow. " & tParams & " No such member or type is NOT shockwave3d">
+  [ 62] pusharglistnoret 1 ...................... <"Script: [PSM] Car Shadow. " & tParams & " No such member or type is NOT shockwave3d">
+  [ 64] extcall 511 ............................. ShowError("Script: [PSM] Car Shadow. " & tParams & " No such member or type is NOT shockwave3d")
+  [ 67] ret ..................................... exit
+  [ 68] getprop 563 ............................. <p>
+  [ 71] pushsymb 71 ............................. <#model>
+  [ 73] pusharglist 0 ........................... <>
+  [ 75] extcall 40 .............................. <VOID>
+  [ 77] pusharglistnoret 3 ...................... <p, #model, VOID>
+  [ 79] objcall 103 ............................. p[#model] = VOID
+  [ 81] getparam 1 .............................. <tParams>
+  [ 83] pushsymb 1668 ........................... <#ModelName>
+  [ 86] pusharglist 2 ........................... <tParams, #ModelName>
+  [ 88] objcall 105 ............................. <tParams[#ModelName]>
+  [ 90] setlocal 0 .............................. pModelName = tParams[#ModelName]
+  [ 92] getlocal 0 .............................. <pModelName>
+  [ 94] pusharglist 0 ........................... <>
+  [ 96] extcall 40 .............................. <VOID>
+  [ 98] eq ...................................... <pModelName = VOID>
+  [ 99] jmpifz [123] ............................ if pModelName = VOID then / else
+  [102] getprop 563 ............................. <p>
+  [105] pushsymb 71 ............................. <#model>
+  [107] getparam 1 .............................. <tParams>
+  [109] pushsymb 3048 ........................... <#RayCastModel>
+  [112] pusharglist 2 ........................... <tParams, #RayCastModel>
+  [114] objcall 105 ............................. <tParams[#RayCastModel]>
+  [116] pusharglistnoret 3 ...................... <p, #model, tParams[#RayCastModel]>
+  [118] objcall 103 ............................. p[#model] = tParams[#RayCastModel]
+  [120] jmp [139]
+  [123] getprop 563 ............................. <p>
+  [126] getprop 563 ............................. <p>
+  [129] getchainedprop 64 ....................... <p.member>
+  [131] getlocal 0 .............................. <pModelName>
+  [133] pusharglist 2 ........................... <p.member, pModelName>
+  [135] objcall 71 .............................. <p.member.model(pModelName)>
+  [137] setobjprop 71 ........................... p.model = p.member.model(pModelName)
+  [139] getprop 563 ............................. <p>
+  [142] getobjprop 71 ........................... <p.model>
+  [144] pusharglist 0 ........................... <>
+  [146] extcall 40 .............................. <VOID>
+  [148] eq ...................................... <p.model = VOID>
+  [149] jmpifz [166] ............................ if p.model = VOID then
+  [152] pushcons 0 .............................. <"Script: [PSM] Car Shadow. ">
+  [154] getparam 1 .............................. <tParams>
+  [156] joinstr ................................. <"Script: [PSM] Car Shadow. " & tParams>
+  [157] pushcons 2 .............................. <" No model found based upon modelName AND/OR no model returned from parent script">
+  [159] joinstr ................................. <"Script: [PSM] Car Shadow. " & tParams & " No model found based upon modelName AND/OR no model returned from parent script">
+  [160] pusharglistnoret 1 ...................... <"Script: [PSM] Car Shadow. " & tParams & " No model found based upon modelName AND/OR no model returned from parent script">
+  [162] extcall 511 ............................. ShowError("Script: [PSM] Car Shadow. " & tParams & " No model found based upon modelName AND/OR no model returned from parent script")
+  [165] ret ..................................... exit
+  [166] getprop 563 ............................. <p>
+  [169] pushsymb 3213 ........................... <#ShadowSize>
+  [172] getparam 1 .............................. <tParams>
+  [174] pushsymb 201 ............................ <#size>
+  [176] pusharglist 2 ........................... <tParams, #size>
+  [178] objcall 105 ............................. <tParams[#size]>
+  [180] pusharglistnoret 3 ...................... <p, #ShadowSize, tParams[#size]>
+  [182] objcall 103 ............................. p[#ShadowSize] = tParams[#size]
+  [184] getprop 563 ............................. <p>
+  [187] pushsymb 2634 ........................... <#TextureName>
+  [190] getparam 1 .............................. <tParams>
+  [192] pushsymb 218 ............................ <#texture>
+  [194] pusharglist 2 ........................... <tParams, #texture>
+  [196] objcall 105 ............................. <tParams[#texture]>
+  [198] pusharglistnoret 3 ...................... <p, #TextureName, tParams[#texture]>
+  [200] objcall 103 ............................. p[#TextureName] = tParams[#texture]
+  [202] getprop 563 ............................. <p>
+  [205] pushsymb 2067 ........................... <#CarName>
+  [208] getparam 1 .............................. <tParams>
+  [210] pushsymb 2067 ........................... <#CarName>
+  [213] pusharglist 2 ........................... <tParams, #CarName>
+  [215] objcall 105 ............................. <tParams[#CarName]>
+  [217] pusharglistnoret 3 ...................... <p, #CarName, tParams[#CarName]>
+  [219] objcall 103 ............................. p[#CarName] = tParams[#CarName]
+  [221] getprop 563 ............................. <p>
+  [224] pushsymb 378 ............................ <#controller>
+  [227] getparam 1 .............................. <tParams>
+  [229] pushsymb 378 ............................ <#controller>
+  [232] pusharglist 2 ........................... <tParams, #controller>
+  [234] objcall 105 ............................. <tParams[#controller]>
+  [236] pusharglistnoret 3 ...................... <p, #controller, tParams[#controller]>
+  [238] objcall 103 ............................. p[#controller] = tParams[#controller]
+  [240] getprop 563 ............................. <p>
+  [243] pushsymb 377 ............................ <#tag>
+  [246] getparam 1 .............................. <tParams>
+  [248] pushsymb 377 ............................ <#tag>
+  [251] pusharglist 2 ........................... <tParams, #tag>
+  [253] objcall 105 ............................. <tParams[#tag]>
+  [255] pusharglistnoret 3 ...................... <p, #tag, tParams[#tag]>
+  [257] objcall 103 ............................. p[#tag] = tParams[#tag]
+  [259] getprop 563 ............................. <p>
+  [262] pushsymb 3062 ........................... <#ScriptLimit>
+  [265] pushint8 1 .............................. <1>
+  [267] pusharglistnoret 3 ...................... <p, #ScriptLimit, 1>
+  [269] objcall 103 ............................. p[#ScriptLimit] = 1
+  [271] getprop 563 ............................. <p>
+  [274] pushsymb 1814 ........................... <#Cleared>
+  [277] pushzero ................................ <0>
+  [278] pusharglistnoret 3 ...................... <p, #Cleared, 0>
+  [280] objcall 103 ............................. p[#Cleared] = 0
+  [282] getprop 563 ............................. <p>
+  [285] getobjprop 3213 ......................... <p.ShadowSize>
+  [288] pusharglist 0 ........................... <>
+  [290] extcall 40 .............................. <VOID>
+  [292] eq ...................................... <p.ShadowSize = VOID>
+  [293] getprop 563 ............................. <p>
+  [296] getchainedprop 3213 ..................... <p.ShadowSize>
+  [299] getobjprop 122 .......................... <p.ShadowSize.ilk>
+  [301] pushsymb 126 ............................ <#list>
+  [303] nteq .................................... <p.ShadowSize.ilk <> #list>
+  [304] or ...................................... <(p.ShadowSize = VOID) or (p.ShadowSize.ilk <> #list)>
+  [305] jmpifz [321] ............................ if (p.ShadowSize = VOID) or (p.ShadowSize.ilk <> #list) then
+  [308] getprop 563 ............................. <p>
+  [311] pushint8 1 .............................. <1>
+  [313] pushint8 1 .............................. <1>
+  [315] pusharglist 2 ........................... <[1, 1]>
+  [317] pushlist ................................ <[1, 1]>
+  [318] setobjprop 3213 ......................... p.ShadowSize = [1, 1]
+  [321] getprop 563 ............................. <p>
+  [324] getobjprop 2634 ......................... <p.TextureName>
+  [327] pusharglist 0 ........................... <>
+  [329] extcall 40 .............................. <VOID>
+  [331] eq ...................................... <p.TextureName = VOID>
+  [332] jmpifz [379] ............................ if p.TextureName = VOID then
+  [335] getprop 563 ............................. <p>
+  [338] getobjprop 2067 ......................... <p.CarName>
+  [341] pushcons 3 .............................. <"Shadow_Texture">
+  [343] joinstr ................................. <p.CarName & "Shadow_Texture">
+  [344] setlocal 1 .............................. pTestTextureName = p.CarName & "Shadow_Texture"
+  [346] getlocal 1 .............................. <pTestTextureName>
+  [348] pusharglist 1 ........................... <pTestTextureName>
+  [350] extcall 64 .............................. <member(pTestTextureName)>
+  [352] pusharglist 0 ........................... <>
+  [354] extcall 40 .............................. <VOID>
+  [356] eq ...................................... <member(pTestTextureName) = VOID>
+  [357] jmpifz [371] ............................ if member(pTestTextureName) = VOID then / else
+  [360] getprop 563 ............................. <p>
+  [363] pushcons 4 .............................. <"SimpleShadow_Texture">
+  [365] setobjprop 2634 ......................... p.TextureName = "SimpleShadow_Texture"
+  [368] jmp [379]
+  [371] getprop 563 ............................. <p>
+  [374] getlocal 1 .............................. <pTestTextureName>
+  [376] setobjprop 2634 ......................... p.TextureName = pTestTextureName
+  [379] getprop 563 ............................. <p>
+  [382] getobjprop 377 .......................... <p.tag>
+  [385] pusharglist 0 ........................... <>
+  [387] extcall 40 .............................. <VOID>
+  [389] eq ...................................... <p.tag = VOID>
+  [390] getprop 563 ............................. <p>
+  [393] getchainedprop 377 ...................... <p.tag>
+  [396] getobjprop 122 .......................... <p.tag.ilk>
+  [398] pushsymb 88 ............................. <#symbol>
+  [400] nteq .................................... <p.tag.ilk <> #symbol>
+  [401] or ...................................... <(p.tag = VOID) or (p.tag.ilk <> #symbol)>
+  [402] jmpifz [414] ............................ if (p.tag = VOID) or (p.tag.ilk <> #symbol) then
+  [405] getprop 563 ............................. <p>
+  [408] pushsymb 531 ............................ <#standard>
+  [411] setobjprop 377 .......................... p.tag = #standard
+  [414] getprop 563 ............................. <p>
+  [417] getchainedprop 64 ....................... <p.member>
+  [419] getprop 563 ............................. <p>
+  [422] getchainedprop 71 ....................... <p.model>
+  [424] getobjprop 235 .......................... <p.model.name>
+  [426] pushcons 5 .............................. <"Shadow">
+  [428] joinstr ................................. <p.model.name & "Shadow">
+  [429] pushsymb 3180 ........................... <#plane>
+  [432] pusharglist 3 ........................... <p.member, p.model.name & "Shadow", #plane>
+  [434] objcall 1287 ............................ <p.member.newModelResource(p.model.name & "Shadow", #plane)>
+  [437] setlocal 2 .............................. pShadowResource = p.member.newModelResource(p.model.name & "Shadow", #plane)
+  [439] getlocal 2 .............................. <pShadowResource>
+  [441] getprop 563 ............................. <p>
+  [444] pushsymb 3213 ........................... <#ShadowSize>
+  [447] pushint8 1 .............................. <1>
+  [449] pusharglist 3 ........................... <p, #ShadowSize, 1>
+  [451] objcall 70 .............................. <p.ShadowSize[1]>
+  [453] pusharglist 1 ........................... <p.ShadowSize[1]>
+  [455] extcall 544 ............................. <float(p.ShadowSize[1])>
+  [458] setobjprop 229 .......................... pShadowResource.width = float(p.ShadowSize[1])
+  [460] getlocal 2 .............................. <pShadowResource>
+  [462] getprop 563 ............................. <p>
+  [465] pushsymb 3213 ........................... <#ShadowSize>
+  [468] pushint8 2 .............................. <2>
+  [470] pusharglist 3 ........................... <p, #ShadowSize, 2>
+  [472] objcall 70 .............................. <p.ShadowSize[2]>
+  [474] pusharglist 1 ........................... <p.ShadowSize[2]>
+  [476] extcall 544 ............................. <float(p.ShadowSize[2])>
+  [479] setobjprop 69 ........................... pShadowResource.length = float(p.ShadowSize[2])
+  [481] getprop 563 ............................. <p>
+  [484] pushsymb 2069 ........................... <#shadowmodel>
+  [487] getprop 563 ............................. <p>
+  [490] getchainedprop 64 ....................... <p.member>
+  [492] getprop 563 ............................. <p>
+  [495] getchainedprop 71 ....................... <p.model>
+  [497] getobjprop 235 .......................... <p.model.name>
+  [499] pushcons 5 .............................. <"Shadow">
+  [501] joinstr ................................. <p.model.name & "Shadow">
+  [502] getlocal 2 .............................. <pShadowResource>
+  [504] pusharglist 3 ........................... <p.member, p.model.name & "Shadow", pShadowResource>
+  [506] objcall 892 ............................. <p.member.newModel(p.model.name & "Shadow", pShadowResource)>
+  [509] pusharglistnoret 3 ...................... <p, #shadowmodel, p.member.newModel(p.model.name & "Shadow", pShadowResource)>
+  [511] objcall 103 ............................. p[#shadowmodel] = p.member.newModel(p.model.name & "Shadow", pShadowResource)
+  [513] getprop 563 ............................. <p>
+  [516] getchainedprop 64 ....................... <p.member>
+  [518] getprop 563 ............................. <p>
+  [521] getobjprop 2634 ......................... <p.TextureName>
+  [524] pusharglist 2 ........................... <p.member, p.TextureName>
+  [526] objcall 218 ............................. <p.member.texture(p.TextureName)>
+  [528] pusharglist 0 ........................... <>
+  [530] extcall 40 .............................. <VOID>
+  [532] eq ...................................... <p.member.texture(p.TextureName) = VOID>
+  [533] jmpifz [602] ............................ if p.member.texture(p.TextureName) = VOID then / else
+  [536] getprop 563 ............................. <p>
+  [539] getchainedprop 64 ....................... <p.member>
+  [541] getprop 563 ............................. <p>
+  [544] getobjprop 2634 ......................... <p.TextureName>
+  [547] pusharglistnoret 2 ...................... <p.member, p.TextureName>
+  [549] objcall 903 ............................. p.member.newTexture(p.TextureName)
+  [552] getprop 563 ............................. <p>
+  [555] getchainedprop 64 ....................... <p.member>
+  [557] getprop 563 ............................. <p>
+  [560] getobjprop 2634 ......................... <p.TextureName>
+  [563] pusharglist 2 ........................... <p.member, p.TextureName>
+  [565] objcall 218 ............................. <p.member.texture(p.TextureName)>
+  [567] setlocal 3 .............................. pTexture = p.member.texture(p.TextureName)
+  [569] getlocal 3 .............................. <pTexture>
+  [571] getprop 563 ............................. <p>
+  [574] getobjprop 2634 ......................... <p.TextureName>
+  [577] pusharglist 1 ........................... <p.TextureName>
+  [579] extcall 64 .............................. <member(p.TextureName)>
+  [581] setobjprop 64 ........................... pTexture.member = member(p.TextureName)
+  [583] getlocal 3 .............................. <pTexture>
+  [585] pushsymb 867 ............................ <#lowFiltered>
+  [588] setobjprop 331 .......................... pTexture.quality = #lowFiltered
+  [591] getlocal 3 .............................. <pTexture>
+  [593] pushsymb 865 ............................ <#rgba8888>
+  [596] setobjprop 348 .......................... pTexture.renderFormat = #rgba8888
+  [599] jmp [627]
+  [602] getprop 563 ............................. <p>
+  [605] getchainedprop 64 ....................... <p.member>
+  [607] getprop 563 ............................. <p>
+  [610] getobjprop 2634 ......................... <p.TextureName>
+  [613] pusharglist 2 ........................... <p.member, p.TextureName>
+  [615] objcall 218 ............................. <p.member.texture(p.TextureName)>
+  [617] setlocal 3 .............................. pTexture = p.member.texture(p.TextureName)
+  [619] getlocal 3 .............................. <pTexture>
+  [621] pushsymb 867 ............................ <#lowFiltered>
+  [624] setobjprop 331 .......................... pTexture.quality = #lowFiltered
+  [627] getprop 563 ............................. <p>
+  [630] getchainedprop 64 ....................... <p.member>
+  [632] getprop 563 ............................. <p>
+  [635] getchainedprop 71 ....................... <p.model>
+  [637] getobjprop 235 .......................... <p.model.name>
+  [639] pushcons 6 .............................. <"Shadow_Material">
+  [641] joinstr ................................. <p.model.name & "Shadow_Material">
+  [642] pushsymb 531 ............................ <#standard>
+  [645] pusharglistnoret 3 ...................... <p.member, p.model.name & "Shadow_Material", #standard>
+  [647] objcall 896 ............................. p.member.newShader(p.model.name & "Shadow_Material", #standard)
+  [650] getprop 563 ............................. <p>
+  [653] getchainedprop 64 ....................... <p.member>
+  [655] getprop 563 ............................. <p>
+  [658] getchainedprop 71 ....................... <p.model>
+  [660] getobjprop 235 .......................... <p.model.name>
+  [662] pushcons 6 .............................. <"Shadow_Material">
+  [664] joinstr ................................. <p.model.name & "Shadow_Material">
+  [665] pusharglist 2 ........................... <p.member, p.model.name & "Shadow_Material">
+  [667] objcall 208 ............................. <p.member.shader(p.model.name & "Shadow_Material")>
+  [669] setlocal 4 .............................. pShader = p.member.shader(p.model.name & "Shadow_Material")
+  [671] getlocal 4 .............................. <pShader>
+  [673] pushint16 255 ........................... <255>
+  [676] pushint16 255 ........................... <255>
+  [679] pushint16 255 ........................... <255>
+  [682] pusharglist 3 ........................... <255, 255, 255>
+  [684] extcall 282 ............................. <rgb(255, 255, 255)>
+  [687] setobjprop 900 .......................... pShader.emissive = rgb(255, 255, 255)
+  [690] getlocal 4 .............................. <pShader>
+  [692] pushfloat32 0.0 ......................... <0.0>
+  [697] setobjprop 901 .......................... pShader.shininess = 0.0
+  [700] getlocal 4 .............................. <pShader>
+  [702] pushsymb 1244 ........................... <#textureList>
+  [705] pushint8 1 .............................. <1>
+  [707] getlocal 3 .............................. <pTexture>
+  [709] pusharglistnoret 4 ...................... <pShader, #textureList, 1, pTexture>
+  [711] objcall 99 .............................. pShader.textureList[1] = pTexture
+  [713] getlocal 4 .............................. <pShader>
+  [715] pushfloat32 75.0 ........................ <75.0>
+  [720] setobjprop 367 .......................... pShader.blend = 75.0
+  [723] getprop 563 ............................. <p>
+  [726] getchainedprop 2069 ..................... <p.shadowmodel>
+  [729] getlocal 4 .............................. <pShader>
+  [731] setobjprop 305 .......................... p.shadowmodel.shaderList = pShader
+  [734] getprop 563 ............................. <p>
+  [737] getchainedprop 2069 ..................... <p.shadowmodel>
+  [740] getchainedprop 214 ...................... <p.shadowmodel.transform>
+  [742] pushfloat32 0.0 ......................... <0.0>
+  [747] pushfloat32 0.0 ......................... <0.0>
+  [752] pushfloat32 150.0 ....................... <150.0>
+  [757] inv ..................................... <-150.0>
+  [758] pusharglist 3 ........................... <0.0, 0.0, -150.0>
+  [760] extcall 212 ............................. <vector(0.0, 0.0, -150.0)>
+  [762] setobjprop 215 .......................... p.shadowmodel.transform.position = vector(0.0, 0.0, -150.0)
+  [764] getparam 0 .............................. <me>
+  [766] pusharglistnoret 1 ...................... <me>
+  [768] extcall 52 .............................. return me
+  [770] ret
+end
+
+on enterFrame me
+  [  0] getprop 563 ............................. <p>
+  [  3] pushzero ................................ <0>
+  [  4] setobjprop 1814 ......................... p.Cleared = 0
+  [  7] getglobal 395 ........................... <g>
+  [ 10] pushsymb 1740 ........................... <#RayCastList>
+  [ 13] pusharglist 2 ........................... <g, #RayCastList>
+  [ 15] extcall 542 ............................. <getaProp(g, #RayCastList)>
+  [ 18] pusharglist 0 ........................... <>
+  [ 20] extcall 40 .............................. <VOID>
+  [ 22] eq ...................................... <getaProp(g, #RayCastList) = VOID>
+  [ 23] jmpifz [ 27] ............................ if getaProp(g, #RayCastList) = VOID then
+  [ 26] ret ..................................... exit
+  [ 27] getglobal 395 ........................... <g>
+  [ 30] getobjprop 1740 ......................... <g.RayCastList>
+  [ 33] getprop 563 ............................. <p>
+  [ 36] getobjprop 377 .......................... <p.tag>
+  [ 39] pusharglist 2 ........................... <g.RayCastList, p.tag>
+  [ 41] extcall 542 ............................. <getaProp(g.RayCastList, p.tag)>
+  [ 44] pusharglist 0 ........................... <>
+  [ 46] extcall 40 .............................. <VOID>
+  [ 48] eq ...................................... <getaProp(g.RayCastList, p.tag) = VOID>
+  [ 49] jmpifz [ 53] ............................ if getaProp(g.RayCastList, p.tag) = VOID then
+  [ 52] ret ..................................... exit
+  [ 53] getglobal 395 ........................... <g>
+  [ 56] pushsymb 1740 ........................... <#RayCastList>
+  [ 59] getprop 563 ............................. <p>
+  [ 62] getobjprop 377 .......................... <p.tag>
+  [ 65] pusharglist 3 ........................... <g, #RayCastList, p.tag>
+  [ 67] objcall 70 .............................. <g.RayCastList[p.tag]>
+  [ 69] pusharglist 0 ........................... <[]>
+  [ 71] pushlist ................................ <[]>
+  [ 72] eq ...................................... <g.RayCastList[p.tag] = []>
+  [ 73] jmpifz [ 77] ............................ if g.RayCastList[p.tag] = [] then
+  [ 76] ret ..................................... exit
+  [ 77] getprop 563 ............................. <p>
+  [ 80] getchainedprop 2069 ..................... <p.shadowmodel>
+  [ 83] pusharglist 1 ........................... <p.shadowmodel>
+  [ 85] objcall 640 ............................. <p.shadowmodel.isInWorld()>
+  [ 88] pushzero ................................ <0>
+  [ 89] eq ...................................... <p.shadowmodel.isInWorld() = 0>
+  [ 90] jmpifz [112] ............................ if p.shadowmodel.isInWorld() = 0 then
+  [ 93] getprop 563 ............................. <p>
+  [ 96] getchainedprop 2069 ..................... <p.shadowmodel>
+  [ 99] getprop 563 ............................. <p>
+  [102] getchainedprop 64 ....................... <p.member>
+  [104] pushcons 7 .............................. <"World">
+  [106] pusharglist 2 ........................... <p.member, "World">
+  [108] objcall 65 .............................. <p.member.group("World")>
+  [110] setobjprop 207 .......................... p.shadowmodel.parent = p.member.group("World")
+  [112] getglobal 395 ........................... <g>
+  [115] pushsymb 1740 ........................... <#RayCastList>
+  [118] getprop 563 ............................. <p>
+  [121] getobjprop 377 .......................... <p.tag>
+  [124] pusharglist 3 ........................... <g, #RayCastList, p.tag>
+  [126] objcall 102 ............................. <g.RayCastList[p.tag]>
+  [128] pushint8 1 .............................. <1>
+  [130] pusharglist 2 ........................... <g.RayCastList[p.tag], 1>
+  [132] objcall 105 ............................. <g.RayCastList[p.tag][1]>
+  [134] pushsymb 2306 ........................... <#isectPosition>
+  [137] pusharglist 2 ........................... <g.RayCastList[p.tag][1], #isectPosition>
+  [139] objcall 105 ............................. <g.RayCastList[p.tag][1][#isectPosition]>
+  [141] setlocal 0 .............................. positionShadow = g.RayCastList[p.tag][1][#isectPosition]
+  [143] getglobal 395 ........................... <g>
+  [146] pushsymb 1740 ........................... <#RayCastList>
+  [149] getprop 563 ............................. <p>
+  [152] getobjprop 377 .......................... <p.tag>
+  [155] pusharglist 3 ........................... <g, #RayCastList, p.tag>
+  [157] objcall 102 ............................. <g.RayCastList[p.tag]>
+  [159] pushint8 1 .............................. <1>
+  [161] pusharglist 2 ........................... <g.RayCastList[p.tag], 1>
+  [163] objcall 105 ............................. <g.RayCastList[p.tag][1]>
+  [165] pushsymb 2307 ........................... <#isectNormal>
+  [168] pusharglist 2 ........................... <g.RayCastList[p.tag][1], #isectNormal>
+  [170] objcall 105 ............................. <g.RayCastList[p.tag][1][#isectNormal]>
+  [172] setlocal 1 .............................. normalShadow = g.RayCastList[p.tag][1][#isectNormal]
+  [174] getglobal 395 ........................... <g>
+  [177] pushsymb 1740 ........................... <#RayCastList>
+  [180] getprop 563 ............................. <p>
+  [183] getobjprop 377 .......................... <p.tag>
+  [186] pusharglist 3 ........................... <g, #RayCastList, p.tag>
+  [188] objcall 102 ............................. <g.RayCastList[p.tag]>
+  [190] pushint8 1 .............................. <1>
+  [192] pusharglist 2 ........................... <g.RayCastList[p.tag], 1>
+  [194] objcall 105 ............................. <g.RayCastList[p.tag][1]>
+  [196] pushsymb 1054 ........................... <#distance>
+  [199] pusharglist 2 ........................... <g.RayCastList[p.tag][1], #distance>
+  [201] objcall 105 ............................. <g.RayCastList[p.tag][1][#distance]>
+  [203] setlocal 2 .............................. distance = g.RayCastList[p.tag][1][#distance]
+  [205] getprop 563 ............................. <p>
+  [208] getchainedprop 2069 ..................... <p.shadowmodel>
+  [211] getchainedprop 214 ...................... <p.shadowmodel.transform>
+  [213] getlocal 0 .............................. <positionShadow>
+  [215] pushzero ................................ <0>
+  [216] pushzero ................................ <0>
+  [217] pushcons 8 .............................. <0.05>
+  [219] pusharglist 3 ........................... <0, 0, 0.05>
+  [221] extcall 212 ............................. <vector(0, 0, 0.05)>
+  [223] add ..................................... <positionShadow + vector(0, 0, 0.05)>
+  [224] setobjprop 215 .......................... p.shadowmodel.transform.position = positionShadow + vector(0, 0, 0.05)
+  [226] getprop 563 ............................. <p>
+  [229] getchainedprop 2069 ..................... <p.shadowmodel>
+  [232] pushzero ................................ <0>
+  [233] pushzero ................................ <0>
+  [234] pushint8 1 .............................. <1>
+  [236] pusharglist 3 ........................... <0, 0, 1>
+  [238] extcall 212 ............................. <vector(0, 0, 1)>
+  [240] pushzero ................................ <0>
+  [241] pushint8 1 .............................. <1>
+  [243] pushzero ................................ <0>
+  [244] pusharglist 3 ........................... <0, 1, 0>
+  [246] extcall 212 ............................. <vector(0, 1, 0)>
+  [248] pusharglist 2 ........................... <[vector(0, 0, 1), vector(0, 1, 0)]>
+  [250] pushlist ................................ <[vector(0, 0, 1), vector(0, 1, 0)]>
+  [251] setobjprop 1172 ......................... p.shadowmodel.pointAtOrientation = [vector(0, 0, 1), vector(0, 1, 0)]
+  [254] getprop 563 ............................. <p>
+  [257] getchainedprop 2069 ..................... <p.shadowmodel>
+  [260] getprop 563 ............................. <p>
+  [263] getchainedprop 2069 ..................... <p.shadowmodel>
+  [266] getchainedprop 214 ...................... <p.shadowmodel.transform>
+  [268] getobjprop 215 .......................... <p.shadowmodel.transform.position>
+  [270] getlocal 1 .............................. <normalShadow>
+  [272] add ..................................... <p.shadowmodel.transform.position + normalShadow>
+  [273] pusharglistnoret 2 ...................... <p.shadowmodel, p.shadowmodel.transform.position + normalShadow>
+  [275] objcall 1340 ............................ p.shadowmodel.pointAt(p.shadowmodel.transform.position + normalShadow)
+  [278] getprop 563 ............................. <p>
+  [281] getchainedprop 2069 ..................... <p.shadowmodel>
+  [284] pushzero ................................ <0>
+  [285] pushzero ................................ <0>
+  [286] getprop 563 ............................. <p>
+  [289] getchainedprop 71 ....................... <p.model>
+  [291] getchainedprop 214 ...................... <p.model.transform>
+  [293] pushsymb 1162 ........................... <#rotation>
+  [296] pushint8 3 .............................. <3>
+  [298] pusharglist 3 ........................... <p.model.transform, #rotation, 3>
+  [300] objcall 70 .............................. <p.model.transform.rotation[3]>
+  [302] pusharglistnoret 4 ...................... <p.shadowmodel, 0, 0, p.model.transform.rotation[3]>
+  [304] objcall 1471 ............................ p.shadowmodel.rotate(0, 0, p.model.transform.rotation[3])
+  [307] ret
+end
+
+on clear me
+  [  0] getprop 563 ............................. <p>
+  [  3] getobjprop 1814 ......................... <p.Cleared>
+  [  6] pushint8 1 .............................. <1>
+  [  8] eq ...................................... <p.Cleared = 1>
+  [  9] jmpifz [ 13] ............................ if p.Cleared = 1 then
+  [ 12] ret ..................................... exit
+  [ 13] getprop 563 ............................. <p>
+  [ 16] getchainedprop 2069 ..................... <p.shadowmodel>
+  [ 19] pusharglist 0 ........................... <>
+  [ 21] extcall 40 .............................. <VOID>
+  [ 23] setobjprop 207 .......................... p.shadowmodel.parent = VOID
+  [ 25] getprop 563 ............................. <p>
+  [ 28] pushint8 1 .............................. <1>
+  [ 30] setobjprop 1814 ......................... p.Cleared = 1
+  [ 33] ret
+end

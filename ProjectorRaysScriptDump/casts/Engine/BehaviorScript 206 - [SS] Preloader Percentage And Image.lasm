@@ -1,0 +1,115 @@
+property p
+global g
+
+on beginSprite me
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] getprop 563 ............................. <p>
+  [  9] pushsymb 487 ............................ <#sprite>
+  [ 12] getparam 0 .............................. <me>
+  [ 14] getobjprop 1598 ......................... <me.spriteNum>
+  [ 17] pusharglist 1 ........................... <me.spriteNum>
+  [ 19] extcall 487 ............................. <sprite(me.spriteNum)>
+  [ 22] pusharglistnoret 3 ...................... <p, #sprite, sprite(me.spriteNum)>
+  [ 24] objcall 103 ............................. p[#sprite] = sprite(me.spriteNum)
+  [ 26] getprop 563 ............................. <p>
+  [ 29] pushsymb 64 ............................. <#member>
+  [ 31] getprop 563 ............................. <p>
+  [ 34] getchainedprop 487 ...................... <p.sprite>
+  [ 37] getobjprop 64 ........................... <p.sprite.member>
+  [ 39] pusharglistnoret 3 ...................... <p, #member, p.sprite.member>
+  [ 41] objcall 103 ............................. p[#member] = p.sprite.member
+  [ 43] getprop 563 ............................. <p>
+  [ 46] getchainedprop 64 ....................... <p.member>
+  [ 48] getobjprop 598 .......................... <p.member.type>
+  [ 51] pushsymb 80 ............................. <#text>
+  [ 53] eq ...................................... <p.member.type = #text>
+  [ 54] jmpifz [ 66] ............................ if p.member.type = #text then
+  [ 57] getprop 563 ............................. <p>
+  [ 60] getchainedprop 64 ....................... <p.member>
+  [ 62] pushcons 0 .............................. <"0%">
+  [ 64] setobjprop 80 ........................... p.member.text = "0%"
+  [ 66] getprop 563 ............................. <p>
+  [ 69] pushsymb 2957 ........................... <#LoadingSprite>
+  [ 72] getparam 0 .............................. <me>
+  [ 74] getobjprop 1598 ......................... <me.spriteNum>
+  [ 77] pushint8 1 .............................. <1>
+  [ 79] add ..................................... <me.spriteNum + 1>
+  [ 80] pusharglist 1 ........................... <me.spriteNum + 1>
+  [ 82] extcall 487 ............................. <sprite(me.spriteNum + 1)>
+  [ 85] pusharglistnoret 3 ...................... <p, #LoadingSprite, sprite(me.spriteNum + 1)>
+  [ 87] objcall 103 ............................. p[#LoadingSprite] = sprite(me.spriteNum + 1)
+  [ 89] getprop 563 ............................. <p>
+  [ 92] pushsymb 2958 ........................... <#LoadingSpriteData>
+  [ 95] pushzero ................................ <0>
+  [ 96] pushint16 130 ........................... <130>
+  [ 99] pusharglist 2 ........................... <[0, 130]>
+  [101] pushlist ................................ <[0, 130]>
+  [102] pusharglistnoret 3 ...................... <p, #LoadingSpriteData, [0, 130]>
+  [104] objcall 103 ............................. p[#LoadingSpriteData] = [0, 130]
+  [106] getprop 563 ............................. <p>
+  [109] getchainedprop 2957 ..................... <p.LoadingSprite>
+  [112] getprop 563 ............................. <p>
+  [115] pushsymb 2958 ........................... <#LoadingSpriteData>
+  [118] pushint8 1 .............................. <1>
+  [120] pusharglist 3 ........................... <p, #LoadingSpriteData, 1>
+  [122] objcall 70 .............................. <p.LoadingSpriteData[1]>
+  [124] setobjprop 229 .......................... p.LoadingSprite.width = p.LoadingSpriteData[1]
+  [126] ret
+end
+
+on enterFrame me
+  [  0] getprop 563 ............................. <p>
+  [  3] getchainedprop 64 ....................... <p.member>
+  [  5] getobjprop 598 .......................... <p.member.type>
+  [  8] pushsymb 80 ............................. <#text>
+  [ 10] eq ...................................... <p.member.type = #text>
+  [ 11] jmpifz [121] ............................ if p.member.type = #text then
+  [ 14] getglobal 395 ........................... <g>
+  [ 17] pushsymb 2959 ........................... <#DownloadPercentage>
+  [ 20] pusharglist 2 ........................... <g, #DownloadPercentage>
+  [ 22] extcall 542 ............................. <getaProp(g, #DownloadPercentage)>
+  [ 25] pusharglist 0 ........................... <>
+  [ 27] extcall 40 .............................. <VOID>
+  [ 29] nteq .................................... <getaProp(g, #DownloadPercentage) <> VOID>
+  [ 30] jmpifz [121] ............................ if getaProp(g, #DownloadPercentage) <> VOID then
+  [ 33] getglobal 395 ........................... <g>
+  [ 36] getchainedprop 2959 ..................... <g.DownloadPercentage>
+  [ 39] getobjprop 122 .......................... <g.DownloadPercentage.ilk>
+  [ 41] pushsymb 544 ............................ <#float>
+  [ 44] eq ...................................... <g.DownloadPercentage.ilk = #float>
+  [ 45] jmpifz [112] ............................ if g.DownloadPercentage.ilk = #float then / else
+  [ 48] getglobal 395 ........................... <g>
+  [ 51] getobjprop 2959 ......................... <g.DownloadPercentage>
+  [ 54] pushfloat32 100.0 ....................... <100.0>
+  [ 59] mul ..................................... <g.DownloadPercentage * 100.0>
+  [ 60] pusharglist 1 ........................... <g.DownloadPercentage * 100.0>
+  [ 62] extcall 123 ............................. <integer(g.DownloadPercentage * 100.0)>
+  [ 64] pusharglist 1 ........................... <integer(g.DownloadPercentage * 100.0)>
+  [ 66] extcall 67 .............................. <string(integer(g.DownloadPercentage * 100.0))>
+  [ 68] pushcons 1 .............................. <"%">
+  [ 70] joinstr ................................. <string(integer(g.DownloadPercentage * 100.0)) & "%">
+  [ 71] setlocal 0 .............................. pString = string(integer(g.DownloadPercentage * 100.0)) & "%"
+  [ 73] getprop 563 ............................. <p>
+  [ 76] getchainedprop 64 ....................... <p.member>
+  [ 78] getlocal 0 .............................. <pString>
+  [ 80] setobjprop 80 ........................... p.member.text = pString
+  [ 82] getprop 563 ............................. <p>
+  [ 85] getchainedprop 2957 ..................... <p.LoadingSprite>
+  [ 88] getglobal 395 ........................... <g>
+  [ 91] getobjprop 2959 ......................... <g.DownloadPercentage>
+  [ 94] getprop 563 ............................. <p>
+  [ 97] pushsymb 2958 ........................... <#LoadingSpriteData>
+  [100] pushint8 2 .............................. <2>
+  [102] pusharglist 3 ........................... <p, #LoadingSpriteData, 2>
+  [104] objcall 70 .............................. <p.LoadingSpriteData[2]>
+  [106] mul ..................................... <g.DownloadPercentage * p.LoadingSpriteData[2]>
+  [107] setobjprop 229 .......................... p.LoadingSprite.width = g.DownloadPercentage * p.LoadingSpriteData[2]
+  [109] jmp [121]
+  [112] getprop 563 ............................. <p>
+  [115] getchainedprop 64 ....................... <p.member>
+  [117] pushcons 2 .............................. <"No float, no info...">
+  [119] setobjprop 80 ........................... p.member.text = "No float, no info..."
+  [121] ret
+end

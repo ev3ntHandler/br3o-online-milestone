@@ -1,0 +1,608 @@
+global gSystem, gLoader, gData, gSound, gGame, gStarter
+
+on prepareMovie me
+  [  0] pushsymb 429 ............................ <#nothing>
+  [  3] pusharglistnoret 1 ...................... <#nothing>
+  [  5] extcall 428 ............................. reset(#nothing)
+  [  8] getglobal 50 ............................ <gSystem>
+  [ 10] pusharglist 1 ........................... <gSystem>
+  [ 12] extcall 389 ............................. <voidp(gSystem)>
+  [ 15] pushint8 1 .............................. <1>
+  [ 17] eq ...................................... <voidp(gSystem) = 1>
+  [ 18] jmpifz [ 25] ............................ if voidp(gSystem) = 1 then
+  [ 21] pusharglistnoret 0 ...................... <>
+  [ 23] localcall 3 ............................. InitGlobals()
+  [ 25] getglobal 400 ........................... <gStarter>
+  [ 28] pusharglist 1 ........................... <gStarter>
+  [ 30] extcall 389 ............................. <voidp(gStarter)>
+  [ 33] not ..................................... <not voidp(gStarter)>
+  [ 34] jmpifz [279] ............................ if not voidp(gStarter) then
+  [ 37] getglobal 43 ............................ <gGame>
+  [ 39] pushsymb 401 ............................ <#HighResCarTextures>
+  [ 42] getglobal 400 ........................... <gStarter>
+  [ 45] pushsymb 402 ............................ <#Visuals>
+  [ 48] pushsymb 401 ............................ <#HighResCarTextures>
+  [ 51] pusharglist 3 ........................... <gStarter, #Visuals, #HighResCarTextures>
+  [ 53] objcall 70 .............................. <gStarter.Visuals[#HighResCarTextures]>
+  [ 55] pusharglistnoret 3 ...................... <gGame, #HighResCarTextures, gStarter.Visuals[#HighResCarTextures]>
+  [ 57] objcall 103 ............................. gGame[#HighResCarTextures] = gStarter.Visuals[#HighResCarTextures]
+  [ 59] getglobal 43 ............................ <gGame>
+  [ 61] pushsymb 301 ............................ <#Bloom>
+  [ 64] getglobal 400 ........................... <gStarter>
+  [ 67] pushsymb 402 ............................ <#Visuals>
+  [ 70] pushsymb 301 ............................ <#Bloom>
+  [ 73] pusharglist 3 ........................... <gStarter, #Visuals, #Bloom>
+  [ 75] objcall 70 .............................. <gStarter.Visuals[#Bloom]>
+  [ 77] pusharglistnoret 3 ...................... <gGame, #Bloom, gStarter.Visuals[#Bloom]>
+  [ 79] objcall 103 ............................. gGame[#Bloom] = gStarter.Visuals[#Bloom]
+  [ 81] getglobal 43 ............................ <gGame>
+  [ 83] pushsymb 403 ............................ <#BloomPlus>
+  [ 86] getglobal 400 ........................... <gStarter>
+  [ 89] pushsymb 402 ............................ <#Visuals>
+  [ 92] pushsymb 403 ............................ <#BloomPlus>
+  [ 95] pusharglist 3 ........................... <gStarter, #Visuals, #BloomPlus>
+  [ 97] objcall 70 .............................. <gStarter.Visuals[#BloomPlus]>
+  [ 99] pusharglistnoret 3 ...................... <gGame, #BloomPlus, gStarter.Visuals[#BloomPlus]>
+  [101] objcall 103 ............................. gGame[#BloomPlus] = gStarter.Visuals[#BloomPlus]
+  [103] getglobal 43 ............................ <gGame>
+  [105] pushsymb 404 ............................ <#MotionBlur>
+  [108] getglobal 400 ........................... <gStarter>
+  [111] pushsymb 402 ............................ <#Visuals>
+  [114] pushsymb 404 ............................ <#MotionBlur>
+  [117] pusharglist 3 ........................... <gStarter, #Visuals, #MotionBlur>
+  [119] objcall 70 .............................. <gStarter.Visuals[#MotionBlur]>
+  [121] pusharglistnoret 3 ...................... <gGame, #MotionBlur, gStarter.Visuals[#MotionBlur]>
+  [123] objcall 103 ............................. gGame[#MotionBlur] = gStarter.Visuals[#MotionBlur]
+  [125] getglobal 43 ............................ <gGame>
+  [127] pushsymb 405 ............................ <#MotionBlurQuality>
+  [130] getglobal 400 ........................... <gStarter>
+  [133] pushsymb 402 ............................ <#Visuals>
+  [136] pushsymb 405 ............................ <#MotionBlurQuality>
+  [139] pusharglist 3 ........................... <gStarter, #Visuals, #MotionBlurQuality>
+  [141] objcall 70 .............................. <gStarter.Visuals[#MotionBlurQuality]>
+  [143] pusharglistnoret 3 ...................... <gGame, #MotionBlurQuality, gStarter.Visuals[#MotionBlurQuality]>
+  [145] objcall 103 ............................. gGame[#MotionBlurQuality] = gStarter.Visuals[#MotionBlurQuality]
+  [147] getglobal 43 ............................ <gGame>
+  [149] pushsymb 406 ............................ <#Shadows>
+  [152] getglobal 400 ........................... <gStarter>
+  [155] pushsymb 402 ............................ <#Visuals>
+  [158] pushsymb 406 ............................ <#Shadows>
+  [161] pusharglist 3 ........................... <gStarter, #Visuals, #Shadows>
+  [163] objcall 70 .............................. <gStarter.Visuals[#Shadows]>
+  [165] pusharglistnoret 3 ...................... <gGame, #Shadows, gStarter.Visuals[#Shadows]>
+  [167] objcall 103 ............................. gGame[#Shadows] = gStarter.Visuals[#Shadows]
+  [169] getglobal 43 ............................ <gGame>
+  [171] pushsymb 407 ............................ <#ShadowsDetail>
+  [174] getglobal 400 ........................... <gStarter>
+  [177] pushsymb 402 ............................ <#Visuals>
+  [180] pushsymb 407 ............................ <#ShadowsDetail>
+  [183] pusharglist 3 ........................... <gStarter, #Visuals, #ShadowsDetail>
+  [185] objcall 70 .............................. <gStarter.Visuals[#ShadowsDetail]>
+  [187] pusharglistnoret 3 ...................... <gGame, #ShadowsDetail, gStarter.Visuals[#ShadowsDetail]>
+  [189] objcall 103 ............................. gGame[#ShadowsDetail] = gStarter.Visuals[#ShadowsDetail]
+  [191] getglobal 43 ............................ <gGame>
+  [193] pushsymb 408 ............................ <#AntiAliasing>
+  [196] getglobal 400 ........................... <gStarter>
+  [199] pushsymb 402 ............................ <#Visuals>
+  [202] pushsymb 408 ............................ <#AntiAliasing>
+  [205] pusharglist 3 ........................... <gStarter, #Visuals, #AntiAliasing>
+  [207] objcall 70 .............................. <gStarter.Visuals[#AntiAliasing]>
+  [209] pusharglistnoret 3 ...................... <gGame, #AntiAliasing, gStarter.Visuals[#AntiAliasing]>
+  [211] objcall 103 ............................. gGame[#AntiAliasing] = gStarter.Visuals[#AntiAliasing]
+  [213] getglobal 43 ............................ <gGame>
+  [215] getglobal 400 ........................... <gStarter>
+  [218] getobjprop 409 .......................... <gStarter.resolution>
+  [221] setobjprop 409 .......................... gGame.resolution = gStarter.resolution
+  [224] getglobal 43 ............................ <gGame>
+  [226] pushsymb 409 ............................ <#resolution>
+  [229] pushint8 1 .............................. <1>
+  [231] pusharglist 3 ........................... <gGame, #resolution, 1>
+  [233] objcall 70 .............................. <gGame.resolution[1]>
+  [235] pushint16 640 ........................... <640>
+  [238] gt ...................................... <gGame.resolution[1] > 640>
+  [239] jmpifz [249] ............................ if gGame.resolution[1] > 640 then
+  [242] getglobal 43 ............................ <gGame>
+  [244] pushint8 2 .............................. <2>
+  [246] setobjprop 410 .......................... gGame.SourceRatio = 2
+  [249] getglobal 43 ............................ <gGame>
+  [251] pushsymb 409 ............................ <#resolution>
+  [254] pushint8 1 .............................. <1>
+  [256] pusharglist 3 ........................... <gGame, #resolution, 1>
+  [258] objcall 70 .............................. <gGame.resolution[1]>
+  [260] pushint16 1440 .......................... <1440>
+  [263] gteq .................................... <gGame.resolution[1] >= 1440>
+  [264] jmpifz [274] ............................ if gGame.resolution[1] >= 1440 then
+  [267] getglobal 43 ............................ <gGame>
+  [269] pushint8 4 .............................. <4>
+  [271] setobjprop 410 .......................... gGame.SourceRatio = 4
+  [274] pusharglistnoret 0 ...................... <>
+  [276] extcall 411 ............................. SetStageSize()
+  [279] getglobal 43 ............................ <gGame>
+  [281] pushsymb 412 ............................ <#ResRatio>
+  [284] pushfloat32 640.0 ....................... <640.0>
+  [289] getglobal 43 ............................ <gGame>
+  [291] pushsymb 409 ............................ <#resolution>
+  [294] pushint8 1 .............................. <1>
+  [296] pusharglist 3 ........................... <gGame, #resolution, 1>
+  [298] objcall 70 .............................. <gGame.resolution[1]>
+  [300] div ..................................... <640.0 / gGame.resolution[1]>
+  [301] pusharglistnoret 3 ...................... <gGame, #ResRatio, 640.0 / gGame.resolution[1]>
+  [303] objcall 103 ............................. gGame[#ResRatio] = 640.0 / gGame.resolution[1]
+  [305] ret
+end
+
+on startMovie me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getobjprop 413 .......................... <gGame.succes>
+  [  5] pushzero ................................ <0>
+  [  6] eq ...................................... <gGame.succes = 0>
+  [  7] jmpifz [ 20] ............................ if gGame.succes = 0 then / else
+  [ 10] pushcons 0 .............................. <"http://www.shockwave.com">
+  [ 12] pusharglistnoret 1 ...................... <"http://www.shockwave.com">
+  [ 14] extcall 414 ............................. gotoNetPage("http://www.shockwave.com")
+  [ 17] jmp [125]
+  [ 20] getglobal 50 ............................ <gSystem>
+  [ 22] getobjprop 415 .......................... <gSystem.Init>
+  [ 25] pushint8 1 .............................. <1>
+  [ 27] eq ...................................... <gSystem.Init = 1>
+  [ 28] jmpifz [ 40] ............................ if gSystem.Init = 1 then / else
+  [ 31] pushcons 1 .............................. <"MenuInitialization">
+  [ 33] pusharglistnoret 1 ...................... <"MenuInitialization">
+  [ 35] extcall 148 ............................. event("MenuInitialization")
+  [ 37] jmp [125]
+  [ 40] getglobal 50 ............................ <gSystem>
+  [ 42] getobjprop 51 ........................... <gSystem.local>
+  [ 44] pushzero ................................ <0>
+  [ 45] eq ...................................... <gSystem.local = 0>
+  [ 46] getglobal 416 ........................... <gLoader>
+  [ 49] getobjprop 417 .......................... <gLoader.Preloader>
+  [ 52] pushint8 1 .............................. <1>
+  [ 54] eq ...................................... <gLoader.Preloader = 1>
+  [ 55] and ..................................... <(gSystem.local = 0) and (gLoader.Preloader = 1)>
+  [ 56] jmpifz [ 64] ............................ if (gSystem.local = 0) and (gLoader.Preloader = 1) then
+  [ 59] pusharglistnoret 0 ...................... <>
+  [ 61] extcall 418 ............................. PreloadMyMovie()
+  [ 64] getglobal 416 ........................... <gLoader>
+  [ 67] getobjprop 417 .......................... <gLoader.Preloader>
+  [ 70] pushzero ................................ <0>
+  [ 71] eq ...................................... <gLoader.Preloader = 0>
+  [ 72] jmpifz [125] ............................ if gLoader.Preloader = 0 then
+  [ 75] getglobal 50 ............................ <gSystem>
+  [ 77] getobjprop 51 ........................... <gSystem.local>
+  [ 79] pushint8 1 .............................. <1>
+  [ 81] eq ...................................... <gSystem.local = 1>
+  [ 82] jmpifz [ 95] ............................ if gSystem.local = 1 then / else
+  [ 85] pushcons 2 .............................. <"\\Data\\LoadingArray.txt">
+  [ 87] pusharglistnoret 1 ...................... <"\\Data\\LoadingArray.txt">
+  [ 89] extcall 419 ............................. load("\\Data\\LoadingArray.txt")
+  [ 92] jmp [100]
+  [ 95] pusharglistnoret 0 ...................... <>
+  [ 97] extcall 420 ............................. OnlineLoad()
+  [100] getglobal 291 ........................... <gSound>
+  [103] pusharglist 1 ........................... <gSound>
+  [105] extcall 389 ............................. <voidp(gSound)>
+  [108] pushint8 1 .............................. <1>
+  [110] eq ...................................... <voidp(gSound) = 1>
+  [111] jmpifz [119] ............................ if voidp(gSound) = 1 then
+  [114] pusharglistnoret 0 ...................... <>
+  [116] extcall 421 ............................. SetupSoundManager()
+  [119] pushcons 3 .............................. <"GameInitialization">
+  [121] pusharglistnoret 1 ...................... <"GameInitialization">
+  [123] extcall 148 ............................. event("GameInitialization")
+  [125] ret
+end
+
+on stopMovie me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] getobjprop 422 .......................... <gGame.fullscreen>
+  [  5] pushint8 1 .............................. <1>
+  [  7] eq ...................................... <gGame.fullscreen = 1>
+  [  8] jmpifz [ 16] ............................ if gGame.fullscreen = 1 then
+  [ 11] pusharglistnoret 0 ...................... <>
+  [ 13] extcall 423 ............................. ResXoff()
+  [ 16] getparam 0 .............................. <me>
+  [ 18] pusharglist 0 ........................... <>
+  [ 20] extcall 40 .............................. <VOID>
+  [ 22] nteq .................................... <me <> VOID>
+  [ 23] jmpifz [ 27] ............................ if me <> VOID then
+  [ 26] ret ..................................... exit
+  [ 27] pusharglistnoret 0 ...................... <>
+  [ 29] extcall 424 ............................. DeleteDynamicMembers()
+  [ 32] pusharglistnoret 0 ...................... <>
+  [ 34] extcall 425 ............................. DeleteDynamicSprites()
+  [ 37] pusharglistnoret 0 ...................... <>
+  [ 39] extcall 426 ............................. ClearSoundManager()
+  [ 42] gettoplevelprop 33 ...................... <_movie>
+  [ 44] pusharglist 0 ........................... <[]>
+  [ 46] pushlist ................................ <[]>
+  [ 47] setobjprop 41 ........................... _movie.actorList = []
+  [ 49] gettoplevelprop 33 ...................... <_movie>
+  [ 51] pusharglist 0 ........................... <[]>
+  [ 53] pushlist ................................ <[]>
+  [ 54] setobjprop 427 .......................... _movie.timeoutList = []
+  [ 57] getglobal 43 ............................ <gGame>
+  [ 59] pusharglist 0 ........................... <[]>
+  [ 61] pushlist ................................ <[]>
+  [ 62] setobjprop 300 .......................... gGame.scriptList = []
+  [ 65] getglobal 50 ............................ <gSystem>
+  [ 67] getobjprop 51 ........................... <gSystem.local>
+  [ 69] pushint8 1 .............................. <1>
+  [ 71] eq ...................................... <gSystem.local = 1>
+  [ 72] jmpifz [ 83] ............................ if gSystem.local = 1 then
+  [ 75] pushsymb 429 ............................ <#nothing>
+  [ 78] pusharglistnoret 1 ...................... <#nothing>
+  [ 80] extcall 428 ............................. reset(#nothing)
+  [ 83] ret
+end
+
+on InitGlobals me
+  [  0] getglobal 50 ............................ <gSystem>
+  [  2] pusharglist 1 ........................... <gSystem>
+  [  4] extcall 389 ............................. <voidp(gSystem)>
+  [  7] pushzero ................................ <0>
+  [  8] eq ...................................... <voidp(gSystem) = 0>
+  [  9] jmpifz [ 30] ............................ if voidp(gSystem) = 0 then
+  [ 12] pushcons 4 .............................. <"exited from initglobals">
+  [ 14] pusharglistnoret 1 ...................... <"exited from initglobals">
+  [ 16] extcall 57 .............................. put "exited from initglobals"
+  [ 18] getglobal 50 ............................ <gSystem>
+  [ 20] getobjprop 415 .......................... <gSystem.Init>
+  [ 23] pushint8 1 .............................. <1>
+  [ 25] eq ...................................... <gSystem.Init = 1>
+  [ 26] jmpifz [ 30] ............................ if gSystem.Init = 1 then
+  [ 29] ret ..................................... exit
+  [ 30] pusharglist 0 ........................... <[:]>
+  [ 32] pushproplist ............................ <[:]>
+  [ 33] setglobal 50 ............................ gSystem = [:]
+  [ 35] getglobal 50 ............................ <gSystem>
+  [ 37] pushsymb 430 ............................ <#debug>
+  [ 40] pushint8 1 .............................. <1>
+  [ 42] pusharglistnoret 3 ...................... <gSystem, #debug, 1>
+  [ 44] objcall 103 ............................. gSystem[#debug] = 1
+  [ 46] getglobal 50 ............................ <gSystem>
+  [ 48] pushsymb 51 ............................. <#local>
+  [ 50] pushint8 1 .............................. <1>
+  [ 52] pusharglistnoret 3 ...................... <gSystem, #local, 1>
+  [ 54] objcall 103 ............................. gSystem[#local] = 1
+  [ 56] getglobal 50 ............................ <gSystem>
+  [ 58] pushsymb 415 ............................ <#Init>
+  [ 61] pushzero ................................ <0>
+  [ 62] pusharglistnoret 3 ...................... <gSystem, #Init, 0>
+  [ 64] objcall 103 ............................. gSystem[#Init] = 0
+  [ 66] getglobal 50 ............................ <gSystem>
+  [ 68] pushsymb 34 ............................. <#path>
+  [ 70] gettoplevelprop 33 ...................... <_movie>
+  [ 72] getobjprop 34 ........................... <_movie.path>
+  [ 74] pushint8 1 .............................. <1>
+  [ 76] gettoplevelprop 33 ...................... <_movie>
+  [ 78] getchainedprop 34 ....................... <_movie.path>
+  [ 80] getobjprop 69 ........................... <_movie.path.length>
+  [ 82] pushint8 1 .............................. <1>
+  [ 84] sub ..................................... <_movie.path.length - 1>
+  [ 85] pusharglist 3 ........................... <_movie.path, 1, _movie.path.length - 1>
+  [ 87] extcall 431 ............................. <chars(_movie.path, 1, _movie.path.length - 1)>
+  [ 90] pusharglistnoret 3 ...................... <gSystem, #path, chars(_movie.path, 1, _movie.path.length - 1)>
+  [ 92] objcall 103 ............................. gSystem[#path] = chars(_movie.path, 1, _movie.path.length - 1)
+  [ 94] getglobal 50 ............................ <gSystem>
+  [ 96] pushsymb 432 ............................ <#frame>
+  [ 99] pushzero ................................ <0>
+  [100] pusharglistnoret 3 ...................... <gSystem, #frame, 0>
+  [102] objcall 103 ............................. gSystem[#frame] = 0
+  [104] getglobal 50 ............................ <gSystem>
+  [106] pushsymb 433 ............................ <#DefaultCast>
+  [109] pushcons 5 .............................. <"Internal">
+  [111] pusharglistnoret 3 ...................... <gSystem, #DefaultCast, "Internal">
+  [113] objcall 103 ............................. gSystem[#DefaultCast] = "Internal"
+  [115] getglobal 50 ............................ <gSystem>
+  [117] pushsymb 434 ............................ <#InternalCasts>
+  [120] pusharglist 0 ........................... <>
+  [122] extcall 435 ............................. <GetInternalCasts()>
+  [125] pusharglistnoret 3 ...................... <gSystem, #InternalCasts, GetInternalCasts()>
+  [127] objcall 103 ............................. gSystem[#InternalCasts] = GetInternalCasts()
+  [129] getglobal 50 ............................ <gSystem>
+  [131] pushsymb 436 ............................ <#ExternalCasts>
+  [134] pusharglist 0 ........................... <>
+  [136] extcall 437 ............................. <GetExternalCasts()>
+  [139] pusharglistnoret 3 ...................... <gSystem, #ExternalCasts, GetExternalCasts()>
+  [141] objcall 103 ............................. gSystem[#ExternalCasts] = GetExternalCasts()
+  [143] getglobal 50 ............................ <gSystem>
+  [145] pushsymb 438 ............................ <#MessageWindow>
+  [148] getglobal 50 ............................ <gSystem>
+  [150] getobjprop 51 ........................... <gSystem.local>
+  [152] pusharglistnoret 3 ...................... <gSystem, #MessageWindow, gSystem.local>
+  [154] objcall 103 ............................. gSystem[#MessageWindow] = gSystem.local
+  [156] getglobal 50 ............................ <gSystem>
+  [158] pushsymb 145 ............................ <#itemDelimiter>
+  [160] pushcons 6 .............................. <TAB>
+  [162] pusharglistnoret 3 ...................... <gSystem, #itemDelimiter, TAB>
+  [164] objcall 103 ............................. gSystem[#itemDelimiter] = TAB
+  [166] getglobal 50 ............................ <gSystem>
+  [168] pushsymb 318 ............................ <#DynamicMembers>
+  [171] pusharglist 0 ........................... <[]>
+  [173] pushlist ................................ <[]>
+  [174] pusharglistnoret 3 ...................... <gSystem, #DynamicMembers, []>
+  [176] objcall 103 ............................. gSystem[#DynamicMembers] = []
+  [178] getglobal 50 ............................ <gSystem>
+  [180] pushsymb 439 ............................ <#DynamicSprites>
+  [183] pusharglist 0 ........................... <[]>
+  [185] pushlist ................................ <[]>
+  [186] pusharglistnoret 3 ...................... <gSystem, #DynamicSprites, []>
+  [188] objcall 103 ............................. gSystem[#DynamicSprites] = []
+  [190] getglobal 50 ............................ <gSystem>
+  [192] pushsymb 440 ............................ <#handlerList>
+  [195] pusharglist 0 ........................... <[]>
+  [197] pushlist ................................ <[]>
+  [198] pusharglistnoret 3 ...................... <gSystem, #handlerList, []>
+  [200] objcall 103 ............................. gSystem[#handlerList] = []
+  [202] getglobal 50 ............................ <gSystem>
+  [204] pushsymb 300 ............................ <#scriptList>
+  [207] pusharglist 0 ........................... <[]>
+  [209] pushlist ................................ <[]>
+  [210] pusharglistnoret 3 ...................... <gSystem, #scriptList, []>
+  [212] objcall 103 ............................. gSystem[#scriptList] = []
+  [214] getglobal 50 ............................ <gSystem>
+  [216] pushsymb 148 ............................ <#event>
+  [218] pusharglist 0 ........................... <>
+  [220] extcall 40 .............................. <VOID>
+  [222] pusharglistnoret 3 ...................... <gSystem, #event, VOID>
+  [224] objcall 103 ............................. gSystem[#event] = VOID
+  [226] getglobal 50 ............................ <gSystem>
+  [228] pushsymb 441 ............................ <#Emo>
+  [231] pushzero ................................ <0>
+  [232] pusharglistnoret 3 ...................... <gSystem, #Emo, 0>
+  [234] objcall 103 ............................. gSystem[#Emo] = 0
+  [236] gettoplevelprop 387 ..................... <_player>
+  [239] getobjprop 388 .......................... <_player.runMode>
+  [242] pushcons 7 .............................. <"Plugin">
+  [244] eq ...................................... <_player.runMode = "Plugin">
+  [245] jmpifz [253] ............................ if _player.runMode = "Plugin" then
+  [248] getglobal 50 ............................ <gSystem>
+  [250] pushzero ................................ <0>
+  [251] setobjprop 51 ........................... gSystem.local = 0
+  [253] pusharglist 0 ........................... <[:]>
+  [255] pushproplist ............................ <[:]>
+  [256] setglobal 416 ........................... gLoader = [:]
+  [259] getglobal 416 ........................... <gLoader>
+  [262] pushsymb 89 ............................. <#state>
+  [264] pushcons 8 .............................. <"Free">
+  [266] pusharglistnoret 3 ...................... <gLoader, #state, "Free">
+  [268] objcall 103 ............................. gLoader[#state] = "Free"
+  [270] getglobal 416 ........................... <gLoader>
+  [273] pushsymb 417 ............................ <#Preloader>
+  [276] pushzero ................................ <0>
+  [277] pusharglistnoret 3 ...................... <gLoader, #Preloader, 0>
+  [279] objcall 103 ............................. gLoader[#Preloader] = 0
+  [281] getglobal 416 ........................... <gLoader>
+  [284] pushsymb 442 ............................ <#DownloadState>
+  [287] pushcons 8 .............................. <"Free">
+  [289] pusharglistnoret 3 ...................... <gLoader, #DownloadState, "Free">
+  [291] objcall 103 ............................. gLoader[#DownloadState] = "Free"
+  [293] getglobal 416 ........................... <gLoader>
+  [296] pushsymb 443 ............................ <#DownloadPerc>
+  [299] pushzero ................................ <0>
+  [300] pusharglistnoret 3 ...................... <gLoader, #DownloadPerc, 0>
+  [302] objcall 103 ............................. gLoader[#DownloadPerc] = 0
+  [304] getglobal 416 ........................... <gLoader>
+  [307] pushsymb 444 ............................ <#DownloadingCast>
+  [310] pushsymb 54 ............................. <#none>
+  [312] pusharglistnoret 3 ...................... <gLoader, #DownloadingCast, #none>
+  [314] objcall 103 ............................. gLoader[#DownloadingCast] = #none
+  [316] getglobal 416 ........................... <gLoader>
+  [319] pushsymb 445 ............................ <#DownloadedCasts>
+  [322] pusharglist 0 ........................... <[]>
+  [324] pushlist ................................ <[]>
+  [325] pusharglistnoret 3 ...................... <gLoader, #DownloadedCasts, []>
+  [327] objcall 103 ............................. gLoader[#DownloadedCasts] = []
+  [329] getglobal 416 ........................... <gLoader>
+  [332] pushsymb 446 ............................ <#Member3dList>
+  [335] pusharglist 0 ........................... <[]>
+  [337] pushlist ................................ <[]>
+  [338] pusharglistnoret 3 ...................... <gLoader, #Member3dList, []>
+  [340] objcall 103 ............................. gLoader[#Member3dList] = []
+  [342] pusharglist 0 ........................... <[:]>
+  [344] pushproplist ............................ <[:]>
+  [345] setglobal 86 ............................ gData = [:]
+  [347] getglobal 86 ............................ <gData>
+  [349] pushsymb 120 ............................ <#Events>
+  [351] pusharglist 0 ........................... <[:]>
+  [353] pushproplist ............................ <[:]>
+  [354] pusharglistnoret 3 ...................... <gData, #Events, [:]>
+  [356] objcall 103 ............................. gData[#Events] = [:]
+  [358] getglobal 86 ............................ <gData>
+  [360] pushsymb 87 ............................. <#data>
+  [362] pusharglist 0 ........................... <[:]>
+  [364] pushproplist ............................ <[:]>
+  [365] pusharglistnoret 3 ...................... <gData, #data, [:]>
+  [367] objcall 103 ............................. gData[#data] = [:]
+  [369] getglobal 86 ............................ <gData>
+  [371] pushsymb 447 ............................ <#Triggers>
+  [374] pusharglist 0 ........................... <[]>
+  [376] pushlist ................................ <[]>
+  [377] pusharglistnoret 3 ...................... <gData, #Triggers, []>
+  [379] objcall 103 ............................. gData[#Triggers] = []
+  [381] getglobal 86 ............................ <gData>
+  [383] pushsymb 448 ............................ <#StoredEvents>
+  [386] pusharglist 0 ........................... <[]>
+  [388] pushlist ................................ <[]>
+  [389] pusharglistnoret 3 ...................... <gData, #StoredEvents, []>
+  [391] objcall 103 ............................. gData[#StoredEvents] = []
+  [393] getglobal 86 ............................ <gData>
+  [395] pushsymb 449 ............................ <#StoredData>
+  [398] pusharglist 0 ........................... <[]>
+  [400] pushlist ................................ <[]>
+  [401] pusharglistnoret 3 ...................... <gData, #StoredData, []>
+  [403] objcall 103 ............................. gData[#StoredData] = []
+  [405] getglobal 86 ............................ <gData>
+  [407] pushsymb 450 ............................ <#StoredTriggers>
+  [410] pusharglist 0 ........................... <[]>
+  [412] pushlist ................................ <[]>
+  [413] pusharglistnoret 3 ...................... <gData, #StoredTriggers, []>
+  [415] objcall 103 ............................. gData[#StoredTriggers] = []
+  [417] pusharglist 0 ........................... <[:]>
+  [419] pushproplist ............................ <[:]>
+  [420] setglobal 43 ............................ gGame = [:]
+  [422] getglobal 43 ............................ <gGame>
+  [424] pushsymb 451 ............................ <#version>
+  [427] pushcons 9 .............................. <0.01>
+  [429] pusharglistnoret 3 ...................... <gGame, #version, 0.01>
+  [431] objcall 103 ............................. gGame[#version] = 0.01
+  [433] getglobal 43 ............................ <gGame>
+  [435] pushsymb 235 ............................ <#name>
+  [437] pushcons 10 ............................. <"UnknownGame">
+  [439] pusharglistnoret 3 ...................... <gGame, #name, "UnknownGame">
+  [441] objcall 103 ............................. gGame[#name] = "UnknownGame"
+  [443] getglobal 43 ............................ <gGame>
+  [445] pushsymb 452 ............................ <#PrefFile>
+  [448] pushcons 11 ............................. <"XData.txt">
+  [450] pusharglistnoret 3 ...................... <gGame, #PrefFile, "XData.txt">
+  [452] objcall 103 ............................. gGame[#PrefFile] = "XData.txt"
+  [454] getglobal 43 ............................ <gGame>
+  [456] pushsymb 392 ............................ <#pause>
+  [459] pushzero ................................ <0>
+  [460] pusharglistnoret 3 ...................... <gGame, #pause, 0>
+  [462] objcall 103 ............................. gGame[#pause] = 0
+  [464] getglobal 43 ............................ <gGame>
+  [466] pushsymb 391 ............................ <#input>
+  [469] pushzero ................................ <0>
+  [470] pusharglistnoret 3 ...................... <gGame, #input, 0>
+  [472] objcall 103 ............................. gGame[#input] = 0
+  [474] getglobal 43 ............................ <gGame>
+  [476] pushsymb 453 ............................ <#tempo>
+  [479] pushint8 32 ............................. <32>
+  [481] pusharglistnoret 3 ...................... <gGame, #tempo, 32>
+  [483] objcall 103 ............................. gGame[#tempo] = 32
+  [485] getglobal 43 ............................ <gGame>
+  [487] pushsymb 454 ............................ <#TimeMP>
+  [490] pushfloat32 1.0 ......................... <1.0>
+  [495] pusharglistnoret 3 ...................... <gGame, #TimeMP, 1.0>
+  [497] objcall 103 ............................. gGame[#TimeMP] = 1.0
+  [499] getglobal 43 ............................ <gGame>
+  [501] pushsymb 422 ............................ <#fullscreen>
+  [504] pushzero ................................ <0>
+  [505] pusharglistnoret 3 ...................... <gGame, #fullscreen, 0>
+  [507] objcall 103 ............................. gGame[#fullscreen] = 0
+  [509] getglobal 43 ............................ <gGame>
+  [511] pushsymb 409 ............................ <#resolution>
+  [514] getmovieprop 455 ........................ <the stage>
+  [517] pushsymb 456 ............................ <#drawRect>
+  [520] pushint8 3 .............................. <3>
+  [522] pusharglist 3 ........................... <the stage, #drawRect, 3>
+  [524] objcall 70 .............................. <(the stage).drawRect[3]>
+  [526] getmovieprop 455 ........................ <the stage>
+  [529] pushsymb 456 ............................ <#drawRect>
+  [532] pushint8 4 .............................. <4>
+  [534] pusharglist 3 ........................... <the stage, #drawRect, 4>
+  [536] objcall 70 .............................. <(the stage).drawRect[4]>
+  [538] pusharglist 2 ........................... <[(the stage).drawRect[3], (the stage).drawRect[4]]>
+  [540] pushlist ................................ <[(the stage).drawRect[3], (the stage).drawRect[4]]>
+  [541] pusharglistnoret 3 ...................... <gGame, #resolution, [(the stage).drawRect[3], (the stage).drawRect[4]]>
+  [543] objcall 103 ............................. gGame[#resolution] = [(the stage).drawRect[3], (the stage).drawRect[4]]
+  [545] getglobal 43 ............................ <gGame>
+  [547] pushsymb 457 ............................ <#LockEscape>
+  [550] pushzero ................................ <0>
+  [551] pusharglistnoret 3 ...................... <gGame, #LockEscape, 0>
+  [553] objcall 103 ............................. gGame[#LockEscape] = 0
+  [555] getglobal 43 ............................ <gGame>
+  [557] pushsymb 458 ............................ <#Iteration>
+  [560] pusharglist 0 ........................... <>
+  [562] extcall 40 .............................. <VOID>
+  [564] pusharglistnoret 3 ...................... <gGame, #Iteration, VOID>
+  [566] objcall 103 ............................. gGame[#Iteration] = VOID
+  [568] getglobal 43 ............................ <gGame>
+  [570] pushsymb 427 ............................ <#timeoutList>
+  [573] pusharglist 0 ........................... <[]>
+  [575] pushlist ................................ <[]>
+  [576] pusharglistnoret 3 ...................... <gGame, #timeoutList, []>
+  [578] objcall 103 ............................. gGame[#timeoutList] = []
+  [580] getglobal 43 ............................ <gGame>
+  [582] pushsymb 41 ............................. <#actorList>
+  [584] pusharglist 0 ........................... <[]>
+  [586] pushlist ................................ <[]>
+  [587] pusharglistnoret 3 ...................... <gGame, #actorList, []>
+  [589] objcall 103 ............................. gGame[#actorList] = []
+  [591] getglobal 43 ............................ <gGame>
+  [593] pushsymb 459 ............................ <#timerList>
+  [596] pusharglist 0 ........................... <[:]>
+  [598] pushproplist ............................ <[:]>
+  [599] pusharglistnoret 3 ...................... <gGame, #timerList, [:]>
+  [601] objcall 103 ............................. gGame[#timerList] = [:]
+  [603] getglobal 43 ............................ <gGame>
+  [605] pushsymb 460 ............................ <#timerData>
+  [608] pusharglist 0 ........................... <[:]>
+  [610] pushproplist ............................ <[:]>
+  [611] pusharglistnoret 3 ...................... <gGame, #timerData, [:]>
+  [613] objcall 103 ............................. gGame[#timerData] = [:]
+  [615] getglobal 43 ............................ <gGame>
+  [617] pushsymb 460 ............................ <#timerData>
+  [620] pushsymb 461 ............................ <#Lastupdate>
+  [623] gettoplevelprop 462 ..................... <_system>
+  [626] getobjprop 463 .......................... <_system.milliSeconds>
+  [629] pusharglistnoret 4 ...................... <gGame, #timerData, #Lastupdate, _system.milliSeconds>
+  [631] objcall 99 .............................. gGame.timerData[#Lastupdate] = _system.milliSeconds
+  [633] getglobal 43 ............................ <gGame>
+  [635] pushsymb 300 ............................ <#scriptList>
+  [638] pusharglist 0 ........................... <[]>
+  [640] pushlist ................................ <[]>
+  [641] pusharglistnoret 3 ...................... <gGame, #scriptList, []>
+  [643] objcall 103 ............................. gGame[#scriptList] = []
+  [645] getglobal 43 ............................ <gGame>
+  [647] pushsymb 410 ............................ <#SourceRatio>
+  [650] pushfloat32 1.0 ......................... <1.0>
+  [655] pusharglistnoret 3 ...................... <gGame, #SourceRatio, 1.0>
+  [657] objcall 103 ............................. gGame[#SourceRatio] = 1.0
+  [659] getglobal 43 ............................ <gGame>
+  [661] pushsymb 401 ............................ <#HighResCarTextures>
+  [664] pushint8 1 .............................. <1>
+  [666] pusharglistnoret 3 ...................... <gGame, #HighResCarTextures, 1>
+  [668] objcall 103 ............................. gGame[#HighResCarTextures] = 1
+  [670] getglobal 43 ............................ <gGame>
+  [672] pushsymb 301 ............................ <#Bloom>
+  [675] pushzero ................................ <0>
+  [676] pusharglistnoret 3 ...................... <gGame, #Bloom, 0>
+  [678] objcall 103 ............................. gGame[#Bloom] = 0
+  [680] getglobal 43 ............................ <gGame>
+  [682] pushsymb 404 ............................ <#MotionBlur>
+  [685] pushzero ................................ <0>
+  [686] pusharglistnoret 3 ...................... <gGame, #MotionBlur, 0>
+  [688] objcall 103 ............................. gGame[#MotionBlur] = 0
+  [690] getglobal 43 ............................ <gGame>
+  [692] pushsymb 406 ............................ <#Shadows>
+  [695] pushzero ................................ <0>
+  [696] pusharglistnoret 3 ...................... <gGame, #Shadows, 0>
+  [698] objcall 103 ............................. gGame[#Shadows] = 0
+  [700] getglobal 43 ............................ <gGame>
+  [702] pushsymb 407 ............................ <#ShadowsDetail>
+  [705] pushzero ................................ <0>
+  [706] pusharglistnoret 3 ...................... <gGame, #ShadowsDetail, 0>
+  [708] objcall 103 ............................. gGame[#ShadowsDetail] = 0
+  [710] getglobal 43 ............................ <gGame>
+  [712] pushsymb 408 ............................ <#AntiAliasing>
+  [715] pushsymb 54 ............................. <#none>
+  [717] pusharglistnoret 3 ...................... <gGame, #AntiAliasing, #none>
+  [719] objcall 103 ............................. gGame[#AntiAliasing] = #none
+  [721] getglobal 43 ............................ <gGame>
+  [723] pushsymb 464 ............................ <#BloomSize>
+  [726] pushfloat32 0.125 ....................... <0.125>
+  [731] pusharglistnoret 3 ...................... <gGame, #BloomSize, 0.125>
+  [733] objcall 103 ............................. gGame[#BloomSize] = 0.125
+  [735] getglobal 43 ............................ <gGame>
+  [737] pushsymb 413 ............................ <#succes>
+  [740] pushint8 1 .............................. <1>
+  [742] pusharglistnoret 3 ...................... <gGame, #succes, 1>
+  [744] objcall 103 ............................. gGame[#succes] = 1
+  [746] gettoplevelprop 33 ...................... <_movie>
+  [748] getglobal 43 ............................ <gGame>
+  [750] getobjprop 457 .......................... <gGame.LockEscape>
+  [753] setobjprop 465 .......................... _movie.exitLock = gGame.LockEscape
+  [756] gettoplevelprop 387 ..................... <_player>
+  [759] getglobal 50 ............................ <gSystem>
+  [761] getobjprop 438 .......................... <gSystem.MessageWindow>
+  [764] setobjprop 466 .......................... _player.debugPlaybackEnabled = gSystem.MessageWindow
+  [767] pushcons 12 ............................. <"gGame.succes was ">
+  [769] getglobal 43 ............................ <gGame>
+  [771] getobjprop 413 .......................... <gGame.succes>
+  [774] joinstr ................................. <"gGame.succes was " & gGame.succes>
+  [775] pusharglistnoret 1 ...................... <"gGame.succes was " & gGame.succes>
+  [777] extcall 57 .............................. put "gGame.succes was " & gGame.succes
+  [779] ret
+end

@@ -1,0 +1,250 @@
+on SetupLighting tTarget, tDataList
+  [  0] getparam 0 .............................. <tTarget>
+  [  2] pusharglist 1 ........................... <tTarget>
+  [  4] extcall 64 .............................. <member(tTarget)>
+  [  6] setlocal 0 .............................. tmember = member(tTarget)
+  [  8] getlocal 0 .............................. <tmember>
+  [ 10] pusharglist 0 ........................... <>
+  [ 12] extcall 40 .............................. <VOID>
+  [ 14] eq ...................................... <tmember = VOID>
+  [ 15] jmpifz [ 22] ............................ if tmember = VOID then
+  [ 18] pusharglistnoret 0 ...................... <>
+  [ 20] extcall 52 .............................. return 
+  [ 22] getlocal 0 .............................. <tmember>
+  [ 24] pushcons 0 .............................. <"Default MAX Light">
+  [ 26] pusharglist 2 ........................... <tmember, "Default MAX Light">
+  [ 28] objcall 1154 ............................ <tmember.light("Default MAX Light")>
+  [ 31] setlocal 1 .............................. tLight = tmember.light("Default MAX Light")
+  [ 33] getlocal 1 .............................. <tLight>
+  [ 35] pusharglist 0 ........................... <>
+  [ 37] extcall 40 .............................. <VOID>
+  [ 39] eq ...................................... <tLight = VOID>
+  [ 40] not ..................................... <not (tLight = VOID)>
+  [ 41] jmpifz [ 53] ............................ if not (tLight = VOID) then
+  [ 44] getlocal 0 .............................. <tmember>
+  [ 46] pushcons 0 .............................. <"Default MAX Light">
+  [ 48] pusharglistnoret 2 ...................... <tmember, "Default MAX Light">
+  [ 50] objcall 712 ............................. tmember.deleteLight("Default MAX Light")
+  [ 53] getlocal 0 .............................. <tmember>
+  [ 55] pushcons 1 .............................. <"SunLight">
+  [ 57] pusharglist 2 ........................... <tmember, "SunLight">
+  [ 59] objcall 1158 ............................ <tmember.newLight("SunLight")>
+  [ 62] setlocal 2 .............................. tNewLight = tmember.newLight("SunLight")
+  [ 64] getlocal 2 .............................. <tNewLight>
+  [ 66] pushsymb 1322 ........................... <#directional>
+  [ 69] setobjprop 598 .......................... tNewLight.type = #directional
+  [ 72] getlocal 2 .............................. <tNewLight>
+  [ 74] pushint16 255 ........................... <255>
+  [ 77] pushint16 255 ........................... <255>
+  [ 80] pushint16 255 ........................... <255>
+  [ 83] pusharglist 3 ........................... <255, 255, 255>
+  [ 85] extcall 282 ............................. <rgb(255, 255, 255)>
+  [ 88] setobjprop 223 .......................... tNewLight.color = rgb(255, 255, 255)
+  [ 90] pushzero ................................ <0>
+  [ 91] pushzero ................................ <0>
+  [ 92] pushint8 100 ............................ <100>
+  [ 94] pusharglist 3 ........................... <0, 0, 100>
+  [ 96] extcall 212 ............................. <vector(0, 0, 100)>
+  [ 98] setlocal 3 .............................. tPosition = vector(0, 0, 100)
+  [100] pushzero ................................ <0>
+  [101] pushzero ................................ <0>
+  [102] pushzero ................................ <0>
+  [103] pusharglist 3 ........................... <0, 0, 0>
+  [105] extcall 212 ............................. <vector(0, 0, 0)>
+  [107] setlocal 4 .............................. tRotation = vector(0, 0, 0)
+  [109] pushcons 2 .............................. <"City">
+  [111] setlocal 5 .............................. assetString = "City"
+  [113] getparam 0 .............................. <tTarget>
+  [115] peek 0 .................................. case tTarget of
+  [117] pushcons 3 .............................. <"CityAssets">
+  [119] eq
+  [120] jmpifz [173] ............................ (case) "CityAssets":
+  [123] pushint16 250 ........................... <250>
+  [126] inv ..................................... <-250>
+  [127] pushint16 250 ........................... <250>
+  [130] pushint16 150 ........................... <150>
+  [133] pusharglist 3 ........................... <-250, 250, 150>
+  [135] extcall 212 ............................. <vector(-250, 250, 150)>
+  [137] setlocal 6 .............................. position = vector(-250, 250, 150)
+  [139] pushint8 63 ............................. <63>
+  [141] pushzero ................................ <0>
+  [142] pushint8 124 ............................ <124>
+  [144] pusharglist 3 ........................... <63, 0, 124>
+  [146] extcall 212 ............................. <vector(63, 0, 124)>
+  [148] setlocal 7 .............................. rotation = vector(63, 0, 124)
+  [150] pushint16 152 ........................... <152>
+  [153] pushint16 143 ........................... <143>
+  [156] pushint16 137 ........................... <137>
+  [159] pusharglist 3 ........................... <152, 143, 137>
+  [161] extcall 282 ............................. <rgb(152, 143, 137)>
+  [164] setlocal 8 .............................. emColor = rgb(152, 143, 137)
+  [166] pushcons 2 .............................. <"City">
+  [168] setlocal 5 .............................. assetString = "City"
+  [170] jmp [335]
+  [173] peek 0
+  [175] pushcons 4 .............................. <"SnowAssets">
+  [177] eq
+  [178] jmpifz [226] ............................ (case) "SnowAssets":
+  [181] pushint8 125 ............................ <125>
+  [183] pushint8 125 ............................ <125>
+  [185] pushint8 125 ............................ <125>
+  [187] pusharglist 3 ........................... <125, 125, 125>
+  [189] extcall 212 ............................. <vector(125, 125, 125)>
+  [191] setlocal 6 .............................. position = vector(125, 125, 125)
+  [193] pushint8 55 ............................. <55>
+  [195] pushzero ................................ <0>
+  [196] pushint16 135 ........................... <135>
+  [199] inv ..................................... <-135>
+  [200] pusharglist 3 ........................... <55, 0, -135>
+  [202] extcall 212 ............................. <vector(55, 0, -135)>
+  [204] setlocal 7 .............................. rotation = vector(55, 0, -135)
+  [206] pushint8 122 ............................ <122>
+  [208] pushint8 115 ............................ <115>
+  [210] pushint8 97 ............................. <97>
+  [212] pusharglist 3 ........................... <122, 115, 97>
+  [214] extcall 282 ............................. <rgb(122, 115, 97)>
+  [217] setlocal 8 .............................. emColor = rgb(122, 115, 97)
+  [219] pushcons 5 .............................. <"Snow">
+  [221] setlocal 5 .............................. assetString = "Snow"
+  [223] jmp [335]
+  [226] peek 0
+  [228] pushcons 6 .............................. <"JungleAssets">
+  [230] eq
+  [231] jmpifz [282] ............................ (case) "JungleAssets":
+  [234] pushint8 125 ............................ <125>
+  [236] inv ..................................... <-125>
+  [237] pushint8 65 ............................. <65>
+  [239] inv ..................................... <-65>
+  [240] pushint8 125 ............................ <125>
+  [242] pusharglist 3 ........................... <-125, -65, 125>
+  [244] extcall 212 ............................. <vector(-125, -65, 125)>
+  [246] setlocal 6 .............................. position = vector(-125, -65, 125)
+  [248] pushint8 48 ............................. <48>
+  [250] pushzero ................................ <0>
+  [251] pushint8 63 ............................. <63>
+  [253] pusharglist 3 ........................... <48, 0, 63>
+  [255] extcall 212 ............................. <vector(48, 0, 63)>
+  [257] setlocal 7 .............................. rotation = vector(48, 0, 63)
+  [259] pushint16 150 ........................... <150>
+  [262] pushint16 144 ........................... <144>
+  [265] pushint16 130 ........................... <130>
+  [268] pusharglist 3 ........................... <150, 144, 130>
+  [270] extcall 282 ............................. <rgb(150, 144, 130)>
+  [273] setlocal 8 .............................. emColor = rgb(150, 144, 130)
+  [275] pushcons 7 .............................. <"Jungle">
+  [277] setlocal 5 .............................. assetString = "Jungle"
+  [279] jmp [335]
+  [282] peek 0
+  [284] pushcons 8 .............................. <"DesertAssets">
+  [286] eq
+  [287] jmpifz [335] ............................ (case) "DesertAssets":
+  [290] pushint16 170 ........................... <170>
+  [293] inv ..................................... <-170>
+  [294] pushzero ................................ <0>
+  [295] pushint16 320 ........................... <320>
+  [298] pusharglist 3 ........................... <-170, 0, 320>
+  [300] extcall 212 ............................. <vector(-170, 0, 320)>
+  [302] setlocal 6 .............................. position = vector(-170, 0, 320)
+  [304] pushint8 30 ............................. <30>
+  [306] pushzero ................................ <0>
+  [307] pushint8 90 ............................. <90>
+  [309] pusharglist 3 ........................... <30, 0, 90>
+  [311] extcall 212 ............................. <vector(30, 0, 90)>
+  [313] setlocal 7 .............................. rotation = vector(30, 0, 90)
+  [315] pushint16 171 ........................... <171>
+  [318] pushint16 171 ........................... <171>
+  [321] pushint16 180 ........................... <180>
+  [324] pusharglist 3 ........................... <171, 171, 180>
+  [326] extcall 282 ............................. <rgb(171, 171, 180)>
+  [329] setlocal 8 .............................. emColor = rgb(171, 171, 180)
+  [331] pushcons 9 .............................. <"Desert">
+  [333] setlocal 5 .............................. assetString = "Desert"
+  [335] pop 1 ................................... end case
+  [337] pushzero ................................ <0>
+  [338] getparam 0 .............................. <tTarget>
+  [340] pushsymb 208 ............................ <#shader>
+  [342] getlocal 5 .............................. <assetString>
+  [344] pushcons 10 ............................. <"Buildings_Material">
+  [346] joinstr ................................. <assetString & "Buildings_Material">
+  [347] pushsymb 900 ............................ <#emissive>
+  [350] getlocal 8 .............................. <emColor>
+  [352] pusharglist 4 ........................... <[#shader: assetString & "Buildings_Material", #emissive: emColor]>
+  [354] pushproplist ............................ <[#shader: assetString & "Buildings_Material", #emissive: emColor]>
+  [355] pusharglistnoret 3 ...................... <0, tTarget, [#shader: assetString & "Buildings_Material", #emissive: emColor]>
+  [357] extcall 687 ............................. SetShader(0, tTarget, [#shader: assetString & "Buildings_Material", #emissive: emColor])
+  [360] pushzero ................................ <0>
+  [361] getparam 0 .............................. <tTarget>
+  [363] pushsymb 208 ............................ <#shader>
+  [365] getlocal 5 .............................. <assetString>
+  [367] pushcons 11 ............................. <"Street_Material">
+  [369] joinstr ................................. <assetString & "Street_Material">
+  [370] pushsymb 900 ............................ <#emissive>
+  [373] getlocal 8 .............................. <emColor>
+  [375] pusharglist 4 ........................... <[#shader: assetString & "Street_Material", #emissive: emColor]>
+  [377] pushproplist ............................ <[#shader: assetString & "Street_Material", #emissive: emColor]>
+  [378] pusharglistnoret 3 ...................... <0, tTarget, [#shader: assetString & "Street_Material", #emissive: emColor]>
+  [380] extcall 687 ............................. SetShader(0, tTarget, [#shader: assetString & "Street_Material", #emissive: emColor])
+  [383] pushzero ................................ <0>
+  [384] getparam 0 .............................. <tTarget>
+  [386] pushsymb 208 ............................ <#shader>
+  [388] getlocal 5 .............................. <assetString>
+  [390] pushcons 12 ............................. <"Opaque_Material">
+  [392] joinstr ................................. <assetString & "Opaque_Material">
+  [393] pushsymb 900 ............................ <#emissive>
+  [396] getlocal 8 .............................. <emColor>
+  [398] pusharglist 4 ........................... <[#shader: assetString & "Opaque_Material", #emissive: emColor]>
+  [400] pushproplist ............................ <[#shader: assetString & "Opaque_Material", #emissive: emColor]>
+  [401] pusharglistnoret 3 ...................... <0, tTarget, [#shader: assetString & "Opaque_Material", #emissive: emColor]>
+  [403] extcall 687 ............................. SetShader(0, tTarget, [#shader: assetString & "Opaque_Material", #emissive: emColor])
+  [406] pushzero ................................ <0>
+  [407] getparam 0 .............................. <tTarget>
+  [409] pushsymb 208 ............................ <#shader>
+  [411] getlocal 5 .............................. <assetString>
+  [413] pushcons 13 ............................. <"Transparent_Material">
+  [415] joinstr ................................. <assetString & "Transparent_Material">
+  [416] pushsymb 900 ............................ <#emissive>
+  [419] getlocal 8 .............................. <emColor>
+  [421] pusharglist 4 ........................... <[#shader: assetString & "Transparent_Material", #emissive: emColor]>
+  [423] pushproplist ............................ <[#shader: assetString & "Transparent_Material", #emissive: emColor]>
+  [424] pusharglistnoret 3 ...................... <0, tTarget, [#shader: assetString & "Transparent_Material", #emissive: emColor]>
+  [426] extcall 687 ............................. SetShader(0, tTarget, [#shader: assetString & "Transparent_Material", #emissive: emColor])
+  [429] pushzero ................................ <0>
+  [430] getparam 0 .............................. <tTarget>
+  [432] pushsymb 208 ............................ <#shader>
+  [434] pushcons 14 ............................. <"Misc_Material">
+  [436] pushsymb 900 ............................ <#emissive>
+  [439] getlocal 8 .............................. <emColor>
+  [441] pusharglist 4 ........................... <[#shader: "Misc_Material", #emissive: emColor]>
+  [443] pushproplist ............................ <[#shader: "Misc_Material", #emissive: emColor]>
+  [444] pusharglistnoret 3 ...................... <0, tTarget, [#shader: "Misc_Material", #emissive: emColor]>
+  [446] extcall 687 ............................. SetShader(0, tTarget, [#shader: "Misc_Material", #emissive: emColor])
+  [449] pushzero ................................ <0>
+  [450] getparam 0 .............................. <tTarget>
+  [452] pushsymb 208 ............................ <#shader>
+  [454] pushcons 15 ............................. <"Advertisements_Material">
+  [456] pushsymb 900 ............................ <#emissive>
+  [459] getlocal 8 .............................. <emColor>
+  [461] pusharglist 4 ........................... <[#shader: "Advertisements_Material", #emissive: emColor]>
+  [463] pushproplist ............................ <[#shader: "Advertisements_Material", #emissive: emColor]>
+  [464] pusharglistnoret 3 ...................... <0, tTarget, [#shader: "Advertisements_Material", #emissive: emColor]>
+  [466] extcall 687 ............................. SetShader(0, tTarget, [#shader: "Advertisements_Material", #emissive: emColor])
+  [469] pushzero ................................ <0>
+  [470] getparam 0 .............................. <tTarget>
+  [472] pushsymb 208 ............................ <#shader>
+  [474] pushcons 16 ............................. <"Waves_Material">
+  [476] pushsymb 900 ............................ <#emissive>
+  [479] getlocal 8 .............................. <emColor>
+  [481] pusharglist 4 ........................... <[#shader: "Waves_Material", #emissive: emColor]>
+  [483] pushproplist ............................ <[#shader: "Waves_Material", #emissive: emColor]>
+  [484] pusharglistnoret 3 ...................... <0, tTarget, [#shader: "Waves_Material", #emissive: emColor]>
+  [486] extcall 687 ............................. SetShader(0, tTarget, [#shader: "Waves_Material", #emissive: emColor])
+  [489] getlocal 2 .............................. <tNewLight>
+  [491] getchainedprop 214 ...................... <tNewLight.transform>
+  [493] getlocal 6 .............................. <position>
+  [495] setobjprop 215 .......................... tNewLight.transform.position = position
+  [497] getlocal 2 .............................. <tNewLight>
+  [499] getchainedprop 214 ...................... <tNewLight.transform>
+  [501] getlocal 7 .............................. <rotation>
+  [503] setobjprop 1162 ......................... tNewLight.transform.rotation = rotation
+  [506] ret
+end

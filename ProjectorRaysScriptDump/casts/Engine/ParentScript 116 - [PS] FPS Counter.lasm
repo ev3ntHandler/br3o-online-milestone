@@ -1,0 +1,333 @@
+property pFPS_MIN, pFPS_MAX, pFPS_NOW, pFPS_TALLY, pFPS_ENTRIES, pNEXTMILLISECOND, pFRAMECOUNT, pFPS_FLAG, pMAXINTERVAL, pTIMEPEROID, pText, p, gFrameInterval, gMilliseconds
+global gGame
+
+on new me, tParams
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pushsymb 1484 ........................... <#FPSCounter>
+  [  5] pusharglist 2 ........................... <gGame, #FPSCounter>
+  [  7] objcall 105 ............................. <gGame[#FPSCounter]>
+  [  9] pusharglist 1 ........................... <gGame[#FPSCounter]>
+  [ 11] extcall 389 ............................. <voidp(gGame[#FPSCounter])>
+  [ 14] pushzero ................................ <0>
+  [ 15] eq ...................................... <voidp(gGame[#FPSCounter]) = 0>
+  [ 16] jmpifz [ 30] ............................ if voidp(gGame[#FPSCounter]) = 0 then
+  [ 19] getglobal 43 ............................ <gGame>
+  [ 21] getobjprop 1484 ......................... <gGame.FPSCounter>
+  [ 24] pushzero ................................ <0>
+  [ 25] eq ...................................... <gGame.FPSCounter = 0>
+  [ 26] jmpifz [ 30] ............................ if gGame.FPSCounter = 0 then
+  [ 29] ret ..................................... exit
+  [ 30] pusharglist 0 ........................... <[:]>
+  [ 32] pushproplist ............................ <[:]>
+  [ 33] setprop 563 ............................. p = [:]
+  [ 36] getprop 563 ............................. <p>
+  [ 39] pushsymb 487 ............................ <#sprite>
+  [ 42] getparam 1 .............................. <tParams>
+  [ 44] pushsymb 564 ............................ <#SpriteNR>
+  [ 47] pusharglist 2 ........................... <tParams, #SpriteNR>
+  [ 49] objcall 105 ............................. <tParams[#SpriteNR]>
+  [ 51] pusharglist 1 ........................... <tParams[#SpriteNR]>
+  [ 53] extcall 487 ............................. <sprite(tParams[#SpriteNR])>
+  [ 56] pusharglistnoret 3 ...................... <p, #sprite, sprite(tParams[#SpriteNR])>
+  [ 58] objcall 103 ............................. p[#sprite] = sprite(tParams[#SpriteNR])
+  [ 60] getprop 563 ............................. <p>
+  [ 63] pushsymb 64 ............................. <#member>
+  [ 65] getprop 563 ............................. <p>
+  [ 68] getchainedprop 487 ...................... <p.sprite>
+  [ 71] getobjprop 64 ........................... <p.sprite.member>
+  [ 73] pusharglistnoret 3 ...................... <p, #member, p.sprite.member>
+  [ 75] objcall 103 ............................. p[#member] = p.sprite.member
+  [ 77] getprop 563 ............................. <p>
+  [ 80] getobjprop 64 ........................... <p.member>
+  [ 82] pusharglist 0 ........................... <>
+  [ 84] extcall 40 .............................. <VOID>
+  [ 86] eq ...................................... <p.member = VOID>
+  [ 87] jmpifz [ 98] ............................ if p.member = VOID then
+  [ 90] pushcons 0 .............................. <"Script: [PS] FPS Counter. p.Member was VOID. Script creation exited.">
+  [ 92] pusharglistnoret 1 ...................... <"Script: [PS] FPS Counter. p.Member was VOID. Script creation exited.">
+  [ 94] extcall 511 ............................. ShowError("Script: [PS] FPS Counter. p.Member was VOID. Script creation exited.")
+  [ 97] ret ..................................... exit
+  [ 98] getprop 563 ............................. <p>
+  [101] pushsymb 1485 ........................... <#textMember>
+  [104] pushcons 1 .............................. <"gFPSCounter">
+  [106] pusharglist 1 ........................... <"gFPSCounter">
+  [108] extcall 64 .............................. <member("gFPSCounter")>
+  [110] pusharglistnoret 3 ...................... <p, #textMember, member("gFPSCounter")>
+  [112] objcall 103 ............................. p[#textMember] = member("gFPSCounter")
+  [114] getprop 563 ............................. <p>
+  [117] pushsymb 565 ............................ <#ScriptName>
+  [120] getparam 1 .............................. <tParams>
+  [122] pushsymb 565 ............................ <#ScriptName>
+  [125] pusharglist 2 ........................... <tParams, #ScriptName>
+  [127] objcall 105 ............................. <tParams[#ScriptName]>
+  [129] pusharglistnoret 3 ...................... <p, #ScriptName, tParams[#ScriptName]>
+  [131] objcall 103 ............................. p[#ScriptName] = tParams[#ScriptName]
+  [133] getprop 563 ............................. <p>
+  [136] getobjprop 565 .......................... <p.ScriptName>
+  [139] pusharglist 0 ........................... <>
+  [141] extcall 40 .............................. <VOID>
+  [143] eq ...................................... <p.ScriptName = VOID>
+  [144] jmpifz [155] ............................ if p.ScriptName = VOID then
+  [147] getprop 563 ............................. <p>
+  [150] pushcons 2 .............................. <EMPTY>
+  [152] setobjprop 565 .......................... p.ScriptName = EMPTY
+  [155] getprop 563 ............................. <p>
+  [158] pushsymb 218 ............................ <#texture>
+  [160] getprop 563 ............................. <p>
+  [163] getchainedprop 64 ....................... <p.member>
+  [165] pushcons 3 .............................. <"FPS_Texture">
+  [167] pusharglist 2 ........................... <p.member, "FPS_Texture">
+  [169] objcall 903 ............................. <p.member.newTexture("FPS_Texture")>
+  [172] pusharglistnoret 3 ...................... <p, #texture, p.member.newTexture("FPS_Texture")>
+  [174] objcall 103 ............................. p[#texture] = p.member.newTexture("FPS_Texture")
+  [176] getprop 563 ............................. <p>
+  [179] getchainedprop 218 ...................... <p.texture>
+  [181] pushsymb 867 ............................ <#lowFiltered>
+  [184] setobjprop 331 .......................... p.texture.quality = #lowFiltered
+  [187] getprop 563 ............................. <p>
+  [190] getchainedprop 218 ...................... <p.texture>
+  [192] pushsymb 347 ............................ <#rgba4444>
+  [195] setobjprop 348 .......................... p.texture.renderFormat = #rgba4444
+  [198] getprop 563 ............................. <p>
+  [201] getchainedprop 218 ...................... <p.texture>
+  [203] getprop 563 ............................. <p>
+  [206] getobjprop 1485 ......................... <p.textMember>
+  [209] setobjprop 64 ........................... p.texture.member = p.textMember
+  [211] getprop 563 ............................. <p>
+  [214] pushsymb 298 ............................ <#camera>
+  [217] getglobal 43 ............................ <gGame>
+  [219] pushsymb 298 ............................ <#camera>
+  [222] pushint8 1 .............................. <1>
+  [224] pusharglist 3 ........................... <gGame, #camera, 1>
+  [226] objcall 102 ............................. <gGame.camera[1]>
+  [228] pushsymb 298 ............................ <#camera>
+  [231] pusharglist 2 ........................... <gGame.camera[1], #camera>
+  [233] objcall 105 ............................. <gGame.camera[1][#camera]>
+  [235] pusharglistnoret 3 ...................... <p, #camera, gGame.camera[1][#camera]>
+  [237] objcall 103 ............................. p[#camera] = gGame.camera[1][#camera]
+  [239] getprop 563 ............................. <p>
+  [242] getchainedprop 298 ...................... <p.camera>
+  [245] getprop 563 ............................. <p>
+  [248] getobjprop 218 .......................... <p.texture>
+  [250] pushint8 2 .............................. <2>
+  [252] pushzero ................................ <0>
+  [253] pusharglist 2 ........................... <2, 0>
+  [255] extcall 302 ............................. <point(2, 0)>
+  [258] pushzero ................................ <0>
+  [259] pusharglistnoret 4 ...................... <p.camera, p.texture, point(2, 0), 0>
+  [261] objcall 303 ............................. p.camera.addOverlay(p.texture, point(2, 0), 0)
+  [264] pusharglistnoret 0 ...................... <>
+  [266] localcall 1 ............................. FPS_RESET()
+  [268] getparam 0 .............................. <me>
+  [270] pusharglistnoret 1 ...................... <me>
+  [272] extcall 52 .............................. return me
+  [274] ret
+end
+
+on FPS_RESET me
+  [  0] pusharglist 0 ........................... <>
+  [  2] thebuiltin 1487 ......................... <the maxinteger>
+  [  5] setprop 1486 ............................ pFPS_MIN = the maxinteger
+  [  8] pushzero ................................ <0>
+  [  9] setprop 1488 ............................ pFPS_MAX = 0
+  [ 12] pushzero ................................ <0>
+  [ 13] setprop 1489 ............................ pFPS_NOW = 0
+  [ 16] pushzero ................................ <0>
+  [ 17] setprop 1490 ............................ pFPS_TALLY = 0
+  [ 20] pushzero ................................ <0>
+  [ 21] setprop 1491 ............................ pFPS_ENTRIES = 0
+  [ 24] pushint8 1 .............................. <1>
+  [ 26] setprop 1492 ............................ pFPS_FLAG = 1
+  [ 29] pushzero ................................ <0>
+  [ 30] setprop 1493 ............................ pFRAMECOUNT = 0
+  [ 33] pushint8 100 ............................ <100>
+  [ 35] setprop 1494 ............................ pMAXINTERVAL = 100
+  [ 38] pushint16 2000 .......................... <2000>
+  [ 41] setprop 1495 ............................ pTIMEPEROID = 2000
+  [ 44] getmovieprop 463 ........................ <the milliSeconds>
+  [ 47] setprop 1496 ............................ gMilliseconds = the milliSeconds
+  [ 50] pushint8 100 ............................ <100>
+  [ 52] setprop 1497 ............................ gFrameInterval = 100
+  [ 55] getprop 1496 ............................ <gMilliseconds>
+  [ 58] pushint16 2000 .......................... <2000>
+  [ 61] add ..................................... <gMilliseconds + 2000>
+  [ 62] setprop 1498 ............................ pNEXTMILLISECOND = gMilliseconds + 2000
+  [ 65] pushcons 4 .............................. <"gFPSCOUNTER">
+  [ 67] pusharglist 1 ........................... <"gFPSCOUNTER">
+  [ 69] extcall 64 .............................. <member("gFPSCOUNTER")>
+  [ 71] pushcons 5 .............................. <" FPS COUNTER ">
+  [ 73] setobjprop 80 ........................... member("gFPSCOUNTER").text = " FPS COUNTER "
+  [ 75] ret
+end
+
+on mouseDown me
+  [  0] getparam 0 .............................. <me>
+  [  2] pusharglistnoret 1 ...................... <me>
+  [  4] localcall 1 ............................. FPS_RESET(me)
+  [  6] ret
+end
+
+on enterFrame me
+  [  0] getmovieprop 463 ........................ <the milliSeconds>
+  [  3] getprop 1496 ............................ <gMilliseconds>
+  [  6] sub ..................................... <the milliSeconds - gMilliseconds>
+  [  7] getprop 1497 ............................ <gFrameInterval>
+  [ 10] add ..................................... <the milliSeconds - gMilliseconds + gFrameInterval>
+  [ 11] pushint8 2 .............................. <2>
+  [ 13] div ..................................... <(the milliSeconds - gMilliseconds + gFrameInterval) / 2>
+  [ 14] setprop 1497 ............................ gFrameInterval = (the milliSeconds - gMilliseconds + gFrameInterval) / 2
+  [ 17] getprop 1497 ............................ <gFrameInterval>
+  [ 20] getprop 1494 ............................ <pMAXINTERVAL>
+  [ 23] gt ...................................... <gFrameInterval > pMAXINTERVAL>
+  [ 24] jmpifz [ 33] ............................ if gFrameInterval > pMAXINTERVAL then
+  [ 27] getprop 1494 ............................ <pMAXINTERVAL>
+  [ 30] setprop 1497 ............................ gFrameInterval = pMAXINTERVAL
+  [ 33] getprop 1497 ............................ <gFrameInterval>
+  [ 36] pushint8 1 .............................. <1>
+  [ 38] lt ...................................... <gFrameInterval < 1>
+  [ 39] jmpifz [ 47] ............................ if gFrameInterval < 1 then
+  [ 42] pushint8 1 .............................. <1>
+  [ 44] setprop 1497 ............................ gFrameInterval = 1
+  [ 47] getmovieprop 463 ........................ <the milliSeconds>
+  [ 50] setprop 1496 ............................ gMilliseconds = the milliSeconds
+  [ 53] getprop 1493 ............................ <pFRAMECOUNT>
+  [ 56] pushint8 1 .............................. <1>
+  [ 58] add ..................................... <pFRAMECOUNT + 1>
+  [ 59] setprop 1493 ............................ pFRAMECOUNT = pFRAMECOUNT + 1
+  [ 62] getprop 1492 ............................ <pFPS_FLAG>
+  [ 65] pushzero ................................ <0>
+  [ 66] eq ...................................... <pFPS_FLAG = 0>
+  [ 67] jmpifz [ 71] ............................ if pFPS_FLAG = 0 then
+  [ 70] ret ..................................... exit
+  [ 71] getprop 1496 ............................ <gMilliseconds>
+  [ 74] getprop 1498 ............................ <pNEXTMILLISECOND>
+  [ 77] gt ...................................... <gMilliseconds > pNEXTMILLISECOND>
+  [ 78] jmpifz [349] ............................ if gMilliseconds > pNEXTMILLISECOND then
+  [ 81] getprop 1493 ............................ <pFRAMECOUNT>
+  [ 84] getprop 1496 ............................ <gMilliseconds>
+  [ 87] getprop 1498 ............................ <pNEXTMILLISECOND>
+  [ 90] sub ..................................... <gMilliseconds - pNEXTMILLISECOND>
+  [ 91] getprop 1495 ............................ <pTIMEPEROID>
+  [ 94] add ..................................... <gMilliseconds - pNEXTMILLISECOND + pTIMEPEROID>
+  [ 95] pusharglist 1 ........................... <gMilliseconds - pNEXTMILLISECOND + pTIMEPEROID>
+  [ 97] extcall 544 ............................. <float(gMilliseconds - pNEXTMILLISECOND + pTIMEPEROID)>
+  [100] div ..................................... <pFRAMECOUNT / float(gMilliseconds - pNEXTMILLISECOND + pTIMEPEROID)>
+  [101] pushint16 1000 .......................... <1000>
+  [104] mul ..................................... <pFRAMECOUNT / float(gMilliseconds - pNEXTMILLISECOND + pTIMEPEROID) * 1000>
+  [105] setprop 1489 ............................ pFPS_NOW = pFRAMECOUNT / float(gMilliseconds - pNEXTMILLISECOND + pTIMEPEROID) * 1000
+  [108] getprop 1496 ............................ <gMilliseconds>
+  [111] getprop 1495 ............................ <pTIMEPEROID>
+  [114] add ..................................... <gMilliseconds + pTIMEPEROID>
+  [115] setprop 1498 ............................ pNEXTMILLISECOND = gMilliseconds + pTIMEPEROID
+  [118] pushzero ................................ <0>
+  [119] setprop 1493 ............................ pFRAMECOUNT = 0
+  [122] getprop 1489 ............................ <pFPS_NOW>
+  [125] getprop 1486 ............................ <pFPS_MIN>
+  [128] lt ...................................... <pFPS_NOW < pFPS_MIN>
+  [129] getprop 1488 ............................ <pFPS_MAX>
+  [132] pushzero ................................ <0>
+  [133] nteq .................................... <pFPS_MAX <> 0>
+  [134] and ..................................... <(pFPS_NOW < pFPS_MIN) and (pFPS_MAX <> 0)>
+  [135] jmpifz [144] ............................ if (pFPS_NOW < pFPS_MIN) and (pFPS_MAX <> 0) then
+  [138] getprop 1489 ............................ <pFPS_NOW>
+  [141] setprop 1486 ............................ pFPS_MIN = pFPS_NOW
+  [144] getprop 1489 ............................ <pFPS_NOW>
+  [147] getprop 1488 ............................ <pFPS_MAX>
+  [150] gt ...................................... <pFPS_NOW > pFPS_MAX>
+  [151] jmpifz [160] ............................ if pFPS_NOW > pFPS_MAX then
+  [154] getprop 1489 ............................ <pFPS_NOW>
+  [157] setprop 1488 ............................ pFPS_MAX = pFPS_NOW
+  [160] getprop 1486 ............................ <pFPS_MIN>
+  [163] pusharglist 0 ........................... <>
+  [165] thebuiltin 1487 ......................... <the maxinteger>
+  [168] nteq .................................... <pFPS_MIN <> the maxinteger>
+  [169] jmpifz [200] ............................ if pFPS_MIN <> the maxinteger then
+  [172] getprop 1490 ............................ <pFPS_TALLY>
+  [175] getprop 1489 ............................ <pFPS_NOW>
+  [178] add ..................................... <pFPS_TALLY + pFPS_NOW>
+  [179] setprop 1490 ............................ pFPS_TALLY = pFPS_TALLY + pFPS_NOW
+  [182] getprop 1491 ............................ <pFPS_ENTRIES>
+  [185] pushint8 1 .............................. <1>
+  [187] add ..................................... <pFPS_ENTRIES + 1>
+  [188] setprop 1491 ............................ pFPS_ENTRIES = pFPS_ENTRIES + 1
+  [191] getprop 1490 ............................ <pFPS_TALLY>
+  [194] getprop 1491 ............................ <pFPS_ENTRIES>
+  [197] div ..................................... <pFPS_TALLY / pFPS_ENTRIES>
+  [198] setlocal 0 .............................. fptemp = pFPS_TALLY / pFPS_ENTRIES
+  [200] pushint8 1 .............................. <1>
+  [202] pushzero ................................ <0>
+  [203] set 0 ................................... set the floatPrecision to 1
+  [205] pushzero ................................ <0>
+  [206] setlocal 1 .............................. tCodeTime = 0
+  [208] pushzero ................................ <0>
+  [209] setlocal 2 .............................. tFrameTime = 0
+  [211] getglobal 43 ............................ <gGame>
+  [213] pushsymb 1499 ........................... <#CodeTime>
+  [216] pusharglist 2 ........................... <gGame, #CodeTime>
+  [218] objcall 105 ............................. <gGame[#CodeTime]>
+  [220] pusharglist 0 ........................... <>
+  [222] extcall 40 .............................. <VOID>
+  [224] nteq .................................... <gGame[#CodeTime] <> VOID>
+  [225] jmpifz [235] ............................ if gGame[#CodeTime] <> VOID then
+  [228] getglobal 43 ............................ <gGame>
+  [230] getobjprop 1499 ......................... <gGame.CodeTime>
+  [233] setlocal 1 .............................. tCodeTime = gGame.CodeTime
+  [235] getglobal 43 ............................ <gGame>
+  [237] pushsymb 1500 ........................... <#FrameTime>
+  [240] pusharglist 2 ........................... <gGame, #FrameTime>
+  [242] objcall 105 ............................. <gGame[#FrameTime]>
+  [244] pusharglist 0 ........................... <>
+  [246] extcall 40 .............................. <VOID>
+  [248] nteq .................................... <gGame[#FrameTime] <> VOID>
+  [249] jmpifz [259] ............................ if gGame[#FrameTime] <> VOID then
+  [252] getglobal 43 ............................ <gGame>
+  [254] getobjprop 1500 ......................... <gGame.FrameTime>
+  [257] setlocal 2 .............................. tFrameTime = gGame.FrameTime
+  [259] pushcons 6 .............................. <"MIN:">
+  [261] getprop 1486 ............................ <pFPS_MIN>
+  [264] pusharglist 1 ........................... <pFPS_MIN>
+  [266] extcall 67 .............................. <string(pFPS_MIN)>
+  [268] joinstr ................................. <"MIN:" & string(pFPS_MIN)>
+  [269] pushcons 7 .............................. <"   MAX:">
+  [271] joinstr ................................. <"MIN:" & string(pFPS_MIN) & "   MAX:">
+  [272] getprop 1488 ............................ <pFPS_MAX>
+  [275] pusharglist 1 ........................... <pFPS_MAX>
+  [277] extcall 67 .............................. <string(pFPS_MAX)>
+  [279] joinstr ................................. <"MIN:" & string(pFPS_MIN) & "   MAX:" & string(pFPS_MAX)>
+  [280] pushcons 8 .............................. <"   NOW:">
+  [282] joinstr ................................. <"MIN:" & string(pFPS_MIN) & "   MAX:" & string(pFPS_MAX) & "   NOW:">
+  [283] getprop 1489 ............................ <pFPS_NOW>
+  [286] pusharglist 1 ........................... <pFPS_NOW>
+  [288] extcall 67 .............................. <string(pFPS_NOW)>
+  [290] joinstr ................................. <"MIN:" & string(pFPS_MIN) & "   MAX:" & string(pFPS_MAX) & "   NOW:" & string(pFPS_NOW)>
+  [291] pushcons 9 .............................. <"   AVG:">
+  [293] joinstr ................................. <"MIN:" & string(pFPS_MIN) & "   MAX:" & string(pFPS_MAX) & "   NOW:" & string(pFPS_NOW) & "   AVG:">
+  [294] getlocal 0 .............................. <fptemp>
+  [296] pusharglist 1 ........................... <fptemp>
+  [298] extcall 67 .............................. <string(fptemp)>
+  [300] joinstr ................................. <"MIN:" & string(pFPS_MIN) & "   MAX:" & string(pFPS_MAX) & "   NOW:" & string(pFPS_NOW) & "   AVG:" & string(fptemp)>
+  [301] pushcons 10 ............................. <"   CT: ">
+  [303] joinstr ................................. <"MIN:" & string(pFPS_MIN) & "   MAX:" & string(pFPS_MAX) & "   NOW:" & string(pFPS_NOW) & "   AVG:" & string(fptemp) & "   CT: ">
+  [304] getlocal 1 .............................. <tCodeTime>
+  [306] joinstr ................................. <"MIN:" & string(pFPS_MIN) & "   MAX:" & string(pFPS_MAX) & "   NOW:" & string(pFPS_NOW) & "   AVG:" & string(fptemp) & "   CT: " & tCodeTime>
+  [307] pushcons 11 ............................. <"   FT: ">
+  [309] joinstr ................................. <"MIN:" & string(pFPS_MIN) & "   MAX:" & string(pFPS_MAX) & "   NOW:" & string(pFPS_NOW) & "   AVG:" & string(fptemp) & "   CT: " & tCodeTime & "   FT: ">
+  [310] getlocal 2 .............................. <tFrameTime>
+  [312] joinstr ................................. <"MIN:" & string(pFPS_MIN) & "   MAX:" & string(pFPS_MAX) & "   NOW:" & string(pFPS_NOW) & "   AVG:" & string(fptemp) & "   CT: " & tCodeTime & "   FT: " & tFrameTime>
+  [313] setprop 1501 ............................ pText = "MIN:" & string(pFPS_MIN) & "   MAX:" & string(pFPS_MAX) & "   NOW:" & string(pFPS_NOW) & "   AVG:" & string(fptemp) & "   CT: " & tCodeTime & "   FT: " & tFrameTime
+  [316] pushcons 4 .............................. <"gFPSCOUNTER">
+  [318] pusharglist 1 ........................... <"gFPSCOUNTER">
+  [320] extcall 64 .............................. <member("gFPSCOUNTER")>
+  [322] getprop 1501 ............................ <pText>
+  [325] setobjprop 80 ........................... member("gFPSCOUNTER").text = pText
+  [327] pushint8 4 .............................. <4>
+  [329] pushzero ................................ <0>
+  [330] set 0 ................................... set the floatPrecision to 4
+  [332] getprop 563 ............................. <p>
+  [335] getchainedprop 218 ...................... <p.texture>
+  [337] getprop 563 ............................. <p>
+  [340] getchainedprop 1485 ..................... <p.textMember>
+  [343] getobjprop 319 .......................... <p.textMember.image>
+  [346] setobjprop 319 .......................... p.texture.image = p.textMember.image
+  [349] ret
+end

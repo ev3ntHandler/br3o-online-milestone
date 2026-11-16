@@ -1,0 +1,153 @@
+global gSystem, gLoader, gData, gGame
+
+on createMember tTarget, tDataList
+  [  0] getparam 1 .............................. <tDataList>
+  [  2] pusharglist 1 ........................... <tDataList>
+  [  4] extcall 503 ............................. <value(tDataList)>
+  [  7] setparam 1 .............................. tDataList = value(tDataList)
+  [  9] getparam 1 .............................. <tDataList>
+  [ 11] getobjprop 122 .......................... <tDataList.ilk>
+  [ 13] pushsymb 541 ............................ <#propList>
+  [ 16] nteq .................................... <tDataList.ilk <> #propList>
+  [ 17] jmpifz [ 25] ............................ if tDataList.ilk <> #propList then
+  [ 20] pusharglist 0 ........................... <[:]>
+  [ 22] pushproplist ............................ <[:]>
+  [ 23] setparam 1 .............................. tDataList = [:]
+  [ 25] getparam 1 .............................. <tDataList>
+  [ 27] pushsymb 598 ............................ <#type>
+  [ 30] pusharglist 2 ........................... <tDataList, #type>
+  [ 32] objcall 105 ............................. <tDataList[#type]>
+  [ 34] pusharglist 1 ........................... <tDataList[#type]>
+  [ 36] extcall 389 ............................. <voidp(tDataList[#type])>
+  [ 39] pushint8 1 .............................. <1>
+  [ 41] eq ...................................... <voidp(tDataList[#type]) = 1>
+  [ 42] jmpifz [ 62] ............................ if voidp(tDataList[#type]) = 1 then
+  [ 45] pushcons 0 .............................. <"Function: CreateMember. Parameters: ">
+  [ 47] getparam 0 .............................. <tTarget>
+  [ 49] joinstr ................................. <"Function: CreateMember. Parameters: " & tTarget>
+  [ 50] getparam 1 .............................. <tDataList>
+  [ 52] joinpadstr .............................. <"Function: CreateMember. Parameters: " & tTarget && tDataList>
+  [ 53] pushcons 1 .............................. <" No type defined.">
+  [ 55] joinstr ................................. <"Function: CreateMember. Parameters: " & tTarget && tDataList & " No type defined.">
+  [ 56] pusharglistnoret 1 ...................... <"Function: CreateMember. Parameters: " & tTarget && tDataList & " No type defined.">
+  [ 58] extcall 511 ............................. ShowError("Function: CreateMember. Parameters: " & tTarget && tDataList & " No type defined.")
+  [ 61] ret ..................................... exit
+  [ 62] pushcons 2 .............................. <"Internal">
+  [ 64] setlocal 0 .............................. tCast = "Internal"
+  [ 66] getparam 1 .............................. <tDataList>
+  [ 68] pushsymb 596 ............................ <#cast>
+  [ 71] pusharglist 2 ........................... <tDataList, #cast>
+  [ 73] objcall 105 ............................. <tDataList[#cast]>
+  [ 75] pusharglist 1 ........................... <tDataList[#cast]>
+  [ 77] extcall 389 ............................. <voidp(tDataList[#cast])>
+  [ 80] pushzero ................................ <0>
+  [ 81] eq ...................................... <voidp(tDataList[#cast]) = 0>
+  [ 82] jmpifz [ 92] ............................ if voidp(tDataList[#cast]) = 0 then
+  [ 85] getparam 1 .............................. <tDataList>
+  [ 87] getobjprop 596 .......................... <tDataList.cast>
+  [ 90] setlocal 0 .............................. tCast = tDataList.cast
+  [ 92] getlocal 0 .............................. <tCast>
+  [ 94] pusharglist 1 ........................... <tCast>
+  [ 96] extcall 58 .............................. <castLib(tCast)>
+  [ 98] pusharglist 1 ........................... <castLib(tCast)>
+  [100] objcall 316 ............................. <castLib(tCast).findEmpty()>
+  [103] setlocal 1 .............................. tEmpty = castLib(tCast).findEmpty()
+  [105] getparam 1 .............................. <tDataList>
+  [107] getobjprop 598 .......................... <tDataList.type>
+  [110] getlocal 1 .............................. <tEmpty>
+  [112] getlocal 0 .............................. <tCast>
+  [114] pusharglist 2 ........................... <tEmpty, tCast>
+  [116] extcall 64 .............................. <member(tEmpty, tCast)>
+  [118] pusharglist 2 ........................... <tDataList.type, member(tEmpty, tCast)>
+  [120] extcall 35 .............................. <new(tDataList.type, member(tEmpty, tCast))>
+  [122] setlocal 2 .............................. tmember = new(tDataList.type, member(tEmpty, tCast))
+  [124] getlocal 2 .............................. <tmember>
+  [126] getparam 0 .............................. <tTarget>
+  [128] setobjprop 235 .......................... tmember.name = tTarget
+  [130] getglobal 50 ............................ <gSystem>
+  [132] getchainedprop 318 ...................... <gSystem.DynamicMembers>
+  [135] getlocal 2 .............................. <tmember>
+  [137] pusharglistnoret 2 ...................... <gSystem.DynamicMembers, tmember>
+  [139] objcall 42 .............................. gSystem.DynamicMembers.add(tmember)
+  [141] getlocal 2 .............................. <tmember>
+  [143] pusharglistnoret 1 ...................... <tmember>
+  [145] extcall 52 .............................. return tmember
+  [147] ret
+end
+
+on DeleteDynamicMembers me
+  [  0] getglobal 50 ............................ <gSystem>
+  [  2] getobjprop 51 ........................... <gSystem.local>
+  [  4] pushint8 1 .............................. <1>
+  [  6] eq ...................................... <gSystem.local = 1>
+  [  7] jmpifz [ 66] ............................ if gSystem.local = 1 then
+  [ 10] getglobal 50 ............................ <gSystem>
+  [ 12] pushsymb 318 ............................ <#DynamicMembers>
+  [ 15] pusharglist 2 ........................... <gSystem, #DynamicMembers>
+  [ 17] objcall 129 ............................. <gSystem.DynamicMembers.count>
+  [ 19] setlocal 0 .............................. tCount = gSystem.DynamicMembers.count
+  [ 21] pushint8 1 .............................. <1>
+  [ 23] setlocal 1
+  [ 25] getlocal 1
+  [ 27] getlocal 0 .............................. <tCount>
+  [ 29] lteq
+  [ 30] jmpifz [ 58] ............................ repeat with i = 1 to tCount
+  [ 33] getglobal 50 ............................ <gSystem>
+  [ 35] pushsymb 318 ............................ <#DynamicMembers>
+  [ 38] getlocal 1 .............................. <i>
+  [ 40] pusharglist 3 ........................... <gSystem, #DynamicMembers, i>
+  [ 42] objcall 102 ............................. <gSystem.DynamicMembers[i]>
+  [ 44] pusharglistnoret 1 ...................... <gSystem.DynamicMembers[i]>
+  [ 46] objcall 1097 ............................ gSystem.DynamicMembers[i].erase()
+  [ 49] pushint8 1
+  [ 51] getlocal 1
+  [ 53] add
+  [ 54] setlocal 1
+  [ 56] endrepeat [ 25]
+  [ 58] getglobal 50 ............................ <gSystem>
+  [ 60] pusharglist 0 ........................... <[]>
+  [ 62] pushlist ................................ <[]>
+  [ 63] setobjprop 318 .......................... gSystem.DynamicMembers = []
+  [ 66] ret
+end
+
+on EraseMember tmember
+  [  0] getglobal 50 ............................ <gSystem>
+  [  2] getchainedprop 318 ...................... <gSystem.DynamicMembers>
+  [  5] getparam 0 .............................. <tmember>
+  [  7] pusharglist 2 ........................... <gSystem.DynamicMembers, tmember>
+  [  9] objcall 166 ............................. <gSystem.DynamicMembers.getPos(tmember)>
+  [ 11] pushzero ................................ <0>
+  [ 12] nteq .................................... <gSystem.DynamicMembers.getPos(tmember) <> 0>
+  [ 13] jmpifz [ 27] ............................ if gSystem.DynamicMembers.getPos(tmember) <> 0 then
+  [ 16] getglobal 50 ............................ <gSystem>
+  [ 18] getchainedprop 318 ...................... <gSystem.DynamicMembers>
+  [ 21] getparam 0 .............................. <tmember>
+  [ 23] pusharglistnoret 2 ...................... <gSystem.DynamicMembers, tmember>
+  [ 25] objcall 175 ............................. gSystem.DynamicMembers.deleteOne(tmember)
+  [ 27] getparam 0 .............................. <tmember>
+  [ 29] pusharglistnoret 1 ...................... <tmember>
+  [ 31] objcall 1097 ............................ tmember.erase()
+  [ 34] ret
+end
+
+on EraseMembers tStart, tEnd, tCast
+  [  0] getparam 0 .............................. <tStart>
+  [  2] setlocal 0
+  [  4] getlocal 0
+  [  6] getparam 1 .............................. <tEnd>
+  [  8] lteq
+  [  9] jmpifz [ 34] ............................ repeat with i = tStart to tEnd
+  [ 12] getlocal 0 .............................. <i>
+  [ 14] getparam 2 .............................. <tCast>
+  [ 16] pusharglist 2 ........................... <i, tCast>
+  [ 18] extcall 64 .............................. <member(i, tCast)>
+  [ 20] pusharglistnoret 1 ...................... <member(i, tCast)>
+  [ 22] objcall 1097 ............................ member(i, tCast).erase()
+  [ 25] pushint8 1
+  [ 27] getlocal 0
+  [ 29] add
+  [ 30] setlocal 0
+  [ 32] endrepeat [  4]
+  [ 34] ret
+end

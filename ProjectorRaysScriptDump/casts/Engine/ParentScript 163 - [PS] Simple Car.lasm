@@ -1,0 +1,2885 @@
+property p
+global gSystem, gData, gGame
+
+on new me, tParams
+  [  0] pusharglist 0 ........................... <[:]>
+  [  2] pushproplist ............................ <[:]>
+  [  3] setprop 563 ............................. p = [:]
+  [  6] pushcons 0 .............................. <"pObject">
+  [  8] pusharglist 1 ........................... <"pObject">
+  [ 10] extcall 36 .............................. <script("pObject")>
+  [ 12] pusharglist 1 ........................... <script("pObject")>
+  [ 14] extcall 35 .............................. <new(script("pObject"))>
+  [ 16] setlocal 0 .............................. t = new(script("pObject"))
+  [ 18] getglobal 43 ............................ <gGame>
+  [ 20] pushsymb 137 ............................ <#cars>
+  [ 22] pusharglist 2 ........................... <gGame, #cars>
+  [ 24] objcall 105 ............................. <gGame[#cars]>
+  [ 26] pusharglist 1 ........................... <gGame[#cars]>
+  [ 28] extcall 389 ............................. <voidp(gGame[#cars])>
+  [ 31] pushint8 1 .............................. <1>
+  [ 33] eq ...................................... <voidp(gGame[#cars]) = 1>
+  [ 34] jmpifz [ 48] ............................ if voidp(gGame[#cars]) = 1 then
+  [ 37] getglobal 43 ............................ <gGame>
+  [ 39] pushsymb 137 ............................ <#cars>
+  [ 41] pusharglist 0 ........................... <[:]>
+  [ 43] pushproplist ............................ <[:]>
+  [ 44] pusharglistnoret 3 ...................... <gGame, #cars, [:]>
+  [ 46] objcall 103 ............................. gGame[#cars] = [:]
+  [ 48] getglobal 43 ............................ <gGame>
+  [ 50] pushsymb 1389 ........................... <#Physics>
+  [ 53] pusharglist 2 ........................... <gGame, #Physics>
+  [ 55] objcall 105 ............................. <gGame[#Physics]>
+  [ 57] pusharglist 1 ........................... <gGame[#Physics]>
+  [ 59] extcall 389 ............................. <voidp(gGame[#Physics])>
+  [ 62] pushint8 1 .............................. <1>
+  [ 64] eq ...................................... <voidp(gGame[#Physics]) = 1>
+  [ 65] jmpifz [ 76] ............................ if voidp(gGame[#Physics]) = 1 then
+  [ 68] pusharglist 0 ........................... <>
+  [ 70] extcall 40 .............................. <VOID>
+  [ 72] pusharglistnoret 1 ...................... <VOID>
+  [ 74] extcall 52 .............................. return VOID
+  [ 76] getparam 1 .............................. <tParams>
+  [ 78] pushsymb 564 ............................ <#SpriteNR>
+  [ 81] pusharglist 2 ........................... <tParams, #SpriteNR>
+  [ 83] objcall 105 ............................. <tParams[#SpriteNR]>
+  [ 85] pusharglist 1 ........................... <tParams[#SpriteNR]>
+  [ 87] extcall 487 ............................. <sprite(tParams[#SpriteNR])>
+  [ 90] setlocal 1 .............................. tSprite = sprite(tParams[#SpriteNR])
+  [ 92] getparam 1 .............................. <tParams>
+  [ 94] pushsymb 949 ............................ <#memberName>
+  [ 97] pusharglist 2 ........................... <tParams, #memberName>
+  [ 99] objcall 105 ............................. <tParams[#memberName]>
+  [101] pusharglist 1 ........................... <tParams[#memberName]>
+  [103] extcall 64 .............................. <member(tParams[#memberName])>
+  [105] setlocal 2 .............................. tmember = member(tParams[#memberName])
+  [107] getparam 1 .............................. <tParams>
+  [109] pushsymb 565 ............................ <#ScriptName>
+  [112] pusharglist 2 ........................... <tParams, #ScriptName>
+  [114] objcall 105 ............................. <tParams[#ScriptName]>
+  [116] setlocal 3 .............................. tScriptName = tParams[#ScriptName]
+  [118] getparam 1 .............................. <tParams>
+  [120] pushsymb 378 ............................ <#controller>
+  [123] pusharglist 2 ........................... <tParams, #controller>
+  [125] objcall 105 ............................. <tParams[#controller]>
+  [127] setlocal 4 .............................. tController = tParams[#controller]
+  [129] getlocal 4 .............................. <tController>
+  [131] pushsymb 379 ............................ <#player>
+  [134] nteq .................................... <tController <> #player>
+  [135] getlocal 4 .............................. <tController>
+  [137] pushsymb 132 ............................ <#AI>
+  [139] nteq .................................... <tController <> #AI>
+  [140] and ..................................... <(tController <> #player) and (tController <> #AI)>
+  [141] jmpifz [152] ............................ if (tController <> #player) and (tController <> #AI) then
+  [144] pusharglist 0 ........................... <>
+  [146] extcall 40 .............................. <VOID>
+  [148] pusharglistnoret 1 ...................... <VOID>
+  [150] extcall 52 .............................. return VOID
+  [152] getglobal 43 ............................ <gGame>
+  [154] pushsymb 132 ............................ <#AI>
+  [156] pusharglist 2 ........................... <gGame, #AI>
+  [158] objcall 105 ............................. <gGame[#AI]>
+  [160] pusharglist 1 ........................... <gGame[#AI]>
+  [162] extcall 389 ............................. <voidp(gGame[#AI])>
+  [165] pushzero ................................ <0>
+  [166] eq ...................................... <voidp(gGame[#AI]) = 0>
+  [167] getlocal 4 .............................. <tController>
+  [169] pushsymb 132 ............................ <#AI>
+  [171] eq ...................................... <tController = #AI>
+  [172] and ..................................... <(voidp(gGame[#AI]) = 0) and (tController = #AI)>
+  [173] jmpifz [193] ............................ if (voidp(gGame[#AI]) = 0) and (tController = #AI) then
+  [176] getglobal 43 ............................ <gGame>
+  [178] getobjprop 132 .......................... <gGame.AI>
+  [180] pushzero ................................ <0>
+  [181] eq ...................................... <gGame.AI = 0>
+  [182] jmpifz [193] ............................ if gGame.AI = 0 then
+  [185] pusharglist 0 ........................... <>
+  [187] extcall 40 .............................. <VOID>
+  [189] pusharglistnoret 1 ...................... <VOID>
+  [191] extcall 52 .............................. return VOID
+  [193] getlocal 4 .............................. <tController>
+  [195] pushsymb 379 ............................ <#player>
+  [198] eq ...................................... <tController = #player>
+  [199] jmpifz [300] ............................ if tController = #player then / else
+  [202] getglobal 86 ............................ <gData>
+  [204] pushsymb 120 ............................ <#Events>
+  [206] getglobal 43 ............................ <gGame>
+  [208] getobjprop 56 ........................... <gGame.world>
+  [210] pushcons 1 .............................. <"Track">
+  [212] joinstr ................................. <gGame.world & "Track">
+  [213] getglobal 43 ............................ <gGame>
+  [215] getobjprop 119 .......................... <gGame.track>
+  [217] joinstr ................................. <gGame.world & "Track" & gGame.track>
+  [218] pushcons 2 .............................. <"Data">
+  [220] joinstr ................................. <gGame.world & "Track" & gGame.track & "Data">
+  [221] pusharglist 1 ........................... <gGame.world & "Track" & gGame.track & "Data">
+  [223] extcall 88 .............................. <symbol(gGame.world & "Track" & gGame.track & "Data")>
+  [225] pusharglist 3 ........................... <gData, #Events, symbol(gGame.world & "Track" & gGame.track & "Data")>
+  [227] objcall 102 ............................. <gData.Events[symbol(gGame.world & "Track" & gGame.track & "Data")]>
+  [229] pushsymb 2243 ........................... <#PlayerCar>
+  [232] pusharglist 2 ........................... <gData.Events[symbol(gGame.world & "Track" & gGame.track & "Data")], #PlayerCar>
+  [234] objcall 105 ............................. <gData.Events[symbol(gGame.world & "Track" & gGame.track & "Data")][#PlayerCar]>
+  [236] setlocal 5 .............................. tBuildData = gData.Events[symbol(gGame.world & "Track" & gGame.track & "Data")][#PlayerCar]
+  [238] getlocal 5 .............................. <tBuildData>
+  [240] pusharglist 0 ........................... <>
+  [242] extcall 40 .............................. <VOID>
+  [244] nteq .................................... <tBuildData <> VOID>
+  [245] jmpifz [277] ............................ if tBuildData <> VOID then / else
+  [248] getlocal 5 .............................. <tBuildData>
+  [250] pushsymb 250 ............................ <#car>
+  [252] getglobal 43 ............................ <gGame>
+  [254] pushcons 3 .............................. <"PlayerCar">
+  [256] getglobal 43 ............................ <gGame>
+  [258] getobjprop 458 .......................... <gGame.Iteration>
+  [261] joinstr ................................. <"PlayerCar" & gGame.Iteration>
+  [262] pusharglist 1 ........................... <"PlayerCar" & gGame.Iteration>
+  [264] extcall 88 .............................. <symbol("PlayerCar" & gGame.Iteration)>
+  [266] pusharglist 2 ........................... <gGame, symbol("PlayerCar" & gGame.Iteration)>
+  [268] objcall 105 ............................. <gGame[symbol("PlayerCar" & gGame.Iteration)]>
+  [270] pusharglistnoret 3 ...................... <tBuildData, #car, gGame[symbol("PlayerCar" & gGame.Iteration)]>
+  [272] objcall 103 ............................. tBuildData[#car] = gGame[symbol("PlayerCar" & gGame.Iteration)]
+  [274] jmp [297]
+  [277] pushsymb 250 ............................ <#car>
+  [279] pushcons 4 .............................. <"Default">
+  [281] pushsymb 215 ............................ <#position>
+  [283] pushsymb 374 ............................ <#waypoint>
+  [286] pushsymb 2094 ........................... <#orientation>
+  [289] pushsymb 374 ............................ <#waypoint>
+  [292] pusharglist 6 ........................... <[#car: "Default", #position: #waypoint, #orientation: #waypoint]>
+  [294] pushproplist ............................ <[#car: "Default", #position: #waypoint, #orientation: #waypoint]>
+  [295] setlocal 5 .............................. tBuildData = [#car: "Default", #position: #waypoint, #orientation: #waypoint]
+  [297] jmp [361]
+  [300] getglobal 43 ............................ <gGame>
+  [302] getchainedprop 124 ...................... <gGame.TrackData>
+  [304] pushsymb 132 ............................ <#AI>
+  [306] pusharglist 2 ........................... <gGame.TrackData, #AI>
+  [308] objcall 129 ............................. <gGame.TrackData.AI.count>
+  [310] pushzero ................................ <0>
+  [311] gt ...................................... <gGame.TrackData.AI.count > 0>
+  [312] getglobal 43 ............................ <gGame>
+  [314] getobjprop 2065 ......................... <gGame.AIsBuild>
+  [317] getglobal 43 ............................ <gGame>
+  [319] getchainedprop 124 ...................... <gGame.TrackData>
+  [321] pushsymb 132 ............................ <#AI>
+  [323] pusharglist 2 ........................... <gGame.TrackData, #AI>
+  [325] objcall 129 ............................. <gGame.TrackData.AI.count>
+  [327] lt ...................................... <gGame.AIsBuild < gGame.TrackData.AI.count>
+  [328] and ..................................... <(gGame.TrackData.AI.count > 0) and (gGame.AIsBuild < gGame.TrackData.AI.count)>
+  [329] jmpifz [355] ............................ if (gGame.TrackData.AI.count > 0) and (gGame.AIsBuild < gGame.TrackData.AI.count) then / else
+  [332] getglobal 43 ............................ <gGame>
+  [334] getchainedprop 124 ...................... <gGame.TrackData>
+  [336] pushsymb 132 ............................ <#AI>
+  [338] getglobal 43 ............................ <gGame>
+  [340] getobjprop 2065 ......................... <gGame.AIsBuild>
+  [343] pushint8 1 .............................. <1>
+  [345] add ..................................... <gGame.AIsBuild + 1>
+  [346] pusharglist 3 ........................... <gGame.TrackData, #AI, gGame.AIsBuild + 1>
+  [348] objcall 70 .............................. <gGame.TrackData.AI[gGame.AIsBuild + 1]>
+  [350] setlocal 5 .............................. tBuildData = gGame.TrackData.AI[gGame.AIsBuild + 1]
+  [352] jmp [361]
+  [355] pusharglist 0 ........................... <>
+  [357] extcall 40 .............................. <VOID>
+  [359] setlocal 5 .............................. tBuildData = VOID
+  [361] getlocal 5 .............................. <tBuildData>
+  [363] pusharglist 0 ........................... <>
+  [365] extcall 40 .............................. <VOID>
+  [367] eq ...................................... <tBuildData = VOID>
+  [368] jmpifz [382] ............................ if tBuildData = VOID then / else
+  [371] pusharglist 0 ........................... <>
+  [373] extcall 40 .............................. <VOID>
+  [375] pusharglistnoret 1 ...................... <VOID>
+  [377] extcall 52 .............................. return VOID
+  [379] jmp [390]
+  [382] getlocal 5 .............................. <tBuildData>
+  [384] pusharglist 1 ........................... <tBuildData>
+  [386] objcall 233 ............................. <tBuildData.duplicate()>
+  [388] setlocal 5 .............................. tBuildData = tBuildData.duplicate()
+  [390] pushzero ................................ <0>
+  [391] getlocal 2 .............................. <tmember>
+  [393] getlocal 4 .............................. <tController>
+  [395] getlocal 5 .............................. <tBuildData>
+  [397] pushsymb 250 ............................ <#car>
+  [399] pusharglist 2 ........................... <tBuildData, #car>
+  [401] objcall 105 ............................. <tBuildData[#car]>
+  [403] pusharglist 4 ........................... <0, tmember, tController, tBuildData[#car]>
+  [405] extcall 2022 ............................ <BuildCar(0, tmember, tController, tBuildData[#car])>
+  [408] setlocal 6 .............................. tResult = BuildCar(0, tmember, tController, tBuildData[#car])
+  [410] getlocal 6 .............................. <tResult>
+  [412] getobjprop 2067 ......................... <tResult.CarName>
+  [415] setlocal 7 .............................. tCarName = tResult.CarName
+  [417] getlocal 6 .............................. <tResult>
+  [419] getobjprop 71 ........................... <tResult.model>
+  [421] setlocal 8 .............................. tmodel = tResult.model
+  [423] getlocal 6 .............................. <tResult>
+  [425] getobjprop 2068 ......................... <tResult.Proxy>
+  [428] setlocal 9 .............................. tProxy = tResult.Proxy
+  [430] getlocal 6 .............................. <tResult>
+  [432] getobjprop 2069 ......................... <tResult.shadowmodel>
+  [435] setlocal 10 ............................. tShadowModel = tResult.shadowmodel
+  [437] getlocal 6 .............................. <tResult>
+  [439] getobjprop 969 .......................... <tResult.modelList>
+  [442] setlocal 11 ............................. tModelList = tResult.modelList
+  [444] getlocal 6 .............................. <tResult>
+  [446] getobjprop 2081 ......................... <tResult.nitroModels>
+  [449] setlocal 12 ............................. tNitroModels = tResult.nitroModels
+  [451] getlocal 6 .............................. <tResult>
+  [453] getobjprop 87 ........................... <tResult.data>
+  [455] setlocal 13 ............................. tData = tResult.data
+  [457] getlocal 6 .............................. <tResult>
+  [459] getobjprop 2070 ......................... <tResult.effectList>
+  [462] setlocal 14 ............................. tEffectlist = tResult.effectList
+  [464] getlocal 8 .............................. <tmodel>
+  [466] getobjprop 235 .......................... <tmodel.name>
+  [468] pusharglist 1 ........................... <tmodel.name>
+  [470] extcall 88 .............................. <symbol(tmodel.name)>
+  [472] setlocal 15 ............................. tTag = symbol(tmodel.name)
+  [474] getlocal 8 .............................. <tmodel>
+  [476] getobjprop 214 .......................... <tmodel.transform>
+  [478] setlocal 16 ............................. tTransform = tmodel.transform
+  [480] pushzero ................................ <0>
+  [481] getlocal 5 .............................. <tBuildData>
+  [483] pusharglist 2 ........................... <0, tBuildData>
+  [485] extcall 2023 ............................ <GetStartPositionRotation(0, tBuildData)>
+  [488] setlocal 17 ............................. tPosRot = GetStartPositionRotation(0, tBuildData)
+  [490] getlocal 17 ............................. <tPosRot>
+  [492] pushint8 1 .............................. <1>
+  [494] pusharglist 2 ........................... <tPosRot, 1>
+  [496] objcall 105 ............................. <tPosRot[1]>
+  [498] setlocal 18 ............................. tResetPosition = tPosRot[1]
+  [500] getlocal 17 ............................. <tPosRot>
+  [502] pushint8 2 .............................. <2>
+  [504] pusharglist 2 ........................... <tPosRot, 2>
+  [506] objcall 105 ............................. <tPosRot[2]>
+  [508] setlocal 19 ............................. tResetRotation = tPosRot[2]
+  [510] getlocal 13 ............................. <tData>
+  [512] getobjprop 1901 ......................... <tData.settings>
+  [515] setlocal 20 ............................. tCarParams = tData.settings
+  [517] getlocal 20 ............................. <tCarParams>
+  [519] pushsymb 1373 ........................... <#mass>
+  [522] pusharglist 2 ........................... <tCarParams, #mass>
+  [524] objcall 105 ............................. <tCarParams[#mass]>
+  [526] setlocal 21 ............................. tMass = tCarParams[#mass]
+  [528] pushfloat32 0.0 ......................... <0.0>
+  [533] setlocal 22 ............................. tCurrentSpeed = 0.0
+  [535] getlocal 20 ............................. <tCarParams>
+  [537] pushsymb 1292 ........................... <#maxSpeed>
+  [540] pusharglist 2 ........................... <tCarParams, #maxSpeed>
+  [542] objcall 105 ............................. <tCarParams[#maxSpeed]>
+  [544] setlocal 23 ............................. tMaxSpeed = tCarParams[#maxSpeed]
+  [546] pushfloat32 0.0 ......................... <0.0>
+  [551] setlocal 24 ............................. tSpeedPerc = 0.0
+  [553] pushzero ................................ <0>
+  [554] setlocal 25 ............................. tHovering = 0
+  [556] pushzero ................................ <0>
+  [557] setlocal 26 ............................. tSlip = 0
+  [559] getlocal 20 ............................. <tCarParams>
+  [561] pushsymb 2075 ........................... <#accGain>
+  [564] pusharglist 2 ........................... <tCarParams, #accGain>
+  [566] objcall 105 ............................. <tCarParams[#accGain]>
+  [568] setlocal 27 ............................. tAccGain = tCarParams[#accGain]
+  [570] getlocal 20 ............................. <tCarParams>
+  [572] pushsymb 2244 ........................... <#brakegain>
+  [575] pusharglist 2 ........................... <tCarParams, #brakegain>
+  [577] objcall 105 ............................. <tCarParams[#brakegain]>
+  [579] setlocal 28 ............................. tDecGain = tCarParams[#brakegain]
+  [581] getlocal 20 ............................. <tCarParams>
+  [583] pushsymb 2245 ........................... <#turnGain>
+  [586] pusharglist 2 ........................... <tCarParams, #turnGain>
+  [588] objcall 105 ............................. <tCarParams[#turnGain]>
+  [590] setlocal 29 ............................. tTurnGain = tCarParams[#turnGain]
+  [592] pushfloat32 0.0 ......................... <0.0>
+  [597] setlocal 30 ............................. tWheelTurn = 0.0
+  [599] pushfloat32 0.0 ......................... <0.0>
+  [604] setlocal 31 ............................. tWheelSpin = 0.0
+  [606] getlocal 20 ............................. <tCarParams>
+  [608] pushsymb 2246 ........................... <#MaxWheelTurn>
+  [611] pusharglist 2 ........................... <tCarParams, #MaxWheelTurn>
+  [613] objcall 105 ............................. <tCarParams[#MaxWheelTurn]>
+  [615] setlocal 32 ............................. tMaxWheelTurn = tCarParams[#MaxWheelTurn]
+  [617] getlocal 32 ............................. <tMaxWheelTurn>
+  [619] pushcons 5 .............................. <0.10000000000000001>
+  [621] mul ..................................... <tMaxWheelTurn * 0.10000000000000001>
+  [622] pusharglist 1 ........................... <tMaxWheelTurn * 0.10000000000000001>
+  [624] extcall 544 ............................. <float(tMaxWheelTurn * 0.10000000000000001)>
+  [627] setlocal 33 ............................. tWheelTurnSpeed = float(tMaxWheelTurn * 0.10000000000000001)
+  [629] getlocal 7 .............................. <tCarName>
+  [631] pusharglist 1 ........................... <tCarName>
+  [633] extcall 64 .............................. <member(tCarName)>
+  [635] getlocal 7 .............................. <tCarName>
+  [637] pusharglist 2 ........................... <member(tCarName), tCarName>
+  [639] objcall 71 .............................. <member(tCarName).model(tCarName)>
+  [641] getchainedprop 214 ...................... <member(tCarName).model(tCarName).transform>
+  [643] getchainedprop 215 ...................... <member(tCarName).model(tCarName).transform.position>
+  [645] getobjprop 1190 ......................... <member(tCarName).model(tCarName).transform.position.z>
+  [648] pushcons 6 .............................. <0.08>
+  [650] add ..................................... <member(tCarName).model(tCarName).transform.position.z + 0.08>
+  [651] setlocal 34 ............................. tHoverDist = member(tCarName).model(tCarName).transform.position.z + 0.08
+  [653] getlocal 20 ............................. <tCarParams>
+  [655] pushsymb 2247 ........................... <#strength>
+  [658] pusharglist 2 ........................... <tCarParams, #strength>
+  [660] objcall 105 ............................. <tCarParams[#strength]>
+  [662] setlocal 35 ............................. tStrength = tCarParams[#strength]
+  [664] getlocal 20 ............................. <tCarParams>
+  [666] pushsymb 2248 ........................... <#damping>
+  [669] pusharglist 2 ........................... <tCarParams, #damping>
+  [671] objcall 105 ............................. <tCarParams[#damping]>
+  [673] setlocal 36 ............................. tDamping = tCarParams[#damping]
+  [675] getlocal 20 ............................. <tCarParams>
+  [677] pushsymb 2249 ........................... <#grip>
+  [680] pusharglist 2 ........................... <tCarParams, #grip>
+  [682] objcall 105 ............................. <tCarParams[#grip]>
+  [684] setlocal 37 ............................. tGrip = tCarParams[#grip]
+  [686] getlocal 20 ............................. <tCarParams>
+  [688] pushsymb 1305 ........................... <#drag>
+  [691] pusharglist 2 ........................... <tCarParams, #drag>
+  [693] objcall 105 ............................. <tCarParams[#drag]>
+  [695] setlocal 38 ............................. tDrag = tCarParams[#drag]
+  [697] getlocal 37 ............................. <tGrip>
+  [699] setlocal 39 ............................. tAdjGrip = tGrip
+  [701] getlocal 20 ............................. <tCarParams>
+  [703] pushsymb 2250 ........................... <#driftGrip>
+  [706] pusharglist 2 ........................... <tCarParams, #driftGrip>
+  [708] objcall 105 ............................. <tCarParams[#driftGrip]>
+  [710] setlocal 40 ............................. tDriftGrip = tCarParams[#driftGrip]
+  [712] pushcons 7 .............................. <EMPTY>
+  [714] pushcons 7 .............................. <EMPTY>
+  [716] pushfloat32 1.0 ......................... <1.0>
+  [721] pushfloat32 0.0 ......................... <0.0>
+  [726] pushfloat32 0.0 ......................... <0.0>
+  [731] pusharglist 3 ........................... <1.0, 0.0, 0.0>
+  [733] extcall 212 ............................. <vector(1.0, 0.0, 0.0)>
+  [735] pushfloat32 1.0 ......................... <1.0>
+  [740] pushfloat32 0.0 ......................... <0.0>
+  [745] pushfloat32 0.0 ......................... <0.0>
+  [750] pusharglist 3 ........................... <1.0, 0.0, 0.0>
+  [752] extcall 212 ............................. <vector(1.0, 0.0, 0.0)>
+  [754] pusharglist 4 ........................... <[EMPTY, EMPTY, vector(1.0, 0.0, 0.0), vector(1.0, 0.0, 0.0)]>
+  [756] pushlist ................................ <[EMPTY, EMPTY, vector(1.0, 0.0, 0.0), vector(1.0, 0.0, 0.0)]>
+  [757] setlocal 41 ............................. tCollisionDetails = [EMPTY, EMPTY, vector(1.0, 0.0, 0.0), vector(1.0, 0.0, 0.0)]
+  [759] pusharglist 0 ........................... <[:]>
+  [761] pushproplist ............................ <[:]>
+  [762] setlocal 42 ............................. tIntersectDetails = [:]
+  [764] getlocal 20 ............................. <tCarParams>
+  [766] pushsymb 1556 ........................... <#Health>
+  [769] pusharglist 2 ........................... <tCarParams, #Health>
+  [771] objcall 105 ............................. <tCarParams[#Health]>
+  [773] setlocal 43 ............................. tHealth = tCarParams[#Health]
+  [775] pusharglist 0 ........................... <[]>
+  [777] pushlist ................................ <[]>
+  [778] setlocal 44 ............................. tShaderList = []
+  [780] getlocal 6 .............................. <tResult>
+  [782] getobjprop 969 .......................... <tResult.modelList>
+  [785] peek 0
+  [787] pusharglist 1
+  [789] extcall 129
+  [791] pushint8 1
+  [793] peek 0
+  [795] peek 2
+  [797] lteq
+  [798] jmpifz [861] ............................ repeat with i in tResult.modelList
+  [801] peek 2
+  [803] peek 1
+  [805] pusharglist 2
+  [807] extcall 105
+  [809] setlocal 45
+  [811] getlocal 45 ............................. <i>
+  [813] getobjprop 208 .......................... <i.shader>
+  [815] setlocal 46 ............................. tShader = i.shader
+  [817] getlocal 46 ............................. <tShader>
+  [819] pushint8 1 .............................. <1>
+  [821] setobjprop 1246 ......................... tShader.useDiffuseWithTexture = 1
+  [824] getlocal 44 ............................. <tShaderList>
+  [826] getlocal 46 ............................. <tShader>
+  [828] pusharglist 2 ........................... <tShaderList, tShader>
+  [830] objcall 166 ............................. <tShaderList.getPos(tShader)>
+  [832] pushzero ................................ <0>
+  [833] eq ...................................... <tShaderList.getPos(tShader) = 0>
+  [834] getlocal 45 ............................. <i>
+  [836] getchainedprop 208 ...................... <i.shader>
+  [838] getobjprop 235 .......................... <i.shader.name>
+  [840] pushcons 8 .............................. <"Proxy">
+  [842] containsstr ............................. <i.shader.name contains "Proxy">
+  [843] not ..................................... <not (i.shader.name contains "Proxy")>
+  [844] and ..................................... <(tShaderList.getPos(tShader) = 0) and not (i.shader.name contains "Proxy")>
+  [845] jmpifz [856] ............................ if (tShaderList.getPos(tShader) = 0) and not (i.shader.name contains "Proxy") then
+  [848] getlocal 44 ............................. <tShaderList>
+  [850] getlocal 46 ............................. <tShader>
+  [852] pusharglistnoret 2 ...................... <tShaderList, tShader>
+  [854] objcall 42 .............................. tShaderList.add(tShader)
+  [856] pushint8 1
+  [858] add
+  [859] endrepeat [793]
+  [861] pop 3
+  [863] pushint8 1 .............................. <1>
+  [865] setlocal 47 ............................. tCamIndex = 1
+  [867] getlocal 4 .............................. <tController>
+  [869] pushsymb 379 ............................ <#player>
+  [872] eq ...................................... <tController = #player>
+  [873] jmpifz [945] ............................ if tController = #player then
+  [876] getglobal 43 ............................ <gGame>
+  [878] pushsymb 137 ............................ <#cars>
+  [880] pusharglist 2 ........................... <gGame, #cars>
+  [882] objcall 129 ............................. <gGame.cars.count>
+  [884] setlocal 48 ............................. tCount = gGame.cars.count
+  [886] getglobal 43 ............................ <gGame>
+  [888] getobjprop 137 .......................... <gGame.cars>
+  [890] peek 0
+  [892] pusharglist 1
+  [894] extcall 129
+  [896] pushint8 1
+  [898] peek 0
+  [900] peek 2
+  [902] lteq
+  [903] jmpifz [943] ............................ repeat with i in gGame.cars
+  [906] peek 2
+  [908] peek 1
+  [910] pusharglist 2
+  [912] extcall 105
+  [914] setlocal 45
+  [916] getlocal 45 ............................. <i>
+  [918] getchainedprop 376 ...................... <i.general>
+  [921] getobjprop 378 .......................... <i.general.controller>
+  [924] pushsymb 379 ............................ <#player>
+  [927] eq ...................................... <i.general.controller = #player>
+  [928] jmpifz [938] ............................ if i.general.controller = #player then
+  [931] getlocal 47 ............................. <tCamIndex>
+  [933] pushint8 1 .............................. <1>
+  [935] add ..................................... <tCamIndex + 1>
+  [936] setlocal 47 ............................. tCamIndex = tCamIndex + 1
+  [938] pushint8 1
+  [940] add
+  [941] endrepeat [898]
+  [943] pop 3
+  [945] getlocal 2 .............................. <tmember>
+  [947] getlocal 8 .............................. <tmodel>
+  [949] getobjprop 235 .......................... <tmodel.name>
+  [951] pushcons 9 .............................. <"_Group">
+  [953] joinstr ................................. <tmodel.name & "_Group">
+  [954] pusharglist 2 ........................... <tmember, tmodel.name & "_Group">
+  [956] objcall 877 ............................. <tmember.newGroup(tmodel.name & "_Group")>
+  [959] setlocal 49 ............................. tgroup = tmember.newGroup(tmodel.name & "_Group")
+  [961] getlocal 2 .............................. <tmember>
+  [963] getlocal 15 ............................. <tTag>
+  [965] pushcons 10 ............................. <"Leader_Group">
+  [967] joinstr ................................. <tTag & "Leader_Group">
+  [968] pusharglist 2 ........................... <tmember, tTag & "Leader_Group">
+  [970] objcall 877 ............................. <tmember.newGroup(tTag & "Leader_Group")>
+  [973] setlocal 50 ............................. tLeader = tmember.newGroup(tTag & "Leader_Group")
+  [975] getlocal 50 ............................. <tLeader>
+  [977] pushfloat32 0.0 ......................... <0.0>
+  [982] pushfloat32 1.0 ......................... <1.0>
+  [987] pushfloat32 0.0 ......................... <0.0>
+  [992] pusharglist 3 ........................... <0.0, 1.0, 0.0>
+  [994] extcall 212 ............................. <vector(0.0, 1.0, 0.0)>
+  [996] pushfloat32 0.0 ......................... <0.0>
+  [1001] pushfloat32 0.0 ........................ <0.0>
+  [1006] pushfloat32 1.0 ........................ <1.0>
+  [1011] pusharglist 3 .......................... <0.0, 0.0, 1.0>
+  [1013] extcall 212 ............................ <vector(0.0, 0.0, 1.0)>
+  [1015] pusharglist 2 .......................... <[vector(0.0, 1.0, 0.0), vector(0.0, 0.0, 1.0)]>
+  [1017] pushlist ............................... <[vector(0.0, 1.0, 0.0), vector(0.0, 0.0, 1.0)]>
+  [1018] setobjprop 1172 ........................ tLeader.pointAtOrientation = [vector(0.0, 1.0, 0.0), vector(0.0, 0.0, 1.0)]
+  [1021] pushsymb 2027 .......................... <#update_WayPoints>
+  [1024] pusharglist 1 .......................... <[#update_WayPoints]>
+  [1026] pushlist ............................... <[#update_WayPoints]>
+  [1027] setlocal 51 ............................ tStates = [#update_WayPoints]
+  [1029] getparam 1 ............................. <tParams>
+  [1031] pushsymb 1439 .......................... <#States>
+  [1034] pusharglist 2 .......................... <tParams, #States>
+  [1036] objcall 105 ............................ <tParams[#States]>
+  [1038] pusharglist 1 .......................... <tParams[#States]>
+  [1040] extcall 389 ............................ <voidp(tParams[#States])>
+  [1043] pushzero ............................... <0>
+  [1044] eq ..................................... <voidp(tParams[#States]) = 0>
+  [1045] jmpifz [1059] .......................... if voidp(tParams[#States]) = 0 then
+  [1048] getparam 1 ............................. <tParams>
+  [1050] pushsymb 1439 .......................... <#States>
+  [1053] pusharglist 2 .......................... <tParams, #States>
+  [1055] objcall 105 ............................ <tParams[#States]>
+  [1057] setlocal 51 ............................ tStates = tParams[#States]
+  [1059] getlocal 51 ............................ <tStates>
+  [1061] getobjprop 122 ......................... <tStates.ilk>
+  [1063] pushsymb 126 ........................... <#list>
+  [1065] nteq ................................... <tStates.ilk <> #list>
+  [1066] jmpifz [1080] .......................... if tStates.ilk <> #list then
+  [1069] pushsymb 2027 .......................... <#update_WayPoints>
+  [1072] pushsymb 2039 .......................... <#update_Racing>
+  [1075] pusharglist 2 .......................... <[#update_WayPoints, #update_Racing]>
+  [1077] pushlist ............................... <[#update_WayPoints, #update_Racing]>
+  [1078] setlocal 51 ............................ tStates = [#update_WayPoints, #update_Racing]
+  [1080] getlocal 7 ............................. <tCarName>
+  [1082] pushcons 11 ............................ <"Tank">
+  [1084] eq ..................................... <tCarName = "Tank">
+  [1085] jmpifz [1106] .......................... if tCarName = "Tank" then
+  [1088] getlocal 51 ............................ <tStates>
+  [1090] pushsymb 2051 .......................... <#update_war>
+  [1093] pusharglistnoret 2 ..................... <tStates, #update_war>
+  [1095] objcall 175 ............................ tStates.deleteOne(#update_war)
+  [1097] getlocal 51 ............................ <tStates>
+  [1099] pushsymb 2054 .......................... <#update_tank>
+  [1102] pusharglistnoret 2 ..................... <tStates, #update_tank>
+  [1104] objcall 42 ............................. tStates.add(#update_tank)
+  [1106] getglobal 43 ........................... <gGame>
+  [1108] getobjprop 1667 ........................ <gGame.Effects>
+  [1111] pushsymb 1048 .......................... <#low>
+  [1114] eq ..................................... <gGame.Effects = #low>
+  [1115] jmpifz [1127] .......................... if gGame.Effects = #low then
+  [1118] getlocal 51 ............................ <tStates>
+  [1120] pushsymb 2063 .......................... <#update_sound2>
+  [1123] pusharglistnoret 2 ..................... <tStates, #update_sound2>
+  [1125] objcall 175 ............................ tStates.deleteOne(#update_sound2)
+  [1127] getglobal 43 ........................... <gGame>
+  [1129] pushsymb 2251 .......................... <#CarHelpers>
+  [1132] pusharglist 2 .......................... <gGame, #CarHelpers>
+  [1134] objcall 105 ............................ <gGame[#CarHelpers]>
+  [1136] pushint8 1 ............................. <1>
+  [1138] eq ..................................... <gGame[#CarHelpers] = 1>
+  [1139] jmpifz [1151] .......................... if gGame[#CarHelpers] = 1 then
+  [1142] getlocal 51 ............................ <tStates>
+  [1144] pushsymb 2057 .......................... <#update_Helpers>
+  [1147] pusharglistnoret 2 ..................... <tStates, #update_Helpers>
+  [1149] objcall 42 ............................. tStates.add(#update_Helpers)
+  [1151] getlocal 0 ............................. <t>
+  [1153] pushsymb 376 ........................... <#general>
+  [1156] pushsymb 487 ........................... <#sprite>
+  [1159] getlocal 1 ............................. <tSprite>
+  [1161] pushsymb 64 ............................ <#member>
+  [1163] getlocal 2 ............................. <tmember>
+  [1165] pushsymb 378 ........................... <#controller>
+  [1168] getlocal 4 ............................. <tController>
+  [1170] pushsymb 377 ........................... <#tag>
+  [1173] getlocal 15 ............................ <tTag>
+  [1175] pushsymb 2252 .......................... <#Boss>
+  [1178] pushzero ............................... <0>
+  [1179] pushsymb 379 ........................... <#player>
+  [1182] getglobal 43 ........................... <gGame>
+  [1184] pushsymb 137 ........................... <#cars>
+  [1186] pusharglist 2 .......................... <gGame, #cars>
+  [1188] objcall 129 ............................ <gGame.cars.count>
+  [1190] pushint8 1 ............................. <1>
+  [1192] add .................................... <gGame.cars.count + 1>
+  [1193] pushsymb 922 ........................... <#limit>
+  [1196] pushzero ............................... <0>
+  [1197] pushsymb 87 ............................ <#data>
+  [1199] getlocal 13 ............................ <tData>
+  [1201] pushsymb 2093 .......................... <#buildData>
+  [1204] getlocal 5 ............................. <tBuildData>
+  [1206] pushsymb 1439 .......................... <#States>
+  [1209] getlocal 51 ............................ <tStates>
+  [1211] pusharglist 1 .......................... <tStates>
+  [1213] objcall 233 ............................ <tStates.duplicate()>
+  [1215] pushsymb 36 ............................ <#script>
+  [1217] getparam 0 ............................. <me>
+  [1219] pusharglist 22 ......................... <[#sprite: tSprite, #member: tmember, #controller: tController, #tag: tTag, #Boss: 0, #player: gGame.cars.count + 1, #limit: 0, #data: tData, #buildData: tBuildData, #States: tStates.duplicate(), #script: me]>
+  [1221] pushproplist ........................... <[#sprite: tSprite, #member: tmember, #controller: tController, #tag: tTag, #Boss: 0, #player: gGame.cars.count + 1, #limit: 0, #data: tData, #buildData: tBuildData, #States: tStates.duplicate(), #script: me]>
+  [1222] pusharglistnoret 3 ..................... <t, #general, [#sprite: tSprite, #member: tmember, #controller: tController, #tag: tTag, #Boss: 0, #player: gGame.cars.count + 1, #limit: 0, #data: tData, #buildData: tBuildData, #States: tStates.duplicate(), #script: me]>
+  [1224] objcall 103 ............................ t[#general] = [#sprite: tSprite, #member: tmember, #controller: tController, #tag: tTag, #Boss: 0, #player: gGame.cars.count + 1, #limit: 0, #data: tData, #buildData: tBuildData, #States: tStates.duplicate(), #script: me]
+  [1226] getlocal 0 ............................. <t>
+  [1228] pushsymb 250 ........................... <#car>
+  [1230] pushsymb 235 ........................... <#name>
+  [1232] getlocal 7 ............................. <tCarName>
+  [1234] pushsymb 71 ............................ <#model>
+  [1236] getlocal 8 ............................. <tmodel>
+  [1238] pushsymb 2068 .......................... <#Proxy>
+  [1241] getlocal 9 ............................. <tProxy>
+  [1243] pushsymb 2069 .......................... <#shadowmodel>
+  [1246] getlocal 10 ............................ <tShadowModel>
+  [1248] pushsymb 2081 .......................... <#nitroModels>
+  [1251] getlocal 12 ............................ <tNitroModels>
+  [1253] pushsymb 305 ........................... <#shaderList>
+  [1256] getlocal 44 ............................ <tShaderList>
+  [1258] pushsymb 214 ........................... <#transform>
+  [1260] getlocal 16 ............................ <tTransform>
+  [1262] pushsymb 2109 .......................... <#previousT>
+  [1265] getlocal 16 ............................ <tTransform>
+  [1267] pushsymb 65 ............................ <#group>
+  [1269] getlocal 49 ............................ <tgroup>
+  [1271] pushsymb 2253 .......................... <#ResetPosition>
+  [1274] getlocal 18 ............................ <tResetPosition>
+  [1276] pushsymb 2254 .......................... <#ResetRotation>
+  [1279] getlocal 19 ............................ <tResetRotation>
+  [1281] pushsymb 1373 .......................... <#mass>
+  [1284] getlocal 21 ............................ <tMass>
+  [1286] pushsymb 2018 .......................... <#Speed>
+  [1289] getlocal 22 ............................ <tCurrentSpeed>
+  [1291] pushsymb 1292 .......................... <#maxSpeed>
+  [1294] getlocal 23 ............................ <tMaxSpeed>
+  [1296] pushsymb 2236 .......................... <#SpeedPerc>
+  [1299] getlocal 24 ............................ <tSpeedPerc>
+  [1301] pushsymb 2237 .......................... <#Hovering>
+  [1304] getlocal 25 ............................ <tHovering>
+  [1306] pushsymb 371 ........................... <#Nitro>
+  [1309] pushzero ............................... <0>
+  [1310] pushsymb 2233 .......................... <#slip>
+  [1313] getlocal 26 ............................ <tSlip>
+  [1315] pushsymb 2075 .......................... <#accGain>
+  [1318] getlocal 27 ............................ <tAccGain>
+  [1320] pushsymb 2076 .......................... <#decGain>
+  [1323] getlocal 28 ............................ <tDecGain>
+  [1325] pushsymb 2245 .......................... <#turnGain>
+  [1328] getlocal 29 ............................ <tTurnGain>
+  [1330] pushsymb 2246 .......................... <#MaxWheelTurn>
+  [1333] getlocal 32 ............................ <tMaxWheelTurn>
+  [1335] pushsymb 2255 .......................... <#WheelTurnSpeed>
+  [1338] getlocal 33 ............................ <tWheelTurnSpeed>
+  [1340] pushsymb 2256 .......................... <#WheelTurn>
+  [1343] getlocal 30 ............................ <tWheelTurn>
+  [1345] pushsymb 2257 .......................... <#WheelSpin>
+  [1348] getlocal 31 ............................ <tWheelSpin>
+  [1350] pushsymb 2258 .......................... <#HoverDist>
+  [1353] getlocal 34 ............................ <tHoverDist>
+  [1355] pushsymb 2247 .......................... <#strength>
+  [1358] getlocal 35 ............................ <tStrength>
+  [1360] pushsymb 2248 .......................... <#damping>
+  [1363] getlocal 36 ............................ <tDamping>
+  [1365] pushsymb 2249 .......................... <#grip>
+  [1368] getlocal 37 ............................ <tGrip>
+  [1370] pushsymb 2259 .......................... <#AdjGrip>
+  [1373] getlocal 37 ............................ <tGrip>
+  [1375] pushsymb 2250 .......................... <#driftGrip>
+  [1378] getlocal 40 ............................ <tDriftGrip>
+  [1380] pushsymb 1305 .......................... <#drag>
+  [1383] getlocal 38 ............................ <tDrag>
+  [1385] pushsymb 2260 .......................... <#currentFloor>
+  [1388] pusharglist 0 .......................... <>
+  [1390] extcall 40 ............................. <VOID>
+  [1392] pushsymb 1741 .......................... <#FloorList>
+  [1395] pusharglist 0 .......................... <[]>
+  [1397] pushlist ............................... <[]>
+  [1398] pushsymb 373 ........................... <#currentRootNr>
+  [1401] pushint8 1 ............................. <1>
+  [1403] pushsymb 2105 .......................... <#previousRootNR>
+  [1406] pushzero ............................... <0>
+  [1407] pushsymb 1405 .......................... <#RootList>
+  [1410] pushint8 1 ............................. <1>
+  [1412] pushint8 2 ............................. <2>
+  [1414] pusharglist 2 .......................... <[1, 2]>
+  [1416] pushlist ............................... <[1, 2]>
+  [1417] pushsymb 1406 .......................... <#previousRootList>
+  [1420] pushint8 1 ............................. <1>
+  [1422] pushint8 2 ............................. <2>
+  [1424] pusharglist 2 .......................... <[1, 2]>
+  [1426] pushlist ............................... <[1, 2]>
+  [1427] pushsymb 2163 .......................... <#collisionDetails>
+  [1430] getlocal 41 ............................ <tCollisionDetails>
+  [1432] pushsymb 2185 .......................... <#intersectDetails>
+  [1435] getlocal 42 ............................ <tIntersectDetails>
+  [1437] pushsymb 1667 .......................... <#Effects>
+  [1440] getlocal 14 ............................ <tEffectlist>
+  [1442] pushsymb 1556 .......................... <#Health>
+  [1445] getlocal 43 ............................ <tHealth>
+  [1447] pusharglist 84 ......................... <[#name: tCarName, #model: tmodel, #Proxy: tProxy, #shadowmodel: tShadowModel, #nitroModels: tNitroModels, #shaderList: tShaderList, #transform: tTransform, #previousT: tTransform, #group: tgroup, #ResetPosition: tResetPosition, #ResetRotation: tResetRotation, #mass: tMass, #Speed: tCurrentSpeed, #maxSpeed: tMaxSpeed, #SpeedPerc: tSpeedPerc, #Hovering: tHovering, #Nitro: 0, #slip: tSlip, #accGain: tAccGain, #decGain: tDecGain, #turnGain: tTurnGain, #MaxWheelTurn: tMaxWheelTurn, #WheelTurnSpeed: tWheelTurnSpeed, #WheelTurn: tWheelTurn, #WheelSpin: tWheelSpin, #HoverDist: tHoverDist, #strength: tStrength, #damping: tDamping, #grip: tGrip, #AdjGrip: tGrip, #driftGrip: tDriftGrip, #drag: tDrag, #currentFloor: VOID, #FloorList: [], #currentRootNr: 1, #previousRootNR: 0, #RootList: [1, 2], #previousRootList: [1, 2], #collisionDetails: tCollisionDetails, #intersectDetails: tIntersectDetails, #Effects: tEffectlist, #Health: tHealth]>
+  [1449] pushproplist ........................... <[#name: tCarName, #model: tmodel, #Proxy: tProxy, #shadowmodel: tShadowModel, #nitroModels: tNitroModels, #shaderList: tShaderList, #transform: tTransform, #previousT: tTransform, #group: tgroup, #ResetPosition: tResetPosition, #ResetRotation: tResetRotation, #mass: tMass, #Speed: tCurrentSpeed, #maxSpeed: tMaxSpeed, #SpeedPerc: tSpeedPerc, #Hovering: tHovering, #Nitro: 0, #slip: tSlip, #accGain: tAccGain, #decGain: tDecGain, #turnGain: tTurnGain, #MaxWheelTurn: tMaxWheelTurn, #WheelTurnSpeed: tWheelTurnSpeed, #WheelTurn: tWheelTurn, #WheelSpin: tWheelSpin, #HoverDist: tHoverDist, #strength: tStrength, #damping: tDamping, #grip: tGrip, #AdjGrip: tGrip, #driftGrip: tDriftGrip, #drag: tDrag, #currentFloor: VOID, #FloorList: [], #currentRootNr: 1, #previousRootNR: 0, #RootList: [1, 2], #previousRootList: [1, 2], #collisionDetails: tCollisionDetails, #intersectDetails: tIntersectDetails, #Effects: tEffectlist, #Health: tHealth]>
+  [1450] pusharglistnoret 3 ..................... <t, #car, [#name: tCarName, #model: tmodel, #Proxy: tProxy, #shadowmodel: tShadowModel, #nitroModels: tNitroModels, #shaderList: tShaderList, #transform: tTransform, #previousT: tTransform, #group: tgroup, #ResetPosition: tResetPosition, #ResetRotation: tResetRotation, #mass: tMass, #Speed: tCurrentSpeed, #maxSpeed: tMaxSpeed, #SpeedPerc: tSpeedPerc, #Hovering: tHovering, #Nitro: 0, #slip: tSlip, #accGain: tAccGain, #decGain: tDecGain, #turnGain: tTurnGain, #MaxWheelTurn: tMaxWheelTurn, #WheelTurnSpeed: tWheelTurnSpeed, #WheelTurn: tWheelTurn, #WheelSpin: tWheelSpin, #HoverDist: tHoverDist, #strength: tStrength, #damping: tDamping, #grip: tGrip, #AdjGrip: tGrip, #driftGrip: tDriftGrip, #drag: tDrag, #currentFloor: VOID, #FloorList: [], #currentRootNr: 1, #previousRootNR: 0, #RootList: [1, 2], #previousRootList: [1, 2], #collisionDetails: tCollisionDetails, #intersectDetails: tIntersectDetails, #Effects: tEffectlist, #Health: tHealth]>
+  [1452] objcall 103 ............................ t[#car] = [#name: tCarName, #model: tmodel, #Proxy: tProxy, #shadowmodel: tShadowModel, #nitroModels: tNitroModels, #shaderList: tShaderList, #transform: tTransform, #previousT: tTransform, #group: tgroup, #ResetPosition: tResetPosition, #ResetRotation: tResetRotation, #mass: tMass, #Speed: tCurrentSpeed, #maxSpeed: tMaxSpeed, #SpeedPerc: tSpeedPerc, #Hovering: tHovering, #Nitro: 0, #slip: tSlip, #accGain: tAccGain, #decGain: tDecGain, #turnGain: tTurnGain, #MaxWheelTurn: tMaxWheelTurn, #WheelTurnSpeed: tWheelTurnSpeed, #WheelTurn: tWheelTurn, #WheelSpin: tWheelSpin, #HoverDist: tHoverDist, #strength: tStrength, #damping: tDamping, #grip: tGrip, #AdjGrip: tGrip, #driftGrip: tDriftGrip, #drag: tDrag, #currentFloor: VOID, #FloorList: [], #currentRootNr: 1, #previousRootNR: 0, #RootList: [1, 2], #previousRootList: [1, 2], #collisionDetails: tCollisionDetails, #intersectDetails: tIntersectDetails, #Effects: tEffectlist, #Health: tHealth]
+  [1454] getlocal 0 ............................. <t>
+  [1456] pushsymb 138 ........................... <#race>
+  [1458] pushsymb 89 ............................ <#state>
+  [1460] pushsymb 54 ............................ <#none>
+  [1462] pushsymb 215 ........................... <#position>
+  [1464] getglobal 43 ........................... <gGame>
+  [1466] pushsymb 137 ........................... <#cars>
+  [1468] pusharglist 2 .......................... <gGame, #cars>
+  [1470] objcall 129 ............................ <gGame.cars.count>
+  [1472] pushsymb 2146 .......................... <#Leader>
+  [1475] getlocal 50 ............................ <tLeader>
+  [1477] pushsymb 2261 .......................... <#leaderModel>
+  [1480] pusharglist 0 .......................... <>
+  [1482] extcall 40 ............................. <VOID>
+  [1484] pushsymb 142 ........................... <#time>
+  [1486] pushzero ............................... <0>
+  [1487] pushsymb 136 ........................... <#score>
+  [1489] pushzero ............................... <0>
+  [1490] pushsymb 2017 .......................... <#storedScore>
+  [1493] pushzero ............................... <0>
+  [1494] pushsymb 1614 .......................... <#addScore>
+  [1497] pushzero ............................... <0>
+  [1498] pushsymb 1742 .......................... <#CheckPoints>
+  [1501] pushzero ............................... <0>
+  [1502] pushsymb 1369 .......................... <#WayPointList>
+  [1505] pusharglist 0 .......................... <[]>
+  [1507] pushlist ............................... <[]>
+  [1508] pushsymb 374 ........................... <#waypoint>
+  [1511] pushint8 1 ............................. <1>
+  [1513] pushsymb 2106 .......................... <#WaypointDistance>
+  [1516] pushfloat32 0.0 ........................ <0.0>
+  [1521] pushsymb 2107 .......................... <#WaypointT>
+  [1524] pusharglist 0 .......................... <>
+  [1526] extcall 214 ............................ <transform()>
+  [1528] pushsymb 2110 .......................... <#waypointZ>
+  [1531] pushfloat32 0.0 ........................ <0.0>
+  [1536] pushsymb 2108 .......................... <#perpVector>
+  [1539] pusharglist 0 .......................... <>
+  [1541] extcall 212 ............................ <vector()>
+  [1543] pushsymb 375 ........................... <#perpDistance>
+  [1546] pushfloat32 0.0 ........................ <0.0>
+  [1551] pushsymb 2148 .......................... <#stuckCounter>
+  [1554] pushzero ............................... <0>
+  [1555] pushsymb 2150 .......................... <#stuckPosition>
+  [1558] getlocal 8 ............................. <tmodel>
+  [1560] getobjprop 1161 ........................ <tmodel.worldPosition>
+  [1563] pusharglist 36 ......................... <[#state: #none, #position: gGame.cars.count, #Leader: tLeader, #leaderModel: VOID, #time: 0, #score: 0, #storedScore: 0, #addScore: 0, #CheckPoints: 0, #WayPointList: [], #waypoint: 1, #WaypointDistance: 0.0, #WaypointT: transform(), #waypointZ: 0.0, #perpVector: vector(), #perpDistance: 0.0, #stuckCounter: 0, #stuckPosition: tmodel.worldPosition]>
+  [1565] pushproplist ........................... <[#state: #none, #position: gGame.cars.count, #Leader: tLeader, #leaderModel: VOID, #time: 0, #score: 0, #storedScore: 0, #addScore: 0, #CheckPoints: 0, #WayPointList: [], #waypoint: 1, #WaypointDistance: 0.0, #WaypointT: transform(), #waypointZ: 0.0, #perpVector: vector(), #perpDistance: 0.0, #stuckCounter: 0, #stuckPosition: tmodel.worldPosition]>
+  [1566] pusharglistnoret 3 ..................... <t, #race, [#state: #none, #position: gGame.cars.count, #Leader: tLeader, #leaderModel: VOID, #time: 0, #score: 0, #storedScore: 0, #addScore: 0, #CheckPoints: 0, #WayPointList: [], #waypoint: 1, #WaypointDistance: 0.0, #WaypointT: transform(), #waypointZ: 0.0, #perpVector: vector(), #perpDistance: 0.0, #stuckCounter: 0, #stuckPosition: tmodel.worldPosition]>
+  [1568] objcall 103 ............................ t[#race] = [#state: #none, #position: gGame.cars.count, #Leader: tLeader, #leaderModel: VOID, #time: 0, #score: 0, #storedScore: 0, #addScore: 0, #CheckPoints: 0, #WayPointList: [], #waypoint: 1, #WaypointDistance: 0.0, #WaypointT: transform(), #waypointZ: 0.0, #perpVector: vector(), #perpDistance: 0.0, #stuckCounter: 0, #stuckPosition: tmodel.worldPosition]
+  [1570] getlocal 0 ............................. <t>
+  [1572] pushsymb 391 ........................... <#input>
+  [1575] pusharglist 0 .......................... <[:]>
+  [1577] pushproplist ........................... <[:]>
+  [1578] pusharglistnoret 3 ..................... <t, #input, [:]>
+  [1580] objcall 103 ............................ t[#input] = [:]
+  [1582] getlocal 0 ............................. <t>
+  [1584] pushsymb 298 ........................... <#camera>
+  [1587] pushsymb 1425 .......................... <#index>
+  [1590] getlocal 47 ............................ <tCamIndex>
+  [1592] pushsymb 2262 .......................... <#inView>
+  [1595] pusharglist 0 .......................... <[]>
+  [1597] pushlist ............................... <[]>
+  [1598] pushsymb 2263 .......................... <#inViewPos>
+  [1601] pusharglist 0 .......................... <[]>
+  [1603] pushlist ............................... <[]>
+  [1604] pushsymb 2235 .......................... <#distanceToTarget>
+  [1607] pusharglist 0 .......................... <[]>
+  [1609] pushlist ............................... <[]>
+  [1610] pushsymb 2264 .......................... <#MaxDistanceToTarget>
+  [1613] pushfloat32 30.0 ....................... <30.0>
+  [1618] pusharglist 10 ......................... <[#index: tCamIndex, #inView: [], #inViewPos: [], #distanceToTarget: [], #MaxDistanceToTarget: 30.0]>
+  [1620] pushproplist ........................... <[#index: tCamIndex, #inView: [], #inViewPos: [], #distanceToTarget: [], #MaxDistanceToTarget: 30.0]>
+  [1621] pusharglistnoret 3 ..................... <t, #camera, [#index: tCamIndex, #inView: [], #inViewPos: [], #distanceToTarget: [], #MaxDistanceToTarget: 30.0]>
+  [1623] objcall 103 ............................ t[#camera] = [#index: tCamIndex, #inView: [], #inViewPos: [], #distanceToTarget: [], #MaxDistanceToTarget: 30.0]
+  [1625] getlocal 0 ............................. <t>
+  [1627] getchainedprop 376 ..................... <t.general>
+  [1630] getglobal 43 ........................... <gGame>
+  [1632] getchainedprop 165 ..................... <gGame.Bosses>
+  [1634] getlocal 7 ............................. <tCarName>
+  [1636] pusharglist 1 .......................... <tCarName>
+  [1638] extcall 88 ............................. <symbol(tCarName)>
+  [1640] pusharglist 2 .......................... <gGame.Bosses, symbol(tCarName)>
+  [1642] objcall 166 ............................ <gGame.Bosses.getPos(symbol(tCarName))>
+  [1644] pushzero ............................... <0>
+  [1645] gt ..................................... <gGame.Bosses.getPos(symbol(tCarName)) > 0>
+  [1646] setobjprop 2252 ........................ t.general.Boss = gGame.Bosses.getPos(symbol(tCarName)) > 0
+  [1649] getglobal 43 ........................... <gGame>
+  [1651] pushsymb 137 ........................... <#cars>
+  [1653] getlocal 15 ............................ <tTag>
+  [1655] getlocal 0 ............................. <t>
+  [1657] pusharglistnoret 4 ..................... <gGame, #cars, tTag, t>
+  [1659] objcall 99 ............................. gGame.cars[tTag] = t
+  [1661] pushcons 12 ............................ <"_">
+  [1663] pusharglistnoret 1 ..................... <"_">
+  [1665] extcall 82 ............................. SetItemDelimiter("_")
+  [1667] getlocal 51 ............................ <tStates>
+  [1669] peek 0
+  [1671] pusharglist 1
+  [1673] extcall 129
+  [1675] pushint8 1
+  [1677] peek 0
+  [1679] peek 2
+  [1681] lteq
+  [1682] jmpifz [1737] .......................... repeat with i in tStates
+  [1685] peek 2
+  [1687] peek 1
+  [1689] pusharglist 2
+  [1691] extcall 105
+  [1693] setlocal 45
+  [1695] getlocal 45 ............................ <i>
+  [1697] pusharglist 1 .......................... <i>
+  [1699] extcall 67 ............................. <string(i)>
+  [1701] setlocal 52 ............................ tString = string(i)
+  [1703] pushcons 13 ............................ <"setup_">
+  [1705] getlocal 52 ............................ <tString>
+  [1707] pushsymb 83 ............................ <#item>
+  [1709] pushint8 2 ............................. <2>
+  [1711] pusharglist 3 .......................... <tString, #item, 2>
+  [1713] objcall 70 ............................. <tString.item[2]>
+  [1715] joinstr ................................ <"setup_" & tString.item[2]>
+  [1716] pusharglist 1 .......................... <"setup_" & tString.item[2]>
+  [1718] extcall 88 ............................. <symbol("setup_" & tString.item[2])>
+  [1720] setlocal 53 ............................ tHandler = symbol("setup_" & tString.item[2])
+  [1722] pushzero ............................... <0>
+  [1723] getlocal 53 ............................ <tHandler>
+  [1725] getlocal 0 ............................. <t>
+  [1727] pusharglistnoret 3 ..................... <0, tHandler, t>
+  [1729] extcall 362 ............................ sendSprite(0, tHandler, t)
+  [1732] pushint8 1
+  [1734] add
+  [1735] endrepeat [1677]
+  [1737] pop 3
+  [1739] pusharglistnoret 0 ..................... <>
+  [1741] extcall 85 ............................. ResetItemDelimiter()
+  [1743] getprop 563 ............................ <p>
+  [1746] pushsymb 377 ........................... <#tag>
+  [1749] getlocal 0 ............................. <t>
+  [1751] getchainedprop 376 ..................... <t.general>
+  [1754] getobjprop 377 ......................... <t.general.tag>
+  [1757] pusharglistnoret 3 ..................... <p, #tag, t.general.tag>
+  [1759] objcall 103 ............................ p[#tag] = t.general.tag
+  [1761] getlocal 0 ............................. <t>
+  [1763] getlocal 20 ............................ <tCarParams>
+  [1765] pusharglist 2 .......................... <t, tCarParams>
+  [1767] localcall 1 ............................ <InitializeCar(t, tCarParams)>
+  [1769] setlocal 0 ............................. t = InitializeCar(t, tCarParams)
+  [1771] getlocal 0 ............................. <t>
+  [1773] getchainedprop 376 ..................... <t.general>
+  [1776] getobjprop 378 ......................... <t.general.controller>
+  [1779] pushsymb 379 ........................... <#player>
+  [1782] eq ..................................... <t.general.controller = #player>
+  [1783] jmpifz [1802] .......................... if t.general.controller = #player then / else
+  [1786] getglobal 43 ........................... <gGame>
+  [1788] getglobal 43 ........................... <gGame>
+  [1790] getobjprop 2265 ........................ <gGame.playersBuild>
+  [1793] pushint8 1 ............................. <1>
+  [1795] add .................................... <gGame.playersBuild + 1>
+  [1796] setobjprop 2265 ........................ gGame.playersBuild = gGame.playersBuild + 1
+  [1799] jmp [1815]
+  [1802] getglobal 43 ........................... <gGame>
+  [1804] getglobal 43 ........................... <gGame>
+  [1806] getobjprop 2065 ........................ <gGame.AIsBuild>
+  [1809] pushint8 1 ............................. <1>
+  [1811] add .................................... <gGame.AIsBuild + 1>
+  [1812] setobjprop 2065 ........................ gGame.AIsBuild = gGame.AIsBuild + 1
+  [1815] pusharglist 0 .......................... <>
+  [1817] extcall 40 ............................. <VOID>
+  [1819] setlocal 0 ............................. t = VOID
+  [1821] getparam 0 ............................. <me>
+  [1823] pusharglistnoret 1 ..................... <me>
+  [1825] extcall 52 ............................. return me
+  [1827] ret
+end
+
+on InitializeCar t, tCarParams
+  [  0] getparam 0 .............................. <t>
+  [  2] getchainedprop 250 ...................... <t.car>
+  [  4] getchainedprop 2068 ..................... <t.car.Proxy>
+  [  7] pushsymb 995 ............................ <#meshDeform>
+  [ 10] pusharglistnoret 2 ...................... <t.car.Proxy, #meshDeform>
+  [ 12] objcall 261 ............................. t.car.Proxy.addModifier(#meshDeform)
+  [ 15] getparam 0 .............................. <t>
+  [ 17] getchainedprop 250 ...................... <t.car>
+  [ 19] getchainedprop 2068 ..................... <t.car.Proxy>
+  [ 22] pusharglistnoret 1 ...................... <t.car.Proxy>
+  [ 24] objcall 662 ............................. t.car.Proxy.removeFromWorld()
+  [ 27] getglobal 43 ............................ <gGame>
+  [ 29] getchainedprop 1389 ..................... <gGame.Physics>
+  [ 32] getparam 0 .............................. <t>
+  [ 34] getchainedprop 250 ...................... <t.car>
+  [ 36] getchainedprop 2068 ..................... <t.car.Proxy>
+  [ 39] getobjprop 235 .......................... <t.car.Proxy.name>
+  [ 41] getparam 0 .............................. <t>
+  [ 43] getchainedprop 250 ...................... <t.car>
+  [ 45] getchainedprop 2068 ..................... <t.car.Proxy>
+  [ 48] getobjprop 235 .......................... <t.car.Proxy.name>
+  [ 50] pushsymb 1375 ........................... <#convexShape>
+  [ 53] pushsymb 1372 ........................... <#dynamic>
+  [ 56] pusharglist 5 ........................... <gGame.Physics, t.car.Proxy.name, t.car.Proxy.name, #convexShape, #dynamic>
+  [ 58] objcall 1528 ............................ <gGame.Physics.createRigidBody(t.car.Proxy.name, t.car.Proxy.name, #convexShape, #dynamic)>
+  [ 61] setlocal 0 .............................. tPhysicsCar = gGame.Physics.createRigidBody(t.car.Proxy.name, t.car.Proxy.name, #convexShape, #dynamic)
+  [ 63] getlocal 0 .............................. <tPhysicsCar>
+  [ 65] getparam 1 .............................. <tCarParams>
+  [ 67] pushsymb 1524 ........................... <#friction>
+  [ 70] pusharglist 2 ........................... <tCarParams, #friction>
+  [ 72] objcall 105 ............................. <tCarParams[#friction]>
+  [ 74] setobjprop 1524 ......................... tPhysicsCar.friction = tCarParams[#friction]
+  [ 77] getlocal 0 .............................. <tPhysicsCar>
+  [ 79] getparam 1 .............................. <tCarParams>
+  [ 81] pushsymb 1523 ........................... <#restitution>
+  [ 84] pusharglist 2 ........................... <tCarParams, #restitution>
+  [ 86] objcall 105 ............................. <tCarParams[#restitution]>
+  [ 88] setobjprop 1523 ......................... tPhysicsCar.restitution = tCarParams[#restitution]
+  [ 91] getlocal 0 .............................. <tPhysicsCar>
+  [ 93] getparam 0 .............................. <t>
+  [ 95] getchainedprop 250 ...................... <t.car>
+  [ 97] getobjprop 1373 ......................... <t.car.mass>
+  [100] setobjprop 1373 ......................... tPhysicsCar.mass = t.car.mass
+  [103] getlocal 0 .............................. <tPhysicsCar>
+  [105] pushcons 14 ............................. <1.30000000000000004>
+  [107] setobjprop 2296 ......................... tPhysicsCar.angularDamping = 1.30000000000000004
+  [110] getlocal 0 .............................. <tPhysicsCar>
+  [112] getparam 0 .............................. <t>
+  [114] getchainedprop 250 ...................... <t.car>
+  [116] getobjprop 2253 ......................... <t.car.ResetPosition>
+  [119] setobjprop 215 .......................... tPhysicsCar.position = t.car.ResetPosition
+  [121] getlocal 0 .............................. <tPhysicsCar>
+  [123] getparam 0 .............................. <t>
+  [125] getchainedprop 250 ...................... <t.car>
+  [127] getobjprop 2254 ......................... <t.car.ResetRotation>
+  [130] setobjprop 2094 ......................... tPhysicsCar.orientation = t.car.ResetRotation
+  [133] getlocal 0 .............................. <tPhysicsCar>
+  [135] pushzero ................................ <0>
+  [136] pushzero ................................ <0>
+  [137] pushzero ................................ <0>
+  [138] pusharglist 3 ........................... <0, 0, 0>
+  [140] extcall 212 ............................. <vector(0, 0, 0)>
+  [142] setobjprop 1510 ......................... tPhysicsCar.linearVelocity = vector(0, 0, 0)
+  [145] getlocal 0 .............................. <tPhysicsCar>
+  [147] pushzero ................................ <0>
+  [148] pushzero ................................ <0>
+  [149] pushzero ................................ <0>
+  [150] pusharglist 3 ........................... <0, 0, 0>
+  [152] extcall 212 ............................. <vector(0, 0, 0)>
+  [154] setobjprop 2297 ......................... tPhysicsCar.angularVelocity = vector(0, 0, 0)
+  [157] getparam 0 .............................. <t>
+  [159] pushsymb 250 ............................ <#car>
+  [161] pushsymb 1555 ........................... <#PhysicsCar>
+  [164] getlocal 0 .............................. <tPhysicsCar>
+  [166] pusharglistnoret 4 ...................... <t, #car, #PhysicsCar, tPhysicsCar>
+  [168] objcall 99 .............................. t.car[#PhysicsCar] = tPhysicsCar
+  [170] pushcons 7 .............................. <EMPTY>
+  [172] pushsymb 1377 ........................... <#nameA>
+  [175] getparam 0 .............................. <t>
+  [177] getchainedprop 250 ...................... <t.car>
+  [179] getchainedprop 2068 ..................... <t.car.Proxy>
+  [182] getobjprop 235 .......................... <t.car.Proxy.name>
+  [184] pushsymb 1378 ........................... <#nameB>
+  [187] pushsymb 1535 ........................... <#all>
+  [190] pusharglist 4 ........................... <[#nameA: t.car.Proxy.name, #nameB: #all]>
+  [192] pushproplist ............................ <[#nameA: t.car.Proxy.name, #nameB: #all]>
+  [193] pusharglistnoret 2 ...................... <EMPTY, [#nameA: t.car.Proxy.name, #nameB: #all]>
+  [195] extcall 727 ............................. AddCollisionReport(EMPTY, [#nameA: t.car.Proxy.name, #nameB: #all])
+  [198] getparam 0 .............................. <t>
+  [200] getchainedprop 250 ...................... <t.car>
+  [202] getchainedprop 71 ....................... <t.car.model>
+  [204] getobjprop 235 .......................... <t.car.model.name>
+  [206] setlocal 1 .............................. tName = t.car.model.name
+  [208] getparam 0 .............................. <t>
+  [210] getchainedprop 376 ...................... <t.general>
+  [213] getobjprop 64 ........................... <t.general.member>
+  [215] setlocal 2 .............................. tmember = t.general.member
+  [217] getlocal 2 .............................. <tmember>
+  [219] getlocal 1 .............................. <tName>
+  [221] pushcons 15 ............................. <"Wheel_LF">
+  [223] joinstr ................................. <tName & "Wheel_LF">
+  [224] pusharglist 2 ........................... <tmember, tName & "Wheel_LF">
+  [226] objcall 71 .............................. <tmember.model(tName & "Wheel_LF")>
+  [228] getlocal 2 .............................. <tmember>
+  [230] getlocal 1 .............................. <tName>
+  [232] pushcons 16 ............................. <"Wheel_RF">
+  [234] joinstr ................................. <tName & "Wheel_RF">
+  [235] pusharglist 2 ........................... <tmember, tName & "Wheel_RF">
+  [237] objcall 71 .............................. <tmember.model(tName & "Wheel_RF")>
+  [239] getlocal 2 .............................. <tmember>
+  [241] getlocal 1 .............................. <tName>
+  [243] pushcons 17 ............................. <"Wheel_LB">
+  [245] joinstr ................................. <tName & "Wheel_LB">
+  [246] pusharglist 2 ........................... <tmember, tName & "Wheel_LB">
+  [248] objcall 71 .............................. <tmember.model(tName & "Wheel_LB")>
+  [250] getlocal 2 .............................. <tmember>
+  [252] getlocal 1 .............................. <tName>
+  [254] pushcons 18 ............................. <"Wheel_RB">
+  [256] joinstr ................................. <tName & "Wheel_RB">
+  [257] pusharglist 2 ........................... <tmember, tName & "Wheel_RB">
+  [259] objcall 71 .............................. <tmember.model(tName & "Wheel_RB")>
+  [261] pusharglist 4 ........................... <[tmember.model(tName & "Wheel_LF"), tmember.model(tName & "Wheel_RF"), tmember.model(tName & "Wheel_LB"), tmember.model(tName & "Wheel_RB")]>
+  [263] pushlist ................................ <[tmember.model(tName & "Wheel_LF"), tmember.model(tName & "Wheel_RF"), tmember.model(tName & "Wheel_LB"), tmember.model(tName & "Wheel_RB")]>
+  [264] setlocal 3 .............................. tWheelList = [tmember.model(tName & "Wheel_LF"), tmember.model(tName & "Wheel_RF"), tmember.model(tName & "Wheel_LB"), tmember.model(tName & "Wheel_RB")]
+  [266] getparam 0 .............................. <t>
+  [268] pushsymb 250 ............................ <#car>
+  [270] pushsymb 2165 ........................... <#wheellist>
+  [273] getlocal 3 .............................. <tWheelList>
+  [275] pusharglistnoret 4 ...................... <t, #car, #wheellist, tWheelList>
+  [277] objcall 99 .............................. t.car[#wheellist] = tWheelList
+  [279] getparam 0 .............................. <t>
+  [281] getchainedprop 250 ...................... <t.car>
+  [283] getobjprop 235 .......................... <t.car.name>
+  [285] pusharglist 1 ........................... <t.car.name>
+  [287] extcall 64 .............................. <member(t.car.name)>
+  [289] setlocal 4 .............................. tCarMember = member(t.car.name)
+  [291] getparam 0 .............................. <t>
+  [293] getchainedprop 250 ...................... <t.car>
+  [295] getobjprop 235 .......................... <t.car.name>
+  [297] pushcons 15 ............................. <"Wheel_LF">
+  [299] joinstr ................................. <t.car.name & "Wheel_LF">
+  [300] getparam 0 .............................. <t>
+  [302] getchainedprop 250 ...................... <t.car>
+  [304] getobjprop 235 .......................... <t.car.name>
+  [306] pushcons 16 ............................. <"Wheel_RF">
+  [308] joinstr ................................. <t.car.name & "Wheel_RF">
+  [309] getparam 0 .............................. <t>
+  [311] getchainedprop 250 ...................... <t.car>
+  [313] getobjprop 235 .......................... <t.car.name>
+  [315] pushcons 17 ............................. <"Wheel_LB">
+  [317] joinstr ................................. <t.car.name & "Wheel_LB">
+  [318] getparam 0 .............................. <t>
+  [320] getchainedprop 250 ...................... <t.car>
+  [322] getobjprop 235 .......................... <t.car.name>
+  [324] pushcons 18 ............................. <"Wheel_RB">
+  [326] joinstr ................................. <t.car.name & "Wheel_RB">
+  [327] pusharglist 4 ........................... <[t.car.name & "Wheel_LF", t.car.name & "Wheel_RF", t.car.name & "Wheel_LB", t.car.name & "Wheel_RB"]>
+  [329] pushlist ................................ <[t.car.name & "Wheel_LF", t.car.name & "Wheel_RF", t.car.name & "Wheel_LB", t.car.name & "Wheel_RB"]>
+  [330] setlocal 5 .............................. tOrigNames = [t.car.name & "Wheel_LF", t.car.name & "Wheel_RF", t.car.name & "Wheel_LB", t.car.name & "Wheel_RB"]
+  [332] getlocal 3 .............................. <tWheelList>
+  [334] getobjprop 129 .......................... <tWheelList.count>
+  [336] setlocal 6 .............................. tCount = tWheelList.count
+  [338] pushint8 1 .............................. <1>
+  [340] setlocal 7
+  [342] getlocal 7
+  [344] getlocal 6 .............................. <tCount>
+  [346] lteq
+  [347] jmpifz [470] ............................ repeat with i = 1 to tCount
+  [350] getlocal 4 .............................. <tCarMember>
+  [352] getlocal 5 .............................. <tOrigNames>
+  [354] getlocal 7 .............................. <i>
+  [356] pusharglist 2 ........................... <tOrigNames, i>
+  [358] objcall 105 ............................. <tOrigNames[i]>
+  [360] pusharglist 2 ........................... <tCarMember, tOrigNames[i]>
+  [362] objcall 71 .............................. <tCarMember.model(tOrigNames[i])>
+  [364] getchainedprop 214 ...................... <tCarMember.model(tOrigNames[i]).transform>
+  [366] getobjprop 215 .......................... <tCarMember.model(tOrigNames[i]).transform.position>
+  [368] getlocal 4 .............................. <tCarMember>
+  [370] getparam 0 .............................. <t>
+  [372] getchainedprop 250 ...................... <t.car>
+  [374] getobjprop 235 .......................... <t.car.name>
+  [376] pusharglist 2 ........................... <tCarMember, t.car.name>
+  [378] objcall 71 .............................. <tCarMember.model(t.car.name)>
+  [380] getchainedprop 214 ...................... <tCarMember.model(t.car.name).transform>
+  [382] getobjprop 215 .......................... <tCarMember.model(t.car.name).transform.position>
+  [384] sub ..................................... <tCarMember.model(tOrigNames[i]).transform.position - tCarMember.model(t.car.name).transform.position>
+  [385] setlocal 8 .............................. tdiff = tCarMember.model(tOrigNames[i]).transform.position - tCarMember.model(t.car.name).transform.position
+  [387] getlocal 3 .............................. <tWheelList>
+  [389] getlocal 7 .............................. <i>
+  [391] pusharglist 2 ........................... <tWheelList, i>
+  [393] objcall 105 ............................. <tWheelList[i]>
+  [395] getparam 0 .............................. <t>
+  [397] getchainedprop 250 ...................... <t.car>
+  [399] getobjprop 71 ........................... <t.car.model>
+  [401] setobjprop 207 .......................... tWheelList[i].parent = t.car.model
+  [403] getlocal 3 .............................. <tWheelList>
+  [405] getlocal 7 .............................. <i>
+  [407] pusharglist 2 ........................... <tWheelList, i>
+  [409] objcall 105 ............................. <tWheelList[i]>
+  [411] getchainedprop 214 ...................... <tWheelList[i].transform>
+  [413] pushfloat32 0.0 ......................... <0.0>
+  [418] pushfloat32 0.0 ......................... <0.0>
+  [423] pushfloat32 0.0 ......................... <0.0>
+  [428] pusharglist 3 ........................... <0.0, 0.0, 0.0>
+  [430] extcall 212 ............................. <vector(0.0, 0.0, 0.0)>
+  [432] setobjprop 215 .......................... tWheelList[i].transform.position = vector(0.0, 0.0, 0.0)
+  [434] getlocal 3 .............................. <tWheelList>
+  [436] getlocal 7 .............................. <i>
+  [438] pusharglist 2 ........................... <tWheelList, i>
+  [440] objcall 105 ............................. <tWheelList[i]>
+  [442] getchainedprop 214 ...................... <tWheelList[i].transform>
+  [444] getlocal 3 .............................. <tWheelList>
+  [446] getlocal 7 .............................. <i>
+  [448] pusharglist 2 ........................... <tWheelList, i>
+  [450] objcall 105 ............................. <tWheelList[i]>
+  [452] getchainedprop 214 ...................... <tWheelList[i].transform>
+  [454] getobjprop 215 .......................... <tWheelList[i].transform.position>
+  [456] getlocal 8 .............................. <tdiff>
+  [458] add ..................................... <tWheelList[i].transform.position + tdiff>
+  [459] setobjprop 215 .......................... tWheelList[i].transform.position = tWheelList[i].transform.position + tdiff
+  [461] pushint8 1
+  [463] getlocal 7
+  [465] add
+  [466] setlocal 7
+  [468] endrepeat [342]
+  [470] getglobal 43 ............................ <gGame>
+  [472] getchainedprop 64 ....................... <gGame.member>
+  [474] getlocal 1 .............................. <tName>
+  [476] pushcons 19 ............................. <"Glass">
+  [478] joinstr ................................. <tName & "Glass">
+  [479] pusharglist 2 ........................... <gGame.member, tName & "Glass">
+  [481] objcall 71 .............................. <gGame.member.model(tName & "Glass")>
+  [483] getchainedprop 214 ...................... <gGame.member.model(tName & "Glass").transform>
+  [485] pushzero ................................ <0>
+  [486] pushzero ................................ <0>
+  [487] pushzero ................................ <0>
+  [488] pusharglist 3 ........................... <0, 0, 0>
+  [490] extcall 212 ............................. <vector(0, 0, 0)>
+  [492] setobjprop 215 .......................... gGame.member.model(tName & "Glass").transform.position = vector(0, 0, 0)
+  [494] getglobal 43 ............................ <gGame>
+  [496] getchainedprop 64 ....................... <gGame.member>
+  [498] getlocal 1 .............................. <tName>
+  [500] pushcons 19 ............................. <"Glass">
+  [502] joinstr ................................. <tName & "Glass">
+  [503] pusharglist 2 ........................... <gGame.member, tName & "Glass">
+  [505] objcall 71 .............................. <gGame.member.model(tName & "Glass")>
+  [507] getparam 0 .............................. <t>
+  [509] getchainedprop 250 ...................... <t.car>
+  [511] getobjprop 71 ........................... <t.car.model>
+  [513] setobjprop 207 .......................... gGame.member.model(tName & "Glass").parent = t.car.model
+  [515] pusharglist 0 ........................... <[]>
+  [517] pushlist ................................ <[]>
+  [518] setlocal 9 .............................. tFloorList = []
+  [520] getparam 0 .............................. <t>
+  [522] getchainedprop 250 ...................... <t.car>
+  [524] getobjprop 1405 ......................... <t.car.RootList>
+  [527] peek 0
+  [529] pusharglist 1
+  [531] extcall 129
+  [533] pushint8 1
+  [535] peek 0
+  [537] peek 2
+  [539] lteq
+  [540] jmpifz [590] ............................ repeat with i in t.car.RootList
+  [543] peek 2
+  [545] peek 1
+  [547] pusharglist 2
+  [549] extcall 105
+  [551] setlocal 7
+  [553] getlocal 7 .............................. <i>
+  [555] getglobal 43 ............................ <gGame>
+  [557] pushsymb 1741 ........................... <#FloorList>
+  [560] pusharglist 2 ........................... <gGame, #FloorList>
+  [562] objcall 129 ............................. <gGame.FloorList.count>
+  [564] lteq .................................... <i <= gGame.FloorList.count>
+  [565] jmpifz [585] ............................ if i <= gGame.FloorList.count then
+  [568] getlocal 9 .............................. <tFloorList>
+  [570] getglobal 43 ............................ <gGame>
+  [572] pushsymb 1741 ........................... <#FloorList>
+  [575] getlocal 7 .............................. <i>
+  [577] pusharglist 3 ........................... <gGame, #FloorList, i>
+  [579] objcall 70 .............................. <gGame.FloorList[i]>
+  [581] pusharglistnoret 2 ...................... <tFloorList, gGame.FloorList[i]>
+  [583] objcall 42 .............................. tFloorList.add(gGame.FloorList[i])
+  [585] pushint8 1
+  [587] add
+  [588] endrepeat [535]
+  [590] pop 3
+  [592] getparam 0 .............................. <t>
+  [594] getchainedprop 250 ...................... <t.car>
+  [596] getlocal 9 .............................. <tFloorList>
+  [598] setobjprop 1741 ......................... t.car.FloorList = tFloorList
+  [601] getparam 0 .............................. <t>
+  [603] pusharglistnoret 1 ...................... <t>
+  [605] extcall 52 .............................. return t
+  [607] ret
+end
+
+on enterFrame me
+  [  0] getglobal 43 ............................ <gGame>
+  [  2] pushsymb 137 ............................ <#cars>
+  [  4] getprop 563 ............................. <p>
+  [  7] getobjprop 377 .......................... <p.tag>
+  [ 10] pusharglist 3 ........................... <gGame, #cars, p.tag>
+  [ 12] objcall 70 .............................. <gGame.cars[p.tag]>
+  [ 14] setlocal 0 .............................. t = gGame.cars[p.tag]
+  [ 16] getlocal 0 .............................. <t>
+  [ 18] getchainedprop 298 ...................... <t.camera>
+  [ 21] pusharglist 0 ........................... <[]>
+  [ 23] pushlist ................................ <[]>
+  [ 24] setobjprop 2262 ......................... t.camera.inView = []
+  [ 27] getlocal 0 .............................. <t>
+  [ 29] getchainedprop 298 ...................... <t.camera>
+  [ 32] pusharglist 0 ........................... <[]>
+  [ 34] pushlist ................................ <[]>
+  [ 35] setobjprop 2263 ......................... t.camera.inViewPos = []
+  [ 38] getlocal 0 .............................. <t>
+  [ 40] getchainedprop 298 ...................... <t.camera>
+  [ 43] pusharglist 0 ........................... <[]>
+  [ 45] pushlist ................................ <[]>
+  [ 46] setobjprop 2235 ......................... t.camera.distanceToTarget = []
+  [ 49] getglobal 43 ............................ <gGame>
+  [ 51] getobjprop 298 .......................... <gGame.camera>
+  [ 54] peek 0
+  [ 56] pusharglist 1
+  [ 58] extcall 129
+  [ 60] pushint8 1
+  [ 62] peek 0
+  [ 64] peek 2
+  [ 66] lteq
+  [ 67] jmpifz [200] ............................ repeat with i in gGame.camera
+  [ 70] peek 2
+  [ 72] peek 1
+  [ 74] pusharglist 2
+  [ 76] extcall 105
+  [ 78] setlocal 1
+  [ 80] getlocal 1 .............................. <i>
+  [ 82] getchainedprop 298 ...................... <i.camera>
+  [ 85] getlocal 0 .............................. <t>
+  [ 87] getchainedprop 250 ...................... <t.car>
+  [ 89] getchainedprop 2068 ..................... <t.car.Proxy>
+  [ 92] getchainedprop 214 ...................... <t.car.Proxy.transform>
+  [ 94] getobjprop 215 .......................... <t.car.Proxy.transform.position>
+  [ 96] pusharglist 2 ........................... <i.camera, t.car.Proxy.transform.position>
+  [ 98] objcall 1824 ............................ <i.camera.worldSpaceToSpriteSpace(t.car.Proxy.transform.position)>
+  [101] setlocal 2 .............................. tInViewPos = i.camera.worldSpaceToSpriteSpace(t.car.Proxy.transform.position)
+  [103] getlocal 2 .............................. <tInViewPos>
+  [105] pusharglist 0 ........................... <>
+  [107] extcall 40 .............................. <VOID>
+  [109] eq ...................................... <tInViewPos = VOID>
+  [110] jmpifz [129] ............................ if tInViewPos = VOID then / else
+  [113] getlocal 0 .............................. <t>
+  [115] getchainedprop 298 ...................... <t.camera>
+  [118] getchainedprop 2262 ..................... <t.camera.inView>
+  [121] pushzero ................................ <0>
+  [122] pusharglistnoret 2 ...................... <t.camera.inView, 0>
+  [124] objcall 42 .............................. t.camera.inView.add(0)
+  [126] jmp [143]
+  [129] getlocal 0 .............................. <t>
+  [131] getchainedprop 298 ...................... <t.camera>
+  [134] getchainedprop 2262 ..................... <t.camera.inView>
+  [137] pushint8 1 .............................. <1>
+  [139] pusharglistnoret 2 ...................... <t.camera.inView, 1>
+  [141] objcall 42 .............................. t.camera.inView.add(1)
+  [143] getlocal 0 .............................. <t>
+  [145] getchainedprop 298 ...................... <t.camera>
+  [148] getchainedprop 2263 ..................... <t.camera.inViewPos>
+  [151] getlocal 2 .............................. <tInViewPos>
+  [153] pusharglistnoret 2 ...................... <t.camera.inViewPos, tInViewPos>
+  [155] objcall 42 .............................. t.camera.inViewPos.add(tInViewPos)
+  [157] getlocal 1 .............................. <i>
+  [159] getchainedprop 214 ...................... <i.transform>
+  [161] getobjprop 215 .......................... <i.transform.position>
+  [163] setlocal 3 .............................. tCameraPos = i.transform.position
+  [165] getlocal 0 .............................. <t>
+  [167] getchainedprop 298 ...................... <t.camera>
+  [170] getchainedprop 2235 ..................... <t.camera.distanceToTarget>
+  [173] getlocal 3 .............................. <tCameraPos>
+  [175] getlocal 0 .............................. <t>
+  [177] getchainedprop 250 ...................... <t.car>
+  [179] getchainedprop 2068 ..................... <t.car.Proxy>
+  [182] getchainedprop 214 ...................... <t.car.Proxy.transform>
+  [184] getobjprop 215 .......................... <t.car.Proxy.transform.position>
+  [186] pusharglist 2 ........................... <tCameraPos, t.car.Proxy.transform.position>
+  [188] objcall 1117 ............................ <tCameraPos.distanceTo(t.car.Proxy.transform.position)>
+  [191] pusharglistnoret 2 ...................... <t.camera.distanceToTarget, tCameraPos.distanceTo(t.car.Proxy.transform.position)>
+  [193] objcall 42 .............................. t.camera.distanceToTarget.add(tCameraPos.distanceTo(t.car.Proxy.transform.position))
+  [195] pushint8 1
+  [197] add
+  [198] endrepeat [ 62]
+  [200] pop 3
+  [202] pushzero ................................ <0>
+  [203] setlocal 4 .............................. tLimit = 0
+  [205] getlocal 0 .............................. <t>
+  [207] getchainedprop 298 ...................... <t.camera>
+  [210] getchainedprop 2262 ..................... <t.camera.inView>
+  [213] pushint8 1 .............................. <1>
+  [215] pusharglist 2 ........................... <t.camera.inView, 1>
+  [217] objcall 2301 ............................ <t.camera.inView.getOne(1)>
+  [220] pushzero ................................ <0>
+  [221] eq ...................................... <t.camera.inView.getOne(1) = 0>
+  [222] jmpifz [229] ............................ if t.camera.inView.getOne(1) = 0 then
+  [225] pushint8 1 .............................. <1>
+  [227] setlocal 4 .............................. tLimit = 1
+  [229] getlocal 0 .............................. <t>
+  [231] getchainedprop 298 ...................... <t.camera>
+  [234] getchainedprop 2235 ..................... <t.camera.distanceToTarget>
+  [237] pusharglist 1 ........................... <t.camera.distanceToTarget>
+  [239] objcall 356 ............................. <t.camera.distanceToTarget.min()>
+  [242] getlocal 0 .............................. <t>
+  [244] getchainedprop 298 ...................... <t.camera>
+  [247] getobjprop 2264 ......................... <t.camera.MaxDistanceToTarget>
+  [250] lt ...................................... <t.camera.distanceToTarget.min() < t.camera.MaxDistanceToTarget>
+  [251] jmpifz [257] ............................ if t.camera.distanceToTarget.min() < t.camera.MaxDistanceToTarget then
+  [254] pushzero ................................ <0>
+  [255] setlocal 4 .............................. tLimit = 0
+  [257] getlocal 0 .............................. <t>
+  [259] getchainedprop 376 ...................... <t.general>
+  [262] getlocal 4 .............................. <tLimit>
+  [264] setobjprop 922 .......................... t.general.limit = tLimit
+  [267] getlocal 0 .............................. <t>
+  [269] getchainedprop 250 ...................... <t.car>
+  [271] getchainedprop 71 ....................... <t.car.model>
+  [273] getlocal 0 .............................. <t>
+  [275] getchainedprop 250 ...................... <t.car>
+  [277] getchainedprop 2068 ..................... <t.car.Proxy>
+  [280] getobjprop 214 .......................... <t.car.Proxy.transform>
+  [282] setobjprop 214 .......................... t.car.model.transform = t.car.Proxy.transform
+  [284] getlocal 0 .............................. <t>
+  [286] getchainedprop 250 ...................... <t.car>
+  [288] getobjprop 1556 ......................... <t.car.Health>
+  [291] pushzero ................................ <0>
+  [292] eq ...................................... <t.car.Health = 0>
+  [293] jmpifz [297] ............................ if t.car.Health = 0 then
+  [296] ret ..................................... exit
+  [297] getlocal 0 .............................. <t>
+  [299] getchainedprop 376 ...................... <t.general>
+  [302] getchainedprop 1439 ..................... <t.general.States>
+  [305] pusharglist 1 ........................... <t.general.States>
+  [307] objcall 233 ............................. <t.general.States.duplicate()>
+  [309] setlocal 5 .............................. tList = t.general.States.duplicate()
+  [311] getlocal 5 .............................. <tList>
+  [313] peek 0
+  [315] pusharglist 1
+  [317] extcall 129
+  [319] pushint8 1
+  [321] peek 0
+  [323] peek 2
+  [325] lteq
+  [326] jmpifz [367] ............................ repeat with i in tList
+  [329] peek 2
+  [331] peek 1
+  [333] pusharglist 2
+  [335] extcall 105
+  [337] setlocal 1
+  [339] pushzero ................................ <0>
+  [340] getlocal 1 .............................. <i>
+  [342] getlocal 0 .............................. <t>
+  [344] pusharglist 3 ........................... <0, i, t>
+  [346] extcall 362 ............................. <sendSprite(0, i, t)>
+  [349] setlocal 6 .............................. tResult = sendSprite(0, i, t)
+  [351] getlocal 6 .............................. <tResult>
+  [353] pushint8 1 .............................. <1>
+  [355] eq ...................................... <tResult = 1>
+  [356] jmpifz [362] ............................ if tResult = 1 then
+  [359] jmp [367] ............................... exit repeat
+  [362] pushint8 1
+  [364] add
+  [365] endrepeat [321]
+  [367] pop 3
+  [369] pusharglist 0 ........................... <>
+  [371] extcall 214 ............................. <transform()>
+  [373] setlocal 7 .............................. tTransform = transform()
+  [375] getlocal 7 .............................. <tTransform>
+  [377] getlocal 0 .............................. <t>
+  [379] getchainedprop 250 ...................... <t.car>
+  [381] getchainedprop 2068 ..................... <t.car.Proxy>
+  [384] getchainedprop 214 ...................... <t.car.Proxy.transform>
+  [386] getchainedprop 1162 ..................... <t.car.Proxy.transform.rotation>
+  [389] pusharglist 1 ........................... <t.car.Proxy.transform.rotation>
+  [391] objcall 233 ............................. <t.car.Proxy.transform.rotation.duplicate()>
+  [393] setobjprop 1162 ......................... tTransform.rotation = t.car.Proxy.transform.rotation.duplicate()
+  [396] getlocal 7 .............................. <tTransform>
+  [398] pushfloat32 0.0 ......................... <0.0>
+  [403] pushfloat32 1.0 ......................... <1.0>
+  [408] pushfloat32 0.0 ......................... <0.0>
+  [413] pusharglist 3 ........................... <0.0, 1.0, 0.0>
+  [415] extcall 212 ............................. <vector(0.0, 1.0, 0.0)>
+  [417] mul ..................................... <tTransform * vector(0.0, 1.0, 0.0)>
+  [418] setlocal 8 .............................. tWorldForward = tTransform * vector(0.0, 1.0, 0.0)
+  [420] getlocal 7 .............................. <tTransform>
+  [422] pushfloat32 0.0 ......................... <0.0>
+  [427] pushfloat32 0.0 ......................... <0.0>
+  [432] pushfloat32 1.0 ......................... <1.0>
+  [437] inv ..................................... <-1.0>
+  [438] pusharglist 3 ........................... <0.0, 0.0, -1.0>
+  [440] extcall 212 ............................. <vector(0.0, 0.0, -1.0)>
+  [442] inv ..................................... <-vector(0.0, 0.0, -1.0)>
+  [443] mul ..................................... <tTransform * -vector(0.0, 0.0, -1.0)>
+  [444] setlocal 9 .............................. tWorldAxis = tTransform * -vector(0.0, 0.0, -1.0)
+  [446] getlocal 8 .............................. <tWorldForward>
+  [448] getlocal 9 .............................. <tWorldAxis>
+  [450] pusharglist 2 ........................... <tWorldForward, tWorldAxis>
+  [452] objcall 2302 ............................ <tWorldForward.cross(tWorldAxis)>
+  [455] setlocal 10 ............................. tWorldRight = tWorldForward.cross(tWorldAxis)
+  [457] getlocal 7 .............................. <tTransform>
+  [459] pushfloat32 0.0 ......................... <0.0>
+  [464] pushfloat32 0.0 ......................... <0.0>
+  [469] pushfloat32 1.0 ......................... <1.0>
+  [474] inv ..................................... <-1.0>
+  [475] pusharglist 3 ........................... <0.0, 0.0, -1.0>
+  [477] extcall 212 ............................. <vector(0.0, 0.0, -1.0)>
+  [479] mul ..................................... <tTransform * vector(0.0, 0.0, -1.0)>
+  [480] setlocal 11 ............................. tWorldDown = tTransform * vector(0.0, 0.0, -1.0)
+  [482] getlocal 8 .............................. <tWorldForward>
+  [484] pusharglistnoret 1 ...................... <tWorldForward>
+  [486] objcall 1179 ............................ tWorldForward.normalize()
+  [489] getlocal 9 .............................. <tWorldAxis>
+  [491] pusharglistnoret 1 ...................... <tWorldAxis>
+  [493] objcall 1179 ............................ tWorldAxis.normalize()
+  [496] getlocal 10 ............................. <tWorldRight>
+  [498] pusharglistnoret 1 ...................... <tWorldRight>
+  [500] objcall 1179 ............................ tWorldRight.normalize()
+  [503] getlocal 11 ............................. <tWorldDown>
+  [505] pusharglistnoret 1 ...................... <tWorldDown>
+  [507] objcall 1179 ............................ tWorldDown.normalize()
+  [510] getlocal 0 .............................. <t>
+  [512] getchainedprop 250 ...................... <t.car>
+  [514] getchainedprop 2068 ..................... <t.car.Proxy>
+  [517] getchainedprop 214 ...................... <t.car.Proxy.transform>
+  [519] getobjprop 215 .......................... <t.car.Proxy.transform.position>
+  [521] setlocal 12 ............................. tChassisPos = t.car.Proxy.transform.position
+  [523] getlocal 0 .............................. <t>
+  [525] getchainedprop 250 ...................... <t.car>
+  [527] getobjprop 1555 ......................... <t.car.PhysicsCar>
+  [530] setlocal 13 ............................. tPhysicsCar = t.car.PhysicsCar
+  [532] getlocal 13 ............................. <tPhysicsCar>
+  [534] getobjprop 1510 ......................... <tPhysicsCar.linearVelocity>
+  [537] setlocal 14 ............................. tCurrentVel = tPhysicsCar.linearVelocity
+  [539] getlocal 8 .............................. <tWorldForward>
+  [541] getlocal 14 ............................. <tCurrentVel>
+  [543] mul ..................................... <tWorldForward * tCurrentVel>
+  [544] setlocal 15 ............................. tForwardVel = tWorldForward * tCurrentVel
+  [546] getlocal 0 .............................. <t>
+  [548] getchainedprop 250 ...................... <t.car>
+  [550] getlocal 14 ............................. <tCurrentVel>
+  [552] getlocal 8 .............................. <tWorldForward>
+  [554] pusharglist 2 ........................... <tCurrentVel, tWorldForward>
+  [556] objcall 1181 ............................ <tCurrentVel.dot(tWorldForward)>
+  [559] setobjprop 2018 ......................... t.car.Speed = tCurrentVel.dot(tWorldForward)
+  [562] getlocal 0 .............................. <t>
+  [564] getchainedprop 250 ...................... <t.car>
+  [566] getlocal 0 .............................. <t>
+  [568] getchainedprop 250 ...................... <t.car>
+  [570] getobjprop 2018 ......................... <t.car.Speed>
+  [573] getlocal 0 .............................. <t>
+  [575] getchainedprop 250 ...................... <t.car>
+  [577] getobjprop 1292 ......................... <t.car.maxSpeed>
+  [580] div ..................................... <t.car.Speed / t.car.maxSpeed>
+  [581] pusharglist 1 ........................... <t.car.Speed / t.car.maxSpeed>
+  [583] extcall 973 ............................. <abs(t.car.Speed / t.car.maxSpeed)>
+  [586] setobjprop 2236 ......................... t.car.SpeedPerc = abs(t.car.Speed / t.car.maxSpeed)
+  [589] getlocal 11 ............................. <tWorldDown>
+  [591] pushcons 20 ............................. <0.0001>
+  [593] pushcons 20 ............................. <0.0001>
+  [595] pushcons 20 ............................. <0.0001>
+  [597] pusharglist 3 ........................... <0.0001, 0.0001, 0.0001>
+  [599] extcall 212 ............................. <vector(0.0001, 0.0001, 0.0001)>
+  [601] add ..................................... <tWorldDown + vector(0.0001, 0.0001, 0.0001)>
+  [602] setlocal 16 ............................. tDirection = tWorldDown + vector(0.0001, 0.0001, 0.0001)
+  [604] getlocal 0 .............................. <t>
+  [606] getchainedprop 250 ...................... <t.car>
+  [608] getobjprop 2237 ......................... <t.car.Hovering>
+  [611] pushzero ................................ <0>
+  [612] eq ...................................... <t.car.Hovering = 0>
+  [613] jmpifz [629] ............................ if t.car.Hovering = 0 then
+  [616] pushcons 20 ............................. <0.0001>
+  [618] pushcons 20 ............................. <0.0001>
+  [620] pushcons 21 ............................. <1.00009999999999999>
+  [622] inv ..................................... <-1.00009999999999999>
+  [623] pusharglist 3 ........................... <0.0001, 0.0001, -1.00009999999999999>
+  [625] extcall 212 ............................. <vector(0.0001, 0.0001, -1.00009999999999999)>
+  [627] setlocal 16 ............................. tDirection = vector(0.0001, 0.0001, -1.00009999999999999)
+  [629] pushsymb 966 ............................ <#maxNumberOfModels>
+  [632] pushint8 1 .............................. <1>
+  [634] pushsymb 967 ............................ <#levelOfDetail>
+  [637] pushsymb 968 ............................ <#detailed>
+  [640] pushsymb 969 ............................ <#modelList>
+  [643] getlocal 0 .............................. <t>
+  [645] getchainedprop 250 ...................... <t.car>
+  [647] getobjprop 1741 ......................... <t.car.FloorList>
+  [650] pushsymb 2303 ........................... <#maxDistance>
+  [653] pushfloat32 5.0 ......................... <5.0>
+  [658] pusharglist 8 ........................... <[#maxNumberOfModels: 1, #levelOfDetail: #detailed, #modelList: t.car.FloorList, #maxDistance: 5.0]>
+  [660] pushproplist ............................ <[#maxNumberOfModels: 1, #levelOfDetail: #detailed, #modelList: t.car.FloorList, #maxDistance: 5.0]>
+  [661] setlocal 17 ............................. tOptionList = [#maxNumberOfModels: 1, #levelOfDetail: #detailed, #modelList: t.car.FloorList, #maxDistance: 5.0]
+  [663] getlocal 0 .............................. <t>
+  [665] getchainedprop 376 ...................... <t.general>
+  [668] getchainedprop 64 ....................... <t.general.member>
+  [670] getlocal 12 ............................. <tChassisPos>
+  [672] getlocal 16 ............................. <tDirection>
+  [674] getlocal 17 ............................. <tOptionList>
+  [676] pusharglist 4 ........................... <t.general.member, tChassisPos, tDirection, tOptionList>
+  [678] objcall 2304 ............................ <t.general.member.modelsUnderRay(tChassisPos, tDirection, tOptionList)>
+  [681] setlocal 18 ............................. tIntersectDetails = t.general.member.modelsUnderRay(tChassisPos, tDirection, tOptionList)
+  [683] getlocal 18 ............................. <tIntersectDetails>
+  [685] getobjprop 129 .......................... <tIntersectDetails.count>
+  [687] pushzero ................................ <0>
+  [688] gt ...................................... <tIntersectDetails.count > 0>
+  [689] jmpifz [702] ............................ if tIntersectDetails.count > 0 then
+  [692] getlocal 18 ............................. <tIntersectDetails>
+  [694] pushint8 1 .............................. <1>
+  [696] pusharglist 2 ........................... <tIntersectDetails, 1>
+  [698] objcall 105 ............................. <tIntersectDetails[1]>
+  [700] setlocal 18 ............................. tIntersectDetails = tIntersectDetails[1]
+  [702] getlocal 18 ............................. <tIntersectDetails>
+  [704] getobjprop 129 .......................... <tIntersectDetails.count>
+  [706] pushzero ................................ <0>
+  [707] gt ...................................... <tIntersectDetails.count > 0>
+  [708] jmpifz [1446] ........................... if tIntersectDetails.count > 0 then / else
+  [711] getlocal 0 .............................. <t>
+  [713] getchainedprop 250 ...................... <t.car>
+  [715] getlocal 18 ............................. <tIntersectDetails>
+  [717] getobjprop 71 ........................... <tIntersectDetails.model>
+  [719] setobjprop 2260 ......................... t.car.currentFloor = tIntersectDetails.model
+  [722] getlocal 0 .............................. <t>
+  [724] getchainedprop 250 ...................... <t.car>
+  [726] getglobal 43 ............................ <gGame>
+  [728] getchainedprop 1741 ..................... <gGame.FloorList>
+  [731] getlocal 0 .............................. <t>
+  [733] getchainedprop 250 ...................... <t.car>
+  [735] getobjprop 2260 ......................... <t.car.currentFloor>
+  [738] pusharglist 2 ........................... <gGame.FloorList, t.car.currentFloor>
+  [740] objcall 166 ............................. <gGame.FloorList.getPos(t.car.currentFloor)>
+  [742] setobjprop 373 .......................... t.car.currentRootNr = gGame.FloorList.getPos(t.car.currentFloor)
+  [745] getlocal 0 .............................. <t>
+  [747] getchainedprop 250 ...................... <t.car>
+  [749] getobjprop 373 .......................... <t.car.currentRootNr>
+  [752] pusharglist 1 ........................... <[t.car.currentRootNr]>
+  [754] pushlist ................................ <[t.car.currentRootNr]>
+  [755] setlocal 19 ............................. tRootList = [t.car.currentRootNr]
+  [757] getlocal 19 ............................. <tRootList>
+  [759] pusharglistnoret 1 ...................... <tRootList>
+  [761] objcall 304 ............................. tRootList.sort()
+  [764] getlocal 19 ............................. <tRootList>
+  [766] pushint8 1 .............................. <1>
+  [768] pusharglist 2 ........................... <tRootList, 1>
+  [770] objcall 105 ............................. <tRootList[1]>
+  [772] pushint8 1 .............................. <1>
+  [774] sub ..................................... <tRootList[1] - 1>
+  [775] pushzero ................................ <0>
+  [776] gt ...................................... <(tRootList[1] - 1) > 0>
+  [777] jmpifz [797] ............................ if (tRootList[1] - 1) > 0 then
+  [780] getlocal 19 ............................. <tRootList>
+  [782] getlocal 19 ............................. <tRootList>
+  [784] pushint8 1 .............................. <1>
+  [786] pusharglist 2 ........................... <tRootList, 1>
+  [788] objcall 105 ............................. <tRootList[1]>
+  [790] pushint8 1 .............................. <1>
+  [792] sub ..................................... <tRootList[1] - 1>
+  [793] pusharglistnoret 2 ...................... <tRootList, tRootList[1] - 1>
+  [795] objcall 42 .............................. tRootList.add(tRootList[1] - 1)
+  [797] pushint8 1 .............................. <1>
+  [799] setlocal 1
+  [801] getlocal 1
+  [803] getglobal 43 ............................ <gGame>
+  [805] getobjprop 2305 ......................... <gGame.visibleTiles>
+  [808] lteq
+  [809] jmpifz [866] ............................ repeat with i = 1 to gGame.visibleTiles
+  [812] getlocal 19 ............................. <tRootList>
+  [814] getlocal 19 ............................. <tRootList>
+  [816] getobjprop 129 .......................... <tRootList.count>
+  [818] pusharglist 2 ........................... <tRootList, tRootList.count>
+  [820] objcall 105 ............................. <tRootList[tRootList.count]>
+  [822] pushint8 1 .............................. <1>
+  [824] add ..................................... <tRootList[tRootList.count] + 1>
+  [825] getglobal 43 ............................ <gGame>
+  [827] pushsymb 1405 ........................... <#RootList>
+  [830] pusharglist 2 ........................... <gGame, #RootList>
+  [832] objcall 129 ............................. <gGame.RootList.count>
+  [834] lteq .................................... <(tRootList[tRootList.count] + 1) <= gGame.RootList.count>
+  [835] jmpifz [857] ............................ if (tRootList[tRootList.count] + 1) <= gGame.RootList.count then
+  [838] getlocal 19 ............................. <tRootList>
+  [840] getlocal 19 ............................. <tRootList>
+  [842] getlocal 19 ............................. <tRootList>
+  [844] getobjprop 129 .......................... <tRootList.count>
+  [846] pusharglist 2 ........................... <tRootList, tRootList.count>
+  [848] objcall 105 ............................. <tRootList[tRootList.count]>
+  [850] pushint8 1 .............................. <1>
+  [852] add ..................................... <tRootList[tRootList.count] + 1>
+  [853] pusharglistnoret 2 ...................... <tRootList, tRootList[tRootList.count] + 1>
+  [855] objcall 42 .............................. tRootList.add(tRootList[tRootList.count] + 1)
+  [857] pushint8 1
+  [859] getlocal 1
+  [861] add
+  [862] setlocal 1
+  [864] endrepeat [801]
+  [866] getlocal 19 ............................. <tRootList>
+  [868] getlocal 0 .............................. <t>
+  [870] getchainedprop 250 ...................... <t.car>
+  [872] getobjprop 1405 ......................... <t.car.RootList>
+  [875] nteq .................................... <tRootList <> t.car.RootList>
+  [876] jmpifz [893] ............................ if tRootList <> t.car.RootList then
+  [879] getlocal 0 .............................. <t>
+  [881] getchainedprop 250 ...................... <t.car>
+  [883] getlocal 0 .............................. <t>
+  [885] getchainedprop 250 ...................... <t.car>
+  [887] getobjprop 1405 ......................... <t.car.RootList>
+  [890] setobjprop 1406 ......................... t.car.previousRootList = t.car.RootList
+  [893] getlocal 0 .............................. <t>
+  [895] getchainedprop 250 ...................... <t.car>
+  [897] getlocal 19 ............................. <tRootList>
+  [899] setobjprop 1405 ......................... t.car.RootList = tRootList
+  [902] pusharglist 0 ........................... <[]>
+  [904] pushlist ................................ <[]>
+  [905] setlocal 20 ............................. tFloorList = []
+  [907] getlocal 0 .............................. <t>
+  [909] getchainedprop 250 ...................... <t.car>
+  [911] getobjprop 1405 ......................... <t.car.RootList>
+  [914] peek 0
+  [916] pusharglist 1
+  [918] extcall 129
+  [920] pushint8 1
+  [922] peek 0
+  [924] peek 2
+  [926] lteq
+  [927] jmpifz [962] ............................ repeat with i in t.car.RootList
+  [930] peek 2
+  [932] peek 1
+  [934] pusharglist 2
+  [936] extcall 105
+  [938] setlocal 1
+  [940] getlocal 20 ............................. <tFloorList>
+  [942] getglobal 43 ............................ <gGame>
+  [944] pushsymb 1741 ........................... <#FloorList>
+  [947] getlocal 1 .............................. <i>
+  [949] pusharglist 3 ........................... <gGame, #FloorList, i>
+  [951] objcall 70 .............................. <gGame.FloorList[i]>
+  [953] pusharglistnoret 2 ...................... <tFloorList, gGame.FloorList[i]>
+  [955] objcall 42 .............................. tFloorList.add(gGame.FloorList[i])
+  [957] pushint8 1
+  [959] add
+  [960] endrepeat [922]
+  [962] pop 3
+  [964] getlocal 0 .............................. <t>
+  [966] getchainedprop 250 ...................... <t.car>
+  [968] getlocal 20 ............................. <tFloorList>
+  [970] setobjprop 1741 ......................... t.car.FloorList = tFloorList
+  [973] getlocal 18 ............................. <tIntersectDetails>
+  [975] pushsymb 1054 ........................... <#distance>
+  [978] pusharglist 2 ........................... <tIntersectDetails, #distance>
+  [980] objcall 105 ............................. <tIntersectDetails[#distance]>
+  [982] getlocal 0 .............................. <t>
+  [984] getchainedprop 250 ...................... <t.car>
+  [986] getobjprop 2258 ......................... <t.car.HoverDist>
+  [989] lt ...................................... <tIntersectDetails[#distance] < t.car.HoverDist>
+  [990] jmpifz [1281] ........................... if tIntersectDetails[#distance] < t.car.HoverDist then / else
+  [993] getlocal 13 ............................. <tPhysicsCar>
+  [995] pushzero ................................ <0>
+  [996] pushzero ................................ <0>
+  [997] pushzero ................................ <0>
+  [998] pusharglist 3 ........................... <0, 0, 0>
+  [1000] extcall 212 ............................ <vector(0, 0, 0)>
+  [1002] setobjprop 2297 ........................ tPhysicsCar.angularVelocity = vector(0, 0, 0)
+  [1005] getlocal 18 ............................ <tIntersectDetails>
+  [1007] pushsymb 2306 .......................... <#isectPosition>
+  [1010] pusharglist 2 .......................... <tIntersectDetails, #isectPosition>
+  [1012] objcall 105 ............................ <tIntersectDetails[#isectPosition]>
+  [1014] getlocal 12 ............................ <tChassisPos>
+  [1016] sub .................................... <tIntersectDetails[#isectPosition] - tChassisPos>
+  [1017] setlocal 21 ............................ tdiff = tIntersectDetails[#isectPosition] - tChassisPos
+  [1019] getlocal 21 ............................ <tdiff>
+  [1021] getobjprop 69 .......................... <tdiff.length>
+  [1023] setlocal 22 ............................ tLength = tdiff.length
+  [1025] getlocal 0 ............................. <t>
+  [1027] getchainedprop 250 ..................... <t.car>
+  [1029] getobjprop 2247 ........................ <t.car.strength>
+  [1032] inv .................................... <-t.car.strength>
+  [1033] getlocal 0 ............................. <t>
+  [1035] getchainedprop 250 ..................... <t.car>
+  [1037] getobjprop 2258 ........................ <t.car.HoverDist>
+  [1040] getlocal 22 ............................ <tLength>
+  [1042] sub .................................... <t.car.HoverDist - tLength>
+  [1043] mul .................................... <-t.car.strength * (t.car.HoverDist - tLength)>
+  [1044] setlocal 23 ............................ tF = -t.car.strength * (t.car.HoverDist - tLength)
+  [1046] getlocal 23 ............................ <tF>
+  [1048] getlocal 0 ............................. <t>
+  [1050] getchainedprop 250 ..................... <t.car>
+  [1052] getobjprop 2248 ........................ <t.car.damping>
+  [1055] getlocal 14 ............................ <tCurrentVel>
+  [1057] getlocal 21 ............................ <tdiff>
+  [1059] pusharglist 2 .......................... <tCurrentVel, tdiff>
+  [1061] objcall 1181 ........................... <tCurrentVel.dot(tdiff)>
+  [1064] mul .................................... <t.car.damping * tCurrentVel.dot(tdiff)>
+  [1065] sub .................................... <tF - (t.car.damping * tCurrentVel.dot(tdiff))>
+  [1066] setlocal 23 ............................ tF = tF - (t.car.damping * tCurrentVel.dot(tdiff))
+  [1068] getlocal 21 ............................ <tdiff>
+  [1070] getlocal 23 ............................ <tF>
+  [1072] mul .................................... <tdiff * tF>
+  [1073] getlocal 0 ............................. <t>
+  [1075] getchainedprop 250 ..................... <t.car>
+  [1077] getobjprop 1373 ........................ <t.car.mass>
+  [1080] mul .................................... <tdiff * tF * t.car.mass>
+  [1081] setlocal 24 ............................ tForce = tdiff * tF * t.car.mass
+  [1083] getlocal 24 ............................ <tForce>
+  [1085] pushint8 4 ............................. <4>
+  [1087] mul .................................... <tForce * 4>
+  [1088] setlocal 24 ............................ tForce = tForce * 4
+  [1090] getlocal 13 ............................ <tPhysicsCar>
+  [1092] getlocal 24 ............................ <tForce>
+  [1094] getlocal 12 ............................ <tChassisPos>
+  [1096] pusharglistnoret 3 ..................... <tPhysicsCar, tForce, tChassisPos>
+  [1098] objcall 1393 ........................... tPhysicsCar.applyLinearImpulse(tForce, tChassisPos)
+  [1101] getlocal 0 ............................. <t>
+  [1103] getchainedprop 250 ..................... <t.car>
+  [1105] pushint8 1 ............................. <1>
+  [1107] setobjprop 2237 ........................ t.car.Hovering = 1
+  [1110] getlocal 0 ............................. <t>
+  [1112] pushsymb 250 ........................... <#car>
+  [1114] pushsymb 2186 .......................... <#ISectShader>
+  [1117] getlocal 18 ............................ <tIntersectDetails>
+  [1119] pushsymb 71 ............................ <#model>
+  [1121] pusharglist 2 .......................... <tIntersectDetails, #model>
+  [1123] objcall 105 ............................ <tIntersectDetails[#model]>
+  [1125] pushsymb 305 ........................... <#shaderList>
+  [1128] getlocal 18 ............................ <tIntersectDetails>
+  [1130] pushsymb 999 ........................... <#meshID>
+  [1133] pusharglist 2 .......................... <tIntersectDetails, #meshID>
+  [1135] objcall 105 ............................ <tIntersectDetails[#meshID]>
+  [1137] pusharglist 3 .......................... <tIntersectDetails[#model], #shaderList, tIntersectDetails[#meshID]>
+  [1139] objcall 70 ............................. <tIntersectDetails[#model].shaderList[tIntersectDetails[#meshID]]>
+  [1141] pusharglistnoret 4 ..................... <t, #car, #ISectShader, tIntersectDetails[#model].shaderList[tIntersectDetails[#meshID]]>
+  [1143] objcall 99 ............................. t.car[#ISectShader] = tIntersectDetails[#model].shaderList[tIntersectDetails[#meshID]]
+  [1145] getlocal 0 ............................. <t>
+  [1147] getchainedprop 250 ..................... <t.car>
+  [1149] getlocal 18 ............................ <tIntersectDetails>
+  [1151] setobjprop 2185 ........................ t.car.intersectDetails = tIntersectDetails
+  [1154] getlocal 0 ............................. <t>
+  [1156] getchainedprop 250 ..................... <t.car>
+  [1158] getobjprop 65 .......................... <t.car.group>
+  [1160] setlocal 25 ............................ tgroup = t.car.group
+  [1162] getlocal 25 ............................ <tgroup>
+  [1164] getlocal 0 ............................. <t>
+  [1166] getchainedprop 250 ..................... <t.car>
+  [1168] getchainedprop 2068 .................... <t.car.Proxy>
+  [1171] getchainedprop 214 ..................... <t.car.Proxy.transform>
+  [1173] pusharglist 1 .......................... <t.car.Proxy.transform>
+  [1175] objcall 233 ............................ <t.car.Proxy.transform.duplicate()>
+  [1177] setobjprop 214 ......................... tgroup.transform = t.car.Proxy.transform.duplicate()
+  [1179] getlocal 25 ............................ <tgroup>
+  [1181] pusharglist 1 .......................... <tgroup>
+  [1183] objcall 1109 ........................... <tgroup.getWorldTransform()>
+  [1186] getobjprop 215 ......................... <tgroup.getWorldTransform().position>
+  [1188] pushfloat32 1050.0 ..................... <1050.0>
+  [1193] getlocal 18 ............................ <tIntersectDetails>
+  [1195] pushsymb 2307 .......................... <#isectNormal>
+  [1198] pusharglist 2 .......................... <tIntersectDetails, #isectNormal>
+  [1200] objcall 105 ............................ <tIntersectDetails[#isectNormal]>
+  [1202] mul .................................... <1050.0 * tIntersectDetails[#isectNormal]>
+  [1203] sub .................................... <tgroup.getWorldTransform().position - (1050.0 * tIntersectDetails[#isectNormal])>
+  [1204] setlocal 26 ............................ thisPosn = tgroup.getWorldTransform().position - (1050.0 * tIntersectDetails[#isectNormal])
+  [1206] getlocal 25 ............................ <tgroup>
+  [1208] pusharglist 1 .......................... <tgroup>
+  [1210] objcall 1109 ........................... <tgroup.getWorldTransform()>
+  [1213] setlocal 27 ............................ startT = tgroup.getWorldTransform()
+  [1215] getlocal 25 ............................ <tgroup>
+  [1217] getlocal 26 ............................ <thisPosn>
+  [1219] getlocal 8 ............................. <tWorldForward>
+  [1221] pusharglistnoret 3 ..................... <tgroup, thisPosn, tWorldForward>
+  [1223] objcall 1340 ........................... tgroup.pointAt(thisPosn, tWorldForward)
+  [1226] getlocal 25 ............................ <tgroup>
+  [1228] pusharglist 1 .......................... <tgroup>
+  [1230] objcall 1109 ........................... <tgroup.getWorldTransform()>
+  [1233] setlocal 28 ............................ endT = tgroup.getWorldTransform()
+  [1235] getlocal 27 ............................ <startT>
+  [1237] getlocal 28 ............................ <endT>
+  [1239] pushint8 45 ............................ <45>
+  [1241] pusharglist 3 .......................... <startT, endT, 45>
+  [1243] objcall 1689 ........................... <startT.interpolate(endT, 45)>
+  [1246] setlocal 29 ............................ newT = startT.interpolate(endT, 45)
+  [1248] getlocal 25 ............................ <tgroup>
+  [1250] getlocal 29 ............................ <newT>
+  [1252] setobjprop 214 ......................... tgroup.transform = newT
+  [1254] getlocal 13 ............................ <tPhysicsCar>
+  [1256] getlocal 25 ............................ <tgroup>
+  [1258] getchainedprop 214 ..................... <tgroup.transform>
+  [1260] getobjprop 1991 ........................ <tgroup.transform.axisAngle>
+  [1263] setobjprop 2094 ........................ tPhysicsCar.orientation = tgroup.transform.axisAngle
+  [1266] getlocal 13 ............................ <tPhysicsCar>
+  [1268] pushzero ............................... <0>
+  [1269] pushzero ............................... <0>
+  [1270] pushzero ............................... <0>
+  [1271] pusharglist 3 .......................... <0, 0, 0>
+  [1273] extcall 212 ............................ <vector(0, 0, 0)>
+  [1275] setobjprop 2297 ........................ tPhysicsCar.angularVelocity = vector(0, 0, 0)
+  [1278] jmp [1289]
+  [1281] getlocal 0 ............................. <t>
+  [1283] getchainedprop 250 ..................... <t.car>
+  [1285] pushzero ............................... <0>
+  [1286] setobjprop 2237 ........................ t.car.Hovering = 0
+  [1289] getlocal 0 ............................. <t>
+  [1291] getchainedprop 250 ..................... <t.car>
+  [1293] getobjprop 2069 ........................ <t.car.shadowmodel>
+  [1296] setlocal 30 ............................ tShadowModel = t.car.shadowmodel
+  [1298] getlocal 30 ............................ <tShadowModel>
+  [1300] pusharglist 1 .......................... <tShadowModel>
+  [1302] objcall 640 ............................ <tShadowModel.isInWorld()>
+  [1305] pushzero ............................... <0>
+  [1306] eq ..................................... <tShadowModel.isInWorld() = 0>
+  [1307] jmpifz [1317] .......................... if tShadowModel.isInWorld() = 0 then
+  [1310] getlocal 30 ............................ <tShadowModel>
+  [1312] pusharglistnoret 1 ..................... <tShadowModel>
+  [1314] objcall 641 ............................ tShadowModel.addToWorld()
+  [1317] getlocal 30 ............................ <tShadowModel>
+  [1319] getchainedprop 214 ..................... <tShadowModel.transform>
+  [1321] getlocal 18 ............................ <tIntersectDetails>
+  [1323] pushsymb 2306 .......................... <#isectPosition>
+  [1326] pusharglist 2 .......................... <tIntersectDetails, #isectPosition>
+  [1328] objcall 105 ............................ <tIntersectDetails[#isectPosition]>
+  [1330] pushzero ............................... <0>
+  [1331] pushzero ............................... <0>
+  [1332] pushcons 22 ............................ <0.05>
+  [1334] pusharglist 3 .......................... <0, 0, 0.05>
+  [1336] extcall 212 ............................ <vector(0, 0, 0.05)>
+  [1338] add .................................... <tIntersectDetails[#isectPosition] + vector(0, 0, 0.05)>
+  [1339] setobjprop 215 ......................... tShadowModel.transform.position = tIntersectDetails[#isectPosition] + vector(0, 0, 0.05)
+  [1341] getlocal 30 ............................ <tShadowModel>
+  [1343] pushzero ............................... <0>
+  [1344] pushzero ............................... <0>
+  [1345] pushint8 1 ............................. <1>
+  [1347] pusharglist 3 .......................... <0, 0, 1>
+  [1349] extcall 212 ............................ <vector(0, 0, 1)>
+  [1351] pushzero ............................... <0>
+  [1352] pushint8 1 ............................. <1>
+  [1354] pushzero ............................... <0>
+  [1355] pusharglist 3 .......................... <0, 1, 0>
+  [1357] extcall 212 ............................ <vector(0, 1, 0)>
+  [1359] pusharglist 2 .......................... <[vector(0, 0, 1), vector(0, 1, 0)]>
+  [1361] pushlist ............................... <[vector(0, 0, 1), vector(0, 1, 0)]>
+  [1362] setobjprop 1172 ........................ tShadowModel.pointAtOrientation = [vector(0, 0, 1), vector(0, 1, 0)]
+  [1365] getlocal 30 ............................ <tShadowModel>
+  [1367] getlocal 30 ............................ <tShadowModel>
+  [1369] getchainedprop 214 ..................... <tShadowModel.transform>
+  [1371] getobjprop 215 ......................... <tShadowModel.transform.position>
+  [1373] getlocal 18 ............................ <tIntersectDetails>
+  [1375] pushsymb 2307 .......................... <#isectNormal>
+  [1378] pusharglist 2 .......................... <tIntersectDetails, #isectNormal>
+  [1380] objcall 105 ............................ <tIntersectDetails[#isectNormal]>
+  [1382] add .................................... <tShadowModel.transform.position + tIntersectDetails[#isectNormal]>
+  [1383] pusharglistnoret 2 ..................... <tShadowModel, tShadowModel.transform.position + tIntersectDetails[#isectNormal]>
+  [1385] objcall 1340 ........................... tShadowModel.pointAt(tShadowModel.transform.position + tIntersectDetails[#isectNormal])
+  [1388] getlocal 30 ............................ <tShadowModel>
+  [1390] pushzero ............................... <0>
+  [1391] pushzero ............................... <0>
+  [1392] getlocal 0 ............................. <t>
+  [1394] getchainedprop 250 ..................... <t.car>
+  [1396] getchainedprop 2068 .................... <t.car.Proxy>
+  [1399] getchainedprop 214 ..................... <t.car.Proxy.transform>
+  [1401] pushsymb 1162 .......................... <#rotation>
+  [1404] pushint8 3 ............................. <3>
+  [1406] pusharglist 3 .......................... <t.car.Proxy.transform, #rotation, 3>
+  [1408] objcall 70 ............................. <t.car.Proxy.transform.rotation[3]>
+  [1410] pusharglistnoret 4 ..................... <tShadowModel, 0, 0, t.car.Proxy.transform.rotation[3]>
+  [1412] objcall 1471 ........................... tShadowModel.rotate(0, 0, t.car.Proxy.transform.rotation[3])
+  [1415] getlocal 0 ............................. <t>
+  [1417] getchainedprop 250 ..................... <t.car>
+  [1419] getobjprop 1556 ........................ <t.car.Health>
+  [1422] pushzero ............................... <0>
+  [1423] eq ..................................... <t.car.Health = 0>
+  [1424] jmpifz [1443] .......................... if t.car.Health = 0 then
+  [1427] getlocal 0 ............................. <t>
+  [1429] getchainedprop 376 ..................... <t.general>
+  [1432] getchainedprop 64 ...................... <t.general.member>
+  [1434] getlocal 30 ............................ <tShadowModel>
+  [1436] getobjprop 235 ......................... <tShadowModel.name>
+  [1438] pusharglistnoret 2 ..................... <t.general.member, tShadowModel.name>
+  [1440] objcall 1221 ........................... t.general.member.deleteModel(tShadowModel.name)
+  [1443] jmp [1467]
+  [1446] getlocal 0 ............................. <t>
+  [1448] getchainedprop 250 ..................... <t.car>
+  [1450] getchainedprop 2069 .................... <t.car.shadowmodel>
+  [1453] pusharglist 0 .......................... <>
+  [1455] extcall 40 ............................. <VOID>
+  [1457] setobjprop 207 ......................... t.car.shadowmodel.parent = VOID
+  [1459] getlocal 0 ............................. <t>
+  [1461] getchainedprop 250 ..................... <t.car>
+  [1463] pushzero ............................... <0>
+  [1464] setobjprop 2237 ........................ t.car.Hovering = 0
+  [1467] getlocal 0 ............................. <t>
+  [1469] getchainedprop 250 ..................... <t.car>
+  [1471] getobjprop 2237 ........................ <t.car.Hovering>
+  [1474] pushint8 1 ............................. <1>
+  [1476] eq ..................................... <t.car.Hovering = 1>
+  [1477] jmpifz [2228] .......................... if t.car.Hovering = 1 then
+  [1480] getlocal 0 ............................. <t>
+  [1482] getchainedprop 250 ..................... <t.car>
+  [1484] getobjprop 2245 ........................ <t.car.turnGain>
+  [1487] setlocal 31 ............................ tAdjTurnGain = t.car.turnGain
+  [1489] getlocal 0 ............................. <t>
+  [1491] getchainedprop 250 ..................... <t.car>
+  [1493] getobjprop 371 ......................... <t.car.Nitro>
+  [1496] pushint8 1 ............................. <1>
+  [1498] eq ..................................... <t.car.Nitro = 1>
+  [1499] jmpifz [1520] .......................... if t.car.Nitro = 1 then / else
+  [1502] getlocal 0 ............................. <t>
+  [1504] getchainedprop 250 ..................... <t.car>
+  [1506] getobjprop 1292 ........................ <t.car.maxSpeed>
+  [1509] getglobal 43 ........................... <gGame>
+  [1511] getobjprop 2308 ........................ <gGame.NitroBoost>
+  [1514] add .................................... <t.car.maxSpeed + gGame.NitroBoost>
+  [1515] setlocal 32 ............................ tAdjMaxSpeed = t.car.maxSpeed + gGame.NitroBoost
+  [1517] jmp [1529]
+  [1520] getlocal 0 ............................. <t>
+  [1522] getchainedprop 250 ..................... <t.car>
+  [1524] getobjprop 1292 ........................ <t.car.maxSpeed>
+  [1527] setlocal 32 ............................ tAdjMaxSpeed = t.car.maxSpeed
+  [1529] getlocal 0 ............................. <t>
+  [1531] getchainedprop 250 ..................... <t.car>
+  [1533] getobjprop 2018 ........................ <t.car.Speed>
+  [1536] pusharglist 1 .......................... <t.car.Speed>
+  [1538] extcall 973 ............................ <abs(t.car.Speed)>
+  [1541] getlocal 0 ............................. <t>
+  [1543] getchainedprop 250 ..................... <t.car>
+  [1545] getobjprop 1292 ........................ <t.car.maxSpeed>
+  [1548] pushfloat32 0.25 ....................... <0.25>
+  [1553] mul .................................... <t.car.maxSpeed * 0.25>
+  [1554] gteq ................................... <abs(t.car.Speed) >= (t.car.maxSpeed * 0.25)>
+  [1555] jmpifz [1570] .......................... if abs(t.car.Speed) >= (t.car.maxSpeed * 0.25) then / else
+  [1558] getlocal 0 ............................. <t>
+  [1560] getchainedprop 250 ..................... <t.car>
+  [1562] getobjprop 2245 ........................ <t.car.turnGain>
+  [1565] setlocal 31 ............................ tAdjTurnGain = t.car.turnGain
+  [1567] jmp [1624]
+  [1570] getlocal 0 ............................. <t>
+  [1572] getchainedprop 250 ..................... <t.car>
+  [1574] getobjprop 2018 ........................ <t.car.Speed>
+  [1577] pusharglist 1 .......................... <t.car.Speed>
+  [1579] extcall 973 ............................ <abs(t.car.Speed)>
+  [1582] getlocal 0 ............................. <t>
+  [1584] getchainedprop 250 ..................... <t.car>
+  [1586] getobjprop 1292 ........................ <t.car.maxSpeed>
+  [1589] pushfloat32 0.25 ....................... <0.25>
+  [1594] mul .................................... <t.car.maxSpeed * 0.25>
+  [1595] div .................................... <abs(t.car.Speed) / (t.car.maxSpeed * 0.25)>
+  [1596] setlocal 33 ............................ tPercentage = abs(t.car.Speed) / (t.car.maxSpeed * 0.25)
+  [1598] pushfloat32 1.0 ........................ <1.0>
+  [1603] getlocal 33 ............................ <tPercentage>
+  [1605] pusharglist 2 .......................... <1.0, tPercentage>
+  [1607] extcall 356 ............................ <min(1.0, tPercentage)>
+  [1610] setlocal 33 ............................ tPercentage = min(1.0, tPercentage)
+  [1612] getlocal 0 ............................. <t>
+  [1614] getchainedprop 250 ..................... <t.car>
+  [1616] getobjprop 2245 ........................ <t.car.turnGain>
+  [1619] getlocal 33 ............................ <tPercentage>
+  [1621] mul .................................... <t.car.turnGain * tPercentage>
+  [1622] setlocal 31 ............................ tAdjTurnGain = t.car.turnGain * tPercentage
+  [1624] getlocal 31 ............................ <tAdjTurnGain>
+  [1626] pushcons 22 ............................ <0.05>
+  [1628] lt ..................................... <tAdjTurnGain < 0.05>
+  [1629] jmpifz [1639] .......................... if tAdjTurnGain < 0.05 then
+  [1632] pushfloat32 0.0 ........................ <0.0>
+  [1637] setlocal 31 ............................ tAdjTurnGain = 0.0
+  [1639] getlocal 0 ............................. <t>
+  [1641] getchainedprop 250 ..................... <t.car>
+  [1643] getobjprop 2018 ........................ <t.car.Speed>
+  [1646] pushzero ............................... <0>
+  [1647] lt ..................................... <t.car.Speed < 0>
+  [1648] getlocal 0 ............................. <t>
+  [1650] getchainedprop 391 ..................... <t.input>
+  [1653] getobjprop 2132 ........................ <t.input.forward>
+  [1656] pushint8 1 ............................. <1>
+  [1658] eq ..................................... <t.input.forward = 1>
+  [1659] and .................................... <(t.car.Speed < 0) and (t.input.forward = 1)>
+  [1660] jmpifz [1669] .......................... if (t.car.Speed < 0) and (t.input.forward = 1) then / else
+  [1663] pushzero ............................... <0>
+  [1664] setlocal 34 ............................ tSteering = 0
+  [1666] jmp [1703]
+  [1669] getlocal 0 ............................. <t>
+  [1671] getchainedprop 250 ..................... <t.car>
+  [1673] getobjprop 2018 ........................ <t.car.Speed>
+  [1676] pushzero ............................... <0>
+  [1677] gt ..................................... <t.car.Speed > 0>
+  [1678] getlocal 0 ............................. <t>
+  [1680] getchainedprop 391 ..................... <t.input>
+  [1683] getobjprop 2133 ........................ <t.input.backward>
+  [1686] pushint8 1 ............................. <1>
+  [1688] eq ..................................... <t.input.backward = 1>
+  [1689] and .................................... <(t.car.Speed > 0) and (t.input.backward = 1)>
+  [1690] jmpifz [1699] .......................... if (t.car.Speed > 0) and (t.input.backward = 1) then / else
+  [1693] pushzero ............................... <0>
+  [1694] setlocal 34 ............................ tSteering = 0
+  [1696] jmp [1703]
+  [1699] pushint8 1 ............................. <1>
+  [1701] setlocal 34 ............................ tSteering = 1
+  [1703] getlocal 0 ............................. <t>
+  [1705] getchainedprop 391 ..................... <t.input>
+  [1708] getobjprop 2132 ........................ <t.input.forward>
+  [1711] pushint8 1 ............................. <1>
+  [1713] eq ..................................... <t.input.forward = 1>
+  [1714] jmpifz [1761] .......................... if t.input.forward = 1 then
+  [1717] getlocal 32 ............................ <tAdjMaxSpeed>
+  [1719] getlocal 0 ............................. <t>
+  [1721] getchainedprop 250 ..................... <t.car>
+  [1723] getobjprop 2018 ........................ <t.car.Speed>
+  [1726] sub .................................... <tAdjMaxSpeed - t.car.Speed>
+  [1727] setlocal 21 ............................ tdiff = tAdjMaxSpeed - t.car.Speed
+  [1729] getlocal 21 ............................ <tdiff>
+  [1731] getlocal 0 ............................. <t>
+  [1733] getchainedprop 250 ..................... <t.car>
+  [1735] getobjprop 2075 ........................ <t.car.accGain>
+  [1738] mul .................................... <tdiff * t.car.accGain>
+  [1739] getlocal 0 ............................. <t>
+  [1741] getchainedprop 250 ..................... <t.car>
+  [1743] getobjprop 1373 ........................ <t.car.mass>
+  [1746] mul .................................... <tdiff * t.car.accGain * t.car.mass>
+  [1747] getlocal 8 ............................. <tWorldForward>
+  [1749] mul .................................... <tdiff * t.car.accGain * t.car.mass * tWorldForward>
+  [1750] setlocal 35 ............................ imp = tdiff * t.car.accGain * t.car.mass * tWorldForward
+  [1752] getlocal 13 ............................ <tPhysicsCar>
+  [1754] getlocal 35 ............................ <imp>
+  [1756] pusharglistnoret 2 ..................... <tPhysicsCar, imp>
+  [1758] objcall 1393 ........................... tPhysicsCar.applyLinearImpulse(imp)
+  [1761] getlocal 0 ............................. <t>
+  [1763] getchainedprop 391 ..................... <t.input>
+  [1766] getobjprop 2133 ........................ <t.input.backward>
+  [1769] pushint8 1 ............................. <1>
+  [1771] eq ..................................... <t.input.backward = 1>
+  [1772] jmpifz [1826] .......................... if t.input.backward = 1 then
+  [1775] getlocal 32 ............................ <tAdjMaxSpeed>
+  [1777] inv .................................... <-tAdjMaxSpeed>
+  [1778] pushfloat32 2.0 ........................ <2.0>
+  [1783] div .................................... <-tAdjMaxSpeed / 2.0>
+  [1784] getlocal 0 ............................. <t>
+  [1786] getchainedprop 250 ..................... <t.car>
+  [1788] getobjprop 2018 ........................ <t.car.Speed>
+  [1791] sub .................................... <(-tAdjMaxSpeed / 2.0) - t.car.Speed>
+  [1792] setlocal 21 ............................ tdiff = (-tAdjMaxSpeed / 2.0) - t.car.Speed
+  [1794] getlocal 21 ............................ <tdiff>
+  [1796] getlocal 0 ............................. <t>
+  [1798] getchainedprop 250 ..................... <t.car>
+  [1800] getobjprop 2076 ........................ <t.car.decGain>
+  [1803] mul .................................... <tdiff * t.car.decGain>
+  [1804] getlocal 0 ............................. <t>
+  [1806] getchainedprop 250 ..................... <t.car>
+  [1808] getobjprop 1373 ........................ <t.car.mass>
+  [1811] mul .................................... <tdiff * t.car.decGain * t.car.mass>
+  [1812] getlocal 8 ............................. <tWorldForward>
+  [1814] mul .................................... <tdiff * t.car.decGain * t.car.mass * tWorldForward>
+  [1815] setlocal 35 ............................ imp = tdiff * t.car.decGain * t.car.mass * tWorldForward
+  [1817] getlocal 13 ............................ <tPhysicsCar>
+  [1819] getlocal 35 ............................ <imp>
+  [1821] pusharglistnoret 2 ..................... <tPhysicsCar, imp>
+  [1823] objcall 1393 ........................... tPhysicsCar.applyLinearImpulse(imp)
+  [1826] getlocal 0 ............................. <t>
+  [1828] getchainedprop 391 ..................... <t.input>
+  [1831] getobjprop 2134 ........................ <t.input.brake>
+  [1834] pushint8 1 ............................. <1>
+  [1836] eq ..................................... <t.input.brake = 1>
+  [1837] jmpifz [1863] .......................... if t.input.brake = 1 then
+  [1840] getlocal 0 ............................. <t>
+  [1842] getchainedprop 250 ..................... <t.car>
+  [1844] pushint8 1 ............................. <1>
+  [1846] setobjprop 2233 ........................ t.car.slip = 1
+  [1849] getlocal 0 ............................. <t>
+  [1851] getchainedprop 250 ..................... <t.car>
+  [1853] getlocal 0 ............................. <t>
+  [1855] getchainedprop 250 ..................... <t.car>
+  [1857] getobjprop 2250 ........................ <t.car.driftGrip>
+  [1860] setobjprop 2259 ........................ t.car.AdjGrip = t.car.driftGrip
+  [1863] getlocal 0 ............................. <t>
+  [1865] getchainedprop 250 ..................... <t.car>
+  [1867] getobjprop 2233 ........................ <t.car.slip>
+  [1870] pushint8 1 ............................. <1>
+  [1872] eq ..................................... <t.car.slip = 1>
+  [1873] jmpifz [1969] .......................... if t.car.slip = 1 then
+  [1876] getlocal 0 ............................. <t>
+  [1878] getchainedprop 250 ..................... <t.car>
+  [1880] getobjprop 2259 ........................ <t.car.AdjGrip>
+  [1883] getlocal 0 ............................. <t>
+  [1885] getchainedprop 250 ..................... <t.car>
+  [1887] getobjprop 2249 ........................ <t.car.grip>
+  [1890] lt ..................................... <t.car.AdjGrip < t.car.grip>
+  [1891] jmpifz [1911] .......................... if t.car.AdjGrip < t.car.grip then
+  [1894] getlocal 0 ............................. <t>
+  [1896] getchainedprop 250 ..................... <t.car>
+  [1898] getlocal 0 ............................. <t>
+  [1900] getchainedprop 250 ..................... <t.car>
+  [1902] getobjprop 2259 ........................ <t.car.AdjGrip>
+  [1905] pushcons 23 ............................ <0.02>
+  [1907] add .................................... <t.car.AdjGrip + 0.02>
+  [1908] setobjprop 2259 ........................ t.car.AdjGrip = t.car.AdjGrip + 0.02
+  [1911] getlocal 0 ............................. <t>
+  [1913] getchainedprop 250 ..................... <t.car>
+  [1915] getobjprop 2259 ........................ <t.car.AdjGrip>
+  [1918] getlocal 0 ............................. <t>
+  [1920] getchainedprop 250 ..................... <t.car>
+  [1922] getobjprop 2249 ........................ <t.car.grip>
+  [1925] gt ..................................... <t.car.AdjGrip > t.car.grip>
+  [1926] jmpifz [1943] .......................... if t.car.AdjGrip > t.car.grip then
+  [1929] getlocal 0 ............................. <t>
+  [1931] getchainedprop 250 ..................... <t.car>
+  [1933] getlocal 0 ............................. <t>
+  [1935] getchainedprop 250 ..................... <t.car>
+  [1937] getobjprop 2249 ........................ <t.car.grip>
+  [1940] setobjprop 2259 ........................ t.car.AdjGrip = t.car.grip
+  [1943] getlocal 0 ............................. <t>
+  [1945] getchainedprop 250 ..................... <t.car>
+  [1947] getobjprop 2259 ........................ <t.car.AdjGrip>
+  [1950] getlocal 0 ............................. <t>
+  [1952] getchainedprop 250 ..................... <t.car>
+  [1954] getobjprop 2249 ........................ <t.car.grip>
+  [1957] eq ..................................... <t.car.AdjGrip = t.car.grip>
+  [1958] jmpifz [1969] .......................... if t.car.AdjGrip = t.car.grip then
+  [1961] getlocal 0 ............................. <t>
+  [1963] getchainedprop 250 ..................... <t.car>
+  [1965] pushzero ............................... <0>
+  [1966] setobjprop 2233 ........................ t.car.slip = 0
+  [1969] getlocal 34 ............................ <tSteering>
+  [1971] pushint8 1 ............................. <1>
+  [1973] eq ..................................... <tSteering = 1>
+  [1974] jmpifz [2154] .......................... if tSteering = 1 then
+  [1977] getlocal 0 ............................. <t>
+  [1979] getchainedprop 391 ..................... <t.input>
+  [1982] getobjprop 203 ......................... <t.input.left>
+  [1984] pushint8 1 ............................. <1>
+  [1986] eq ..................................... <t.input.left = 1>
+  [1987] jmpifz [2065] .......................... if t.input.left = 1 then
+  [1990] getlocal 9 ............................. <tWorldAxis>
+  [1992] getlocal 31 ............................ <tAdjTurnGain>
+  [1994] getlocal 0 ............................. <t>
+  [1996] getchainedprop 250 ..................... <t.car>
+  [1998] getobjprop 1373 ........................ <t.car.mass>
+  [2001] pushcons 24 ............................ <0.90000000000000002>
+  [2003] mul .................................... <t.car.mass * 0.90000000000000002>
+  [2004] mul .................................... <tAdjTurnGain * (t.car.mass * 0.90000000000000002)>
+  [2005] mul .................................... <tWorldAxis * (tAdjTurnGain * (t.car.mass * 0.90000000000000002))>
+  [2006] setlocal 35 ............................ imp = tWorldAxis * (tAdjTurnGain * (t.car.mass * 0.90000000000000002))
+  [2008] getlocal 0 ............................. <t>
+  [2010] getchainedprop 250 ..................... <t.car>
+  [2012] getobjprop 2018 ........................ <t.car.Speed>
+  [2015] pushfloat32 0.0 ........................ <0.0>
+  [2020] lt ..................................... <t.car.Speed < 0.0>
+  [2021] jmpifz [2029] .......................... if t.car.Speed < 0.0 then
+  [2024] getlocal 35 ............................ <imp>
+  [2026] inv .................................... <-imp>
+  [2027] setlocal 35 ............................ imp = -imp
+  [2029] getlocal 0 ............................. <t>
+  [2031] getchainedprop 391 ..................... <t.input>
+  [2034] getobjprop 2125 ........................ <t.input.joystick>
+  [2037] pushint8 1 ............................. <1>
+  [2039] eq ..................................... <t.input.joystick = 1>
+  [2040] jmpifz [2056] .......................... if t.input.joystick = 1 then
+  [2043] getlocal 35 ............................ <imp>
+  [2045] getlocal 0 ............................. <t>
+  [2047] getchainedprop 391 ..................... <t.input>
+  [2050] getobjprop 2140 ........................ <t.input.leftPerc>
+  [2053] mul .................................... <imp * t.input.leftPerc>
+  [2054] setlocal 35 ............................ imp = imp * t.input.leftPerc
+  [2056] getlocal 13 ............................ <tPhysicsCar>
+  [2058] getlocal 35 ............................ <imp>
+  [2060] pusharglistnoret 2 ..................... <tPhysicsCar, imp>
+  [2062] objcall 1557 ........................... tPhysicsCar.applyAngularImpulse(imp)
+  [2065] getlocal 0 ............................. <t>
+  [2067] getchainedprop 391 ..................... <t.input>
+  [2070] getobjprop 220 ......................... <t.input.right>
+  [2072] pushint8 1 ............................. <1>
+  [2074] eq ..................................... <t.input.right = 1>
+  [2075] jmpifz [2154] .......................... if t.input.right = 1 then
+  [2078] getlocal 9 ............................. <tWorldAxis>
+  [2080] getlocal 31 ............................ <tAdjTurnGain>
+  [2082] inv .................................... <-tAdjTurnGain>
+  [2083] getlocal 0 ............................. <t>
+  [2085] getchainedprop 250 ..................... <t.car>
+  [2087] getobjprop 1373 ........................ <t.car.mass>
+  [2090] pushcons 24 ............................ <0.90000000000000002>
+  [2092] mul .................................... <t.car.mass * 0.90000000000000002>
+  [2093] mul .................................... <-tAdjTurnGain * (t.car.mass * 0.90000000000000002)>
+  [2094] mul .................................... <tWorldAxis * (-tAdjTurnGain * (t.car.mass * 0.90000000000000002))>
+  [2095] setlocal 35 ............................ imp = tWorldAxis * (-tAdjTurnGain * (t.car.mass * 0.90000000000000002))
+  [2097] getlocal 0 ............................. <t>
+  [2099] getchainedprop 250 ..................... <t.car>
+  [2101] getobjprop 2018 ........................ <t.car.Speed>
+  [2104] pushfloat32 0.0 ........................ <0.0>
+  [2109] lt ..................................... <t.car.Speed < 0.0>
+  [2110] jmpifz [2118] .......................... if t.car.Speed < 0.0 then
+  [2113] getlocal 35 ............................ <imp>
+  [2115] inv .................................... <-imp>
+  [2116] setlocal 35 ............................ imp = -imp
+  [2118] getlocal 0 ............................. <t>
+  [2120] getchainedprop 391 ..................... <t.input>
+  [2123] getobjprop 2125 ........................ <t.input.joystick>
+  [2126] pushint8 1 ............................. <1>
+  [2128] eq ..................................... <t.input.joystick = 1>
+  [2129] jmpifz [2145] .......................... if t.input.joystick = 1 then
+  [2132] getlocal 35 ............................ <imp>
+  [2134] getlocal 0 ............................. <t>
+  [2136] getchainedprop 391 ..................... <t.input>
+  [2139] getobjprop 2141 ........................ <t.input.rightPerc>
+  [2142] mul .................................... <imp * t.input.rightPerc>
+  [2143] setlocal 35 ............................ imp = imp * t.input.rightPerc
+  [2145] getlocal 13 ............................ <tPhysicsCar>
+  [2147] getlocal 35 ............................ <imp>
+  [2149] pusharglistnoret 2 ..................... <tPhysicsCar, imp>
+  [2151] objcall 1557 ........................... tPhysicsCar.applyAngularImpulse(imp)
+  [2154] getlocal 10 ............................ <tWorldRight>
+  [2156] getlocal 14 ............................ <tCurrentVel>
+  [2158] pusharglist 2 .......................... <tWorldRight, tCurrentVel>
+  [2160] objcall 1181 ........................... <tWorldRight.dot(tCurrentVel)>
+  [2163] setlocal 36 ............................ tSlideSpeed = tWorldRight.dot(tCurrentVel)
+  [2165] getlocal 10 ............................ <tWorldRight>
+  [2167] getlocal 36 ............................ <tSlideSpeed>
+  [2169] inv .................................... <-tSlideSpeed>
+  [2170] getlocal 0 ............................. <t>
+  [2172] getchainedprop 250 ..................... <t.car>
+  [2174] getobjprop 1373 ........................ <t.car.mass>
+  [2177] mul .................................... <-tSlideSpeed * t.car.mass>
+  [2178] getlocal 0 ............................. <t>
+  [2180] getchainedprop 250 ..................... <t.car>
+  [2182] getobjprop 2259 ........................ <t.car.AdjGrip>
+  [2185] mul .................................... <-tSlideSpeed * t.car.mass * t.car.AdjGrip>
+  [2186] mul .................................... <tWorldRight * (-tSlideSpeed * t.car.mass * t.car.AdjGrip)>
+  [2187] setlocal 35 ............................ imp = tWorldRight * (-tSlideSpeed * t.car.mass * t.car.AdjGrip)
+  [2189] getlocal 13 ............................ <tPhysicsCar>
+  [2191] getlocal 35 ............................ <imp>
+  [2193] pusharglistnoret 2 ..................... <tPhysicsCar, imp>
+  [2195] objcall 1393 ........................... tPhysicsCar.applyLinearImpulse(imp)
+  [2198] getlocal 14 ............................ <tCurrentVel>
+  [2200] inv .................................... <-tCurrentVel>
+  [2201] getlocal 0 ............................. <t>
+  [2203] getchainedprop 250 ..................... <t.car>
+  [2205] getobjprop 1305 ........................ <t.car.drag>
+  [2208] getlocal 0 ............................. <t>
+  [2210] getchainedprop 250 ..................... <t.car>
+  [2212] getobjprop 1373 ........................ <t.car.mass>
+  [2215] mul .................................... <t.car.drag * t.car.mass>
+  [2216] mul .................................... <-tCurrentVel * (t.car.drag * t.car.mass)>
+  [2217] setlocal 35 ............................ imp = -tCurrentVel * (t.car.drag * t.car.mass)
+  [2219] getlocal 13 ............................ <tPhysicsCar>
+  [2221] getlocal 35 ............................ <imp>
+  [2223] pusharglistnoret 2 ..................... <tPhysicsCar, imp>
+  [2225] objcall 1393 ........................... tPhysicsCar.applyLinearImpulse(imp)
+  [2228] getlocal 4 ............................. <tLimit>
+  [2230] pushzero ............................... <0>
+  [2231] eq ..................................... <tLimit = 0>
+  [2232] jmpifz [2943] .......................... if tLimit = 0 then
+  [2235] getlocal 0 ............................. <t>
+  [2237] getchainedprop 391 ..................... <t.input>
+  [2240] getobjprop 203 ......................... <t.input.left>
+  [2242] pushint8 1 ............................. <1>
+  [2244] eq ..................................... <t.input.left = 1>
+  [2245] getlocal 0 ............................. <t>
+  [2247] getchainedprop 391 ..................... <t.input>
+  [2250] getobjprop 220 ......................... <t.input.right>
+  [2252] pushint8 1 ............................. <1>
+  [2254] eq ..................................... <t.input.right = 1>
+  [2255] or ..................................... <(t.input.left = 1) or (t.input.right = 1)>
+  [2256] jmpifz [2478] .......................... if (t.input.left = 1) or (t.input.right = 1) then / else
+  [2259] getlocal 0 ............................. <t>
+  [2261] getchainedprop 391 ..................... <t.input>
+  [2264] getobjprop 203 ......................... <t.input.left>
+  [2266] pushint8 1 ............................. <1>
+  [2268] eq ..................................... <t.input.left = 1>
+  [2269] jmpifz [2355] .......................... if t.input.left = 1 then / else
+  [2272] getlocal 0 ............................. <t>
+  [2274] getchainedprop 250 ..................... <t.car>
+  [2276] getobjprop 2256 ........................ <t.car.WheelTurn>
+  [2279] getlocal 0 ............................. <t>
+  [2281] getchainedprop 250 ..................... <t.car>
+  [2283] getobjprop 2246 ........................ <t.car.MaxWheelTurn>
+  [2286] lt ..................................... <t.car.WheelTurn < t.car.MaxWheelTurn>
+  [2287] jmpifz [2312] .......................... if t.car.WheelTurn < t.car.MaxWheelTurn then
+  [2290] getlocal 0 ............................. <t>
+  [2292] getchainedprop 250 ..................... <t.car>
+  [2294] getlocal 0 ............................. <t>
+  [2296] getchainedprop 250 ..................... <t.car>
+  [2298] getobjprop 2256 ........................ <t.car.WheelTurn>
+  [2301] getlocal 0 ............................. <t>
+  [2303] getchainedprop 250 ..................... <t.car>
+  [2305] getobjprop 2255 ........................ <t.car.WheelTurnSpeed>
+  [2308] add .................................... <t.car.WheelTurn + t.car.WheelTurnSpeed>
+  [2309] setobjprop 2256 ........................ t.car.WheelTurn = t.car.WheelTurn + t.car.WheelTurnSpeed
+  [2312] getlocal 0 ............................. <t>
+  [2314] getchainedprop 391 ..................... <t.input>
+  [2317] getobjprop 2125 ........................ <t.input.joystick>
+  [2320] pushint8 1 ............................. <1>
+  [2322] eq ..................................... <t.input.joystick = 1>
+  [2323] jmpifz [2352] .......................... if t.input.joystick = 1 then
+  [2326] getlocal 0 ............................. <t>
+  [2328] getchainedprop 250 ..................... <t.car>
+  [2330] getlocal 0 ............................. <t>
+  [2332] getchainedprop 250 ..................... <t.car>
+  [2334] getobjprop 2246 ........................ <t.car.MaxWheelTurn>
+  [2337] getlocal 0 ............................. <t>
+  [2339] getchainedprop 391 ..................... <t.input>
+  [2342] getchainedprop 929 ..................... <t.input.Keys>
+  [2345] getobjprop 2140 ........................ <t.input.Keys.leftPerc>
+  [2348] mul .................................... <t.car.MaxWheelTurn * t.input.Keys.leftPerc>
+  [2349] setobjprop 2256 ........................ t.car.WheelTurn = t.car.MaxWheelTurn * t.input.Keys.leftPerc
+  [2352] jmp [2436]
+  [2355] getlocal 0 ............................. <t>
+  [2357] getchainedprop 250 ..................... <t.car>
+  [2359] getobjprop 2256 ........................ <t.car.WheelTurn>
+  [2362] getlocal 0 ............................. <t>
+  [2364] getchainedprop 250 ..................... <t.car>
+  [2366] getobjprop 2246 ........................ <t.car.MaxWheelTurn>
+  [2369] inv .................................... <-t.car.MaxWheelTurn>
+  [2370] gt ..................................... <t.car.WheelTurn > -t.car.MaxWheelTurn>
+  [2371] jmpifz [2396] .......................... if t.car.WheelTurn > -t.car.MaxWheelTurn then
+  [2374] getlocal 0 ............................. <t>
+  [2376] getchainedprop 250 ..................... <t.car>
+  [2378] getlocal 0 ............................. <t>
+  [2380] getchainedprop 250 ..................... <t.car>
+  [2382] getobjprop 2256 ........................ <t.car.WheelTurn>
+  [2385] getlocal 0 ............................. <t>
+  [2387] getchainedprop 250 ..................... <t.car>
+  [2389] getobjprop 2255 ........................ <t.car.WheelTurnSpeed>
+  [2392] sub .................................... <t.car.WheelTurn - t.car.WheelTurnSpeed>
+  [2393] setobjprop 2256 ........................ t.car.WheelTurn = t.car.WheelTurn - t.car.WheelTurnSpeed
+  [2396] getlocal 0 ............................. <t>
+  [2398] getchainedprop 391 ..................... <t.input>
+  [2401] getobjprop 2125 ........................ <t.input.joystick>
+  [2404] pushint8 1 ............................. <1>
+  [2406] eq ..................................... <t.input.joystick = 1>
+  [2407] jmpifz [2436] .......................... if t.input.joystick = 1 then
+  [2410] getlocal 0 ............................. <t>
+  [2412] getchainedprop 250 ..................... <t.car>
+  [2414] getlocal 0 ............................. <t>
+  [2416] getchainedprop 250 ..................... <t.car>
+  [2418] getobjprop 2246 ........................ <t.car.MaxWheelTurn>
+  [2421] getlocal 0 ............................. <t>
+  [2423] getchainedprop 391 ..................... <t.input>
+  [2426] getchainedprop 929 ..................... <t.input.Keys>
+  [2429] getobjprop 2141 ........................ <t.input.Keys.rightPerc>
+  [2432] mul .................................... <t.car.MaxWheelTurn * t.input.Keys.rightPerc>
+  [2433] setobjprop 2256 ........................ t.car.WheelTurn = t.car.MaxWheelTurn * t.input.Keys.rightPerc
+  [2436] getlocal 0 ............................. <t>
+  [2438] getchainedprop 250 ..................... <t.car>
+  [2440] getlocal 0 ............................. <t>
+  [2442] getchainedprop 250 ..................... <t.car>
+  [2444] getobjprop 2246 ........................ <t.car.MaxWheelTurn>
+  [2447] inv .................................... <-t.car.MaxWheelTurn>
+  [2448] getlocal 0 ............................. <t>
+  [2450] getchainedprop 250 ..................... <t.car>
+  [2452] getobjprop 2246 ........................ <t.car.MaxWheelTurn>
+  [2455] getlocal 0 ............................. <t>
+  [2457] getchainedprop 250 ..................... <t.car>
+  [2459] getobjprop 2256 ........................ <t.car.WheelTurn>
+  [2462] pusharglist 2 .......................... <t.car.MaxWheelTurn, t.car.WheelTurn>
+  [2464] extcall 356 ............................ <min(t.car.MaxWheelTurn, t.car.WheelTurn)>
+  [2467] pusharglist 2 .......................... <-t.car.MaxWheelTurn, min(t.car.MaxWheelTurn, t.car.WheelTurn)>
+  [2469] extcall 370 ............................ <max(-t.car.MaxWheelTurn, min(t.car.MaxWheelTurn, t.car.WheelTurn))>
+  [2472] setobjprop 2256 ........................ t.car.WheelTurn = max(-t.car.MaxWheelTurn, min(t.car.MaxWheelTurn, t.car.WheelTurn))
+  [2475] jmp [2576]
+  [2478] getlocal 0 ............................. <t>
+  [2480] getchainedprop 250 ..................... <t.car>
+  [2482] getobjprop 2256 ........................ <t.car.WheelTurn>
+  [2485] pushzero ............................... <0>
+  [2486] eq ..................................... <t.car.WheelTurn = 0>
+  [2487] not .................................... <not (t.car.WheelTurn = 0)>
+  [2488] jmpifz [2550] .......................... if not (t.car.WheelTurn = 0) then
+  [2491] getlocal 0 ............................. <t>
+  [2493] getchainedprop 250 ..................... <t.car>
+  [2495] getobjprop 2256 ........................ <t.car.WheelTurn>
+  [2498] pushzero ............................... <0>
+  [2499] lt ..................................... <t.car.WheelTurn < 0>
+  [2500] jmpifz [2528] .......................... if t.car.WheelTurn < 0 then / else
+  [2503] getlocal 0 ............................. <t>
+  [2505] getchainedprop 250 ..................... <t.car>
+  [2507] getlocal 0 ............................. <t>
+  [2509] getchainedprop 250 ..................... <t.car>
+  [2511] getobjprop 2256 ........................ <t.car.WheelTurn>
+  [2514] getlocal 0 ............................. <t>
+  [2516] getchainedprop 250 ..................... <t.car>
+  [2518] getobjprop 2255 ........................ <t.car.WheelTurnSpeed>
+  [2521] add .................................... <t.car.WheelTurn + t.car.WheelTurnSpeed>
+  [2522] setobjprop 2256 ........................ t.car.WheelTurn = t.car.WheelTurn + t.car.WheelTurnSpeed
+  [2525] jmp [2550]
+  [2528] getlocal 0 ............................. <t>
+  [2530] getchainedprop 250 ..................... <t.car>
+  [2532] getlocal 0 ............................. <t>
+  [2534] getchainedprop 250 ..................... <t.car>
+  [2536] getobjprop 2256 ........................ <t.car.WheelTurn>
+  [2539] getlocal 0 ............................. <t>
+  [2541] getchainedprop 250 ..................... <t.car>
+  [2543] getobjprop 2255 ........................ <t.car.WheelTurnSpeed>
+  [2546] sub .................................... <t.car.WheelTurn - t.car.WheelTurnSpeed>
+  [2547] setobjprop 2256 ........................ t.car.WheelTurn = t.car.WheelTurn - t.car.WheelTurnSpeed
+  [2550] getlocal 0 ............................. <t>
+  [2552] getchainedprop 391 ..................... <t.input>
+  [2555] getobjprop 2125 ........................ <t.input.joystick>
+  [2558] pushint8 1 ............................. <1>
+  [2560] eq ..................................... <t.input.joystick = 1>
+  [2561] jmpifz [2576] .......................... if t.input.joystick = 1 then
+  [2564] getlocal 0 ............................. <t>
+  [2566] getchainedprop 250 ..................... <t.car>
+  [2568] pushfloat32 0.0 ........................ <0.0>
+  [2573] setobjprop 2256 ........................ t.car.WheelTurn = 0.0
+  [2576] getlocal 0 ............................. <t>
+  [2578] getchainedprop 250 ..................... <t.car>
+  [2580] getlocal 0 ............................. <t>
+  [2582] getchainedprop 250 ..................... <t.car>
+  [2584] getobjprop 2257 ........................ <t.car.WheelSpin>
+  [2587] getlocal 15 ............................ <tForwardVel>
+  [2589] pushfloat32 2.0 ........................ <2.0>
+  [2594] getglobal 43 ........................... <gGame>
+  [2596] getobjprop 454 ......................... <gGame.TimeMP>
+  [2599] mul .................................... <2.0 * gGame.TimeMP>
+  [2600] mul .................................... <tForwardVel * (2.0 * gGame.TimeMP)>
+  [2601] sub .................................... <t.car.WheelSpin - (tForwardVel * (2.0 * gGame.TimeMP))>
+  [2602] setobjprop 2257 ........................ t.car.WheelSpin = t.car.WheelSpin - (tForwardVel * (2.0 * gGame.TimeMP))
+  [2605] getlocal 0 ............................. <t>
+  [2607] getchainedprop 250 ..................... <t.car>
+  [2609] getobjprop 2257 ........................ <t.car.WheelSpin>
+  [2612] pushint16 360 .......................... <360>
+  [2615] gt ..................................... <t.car.WheelSpin > 360>
+  [2616] jmpifz [2640] .......................... if t.car.WheelSpin > 360 then / else
+  [2619] getlocal 0 ............................. <t>
+  [2621] getchainedprop 250 ..................... <t.car>
+  [2623] getlocal 0 ............................. <t>
+  [2625] getchainedprop 250 ..................... <t.car>
+  [2627] getobjprop 2257 ........................ <t.car.WheelSpin>
+  [2630] pushint16 360 .......................... <360>
+  [2633] sub .................................... <t.car.WheelSpin - 360>
+  [2634] setobjprop 2257 ........................ t.car.WheelSpin = t.car.WheelSpin - 360
+  [2637] jmp [2673]
+  [2640] getlocal 0 ............................. <t>
+  [2642] getchainedprop 250 ..................... <t.car>
+  [2644] getobjprop 2257 ........................ <t.car.WheelSpin>
+  [2647] pushint16 360 .......................... <360>
+  [2650] inv .................................... <-360>
+  [2651] lt ..................................... <t.car.WheelSpin < -360>
+  [2652] jmpifz [2673] .......................... if t.car.WheelSpin < -360 then
+  [2655] getlocal 0 ............................. <t>
+  [2657] getchainedprop 250 ..................... <t.car>
+  [2659] getlocal 0 ............................. <t>
+  [2661] getchainedprop 250 ..................... <t.car>
+  [2663] getobjprop 2257 ........................ <t.car.WheelSpin>
+  [2666] pushint16 360 .......................... <360>
+  [2669] sub .................................... <t.car.WheelSpin - 360>
+  [2670] setobjprop 2257 ........................ t.car.WheelSpin = t.car.WheelSpin - 360
+  [2673] pushint8 1 ............................. <1>
+  [2675] setlocal 1
+  [2677] getlocal 1
+  [2679] getlocal 0 ............................. <t>
+  [2681] getchainedprop 250 ..................... <t.car>
+  [2683] pushsymb 2165 .......................... <#wheellist>
+  [2686] pusharglist 2 .......................... <t.car, #wheellist>
+  [2688] objcall 129 ............................ <t.car.wheellist.count>
+  [2690] lteq
+  [2691] jmpifz [2943] .......................... repeat with i = 1 to t.car.wheellist.count
+  [2694] getlocal 0 ............................. <t>
+  [2696] getchainedprop 250 ..................... <t.car>
+  [2698] pushsymb 2165 .......................... <#wheellist>
+  [2701] getlocal 1 ............................. <i>
+  [2703] pusharglist 3 .......................... <t.car, #wheellist, i>
+  [2705] objcall 102 ............................ <t.car.wheellist[i]>
+  [2707] getchainedprop 214 ..................... <t.car.wheellist[i].transform>
+  [2709] getlocal 0 ............................. <t>
+  [2711] getchainedprop 250 ..................... <t.car>
+  [2713] getchainedprop 2068 .................... <t.car.Proxy>
+  [2716] getchainedprop 214 ..................... <t.car.Proxy.transform>
+  [2718] getobjprop 1162 ........................ <t.car.Proxy.transform.rotation>
+  [2721] setobjprop 1162 ........................ t.car.wheellist[i].transform.rotation = t.car.Proxy.transform.rotation
+  [2724] getlocal 0 ............................. <t>
+  [2726] getchainedprop 250 ..................... <t.car>
+  [2728] pushsymb 2165 .......................... <#wheellist>
+  [2731] getlocal 1 ............................. <i>
+  [2733] pusharglist 3 .......................... <t.car, #wheellist, i>
+  [2735] objcall 102 ............................ <t.car.wheellist[i]>
+  [2737] getchainedprop 214 ..................... <t.car.wheellist[i].transform>
+  [2739] getchainedprop 1162 .................... <t.car.wheellist[i].transform.rotation>
+  [2742] pushfloat32 0.0 ........................ <0.0>
+  [2747] setobjprop 1189 ........................ t.car.wheellist[i].transform.rotation.y = 0.0
+  [2750] getlocal 0 ............................. <t>
+  [2752] getchainedprop 250 ..................... <t.car>
+  [2754] pushsymb 2165 .......................... <#wheellist>
+  [2757] getlocal 1 ............................. <i>
+  [2759] pusharglist 3 .......................... <t.car, #wheellist, i>
+  [2761] objcall 102 ............................ <t.car.wheellist[i]>
+  [2763] getchainedprop 214 ..................... <t.car.wheellist[i].transform>
+  [2765] getchainedprop 1162 .................... <t.car.wheellist[i].transform.rotation>
+  [2768] pushfloat32 0.0 ........................ <0.0>
+  [2773] setobjprop 1190 ........................ t.car.wheellist[i].transform.rotation.z = 0.0
+  [2776] getlocal 1 ............................. <i>
+  [2778] pushint8 1 ............................. <1>
+  [2780] eq ..................................... <i = 1>
+  [2781] getlocal 1 ............................. <i>
+  [2783] pushint8 2 ............................. <2>
+  [2785] eq ..................................... <i = 2>
+  [2786] or ..................................... <(i = 1) or (i = 2)>
+  [2787] jmpifz [2818] .......................... if (i = 1) or (i = 2) then
+  [2790] getlocal 0 ............................. <t>
+  [2792] getchainedprop 250 ..................... <t.car>
+  [2794] pushsymb 2165 .......................... <#wheellist>
+  [2797] getlocal 1 ............................. <i>
+  [2799] pusharglist 3 .......................... <t.car, #wheellist, i>
+  [2801] objcall 102 ............................ <t.car.wheellist[i]>
+  [2803] getchainedprop 214 ..................... <t.car.wheellist[i].transform>
+  [2805] getchainedprop 1162 .................... <t.car.wheellist[i].transform.rotation>
+  [2808] getlocal 0 ............................. <t>
+  [2810] getchainedprop 250 ..................... <t.car>
+  [2812] getobjprop 2256 ........................ <t.car.WheelTurn>
+  [2815] setobjprop 1190 ........................ t.car.wheellist[i].transform.rotation.z = t.car.WheelTurn
+  [2818] getlocal 0 ............................. <t>
+  [2820] getchainedprop 250 ..................... <t.car>
+  [2822] getobjprop 2257 ........................ <t.car.WheelSpin>
+  [2825] setlocal 37 ............................ tWheelSpin = t.car.WheelSpin
+  [2827] getlocal 1 ............................. <i>
+  [2829] pushint8 2 ............................. <2>
+  [2831] eq ..................................... <i = 2>
+  [2832] getlocal 1 ............................. <i>
+  [2834] pushint8 4 ............................. <4>
+  [2836] eq ..................................... <i = 4>
+  [2837] or ..................................... <(i = 2) or (i = 4)>
+  [2838] getlocal 0 ............................. <t>
+  [2840] getchainedprop 376 ..................... <t.general>
+  [2843] getobjprop 2252 ........................ <t.general.Boss>
+  [2846] pushzero ............................... <0>
+  [2847] eq ..................................... <t.general.Boss = 0>
+  [2848] and .................................... <((i = 2) or (i = 4)) and (t.general.Boss = 0)>
+  [2849] jmpifz [2857] .......................... if ((i = 2) or (i = 4)) and (t.general.Boss = 0) then
+  [2852] getlocal 37 ............................ <tWheelSpin>
+  [2854] inv .................................... <-tWheelSpin>
+  [2855] setlocal 37 ............................ tWheelSpin = -tWheelSpin
+  [2857] getlocal 0 ............................. <t>
+  [2859] getchainedprop 250 ..................... <t.car>
+  [2861] pushsymb 2165 .......................... <#wheellist>
+  [2864] getlocal 1 ............................. <i>
+  [2866] pusharglist 3 .......................... <t.car, #wheellist, i>
+  [2868] objcall 102 ............................ <t.car.wheellist[i]>
+  [2870] getlocal 37 ............................ <tWheelSpin>
+  [2872] pushzero ............................... <0>
+  [2873] pushzero ............................... <0>
+  [2874] pushsymb 1370 .......................... <#self>
+  [2877] pusharglistnoret 5 ..................... <t.car.wheellist[i], tWheelSpin, 0, 0, #self>
+  [2879] objcall 1471 ........................... t.car.wheellist[i].rotate(tWheelSpin, 0, 0, #self)
+  [2882] getlocal 1 ............................. <i>
+  [2884] pushint8 2 ............................. <2>
+  [2886] eq ..................................... <i = 2>
+  [2887] getlocal 1 ............................. <i>
+  [2889] pushint8 4 ............................. <4>
+  [2891] eq ..................................... <i = 4>
+  [2892] or ..................................... <(i = 2) or (i = 4)>
+  [2893] getlocal 0 ............................. <t>
+  [2895] getchainedprop 376 ..................... <t.general>
+  [2898] getobjprop 2252 ........................ <t.general.Boss>
+  [2901] pushzero ............................... <0>
+  [2902] eq ..................................... <t.general.Boss = 0>
+  [2903] and .................................... <((i = 2) or (i = 4)) and (t.general.Boss = 0)>
+  [2904] jmpifz [2933] .......................... if ((i = 2) or (i = 4)) and (t.general.Boss = 0) then
+  [2907] getlocal 0 ............................. <t>
+  [2909] getchainedprop 250 ..................... <t.car>
+  [2911] pushsymb 2165 .......................... <#wheellist>
+  [2914] getlocal 1 ............................. <i>
+  [2916] pusharglist 3 .......................... <t.car, #wheellist, i>
+  [2918] objcall 102 ............................ <t.car.wheellist[i]>
+  [2920] pushzero ............................... <0>
+  [2921] pushzero ............................... <0>
+  [2922] pushint16 180 .......................... <180>
+  [2925] pushsymb 1370 .......................... <#self>
+  [2928] pusharglistnoret 5 ..................... <t.car.wheellist[i], 0, 0, 180, #self>
+  [2930] objcall 1471 ........................... t.car.wheellist[i].rotate(0, 0, 180, #self)
+  [2933] pushint8 1
+  [2935] getlocal 1
+  [2937] add
+  [2938] setlocal 1
+  [2940] endrepeat [2677]
+  [2943] getlocal 0 ............................. <t>
+  [2945] getchainedprop 250 ..................... <t.car>
+  [2947] getlocal 0 ............................. <t>
+  [2949] getchainedprop 250 ..................... <t.car>
+  [2951] getchainedprop 214 ..................... <t.car.transform>
+  [2953] pusharglist 1 .......................... <t.car.transform>
+  [2955] objcall 233 ............................ <t.car.transform.duplicate()>
+  [2957] setobjprop 2109 ........................ t.car.previousT = t.car.transform.duplicate()
+  [2960] getlocal 9 ............................. <tWorldAxis>
+  [2962] pushzero ............................... <0>
+  [2963] pushzero ............................... <0>
+  [2964] pushint8 1 ............................. <1>
+  [2966] pusharglist 3 .......................... <0, 0, 1>
+  [2968] extcall 212 ............................ <vector(0, 0, 1)>
+  [2970] pusharglist 2 .......................... <tWorldAxis, vector(0, 0, 1)>
+  [2972] objcall 1181 ........................... <tWorldAxis.dot(vector(0, 0, 1))>
+  [2975] setlocal 38 ............................ tCos = tWorldAxis.dot(vector(0, 0, 1))
+  [2977] getlocal 0 ............................. <t>
+  [2979] getchainedprop 250 ..................... <t.car>
+  [2981] getobjprop 2237 ........................ <t.car.Hovering>
+  [2984] pushzero ............................... <0>
+  [2985] eq ..................................... <t.car.Hovering = 0>
+  [2986] getlocal 0 ............................. <t>
+  [2988] getchainedprop 250 ..................... <t.car>
+  [2990] getobjprop 2018 ........................ <t.car.Speed>
+  [2993] pusharglist 1 .......................... <t.car.Speed>
+  [2995] extcall 973 ............................ <abs(t.car.Speed)>
+  [2998] pushfloat32 0.25 ....................... <0.25>
+  [3003] lteq ................................... <abs(t.car.Speed) <= 0.25>
+  [3004] and .................................... <(t.car.Hovering = 0) and (abs(t.car.Speed) <= 0.25)>
+  [3005] getlocal 38 ............................ <tCos>
+  [3007] pushcons 25 ............................ <0.29999999999999999>
+  [3009] lt ..................................... <tCos < 0.29999999999999999>
+  [3010] and .................................... <(t.car.Hovering = 0) and (abs(t.car.Speed) <= 0.25) and (tCos < 0.29999999999999999)>
+  [3011] jmpifz [3026] .......................... if (t.car.Hovering = 0) and (abs(t.car.Speed) <= 0.25) and (tCos < 0.29999999999999999) then
+  [3014] getparam 0 ............................. <me>
+  [3016] getlocal 0 ............................. <t>
+  [3018] pushint8 1 ............................. <1>
+  [3020] pushzero ............................... <0>
+  [3021] pusharglistnoret 4 ..................... <me, t, 1, 0>
+  [3023] objcall 428 ............................ me.reset(t, 1, 0)
+  [3026] getlocal 0 ............................. <t>
+  [3028] getchainedprop 250 ..................... <t.car>
+  [3030] getobjprop 2237 ........................ <t.car.Hovering>
+  [3033] pushzero ............................... <0>
+  [3034] eq ..................................... <t.car.Hovering = 0>
+  [3035] getlocal 0 ............................. <t>
+  [3037] getchainedprop 138 ..................... <t.race>
+  [3039] getobjprop 2110 ........................ <t.race.waypointZ>
+  [3042] pushfloat32 35.0 ....................... <35.0>
+  [3047] inv .................................... <-35.0>
+  [3048] lteq ................................... <t.race.waypointZ <= -35.0>
+  [3049] and .................................... <(t.car.Hovering = 0) and (t.race.waypointZ <= -35.0)>
+  [3050] jmpifz [3065] .......................... if (t.car.Hovering = 0) and (t.race.waypointZ <= -35.0) then
+  [3053] getparam 0 ............................. <me>
+  [3055] getlocal 0 ............................. <t>
+  [3057] pushint8 1 ............................. <1>
+  [3059] pushzero ............................... <0>
+  [3060] pusharglistnoret 4 ..................... <me, t, 1, 0>
+  [3062] objcall 428 ............................ me.reset(t, 1, 0)
+  [3065] getglobal 43 ........................... <gGame>
+  [3067] getobjprop 245 ......................... <gGame.RaceState>
+  [3069] pushsymb 2147 .......................... <#Pending>
+  [3072] eq ..................................... <gGame.RaceState = #Pending>
+  [3073] jmpifz [3085] .......................... if gGame.RaceState = #Pending then
+  [3076] getparam 0 ............................. <me>
+  [3078] getlocal 0 ............................. <t>
+  [3080] pusharglistnoret 2 ..................... <me, t>
+  [3082] objcall 428 ............................ me.reset(t)
+  [3085] ret
+end
+
+on reset me, t, tWaypoint, tRay
+  [  0] getparam 1 .............................. <t>
+  [  2] getchainedprop 250 ...................... <t.car>
+  [  4] getobjprop 2253 ......................... <t.car.ResetPosition>
+  [  7] setlocal 0 .............................. tPosition = t.car.ResetPosition
+  [  9] getparam 1 .............................. <t>
+  [ 11] getchainedprop 250 ...................... <t.car>
+  [ 13] getobjprop 2254 ......................... <t.car.ResetRotation>
+  [ 16] setlocal 1 .............................. tRotation = t.car.ResetRotation
+  [ 18] getparam 2 .............................. <tWaypoint>
+  [ 20] pushint8 1 .............................. <1>
+  [ 22] eq ...................................... <tWaypoint = 1>
+  [ 23] jmpifz [ 75] ............................ if tWaypoint = 1 then
+  [ 26] getparam 1 .............................. <t>
+  [ 28] getchainedprop 138 ...................... <t.race>
+  [ 30] pushsymb 1369 ........................... <#WayPointList>
+  [ 33] getparam 1 .............................. <t>
+  [ 35] getchainedprop 138 ...................... <t.race>
+  [ 37] getobjprop 374 .......................... <t.race.waypoint>
+  [ 40] pusharglist 3 ........................... <t.race, #WayPointList, t.race.waypoint>
+  [ 42] objcall 102 ............................. <t.race.WayPointList[t.race.waypoint]>
+  [ 44] pusharglist 1 ........................... <t.race.WayPointList[t.race.waypoint]>
+  [ 46] objcall 233 ............................. <t.race.WayPointList[t.race.waypoint].duplicate()>
+  [ 48] setlocal 2 .............................. tTransform = t.race.WayPointList[t.race.waypoint].duplicate()
+  [ 50] getlocal 2 .............................. <tTransform>
+  [ 52] getobjprop 215 .......................... <tTransform.position>
+  [ 54] pushzero ................................ <0>
+  [ 55] pushzero ................................ <0>
+  [ 56] pushfloat32 0.5 ......................... <0.5>
+  [ 61] pusharglist 3 ........................... <0, 0, 0.5>
+  [ 63] extcall 212 ............................. <vector(0, 0, 0.5)>
+  [ 65] add ..................................... <tTransform.position + vector(0, 0, 0.5)>
+  [ 66] setlocal 0 .............................. tPosition = tTransform.position + vector(0, 0, 0.5)
+  [ 68] getlocal 2 .............................. <tTransform>
+  [ 70] getobjprop 1991 ......................... <tTransform.axisAngle>
+  [ 73] setlocal 1 .............................. tRotation = tTransform.axisAngle
+  [ 75] getparam 3 .............................. <tRay>
+  [ 77] pushint8 1 .............................. <1>
+  [ 79] eq ...................................... <tRay = 1>
+  [ 80] jmpifz [181] ............................ if tRay = 1 then
+  [ 83] getglobal 43 ............................ <gGame>
+  [ 85] getchainedprop 1389 ..................... <gGame.Physics>
+  [ 88] getlocal 0 .............................. <tPosition>
+  [ 90] pushzero ................................ <0>
+  [ 91] pushzero ................................ <0>
+  [ 92] pushint8 15 ............................. <15>
+  [ 94] pusharglist 3 ........................... <0, 0, 15>
+  [ 96] extcall 212 ............................. <vector(0, 0, 15)>
+  [ 98] add ..................................... <tPosition + vector(0, 0, 15)>
+  [ 99] pushzero ................................ <0>
+  [100] pushzero ................................ <0>
+  [101] pushcons 26 ............................. <1.00099999999999989>
+  [103] inv ..................................... <-1.00099999999999989>
+  [104] pusharglist 3 ........................... <0, 0, -1.00099999999999989>
+  [106] extcall 212 ............................. <vector(0, 0, -1.00099999999999989)>
+  [108] pusharglist 3 ........................... <gGame.Physics, tPosition + vector(0, 0, 15), vector(0, 0, -1.00099999999999989)>
+  [110] objcall 2095 ............................ <gGame.Physics.rayCastClosest(tPosition + vector(0, 0, 15), vector(0, 0, -1.00099999999999989))>
+  [113] setlocal 3 .............................. tRayDetails = gGame.Physics.rayCastClosest(tPosition + vector(0, 0, 15), vector(0, 0, -1.00099999999999989))
+  [115] getlocal 3 .............................. <tRayDetails>
+  [117] getobjprop 129 .......................... <tRayDetails.count>
+  [119] pushzero ................................ <0>
+  [120] gt ...................................... <tRayDetails.count > 0>
+  [121] jmpifz [157] ............................ if tRayDetails.count > 0 then / else
+  [124] getlocal 3 .............................. <tRayDetails>
+  [126] pushint8 2 .............................. <2>
+  [128] pusharglist 2 ........................... <tRayDetails, 2>
+  [130] objcall 105 ............................. <tRayDetails[2]>
+  [132] pushfloat32 0.0 ......................... <0.0>
+  [137] pushfloat32 0.0 ......................... <0.0>
+  [142] pushfloat32 4.5 ......................... <4.5>
+  [147] pusharglist 3 ........................... <0.0, 0.0, 4.5>
+  [149] extcall 212 ............................. <vector(0.0, 0.0, 4.5)>
+  [151] add ..................................... <tRayDetails[2] + vector(0.0, 0.0, 4.5)>
+  [152] setlocal 0 .............................. tPosition = tRayDetails[2] + vector(0.0, 0.0, 4.5)
+  [154] jmp [181]
+  [157] getlocal 0 .............................. <tPosition>
+  [159] pushfloat32 0.0 ......................... <0.0>
+  [164] pushfloat32 0.0 ......................... <0.0>
+  [169] pushfloat32 4.5 ......................... <4.5>
+  [174] pusharglist 3 ........................... <0.0, 0.0, 4.5>
+  [176] extcall 212 ............................. <vector(0.0, 0.0, 4.5)>
+  [178] add ..................................... <tPosition + vector(0.0, 0.0, 4.5)>
+  [179] setlocal 0 .............................. tPosition = tPosition + vector(0.0, 0.0, 4.5)
+  [181] getparam 1 .............................. <t>
+  [183] getchainedprop 250 ...................... <t.car>
+  [185] getchainedprop 2068 ..................... <t.car.Proxy>
+  [188] getchainedprop 214 ...................... <t.car.Proxy.transform>
+  [190] getlocal 0 .............................. <tPosition>
+  [192] setobjprop 215 .......................... t.car.Proxy.transform.position = tPosition
+  [194] getparam 1 .............................. <t>
+  [196] getchainedprop 250 ...................... <t.car>
+  [198] getchainedprop 2068 ..................... <t.car.Proxy>
+  [201] getchainedprop 214 ...................... <t.car.Proxy.transform>
+  [203] getlocal 1 .............................. <tRotation>
+  [205] setobjprop 1991 ......................... t.car.Proxy.transform.axisAngle = tRotation
+  [208] getparam 1 .............................. <t>
+  [210] getchainedprop 250 ...................... <t.car>
+  [212] getchainedprop 1555 ..................... <t.car.PhysicsCar>
+  [215] getlocal 0 .............................. <tPosition>
+  [217] setobjprop 215 .......................... t.car.PhysicsCar.position = tPosition
+  [219] getparam 1 .............................. <t>
+  [221] getchainedprop 250 ...................... <t.car>
+  [223] getchainedprop 1555 ..................... <t.car.PhysicsCar>
+  [226] getlocal 1 .............................. <tRotation>
+  [228] setobjprop 2094 ......................... t.car.PhysicsCar.orientation = tRotation
+  [231] getparam 1 .............................. <t>
+  [233] getchainedprop 250 ...................... <t.car>
+  [235] getchainedprop 1555 ..................... <t.car.PhysicsCar>
+  [238] pushzero ................................ <0>
+  [239] pushzero ................................ <0>
+  [240] pushzero ................................ <0>
+  [241] pusharglist 3 ........................... <0, 0, 0>
+  [243] extcall 212 ............................. <vector(0, 0, 0)>
+  [245] setobjprop 1510 ......................... t.car.PhysicsCar.linearVelocity = vector(0, 0, 0)
+  [248] getparam 1 .............................. <t>
+  [250] getchainedprop 250 ...................... <t.car>
+  [252] getchainedprop 1555 ..................... <t.car.PhysicsCar>
+  [255] pushzero ................................ <0>
+  [256] pushzero ................................ <0>
+  [257] pushzero ................................ <0>
+  [258] pusharglist 3 ........................... <0, 0, 0>
+  [260] extcall 212 ............................. <vector(0, 0, 0)>
+  [262] setobjprop 2297 ......................... t.car.PhysicsCar.angularVelocity = vector(0, 0, 0)
+  [265] pushsymb 966 ............................ <#maxNumberOfModels>
+  [268] pushint8 1 .............................. <1>
+  [270] pushsymb 967 ............................ <#levelOfDetail>
+  [273] pushsymb 968 ............................ <#detailed>
+  [276] pushsymb 969 ............................ <#modelList>
+  [279] getglobal 43 ............................ <gGame>
+  [281] getobjprop 1741 ......................... <gGame.FloorList>
+  [284] pushsymb 2303 ........................... <#maxDistance>
+  [287] pushfloat32 5.0 ......................... <5.0>
+  [292] pusharglist 8 ........................... <[#maxNumberOfModels: 1, #levelOfDetail: #detailed, #modelList: gGame.FloorList, #maxDistance: 5.0]>
+  [294] pushproplist ............................ <[#maxNumberOfModels: 1, #levelOfDetail: #detailed, #modelList: gGame.FloorList, #maxDistance: 5.0]>
+  [295] setlocal 4 .............................. tOptionList = [#maxNumberOfModels: 1, #levelOfDetail: #detailed, #modelList: gGame.FloorList, #maxDistance: 5.0]
+  [297] getparam 1 .............................. <t>
+  [299] getchainedprop 376 ...................... <t.general>
+  [302] getchainedprop 64 ....................... <t.general.member>
+  [304] getparam 1 .............................. <t>
+  [306] getchainedprop 250 ...................... <t.car>
+  [308] getchainedprop 2068 ..................... <t.car.Proxy>
+  [311] getobjprop 1161 ......................... <t.car.Proxy.worldPosition>
+  [314] pushcons 20 ............................. <0.0001>
+  [316] pushcons 20 ............................. <0.0001>
+  [318] pushcons 21 ............................. <1.00009999999999999>
+  [320] inv ..................................... <-1.00009999999999999>
+  [321] pusharglist 3 ........................... <0.0001, 0.0001, -1.00009999999999999>
+  [323] extcall 212 ............................. <vector(0.0001, 0.0001, -1.00009999999999999)>
+  [325] getlocal 4 .............................. <tOptionList>
+  [327] pusharglist 4 ........................... <t.general.member, t.car.Proxy.worldPosition, vector(0.0001, 0.0001, -1.00009999999999999), tOptionList>
+  [329] objcall 2304 ............................ <t.general.member.modelsUnderRay(t.car.Proxy.worldPosition, vector(0.0001, 0.0001, -1.00009999999999999), tOptionList)>
+  [332] setlocal 5 .............................. tIntersectDetails = t.general.member.modelsUnderRay(t.car.Proxy.worldPosition, vector(0.0001, 0.0001, -1.00009999999999999), tOptionList)
+  [334] getlocal 5 .............................. <tIntersectDetails>
+  [336] getobjprop 129 .......................... <tIntersectDetails.count>
+  [338] pushzero ................................ <0>
+  [339] gt ...................................... <tIntersectDetails.count > 0>
+  [340] jmpifz [353] ............................ if tIntersectDetails.count > 0 then
+  [343] getlocal 5 .............................. <tIntersectDetails>
+  [345] pushint8 1 .............................. <1>
+  [347] pusharglist 2 ........................... <tIntersectDetails, 1>
+  [349] objcall 105 ............................. <tIntersectDetails[1]>
+  [351] setlocal 5 .............................. tIntersectDetails = tIntersectDetails[1]
+  [353] getlocal 5 .............................. <tIntersectDetails>
+  [355] getobjprop 129 .......................... <tIntersectDetails.count>
+  [357] pushzero ................................ <0>
+  [358] gt ...................................... <tIntersectDetails.count > 0>
+  [359] jmpifz [621] ............................ if tIntersectDetails.count > 0 then
+  [362] getparam 1 .............................. <t>
+  [364] getchainedprop 250 ...................... <t.car>
+  [366] getlocal 5 .............................. <tIntersectDetails>
+  [368] getobjprop 71 ........................... <tIntersectDetails.model>
+  [370] setobjprop 2260 ......................... t.car.currentFloor = tIntersectDetails.model
+  [373] getparam 1 .............................. <t>
+  [375] getchainedprop 250 ...................... <t.car>
+  [377] getglobal 43 ............................ <gGame>
+  [379] getchainedprop 1741 ..................... <gGame.FloorList>
+  [382] getparam 1 .............................. <t>
+  [384] getchainedprop 250 ...................... <t.car>
+  [386] getobjprop 2260 ......................... <t.car.currentFloor>
+  [389] pusharglist 2 ........................... <gGame.FloorList, t.car.currentFloor>
+  [391] objcall 166 ............................. <gGame.FloorList.getPos(t.car.currentFloor)>
+  [393] setobjprop 373 .......................... t.car.currentRootNr = gGame.FloorList.getPos(t.car.currentFloor)
+  [396] getparam 1 .............................. <t>
+  [398] getchainedprop 250 ...................... <t.car>
+  [400] getobjprop 373 .......................... <t.car.currentRootNr>
+  [403] pusharglist 1 ........................... <[t.car.currentRootNr]>
+  [405] pushlist ................................ <[t.car.currentRootNr]>
+  [406] setlocal 6 .............................. tRootList = [t.car.currentRootNr]
+  [408] getlocal 6 .............................. <tRootList>
+  [410] pusharglistnoret 1 ...................... <tRootList>
+  [412] objcall 304 ............................. tRootList.sort()
+  [415] getlocal 6 .............................. <tRootList>
+  [417] pushint8 1 .............................. <1>
+  [419] pusharglist 2 ........................... <tRootList, 1>
+  [421] objcall 105 ............................. <tRootList[1]>
+  [423] pushint8 1 .............................. <1>
+  [425] sub ..................................... <tRootList[1] - 1>
+  [426] pushzero ................................ <0>
+  [427] gt ...................................... <(tRootList[1] - 1) > 0>
+  [428] jmpifz [448] ............................ if (tRootList[1] - 1) > 0 then
+  [431] getlocal 6 .............................. <tRootList>
+  [433] getlocal 6 .............................. <tRootList>
+  [435] pushint8 1 .............................. <1>
+  [437] pusharglist 2 ........................... <tRootList, 1>
+  [439] objcall 105 ............................. <tRootList[1]>
+  [441] pushint8 1 .............................. <1>
+  [443] sub ..................................... <tRootList[1] - 1>
+  [444] pusharglistnoret 2 ...................... <tRootList, tRootList[1] - 1>
+  [446] objcall 42 .............................. tRootList.add(tRootList[1] - 1)
+  [448] pushint8 1 .............................. <1>
+  [450] setlocal 7
+  [452] getlocal 7
+  [454] pushint8 1 .............................. <1>
+  [456] lteq
+  [457] jmpifz [514] ............................ repeat with i = 1 to 1
+  [460] getlocal 6 .............................. <tRootList>
+  [462] getlocal 6 .............................. <tRootList>
+  [464] getobjprop 129 .......................... <tRootList.count>
+  [466] pusharglist 2 ........................... <tRootList, tRootList.count>
+  [468] objcall 105 ............................. <tRootList[tRootList.count]>
+  [470] pushint8 1 .............................. <1>
+  [472] add ..................................... <tRootList[tRootList.count] + 1>
+  [473] getglobal 43 ............................ <gGame>
+  [475] pushsymb 1405 ........................... <#RootList>
+  [478] pusharglist 2 ........................... <gGame, #RootList>
+  [480] objcall 129 ............................. <gGame.RootList.count>
+  [482] lteq .................................... <(tRootList[tRootList.count] + 1) <= gGame.RootList.count>
+  [483] jmpifz [505] ............................ if (tRootList[tRootList.count] + 1) <= gGame.RootList.count then
+  [486] getlocal 6 .............................. <tRootList>
+  [488] getlocal 6 .............................. <tRootList>
+  [490] getlocal 6 .............................. <tRootList>
+  [492] getobjprop 129 .......................... <tRootList.count>
+  [494] pusharglist 2 ........................... <tRootList, tRootList.count>
+  [496] objcall 105 ............................. <tRootList[tRootList.count]>
+  [498] pushint8 1 .............................. <1>
+  [500] add ..................................... <tRootList[tRootList.count] + 1>
+  [501] pusharglistnoret 2 ...................... <tRootList, tRootList[tRootList.count] + 1>
+  [503] objcall 42 .............................. tRootList.add(tRootList[tRootList.count] + 1)
+  [505] pushint8 1
+  [507] getlocal 7
+  [509] add
+  [510] setlocal 7
+  [512] endrepeat [452]
+  [514] getlocal 6 .............................. <tRootList>
+  [516] getparam 1 .............................. <t>
+  [518] getchainedprop 250 ...................... <t.car>
+  [520] getobjprop 1405 ......................... <t.car.RootList>
+  [523] nteq .................................... <tRootList <> t.car.RootList>
+  [524] jmpifz [541] ............................ if tRootList <> t.car.RootList then
+  [527] getparam 1 .............................. <t>
+  [529] getchainedprop 250 ...................... <t.car>
+  [531] getparam 1 .............................. <t>
+  [533] getchainedprop 250 ...................... <t.car>
+  [535] getobjprop 1405 ......................... <t.car.RootList>
+  [538] setobjprop 1406 ......................... t.car.previousRootList = t.car.RootList
+  [541] getparam 1 .............................. <t>
+  [543] getchainedprop 250 ...................... <t.car>
+  [545] getlocal 6 .............................. <tRootList>
+  [547] setobjprop 1405 ......................... t.car.RootList = tRootList
+  [550] pusharglist 0 ........................... <[]>
+  [552] pushlist ................................ <[]>
+  [553] setlocal 8 .............................. tFloorList = []
+  [555] getparam 1 .............................. <t>
+  [557] getchainedprop 250 ...................... <t.car>
+  [559] getobjprop 1405 ......................... <t.car.RootList>
+  [562] peek 0
+  [564] pusharglist 1
+  [566] extcall 129
+  [568] pushint8 1
+  [570] peek 0
+  [572] peek 2
+  [574] lteq
+  [575] jmpifz [610] ............................ repeat with i in t.car.RootList
+  [578] peek 2
+  [580] peek 1
+  [582] pusharglist 2
+  [584] extcall 105
+  [586] setlocal 7
+  [588] getlocal 8 .............................. <tFloorList>
+  [590] getglobal 43 ............................ <gGame>
+  [592] pushsymb 1741 ........................... <#FloorList>
+  [595] getlocal 7 .............................. <i>
+  [597] pusharglist 3 ........................... <gGame, #FloorList, i>
+  [599] objcall 70 .............................. <gGame.FloorList[i]>
+  [601] pusharglistnoret 2 ...................... <tFloorList, gGame.FloorList[i]>
+  [603] objcall 42 .............................. tFloorList.add(gGame.FloorList[i])
+  [605] pushint8 1
+  [607] add
+  [608] endrepeat [570]
+  [610] pop 3
+  [612] getparam 1 .............................. <t>
+  [614] getchainedprop 250 ...................... <t.car>
+  [616] getlocal 8 .............................. <tFloorList>
+  [618] setobjprop 1741 ......................... t.car.FloorList = tFloorList
+  [621] ret
+end
